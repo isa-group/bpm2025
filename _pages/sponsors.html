@@ -1,0 +1,93 @@
+---
+description: DjangoCon Europe is only possible through the support of various organizations.
+heading: Sponsors
+layout: base
+permalink: /sponsors/
+---
+
+<header class="subpage-header">
+  <h1>{{ page.heading }}</h1>
+</header>
+
+<div class="content">
+  <div class="row column v-pad-bottom">
+    <div class="medium-6 large-7 column">
+      <p class="lead">
+        DjangoCon Europe is only possible through the generosity of the organizations and businesses on this page. Their contributions make it possible for us to provide opportunity grants to speakers and attendees, record all talks, host sprints, and feed everyone for five days. Thank you for your support!
+      </p>
+    </div>
+    <div class="medium-5 large-4 column">
+      {% comment %}
+      <div class="callout text-center partner-cta-box">
+        <h2>Looking for a job?</h2>
+        <p>Some of our sponsors are hiring! Take a look at our virtual jobs board to learn more.</p>
+        <a href="/job-board/" class="button">Check out our jobs board</a>
+      </div>
+      {% endcomment %}
+      <div class="callout text-center partner-cta-box">
+        <h2>Sponsor DjangoCon Europe!</h2>
+        <p>Sign up to sponsor DjangoCon Europe and help make the conference happen.</p>
+        <a href="{% link _pages/sponsors-information.md %}" class="button">Check out sponsorship opportunities</a>
+      </div>
+    </div>
+  </div>
+
+  {% comment %}
+    {% assign sponsors_by_level = "Diamond|Platinum|Gold|Silver|Bronze|Community|Grants|Supporters" | split: "|" %}
+  {% endcomment %}
+  {% assign sponsors_by_level = "Platinum|Gold|Silver|Bronze|Community|Grants|Supporters" | split: "|" %}
+  {% for level in sponsors_by_level %}
+  <div class="section-pad {% cycle 'theme-light-gray', 'theme-medium-gray', 'theme-white' %}">
+    <h2 class="text-center v-pad-bottom">{{ level }}</h2>
+    {% if level == "Supporters" %}
+      <div class="row partner">
+        The following amazing people and companies from the Django community went above and beyond to help make this
+        conference possible. With their contribution, we are able to offer additional grants to people from marginalised
+        or under-represented groups.
+      </div>
+    {% endif %}
+    {% assign sponsors = site.sponsors | where: "level", level | where: 'hidden', false %}
+    {% for sponsor in sponsors %}
+      <div class="row partner">
+      {% if level == "Supporters" %}
+        <div class="column medium-12 text-center">
+          {{ sponsor.name }}
+        </div>
+      {% else %}
+        <div class="column medium-4 text-center">
+          <a href="{{ sponsor.url_target }}" rel="sponsored">
+            <img
+              class="partner-logo {{ sponsor.logo_orientation }}"
+              src="{{ sponsor.logo }}"
+              alt="{{ sponsor.name }}"
+              loading="lazy"
+              decoding="async" />
+          </a>
+        </div>
+        <div class="column medium-8">
+          <h3 class="partner-name"><a href="{{ sponsor.url_target }}" rel="sponsored">{{ sponsor.name }}</a></h3>
+          {% if sponsor.extra_packages %}
+          <div class="partner-packages">
+            {% for package in sponsor.extra_packages %}
+            <span class="partner-package">{{ package }} sponsor</span>
+            {% endfor %}
+          </div>
+          {% endif %}
+          {% capture sponsor_description %}{{ sponsor.description }}{: .partner-description }{% endcapture %}
+          {{ sponsor_description | markdownify }}
+
+          {% if sponsor.hiring_url %}
+            <a href="{{ sponsor.hiring_url }}" class="button" rel="noopener">{{ sponsor.name }} is hiring!</a>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="row partner">
+        <p class="text-center">You? <a href="{% link _pages/sponsors-information.md %}">Become a sponsor!</a></p>
+      </div>
+    {% endfor %}
+  </div>
+{% endfor %}
+
+</div>

@@ -1,0 +1,132 @@
+title: DjangoCon Europe
+url: "https://2023.djangocon.eu"
+author: DjangoCon Europe
+description: |
+  DjangoCon Europe 2023 conference will take place in Edinburgh, Scotland.
+  from May 29th - June 2nd 2023!
+enforce_ssl: "2023.djangocon.eu"
+relative_permalinks: false
+permalink: news/:title/ # permalink: date
+timezone: Europe/London
+conf_year: 2023
+
+include:
+  - _pages
+
+# Build settings
+markdown: kramdown
+
+plugins:
+  - jekyll-feed
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jemoji
+
+exclude:
+  - .cache
+  - .editorconfig
+  - .gitignore
+  - .vendor
+  - bin
+  - bower_components
+  - CNAME
+  - CODE_OF_CONDUCT.md
+  - CONTRIBUTING.md
+  - docker-compose.yml
+  - EDITORS_GUIDE.md
+  - Gemfile
+  - Gemfile.lock
+  - justfile
+  - LICENSE
+  - Makefile
+  - node_modules
+  - NOTES.md
+  - package*.json
+  - Procfile
+  - Rakefile
+  - README.md
+  - vendor
+  - webpack.config.js
+
+# We need `future` to allow our schedule to work :/
+future: true
+
+collections: # process the _data folder
+  components:
+    output: false
+  schedule:
+    output: false
+    permalink: /:collection/:name/
+  organisers:
+    output: false
+    permalink: /:collection/
+  presenters:
+    output: false
+    permalink: /:collection/
+  sponsors:
+    output: false
+    permalink: /:collection/
+  places:
+    output: false
+    permalink: /:collection/
+  jobs:
+    output: true
+    permalink: /:collection/:name/
+  locations:
+    output: false
+    permalink: /:collection/
+  venues:
+    output: false
+    permalink: /:collection/
+  news:
+    output: false
+    permalink: /:collection/
+  sessions:
+    output: true
+    permalink: /:collection/
+  menus:
+    output: false
+    permalink: /:collection/
+  attendee_links:
+    output: false
+    permalink: /:collection
+
+# SEO Plugin settings
+
+twitter:
+  username: DjangoConEurope
+
+# This is the default logo that people see with opengraph
+# logo: /static/2023-logos/squares-and-social/djangocon-square.png
+logo: /static/img/social/DJC-EU-Banner-og.png
+
+# Frontmatter fallback settings
+# This is the default logo that people see on blog posts
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /static/img/social/DJC-EU-Banner-og.png
+  - scope:
+      path: "_presenters"
+      type: presenters
+    values:
+      sitemap: false
+
+# Emails
+conduct_email: "conduct@djangocon.eu"
+contact_us_email: "2023@djangocon.eu"
+content_email: "content@djangocon.eu"
+sponsors_email: "sponsors@djangocon.eu"
+
+# Links
+cfp_application: "https://pretalx.com/djangocon-europe-2023/cfp"
+opportunity_grant_application: "https://forms.gle/3HCUj3CNzBzwsbdw5"
+discord_link: ""
+# slack_link: "https://join.slack.com/t/djangoconeurope/shared_invite/zt-1gjg5lqkz-qVQkNnhjztXVme7TQ7ziQA"
+sponsorship_prospectus: ""
+ticket_link: "https://pretix.eu/puksl/dceu2023"
+schedule_link: "https://pretalx.com/djangocon-europe-2023/schedule"
+
+github: [metadata]

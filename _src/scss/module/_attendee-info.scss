@@ -1,0 +1,18 @@
+a.info-link {
+
+    text-decoration: none;
+
+    color: $blue-dark;
+
+    &:hover {
+        color: $blue-light;
+    }
+}
+
+dd {
+    margin-bottom: 0.5rem;
+}
+
+.indent {
+    margin-left: 20px;
+}

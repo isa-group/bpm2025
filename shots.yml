@@ -1,0 +1,210 @@
+- output: ./static/img/social/presenters/tobias-kunze.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/tobias-kunze
+
+- output: ./static/img/social/presenters/alex-henman.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/alex-henman
+
+- output: ./static/img/social/presenters/paolo-melchiorre.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/paolo-melchiorre
+
+- output: ./static/img/social/presenters/wilhelm-klopp.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/wilhelm-klopp
+
+- output: ./static/img/social/presenters/cheuk-ting-ho.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/cheuk-ting-ho
+
+- output: ./static/img/social/presenters/psalms-kalu.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/psalms-kalu
+
+- output: ./static/img/social/presenters/iuri-de-silvio.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/iuri-de-silvio
+
+- output: ./static/img/social/presenters/tim-bell.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/tim-bell
+
+- output: ./static/img/social/presenters/andrew-aikman.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/andrew-aikman
+
+- output: ./static/img/social/presenters/raphael-michel.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/raphael-michel
+
+- output: ./static/img/social/presenters/luben-alexandrov.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/luben-alexandrov
+
+- output: ./static/img/social/presenters/mykalin-jones.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/mykalin-jones
+
+- output: ./static/img/social/presenters/ernesto-rico-schmidt.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/ernesto-rico-schmidt
+
+- output: ./static/img/social/presenters/nicolas-noé.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/nicolas-noé
+
+- output: ./static/img/social/presenters/rudi-giesler.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/rudi-giesler
+
+- output: ./static/img/social/presenters/karen-jex.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/karen-jex
+
+- output: ./static/img/social/presenters/dawn-wages.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/dawn-wages
+
+- output: ./static/img/social/presenters/aisha-bello.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/aisha-bello
+
+- output: ./static/img/social/presenters/cheuk-ting-ho-1.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/cheuk-ting-ho-1
+
+- output: ./static/img/social/presenters/nik-haldimann.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/nik-haldimann
+
+- output: ./static/img/social/presenters/felipe-hoffa.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/felipe-hoffa
+
+- output: ./static/img/social/presenters/vikram-waradpande.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/vikram-waradpande
+
+- output: ./static/img/social/presenters/ahter-sönmez.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/ahter-sönmez
+
+- output: ./static/img/social/presenters/david-smith.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/david-smith
+
+- output: ./static/img/social/presenters/daniele-procida.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/daniele-procida
+
+- output: ./static/img/social/presenters/ashley-mathew.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/ashley-mathew
+
+- output: ./static/img/social/presenters/tom-dyson.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/tom-dyson
+
+- output: ./static/img/social/presenters/olaniyan-adewale-hafeez.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/olaniyan-adewale-hafeez
+
+- output: ./static/img/social/presenters/lauren-parsons.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/lauren-parsons
+
+- output: ./static/img/social/presenters/laurent-tramoy.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/laurent-tramoy
+
+- output: ./static/img/social/presenters/thibaud-colas.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/thibaud-colas
+
+- output: ./static/img/social/presenters/daniele-procida-1.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/daniele-procida-1
+
+- output: ./static/img/social/presenters/vladyslav-lyeuta.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/vladyslav-lyeuta
+
+- output: ./static/img/social/presenters/ester-beltrami.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/ester-beltrami
+
+- output: ./static/img/social/presenters/marine-gandy.png
+  height: 512
+  quality: 80
+  width: 1024
+  url: https://djangoconeu-test.netlify.app/sessions/marine-gandy
+
