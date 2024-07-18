@@ -1,273 +1,295 @@
-# 2023.djangocon.eu Website
+# 🚀 AstroWind
 
-[![Contributors](https://img.shields.io/github/contributors/djangocon/2023.djangocon.eu.svg)](https://github.com/djangocon/2023.djangocon.eu/graphs/contributors)
+<img src="https://raw.githubusercontent.com/onwidget/.github/main/resources/astrowind/lighthouse-score.png" align="right"
+     alt="AstroWind Lighthouse Score" width="100" height="358">
 
-The 2023.djangocon.eu website is a static site compiled with [Jekyll](https://jekyllrb.com/docs/home/). The frontend relies heavily on the [Foundation](http://foundation.zurb.com/sites/docs/) framework. Frontend dependencies are installed and updated with [npm](https://www.npmjs.com/).
+🌟 _Most *starred* & *forked* Astro theme in 2022 & 2023_. 🌟
 
-## Code of Conduct
+**AstroWind** is a free and open-source template to make your website using **[Astro 4.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/)**. Ready to start a new project and designed taking into account web best practices.
 
-As a contributor, you can help us keep the Django community open and inclusive.
-Please read and follow our [Code of Conduct](CODE_OF_CONDUCT.md).
+- ✅ **Production-ready** scores in **PageSpeed Insights** reports.
+- ✅ Integration with **Tailwind CSS** supporting **Dark mode** and **_RTL_**.
+- ✅ **Fast and SEO friendly blog** with automatic **RSS feed**, **MDX** support, **Categories & Tags**, **Social Share**, ...
+- ✅ **Image Optimization** (using new **Astro Assets** and **Unpic** for Universal image CDN).
+- ✅ Generation of **project sitemap** based on your routes.
+- ✅ **Open Graph tags** for social media sharing.
+- ✅ **Analytics** built-in Google Analytics, and Splitbee integration.
 
-## Getting Started
+<br>
 
-Get started contributing by reading our [Contributing](CONTRIBUTING.md) guidelines.
+<img src="https://raw.githubusercontent.com/onwidget/.github/main/resources/astrowind/screenshot-astrowind-1.png" alt="AstroWind Theme Screenshot">
 
-### Contributing via Browser
+[![onWidget](https://custom-icon-badges.demolab.com/badge/made%20by%20-onWidget-556bf2?style=flat-square&logo=onwidget&logoColor=white&labelColor=101827)](https://onwidget.com)
+[![License](https://img.shields.io/github/license/onwidget/astrowind?style=flat-square&color=dddddd&labelColor=000000)](https://github.com/onwidget/astrowind/blob/main/LICENSE.md)
+[![Maintained](https://img.shields.io/badge/maintained%3F-yes-brightgreen.svg?style=flat-square)](https://github.com/onwidget)
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/onwidget/astrowind#contributing)
+[![Known Vulnerabilities](https://snyk.io/test/github/onwidget/astrowind/badge.svg?style=flat-square)](https://snyk.io/test/github/onwidget/astrowind)
+[![Stars](https://img.shields.io/github/stars/onwidget/astrowind.svg?style=social&label=stars&maxAge=86400&color=ff69b4)](https://github.com/onwidget/astrowind)
+[![Forks](https://img.shields.io/github/forks/onwidget/astrowind.svg?style=social&label=forks&maxAge=86400&color=ff69b4)](https://github.com/onwidget/astrowind)
 
-1. Navigate to the [DjangoCon EU website repo](https://github.com/djangocon/2023.djangocon.eu) on GitHub. In the upper right hand corner of the repo, click the "Fork" button. Alternatively, click on an individual file and click the pencil icon. GitHub will automatically fork the repo for you.
+<br>
 
-2. Head over to your GitHub account, where you will find the forked repo. This is a copy of the official code. Your changes to this forked code will not affect the official code, unless you submit a pull request and an admin merges your pull request.
+<details open>
+<summary>Table of Contents</summary>
 
-3. For changes that do not need to be tested locally, the change can be made and submitted in the browser.
+- [Demo](#demo)
+- [Upcoming: AstroWind 2.0 – We Need Your Vision!](#-upcoming-astrowind-20--we-need-your-vision)
+- [Getting started](#getting-started)
+  - [Project structure](#project-structure)
+  - [Commands](#commands)
+  - [Configuration](#configuration)
+  - [Deploy](#deploy)
+- [Frequently Asked Questions](#frequently-asked-questions)
+- [Related Projects](#related-projects)
+- [Contributing](#contributing)
+- [Acknowledgements](#acknowledgements)
+- [License](#license)
 
-4. Within your forked repo, make sure the "Branch" tab is set to the `main` branch.
+</details>
 
-5. Once you are on the correct branch, navigate to the file you intend to change and click the pencil icon to open it. Make the change and click the "Commit changes" button.
+<br>
 
-6. Staying within your forked repo, navigate back to the main page of the branch (note: your pull request should be submitted via your forked repo, not the main repo). Click "New pull request." Click the "Commit changes" button. At the "Comparing changes" page, double check that you are happy with your proposed change. If so, click "Create pull request." Add a descriptive title and comment if applicable, then click "Create pull request" at the bottom to submit. An admin will review your proposed change, merge it, or give you feedback. If you are not ready for your pull request to be immediately merged, you can let those reviewing pull requests know by using the acronym WIP (Work in Progress) or a similar message in your pull request title.
+## Demo
 
-#### Example: Updating Organizer Info
+📌 [https://astrowind.vercel.app/](https://astrowind.vercel.app/)
 
-Follow the above instructions to step 5.
+<br>
 
-Click on the `_organisers` folder, then your own `name.md` file. Click on the pencil icon to open the file. Make your changes, making sure that your information is placed within quotation marks.
+## 🔔 Upcoming: AstroWind 2.0 – We Need Your Vision!
 
-**To add a photo:** navigate to the `static/img/organisers` folder. Click "Upload files". Drag or choose your photo file into the window. Click "Commit changes". Use a square image, 320x320, in JPEG format for photography or PNG for computer graphics. Compress with [Squoosh](https://squoosh.app/). In your `name.md` file, make sure the path to your photo has the proper name and file ending (`.jpg`, `.png`, etc.).
+We're embarking on an exciting journey with **AstroWind 2.0**, and we want you to be a part of it! We're currently taking the first steps in developing this new version and your insights are invaluable. Join the discussion and share your feedback, ideas, and suggestions to help shape the future of **AstroWind**. Let's make **AstroWind 2.0** even better, together!
 
-If you need assistance, please ask! Complete step 6.
+[Share Your Feedback in Our Discussion!](https://github.com/onwidget/astrowind/discussions/392)
 
-### Contributing via Local Development
+<br>
 
-For changes that require cloning/running the code locally, follow the above instructions to step 5. Instead of navigating to the file through the browser, open up your computer terminal (you will need to have Git installed locally and a code editor of your choice).
+## Getting started
 
-Clone your forked repo locally via the terminal, replacing the username in the URL with your own (note: not all operating systems will use a `$` as a terminal prompt).
+**AstroWind** tries to give you quick access to creating a website using [Astro 4.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/). It's a free theme which focuses on simplicity, good practices and high performance.
 
-```bash
-$ git clone https://github.com/<your-username>/2023.djangocon.eu
+Very little vanilla javascript is used only to provide basic functionality so that each developer decides which framework (React, Vue, Svelte, Solid JS...) to use and how to approach their goals.
+
+In this version the template supports all the options in the `output` configuration, `static`, `hybrid` and `server`, but the blog only works with `prerender = true`. We are working on the next version and aim to make it fully compatible with SSR.
+
+### Project structure
+
+Inside **AstroWind** template, you'll see the following folders and files:
+
+```
+/
+├── public/
+│   ├── _headers
+│   └── robots.txt
+├── src/
+│   ├── assets/
+│   │   ├── favicons/
+│   │   ├── images/
+│   │   └── styles/
+│   │       └── tailwind.css
+│   ├── components/
+│   │   ├── blog/
+│   │   ├── common/
+│   │   ├── ui/
+│   │   ├── widgets/
+│   │   │   ├── Header.astro
+│   │   │   └── ...
+│   │   ├── CustomStyles.astro
+│   │   ├── Favicons.astro
+│   │   └── Logo.astro
+│   ├── content/
+│   │   ├── post/
+│   │   │   ├── post-slug-1.md
+│   │   │   ├── post-slug-2.mdx
+│   │   │   └── ...
+│   │   └-- config.ts
+│   ├── layouts/
+│   │   ├── Layout.astro
+│   │   ├── MarkdownLayout.astro
+│   │   └── PageLayout.astro
+│   ├── pages/
+│   │   ├── [...blog]/
+│   │   │   ├── [category]/
+│   │   │   ├── [tag]/
+│   │   │   ├── [...page].astro
+│   │   │   └── index.astro
+│   │   ├── index.astro
+│   │   ├── 404.astro
+│   │   ├-- rss.xml.ts
+│   │   └── ...
+│   ├── utils/
+│   ├── config.yaml
+│   └── navigation.js
+├── package.json
+├── astro.config.mjs
+└── ...
 ```
 
-Change directory into the folder
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-```bash
-$ cd 2023.djangocon.eu
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+
+Any static assets, like images, can be placed in the `public/` directory if they do not require any transformation or in the `assets/` directory if they are imported directly.
+
+[![Edit AstroWind on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://githubbox.com/onwidget/astrowind/tree/main) [![Open in Gitpod](https://svgshare.com/i/xdi.svg)](https://gitpod.io/?on=gitpod#https://github.com/onwidget/astrowind) [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/onwidget/astrowind)
+
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file `README.md`. Update `src/config.yaml` and contents. Have fun!
+
+<br>
+
+### Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command               | Action                                             |
+| :-------------------- | :------------------------------------------------- |
+| `npm install`         | Installs dependencies                              |
+| `npm run dev`         | Starts local dev server at `localhost:3000`        |
+| `npm run build`       | Build your production site to `./dist/`            |
+| `npm run preview`     | Preview your build locally, before deploying       |
+| `npm run format`      | Format codes with Prettier                         |
+| `npm run lint:eslint` | Run Eslint                                         |
+| `npm run astro ...`   | Run CLI commands like `astro add`, `astro preview` |
+
+<br>
+
+### Configuration
+
+Basic configuration file: `./src/config.yaml`
+
+```yaml
+site:
+  name: 'Example'
+  site: 'https://example.com'
+  base: '/' # Change this if you need to deploy to Github Pages, for example
+  trailingSlash: false # Generate permalinks with or without "/" at the end
+
+  googleSiteVerificationId: false # Or some value,
+
+# Default SEO metadata
+metadata:
+  title:
+    default: 'Example'
+    template: '%s — Example'
+  description: 'This is the default meta description of Example website'
+  robots:
+    index: true
+    follow: true
+  openGraph:
+    site_name: 'Example'
+    images:
+      - url: '~/assets/images/default.png'
+        width: 1200
+        height: 628
+    type: website
+  twitter:
+    handle: '@twitter_user'
+    site: '@twitter_user'
+    cardType: summary_large_image
+
+i18n:
+  language: en
+  textDirection: ltr
+
+apps:
+  blog:
+    isEnabled: true # If the blog will be enabled
+    postsPerPage: 6 # Number of posts per page
+
+    post:
+      isEnabled: true
+      permalink: '/blog/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
+      robots:
+        index: true
+
+    list:
+      isEnabled: true
+      pathname: 'blog' # Blog main path, you can change this to "articles" (/articles)
+      robots:
+        index: true
+
+    category:
+      isEnabled: true
+      pathname: 'category' # Category main path /category/some-category, you can change this to "group" (/group/some-category)
+      robots:
+        index: true
+
+    tag:
+      isEnabled: true
+      pathname: 'tag' # Tag main path /tag/some-tag, you can change this to "topics" (/topics/some-category)
+      robots:
+        index: false
+
+    isRelatedPostsEnabled: true # If a widget with related posts is to be displayed below each post
+    relatedPostsCount: 4 # Number of related posts to display
+
+analytics:
+  vendors:
+    googleAnalytics:
+      id: null # or "G-XXXXXXXXXX"
+
+ui:
+  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
 ```
 
-Verify that you are on the `main` branch
+<br>
 
-```bash
-$ git branch
+#### Customize Design
+
+To customize Font families, Colors or more Elements refer to the following files:
+
+- `src/components/CustomStyles.astro`
+- `src/assets/styles/tailwind.css`
+
+### Deploy
+
+#### Deploy to production (manual)
+
+You can create an optimized production build with:
+
+```shell
+npm run build
 ```
 
-Follow the instructions below to run the website on a local server. GitHub recommends using [Bundler](http://bundler.io/) to install and run Jekyll. [Ruby](https://www.ruby-lang.org) is a pre-requisite. One of the project dependencies (nokogiri) requires a Ruby version >= 2.1.0. See the [Jekyll Quick-start Guide](https://jekyllrb.com/docs/quickstart/) for more info.
+Now, your website is ready to be deployed. All generated files are located at
+`dist` folder, which you can deploy the folder to any hosting service you
+prefer.
 
-#### Install Jekyll
+#### Deploy to Netlify
 
-You might need to use ```$ sudo gem install jekyll bundler foreman```
+Clone this repository on your own GitHub account and deploy it to Netlify:
 
-```bash
-$ gem install jekyll bundler
-$ bundle install
-```
+[![Netlify Deploy button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/onwidget/astrowind)
 
-#### Install Node Dependencies
+#### Deploy to Vercel
 
-You will need Node v10.0 or greater to compile frontend assets. We're using [Webpack](https://webpack.js.org/) to compile Scss and JavaScript.
+Clone this repository on your own GitHub account and deploy to Vercel:
 
-You'll need to install all the JS dependencies.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fonwidget%2Fastrowind)
 
-```bash
-$ npm install .
-# installs dependencies listed in package.json
-```
+<br>
 
-#### Compile CSS & JS
+## Frequently Asked Questions
 
-```bash
-$ npm run build
-# Builds production-ready assets
-```
+- Why?
+-
+-
 
-#### Run Jekyll
+<br>
 
-```bash
-$ bundle exec jekyll serve
-# => Now browse to http://localhost:4000
-```
+## Related projects
 
-#### Run html-proofer to find broken links and accessibility issues
+- [TailNext](https://tailnext.vercel.app/) - Free template using Next.js 14 and Tailwind CSS with the new App Router.
+- [Qwind](https://qwind.pages.dev/) - Free template to make your website using Qwik + Tailwind CSS.
 
-```bash
-$ bundle exec rake test
-```
+## Contributing
 
-#### Pushing to GitHub and Submitting a Pull Request
+If you have any ideas, suggestions or find any bugs, feel free to open a discussion, an issue or create a pull request.
+That would be very useful for all of us and we would be happy to listen and take action.
 
-After you have made your changes, you will need to push the local files with the changes back to GitHub in order to submit a pull request. Assuming you are still on the `main` branch, you will be pushing your changes from the local `main` branch to the `main` branch of the forked repo at your GitHub account.
+## Acknowledgements
 
-```bash
-$ git add .
-$ git commit -m "Your note"
-$ git push origin main
-```
-
-You will then resume the process at step 6 to submit a pull request.
-
-If you plan to continue working locally and submitting pull requests, you may want to add an upstream remote locally that points to the DjangoCon US repo, in order to fetch changes. You may also want to consider creating a feature branch (also known as a "topic" branch), making your changes there (instead of in the `main` branch), pushing to GitHub and submitting the update via pull request. You can then keep your `main` branch up-to-date while working on multiple features.
-
-### Adding Contributors
-
-If you have gone through the previous installation steps, the `all-contributors-cli` package should already be installed locally by npm. The developer dependency and scripts can be found in `package.json` and the init config and JSON entries in the `.all-contributorsrc` file.
-
-To add a contributor by GitHub username (this will add a JSON entry to `.all-contributorsrc` and add the contributor to the `README` list), run the following command, hitting enter twice to avoid choosing any contribution type
-
-```bash
-$ npm run add -- <username>
-hit enter twice
-```
-
-To generate a README list from the `.all-contributorsrc` file
-
-```bash
-$ npm run generate
-```
-
-## Contributors
-
-Thanks goes to these wonderful people:
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href='http://mtrythall.com'><img src='https://avatars2.githubusercontent.com/u/84750?v=3' width='72px;'/></a></td>
-    <td align="center"><a href='http://jefftriplett.com/'><img src='https://avatars2.githubusercontent.com/u/50527?v=3' width='72px;'/></a></td>
-    <td align="center"><a href='http://KellyCreativeTech.com'><img src='https://avatars3.githubusercontent.com/u/202590?v=3' width='72px;'/></a></td>
-    <td align="center"><a href='http://laceyhenschel.com'><img src='https://avatars2.githubusercontent.com/u/2286304?v=3' width='72px;'/></a></td>
-    <td align="center"><a href='http://katherinemichel.github.io'><img src='https://avatars3.githubusercontent.com/u/4193054?v=3' width='72px;'/></a></td>
-    <td align="center"><a href='http://www.PeregrineSalon.com'><img src='https://avatars3.githubusercontent.com/u/68164?v=3' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/rebkin05'><img src='https://avatars1.githubusercontent.com/u/13985355?v=3' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/deatonjm'><img src='https://avatars0.githubusercontent.com/u/3345131?v=3' width='72px;'/></a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href='http://twitter.com/webmedic'><img src='https://avatars1.githubusercontent.com/u/744669?v=3' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/Nandutu'><img src='https://avatars1.githubusercontent.com/u/7518308?v=3' width='72px;'/></a></td>
-    <td align="center"><a href='http:/anna-oz.tumblr.com'><img src='https://avatars2.githubusercontent.com/u/8700795?v=3' width='72px;'/></a></td>
-    <td align="center"><a href='http://about.me/craigbruce'><img src='https://avatars2.githubusercontent.com/u/1503648?v=3' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/daheats'><img src='https://avatars2.githubusercontent.com/u/20408533?v=3' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/jessiofhall'><img src='https://avatars0.githubusercontent.com/u/12751372?v=3' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/SaraDGore'><img src='https://avatars3.githubusercontent.com/u/2285473?v=3' width='72px;'/></a></td>
-    <td align="center"><a href='http://kojoidrissa.com/'><img src='https://avatars3.githubusercontent.com/u/5251109?v=3' width='72px;'/></a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href='https://github.com/moniquemurphy'><img src='https://avatars0.githubusercontent.com/u/13872721?v=3' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/amfitz'><img src='https://avatars0.githubusercontent.com/u/15040326?v=3' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/cholmes5'><img src='https://avatars2.githubusercontent.com/u/27741978?v=3' width='72px;'/></a></td>
-    <td align="center"><a href='http://www.databasesoup.com'><img src='https://avatars3.githubusercontent.com/u/115146?v=3' width='72px;'/></a></td>
-    <td align="center"><a href='http://glasnt.com'><img src='https://avatars0.githubusercontent.com/u/813732?v=3' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/lgh2'><img src='https://avatars0.githubusercontent.com/u/17437250?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://phildini.net'><img src='https://avatars3.githubusercontent.com/u/710999?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/h34th3r329'><img src='https://avatars1.githubusercontent.com/u/15834992?v=4' width='72px;'/></a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href='http://twitter.com/jackmccloy'><img src='https://avatars2.githubusercontent.com/u/7756138?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/ariannedee'><img src='https://avatars2.githubusercontent.com/u/2425730?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://ana-balica.github.io/'><img src='https://avatars3.githubusercontent.com/u/2039122?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://jonibologna.com/'><img src='https://avatars0.githubusercontent.com/u/5723303?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://lmdragun.github.io'><img src='https://avatars0.githubusercontent.com/u/11346889?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://www.davidfischer.name/'><img src='https://avatars3.githubusercontent.com/u/185043?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/fcurella'><img src='https://avatars3.githubusercontent.com/u/89607?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://thekennethlove.com'><img src='https://avatars1.githubusercontent.com/u/11908?v=4' width='72px;'/></a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href='https://github.com/katialira'><img src='https://avatars3.githubusercontent.com/u/8711200?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://emullaney.github.io'><img src='https://avatars0.githubusercontent.com/u/11393311?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://www.adamfast.com'><img src='https://avatars0.githubusercontent.com/u/135851?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://robertroskam.com'><img src='https://avatars3.githubusercontent.com/u/806571?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://www.rmcomplexity.com'><img src='https://avatars0.githubusercontent.com/u/4007280?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/drewbrew'><img src='https://avatars1.githubusercontent.com/u/7773256?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/oreo1029'><img src='https://avatars1.githubusercontent.com/u/24420647?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://noumenal.es/'><img src='https://avatars1.githubusercontent.com/u/64686?v=4' width='72px;'/></a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href='https://github.com/rlconley'><img src='https://avatars1.githubusercontent.com/u/6653029?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://flinkman.com'><img src='https://avatars1.githubusercontent.com/u/29408?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/oboechick'><img src='https://avatars1.githubusercontent.com/u/15068476?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://humrich.us'><img src='https://avatars1.githubusercontent.com/u/4661889?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://nicolezuckerman.com'><img src='https://avatars0.githubusercontent.com/u/2499004?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/troy2914'><img src='https://avatars0.githubusercontent.com/u/8680944?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/bdeangelis'><img src='https://avatars0.githubusercontent.com/u/1050007?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/jlgimeno'><img src='https://avatars0.githubusercontent.com/u/17421585?v=4' width='72px;'/></a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href='https://github.com/cedarfall'><img src='https://avatars2.githubusercontent.com/u/50991099?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/VishvajitP'><img src='https://avatars3.githubusercontent.com/u/5609697?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://nicoledominguez.com'><img src='https://avatars0.githubusercontent.com/u/915966?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/darkcloud1801'><img src='https://avatars3.githubusercontent.com/u/5150596?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://www.TheGeekyWay.com'><img src='https://avatars3.githubusercontent.com/u/8039608?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://chriswilcox.dev'><img src='https://avatars2.githubusercontent.com/u/638797?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://micahlyle.com'><img src='https://avatars1.githubusercontent.com/u/10660805?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/apps/dependabot'><img src='https://avatars0.githubusercontent.com/in/29110?v=4' width='72px;'/></a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href='http://snowgiraffe.com'><img src='https://avatars3.githubusercontent.com/u/59829?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://dane.engineering'><img src='https://avatars3.githubusercontent.com/u/1808306?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://www.DawnWages.info/apps'><img src='https://avatars1.githubusercontent.com/u/20374042?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/felipe-lee'><img src='https://avatars0.githubusercontent.com/u/35938642?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://frances.codes'><img src='https://avatars2.githubusercontent.com/u/15336794?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/mwhansen'><img src='https://avatars3.githubusercontent.com/u/374299?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://coderanger.net/'><img src='https://avatars1.githubusercontent.com/u/128243?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://treyhunner.com'><img src='https://avatars0.githubusercontent.com/u/285352?v=4' width='72px;'/></a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href='https://wsvincent.com'><img src='https://avatars0.githubusercontent.com/u/766418?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/iofall'><img src='https://avatars.githubusercontent.com/u/50991099?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://www.jonafato.com'><img src='https://avatars.githubusercontent.com/u/392720?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://sanchitkhurana.ml'><img src='https://avatars.githubusercontent.com/u/54467174?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://dryan.com/'><img src='https://avatars.githubusercontent.com/u/15066?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://www.linkedin.com/in/logankilpatrick/'><img src='https://avatars.githubusercontent.com/u/35577566?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://thib.me/'><img src='https://avatars.githubusercontent.com/u/877585?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/neilgoldman'><img src='https://avatars.githubusercontent.com/u/11390810?v=4' width='72px;'/></a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href='https://github.com/noahalorwu'><img src='https://avatars.githubusercontent.com/u/7665391?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/jalakoo'><img src='https://avatars.githubusercontent.com/u/960717?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://www.pythonbynight.com/'><img src='https://avatars.githubusercontent.com/u/46942991?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://www.drewsk.tech/'><img src='https://avatars.githubusercontent.com/u/12227241?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://medium.com/@fixitsammie'><img src='https://avatars.githubusercontent.com/u/2122543?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/ipmb'><img src='https://avatars.githubusercontent.com/u/319156?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://www.epicserve.com/'><img src='https://avatars.githubusercontent.com/u/191620?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/lmann4'><img src='https://avatars.githubusercontent.com/u/11095021?v=4' width='72px;'/></a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href='https://sarahabd.com/'><img src='https://avatars.githubusercontent.com/u/17890338?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/tim-schilling'><img src='https://avatars.githubusercontent.com/u/1281215?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/zags'><img src='https://avatars.githubusercontent.com/u/5118144?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://www.vinta.com.br/'><img src='https://avatars.githubusercontent.com/u/397989?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/elizabeth-christensen'><img src='https://avatars.githubusercontent.com/u/85628096?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/camilamaia'><img src='https://avatars.githubusercontent.com/u/2728804?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/josh7weaver'><img src='https://avatars.githubusercontent.com/u/6668727?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://ericholscher.com/'><img src='https://avatars.githubusercontent.com/u/25510?v=4' width='72px;'/></a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href='https://www.meagenvoss.com/'><img src='https://avatars.githubusercontent.com/u/45881480?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://simonwillison.net/'><img src='https://avatars.githubusercontent.com/u/9599?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/ltagliaferri'><img src='https://avatars.githubusercontent.com/u/5977693?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/contextref'><img src='https://avatars.githubusercontent.com/u/1338598?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://github.com/edufelipe'><img src='https://avatars.githubusercontent.com/u/106633?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='https://jacklinke.com/'><img src='https://avatars.githubusercontent.com/u/73554672?v=4' width='72px;'/></a></td>
-    <td align="center"><a href='http://cecinestpasun.com/'><img src='https://avatars.githubusercontent.com/u/37345?v=4' width='72px;'/></a></td>
-  </tr>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project uses the [`all-contributors-cli`](https://www.npmjs.com/package/all-contributors-cli). Contributions of any kind welcome!
+Initially created by [onWidget](https://onwidget.com) and maintained by a community of [contributors](https://github.com/onwidget/astrowind/graphs/contributors).
 
 ## License
 
-[MIT License](LICENSE)
+**AstroWind** is licensed under the MIT license — see the [LICENSE](./LICENSE.md) file for details.
