@@ -1,12 +1,11 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import { defineConfig, squooshImageService } from 'astro/config';
+import { defineConfig } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
-import partytown from '@astrojs/partytown';
 import icon from 'astro-icon';
 import compress from 'astro-compress';
 
@@ -19,10 +18,6 @@ import {
 } from './src/utils/frontmatter.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const hasExternalScripts = false;
-const whenExternalScripts = (items = []) =>
-  hasExternalScripts ? (Array.isArray(items) ? items.map(item => item()) : [items()]) : [];
 
 export default defineConfig({
   output: 'static',
@@ -49,23 +44,12 @@ export default defineConfig({
         ]
       }
     }),
-
-    ...whenExternalScripts(() =>
-      partytown({
-        config: { forward: ['dataLayer.push'] }
-      })
-    ),
-
     compress({
       CSS: true,
-      HTML: {
-        'html-minifier-terser': {
-          removeAttributeQuotes: false
-        }
-      },
-      Image: false,
+      HTML: true,
+      Image: true,
       JavaScript: true,
-      SVG: false,
+      SVG: true,
       Logger: 1
     }),
 
@@ -73,12 +57,6 @@ export default defineConfig({
       config: './src/config.yaml'
     })
   ],
-
-  image: {
-    service: squooshImageService(),
-    domains: ['cdn.pixabay.com']
-  },
-
   markdown: {
     remarkPlugins: [readingTimeRemarkPlugin],
     rehypePlugins: [responsiveTablesRehypePlugin, lazyImagesRehypePlugin]
@@ -87,7 +65,7 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        '~': path.resolve(__dirname, './src')
+        '@': path.resolve(__dirname, './src')
       }
     }
   }

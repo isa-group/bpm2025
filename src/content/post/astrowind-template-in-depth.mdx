@@ -12,8 +12,8 @@ metadata:
   canonical: https://astrowind.vercel.app/astrowind-template-in-depth
 ---
 
-import DListItem from '~/components/ui/DListItem.astro';
-import ToggleTheme from '~/components/common/ToggleTheme.astro';
+import DListItem from '@/components/ui/DListItem.astro';
+import ToggleTheme from '@/components/common/ToggleTheme.astro';
 
 ## Overview
 
@@ -81,7 +81,7 @@ export interface Props {
 And in usage elsewhere:
 
 ```astro
-import MyComponent from "~/components/MyComponent"; ...
+import MyComponent from "@/components/MyComponent"; ...
 <MyComponent someArg="A Slot example">
   <p>This content will be displayed in the slot</p>
 </MyComponent>

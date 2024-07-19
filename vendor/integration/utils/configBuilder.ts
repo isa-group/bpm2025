@@ -1,6 +1,6 @@
 import { merge } from 'lodash-es';
 
-import type { MetaData } from '~/types';
+import type { MetaData } from '@/types';
 
 type Config = {
   site?: SiteConfig;
