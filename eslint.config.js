@@ -9,7 +9,7 @@ import gitignore from 'eslint-config-flat-gitignore';
 
 const CI_environment = process.env.CI ? 0 : 1;
 
-export default [
+export default tseslint.config(
   js.configs.recommended,
   ...eslintPluginAstro.configs['flat/recommended'],
   ...tseslint.configs.recommended,
@@ -92,4 +92,4 @@ export default [
       'file-progress/activate': CI_environment
     }
   }
-];
+);
