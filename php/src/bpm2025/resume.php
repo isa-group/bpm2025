@@ -152,7 +152,7 @@ title: BPM2025 Registration
             <input class="button" id="confirm" type="submit" onclick="javascript: sessionStorage.clear();" value="CONFIRM ORDER" /> 
         </div>
         <div id="total1">
-            <input type="button" class="button" onclick="document.location.href='https://rociogoni14.github.io/2023.djangocon.eu/index.html'" value="Go back" />
+            <input type="button" class="button" onclick="document.location.href='https://isa-group.github.io/2023.djangocon.eu/index.html'" value="Go back" />
         </div>
     </form>
 
