@@ -6,10 +6,11 @@
   "type": "module",
   "scripts": {
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro build",
     "preview": "astro preview",
     "prod": "npm run build && npm run preview",
     "astro": "astro",
+    "typecheck": "astro check",
     "lint": "eslint . --max-warnings=0 --cache --cache-location node_modules/.cache/eslint",
     "lint-fix": "eslint . --fix --max-warnings=0 --cache --cache-location node_modules/.cache/eslint",
     "eslint-inspect": "eslint-config-inspector"
