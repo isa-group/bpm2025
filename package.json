@@ -1,21 +1,21 @@
 {
-  "name": "",
-  "version": "1.0.0-beta.38",
-  "description": "AstroWind: A free template using Astro 4.0 and Tailwind CSS. Astro starter theme.",
+  "name": "@isa-group/bpm2025",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The 2025 BPM Conference website",
   "type": "module",
-  "engines": {
-    "node": "^18.17.1 || ^20.3.0 || >= 21.0.0"
-  },
   "scripts": {
-    "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
+    "prod": "npm run build && npm run preview",
     "astro": "astro",
-    "format": "prettier -w .",
-    "lint:eslint": "eslint ."
+    "lint": "eslint . --max-warnings=0 --cache --cache-location node_modules/.cache/eslint",
+    "lint-fix": "eslint . --fix --max-warnings=0 --cache --cache-location node_modules/.cache/eslint",
+    "eslint-inspect": "eslint-config-inspector"
   },
   "dependencies": {
+    "@astrojs/check": "0.8.2",
     "@astrojs/rss": "4.0.6",
     "@astrojs/sitemap": "3.1.6",
     "@astrolib/analytics": "0.5.0",
@@ -26,39 +26,44 @@
     "astro-icon": "1.1.0",
     "limax": "4.1.0",
     "lodash.merge": "4.6.2",
-    "unpic": "3.18.0",
-    "@astrojs/check": "0.8.2",
-    "typescript": "5.5.3"
+    "typescript": "5.5.3",
+    "unpic": "3.18.0"
   },
   "devDependencies": {
     "@astrojs/mdx": "3.1.1",
     "@astrojs/partytown": "2.1.1",
     "@astrojs/tailwind": "5.1.0",
+    "@eslint/config-inspector": "^0.5.2",
     "@eslint/js": "9.5.0",
     "@iconify-json/flat-color-icons": "1.1.10",
     "@iconify-json/tabler": "1.1.114",
+    "@stylistic/eslint-plugin": "^2.3.0",
     "@tailwindcss/typography": "0.5.13",
     "@types/eslint__js": "8.42.3",
     "@types/js-yaml": "4.0.9",
     "@types/lodash.merge": "4.6.9",
-    "@typescript-eslint/eslint-plugin": "7.13.1",
-    "@typescript-eslint/parser": "7.13.1",
     "astro-compress": "2.2.28",
     "astro-eslint-parser": "1.0.2",
     "eslint": "8.57.0",
+    "eslint-config-flat-gitignore": "^0.1.8",
     "eslint-plugin-astro": "1.2.2",
+    "eslint-plugin-file-progress": "^1.4.0",
     "eslint-plugin-jsx-a11y": "6.9.0",
     "globals": "15.6.0",
     "js-yaml": "4.1.0",
     "mdast-util-to-string": "4.0.0",
-    "prettier": "3.3.2",
-    "prettier-plugin-astro": "0.14.0",
     "reading-time": "1.5.0",
     "rehype-plugin-image-native-lazy-loading": "1.2.0",
     "sharp": "0.33.4",
     "tailwind-merge": "2.3.0",
     "tailwindcss": "3.4.4",
     "typescript": "5.5.2",
-    "typescript-eslint": "7.13.1"
+    "typescript-eslint": "^8.0.0-alpha.45"
+  },
+  "engines": {
+    "node": ">=20.8.1 <21.0.0",
+    "npm": ">=10.1.0",
+    "yarn": "Yarn is not supported. Please use NPM.",
+    "pnpm": "PNPM is not supported. Please use NPM."
   }
 }

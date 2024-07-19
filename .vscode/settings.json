@@ -1,15 +1,33 @@
 {
-  "css.customData": ["./vscode.tailwind.json"],
-  "eslint.validate": ["javascript", "javascriptreact", "astro", "typescript", "typescriptreact"],
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always",
+    "source.organizeImports": "never"
+  },
+  "css.customData": [
+    "./vscode.tailwind.json"
+  ],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "astro",
+    "typescript",
+    "typescriptreact"
+  ],
   "files.associations": {
     "*.mdx": "markdown"
   },
-  "prettier.documentSelectors": ["**/*.astro"],
   "[astro]": {
-    "editor.defaultFormatter": "astro-build.astro-vscode"
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
-  "yaml.schemas": {
-    "./.vscode/astrowind/config-schema.json": "/src/config.yaml"
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
-  "eslint.useFlatConfig": true
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "eslint.format.enable": true,
+  "eslint.useFlatConfig": true,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true
 }
