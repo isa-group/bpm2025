@@ -21,7 +21,7 @@ const {
   id,
   isDark = false,
   classes = {},
-  bg = await Astro.slots.render('bg'),
+  bg = await Astro.slots.render('bg')
 } = Astro.props;
 ---
 
@@ -36,21 +36,23 @@ const {
       classes={{
         container: 'mb-0 md:mb-0',
         title: 'text-4xl md:text-4xl font-bold tracking-tighter mb-4 font-heading',
-        subtitle: 'text-xl text-muted dark:text-slate-400',
+        subtitle: 'text-xl text-muted dark:text-slate-400'
       }}
     />
     {
       actions && (
         <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 mt-6">
-          {Array.isArray(actions) ? (
-            actions.map((action) => (
-              <div class="flex w-full sm:w-auto">
-                <Button {...(action || {})} class="w-full sm:mb-0" />
-              </div>
-            ))
-          ) : (
-            <Fragment set:html={actions} />
-          )}
+          {Array.isArray(actions)
+            ? (
+                actions.map(action => (
+                  <div class="flex w-full sm:w-auto">
+                    <Button {...(action || {})} class="w-full sm:mb-0" />
+                  </div>
+                ))
+              )
+            : (
+                <Fragment set:html={actions} />
+              )}
         </div>
       )
     }

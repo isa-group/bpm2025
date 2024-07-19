@@ -16,7 +16,7 @@ const {
   id,
   isDark = false,
   classes = {},
-  bg = await Astro.slots.render('bg'),
+  bg = await Astro.slots.render('bg')
 } = Astro.props;
 ---
 
@@ -30,7 +30,7 @@ const {
         classes={{
           container: 'text-left rtl:text-right',
           title: 'text-3xl lg:text-4xl',
-          ...((classes?.headline as object) ?? {}),
+          ...((classes?.headline as object) ?? {})
         }}
       />
       <Timeline items={items} classes={classes?.items as Record<string, never>} />
@@ -38,20 +38,22 @@ const {
     {
       image && (
         <div class="relative md:basis-1/2">
-          {typeof image === 'string' ? (
-            <Fragment set:html={image} />
-          ) : (
-            <Image
-              class="inset-0 object-cover object-top w-full rounded-md shadow-lg md:absolute md:h-full bg-gray-400 dark:bg-slate-700"
-              widths={[400, 768]}
-              sizes="(max-width: 768px) 100vw, 432px"
-              width={432}
-              height={768}
-              layout="cover"
-              src={image?.src}
-              alt={image?.alt || ''}
-            />
-          )}
+          {typeof image === 'string'
+            ? (
+                <Fragment set:html={image} />
+              )
+            : (
+                <Image
+                  class="inset-0 object-cover object-top w-full rounded-md shadow-lg md:absolute md:h-full bg-gray-400 dark:bg-slate-700"
+                  widths={[400, 768]}
+                  sizes="(max-width: 768px) 100vw, 432px"
+                  width={432}
+                  height={768}
+                  layout="cover"
+                  src={image?.src}
+                  alt={image?.alt || ''}
+                />
+              )}
         </div>
       )
     }

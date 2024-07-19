@@ -62,7 +62,9 @@ export default [
       'no-empty': ['error', { allowEmptyCatch: true }],
       '@stylistic/quotes': ['error', 'single', { avoidEscape: true }],
       '@stylistic/linebreak-style': ['error', 'unix'],
-      '@stylistic/jsx-one-expression-per-line': 'off'
+      '@stylistic/jsx-one-expression-per-line': 'off',
+      '@stylistic/jsx-indent-props': 'off',
+      '@stylistic/jsx-closing-bracket-location': 'off'
     }
   },
   {

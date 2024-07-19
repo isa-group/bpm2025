@@ -6,7 +6,7 @@ import {
   unpicOptimizer,
   isUnpicCompatible,
   type ImageProps,
-  type AttributesProps,
+  type AttributesProps
 } from '~/utils/images-optimization';
 
 type Props = ImageProps;
@@ -47,7 +47,7 @@ if (typeof _image === 'string') {
   } else {
     image = {
       src: _image,
-      attributes: { ...props, src: undefined },
+      attributes: { ...props, src: undefined }
     };
   }
 } else if (_image) {
@@ -56,9 +56,11 @@ if (typeof _image === 'string') {
 ---
 
 {
-  !image ? (
-    <Fragment />
-  ) : (
-    <img src={image.src} crossorigin="anonymous" referrerpolicy="no-referrer" {...image.attributes} />
-  )
+  !image
+    ? (
+        <Fragment />
+      )
+    : (
+        <img src={image.src} crossorigin="anonymous" referrerpolicy="no-referrer" {...image.attributes} />
+      )
 }

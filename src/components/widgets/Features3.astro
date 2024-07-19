@@ -19,7 +19,7 @@ const {
   id,
   isDark = false,
   classes = {},
-  bg = await Astro.slots.render('bg'),
+  bg = await Astro.slots.render('bg')
 } = Astro.props;
 ---
 
@@ -37,18 +37,20 @@ const {
     {
       image && (
         <div class="w-full h-80 object-cover rounded-xl mx-auto bg-gray-500 shadow-lg">
-          {typeof image === 'string' ? (
-            <Fragment set:html={image} />
-          ) : (
-            <Image
-              class="w-full h-80 object-cover rounded-xl mx-auto bg-gray-500 shadow-lg"
-              width="auto"
-              height={320}
-              widths={[400, 768]}
-              layout="fullWidth"
-              {...image}
-            />
-          )}
+          {typeof image === 'string'
+            ? (
+                <Fragment set:html={image} />
+              )
+            : (
+                <Image
+                  class="w-full h-80 object-cover rounded-xl mx-auto bg-gray-500 shadow-lg"
+                  width="auto"
+                  height={320}
+                  widths={[400, 768]}
+                  layout="fullWidth"
+                  {...image}
+                />
+              )}
         </div>
       )
     }
@@ -64,7 +66,7 @@ const {
       title: 'text-lg font-semibold',
       description: 'mt-0.5',
       icon: 'flex-shrink-0 mt-1 text-primary w-6 h-6',
-      ...((classes?.items as object) ?? {}),
+      ...((classes?.items as object) ?? {})
     }}
   />
 </WidgetWrapper>

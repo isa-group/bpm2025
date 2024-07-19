@@ -17,7 +17,7 @@ const {
   tagline,
   content = await Astro.slots.render('content'),
   callToAction = await Astro.slots.render('callToAction'),
-  callToAction2 = await Astro.slots.render('callToAction2'),
+  callToAction2 = await Astro.slots.render('callToAction2')
 } = Astro.props;
 ---
 
@@ -49,22 +49,26 @@ const {
             {
               callToAction && (
                 <div class="flex w-full sm:w-auto">
-                  {typeof callToAction === 'string' ? (
-                    <Fragment set:html={callToAction} />
-                  ) : (
-                    <Button variant="primary" {...callToAction} />
-                  )}
+                  {typeof callToAction === 'string'
+                    ? (
+                        <Fragment set:html={callToAction} />
+                      )
+                    : (
+                        <Button variant="primary" {...callToAction} />
+                      )}
                 </div>
               )
             }
             {
               callToAction2 && (
                 <div class="flex w-full sm:w-auto">
-                  {typeof callToAction2 === 'string' ? (
-                    <Fragment set:html={callToAction2} />
-                  ) : (
-                    <Button {...callToAction2} />
-                  )}
+                  {typeof callToAction2 === 'string'
+                    ? (
+                        <Fragment set:html={callToAction2} />
+                      )
+                    : (
+                        <Button {...callToAction2} />
+                      )}
                 </div>
               )
             }

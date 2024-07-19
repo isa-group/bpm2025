@@ -21,8 +21,8 @@ import { UI } from 'astrowind:config';
     if ((defaultTheme && defaultTheme.endsWith(':only')) || (!localStorage.theme && defaultTheme !== 'system')) {
       applyTheme(defaultTheme.replace(':only', ''));
     } else if (
-      localStorage.theme === 'dark' ||
-      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      localStorage.theme === 'dark'
+      || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
     ) {
       applyTheme('dark');
     } else {
@@ -35,7 +35,7 @@ import { UI } from 'astrowind:config';
     const matches = typeof selector === 'string' ? document.querySelectorAll(selector) : selector;
     if (matches && matches.length) {
       matches.forEach((elem) => {
-        elem.addEventListener(event, (e) => fn(e, elem), false);
+        elem.addEventListener(event, e => fn(e, elem), false);
       });
     }
   }

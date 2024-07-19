@@ -23,8 +23,8 @@ import { UI } from 'astrowind:config';
   if ((defaultTheme && defaultTheme.endsWith(':only')) || (!localStorage.theme && defaultTheme !== 'system')) {
     applyTheme(defaultTheme.replace(':only', ''));
   } else if (
-    localStorage.theme === 'dark' ||
-    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    localStorage.theme === 'dark'
+    || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
   ) {
     applyTheme('dark');
   } else {

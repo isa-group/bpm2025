@@ -11,7 +11,7 @@ const metadataDefinition = () =>
       robots: z
         .object({
           index: z.boolean().optional(),
-          follow: z.boolean().optional(),
+          follow: z.boolean().optional()
         })
         .optional(),
 
@@ -26,12 +26,12 @@ const metadataDefinition = () =>
               z.object({
                 url: z.string(),
                 width: z.number().optional(),
-                height: z.number().optional(),
+                height: z.number().optional()
               })
             )
             .optional(),
           locale: z.string().optional(),
-          type: z.string().optional(),
+          type: z.string().optional()
         })
         .optional(),
 
@@ -39,9 +39,9 @@ const metadataDefinition = () =>
         .object({
           handle: z.string().optional(),
           site: z.string().optional(),
-          cardType: z.string().optional(),
+          cardType: z.string().optional()
         })
-        .optional(),
+        .optional()
     })
     .optional();
 
@@ -59,10 +59,10 @@ const postCollection = defineCollection({
     tags: z.array(z.string()).optional(),
     author: z.string().optional(),
 
-    metadata: metadataDefinition(),
-  }),
+    metadata: metadataDefinition()
+  })
 });
 
 export const collections = {
-  post: postCollection,
+  post: postCollection
 };

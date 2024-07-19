@@ -6,7 +6,7 @@ import type { HTMLAttributes } from 'astro/types';
 
 type Layout = 'fixed' | 'constrained' | 'fullWidth' | 'cover' | 'responsive' | 'contained';
 
-export interface AttributesProps extends HTMLAttributes<'img'> {}
+export type AttributesProps = HTMLAttributes<'img'>;
 
 export interface ImageProps extends Omit<HTMLAttributes<'img'>, 'src'> {
   src?: string | ImageMetadata | null;
@@ -52,10 +52,10 @@ const config = {
     3840, // 4K
     4480, // 4.5K
     5120, // 5K
-    6016, // 6K
+    6016 // 6K
   ],
 
-  formats: ['image/webp'],
+  formats: ['image/webp']
 };
 
 const computeHeight = (width: number, aspectRatio: number) => {
@@ -90,16 +90,16 @@ export const getSizes = (width?: number, layout?: Layout): string | undefined =>
   switch (layout) {
     // If screen is wider than the max size, image width is the max size,
     // otherwise it's the width of the screen
-    case `constrained`:
+    case 'constrained':
       return `(min-width: ${width}px) ${width}px, 100vw`;
 
     // Image is always the same width, whatever the size of the screen
-    case `fixed`:
+    case 'fixed':
       return `${width}px`;
 
     // Image is always the width of the screen
-    case `fullWidth`:
-      return `100vw`;
+    case 'fullWidth':
+      return '100vw';
 
     default:
       return undefined;
@@ -115,7 +115,7 @@ const getStyle = ({
   layout,
   objectFit = 'cover',
   objectPosition = 'center',
-  background,
+  background
 }: {
   width?: number;
   height?: number;
@@ -127,7 +127,7 @@ const getStyle = ({
 }) => {
   const styleEntries: Array<[prop: string, value: string | undefined]> = [
     ['object-fit', objectFit],
-    ['object-position', objectPosition],
+    ['object-position', objectPosition]
   ];
 
   // If background is a URL, set it to cover the image and not repeat
@@ -180,7 +180,7 @@ const getStyle = ({
 const getBreakpoints = ({
   width,
   breakpoints,
-  layout,
+  layout
 }: {
   width?: number;
   breakpoints?: number[];
@@ -202,7 +202,7 @@ const getBreakpoints = ({
       width,
       doubleWidth,
       // Filter out any resolutions that are larger than the double-res image
-      ...(breakpoints || config.deviceSizes).filter((w) => w < doubleWidth),
+      ...(breakpoints || config.deviceSizes).filter(w => w < doubleWidth)
     ];
   }
 
@@ -210,7 +210,7 @@ const getBreakpoints = ({
 };
 
 /* ** */
-export const astroAsseetsOptimizer: ImagesOptimizer = async (image, breakpoints, _width, _height) => {
+export const astroAsseetsOptimizer: ImagesOptimizer = async (image, breakpoints) => {
   if (!image) {
     return [];
   }
@@ -220,7 +220,7 @@ export const astroAsseetsOptimizer: ImagesOptimizer = async (image, breakpoints,
       const url = (await getImage({ src: image, width: w, inferSize: true })).src;
       return {
         src: url,
-        width: w,
+        width: w
       };
     })
   );
@@ -243,16 +243,16 @@ export const unpicOptimizer: ImagesOptimizer = async (image, breakpoints, width,
 
   return Promise.all(
     breakpoints.map(async (w: number) => {
-      const url =
-        transformUrl({
+      const url
+        = transformUrl({
           url: image,
           width: w,
           height: width && height ? computeHeight(w, width / height) : height,
-          cdn: urlParsed.cdn,
+          cdn: urlParsed.cdn
         }) || image;
       return {
         src: String(url),
-        width: w,
+        width: w
       };
     })
   );
@@ -261,7 +261,7 @@ export const unpicOptimizer: ImagesOptimizer = async (image, breakpoints, width,
 /* ** */
 export async function getImagesOptimized(
   image: ImageMetadata | string,
-  { src: _, width, height, sizes, aspectRatio, widths, layout = 'constrained', style = '', ...rest }: ImageProps,
+  { width, height, sizes, aspectRatio, widths, layout = 'constrained', style = '', ...rest }: ImageProps,
   transform: ImagesOptimizer = () => Promise.resolve([])
 ): Promise<{ src: string; attributes: AttributesProps }> {
   if (typeof image !== 'string') {
@@ -299,7 +299,7 @@ export async function getImagesOptimized(
     console.error('Image', image);
   }
 
-  let breakpoints = getBreakpoints({ width: width, breakpoints: widths, layout: layout });
+  let breakpoints = getBreakpoints({ width, breakpoints: widths, layout });
   breakpoints = [...new Set(breakpoints)].sort((a, b) => a - b);
 
   const srcset = (await transform(image, breakpoints, Number(width) || undefined, Number(height) || undefined))
@@ -317,9 +317,9 @@ export async function getImagesOptimized(
         width: width,
         height: height,
         aspectRatio: aspectRatio,
-        layout: layout,
+        layout: layout
       })}${style ?? ''}`,
-      ...rest,
-    },
+      ...rest
+    }
   };
 }

@@ -27,11 +27,11 @@ const metadata = {
   title: `Blog${currentPage > 1 ? ` — Page ${currentPage}` : ''}`,
   robots: {
     index: blogListRobots?.index && currentPage === 1,
-    follow: blogListRobots?.follow,
+    follow: blogListRobots?.follow
   },
   openGraph: {
-    type: 'blog',
-  },
+    type: 'blog'
+  }
 };
 ---
 

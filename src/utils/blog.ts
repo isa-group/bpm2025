@@ -9,7 +9,7 @@ const generatePermalink = async ({
   id,
   slug,
   publishDate,
-  category,
+  category
 }: {
   id: string;
   slug: string;
@@ -35,8 +35,8 @@ const generatePermalink = async ({
 
   return permalink
     .split('/')
-    .map((el) => trimSlash(el))
-    .filter((el) => !!el)
+    .map(el => trimSlash(el))
+    .filter(el => !!el)
     .join('/');
 };
 
@@ -54,7 +54,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     category: rawCategory,
     author,
     draft = false,
-    metadata = {},
+    metadata = {}
   } = data;
 
   const slug = cleanSlug(rawSlug); // cleanSlug(rawSlug.split('/').pop());
@@ -64,13 +64,13 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
   const category = rawCategory
     ? {
         slug: cleanSlug(rawCategory),
-        title: rawCategory,
+        title: rawCategory
       }
     : undefined;
 
   const tags = rawTags.map((tag: string) => ({
     slug: cleanSlug(tag),
-    title: tag,
+    title: tag
   }));
 
   return {
@@ -96,17 +96,17 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     Content: Content,
     // or 'content' in case you consume from API
 
-    readingTime: remarkPluginFrontmatter?.readingTime,
+    readingTime: remarkPluginFrontmatter?.readingTime
   };
 };
 
 const load = async function (): Promise<Array<Post>> {
   const posts = await getCollection('post');
-  const normalizedPosts = posts.map(async (post) => await getNormalizedPost(post));
+  const normalizedPosts = posts.map(async post => await getNormalizedPost(post));
 
   const results = (await Promise.all(normalizedPosts))
     .sort((a, b) => b.publishDate.valueOf() - a.publishDate.valueOf())
-    .filter((post) => !post.draft);
+    .filter(post => !post.draft);
 
   return results;
 };
@@ -178,18 +178,18 @@ export const getStaticPathsBlogList = async ({ paginate }: { paginate: PaginateF
   if (!isBlogEnabled || !isBlogListRouteEnabled) return [];
   return paginate(await fetchPosts(), {
     params: { blog: BLOG_BASE || undefined },
-    pageSize: blogPostsPerPage,
+    pageSize: blogPostsPerPage
   });
 };
 
 /** */
 export const getStaticPathsBlogPost = async () => {
   if (!isBlogEnabled || !isBlogPostRouteEnabled) return [];
-  return (await fetchPosts()).flatMap((post) => ({
+  return (await fetchPosts()).flatMap(post => ({
     params: {
-      blog: post.permalink,
+      blog: post.permalink
     },
-    props: { post },
+    props: { post }
   }));
 };
 
@@ -200,16 +200,18 @@ export const getStaticPathsBlogCategory = async ({ paginate }: { paginate: Pagin
   const posts = await fetchPosts();
   const categories = {};
   posts.map((post) => {
-    post.category?.slug && (categories[post.category?.slug] = post.category);
+    if (post.category?.slug) {
+      categories[post.category?.slug] = post.category;
+    }
   });
 
-  return Array.from(Object.keys(categories)).flatMap((categorySlug) =>
+  return Array.from(Object.keys(categories)).flatMap(categorySlug =>
     paginate(
-      posts.filter((post) => post.category?.slug && categorySlug === post.category?.slug),
+      posts.filter(post => post.category?.slug && categorySlug === post.category?.slug),
       {
         params: { category: categorySlug, blog: CATEGORY_BASE || undefined },
         pageSize: blogPostsPerPage,
-        props: { category: categories[categorySlug] },
+        props: { category: categories[categorySlug] }
       }
     )
   );
@@ -222,19 +224,20 @@ export const getStaticPathsBlogTag = async ({ paginate }: { paginate: PaginateFu
   const posts = await fetchPosts();
   const tags = {};
   posts.map((post) => {
-    Array.isArray(post.tags) &&
-      post.tags.map((tag) => {
+    if (Array.isArray(post.tags)) {
+      return post.tags.map((tag) => {
         tags[tag?.slug] = tag;
       });
+    }
   });
 
-  return Array.from(Object.keys(tags)).flatMap((tagSlug) =>
+  return Array.from(Object.keys(tags)).flatMap(tagSlug =>
     paginate(
-      posts.filter((post) => Array.isArray(post.tags) && post.tags.find((elem) => elem.slug === tagSlug)),
+      posts.filter(post => Array.isArray(post.tags) && post.tags.find(elem => elem.slug === tagSlug)),
       {
         params: { tag: tagSlug, blog: TAG_BASE || undefined },
         pageSize: blogPostsPerPage,
-        props: { tag: tags[tagSlug] },
+        props: { tag: tags[tagSlug] }
       }
     )
   );
@@ -243,7 +246,7 @@ export const getStaticPathsBlogTag = async ({ paginate }: { paginate: PaginateFu
 /** */
 export async function getRelatedPosts(originalPost: Post, maxResults: number = 4): Promise<Post[]> {
   const allPosts = await fetchPosts();
-  const originalTagsSet = new Set(originalPost.tags ? originalPost.tags.map((tag) => tag.slug) : []);
+  const originalTagsSet = new Set(originalPost.tags ? originalPost.tags.map(tag => tag.slug) : []);
 
   const postsWithScores = allPosts.reduce((acc: { post: Post; score: number }[], iteratedPost: Post) => {
     if (iteratedPost.slug === originalPost.slug) return acc;

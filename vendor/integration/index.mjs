@@ -17,7 +17,7 @@ export default ({ config: _themeConfig = 'src/config.yaml' } = {}) => {
         // isRestart,
         logger,
         updateConfig,
-        addWatchFile,
+        addWatchFile
       }) => {
         const buildLogger = logger.fork('astrowind');
 
@@ -53,10 +53,10 @@ export default ({ config: _themeConfig = 'src/config.yaml' } = {}) => {
                     export const ANALYTICS = ${JSON.stringify(ANALYTICS)};
                     `;
                   }
-                },
-              },
-            ],
-          },
+                }
+              }
+            ]
+          }
         });
 
         if (typeof _themeConfig === 'string') {
@@ -64,7 +64,7 @@ export default ({ config: _themeConfig = 'src/config.yaml' } = {}) => {
 
           buildLogger.info(`Astrowind \`${_themeConfig}\` has been loaded.`);
         } else {
-          buildLogger.info(`Astrowind config has been loaded.`);
+          buildLogger.info('Astrowind config has been loaded.');
         }
       },
       'astro:config:done': async ({ config }) => {
@@ -83,9 +83,9 @@ export default ({ config: _themeConfig = 'src/config.yaml' } = {}) => {
           const robotsTxtFile = new URL('robots.txt', publicDir);
           const robotsTxtFileInOut = new URL('robots.txt', outDir);
 
-          const hasIntegration =
-            Array.isArray(cfg?.integrations) &&
-            cfg.integrations?.find((e) => e?.name === '@astrojs/sitemap') !== undefined;
+          const hasIntegration
+            = Array.isArray(cfg?.integrations)
+            && cfg.integrations?.find(e => e?.name === '@astrojs/sitemap') !== undefined;
           const sitemapExists = fs.existsSync(sitemapFile);
 
           if (hasIntegration && sitemapExists) {
@@ -96,19 +96,17 @@ export default ({ config: _themeConfig = 'src/config.yaml' } = {}) => {
             if (!pattern.test(robotsTxt)) {
               fs.appendFileSync(robotsTxtFileInOut, `${os.EOL}${os.EOL}Sitemap: ${sitemapUrl}`, {
                 encoding: 'utf8',
-                flags: 'w',
+                flags: 'w'
               });
             } else {
               fs.writeFileSync(robotsTxtFileInOut, robotsTxt.replace(pattern, `Sitemap: ${sitemapUrl}`), {
                 encoding: 'utf8',
-                flags: 'w',
+                flags: 'w'
               });
             }
           }
-        } catch (err) {
-          /* empty */
-        }
-      },
-    },
+        } catch {}
+      }
+    }
   };
 };

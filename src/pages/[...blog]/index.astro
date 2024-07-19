@@ -32,14 +32,14 @@ const metadata = merge(
     description: post.excerpt,
     robots: {
       index: blogPostRobots?.index,
-      follow: blogPostRobots?.follow,
+      follow: blogPostRobots?.follow
     },
     openGraph: {
       type: 'article',
       ...(image
         ? { images: [{ url: image, width: (image as ImageMetadata)?.width, height: (image as ImageMetadata)?.height }] }
-        : {}),
-    },
+        : {})
+    }
   },
   { ...(post?.metadata ? { ...post.metadata, canonical: post.metadata?.canonical || url } : {}) }
 ) as MetaData;
