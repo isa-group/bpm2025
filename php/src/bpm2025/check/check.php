@@ -66,7 +66,7 @@ mysqli_set_charset($conn, 'utf8');
 //$fuc = "097460992";
 //$terminal = "001";
 //$moneda = '978';
-//$url = 'https://rociogoni14.github.io/2023.djangocon.eu/index.html';
+//$url = 'https://isa-group.github.io/2023.djangocon.eu/index.html';
 //$urlOK = 'https://institucional.us.es/icsoc2022/check/DDBBload.php';
 //$urlKO = 'https://institucional.us.es/icsoc2022/failRegistration';
 //$id = rand(1, 100000000);
@@ -182,7 +182,7 @@ $log  = "-------------------------".PHP_EOL.
 file_put_contents($logfile, $log, FILE_APPEND);
 
 mysqli_close($conn);
-header("Location: https://rociogoni14.github.io/2023.djangocon.eu/index.html");
+header("Location: https://isa-group.github.io/2023.djangocon.eu/index.html");
 exit();
 
 
