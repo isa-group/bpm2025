@@ -1,15 +1,15 @@
 title: 23rd Conference on Business Process Management
-url: "https://isa-group.github.io/bpm2025/"
+url: "https://www.bpm2025seville.org"
 baseurl: bpm2025
 author: Universidad de Sevilla
 description: |
   BPM2025 conference will take place in Seville, Spain.
   
-enforce_ssl: "2023.djangocon.eu"
+enforce_ssl: "www.bpm2025seville.org"
 relative_permalinks: false
 permalink: news/:title/ # permalink: date
 timezone: Europe/Madrid
-conf_year: 2023
+conf_year: 2025
 
 include:
   - _pages
@@ -56,69 +56,36 @@ future: true
 collections: # process the _data folder
   components:
     output: false
-  schedule:
-    output: false
-    permalink: /:collection/:name/
   organisers:
-    output: false
-    permalink: /:collection/
-  presenters:
-    output: false
-    permalink: /:collection/
-  sponsors:
-    output: false
-    permalink: /:collection/
-  places:
-    output: false
-    permalink: /:collection/
-  jobs:
-    output: true
-    permalink: /:collection/:name/
-  locations:
-    output: false
-    permalink: /:collection/
-  venues:
     output: false
     permalink: /:collection/
   news:
     output: false
     permalink: /:collection/
-  sessions:
-    output: true
-    permalink: /:collection/
-  menus:
-    output: false
-    permalink: /:collection/
-  attendee_links:
-    output: false
-    permalink: /:collection
-  transports:
-    output: false
-    permalink: /:collection/
   incomings:
+    output: false
+    permalink: /:collection/
+  sponsors:
     output: false
     permalink: /:collection/
   stayings:
     output: false
     permalink: /:collection/
-  visas:
-    output: false
-    permalink: /:collection/
   steerings:
     output: false
     permalink: /:collection/
-  assistants:
+  visas:
     output: false
     permalink: /:collection/
 
 # SEO Plugin settings
 
 twitter:
-  username: unisevilla
+  username: bpmconf
 
 # This is the default logo that people see with opengraph
 # logo: /static/2023-logos/squares-and-social/djangocon-square.png
-logo: ../image/logo.png
+logo: /static/image/logo.png
 
 # Frontmatter fallback settings
 # This is the default logo that people see on blog posts
@@ -126,26 +93,21 @@ defaults:
   - scope:
       path: ""
     values:
-      image: ../image/logo.png
-  - scope:
-      path: "_presenters"
-      type: presenters
-    values:
-      sitemap: false
+      image: /static/image/logo.png
 
 # Emails
-conduct_email: "resinas@us.es"
-contact_us_email: "resinas@us.es"
-content_email: "resinas@us.es"
-sponsors_email: "resinas@us.es"
+conduct_email: "info@bpm2025seville.org"
+contact_us_email: "info@bpm2025seville.org"
+content_email: "info@bpm2025seville.org"
+sponsors_email: "info@bpm2025seville.org"
 
 # Links
-cfp_application: "https://pretalx.com/djangocon-europe-2023/cfp"
-opportunity_grant_application: "https://forms.gle/3HCUj3CNzBzwsbdw5"
-discord_link: ""
+cfp_application: "https://easychair.org/"
+#opportunity_grant_application: "https://forms.gle/3HCUj3CNzBzwsbdw5"
+#discord_link: ""
 # slack_link: "https://join.slack.com/t/djangoconeurope/shared_invite/zt-1gjg5lqkz-qVQkNnhjztXVme7TQ7ziQA"
-sponsorship_prospectus: ""
-ticket_link: "https://pretix.eu/puksl/dceu2023"
-schedule_link: "https://pretalx.com/djangocon-europe-2023/schedule"
+#sponsorship_prospectus: ""
+#ticket_link: "https://pretix.eu/puksl/dceu2023"
+#schedule_link: "https://pretalx.com/djangocon-europe-2023/schedule"
 
-github: [metadata]
+#github: [metadata]

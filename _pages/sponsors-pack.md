@@ -4,6 +4,8 @@ heading: Sponsor Information
 layout: default
 permalink: /sponsors/pack/
 title: Sponsor Information
+sitemap: false
+published: false
 ---
 
 ## What we need from you:

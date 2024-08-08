@@ -10,7 +10,7 @@ hero_text_align: center
 hero_theme: brand-color2
 ---
 
-These Terms & Conditions apply to every person registering as a regular delegate for the 23rd Int. Conference on Business Process Management (BPM 2025), to be held online from September 13-18, 2025 (hereafter referred to as "the conference"), organised by the Universidad de Sevilla (hereafter referred to as "the conference organisers").
+These Terms & Conditions apply to every person registering as a regular delegate for the 23rd Int. Conference on Business Process Management (BPM 2025), to be held online from September 1-5, 2025 (hereafter referred to as "the conference"), organised by the Universidad de Sevilla (hereafter referred to as "the conference organisers").
 
 All references to a date mentioned in these terms refer to the Central European Time Zone (CET).
 

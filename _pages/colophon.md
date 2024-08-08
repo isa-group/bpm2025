@@ -4,7 +4,8 @@ heading: Colophon
 layout: default
 permalink: /colophon/
 title: Colophon
-published: true
+sitemap: false
+published: false
 ---
 
 We are grateful to the past organizers of DjangoCon Europe and of other events for their help and inspiration. The following is an incomplete list of organisations and conferences whose positive example, advice, and generosity have helped make DjangoCon EU the welcoming conference it is today.
