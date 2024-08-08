@@ -1,7 +1,7 @@
 
 <li><a href="{{ site.baseurl }}/index.html">Home</a></li>
 <li class="is-dropdown-submenu-parent">
-  <a href="{{ site.baseurl }}/conference/">Conference</a>
+  <a href="{{ site.baseurl }}/conference_chairs/">Conference</a>
   <ul class="menu vertical nested">
     <li><a href="{{ site.baseurl }}/conference_chairs/">Conference Chairs</a></li>
     <li><a href="{{ site.baseurl }}/program_committee/">Program Committee</a></li>
@@ -9,26 +9,31 @@
     <li><a href="{{ site.baseurl }}/past_conferences/">Past Conferences</a></li>
   </ul>
 </li>
+<li class="is-dropdown-submenu-parent">
+  <a href="{{ site.baseurl }}/calls_and_dates/" >Calls</a>
+  <ul class="menu vertical nested">
+    <li><a href="{{ site.baseurl }}/call_for_research_papers/">Call for research papers</a></li>
+  </ul>
+</li>
+{% comment %}
 <li>
   <a href="{{ site.baseurl }}/workshops/">Workshops</a>
 </li>
 <li><a href="{{ site.baseurl }}/registration/">Registration</a></li>
-<li class="is-dropdown-submenu-parent">
-  <a href="{{ site.baseurl }}/calls_and_dates/" >Calls</a>
-  <ul class="menu vertical nested">
-    <li><a href="{{ site.baseurl }}/call_for_research_papers/">Call for Research Papers</a></li>
-    <li><a href="{{ site.baseurl }}/call_for_contributions/">Call for contributions</a></li>
-  </ul>
-</li>
+{% endcomment %}
+
+
+{% comment %}
 <li class="is-dropdown-submenu-parent">
   <a href="/{{ site.baseurl }}program/">Program</a>
   <ul class="menu vertical nested">
 
   </ul>
 </li>
+{% endcomment %}
 
 <li class="is-dropdown-submenu-parent">
-  <a href="{{ site.baseurl }}/conference_venue/">Former Venue</a>
+  <a href="{{ site.baseurl }}/conference_venue/">Venue</a>
   <ul class="menu vertical nested">
     <li><a href="{{ site.baseurl }}/conference_venue/">Conference Venue</a></li>
     <li><a href="{{ site.baseurl }}/how_to_get_there/">How to get there</a></li>
@@ -46,8 +51,9 @@
     <li><a href="{% link _pages/sponsors-information.md %}">Become a Sponsor</a></li>
   </ul>
 </li>
-<li><a href="{{ site.baseurl }}/co-located-events/">Co-located events</a></li>
+
 {% comment %}
+<li><a href="{{ site.baseurl }}/co-located-events/">Co-located events</a></li>
 <li>
   <a href="{{ site.ticket_link }}" class="button hollow">
     Buy Tickets
