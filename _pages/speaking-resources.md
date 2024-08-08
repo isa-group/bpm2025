@@ -5,6 +5,8 @@ layout: default
 published: false
 permalink: /speaking/speaker-resources/
 title: Speaker Resources
+sitemap: false
+published: false
 ---
 
 ## Information for Speakers

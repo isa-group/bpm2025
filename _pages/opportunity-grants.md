@@ -7,6 +7,8 @@ layout: default
 published: true
 permalink: /opportunity-grants/
 title: Opportunity Grants
+sitemap: false
+published: false
 ---
 
 *NOTE: Opportunity grant applications are now closed.*

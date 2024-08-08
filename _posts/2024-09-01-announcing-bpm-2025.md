@@ -1,15 +1,15 @@
 ---
-author: DjangoCon Europe Organisers
+author: BPM 2025 Organisers
 category: General
-date: 2023-01-01 06:00:00
+date: 2024-09-01 06:00:00
 layout: post
 published: true
-post_photo_alt: The view of Edinburgh from Calton Hill
-post_photo_url: /static/img/locations/calton-hill.jpg
-title: DjangoCon Europe is coming to Edinburgh!
+post_photo_alt: The view of Seville's Cathedral
+post_photo_url: /static/image/Catedral.jpg
+title: BPM 2025 is coming to Seville!
 ---
 
-Hello, everyone!  This year, DjangoCon Europe is coming to Edinburgh, Scotland!
+Hello, everyone!  This year, BPM 2025 is coming (back) to Seville, Spain!
 
 We are very excited to announce that the website for DjangoCon Europe 2023 is [live](https://2023.djangocon.eu).
 

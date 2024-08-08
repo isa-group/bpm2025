@@ -4,6 +4,8 @@ heading: Inclusion, diversity and accessibility at DjangoCon Europe.
 layout: default
 permalink: /inclusion/
 title: Inclusion, diversity and accessibility
+sitemap: false
+published: false
 ---
 
 We want DjangoCon Europe to be as inclusive and welcoming as possible to everyone.

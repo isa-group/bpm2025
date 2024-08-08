@@ -1,5 +1,5 @@
 ---
-description: The latest DjangoCon Europe 2023 news.
+description: The latest BPM 2025 news.
 heading: News
 layout: post-list
 published: true
