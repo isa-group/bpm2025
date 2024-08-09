@@ -1,6 +1,6 @@
 
 # Replace DOMAIN with your Netlify link if our templates are not deployed yet.
-DOMAIN = https://2023.djangocon.eu
+DOMAIN = https://www.bpm2025seville.org
 IMAGE_SIZE = 1024x512
 # IMAGE_SIZE = 1400x700
 

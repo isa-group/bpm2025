@@ -1,10 +1,11 @@
 source "https://rubygems.org"
 
-gem "jekyll", "~> 4.2.2"
+gem "jekyll", "~> 4.3.3"
 gem "jekyll-feed", "~> 0.12"
 gem "jekyll-seo-tag", "~> 2.6"
 gem "jekyll-redirect-from"
 gem "jemoji"
+gem "csv"
 
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem

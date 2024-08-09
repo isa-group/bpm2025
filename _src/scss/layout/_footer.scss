@@ -47,8 +47,8 @@
     display: block;
     height: $bg-height;
     // Edinburgh Skyline silhouette purchased from BerriDesign on 28 Feb, 2023.
-    mask-image: url(/static/img/city-silhouette.svg);
-    -webkit-mask-image: url(/static/img/city-silhouette.svg);
+    //mask-image: url(/static/img/city-silhouette.svg);
+    //-webkit-mask-image: url(/static/img/city-silhouette.svg);
     background-color: #b2b2b2;
     content: "";
     // Allow clicking through in case of overlap with content.
