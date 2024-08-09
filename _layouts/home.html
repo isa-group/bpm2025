@@ -4,26 +4,31 @@ layout: base
 
 <header class="header">
   <div class="row">
+    {% comment %}
+
     <figure class="hero-picture">
       <picture>
-        <source type="image/jpg" srcset="static/img/home/torre_de_oro.jpg">
+        <source type="image/jpg" srcset="static/image/torre_de_oro.jpg">
         <img
-          src="/static/img/home/torre_de_oro.jpg"
+          src="/static/image/torre_de_oro.jpg"
           alt="Torre de oro"
           width="352"
           height="312"
           loading="lazy"
           decoding="async"
         >
-        
       </picture>
       <figcaption><a href="https://visitasevilla.es/torre-del-oro/" target="_blank">Torre del Oro</a></figcaption>
     </figure>
+    {% endcomment %}
+
+
+
     <figure class="hero-picture hero-picture--odd">
       <picture>
-        <source type="image/jpg" srcset="static/img/home/Catedral.jpg">
+        <source type="image/jpg" srcset="static/image/Catedral.jpg">
         <img
-          src="/static/img/home/Catedral.jpg"
+          src="/static/image/Catedral.jpg"
           alt="View of the Cathedral of Seville"
           width="352"
           height="312"
@@ -32,22 +37,42 @@ layout: base
         >
       </picture>
       <figcaption><a href="https://www.catedraldesevilla.es/" target="_blank">Cathedral of Seville</a></figcaption>
-      
     </figure>
+
+    <figure class="hero-picture ">
+      <picture>
+        <source type="image/png" srcset="static/image/logo.png">
+        <img
+          src="/static/image/logo.png"
+          alt="Logo BPM 2025"
+          width="300"
+          height="300"
+          loading="lazy"
+          decoding="async"
+        >
+      </picture>
+      <figcaption><a href="#">BPM 2025</a></figcaption>
+    </figure>
+
+
     <div class="header-text">
-      <h1 style="font-weight: 800; color: rgb(0 94 184); background-color: rgba(254 ,254, 131, 0.7); text-align: center;">23rd Int. Conference on Business Process Management </h1>
+      <h1>23rd Int. Conference on Business Process Management <br/> (BPM 2025) </h1>
 
       <div class="event-info-detail">
-        <h2 style="-webkit-text-stroke: 2px black; font-weight:500;color: rgb(0 94 184);background-color: rgba(254 ,254, 131, 0.7); margin-left: 2rem; margin-right: 3rem; text-align: center;">
-          <strong>BPM 2025</strong>
-          <strong>Seville</strong>
-        </h2>
+        <p>
+          <strong>31st Aug - 5th Sep 2025</strong>
+        </p>
+
+        <p>
+          <strong>Seville, Spain</strong>
+        </p>
       </div>
+      {% comment %}
       <div>
         <img style="width: 200px; margin-left: 8rem; margin-bottom: 1rem;" src="{{ site.baseurl }}/static/image/logo.png" alt="Descripción de la imagen">
       </div>
-
       <a  style="margin-left: 8rem;" class="button button--bright button--tickets" href="{{ site.baseurl }}/registration/">Get Registered!</a>
+      {% endcomment %}
     </div>
   </div>
 </header>
@@ -56,7 +81,7 @@ layout: base
 <div class="content">
 
 <section class="section-pad theme-brand-color3">
-  <p class="lead column large-9 large-centered text-center">BPM2025 will be held in Sevilla and will host hundreds of attendees from all over the world!</p>
+  <p class="lead column large-9 large-centered text-center">BPM 2025 will be held in Sevilla, Spain, from August, 31 to September, 5 and will host hundreds of attendees from all over the world</p>
   {% include schedule-date-cards.html %}
 </section>
 
@@ -70,20 +95,34 @@ layout: base
 {% endcomment %}
 
 <section class="section-pad theme-medium-gray">
+  {% comment %}
   <div class="row column v-pad-bottom text-center">
-    <h2>23rd Int. Conference on Business Process Management</h2>
+    <h2>23rd Int. Conference on Business Process Management (BPM 2025)</h2>
   </div>
+  {% endcomment %}
+
   <div class="row">
     <div class="column">
       <div class="lead">
-        <p>BPM 2025 is the 23rd conference in a series that provides the most prestigious forum for researchers and practitioners in the field of Business Process Management.
-
-          Over the past decade, the conference has built its reputation by showcasing leading-edge research of the highest quality together with talks, tutorials and discussions by the most renown thought leaders and innovators in the field. The BPM conference series embraces the diversity and richness of the BPM field and serves as a melting pot for experts from a mix of disciplines including Computer Science, Information Systems Engineering, and Management.</p>
+        <p>BPM 2025 is the 23rd conference in a series that provides the most prestigious forum for researchers and practitioners in the field of Business Process Management.</p>
+        <p>Over the past two decades, the conference has built its reputation by showcasing leading-edge research of the highest quality together with talks, tutorials and discussions by the most renown thought leaders and innovators in the field. The BPM conference series embraces the diversity and richness of the BPM field and serves as a melting pot for experts from a mix of disciplines including Computer Science, Information Systems Engineering, and Management.</p>
       </div>
     </div>
   </div>
 </section>
 
+<section class="section-pad theme-light-gray">
+  <div class="row column v-pad-bottom text-center">
+    <h2>Organization</h2>
+  </div>
+  <div class="row">
+    <div class="column">
+      <div class="lead">
+        <p>BPM 2025, organized by the <a href="https://www.isa.us.es">ISA group</a> of the <a href="https://www.us.es">Universidad de Sevilla</a>, will take place in Sevilla, the capital of Andalusia and the fourth-largest city in Spain.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 {% include sponsor-footer.html %}

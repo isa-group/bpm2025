@@ -6,13 +6,13 @@ permalink: /sponsors/information/
 title: Become a Sponsor
 ---
 
-## Why Sponsor BPM2025?
+## Why Sponsor BPM 2025?
 
 This will be the 23rd Conference on Business Process Management, and is being held in Seville on September 2025. BPM 2025 is the 23rd conference in a series that provides the most prestigious forum for researchers and practitioners in the field of Business Process Management.
 
-If you're looking to hire developers, promote a product that's useful to developers, promote awareness of your organisation, or just give something back to the community, then you should sponsor BPM2025.
+If you're looking to hire excellent researchers, promote a product that's useful to academy, promote awareness of your organisation, or just give something back to the community, then you should sponsor BPM 2025.
 
-If you are interested, send an email for further information to resinas@us.es.
+<a href="mailto:{{site.sponsors_email}}" class="button">Contact Us Today</a>
 
 {% comment %}
 ## Sponsorship Packages

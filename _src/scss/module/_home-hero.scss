@@ -4,7 +4,7 @@
   padding: 6rem 0;
   color: $white;
   background-color: $black;
-  background-image: url(/image/mosaico.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/image/mosaico.jpg);
   background-attachment: fixed;
   background-size: cover;
   background-position: center 30%;
@@ -63,7 +63,7 @@
 
   h1 {
     margin-bottom: 2.25rem;
-    -webkit-text-stroke: 2px black; 
+    // -webkit-text-stroke: 2px black; 
   }
 
   .event-info-detail {
@@ -71,7 +71,7 @@
     font-weight: 400;
     font-size: 1.2rem;
     line-height: 1.5;
-    opacity: 0.8;
+    opacity: 1;
   }
 
   .button + .button {
