@@ -10,14 +10,13 @@
     "preview": "astro preview",
     "prod": "npm run build && npm run preview",
     "astro": "astro",
-    "typecheck": "astro check",
+    "check": "astro check",
     "lint": "eslint . --max-warnings=0 --cache --cache-location node_modules/.cache/eslint",
     "lint-fix": "eslint . --fix --max-warnings=0 --cache --cache-location node_modules/.cache/eslint",
     "eslint-inspect": "eslint-config-inspector"
   },
   "dependencies": {
     "@astrojs/check": "0.8.2",
-    "@astrojs/rss": "4.0.7",
     "@astrojs/sitemap": "3.1.6",
     "@astrolib/analytics": "0.5.0",
     "@astrolib/seo": "1.0.0-beta.5",

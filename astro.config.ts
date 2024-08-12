@@ -9,8 +9,6 @@ import mdx from '@astrojs/mdx';
 import icon from 'astro-icon';
 import compress from 'astro-compress';
 
-import astrowind from './vendor/integration';
-
 import {
   readingTimeRemarkPlugin,
   responsiveTablesRehypePlugin,
@@ -51,10 +49,6 @@ export default defineConfig({
       JavaScript: true,
       SVG: true,
       Logger: 1
-    }),
-
-    astrowind({
-      config: './src/config.yaml'
     })
   ],
   markdown: {
