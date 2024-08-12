@@ -1,12 +1,12 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { defineConfig } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
-import icon from 'astro-icon';
+import Icons from 'unplugin-icons/vite';
 import compress from 'astro-compress';
 
 import {
@@ -16,6 +16,7 @@ import {
 } from './src/utils/frontmatter.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+console.log(__dirname, import.meta.dirname);
 
 export default defineConfig({
   output: 'static',
@@ -26,22 +27,6 @@ export default defineConfig({
     }),
     sitemap(),
     mdx(),
-    icon({
-      include: {
-        'tabler': ['*'],
-        'flat-color-icons': [
-          'template',
-          'gallery',
-          'approval',
-          'document',
-          'advertising',
-          'currency-exchange',
-          'voice-presentation',
-          'business-contact',
-          'database'
-        ]
-      }
-    }),
     compress({
       CSS: true,
       HTML: true,
@@ -61,6 +46,9 @@ export default defineConfig({
       alias: {
         '@': path.resolve(__dirname, './src')
       }
-    }
+    },
+    plugins: [Icons({
+      compiler: 'astro'
+    })]
   }
 });

@@ -1,8 +1,8 @@
 ---
-import { UI } from 'astrowind:config';
+import { ui } from '@/config.json';
 ---
 
-<script is:inline define:vars={{ defaultTheme: UI.theme }}>
+<script is:inline define:vars={{ defaultTheme: ui.theme }}>
   if (window.basic_script) {
     return;
   }

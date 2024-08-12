@@ -1,6 +1,6 @@
-import { I18N } from 'astrowind:config';
+import { i18n } from '@/config.json';
 
-export const formatter: Intl.DateTimeFormat = new Intl.DateTimeFormat(I18N?.language, {
+export const formatter: Intl.DateTimeFormat = new Intl.DateTimeFormat(i18n.language, {
   year: 'numeric',
   month: 'short',
   day: 'numeric',

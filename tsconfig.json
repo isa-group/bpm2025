@@ -25,6 +25,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "types": [
+      "unplugin-icons/types/astro",
+    ]
   }
 }
