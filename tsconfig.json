@@ -21,7 +21,7 @@
     "removeComments": true,
     "verbatimModuleSyntax": true,
     "incremental": true,
-    "tsBuildInfoFile": "node_modules/.cache/tsconfig.tsbuildinfo",
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
@@ -30,5 +30,6 @@
       "src/env.d.ts",
       "unplugin-icons/types/astro",
     ]
-  }
+  },
+  "exclude": ["node_modules", "dist"]
 }

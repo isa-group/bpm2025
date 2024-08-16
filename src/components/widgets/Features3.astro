@@ -29,25 +29,18 @@ const {
   }`}
   bg={bg}
 >
-  <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline} />
+  <Headline title={title} subtitle={subtitle} tagline={tagline} classes={typeof classes?.headline === 'object' ? classes.headline : undefined} />
 
   <div aria-hidden="true" class="aspect-w-16 aspect-h-7">
     {
       image && (
         <div class="w-full h-80 object-cover rounded-xl mx-auto bg-gray-500 shadow-lg">
-          {typeof image === 'string'
-            ? (
-                <Fragment set:html={image} />
-              )
-            : (
-                <Image
-                  class="w-full h-80 object-cover rounded-xl mx-auto bg-gray-500 shadow-lg"
-                  inferSize
-                  height={320}
-                  widths={[400, 768]}
-                  {...image}
-                />
-              )}
+          <Image
+            class="w-full h-80 object-cover rounded-xl mx-auto bg-gray-500 shadow-lg"
+            height={320}
+            widths={[400, 768]}
+            {...image}
+          />
         </div>
       )
     }

@@ -53,7 +53,10 @@ const metadata = {
       },
       { text: 'Learn more', href: '#features' }
     ]}
-    image={{ src: HeroImg, alt: 'AstroWind Hero Image' }}
+    image={{
+      src: HeroImg.src,
+      alt: 'AstroWind Hero Image'
+    }}
   >
     <Fragment slot="title">
       Free template for <span class="hidden xl:inline">creating websites with</span>

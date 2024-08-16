@@ -1,5 +1,4 @@
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 
 import { defineConfig } from 'astro/config';
 
@@ -15,12 +14,11 @@ import {
   lazyImagesRehypePlugin
 } from './src/utils/frontmatter.mjs';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-console.log(__dirname, import.meta.dirname);
+const DEPLOYED_URL = 'https://www.bpm2025seville.org';
 
 export default defineConfig({
   output: 'static',
-
+  site: DEPLOYED_URL,
   integrations: [
     tailwind({
       applyBaseStyles: false
@@ -42,9 +40,10 @@ export default defineConfig({
   },
 
   vite: {
+    cacheDir: path.resolve(import.meta.dirname, './node_modules/.vite'),
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, './src')
+        '@': path.resolve(import.meta.dirname, './src')
       }
     },
     plugins: [Icons({

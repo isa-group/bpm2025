@@ -1,4 +1,4 @@
-import { getPermalink } from './utils/permalinks';
+import { getPermalink } from '@/utils/permalinks';
 import ITablerBrandX from 'virtual:icons/tabler/brand-x';
 import ITablerBrandInstagram from 'virtual:icons/tabler/brand-instagram';
 import ITablerBrandFacebook from 'virtual:icons/tabler/brand-facebook';

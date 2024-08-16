@@ -1,79 +1,23 @@
-import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
-import type { HTMLAttributes, ImageMetadata } from 'astro/types';
+import type { HTMLAttributes, ComponentProps } from 'astro/types';
+import { Image as ImageComponent } from 'astro:assets';
 import ITablerCheck from 'virtual:icons/tabler/check';
 
 export type IconElement = typeof ITablerCheck;
-export interface Post {
-  /** A unique ID number that identifies a post. */
-  id: string;
-
-  /** A post’s unique slug – part of the post’s URL based on its name, i.e. a post called “My Sample Page” has a slug “my-sample-page”. */
-  slug: string;
-
-  /**  */
-  permalink: string;
-
-  /**  */
-  publishDate: Date;
-  /**  */
-  updateDate?: Date;
-
-  /**  */
-  title: string;
-  /** Optional summary of post content. */
-  excerpt?: string;
-  /**  */
-  image?: ImageMetadata | string;
-
-  /**  */
-  category?: Taxonomy;
-  /**  */
-  tags?: Taxonomy[];
-  /**  */
-  author?: string;
-
-  /**  */
-  metadata?: MetaData;
-
-  /**  */
-  draft?: boolean;
-
-  /**  */
-  Content?: AstroComponentFactory;
-  content?: string;
-
-  /**  */
-  readingTime?: number;
-}
-
-export interface Taxonomy {
-  slug: string;
-  title: string;
-}
-
-export interface MetaData {
-  title?: string;
-  ignoreTitleTemplate?: boolean;
-
-  canonical?: string;
-
-  robots?: MetaDataRobots;
-
-  description?: string;
-
-  openGraph?: MetaDataOpenGraph;
-  twitter?: MetaDataTwitter;
-}
+// There are some hacks to get this type working properly:
+// https://github.com/withastro/astro/issues/10912
+// https://github.com/withastro/astro/issues/10780
+type MakeOptional<T, K extends keyof T> = {
+  [P in keyof T as P extends K ? P : never]?: T[P];
+} & {
+  [P in keyof T as P extends K ? never : P]: T[P];
+};
+type SkippedProps = 'width' | 'height' | 'inferSize';
+type ImageComponentProps = Omit<ComponentProps<typeof ImageComponent>, 'slot' | 'children'>;
+type ExtendedImageProps = MakeOptional<ImageComponentProps, SkippedProps>;
 
 export interface MetaDataRobots {
   index?: boolean;
   follow?: boolean;
-}
-
-export interface MetaDataImage {
-  url: string;
-  width?: number;
-  height?: number;
 }
 
 export interface MetaDataOpenGraph {
@@ -89,15 +33,14 @@ export interface MetaDataTwitter {
   site?: string;
   cardType?: string;
 }
-
-export interface Image {
-  src: string;
-  alt?: string;
-}
-
-export interface Video {
-  src: string;
-  type?: string;
+export interface MetaData {
+  title?: string;
+  ignoreTitleTemplate?: boolean;
+  canonical?: string;
+  robots?: MetaDataRobots;
+  description?: string;
+  openGraph?: MetaDataOpenGraph;
+  twitter?: MetaDataTwitter;
 }
 
 export interface Widget {
@@ -117,7 +60,7 @@ export interface Headline {
 interface TeamMember {
   name?: string;
   job?: string;
-  image?: Image;
+  image?: ExtendedImageProps;
   socials?: Array<Social>;
   description?: string;
   classes?: Record<string, string>;
@@ -140,7 +83,7 @@ export interface Item {
   icon?: IconElement;
   classes?: Record<string, string>;
   callToAction?: CallToAction;
-  image?: Image;
+  image?: ExtendedImageProps;
 }
 
 export interface Price {
@@ -160,7 +103,7 @@ export interface Testimonial {
   testimonial?: string;
   name?: string;
   job?: string;
-  image?: string | unknown;
+  image?: ExtendedImageProps;
 }
 
 export interface Input {
@@ -217,7 +160,7 @@ export interface Form {
 export interface Hero extends BetterOmit<Headline, 'classes'>, BetterOmit<Widget, 'isDark' | 'classes'> {
   content?: string;
   actions?: string | CallToAction[];
-  image?: string | unknown;
+  image?: ExtendedImageProps;
 }
 
 export interface Team extends BetterOmit<Headline, 'classes'>, Widget {
@@ -239,11 +182,11 @@ export interface Testimonials extends BetterOmit<Headline, 'classes'>, Widget {
 
 export interface Brands extends BetterOmit<Headline, 'classes'>, Widget {
   icons?: Array<IconElement>;
-  images?: Array<Image>;
+  images?: Array<ExtendedImageProps>;
 }
 
 export interface Features extends BetterOmit<Headline, 'classes'>, Widget {
-  image?: string | unknown;
+  image?: ExtendedImageProps;
   video?: Video;
   items?: Array<Item>;
   columns?: number;
@@ -261,7 +204,7 @@ export interface Faqs extends BetterOmit<Headline, 'classes'>, Widget {
   columns?: number;
 }
 
-export interface Steps extends Headline, BetterOmit<Widget, 'classes'> {
+export interface Steps extends BetterOmit<Headline, 'classes'>, Widget {
   items: Array<{
     title: string;
     description?: string;
@@ -269,13 +212,13 @@ export interface Steps extends Headline, BetterOmit<Widget, 'classes'> {
     classes?: Record<string, string>;
   }>;
   callToAction?: string | CallToAction;
-  image?: string | Image;
+  image?: ExtendedImageProps;
   isReversed?: boolean;
 }
 
 export interface Content extends BetterOmit<Headline, 'classes'>, Widget {
   content?: string;
-  image?: string | unknown;
+  image?: ExtendedImageProps;
   items?: Array<Item>;
   columns?: number;
   isReversed?: boolean;
