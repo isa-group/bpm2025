@@ -1,4 +1,5 @@
 ---
+import BSlot from '@/components/utils/BSlot.astro';
 import type { CallToAction as Props } from '@/types';
 
 const {
@@ -7,4 +8,6 @@ const {
 ---
 
 <Fragment set:html={text} />
-<slot name="icon" class="w-5 h-5 ml-1 -mr-1.5 rtl:mr-1 rtl:-ml-1.5 inline-block" />
+<BSlot class="w-5 h-5 ml-1 -mr-1.5 rtl:mr-1 rtl:-ml-1.5 inline-block">
+  <slot name="icon" />
+</BSlot>

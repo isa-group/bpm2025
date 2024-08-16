@@ -44,6 +44,7 @@
     "eslint-plugin-file-progress": "1.5.0",
     "globals": "15.9.0",
     "js-yaml": "4.1.0",
+    "linkedom": "0.18.4",
     "mdast-util-to-string": "4.0.0",
     "reading-time": "1.5.0",
     "rehype-plugin-image-native-lazy-loading": "1.2.0",

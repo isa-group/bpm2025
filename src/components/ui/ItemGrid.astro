@@ -1,7 +1,8 @@
 ---
 import type { ItemGrid as Props } from '@/types';
 import { twMerge } from 'tailwind-merge';
-import Button from './Button/Button.astro';
+import Button from '@/components/ui/Button/Button.astro';
+import BSlot from '@/components/utils/BSlot.astro';
 
 const { items = [], columns, classes = {} } = Astro.props;
 
@@ -13,6 +14,8 @@ const {
   icon: defaultIconClass = 'text-primary',
   action: actionClass = ''
 } = classes;
+
+const mergedIconClasses = twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2', defaultIconClass);
 ---
 
 {
@@ -31,11 +34,17 @@ const {
         containerClass
       )}
     >
-      {items.map(({ title, description, callToAction, classes: itemClasses = {} }) => (
+      {items.map(({ title, description, icon: IconElement, callToAction, classes: itemClasses = {} }) => (
         <div>
           <div class={twMerge('flex flex-row max-w-md', panelClass, itemClasses?.panel)}>
             <div class="flex justify-center">
-              <slot name="icon" class={twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2', defaultIconClass, itemClasses?.icon)} />
+              {IconElement
+                ? <IconElement class={twMerge(mergedIconClasses, itemClasses?.icon)} />
+                : (
+                    <BSlot class={twMerge(mergedIconClasses, itemClasses?.icon)}>
+                      <slot name="default-icon" />
+                    </BSlot>
+                  )}
             </div>
             <div class="mt-0.5">
               {title && <h3 class={twMerge('text-xl font-bold', titleClass, itemClasses?.title)}>{title}</h3>}

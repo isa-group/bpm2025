@@ -30,10 +30,10 @@ const {
         classes={{
           container: 'text-left rtl:text-right',
           title: 'text-3xl lg:text-4xl',
-          ...((classes?.headline as object) ?? {})
+          ...((classes?.headline) ?? {})
         }}
       />
-      <Timeline items={items} classes={classes?.items as Record<string, never>} />
+      <Timeline items={items} classes={classes?.items} />
     </div>
     {
       image && (

@@ -183,7 +183,7 @@ export interface Disclaimer {
 }
 
 // COMPONENTS
-export interface CallToAction extends Omit<HTMLAttributes<'a'>, 'slot'> {
+export interface CallToAction extends BetterOmit<HTMLAttributes<'a'>, 'slot'> {
   variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
   text?: string;
   icon?: IconElement;
@@ -214,35 +214,35 @@ export interface Form {
 }
 
 // WIDGETS
-export interface Hero extends Omit<Headline, 'classes'>, Omit<Widget, 'isDark' | 'classes'> {
+export interface Hero extends BetterOmit<Headline, 'classes'>, BetterOmit<Widget, 'isDark' | 'classes'> {
   content?: string;
   actions?: string | CallToAction[];
   image?: string | unknown;
 }
 
-export interface Team extends Omit<Headline, 'classes'>, Widget {
+export interface Team extends BetterOmit<Headline, 'classes'>, Widget {
   team?: Array<TeamMember>;
 }
 
-export interface Stats extends Omit<Headline, 'classes'>, Widget {
+export interface Stats extends BetterOmit<Headline, 'classes'>, Widget {
   stats?: Array<Stat>;
 }
 
-export interface Pricing extends Omit<Headline, 'classes'>, Widget {
+export interface Pricing extends BetterOmit<Headline, 'classes'>, Widget {
   prices?: Array<Price>;
 }
 
-export interface Testimonials extends Omit<Headline, 'classes'>, Widget {
+export interface Testimonials extends BetterOmit<Headline, 'classes'>, Widget {
   testimonials?: Array<Testimonial>;
   callToAction?: CallToAction;
 }
 
-export interface Brands extends Omit<Headline, 'classes'>, Widget {
+export interface Brands extends BetterOmit<Headline, 'classes'>, Widget {
   icons?: Array<IconElement>;
   images?: Array<Image>;
 }
 
-export interface Features extends Omit<Headline, 'classes'>, Widget {
+export interface Features extends BetterOmit<Headline, 'classes'>, Widget {
   image?: string | unknown;
   video?: Video;
   items?: Array<Item>;
@@ -254,14 +254,14 @@ export interface Features extends Omit<Headline, 'classes'>, Widget {
   isAfterContent?: boolean;
 }
 
-export interface Faqs extends Omit<Headline, 'classes'>, Widget {
+export interface Faqs extends BetterOmit<Headline, 'classes'>, Widget {
   iconUp?: string;
   iconDown?: string;
   items?: Array<Item>;
   columns?: number;
 }
 
-export interface Steps extends Omit<Headline, 'classes'>, Widget {
+export interface Steps extends Headline, BetterOmit<Widget, 'classes'> {
   items: Array<{
     title: string;
     description?: string;
@@ -273,7 +273,7 @@ export interface Steps extends Omit<Headline, 'classes'>, Widget {
   isReversed?: boolean;
 }
 
-export interface Content extends Omit<Headline, 'classes'>, Widget {
+export interface Content extends BetterOmit<Headline, 'classes'>, Widget {
   content?: string;
   image?: string | unknown;
   items?: Array<Item>;
@@ -283,4 +283,4 @@ export interface Content extends Omit<Headline, 'classes'>, Widget {
   callToAction?: CallToAction;
 }
 
-export interface Contact extends Omit<Headline, 'classes'>, Form, Widget {}
+export interface Contact extends BetterOmit<Headline, 'classes'>, Form, Widget {}

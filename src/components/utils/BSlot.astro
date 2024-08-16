@@ -1,0 +1,33 @@
+---
+// This component adds the added props to the direct descendants
+import { parseHTML } from 'linkedom';
+
+const html = await Astro.slots.render('default');
+const props = Object.entries(Astro.props);
+
+function setAttr(el: Element) {
+  for (const [attr, val] of props) {
+    if (attr === 'class' && typeof val === 'string' && el.hasAttribute('class')) {
+      for (const cls of val.split(' ')) {
+        el.classList.add(cls);
+      }
+    } else {
+      el.setAttribute(attr, val);
+    }
+  }
+}
+
+const { document: parsed_doc } = parseHTML(html);
+const children = parsed_doc.children;
+const doc_el = parsed_doc.documentElement;
+
+if (doc_el) {
+  setAttr(doc_el);
+} else {
+  for (const child of children) {
+    setAttr(child);
+  }
+}
+
+---
+<Fragment set:html={parsed_doc} />

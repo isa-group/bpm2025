@@ -29,7 +29,7 @@ const {
   }`}
   bg={bg}
 >
-  <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} />
+  <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline} />
 
   <div aria-hidden="true" class="aspect-w-16 aspect-h-7">
     {
@@ -65,6 +65,6 @@ const {
       ...((classes?.items as object) ?? {})
     }}
   >
-    <slot name="icon" slot="icon" />
+    <slot name="default-icon" slot="default-icon" />
   </ItemGrid>
 </WidgetWrapper>

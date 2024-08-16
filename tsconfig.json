@@ -27,6 +27,7 @@
       "@/*": ["src/*"]
     },
     "types": [
+      "src/env.d.ts",
       "unplugin-icons/types/astro",
     ]
   }

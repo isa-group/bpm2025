@@ -1,11 +1,11 @@
 ---
 import type { Content as Props } from '@/types';
 import ITablerCheck from 'virtual:icons/tabler/check';
-import Headline from '../ui/Headline.astro';
-import WidgetWrapper from '../ui/WidgetWrapper.astro';
+import Headline from '@/components/ui/Headline.astro';
+import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
 import { Image } from 'astro:assets';
 import Button from '@/components/ui/Button/Button.astro';
-import ItemGrid from '../ui/ItemGrid.astro';
+import ItemGrid from '@/components/ui/ItemGrid.astro';
 
 const {
   title = await Astro.slots.render('title'),
@@ -67,7 +67,7 @@ const {
             action: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2'
           }}
         >
-          <ITablerCheck slot="icon" />
+          <ITablerCheck slot="default-icon" />
         </ItemGrid>
       </div>
       <div aria-hidden="true" class="mt-10 md:mt-0 md:basis-1/2">

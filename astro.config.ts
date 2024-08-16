@@ -48,7 +48,10 @@ export default defineConfig({
       }
     },
     plugins: [Icons({
-      compiler: 'astro'
+      compiler: 'astro',
+      iconCustomizer(_, __, props) {
+        props['astro-icon'] = '';
+      }
     })]
   }
 });
