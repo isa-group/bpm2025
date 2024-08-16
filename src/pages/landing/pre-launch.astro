@@ -4,6 +4,9 @@ import Layout from '@/layouts/LandingLayout.astro';
 import Hero2 from '@/components/widgets/Hero2.astro';
 import CallToAction from '@/components/widgets/CallToAction.astro';
 
+import ITablerSquareRoundedArrowRight from 'virtual:icons/tabler/square-rounded-arrow-right';
+import ITablerDownload from 'virtual:icons/tabler/download';
+
 const metadata = {
   title: 'Pre-Launch Landing Page'
 };
@@ -17,7 +20,7 @@ const metadata = {
     title="Pre-launch Landing Page: Build the Hype Before the Big Reveal!"
     subtitle="Craft a tantalizing Coming Soon or Pre-Launch Landing Page that leaves visitors eagerly awaiting your launch."
     actions={[
-      { variant: 'primary', text: 'Call to Action', href: '#', icon: 'tabler:square-rounded-arrow-right' },
+      { variant: 'primary', text: 'Call to Action', href: '#', icon: ITablerSquareRoundedArrowRight },
       { text: 'Learn more', href: '#' }
     ]}
     image={{
@@ -34,7 +37,7 @@ const metadata = {
         variant: 'primary',
         text: 'Download Template',
         href: 'https://github.com/onwidget/astrowind',
-        icon: 'tabler:download'
+        icon: ITablerDownload
       }
     ]}
   />

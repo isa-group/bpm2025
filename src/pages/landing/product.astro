@@ -4,6 +4,9 @@ import Layout from '@/layouts/LandingLayout.astro';
 import Hero from '@/components/widgets/Hero.astro';
 import CallToAction from '@/components/widgets/CallToAction.astro';
 
+import ITablerSquareRoundedArrowRight from 'virtual:icons/tabler/square-rounded-arrow-right';
+import ITablerDownload from 'virtual:icons/tabler/download';
+
 const metadata = {
   title: 'Product Details Landing Page Demo'
 };
@@ -17,7 +20,7 @@ const metadata = {
     title="Product Landing Page: Showcase with Precision and Passion!"
     subtitle="Step-by-step guide to designing a Landing Page that highlights every facet of your product or service."
     actions={[
-      { variant: 'primary', text: 'Call to Action', href: '#', icon: 'tabler:square-rounded-arrow-right' },
+      { variant: 'primary', text: 'Call to Action', href: '#', icon: ITablerSquareRoundedArrowRight },
       { text: 'Learn more', href: '#' }
     ]}
     image={{
@@ -34,7 +37,7 @@ const metadata = {
         variant: 'primary',
         text: 'Download Template',
         href: 'https://github.com/onwidget/astrowind',
-        icon: 'tabler:download'
+        icon: ITablerDownload
       }
     ]}
   />

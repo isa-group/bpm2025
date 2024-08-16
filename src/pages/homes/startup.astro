@@ -11,6 +11,20 @@ import Features3 from '@/components/widgets/Features3.astro';
 import FAQs from '@/components/widgets/FAQs.astro';
 import Brands from '@/components/widgets/Brands.astro';
 
+import IFlatColorIconsDocument from 'virtual:icons/flat-color-icons/document';
+import IFlatColorIconsTemplate from 'virtual:icons/flat-color-icons/template';
+import IFlatColorIconsVoicePresentation from 'virtual:icons/flat-color-icons/voice-presentation';
+import ITablerArtboard from 'virtual:icons/tabler/artboard';
+import ITablerPictureInPicture from 'virtual:icons/tabler/picture-in-picture';
+import ITablerAdjustmentsHorizontal from 'virtual:icons/tabler/adjustments-horizontal';
+import ITablerRocket from 'virtual:icons/tabler/rocket';
+import ITablerArrowsRightLeft from 'virtual:icons/tabler/arrows-right-left';
+import ITablerPlugConnected from 'virtual:icons/tabler/plug-connected';
+import ITablerPhone from 'virtual:icons/tabler/phone';
+import ITablerMail from 'virtual:icons/tabler/mail';
+import ITablerMessageCircle from 'virtual:icons/tabler/message-circle';
+import ITablerDownload from 'virtual:icons/tabler/download';
+
 import { YouTube } from 'astro-embed';
 
 const metadata = {
@@ -29,7 +43,7 @@ const metadata = {
         target: '_blank',
         text: 'Get templates',
         href: 'https://github.com/onwidget/astrowind',
-        icon: 'tabler:download'
+        icon: ITablerDownload
       },
       { text: 'Learn more', href: '#features' }
     ]}
@@ -140,19 +154,19 @@ const metadata = {
         title: 'Installation Instructions',
         description:
           'Offer clear instructions on how to download the purchased templates and install them on various website platforms or content management systems.',
-        icon: 'flat-color-icons:document'
+        icon: IFlatColorIconsDocument
       },
       {
         title: 'Demo and Previews',
         description:
           'Provide interactive demos and previews that allow customers to see how their chosen template will look and function before making a purchase.',
-        icon: 'flat-color-icons:template'
+        icon: IFlatColorIconsTemplate
       },
       {
         title: 'Technical Support',
         description:
           'Providing customer support for any technical issues related to the templates or their implementation.',
-        icon: 'flat-color-icons:voice-presentation'
+        icon: IFlatColorIconsVoicePresentation
       }
     ]}
   >
@@ -173,34 +187,34 @@ const metadata = {
         title: 'Modern and Professional Design',
         description:
           'Have a contemporary design that reflects current design trends and gives a professional impression.',
-        icon: 'tabler:artboard'
+        icon: ITablerArtboard
       },
       {
         title: 'Responsive and Mobile-Friendly',
         description: 'Adapt seamlessly to different screen sizes and devices to ensure a consistent experience.',
-        icon: 'tabler:picture-in-picture'
+        icon: ITablerPictureInPicture
       },
       {
         title: 'Customizability',
         description:
           'Easily customizable, allowing users to adapt the design, colors, typography, and content to match their brand identity.',
-        icon: 'tabler:adjustments-horizontal'
+        icon: ITablerAdjustmentsHorizontal
       },
       {
         title: 'Fast Loading Times',
         description: 'Optimized for speed to ensure a smooth user experience and favorable search engine rankings.',
-        icon: 'tabler:rocket'
+        icon: ITablerRocket
       },
       {
         title: 'Search Engine Optimization (SEO)',
         description:
           'Incorporate SEO best practices in template structure and code to improve visibility in search engine results.',
-        icon: 'tabler:arrows-right-left'
+        icon: ITablerArrowsRightLeft
       },
       {
         title: 'Compatibility',
         description: 'The templates work seamlessly across various content management systems and website builders.',
-        icon: 'tabler:plug-connected'
+        icon: ITablerPlugConnected
       }
     ]}
   />
@@ -256,7 +270,7 @@ const metadata = {
     items={[
       {
         title: 'Phone',
-        icon: 'tabler:phone',
+        icon: ITablerPhone,
         callToAction: {
           target: '_blank',
           text: 'Call us',
@@ -266,7 +280,7 @@ const metadata = {
       },
       {
         title: 'Email',
-        icon: 'tabler:mail',
+        icon: ITablerMail,
         callToAction: {
           target: '_blank',
           text: 'Write to us',
@@ -276,7 +290,7 @@ const metadata = {
       },
       {
         title: 'Chat with sales',
-        icon: 'tabler:message-circle',
+        icon: ITablerMessageCircle,
         callToAction: {
           target: '_blank',
           text: 'Start chatting',
@@ -286,7 +300,7 @@ const metadata = {
       },
       {
         title: 'Chat with support',
-        icon: 'tabler:message-circle',
+        icon: ITablerMessageCircle,
         callToAction: {
           target: '_blank',
           text: 'Start chatting',
@@ -306,7 +320,7 @@ const metadata = {
         target: '_blank',
         text: 'Get templates',
         href: 'https://github.com/onwidget/astrowind',
-        icon: 'tabler:download'
+        icon: ITablerDownload
       }
     ]}
   >

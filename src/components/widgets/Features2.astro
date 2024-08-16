@@ -10,8 +10,6 @@ const {
   tagline = await Astro.slots.render('tagline'),
   items = [],
   columns = 3,
-  defaultIcon,
-
   id,
   isDark = false,
   classes = {},
@@ -24,7 +22,6 @@ const {
   <ItemGrid2
     items={items}
     columns={columns}
-    defaultIcon={defaultIcon}
     classes={{
       container: 'gap-4 md:gap-6',
       panel:
@@ -34,5 +31,7 @@ const {
       icon: 'w-12 h-12 mb-6 text-primary',
       ...((classes?.items as Record<string, never>) ?? {})
     }}
-  />
+  >
+    <slot name="icon" slot="icon" />
+  </ItemGrid2>
 </WidgetWrapper>

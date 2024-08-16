@@ -4,6 +4,9 @@ import Layout from '@/layouts/LandingLayout.astro';
 import Hero2 from '@/components/widgets/Hero2.astro';
 import CallToAction from '@/components/widgets/CallToAction.astro';
 
+import ITablerSquareRoundedArrowRight from 'virtual:icons/tabler/square-rounded-arrow-right';
+import ITablerDownload from 'virtual:icons/tabler/download';
+
 const metadata = {
   title: 'Subscription Landing Page Demo'
 };
@@ -17,7 +20,7 @@ const metadata = {
     title="Subscription Landing Page: Turn Casual Browsers into Loyal Subscribers!"
     subtitle="Unlock the formula for a Subscription Landing Page that keeps your audience coming back for more."
     actions={[
-      { variant: 'primary', text: 'Call to Action', href: '#', icon: 'tabler:square-rounded-arrow-right' },
+      { variant: 'primary', text: 'Call to Action', href: '#', icon: ITablerSquareRoundedArrowRight },
       { text: 'Learn more', href: '#' }
     ]}
     image={{
@@ -34,7 +37,7 @@ const metadata = {
         variant: 'primary',
         text: 'Download Template',
         href: 'https://github.com/onwidget/astrowind',
-        icon: 'tabler:download'
+        icon: ITablerDownload
       }
     ]}
   />

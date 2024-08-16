@@ -1,6 +1,8 @@
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import type { HTMLAttributes, ImageMetadata } from 'astro/types';
+import ITablerCheck from 'virtual:icons/tabler/check';
 
+export type IconElement = typeof ITablerCheck;
 export interface Post {
   /** A unique ID number that identifies a post. */
   id: string;
@@ -122,20 +124,20 @@ interface TeamMember {
 }
 
 interface Social {
-  icon?: string;
+  icon?: IconElement;
   href?: string;
 }
 
 export interface Stat {
   amount?: number | string;
   title?: string;
-  icon?: string;
+  icon?: IconElement;
 }
 
 export interface Item {
   title?: string;
   description?: string;
-  icon?: string;
+  icon?: IconElement;
   classes?: Record<string, string>;
   callToAction?: CallToAction;
   image?: Image;
@@ -184,7 +186,7 @@ export interface Disclaimer {
 export interface CallToAction extends Omit<HTMLAttributes<'a'>, 'slot'> {
   variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
   text?: string;
-  icon?: string;
+  icon?: IconElement;
   classes?: Record<string, string>;
   type?: 'button' | 'submit' | 'reset';
 }
@@ -192,7 +194,6 @@ export interface CallToAction extends Omit<HTMLAttributes<'a'>, 'slot'> {
 export interface ItemGrid {
   items?: Array<Item>;
   columns?: number;
-  defaultIcon?: string;
   classes?: Record<string, string>;
 }
 
@@ -237,7 +238,7 @@ export interface Testimonials extends Omit<Headline, 'classes'>, Widget {
 }
 
 export interface Brands extends Omit<Headline, 'classes'>, Widget {
-  icons?: Array<string>;
+  icons?: Array<IconElement>;
   images?: Array<Image>;
 }
 
@@ -246,7 +247,6 @@ export interface Features extends Omit<Headline, 'classes'>, Widget {
   video?: Video;
   items?: Array<Item>;
   columns?: number;
-  defaultIcon?: string;
   callToAction1?: CallToAction;
   callToAction2?: CallToAction;
   isReversed?: boolean;
@@ -265,7 +265,7 @@ export interface Steps extends Omit<Headline, 'classes'>, Widget {
   items: Array<{
     title: string;
     description?: string;
-    icon?: string;
+    icon?: IconElement;
     classes?: Record<string, string>;
   }>;
   callToAction?: string | CallToAction;

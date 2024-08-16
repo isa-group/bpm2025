@@ -11,8 +11,25 @@ import Testimonials from '@/components/widgets/Testimonials.astro';
 import FAQs from '@/components/widgets/FAQs.astro';
 import Stats from '@/components/widgets/Stats.astro';
 
-import Button from '@/components/ui/Button.astro';
+import Button from '@/components/ui/Button/Button.astro';
 import { Image } from 'astro:assets';
+
+import ITablerSquareNumber1 from 'virtual:icons/tabler/square-number-1';
+import ITablerSquareNumber2 from 'virtual:icons/tabler/square-number-2';
+import ITablerSquareNumber3 from 'virtual:icons/tabler/square-number-3';
+import ITablerSquareNumber4 from 'virtual:icons/tabler/square-number-4';
+import ITablerWand from 'virtual:icons/tabler/wand';
+import ITablerSettings from 'virtual:icons/tabler/settings';
+import ITablerTemplate from 'virtual:icons/tabler/template';
+import ITablerCarouselHorizontal from 'virtual:icons/tabler/carousel-horizontal';
+import ITablerWifiOff from 'virtual:icons/tabler/wifi-off';
+import ITablerFileDownload from 'virtual:icons/tabler/file-download';
+import ITablerRefresh from 'virtual:icons/tabler/refresh';
+import ITablerHeart from 'virtual:icons/tabler/heart';
+import ITablerDownload from 'virtual:icons/tabler/download';
+import ITablerUsers from 'virtual:icons/tabler/users';
+import ITablerUserStar from 'virtual:icons/tabler/user-star';
+import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
 
 const appStoreImg = '@/assets/images/app-store.png';
 const appStoreDownloadLink = 'https://github.com/onwidget/astrowind';
@@ -91,23 +108,23 @@ const metadata = {
       {
         title: 'Download and install the app',
         description: `Begin your journey by downloading our user-friendly app from your device's app store or our official website.`,
-        icon: 'tabler:square-number-1'
+        icon: ITablerSquareNumber1
       },
       {
         title: 'Sign up',
         description:
           'Create your account by providing the necessary information, enabling you to access our full range of features.',
-        icon: 'tabler:square-number-2'
+        icon: ITablerSquareNumber2
       },
       {
         title: 'Browse templates',
         description: 'Explore our diverse collection of website templates, categorized for easy navigation.',
-        icon: 'tabler:square-number-3'
+        icon: ITablerSquareNumber3
       },
       {
         title: 'Preview and select a template',
         description: `Visualize the potential of each template through previews, then choose the one that aligns best with your project's needs.`,
-        icon: 'tabler:square-number-4'
+        icon: ITablerSquareNumber4
       }
     ]}
     image={{
@@ -125,24 +142,24 @@ const metadata = {
         title: 'User-friendly interface',
         description:
           'An intuitive and easy-to-navigate interface that allows users to quickly browse and find the templates they need.',
-        icon: 'tabler:wand'
+        icon: ITablerWand
       },
       {
         title: 'Personalization options',
         description:
           'Include basic customization tools that let users modify text, colors, images, and other elements within the templates.',
-        icon: 'tabler:settings'
+        icon: ITablerSettings
       },
       {
         title: 'Ready-to-use components',
         description:
           'Enhance your designs with ready-to-use elements like graphics, icons, and layouts, saving you time and boosting visual appeal.',
-        icon: 'tabler:template'
+        icon: ITablerTemplate
       },
       {
         title: 'Preview Mode',
         description: 'Provide a preview of each template, allowing users to see how it looks before making a purchase.',
-        icon: 'tabler:carousel-horizontal'
+        icon: ITablerCarouselHorizontal
       }
     ]}
     image={{
@@ -163,23 +180,23 @@ const metadata = {
       {
         title: 'Offline Access',
         description: 'Offer the option for users to download purchased templates for offline use.',
-        icon: 'tabler:wifi-off'
+        icon: ITablerWifiOff
       },
       {
         title: 'Secure Cloud Storage',
         description:
           'Provide cloud storage for purchased templates, ensuring users can access and back up their templates from anywhere securely.',
-        icon: 'tabler:file-download'
+        icon: ITablerFileDownload
       },
       {
         title: 'Regular Updates',
         description: 'Continuously add new templates and features to keep the app fresh and engaging for users.',
-        icon: 'tabler:refresh'
+        icon: ITablerRefresh
       },
       {
         title: 'Wishlist',
         description: `Allow users to create a wishlist of templates they're interested in, making it easier for them to revisit and potentially purchase later.`,
-        icon: 'tabler:heart'
+        icon: ITablerHeart
       }
     ]}
     image={{
@@ -197,9 +214,9 @@ const metadata = {
   <Stats
     title="Statistics of our app"
     stats={[
-      { amount: '20K', icon: 'tabler:download' },
-      { amount: '18.5K', icon: 'tabler:users' },
-      { amount: '4.7', icon: 'tabler:user-star' }
+      { amount: '20K', icon: ITablerDownload },
+      { amount: '18.5K', icon: ITablerUsers },
+      { amount: '4.7', icon: ITablerUserStar }
     ]}
   />
 
@@ -241,7 +258,7 @@ const metadata = {
       target: '_blank',
       text: 'Read more testimonials',
       href: 'https://github.com/onwidget/astrowind',
-      icon: 'tabler:chevron-right'
+      icon: ITablerChevronRight
     }}
   />
 

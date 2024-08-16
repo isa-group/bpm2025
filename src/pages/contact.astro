@@ -4,6 +4,10 @@ import HeroText from '@/components/widgets/HeroText.astro';
 import ContactUs from '@/components/widgets/Contact.astro';
 import Features2 from '@/components/widgets/Features2.astro';
 
+import ITablerMail from 'virtual:icons/tabler/mail';
+import ITablerHeadset from 'virtual:icons/tabler/headset';
+import ITablerMapPin from 'virtual:icons/tabler/map-pin';
+
 const metadata = {
   title: 'Contact'
 };
@@ -62,17 +66,17 @@ const metadata = {
       {
         title: 'Phone',
         description: '+1 (234) 567-890',
-        icon: 'tabler:headset'
+        icon: ITablerHeadset
       },
       {
         title: 'Email',
         description: 'contact@support.com',
-        icon: 'tabler:mail'
+        icon: ITablerMail
       },
       {
         title: 'Location',
         description: '1234 Lorem Ipsum St, 12345, Miami, EEUU',
-        icon: 'tabler:map-pin'
+        icon: ITablerMapPin
       }
     ]}
   />

@@ -1,15 +1,13 @@
 ---
-import { Icon } from 'astro-icon/components';
 import { twMerge } from 'tailwind-merge';
 import type { Item } from '@/types';
 
 export interface Props {
   items?: Array<Item>;
-  defaultIcon?: string;
   classes?: Record<string, string>;
 }
 
-const { items = [], classes = {}, defaultIcon } = Astro.props as Props;
+const { items = [], classes = {} } = Astro.props as Props;
 
 const {
   container: containerClass = '',
@@ -23,17 +21,12 @@ const {
 {
   items && items.length && (
     <div class={containerClass}>
-      {items.map(({ title, description, icon, classes: itemClasses = {} }, index = 0) => (
+      {items.map(({ title, description, classes: itemClasses = {} }, index = 0) => (
         <div class={twMerge('flex', panelClass, itemClasses?.panel)}>
           <div class="flex flex-col items-center mr-4 rtl:mr-0 rtl:ml-4">
             <div>
               <div class="flex items-center justify-center">
-                {(icon || defaultIcon) && (
-                  <Icon
-                    name={icon || defaultIcon}
-                    class={twMerge('w-10 h-10 p-2 rounded-full border-2', defaultIconClass, itemClasses?.icon)}
-                  />
-                )}
+                <slot name="icon" class={twMerge('w-10 h-10 p-2 rounded-full border-2', defaultIconClass, itemClasses?.icon)} />
               </div>
             </div>
             {index !== items.length - 1 && <div class="w-px h-full bg-black/10 dark:bg-slate-400/50" />}

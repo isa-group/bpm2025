@@ -6,6 +6,13 @@ import Stats from '@/components/widgets/Stats.astro';
 import Steps2 from '@/components/widgets/Steps2.astro';
 import Layout from '@/layouts/PageLayout.astro';
 
+import ITablerMessages from 'virtual:icons/tabler/messages';
+import ITablerHeadset from 'virtual:icons/tabler/headset';
+import ITablerTemplate from 'virtual:icons/tabler/template';
+import ITablerGlobe from 'virtual:icons/tabler/globe';
+import ITablerMessageStar from 'virtual:icons/tabler/message-star';
+import ITablerAward from 'virtual:icons/tabler/award';
+
 const metadata = {
   title: 'About us'
 };
@@ -57,19 +64,19 @@ const metadata = {
         title: 'Educational',
         description:
           'Morbi faucibus luctus quam, sit amet aliquet felis tempor id. Cras augue massa, ornare quis dignissim a, molestie vel nulla.',
-        icon: 'tabler:template'
+        icon: ITablerTemplate
       },
       {
         title: 'Interior Design',
         description:
           'Vivamus porttitor, tortor convallis aliquam pretium, turpis enim consectetur elit, vitae egestas purus erat ac nunc nulla.',
-        icon: 'tabler:template'
+        icon: ITablerTemplate
       },
       {
         title: 'Photography',
         description:
           'Duis sed lectus in nisl vehicula porttitor eget quis odio. Aliquam erat volutpat. Nulla eleifend nulla id sem fermentum.',
-        icon: 'tabler:template'
+        icon: ITablerTemplate
       }
     ]}
   />
@@ -84,37 +91,37 @@ const metadata = {
         title: 'E-commerce',
         description:
           'Rutrum non odio at vehicula. Proin ipsum justo, dignissim in vehicula sit amet, dignissim id quam. Sed ac tincidunt sapien.',
-        icon: 'tabler:template'
+        icon: ITablerTemplate
       },
       {
         title: 'Blog',
         description:
           'Nullam efficitur volutpat sem sed fringilla. Suspendisse et enim eu orci volutpat laoreet ac vitae libero.',
-        icon: 'tabler:template'
+        icon: ITablerTemplate
       },
       {
         title: 'Business',
         description:
           'Morbi et elit finibus, facilisis justo ut, pharetra ipsum. Donec efficitur, ipsum quis congue luctus, mauris magna.',
-        icon: 'tabler:template'
+        icon: ITablerTemplate
       },
       {
         title: 'Branding',
         description:
           'Suspendisse vitae nisi eget tortor luctus maximus sed non lectus. Cras malesuada pretium placerat. Nullam venenatis dolor a ante rhoncus.',
-        icon: 'tabler:template'
+        icon: ITablerTemplate
       },
       {
         title: 'Medical',
         description:
           'Vestibulum malesuada lacus id nibh posuere feugiat. Nam volutpat nulla a felis ultrices, id suscipit mauris congue. In hac habitasse platea dictumst.',
-        icon: 'tabler:template'
+        icon: ITablerTemplate
       },
       {
         title: 'Fashion Design',
         description:
           'Maecenas eu tellus eget est scelerisque lacinia et a diam. Aliquam velit lorem, vehicula id fermentum et, rhoncus et purus.',
-        icon: 'tabler:template'
+        icon: ITablerTemplate
       }
     ]}
     image={{
@@ -161,19 +168,19 @@ const metadata = {
       {
         title: 'Global reach',
         description: 'Nam malesuada urna in enim imperdiet tincidunt. Phasellus non tincidunt nisi, at elementum mi.',
-        icon: 'tabler:globe'
+        icon: ITablerGlobe
       },
       {
         title: 'Positive customer feedback and reviews',
         description:
           'Cras semper nulla leo, eget laoreet erat cursus sed. Praesent faucibus massa in purus iaculis dictum.',
-        icon: 'tabler:message-star'
+        icon: ITablerMessageStar
       },
       {
         title: 'Awards and recognition as industry experts',
         description:
           'Phasellus lacinia cursus velit, eu malesuada magna pretium eu. Etiam aliquet tellus purus, blandit lobortis ex rhoncus vitae.',
-        icon: 'tabler:award'
+        icon: ITablerAward
       }
     ]}
   />
@@ -215,13 +222,13 @@ const metadata = {
         title: 'Chat with us',
         description:
           'Integer luctus laoreet libero, auctor varius purus rutrum sit amet. Ut nec molestie nisi, quis eleifend mi.',
-        icon: 'tabler:messages'
+        icon: ITablerMessages
       },
       {
         title: 'Call us',
         description:
           'Mauris faucibus finibus orci, in posuere elit viverra non. In hac habitasse platea dictumst. Cras lobortis metus a hendrerit congue.',
-        icon: 'tabler:headset'
+        icon: ITablerHeadset
       }
     ]}
   />

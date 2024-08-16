@@ -10,6 +10,14 @@ import Testimonials from '@/components/widgets/Testimonials.astro';
 import Steps from '@/components/widgets/Steps.astro';
 import { getPermalink } from '@/utils/permalinks';
 
+import ITablerPointFilled from 'virtual:icons/tabler/point-filled';
+import ITablerBrandDribbble from 'virtual:icons/tabler/brand-dribbble';
+import ITablerBrandBehance from 'virtual:icons/tabler/brand-behance';
+import ITablerBrandPinterest from 'virtual:icons/tabler/brand-pinterest';
+import ITablerBriefcase from 'virtual:icons/tabler/briefcase';
+import ITablerSchool from 'virtual:icons/tabler/school';
+import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
+
 const metadata = {
   title: 'Personal Homepage Demo'
 };
@@ -60,7 +68,7 @@ const metadata = {
     columns={3}
     items={[
       {
-        icon: 'tabler:brand-dribbble',
+        icon: ITablerBrandDribbble,
         callToAction: {
           target: '_blank',
           text: 'Dribbble',
@@ -68,7 +76,7 @@ const metadata = {
         }
       },
       {
-        icon: 'tabler:brand-behance',
+        icon: ITablerBrandBehance,
         callToAction: {
           target: '_blank',
           text: 'Behance',
@@ -76,7 +84,7 @@ const metadata = {
         }
       },
       {
-        icon: 'tabler:brand-pinterest',
+        icon: ITablerBrandPinterest,
         callToAction: {
           target: '_blank',
           text: 'Pinterest',
@@ -120,13 +128,13 @@ const metadata = {
         title:
           'Graphic Designer <br /> <span class="font-normal">ABC Design Studio, New York, NY</span> <br /> <span class="text-sm font-normal">2021 - Present</span>',
         description: 'Collaborate with clients to understand design requirements and objectives. <br /> Develop branding solutions, including logos, color palettes, and brand guidelines. <br /> Design marketing materials such as brochures, posters, and digital assets. <br /> Create visually appealing user interfaces for websites and applications.',
-        icon: 'tabler:briefcase'
+        icon: ITablerBriefcase
       },
       {
         title:
           'Junior Graphic Designer <br /> <span class="font-normal">XYZ Creative Agency, Los Angeles, CA</span> <br /> <span class="text-sm font-normal">2018 - 2021</span>',
         description: 'Assisted senior designers in creating design concepts and visual assets. <br /> Contributed to the development of brand identities and marketing collateral. <br /> Collaborated with the marketing team to ensure consistent design across campaigns. <br /> Gained hands-on experience in various design software and tools.',
-        icon: 'tabler:briefcase'
+        icon: ITablerBriefcase
       }
     ]}
     classes={{ container: 'max-w-3xl' }}
@@ -140,11 +148,11 @@ const metadata = {
     items={[
       {
         title: `Master of Fine Arts in Graphic Design <br /> <span class="font-normal">New York University's School of Design</span> <br /> <span class="text-sm font-normal">2018 - 2020</span>`,
-        icon: 'tabler:school'
+        icon: ITablerSchool
       },
       {
         title: `Bachelor of Arts in Graphic Design <br /> <span class="font-normal">New York University's School of Design</span> <br /> <span class="text-sm font-normal">2014 - 2018</span>`,
-        icon: 'tabler:school'
+        icon: ITablerSchool
       }
     ]}
     classes={{ container: 'max-w-3xl' }}
@@ -156,7 +164,6 @@ const metadata = {
     title="Skills"
     subtitle="Discover the proficiencies that allow me to bring imagination to life through design."
     columns={3}
-    defaultIcon="tabler:point-filled"
     items={[
       {
         title: 'Graphic design',
@@ -195,7 +202,9 @@ const metadata = {
         description: 'Quick to adapt to new design trends, technologies, and client preferences.'
       }
     ]}
-  />
+  >
+    <ITablerPointFilled slot="icon" />
+  </Features3>
 
   <!-- Content Widget **************** -->
 
@@ -223,7 +232,7 @@ const metadata = {
     callToAction={{
       target: '_blank',
       text: 'Go to the project',
-      icon: 'tabler:chevron-right',
+      icon: ITablerChevronRight,
       href: '#'
     }}
   >
@@ -261,7 +270,7 @@ const metadata = {
     callToAction={{
       target: '_blank',
       text: 'Go to the project',
-      icon: 'tabler:chevron-right',
+      icon: ITablerChevronRight,
       href: '#'
     }}
   >
@@ -298,7 +307,7 @@ const metadata = {
     callToAction={{
       target: '_blank',
       text: 'Go to the project',
-      icon: 'tabler:chevron-right',
+      icon: ITablerChevronRight,
       href: '#'
     }}
   >

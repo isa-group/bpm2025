@@ -7,6 +7,20 @@ import Steps from '@/components/widgets/Steps.astro';
 import Features3 from '@/components/widgets/Features3.astro';
 import CallToAction from '@/components/widgets/CallToAction.astro';
 
+import ITablerNumber1 from 'virtual:icons/tabler/number-1';
+import ITablerNumber2 from 'virtual:icons/tabler/number-2';
+import ITablerNumber3 from 'virtual:icons/tabler/number-3';
+import ITablerNumber4 from 'virtual:icons/tabler/number-4';
+import ITablerNumber5 from 'virtual:icons/tabler/number-5';
+import ITablerNumber6 from 'virtual:icons/tabler/number-6';
+import ITablerNumber7 from 'virtual:icons/tabler/number-7';
+import ITablerStairs from 'virtual:icons/tabler/stairs';
+import ITablerFlipVertical from 'virtual:icons/tabler/flip-vertical';
+import ITablerShieldLock from 'virtual:icons/tabler/shield-lock';
+import ITablerAccessible from 'virtual:icons/tabler/accessible';
+import ITablerChevronUp from 'virtual:icons/tabler/chevrons-up';
+import ITablerHeadset from 'virtual:icons/tabler/headset';
+
 const metadata = {
   title: 'Pricing'
 };
@@ -120,39 +134,38 @@ const metadata = {
       {
         title: 'Tiered Pricing Plans',
         description: 'Choose from a range of pricing plans designed to accommodate different budgets and requirements.',
-        icon: 'tabler:stairs'
+        icon: ITablerStairs
       },
       {
         title: 'Transparent Pricing',
         description: 'Clearly displayed pricing details for each plan, with no hidden costs or unexpected charges.',
-        icon: 'tabler:flip-vertical'
+        icon: ITablerFlipVertical
       },
       {
         title: 'Secure Payment Methods',
         description: 'Secure payment gateways to protect your financial information during transactions.',
-        icon: 'tabler:shield-lock'
+        icon: ITablerShieldLock
       },
       {
         title: 'Instant Access',
         description: `Immediate access to your chosen plan's features and templates upon subscription.`,
-        icon: 'tabler:accessible'
+        icon: ITablerAccessible
       },
       {
         title: 'Upgrade Value',
         description: 'Upgrade to higher-tier plans to unlock more features and benefits for an enhanced experience.',
-        icon: 'tabler:chevrons-up'
+        icon: ITablerChevronUp
       },
       {
         title: '24H support',
         description: 'Questions answered via live chat, email or phone, every calendar day.',
-        icon: 'tabler:headset'
+        icon: ITablerHeadset
       }
     ]}
     classes={{ container: 'max-w-5xl' }}
   />
 
   <!-- Steps Widget ****************** -->
-
   <Steps
     title="A guided journey from plans to creativity"
     tagline="simplified process"
@@ -160,31 +173,31 @@ const metadata = {
     items={[
       {
         title: 'Explore plans',
-        icon: 'tabler:number-1'
+        icon: ITablerNumber1
       },
       {
         title: 'Select a plan',
-        icon: 'tabler:number-2'
+        icon: ITablerNumber2
       },
       {
         title: 'Sign Up / Log In',
-        icon: 'tabler:number-3'
+        icon: ITablerNumber3
       },
       {
         title: 'Review order',
-        icon: 'tabler:number-4'
+        icon: ITablerNumber4
       },
       {
         title: 'Enter payment details',
-        icon: 'tabler:number-5'
+        icon: ITablerNumber5
       },
       {
         title: 'Confirmation',
-        icon: 'tabler:number-6'
+        icon: ITablerNumber6
       },
       {
         title: 'Download and start using the template(s)',
-        icon: 'tabler:number-7'
+        icon: ITablerNumber7
       }
     ]}
     image={{

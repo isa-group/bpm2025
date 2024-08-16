@@ -1,6 +1,6 @@
 ---
-import { Icon } from 'astro-icon/components';
-import Button from '@/components/ui/Button.astro';
+import IMdiTablerCheck from 'virtual:icons/tabler/check';
+import Button from '@/components/ui/Button/Button.astro';
 import Headline from '@/components/ui/Headline.astro';
 import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
 import type { Pricing as Props } from '@/types';
@@ -16,6 +16,7 @@ const {
   classes = {},
   bg = await Astro.slots.render('bg')
 } = Astro.props;
+const iconClasses = 'w-5 h-5 font-bold p-1 text-white';
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
@@ -50,11 +51,11 @@ const {
                   {items && (
                     <ul class="my-8 md:my-10 space-y-2 text-left">
                       {items.map(
-                        ({ description, icon }) =>
+                        ({ description, icon: CustomIcon }) =>
                           description && (
                             <li class="mb-1.5 flex items-start space-x-3 leading-7">
                               <div class="rounded-full bg-primary mt-1">
-                                <Icon name={icon ? icon : 'tabler:check'} class="w-5 h-5 font-bold p-1 text-white" />
+                                {CustomIcon ? <CustomIcon class={iconClasses} /> : <IMdiTablerCheck class={iconClasses} />}
                               </div>
                               <span>{description}</span>
                             </li>

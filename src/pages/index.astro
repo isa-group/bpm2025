@@ -12,6 +12,27 @@ import Stats from '@/components/widgets/Stats.astro';
 import CallToAction from '@/components/widgets/CallToAction.astro';
 import HeroImg from '@/assets/images/hero-image.jpg';
 
+import ITablerDownload from 'virtual:icons/tabler/download';
+import ITablerBrandTailwind from 'virtual:icons/tabler/brand-tailwind';
+import ITablerComponents from 'virtual:icons/tabler/components';
+import ITablerListCheck from 'virtual:icons/tabler/list-check';
+import ITablerRocket from 'virtual:icons/tabler/rocket';
+import ITablerArrowsRightLeft from 'virtual:icons/tabler/arrows-right-left';
+import ITablerBulb from 'virtual:icons/tabler/bulb';
+import ITablerPackage from 'virtual:icons/tabler/package';
+import ITablerLetterCase from 'virtual:icons/tabler/letter-case';
+import ITablerPaint from 'virtual:icons/tabler/paint';
+import ITablerCheck from 'virtual:icons/tabler/check';
+import IFlatColorIconsTemplate from 'virtual:icons/flat-color-icons/template';
+import IFlatColorIconsGallery from 'virtual:icons/flat-color-icons/gallery';
+import IFlatColorIconsApproval from 'virtual:icons/flat-color-icons/approval';
+import IFlatColorIconsDocument from 'virtual:icons/flat-color-icons/document';
+import IFlatColorIconsAdvertising from 'virtual:icons/flat-color-icons/advertising';
+import IFlatColorIconsCurrencyExchange from 'virtual:icons/flat-color-icons/currency-exchange';
+import IFlatColorIconsVoicePresentation from 'virtual:icons/flat-color-icons/voice-presentation';
+import IFlatColorIconsBusinessContact from 'virtual:icons/flat-color-icons/business-contact';
+import IFlatColorIconsDatabase from 'virtual:icons/flat-color-icons/database';
+
 const metadata = {
   title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
   ignoreTitleTemplate: true
@@ -28,7 +49,7 @@ const metadata = {
         text: 'Get template',
         href: 'https://github.com/onwidget/astrowind',
         target: '_blank',
-        icon: 'tabler:download'
+        icon: ITablerDownload
       },
       { text: 'Learn more', href: '#features' }
     ]}
@@ -67,37 +88,37 @@ const metadata = {
         title: 'Astro + Tailwind CSS Integration',
         description:
           'A seamless integration between two great frameworks that offer high productivity, performance and versatility.',
-        icon: 'tabler:brand-tailwind'
+        icon: ITablerBrandTailwind
       },
       {
         title: 'Ready-to-use Components',
         description:
           'Widgets made with Tailwind CSS ready to be used in Marketing Websites, SaaS, Blogs, Personal Profiles, Small Business...',
-        icon: 'tabler:components'
+        icon: ITablerComponents
       },
       {
         title: 'Best Practices',
         description:
           'Creating secure, efficient, and user-friendly websites that deliver exceptional experiences and lasting value.',
-        icon: 'tabler:list-check'
+        icon: ITablerListCheck
       },
       {
         title: 'Excellent Page Speed',
         description:
           'Having a good page speed impacts organic search ranking, improves user experience (UI/UX) and increase conversion rates.',
-        icon: 'tabler:rocket'
+        icon: ITablerRocket
       },
       {
         title: 'Search Engine Optimization (SEO)',
         description:
           "SEO lies in its ability to enhance a website's visibility, driving organic traffic and enabling it to reach a wider audience.",
-        icon: 'tabler:arrows-right-left'
+        icon: ITablerArrowsRightLeft
       },
       {
         title: 'Open to new ideas and contributions',
         description:
           'Embracing a culture that is open to new ideas and contributions is integral fostering innovation, collaboration, and a dynamic user experience.',
-        icon: 'tabler:bulb'
+        icon: ITablerBulb
       }
     ]}
   />
@@ -224,23 +245,23 @@ const metadata = {
         title: 'Step 1: <span class="font-medium">Download</span>',
         description:
           "Kickstart with GitHub! Either fork the AstroWind template or simply click 'Use this template'. Your canvas awaits, ready for your digital masterpiece. In just a few clicks, you've already set the foundation.",
-        icon: 'tabler:package'
+        icon: ITablerPackage
       },
       {
         title: 'Step 2: <span class="font-medium">Add content</span>',
         description:
           "Pour your vision into it. Add images, text, and all that jazz to breathe life into your digital space. Remember, it's the content that tells your story, so make it captivating.",
-        icon: 'tabler:letter-case'
+        icon: ITablerLetterCase
       },
       {
         title: 'Step 3: <span class="font-medium">Customize styles</span>',
         description:
           'Give it your personal touch. Tailor colors, fonts, and layouts until it feels just right. Your unique flair, amplified by AstroWind! Precision in design ensures a seamless user experience.',
-        icon: 'tabler:paint'
+        icon: ITablerPaint
       },
       {
         title: 'Ready!',
-        icon: 'tabler:check'
+        icon: ITablerCheck
       }
     ]}
     image={{
@@ -259,52 +280,52 @@ const metadata = {
       {
         title: 'Headers',
         description: "Ever tried driving without GPS? Boom! That's why websites need headers for direction.",
-        icon: 'flat-color-icons:template'
+        icon: IFlatColorIconsTemplate
       },
       {
         title: 'Heros',
         description:
           "Picture a superhero landing – epic, right? That's the job of a Hero section, making grand entrances!",
-        icon: 'flat-color-icons:gallery'
+        icon: IFlatColorIconsGallery
       },
       {
         title: 'Features',
         description:
           'Where websites strut their stuff and show off superpowers. No holding back on the bragging rights here!',
-        icon: 'flat-color-icons:approval'
+        icon: IFlatColorIconsApproval
       },
       {
         title: 'Content',
         description:
           "Dive into the meat and potatoes of a site; without it, you'd just be window shopping. Content is king.",
-        icon: 'flat-color-icons:document'
+        icon: IFlatColorIconsDocument
       },
       {
         title: 'Call-to-Action',
         description:
           'That enthusiastic friend who\'s always urging, "Do it! Do it!"? Yeah, that\'s this button nudging you towards adventure.',
-        icon: 'flat-color-icons:advertising'
+        icon: IFlatColorIconsAdvertising
       },
       {
         title: 'Pricing',
         description: 'Behold the dessert menu of the website world. Tempting choices await, can you resist?',
-        icon: 'flat-color-icons:currency-exchange'
+        icon: IFlatColorIconsCurrencyExchange
       },
       {
         title: 'Testimonial',
         description: 'Step into the gossip corner! Here, other visitors spill the beans and share the juicy details.',
-        icon: 'flat-color-icons:voice-presentation'
+        icon: IFlatColorIconsVoicePresentation
       },
       {
         title: 'Contact',
         description:
           'Like a digital mailbox, but faster! Drop a line, ask a question, or send a virtual high-five. Ding! Message in.',
-        icon: 'flat-color-icons:business-contact'
+        icon: IFlatColorIconsBusinessContact
       },
       {
         title: 'Footers',
         description: "The footer's like the credits of a movie but sprinkled with easter eggs. Time to hunt!",
-        icon: 'flat-color-icons:database'
+        icon: IFlatColorIconsDatabase
       }
     ]}
   >
@@ -374,7 +395,7 @@ const metadata = {
         text: 'Get template',
         href: 'https://github.com/onwidget/astrowind',
         target: '_blank',
-        icon: 'tabler:download'
+        icon: ITablerDownload
       }
     ]}
   >

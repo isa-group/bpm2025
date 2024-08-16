@@ -1,19 +1,20 @@
 ---
-import { Icon } from 'astro-icon/components';
+import ITablerChevronDown from 'virtual:icons/tabler/chevron-down';
+import ITablerRss from 'virtual:icons/tabler/rss';
 import Logo from '@/components/Logo.astro';
 import ToggleTheme from '@/components/common/ToggleTheme.astro';
 import ToggleMenu from '@/components/common/ToggleMenu.astro';
-import Button from '@/components/ui/Button.astro';
+import Button from '@/components/ui/Button/Button.astro';
 
 import { getHomePermalink } from '@/utils/permalinks';
 import { trimSlash, getAsset } from '@/utils/permalinks';
-import type { CallToAction } from '@/types';
+import type { CallToAction, IconElement } from '@/types';
 
 interface Link {
   text?: string;
   href?: string;
   ariaLabel?: string;
-  icon?: string;
+  icon?: IconElement;
 }
 
 type ActionLink = CallToAction;
@@ -95,7 +96,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                     <>
                       <button type="button" class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center">
                         {text}{' '}
-                        <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
+                        <ITablerChevronDown class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
                       </button>
                       <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
                         {links.map(({ text: text2, href: href2 }) => (
@@ -146,7 +147,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                 aria-label="RSS Feed"
                 href={getAsset('/rss.xml')}
               >
-                <Icon name="tabler:rss" class="w-5 h-5" />
+                <ITablerRss class="w-5 h-5" />
               </a>
             )
           }
