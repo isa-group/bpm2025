@@ -35,10 +35,12 @@ const {
     {
       image && (
         <div class="w-full h-80 object-cover rounded-xl mx-auto bg-gray-500 shadow-lg">
+          <!-- @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 -->
           <Image
             class="w-full h-80 object-cover rounded-xl mx-auto bg-gray-500 shadow-lg"
             height={320}
             widths={[400, 768]}
+            inferSize
             {...image}
           />
         </div>

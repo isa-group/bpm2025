@@ -38,6 +38,7 @@ const {
     {
       image && (
         <div class="relative md:basis-1/2">
+          <!-- @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 -->
           <Image
             class="inset-0 object-cover object-top w-full rounded-md shadow-lg md:absolute md:h-full bg-gray-400 dark:bg-slate-700"
             widths={[400, 768]}

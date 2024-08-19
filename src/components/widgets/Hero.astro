@@ -69,6 +69,7 @@ const {
         {
           image && (
             <div class="relative m-auto max-w-5xl">
+              <!-- @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 -->
               <Image
                 class="mx-auto rounded-md w-full"
                 widths={[400, 768, 1024, 2040]}

@@ -40,6 +40,7 @@ const {
             <div class="flex items-center">
               {image && (
                 <div class="h-10 w-10 rounded-full border border-slate-200 dark:border-slate-600">
+                  <!-- @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 -->
                   <Image
                     class="h-10 w-10 rounded-full border border-slate-200 dark:border-slate-600 min-w-full min-h-full"
                     width={40}
