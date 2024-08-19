@@ -1,24 +1,16 @@
 import path from 'node:path';
 
 import { defineConfig } from 'astro/config';
-
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import Icons from 'unplugin-icons/vite';
 import compress from 'astro-compress';
-
-import {
-  readingTimeRemarkPlugin,
-  responsiveTablesRehypePlugin,
-  lazyImagesRehypePlugin
-} from './src/utils/frontmatter.mjs';
-
-const DEPLOYED_URL = 'https://www.bpm2025seville.org';
+import { site } from './src/config.json';
 
 export default defineConfig({
   output: 'static',
-  site: DEPLOYED_URL,
+  site: site.site,
   integrations: [
     tailwind({
       applyBaseStyles: false
@@ -34,11 +26,6 @@ export default defineConfig({
       Logger: 1
     })
   ],
-  markdown: {
-    remarkPlugins: [readingTimeRemarkPlugin],
-    rehypePlugins: [responsiveTablesRehypePlugin, lazyImagesRehypePlugin]
-  },
-
   vite: {
     cacheDir: path.resolve(import.meta.dirname, './node_modules/.vite'),
     resolve: {
