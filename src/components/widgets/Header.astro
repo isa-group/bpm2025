@@ -7,6 +7,7 @@ import ToggleMenu from '@/components/common/ToggleMenu.astro';
 import Button from '@/components/ui/Button/Button.astro';
 
 import { getHomePermalink } from '@/utils/permalinks';
+import { headerData } from '@/data/navigation';
 import { trimSlash, getAsset } from '@/utils/permalinks';
 import type { CallToAction, IconElement } from '@/types';
 
@@ -37,8 +38,8 @@ export interface Props {
 
 const {
   id = 'header',
-  links = [],
-  actions = [],
+  links = headerData.links,
+  actions = headerData.actions,
   isSticky = false,
   isDark = false,
   isFullWidth = false,

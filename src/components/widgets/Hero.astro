@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import BSlot from '@/components/utils/BSlot.astro';
 import Button from '@/components/ui/Button/Button.astro';
 import type { Hero as Props } from '@/types';
 
@@ -18,10 +19,12 @@ const {
 ---
 
 <section class="relative md:-mt-[76px] not-prose" {...id ? { id } : {}}>
-  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-    <slot name="bg">
-      {bg ? <Fragment set:html={bg} /> : null}
-    </slot>
+  <div class="absolute top-0 right-0 left-0 bottom-0 w-full h-full pointer-events-none" aria-hidden="true">
+    <BSlot class="absolute top-0 right-0 left-0 bottom-0 w-full h-full object-cover opacity-30 mask-image">
+      <slot name="bg">
+        {bg && <Fragment set:html={bg} />}
+      </slot>
+    </BSlot>
   </div>
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
     <div class="pt-0 md:pt-[76px] pointer-events-none"></div>

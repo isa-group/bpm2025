@@ -19,10 +19,11 @@ const {
   classes = {},
   bg = await Astro.slots.render('bg')
 } = Astro.props;
+console.log(button);
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
-  <Headline title={title} subtitle={subtitle} tagline={tagline} />
+  {(title || subtitle || tagline) && <Headline title={title} subtitle={subtitle} tagline={tagline} />}
 
   {
     inputs && (

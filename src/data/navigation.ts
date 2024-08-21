@@ -1,8 +1,6 @@
 import { getPermalink } from '@/utils/permalinks';
 import ITablerBrandX from 'virtual:icons/tabler/brand-x';
-import ITablerBrandInstagram from 'virtual:icons/tabler/brand-instagram';
-import ITablerBrandFacebook from 'virtual:icons/tabler/brand-facebook';
-import ITablerBrandGitHub from 'virtual:icons/tabler/brand-github';
+import ITablerMail from 'virtual:icons/tabler/mail';
 
 export const headerData = {
   links: [
@@ -145,9 +143,7 @@ export const footerData = {
     { text: 'Privacy Policy', href: getPermalink('/privacy') }
   ],
   socialLinks: [
-    { ariaLabel: 'X', icon: ITablerBrandX, href: '#' },
-    { ariaLabel: 'Instagram', icon: ITablerBrandInstagram, href: '#' },
-    { ariaLabel: 'Facebook', icon: ITablerBrandFacebook, href: '#' },
-    { ariaLabel: 'Github', icon: ITablerBrandGitHub, href: 'https://github.com/onwidget/astrowind' }
+    { ariaLabel: 'X', icon: ITablerBrandX, href: 'https://x.com/bpmconf' },
+    { ariaLabel: 'Email', icon: ITablerMail, href: 'mailto:info@bpm2025seville.org' }
   ]
 };

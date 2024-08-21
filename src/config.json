@@ -1,14 +1,14 @@
 {
     "site": {
-        "name": "AstroWind",
+        "name": "BPM2025",
         "site": "https://www.bpm2025seville.org",
         "base": "/",
         "trailingSlash": false
     },
     "metadata": {
         "title": {
-            "default": "AstroWind",
-            "template": "%s — AstroWind"
+            "default": "BPM2025 Conference (Seville)",
+            "template": "%s — BPM2025 Conference (Seville)"
         },
         "description": "🚀 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs.",
         "robots": {
@@ -16,7 +16,7 @@
             "follow": true
         },
         "openGraph": {
-            "site_name": "AstroWind",
+            "site_name": "BPM2025 Conference (Seville)",
             "images": [
                 {
                     "url": "@/assets/images/default.png",
