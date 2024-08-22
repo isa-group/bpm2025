@@ -26,6 +26,9 @@ export default defineConfig({
       Logger: 1
     })
   ],
+  build: {
+    assets: 'assets'
+  },
   vite: {
     cacheDir: path.resolve(import.meta.dirname, './node_modules/.vite'),
     resolve: {
