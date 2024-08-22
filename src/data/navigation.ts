@@ -71,7 +71,7 @@ export const headerData: HeaderData = {
           href: getPermalink('/venue/the-city')
         },
         {
-          text: 'Sponsors',
+          text: 'Getting around',
           href: getPermalink('/venue/getting-around')
         }
       ]

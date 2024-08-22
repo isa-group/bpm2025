@@ -12,29 +12,24 @@ import IHugeIconsTeacher from 'virtual:icons/hugeicons/teacher';
 import IMaterialSymbolsResearch from 'virtual:icons/material-symbols-light/lab-research';
 import IMaterialSymbolsForum from 'virtual:icons/material-symbols/forum';
 
-import HeroImage from '@/assets/images/hero-image.jpg';
-import SevilleCathedral from '@/assets/images/cathedral.jpg';
+import SevilleCathedral from '@/assets/images/hero/cathedral.jpg';
 import Sponsors from '@/components/ui/Sponsors.astro';
 import { getPermalink } from '@/utils/permalinks';
 ---
 
-<Layout metadata={{
-  title: 'Home'
-}}>
-  {/* Hero */}
-  <Hero
-    slot="hero"
-    id="hero"
-    title="23rd Int. Conference on Business Process Management (BPM 2025)"
-    tagline="31st Aug - 5th Sep 2025 | Seville, Spain"
-    actions={[{ variant: 'primary', text: 'Register', href: getPermalink('/register') }]}
-  >
-    <Image slot="bg" src={HeroImage} alt="Plaza España in Seville" />
-    <Fragment slot="subtitle">
-      BPM 2025 is the 23rd conference in a series that provides the most prestigious forum
-      for researchers and practitioners in the field of Business Process Management.
-    </Fragment>
-  </Hero>
+<Layout
+  metadata={{
+    title: 'Home'
+  }}
+  heroProps={{
+    title: '23rd Int. Conference on Business Process Management (BPM 2025)',
+    tagline: '31st Aug - 5th Sep 2025 | Seville, Spain',
+    actions: [{ variant: 'primary', text: 'Register', href: getPermalink('/register') }]
+  }}>
+  <Fragment slot="hero-subtitle">
+    BPM 2025 is the 23rd conference in a series that provides the most prestigious forum
+    for researchers and practitioners in the field of Business Process Management.
+  </Fragment>
 
   {/* Calendar */}
 
