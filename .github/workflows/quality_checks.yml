@@ -14,12 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4.1.4
+        uses: actions/checkout@v4.1.7
         with:
           show-progress: false
 
       - name: Scan
-        uses: actions/dependency-review-action@v4.3.2
+        uses: actions/dependency-review-action@v4.3.4
         with:
           ## Workaround from https://github.com/actions/dependency-review-action/issues/456
           ## TODO: Remove when necessary
@@ -33,7 +33,7 @@ jobs:
 
     steps:
       - name: Checkout ⬇️
-        uses: actions/checkout@v4.1.4
+        uses: actions/checkout@v4.1.7
         with:
           show-progress: false
 
@@ -47,7 +47,7 @@ jobs:
 
     steps:
       - name: Checkout ⬇️
-        uses: actions/checkout@v4.1.4
+        uses: actions/checkout@v4.1.7
         with:
           show-progress: false
           fetch-depth: 0
