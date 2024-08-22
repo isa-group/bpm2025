@@ -6,12 +6,12 @@ interface Props {
 }
 const { showEmpty = false } = Astro.props;
 ---
-<table class="w-full mx-6 mt-6">
+<table class="w-full">
   <tbody>
     {sponsors.map((s) => {
       const innerText = (
-        <td>
-          <b class="text-muted text-left">
+        <td class="p-10">
+          <b class="text-muted">
             {s.category}:
           </b>
         </td>
