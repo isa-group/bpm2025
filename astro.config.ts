@@ -10,7 +10,8 @@ import { site } from './src/config.json';
 
 export default defineConfig({
   output: 'static',
-  site: site.site,
+  base: process.env.CI && process.env.STAGING ? process.env.BASE_URL : '/',
+  site: process.env.CI && process.env.STAGING ? process.env.SITE_URL : site.site,
   integrations: [
     tailwind({
       applyBaseStyles: false
