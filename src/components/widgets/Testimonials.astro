@@ -47,16 +47,17 @@ const {
               </div>
             </div>
 
-            {(title || testimonial || (items?.length ?? 0) > 0) && <hr class="border-slate-200 dark:border-slate-600 my-4" />}
+            {(title || testimonial) && <hr class="border-slate-200 dark:border-slate-600 my-4" />}
 
             {title && <h2 class="text-lg font-medium leading-6 pb-4">{title}</h2>}
-            {testimonial && !items && (
+            {testimonial && (
               <blockquote class="flex-auto">
-                <p class="text-muted">" {testimonial} "</p>
+                <p class="text-muted">{testimonial}</p>
               </blockquote>
             )}
+            {((items?.length ?? 0) > 0) && <hr class="border-slate-200 dark:border-slate-600 my-4" />}
             {items && (
-              <ItemList items={items} classes={{ container: 'flex-auto' }} />
+              <ItemList items={items} classes={{ container: 'flex-1' }} />
             )}
           </div>
         </div>

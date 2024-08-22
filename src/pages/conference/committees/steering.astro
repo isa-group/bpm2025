@@ -27,6 +27,7 @@ const classes = {
     testimonials={Object.entries(steeringCommittee).map(([name, p]) => ({
       name: `${p.treatment} ${name}`,
       job: p.job,
+      testimonial: p.bio,
       items: [
         ...(p.institution
           ? ([{
