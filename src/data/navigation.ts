@@ -1,6 +1,6 @@
 import type { CallToAction, MenuLink } from '@/types';
 import type { Props as FooterProps } from '@/components/widgets/Footer.astro';
-import { getPermalink } from '@/utils/permalinks';
+import { getHomePermalink, getPermalink } from '@/utils/permalinks';
 import ITablerBrandX from 'virtual:icons/tabler/brand-x';
 import ITablerMail from 'virtual:icons/tabler/mail';
 
@@ -19,22 +19,22 @@ export const headerData: HeaderData = {
   links: [
     {
       text: 'Home',
-      href: '/'
+      href: getHomePermalink()
     },
     {
       text: 'Conference',
       links: [
         {
           text: 'Conference Chairs',
-          href: '/conference/chairs'
+          href: getPermalink('/conference/chairs')
         },
         {
           text: 'Program Committee',
-          href: '/conference/committees/program'
+          href: getPermalink('/conference/committees/program')
         },
         {
           text: 'Steering Committee',
-          href: '/conference/committees/steering'
+          href: getPermalink('/conference/committees/steering')
         }
       ]
     },
@@ -43,7 +43,7 @@ export const headerData: HeaderData = {
       links: [
         {
           text: 'Call for research papers',
-          href: '/calls/research-papers'
+          href: getPermalink('/calls/research-papers')
         }
       ]
     },
@@ -52,27 +52,27 @@ export const headerData: HeaderData = {
       links: [
         {
           text: 'Conference Venue',
-          href: '/venue'
+          href: getPermalink('/venue')
         },
         {
           text: 'How to get there',
-          href: '/venue/getting-there'
+          href: getPermalink('/venue/getting-there')
         },
         {
           text: 'Where to stay',
-          href: '/venue/where-to-stay'
+          href: getPermalink('/venue/where-to-stay')
         },
         {
           text: 'Visa information',
-          href: '/venue/visa'
+          href: getPermalink('/venue/visa')
         },
         {
           text: 'The city of Seville',
-          href: '/venue/the-city'
+          href: getPermalink('/venue/the-city')
         },
         {
           text: 'Sponsors',
-          href: '/venue/getting-around'
+          href: getPermalink('/venue/getting-around')
         }
       ]
     },
@@ -81,11 +81,11 @@ export const headerData: HeaderData = {
       links: [
         {
           text: 'Our sponsors',
-          href: '/sponsors'
+          href: getPermalink('/sponsors')
         },
         {
           text: 'Become a sponsor',
-          href: '/sponsors/become-a-sponsor'
+          href: getPermalink('/sponsors/become-a-sponsor')
         }
       ]
     }
@@ -93,7 +93,7 @@ export const headerData: HeaderData = {
   actions: [
     {
       text: 'Register',
-      href: '/register',
+      href: getPermalink('/register'),
       variant: 'primary'
     }
   ]

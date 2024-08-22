@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import { getHomePermalink } from '@/utils/permalinks';
 ---
 
 <Layout metadata={{ title: 'Error 404' }}>
@@ -11,7 +12,7 @@ import Layout from '@/layouts/Layout.astro';
           <span class="text-primary">404</span>
         </h2>
         <p class="text-3xl font-semibold md:text-3xl">Sorry, we couldn't find this page.</p>
-        <a rel="noopener noreferrer" href="/" class="btn ml-4">Back to homepage</a>
+        <a rel="noopener noreferrer" href={getHomePermalink()} class="btn ml-4">Back to homepage</a>
       </div>
     </div>
   </section>

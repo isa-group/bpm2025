@@ -1,4 +1,4 @@
-import { site } from '@/config.json';
+import config from '../../astro.config';
 
 function trim(str = '', ch?: string) {
   let start = 0,
@@ -14,17 +14,17 @@ const createPath = (...params: string[]) => {
     .map(el => trimSlash(el))
     .filter(el => !!el)
     .join('/');
-  return '/' + paths + (site.trailingSlash && paths ? '/' : '');
+  return '/' + paths + (config.trailingSlash && paths ? '/' : '');
 };
 
-const BASE_PATHNAME = site.base || '/';
+const BASE_PATHNAME = config.base ?? '/';
 
 /** */
 export const getCanonical = (path = ''): string | URL => {
-  const url = String(new URL(path, site.site));
-  if (site.trailingSlash == false && path && url.endsWith('/')) {
+  const url = String(new URL(path, config.site));
+  if (config.trailingSlash === 'ignore' && path && url.endsWith('/')) {
     return url.slice(0, -1);
-  } else if (site.trailingSlash == true && path && !url.endsWith('/')) {
+  } else if (config.trailingSlash !== 'ignore' && path && !url.endsWith('/')) {
     return url + '/';
   }
   return url;

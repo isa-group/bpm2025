@@ -1,5 +1,5 @@
 ---
-
+import { getPermalink } from '@/utils/permalinks';
 ---
 
 <div
@@ -11,7 +11,7 @@
   </span
   >
   <a
-    href="register"
+    href={getPermalink('/register')}
     class="text-muted hover:underline dark:text-slate-400 font-medium"
   >
     Registrations are now open!

@@ -6,12 +6,11 @@ import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import Icons from 'unplugin-icons/vite';
 import compress from 'astro-compress';
-import { site } from './src/config.json';
 
 export default defineConfig({
   output: 'static',
   base: process.env.CI && process.env.STAGING ? process.env.BASE_URL : '/',
-  site: process.env.CI && process.env.STAGING ? process.env.SITE_URL : site.site,
+  site: process.env.CI && process.env.STAGING ? process.env.SITE_URL : 'https://www.bpm2025seville.org',
   integrations: [
     tailwind({
       applyBaseStyles: false

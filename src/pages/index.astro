@@ -15,6 +15,7 @@ import IMaterialSymbolsForum from 'virtual:icons/material-symbols/forum';
 import HeroImage from '@/assets/images/hero-image.jpg';
 import SevilleCathedral from '@/assets/images/cathedral.jpg';
 import Sponsors from '@/components/ui/Sponsors.astro';
+import { getPermalink } from '@/utils/permalinks';
 ---
 
 <Layout metadata={{
@@ -26,7 +27,7 @@ import Sponsors from '@/components/ui/Sponsors.astro';
     id="hero"
     title="23rd Int. Conference on Business Process Management (BPM 2025)"
     tagline="31st Aug - 5th Sep 2025 | Seville, Spain"
-    actions={[{ variant: 'primary', text: 'Register', href: '/register' }]}
+    actions={[{ variant: 'primary', text: 'Register', href: getPermalink('/register') }]}
   >
     <Image slot="bg" src={HeroImage} alt="Plaza España in Seville" />
     <Fragment slot="subtitle">
@@ -98,7 +99,7 @@ import Sponsors from '@/components/ui/Sponsors.astro';
         {
           variant: 'primary',
           text: 'Become a sponsor!',
-          href: '/sponsors/become-a-sponsor'
+          href: getPermalink('/sponsors/become-a-sponsor')
         }
       ]}
     />
@@ -112,7 +113,7 @@ import Sponsors from '@/components/ui/Sponsors.astro';
       {
         variant: 'primary',
         text: 'Register now',
-        href: '/register'
+        href: getPermalink('/register')
       }
     ]}
   >

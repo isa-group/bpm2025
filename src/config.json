@@ -1,9 +1,6 @@
 {
     "site": {
-        "name": "BPM2025",
-        "site": "https://www.bpm2025seville.org",
-        "base": "/",
-        "trailingSlash": false
+        "name": "BPM2025"
     },
     "metadata": {
         "title": {

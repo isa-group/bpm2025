@@ -2,6 +2,7 @@
 import Layout from '@/layouts/PageLayout.astro';
 import Headline from '@/components/ui/Headline.astro';
 import Sponsors from '@/components/ui/Sponsors.astro';
+import { getPermalink } from '@/utils/permalinks';
 
 ---
 
@@ -10,7 +11,7 @@ import Sponsors from '@/components/ui/Sponsors.astro';
     title: 'Sponsors'
   }}
   heroProps={{
-    actions: [{ variant: 'primary', text: 'Check out sponsorship opportunities', href: '/sponsors/become-a-sponsor' }]
+    actions: [{ variant: 'primary', text: 'Check out sponsorship opportunities', href: getPermalink('/sponsors/become-a-sponsor') }]
   }}>
   <Fragment slot="hero-subtitle">
     We are very happy and grateful to have received support from the following sponsors
