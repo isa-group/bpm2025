@@ -1,0 +1,44 @@
+---
+import Brands from '@/components/widgets/Brands.astro';
+import { sponsors } from '@/data/sponsors';
+interface Props {
+  showEmpty?: boolean;
+}
+const { showEmpty = false } = Astro.props;
+---
+<table class="w-full mx-6 mt-6">
+  <tbody>
+    {sponsors.map((s) => {
+      const innerText = (
+        <td>
+          <b class="text-muted text-left">
+            {s.category}:
+          </b>
+        </td>
+      );
+
+      const innerBrands = s.brands.length
+        ? (
+            <td>
+              <Brands images={s.brands} />
+            </td>
+          )
+        : (
+            <td>
+              <p class="text-center">There are no sponsors in this category yet</p>
+            </td>
+          );
+
+      if (!s.brands.length && !showEmpty) {
+        return (<></>);
+      } else {
+        return (
+          <tr>
+            {innerText}
+            {innerBrands}
+          </tr>
+        );
+      }
+    })}
+  </tbody>
+</table>

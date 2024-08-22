@@ -1,97 +1,105 @@
+import type { CallToAction, MenuLink } from '@/types';
+import type { Props as FooterProps } from '@/components/widgets/Footer.astro';
 import { getPermalink } from '@/utils/permalinks';
 import ITablerBrandX from 'virtual:icons/tabler/brand-x';
 import ITablerMail from 'virtual:icons/tabler/mail';
 
-export const headerData = {
+interface HeaderData {
+  links?: MenuLink[];
+  actions?: CallToAction[];
+}
+
+interface FooterData {
+  links: FooterProps['links'];
+  secondaryLinks: FooterProps['secondaryLinks'];
+  socialLinks: FooterProps['socialLinks'];
+}
+
+export const headerData: HeaderData = {
   links: [
     {
-      text: 'Homes',
+      text: 'Home',
+      href: '/'
+    },
+    {
+      text: 'Conference',
       links: [
         {
-          text: 'SaaS',
-          href: getPermalink('/homes/saas')
+          text: 'Conference Chairs',
+          href: '/conference/chairs'
         },
         {
-          text: 'Startup',
-          href: getPermalink('/homes/startup')
+          text: 'Program Committee',
+          href: '/conference/committees/program'
         },
         {
-          text: 'Mobile App',
-          href: getPermalink('/homes/mobile-app')
-        },
-        {
-          text: 'Personal',
-          href: getPermalink('/homes/personal')
+          text: 'Steering Committee',
+          href: '/conference/committees/steering'
         }
       ]
     },
     {
-      text: 'Pages',
+      text: 'Calls',
       links: [
         {
-          text: 'Features (Anchor Link)',
-          href: getPermalink('/#features')
-        },
-        {
-          text: 'Services',
-          href: getPermalink('/services')
-        },
-        {
-          text: 'Pricing',
-          href: getPermalink('/pricing')
-        },
-        {
-          text: 'About us',
-          href: getPermalink('/about')
-        },
-        {
-          text: 'Contact',
-          href: getPermalink('/contact')
-        },
-        {
-          text: 'Terms',
-          href: getPermalink('/terms')
-        },
-        {
-          text: 'Privacy policy',
-          href: getPermalink('/privacy')
+          text: 'Call for research papers',
+          href: '/calls/research-papers'
         }
       ]
     },
     {
-      text: 'Landing',
+      text: 'Venue',
       links: [
         {
-          text: 'Lead Generation',
-          href: getPermalink('/landing/lead-generation')
+          text: 'Conference Venue',
+          href: '/venue'
         },
         {
-          text: 'Long-form Sales',
-          href: getPermalink('/landing/sales')
+          text: 'How to get there',
+          href: '/venue/getting-there'
         },
         {
-          text: 'Click-Through',
-          href: getPermalink('/landing/click-through')
+          text: 'Where to stay',
+          href: '/venue/where-to-stay'
         },
         {
-          text: 'Product Details (or Services)',
-          href: getPermalink('/landing/product')
+          text: 'Visa information',
+          href: '/venue/visa'
         },
         {
-          text: 'Coming Soon or Pre-Launch',
-          href: getPermalink('/landing/pre-launch')
+          text: 'The city of Seville',
+          href: '/venue/the-city'
         },
         {
-          text: 'Subscription',
-          href: getPermalink('/landing/subscription')
+          text: 'Sponsors',
+          href: '/venue/getting-around'
+        }
+      ]
+    },
+    {
+      text: 'Sponsors',
+      links: [
+        {
+          text: 'Our sponsors',
+          href: '/sponsors'
+        },
+        {
+          text: 'Become a sponsor',
+          href: '/sponsors/become-a-sponsor'
         }
       ]
     }
   ],
-  actions: [{ text: 'Register', href: '/register' }]
+  actions: [
+    {
+      text: 'Register',
+      href: '/register',
+      variant: 'primary'
+    }
+  ]
 };
 
-export const footerData = {
+export const footerData: FooterData = {
   links: [
     {
       title: 'Product',

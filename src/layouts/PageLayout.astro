@@ -3,16 +3,19 @@ import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/widgets/Header.astro';
 import Footer from '@/components/widgets/Footer.astro';
 import Announcement from '@/components/widgets/Announcement.astro';
-
 import { headerData, footerData } from '@/data/navigation';
+import type { MetaData, Hero as HeroProps } from '@/types';
 
-import type { MetaData } from '@/types';
+import { Image } from 'astro:assets';
+import HeroImage from '@/assets/images/hero-image.jpg';
+import Hero from '@/components/widgets/Hero.astro';
 
 export interface Props {
   metadata?: MetaData;
+  heroProps?: HeroProps;
 }
 
-const { metadata } = Astro.props;
+const { metadata, heroProps = {} } = Astro.props;
 ---
 
 <Layout metadata={metadata}>
@@ -23,6 +26,16 @@ const { metadata } = Astro.props;
     <Header {...headerData} isSticky showToggleTheme />
   </slot>
   <main>
+    <slot name="hero">
+      <Hero
+        id="hero"
+        title={metadata?.title}
+        {...heroProps}
+      >
+        <slot name="hero-subtitle" slot="subtitle" />
+        <Image slot="bg" src={HeroImage} alt="Plaza España in Seville" />
+      </Hero>
+    </slot>
     <slot />
   </main>
   <slot name="footer">

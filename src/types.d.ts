@@ -23,7 +23,7 @@ export interface MetaDataRobots {
 export interface MetaDataOpenGraph {
   url?: string;
   siteName?: string;
-  images?: Array<MetaDataImage>;
+  images?: MetaDataImage[];
   locale?: string;
   type?: string;
 }
@@ -61,7 +61,7 @@ interface TeamMember {
   name?: string;
   job?: string;
   image?: ExtendedImageProps;
-  socials?: Array<Social>;
+  socials?: Social[];
   description?: string;
   classes?: Record<string, string>;
 }
@@ -92,7 +92,7 @@ export interface Price {
   description?: string;
   price?: number | string;
   period?: string;
-  items?: Array<Item>;
+  items?: Item[];
   callToAction?: CallToAction;
   hasRibbon?: boolean;
   ribbonTitle?: string;
@@ -101,6 +101,7 @@ export interface Price {
 export interface Testimonial {
   title?: string;
   testimonial?: string;
+  items?: Item[];
   name?: string;
   job?: string;
   image?: ExtendedImageProps;
@@ -135,21 +136,23 @@ export interface CallToAction extends BetterOmit<HTMLAttributes<'a'>, 'slot'> {
 }
 
 export interface ItemGrid {
-  items?: Array<Item>;
+  items?: Item[];
   columns?: number;
   classes?: Record<string, string>;
 }
 
+export type ItemList = BetterOmit<ItemGrid, 'columns'>;
+
 export interface Collapse {
   iconUp?: string;
   iconDown?: string;
-  items?: Array<Item>;
+  items?: Item[];
   columns?: number;
   classes?: Record<string, string>;
 }
 
 export interface Form {
-  inputs?: Array<Input>;
+  inputs?: Input[];
   textarea?: Textarea;
   disclaimer?: Disclaimer;
   button?: string;
@@ -164,31 +167,35 @@ export interface Hero extends BetterOmit<Headline, 'classes'>, BetterOmit<Widget
 }
 
 export interface Team extends BetterOmit<Headline, 'classes'>, Widget {
-  team?: Array<TeamMember>;
+  team?: TeamMember[];
 }
 
 export interface Stats extends BetterOmit<Headline, 'classes'>, Widget {
-  stats?: Array<Stat>;
+  stats?: Stat[];
 }
 
 export interface Pricing extends BetterOmit<Headline, 'classes'>, Widget {
-  prices?: Array<Price>;
+  prices?: Price[];
 }
 
 export interface Testimonials extends BetterOmit<Headline, 'classes'>, Widget {
-  testimonials?: Array<Testimonial>;
+  testimonials?: Testimonial[];
   callToAction?: CallToAction;
 }
 
+export interface SponsorInfo {
+  category: string;
+  brands: (ExtendedImageProps & { href?: string })[];
+}
 export interface Brands extends BetterOmit<Headline, 'classes'>, Widget {
-  icons?: Array<IconElement>;
-  images?: Array<ExtendedImageProps>;
+  icons?: IconElement[];
+  images?: SponsorInfo['brands'];
 }
 
 export interface Features extends BetterOmit<Headline, 'classes'>, Widget {
   image?: ExtendedImageProps;
   video?: Video;
-  items?: Array<Item>;
+  items?: Item[];
   columns?: number;
   callToAction1?: CallToAction;
   callToAction2?: CallToAction;
@@ -200,17 +207,17 @@ export interface Features extends BetterOmit<Headline, 'classes'>, Widget {
 export interface Faqs extends BetterOmit<Headline, 'classes'>, Widget {
   iconUp?: string;
   iconDown?: string;
-  items?: Array<Item>;
+  items?: Item[];
   columns?: number;
 }
 
 export interface Steps extends BetterOmit<Headline, 'classes'>, Widget {
-  items: Array<{
+  items: {
     title: string;
     description?: string;
     icon?: IconElement;
     classes?: Record<string, string>;
-  }>;
+  }[];
   callToAction?: string | CallToAction;
   image?: ExtendedImageProps;
   isReversed?: boolean;
@@ -219,7 +226,7 @@ export interface Steps extends BetterOmit<Headline, 'classes'>, Widget {
 export interface Content extends BetterOmit<Headline, 'classes'>, Widget {
   content?: string;
   image?: ExtendedImageProps;
-  items?: Array<Item>;
+  items?: Item[];
   columns?: number;
   isReversed?: boolean;
   isAfterContent?: boolean;
@@ -227,3 +234,14 @@ export interface Content extends BetterOmit<Headline, 'classes'>, Widget {
 }
 
 export interface Contact extends BetterOmit<Headline, 'classes'>, Form, Widget {}
+
+interface Link {
+  text?: string;
+  href?: string;
+  ariaLabel?: string;
+  icon?: IconElement;
+}
+
+export interface MenuLink extends Link {
+  links?: MenuLink[];
+}

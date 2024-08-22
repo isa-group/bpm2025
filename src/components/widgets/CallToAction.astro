@@ -10,6 +10,7 @@ interface Props extends Widget {
   tagline?: string;
   callToAction?: CallToAction;
   actions?: string | CallToAction[];
+  boxed?: boolean;
 }
 
 const {
@@ -21,13 +22,14 @@ const {
   id,
   isDark = false,
   classes = {},
-  bg = await Astro.slots.render('bg')
+  bg = await Astro.slots.render('bg'),
+  boxed = true
 } = Astro.props;
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
   <div
-    class="max-w-3xl mx-auto text-center p-6 rounded-md shadow-xl dark:shadow-none dark:border dark:border-slate-600"
+    class={`max-w-3xl mx-auto text-center p-6 rounded-md ${boxed ? 'shadow-xl dark:shadow-none dark:border dark:border-slate-600' : ''}`}
   >
     <Headline
       title={title}

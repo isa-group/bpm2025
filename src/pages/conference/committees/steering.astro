@@ -1,0 +1,60 @@
+---
+import Layout from '@/layouts/PageLayout.astro';
+import Testimonials from '@/components/widgets/Testimonials.astro';
+import { steeringCommittee } from '@/data/people';
+
+import IMdiUniversity from 'virtual:icons/mdi/university';
+import IHugeIconsGlobe from 'virtual:icons/hugeicons/globe';
+import ITablerMail from 'virtual:icons/tabler/mail';
+
+const classes = {
+  panel: 'mt-3'
+};
+---
+
+<Layout
+  metadata={{
+    title: 'BPM Steering Committee'
+  }}
+  heroProps={{
+    actions: [{ variant: 'primary', text: 'About the steering committee', href: 'https://bpm-conference.org/organization/' }]
+  }}>
+  <Fragment slot="hero-subtitle">
+    The Steering Committee of the BPM conference series includes the following people:
+  </Fragment>
+
+  <Testimonials
+    testimonials={Object.entries(steeringCommittee).map(([name, p]) => ({
+      name: `${p.treatment} ${name}`,
+      job: p.job,
+      items: [
+        ...(p.institution
+          ? ([{
+              icon: IMdiUniversity,
+              description: p.institution,
+              classes
+            }])
+          : []),
+        ...(p.location
+          ? ([{
+              icon: IHugeIconsGlobe,
+              description: p.location,
+              classes
+            }])
+          : []),
+        ...(p.email
+          ? ([{
+              icon: ITablerMail,
+              description: `<a href="mailto:${p.email}" class="underline">${p.email}</a>`,
+              classes
+            }])
+          : [])
+      ],
+      ...(p.image && ({
+        image: {
+          src: p.image,
+          alt: name
+        }
+      }))
+    }))} />
+</Layout>

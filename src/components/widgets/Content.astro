@@ -83,6 +83,9 @@ const {
                 sizes="(max-width: 768px) 100vw, 432px"
                 {...image}
               />
+              <p class="py-2 text-center">
+                <slot name="image-description" />
+              </p>
             </div>
           )
         }

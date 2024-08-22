@@ -27,8 +27,10 @@ const {
       && images.map(
         image => (
           <div class="flex justify-center col-span-1 my-2 lg:my-4 py-1 px-3 rounded-md dark:bg-gray-200">
-            <!-- @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 -->
-            <Image class="max-h-12" width={120} height={48} {...image} />
+            <a href={image.href} target="_blank">
+              <!-- @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 -->
+              <Image class="max-h-16" height={64} {...image} href={undefined} />
+            </a>
           </div>
         )
       )

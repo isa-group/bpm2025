@@ -1,0 +1,50 @@
+---
+import Layout from '@/layouts/PageLayout.astro';
+import Content from '@/components/widgets/Content.astro';
+import CallToAction from '@/components/widgets/CallToAction.astro';
+
+const contactEmail = 'mailto:info@bpm2025seville.org';
+---
+
+<Layout
+  metadata={{
+    title: 'Become a sponsor'
+  }}
+  heroProps={{
+    actions: [{ variant: 'primary', text: 'Contact us', href: contactEmail }]
+  }}>
+  <Content
+    id="calendar"
+    title="Why sponsor BPM 2025?">
+    <Fragment slot="content">
+      <p>
+        This will be the 23rd Conference on Business Process Management, and is being held in Seville on September 2025.
+        BPM 2025 is the 23rd conference in a series that provides the most prestigious forum for researchers and practitioners
+        in the field of Business Process Management.
+      </p>
+      <br />
+      <p>
+        If you’re looking to hire excellent researchers,
+        promote a product that’s useful to academy, promote awareness of your organisation,
+        or just give something back to the community, then you should sponsor BPM 2025.
+      </p>
+
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <CallToAction
+    title="Contact us today"
+    boxed={false}
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Write an email',
+        href: contactEmail
+      }
+    ]}
+  >
+  </CallToAction>
+</Layout>

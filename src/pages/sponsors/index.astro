@@ -1,0 +1,28 @@
+---
+import Layout from '@/layouts/PageLayout.astro';
+import Headline from '@/components/ui/Headline.astro';
+import Sponsors from '@/components/ui/Sponsors.astro';
+
+---
+
+<Layout
+  metadata={{
+    title: 'Sponsors'
+  }}
+  heroProps={{
+    actions: [{ variant: 'primary', text: 'Check out sponsorship opportunities', href: '/sponsors/become-a-sponsor' }]
+  }}>
+  <Fragment slot="hero-subtitle">
+    We are very happy and grateful to have received support from the following sponsors
+    <br />
+    Sign up to sponsor BPM2025 and help make the conference happen.
+  </Fragment>
+
+  <div>
+    <Headline
+      classes={{ container: 'pt-6 !mb-0' }}
+      title="Organization & Sponsors"
+      subtitle="These organizations make the BPM conference possible" />
+    <Sponsors showEmpty />
+  </div>
+</Layout>
