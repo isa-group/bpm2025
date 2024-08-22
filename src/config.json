@@ -7,25 +7,17 @@
             "default": "BPM2025 Conference (Seville)",
             "template": "%s — BPM2025 Conference (Seville)"
         },
-        "description": "🚀 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs.",
+        "description": "BPM 2025 is the 23rd conference in a series that provides the most prestigious forum for researchers and practitioners in the field of Business Process Management.",
         "robots": {
             "index": true,
             "follow": true
         },
         "openGraph": {
             "site_name": "BPM2025 Conference (Seville)",
-            "images": [
-                {
-                    "url": "@/assets/images/default.png",
-                    "width": 1200,
-                    "height": 628
-                }
-            ],
             "type": "website"
         },
         "twitter": {
-            "handle": "@onwidget",
-            "site": "@onwidget",
+            "site": "@bpmconf",
             "cardType": "summary_large_image"
         }
     },
