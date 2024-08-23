@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/PageLayout.astro';
+import HighlightBackground from '@/components/ui/HighlightBackground.astro';
 import Content from '@/components/widgets/Content.astro';
 import CallToAction from '@/components/widgets/CallToAction.astro';
 
@@ -30,9 +31,7 @@ const contactEmail = 'mailto:info@bpm2025seville.org';
       </p>
 
     </Fragment>
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
+    <HighlightBackground slot="bg" />
   </Content>
 
   <CallToAction

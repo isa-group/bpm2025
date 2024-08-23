@@ -3,7 +3,8 @@ import Layout from '@/layouts/PageLayout.astro';
 import Headline from '@/components/ui/Headline.astro';
 import Sponsors from '@/components/ui/Sponsors.astro';
 import { getPermalink } from '@/utils/permalinks';
-
+import HighlightBackground from '@/components/ui/HighlightBackground.astro';
+import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
 ---
 
 <Layout
@@ -19,11 +20,12 @@ import { getPermalink } from '@/utils/permalinks';
     Sign up to sponsor BPM2025 and help make the conference happen.
   </Fragment>
 
-  <div>
+  <WidgetWrapper>
+    <HighlightBackground slot="bg" />
     <Headline
       classes={{ container: 'pt-6 !mb-0' }}
       title="Organization & Sponsors"
       subtitle="These organizations make the BPM conference possible" />
     <Sponsors showEmpty />
-  </div>
+  </WidgetWrapper>
 </Layout>

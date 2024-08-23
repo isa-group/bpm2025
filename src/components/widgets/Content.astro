@@ -67,7 +67,9 @@ const {
             action: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2'
           }}
         >
-          <ITablerCheck slot="default-icon" />
+          <slot name="default-icon" slot="default-icon">
+            <ITablerCheck />
+          </slot>
         </ItemGrid>
       </div>
       <div aria-hidden="true" class="mt-10 md:mt-0 md:basis-1/2">

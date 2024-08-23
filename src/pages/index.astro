@@ -4,6 +4,7 @@ import Content from '@/components/widgets/Content.astro';
 import CallToAction from '@/components/widgets/CallToAction.astro';
 import Steps from '@/components/widgets/Steps.astro';
 import Headline from '@/components/ui/Headline.astro';
+import HighlightBackground from '@/components/ui/HighlightBackground.astro';
 
 import IHugeIconsTeacher from 'virtual:icons/hugeicons/teacher';
 import IMaterialSymbolsResearch from 'virtual:icons/material-symbols-light/lab-research';
@@ -12,6 +13,7 @@ import IMaterialSymbolsForum from 'virtual:icons/material-symbols/forum';
 import SevilleCathedral from '@/assets/images/hero/cathedral.jpg';
 import Sponsors from '@/components/ui/Sponsors.astro';
 import { getPermalink } from '@/utils/permalinks';
+import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
 ---
 
 <Layout
@@ -69,7 +71,7 @@ import { getPermalink } from '@/utils/permalinks';
       />
     </Fragment>
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      <HighlightBackground />
     </Fragment>
     <Fragment slot="image-description">
       Cathedral of Seville
@@ -78,7 +80,7 @@ import { getPermalink } from '@/utils/permalinks';
 
   {/* Sponsors */}
 
-  <div>
+  <WidgetWrapper>
     <Headline
       classes={{ container: 'pt-6 !mb-0' }}
       title="Organization & Sponsors"
@@ -95,7 +97,7 @@ import { getPermalink } from '@/utils/permalinks';
         }
       ]}
     />
-  </div>
+  </WidgetWrapper>
 
   <CallToAction
     title="Let's get together!"
@@ -109,8 +111,6 @@ import { getPermalink } from '@/utils/permalinks';
       }
     ]}
   >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
+    <HighlightBackground slot="bg" />
   </CallToAction>
 </Layout>

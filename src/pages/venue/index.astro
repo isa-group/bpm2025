@@ -1,6 +1,15 @@
 ---
 import Layout from '@/layouts/PageLayout.astro';
+import { Image } from 'astro:assets';
+import HighlightBackground from '@/components/ui/HighlightBackground.astro';
+import HeroText from '@/components/widgets/HeroText.astro';
 import MeliaHeader from '@/assets/images/hero/melia-header.jpg';
+import Melia1 from '@/assets/images/venue/melia.png';
+import Melia2 from '@/assets/images/venue/melia-2.png';
+import Melia3 from '@/assets/images/venue/melia-3.png';
+import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
+
+const alt = 'Hotel Meliá Sevilla';
 ---
 
 <Layout
@@ -8,10 +17,40 @@ import MeliaHeader from '@/assets/images/hero/melia-header.jpg';
     title: 'Conference Venue'
   }}
   heroProps={{
-    tagline: 'Hotel Meliá Sevilla'
+    tagline: alt
   }}
   heroImage={{
     src: MeliaHeader,
     alt: 'Terrace of Meliá Sevilla'
   }}>
+  <WidgetWrapper>
+    <div class="flex flex-col -mb-6">
+      <Image src={Melia1} alt={alt} class="p-2" />
+      <Image src={Melia2} alt={alt} class="p-2" />
+      <Image src={Melia3} alt={alt} class="p-2" />
+    </div>
+  </WidgetWrapper>
+  <WidgetWrapper>
+    <HighlightBackground slot="bg" />
+    <HeroText title="Location" />
+    <div class="grid lg:grid-cols-2 md:grid-cols-1 gap-6">
+      <div>
+        <p>
+          In the heart of the city, this elegant hotel is situated next to some remarkable monuments of the city
+          such as <a href="https://visitasevilla.es/plaza-de-espana/" target="_blank" class="text-underline">Plaza de España</a>,
+          the <a href="https://www.alcazarsevilla.org/" target="_blank" class="text-underline">Royal Alcazar</a>,
+          or the <a href="https://www.catedraldesevilla.es/" target="_blank" class="text-underline">Cathedral of Seville</a>.
+        </p>
+        <br />
+        <p>
+          The hotel is located at <b>Dr. Pedro de Castro, 1</b>, just a few minutes away from the city center.
+        </p>
+      </div>
+      <iframe
+        class="text-center border-0 h-96 w-full"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3170.4953389447387!2d-5.985765024384759!3d37.378116434910446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126c207841835b%3A0xe81ae59a539c7fd3!2sMeli%C3%A1%20Sevilla!5e0!3m2!1ses!2ses!4v1697213107887!5m2!1ses!2ses"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade" />
+    </div>
+  </WidgetWrapper>
 </Layout>
