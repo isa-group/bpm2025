@@ -1,5 +1,6 @@
 ---
 import type { ItemGrid as Props } from '@/types';
+import { Image } from 'astro:assets';
 import { twMerge } from 'tailwind-merge';
 import Button from '@/components/ui/Button/Button.astro';
 import BSlot from '@/components/utils/BSlot.astro';
@@ -34,10 +35,17 @@ const mergedIconClasses = twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2', defaultIconC
         containerClass
       )}
     >
-      {items.map(({ title, description, icon: IconElement, callToAction, classes: itemClasses = {} }) => (
-        <div>
-          <div class={twMerge('flex flex-row max-w-md', panelClass, itemClasses?.panel)}>
-            <div class="flex justify-center">
+      {items.map(({ title, description, icon: IconElement, callsToAction, classes: itemClasses = {}, image }) => (
+        <div class="flex justify-between">
+          {image
+          && (
+            <div class="w-1/2">
+              {/* @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 */}
+              <Image inferSize class="object-contain" {...image} />
+            </div>
+          )}
+          <div class="flex w-full">
+            <div class={twMerge('max-w-md', panelClass, itemClasses?.panel)}>
               {IconElement
                 ? <IconElement class={twMerge(mergedIconClasses, itemClasses?.icon)} />
                 : (
@@ -54,9 +62,13 @@ const mergedIconClasses = twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2', defaultIconC
                   set:html={description}
                 />
               )}
-              {callToAction && (
-                <div class={twMerge(`${title || description ? 'mt-3' : ''}`, actionClass, itemClasses?.actionClass)}>
-                  <Button variant="link" {...callToAction} />
+              {callsToAction && callsToAction.length && (
+                <div class="flex">
+                  {callsToAction.map(act => (
+                    <div class={twMerge(`${title || description ? 'mt-3' : ''}`, actionClass, itemClasses?.actionClass)}>
+                      <Button variant="link" {...act} />
+                    </div>
+                  ))}
                 </div>
               )}
             </div>

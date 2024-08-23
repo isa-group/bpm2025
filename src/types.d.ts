@@ -82,7 +82,7 @@ export interface Item {
   description?: string;
   icon?: IconElement;
   classes?: Record<string, string>;
-  callToAction?: CallToAction;
+  callsToAction?: CallToAction[];
   image?: ExtendedImageProps;
 }
 

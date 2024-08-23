@@ -33,7 +33,7 @@ const mergedIconClasses = twMerge('mb-2 w-10 h-10', defaultIconClass);
         containerClass
       )}
     >
-      {items.map(({ title, description, icon: IconElement, callToAction, classes: itemClasses = {} }) => (
+      {items.map(({ title, description, icon: IconElement, callsToAction, classes: itemClasses = {} }) => (
         <div class={twMerge('relative flex flex-col', panelClass, itemClasses?.panel)}>
           {IconElement
             ? <IconElement class={twMerge(mergedIconClasses, itemClasses?.icon)} />
@@ -46,9 +46,13 @@ const mergedIconClasses = twMerge('mb-2 w-10 h-10', defaultIconClass);
           {description && (
             <p class={twMerge('text-muted mt-2', descriptionClass, itemClasses?.description)} set:html={description} />
           )}
-          {callToAction && (
-            <div class="mt-2">
-              <Button {...callToAction} />
+          {callsToAction && callsToAction.length && (
+            <div class="flex">
+              {callsToAction.map(act => (
+                <div class="mt-2">
+                  <Button {...act} />
+                </div>
+              ))}
             </div>
           )}
         </div>
