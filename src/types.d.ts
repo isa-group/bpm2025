@@ -225,7 +225,7 @@ export interface Steps extends BetterOmit<Headline, 'classes'>, Widget {
 
 export interface Content extends BetterOmit<Headline, 'classes'>, Widget {
   content?: string;
-  image?: ExtendedImageProps;
+  images?: (ExtendedImageProps & { description?: boolean | string })[];
   items?: Item[];
   columns?: number;
   isReversed?: boolean;

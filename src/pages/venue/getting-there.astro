@@ -32,10 +32,12 @@ import IIconParkConnection from 'virtual:icons/icon-park-solid/connection';
     src: PlaneImg,
     alt: 'Plane flying in the sky'
   }}>
-  <Content image={{
-    src: AirportTerminal,
-    alt: 'Person waiting at an airport lounge'
-  }}>
+  <Content images={[
+    {
+      src: AirportTerminal,
+      alt: 'Person waiting at an airport lounge'
+    }
+  ]}>
     <HighlightBackground slot="bg" />
     <Fragment slot="content">
       <p class="text-2xl">
@@ -74,7 +76,7 @@ import IIconParkConnection from 'virtual:icons/icon-park-solid/connection';
             text: 'Check the schedule',
             href: 'http://www.tussam.es/uploads/pdf/HORARIOLINEAAEROPUERTO.pdf',
             icon: ITablerCalendarTime,
-            variant: 'tertiary'
+            variant: 'secondary'
           }
         ]
       },
@@ -92,7 +94,7 @@ import IIconParkConnection from 'virtual:icons/icon-park-solid/connection';
             text: 'Learn more',
             href: 'https://www.aena.es/en/sevilla/getting-there/taxi.html',
             icon: ITablerChevronRight,
-            variant: 'tertiary'
+            variant: 'secondary'
           }
         ]
       }
@@ -115,7 +117,7 @@ import IIconParkConnection from 'virtual:icons/icon-park-solid/connection';
             text: 'Purchase tickets',
             href: 'https://www.alsa.com/en/web/bus/airports/malaga-costa-del-sol',
             icon: IParkSolidTicketsTwo,
-            variant: 'tertiary'
+            variant: 'secondary'
           }
         ]
       },
@@ -151,19 +153,19 @@ import IIconParkConnection from 'virtual:icons/icon-park-solid/connection';
             text: 'Purchase tickets',
             href: 'https://www.renfe.com/es/en',
             icon: IParkSolidTicketsTwo,
-            variant: 'tertiary'
+            variant: 'secondary'
           },
           {
             text: "About free 'Cercanías'",
             href: 'https://blog.renfe.com/asi-puedes-canjear-el-combinado-cercanias/',
             icon: IMaterialSymbolsInfoOutline,
-            variant: 'tertiary'
+            variant: 'secondary'
           },
           {
             text: 'Airport → AVE connection',
             href: 'hhttps://www.aena.es/en/malaga-costa-del-sol/getting-there/trains.html',
             icon: IIconParkConnection,
-            variant: 'tertiary'
+            variant: 'secondary'
           }
         ]
       }
@@ -185,13 +187,13 @@ import IIconParkConnection from 'virtual:icons/icon-park-solid/connection';
             text: 'Purchase tickets',
             href: 'https://www.iberiaexpress.com/',
             icon: IParkSolidTicketsTwo,
-            variant: 'tertiary'
+            variant: 'secondary'
           },
           {
             text: 'Find other airlines',
             href: 'https://www.aena.es/en/adolfo-suarez-madrid-barajas/airlines-and-destinations/airlines.html',
             icon: ITablerChevronRight,
-            variant: 'tertiary'
+            variant: 'secondary'
           }
         ]
       },
@@ -222,19 +224,19 @@ import IIconParkConnection from 'virtual:icons/icon-park-solid/connection';
             text: 'Purchase tickets',
             href: 'https://www.renfe.com/es/en',
             icon: IParkSolidTicketsTwo,
-            variant: 'tertiary'
+            variant: 'secondary'
           },
           {
             text: "About free 'Cercanías'",
             href: 'https://blog.renfe.com/asi-puedes-canjear-el-combinado-cercanias/',
             icon: IMaterialSymbolsInfoOutline,
-            variant: 'tertiary'
+            variant: 'secondary'
           },
           {
             text: 'Airport → AVE connection',
             href: 'https://www.aena.es/en/adolfo-suarez-madrid-barajas/getting-there/trains.html',
             icon: IIconParkConnection,
-            variant: 'tertiary'
+            variant: 'secondary'
           }
         ]
       },
@@ -267,19 +269,19 @@ import IIconParkConnection from 'virtual:icons/icon-park-solid/connection';
             text: 'Purchase tickets',
             href: 'https://iryo.eu/en',
             icon: IParkSolidTicketsTwo,
-            variant: 'tertiary'
+            variant: 'secondary'
           },
           {
             text: "About free 'Cercanías'",
             href: 'https://iryo.eu/en/conecta',
             icon: IMaterialSymbolsInfoOutline,
-            variant: 'tertiary'
+            variant: 'secondary'
           },
           {
             text: 'Airport → Iryo connection',
             href: 'https://www.aena.es/en/adolfo-suarez-madrid-barajas/getting-there/trains.html',
             icon: IIconParkConnection,
-            variant: 'tertiary'
+            variant: 'secondary'
           }
         ]
       }
@@ -287,16 +289,18 @@ import IIconParkConnection from 'virtual:icons/icon-park-solid/connection';
 
   <Content
     title="Santa Justa train station (Seville)"
-    image={{
-      src: SantaJusta,
-      alt: 'Santa Justa train station'
-    }}
+    images={[
+      {
+        src: SantaJusta,
+        alt: 'Santa Justa train station'
+      }
+    ]}
     isReversed
     callToAction={{
       text: 'Learn more',
       href: 'https://www.adif.es/w/sevilla-santa-justa',
       icon: ITablerChevronRight,
-      variant: 'tertiary'
+      variant: 'secondary'
     }}
   >
     <HighlightBackground slot="bg" />

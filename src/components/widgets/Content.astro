@@ -1,6 +1,5 @@
 ---
 import type { Content as Props } from '@/types';
-import ITablerCheck from 'virtual:icons/tabler/check';
 import Headline from '@/components/ui/Headline.astro';
 import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
 import { Image } from 'astro:assets';
@@ -15,7 +14,7 @@ const {
   callToAction,
   items = [],
   columns,
-  image,
+  images,
   isReversed = false,
   isAfterContent = false,
 
@@ -44,7 +43,7 @@ const {
   />
   <div class="mx-auto max-w-7xl p-4 md:px-8">
     <div class={`md:flex ${isReversed ? 'md:flex-row-reverse' : ''} md:gap-16`}>
-      <div class={`${image ? 'md:basis-1/2' : ''} self-center`}>
+      <div class={`${images?.length ? 'md:basis-1/2' : ''} self-center`}>
         {content && <div class="mb-12 text-lg dark:text-slate-400" set:html={content} />}
 
         {
@@ -67,28 +66,29 @@ const {
             action: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2'
           }}
         >
-          <slot name="default-icon" slot="default-icon">
-            <ITablerCheck />
-          </slot>
+          <slot name="default-icon" slot="default-icon" />
         </ItemGrid>
       </div>
       {
-        image && (
+        images && images.length && (
           <div aria-hidden="true" class="mt-10 md:mt-0 md:basis-1/2">
-            <div class="relative m-auto max-w-4xl">
-              {/* @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 */}
-              <Image
-                class="mx-auto w-full rounded-lg bg-gray-500 shadow-lg"
-                width={500}
-                height={500}
-                widths={[400, 768]}
-                sizes="(max-width: 768px) 100vw, 432px"
-                {...image}
-              />
-              <p class="py-2 text-center">
-                <slot name="image-description" />
-              </p>
-            </div>
+            {images.map(i => (
+              <div class="relative m-auto max-w-4xl">
+                {/* @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 */}
+                <Image
+                  class="mx-auto w-full rounded-lg bg-gray-500 shadow-lg"
+                  width={500}
+                  height={500}
+                  widths={[400, 768]}
+                  sizes="(max-width: 768px) 100vw, 432px"
+                  {...i}
+                  description={undefined}
+                />
+                <p class="py-2 text-center">
+                  {i.description === true ? i.alt : typeof i.description === 'string' ? i.description : ''}
+                </p>
+              </div>
+            ))}
           </div>
         )
       }

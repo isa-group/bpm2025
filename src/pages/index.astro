@@ -35,10 +35,13 @@ import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
   <Content
     id="calendar"
     title="Calendar"
-    image={{
-      src: SevilleCathedral,
-      alt: 'Seville cathedral'
-    }}
+    images={[
+      {
+        src: SevilleCathedral,
+        alt: 'Cathedral of Seville',
+        description: true
+      }
+    ]}
     classes={{ container: '!pb-0' }}>
     <Fragment slot="content">
       <p>
@@ -70,12 +73,7 @@ import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
         ]}
       />
     </Fragment>
-    <Fragment slot="bg">
-      <HighlightBackground />
-    </Fragment>
-    <Fragment slot="image-description">
-      Cathedral of Seville
-    </Fragment>
+    <HighlightBackground slot="bg" />
   </Content>
 
   {/* Sponsors */}
