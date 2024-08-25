@@ -29,10 +29,18 @@ const metadata = {
     textarea={{
       label: 'Message'
     }}
-    disclaimer={{
-      label:
-        'By submitting this form, you acknowledge and agree to the collection of your personal information.'
-    }}
+    disclaimers={[
+      {
+        id: 'letter',
+        name: 'letter',
+        label: 'I need an invitation letter for visa'
+      },
+      {
+        id: 'terms',
+        name: 'terms',
+        label: 'By submitting this form, you acknowledge and agree to the collection of your personal information.'
+      }
+    ]}
     description="You will receive a confirmation email shortly after checkout"
   />
 </Layout>

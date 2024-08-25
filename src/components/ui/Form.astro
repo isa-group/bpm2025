@@ -2,7 +2,7 @@
 import type { Form as Props } from '@/types';
 import Button from '@/components/ui/Button/Button.astro';
 
-const { inputs, textarea, disclaimer, button = 'Submit', description = '' } = Astro.props;
+const { inputs, textarea, disclaimers, button = 'Submit', description = '' } = Astro.props;
 ---
 
 <form>
@@ -48,23 +48,23 @@ const { inputs, textarea, disclaimer, button = 'Submit', description = '' } = As
   }
 
   {
-    disclaimer && (
+    disclaimers && disclaimers.length && disclaimers.map(d => (
       <div class="mt-3 flex items-start">
         <div class="flex mt-0.5">
           <input
-            id="disclaimer"
-            name="disclaimer"
+            id={d.id}
+            name={d.name}
             type="checkbox"
             class="cursor-pointer mt-1 py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
           />
         </div>
         <div class="ml-3">
           <label for="disclaimer" class="cursor-pointer select-none text-sm text-gray-600 dark:text-gray-400">
-            {disclaimer.label}
+            {d.label}
           </label>
         </div>
       </div>
-    )
+    ))
   }
 
   {

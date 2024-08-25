@@ -123,6 +123,8 @@ export interface Textarea {
 }
 
 export interface Disclaimer {
+  id?: string;
+  name?: string;
   label?: string;
 }
 
@@ -154,7 +156,7 @@ export interface Collapse {
 export interface Form {
   inputs?: Input[];
   textarea?: Textarea;
-  disclaimer?: Disclaimer;
+  disclaimers?: Disclaimer[];
   button?: string;
   description?: string;
 }
