@@ -84,6 +84,7 @@ export interface Item {
   icon?: IconElement;
   classes?: Record<string, string>;
   callsToAction?: CallToAction[];
+  extraHtml?: string;
   image?: ExtendedImageProps;
 }
 
@@ -233,7 +234,7 @@ export interface Content extends BetterOmit<Headline, 'classes'>, Widget {
   columns?: number;
   isReversed?: boolean;
   isAfterContent?: boolean;
-  callToAction?: CallToAction;
+  callsToAction?: CallToAction[];
 }
 
 export interface Contact extends BetterOmit<Headline, 'classes'>, Form, Widget {}

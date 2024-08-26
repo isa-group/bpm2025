@@ -296,13 +296,14 @@ import IIconParkConnection from 'virtual:icons/icon-park-solid/connection';
       }
     ]}
     isReversed
-    callToAction={{
-      text: 'Learn more',
-      href: 'https://www.adif.es/w/sevilla-santa-justa',
-      icon: ITablerChevronRight,
-      variant: 'secondary'
-    }}
-  >
+    callsToAction={[
+      {
+        text: 'Learn more',
+        href: 'https://www.adif.es/w/sevilla-santa-justa',
+        icon: ITablerChevronRight,
+        variant: 'secondary'
+      }
+    ]}>
     <HighlightBackground slot="bg" />
     <Fragment slot="content">
       <p>

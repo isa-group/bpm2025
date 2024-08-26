@@ -35,7 +35,7 @@ const mergedIconClasses = twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2', defaultIconC
         containerClass
       )}
     >
-      {items.map(({ title, description, icon: IconElement, callsToAction, classes: itemClasses = {}, image }) => (
+      {items.map(({ title, description, icon: IconElement, callsToAction, classes: itemClasses = {}, image, extraHtml }) => (
         <div class="flex justify-between">
           {image
           && (
@@ -61,6 +61,9 @@ const mergedIconClasses = twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2', defaultIconC
                   class={twMerge(`${title ? 'mt-3' : ''} text-muted`, descriptionClass, itemClasses?.description)}
                   set:html={description}
                 />
+              )}
+              {extraHtml && (
+                <Fragment set:html={extraHtml} />
               )}
               {callsToAction && callsToAction.length && (
                 <div class="flex">

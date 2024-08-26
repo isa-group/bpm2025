@@ -1,6 +1,24 @@
 ---
 import Layout from '@/layouts/PageLayout.astro';
+import Content from '@/components/widgets/Content.astro';
+import HighlightBackground from '@/components/ui/HighlightBackground.astro';
+
 import HeaderTussam from '@/assets/images/hero/header-tussam.png';
+import Sevici from '@/assets/images/commute/sevici.png';
+import TussamLogo from '@/assets/images/commute/tussam.png';
+import MetroLogo from '@/assets/images/commute/metro-logo.png';
+import Teletaxi from '@/assets/images/arriving/teletaxi.png';
+import BoltLogo from '@/assets/images/commute/bolt-logo.png';
+import CabifyLogo from '@/assets/images/commute/cabify-logo.png';
+import UberLogo from '@/assets/images/commute/uber-logo.svg';
+import SeviciLogo from '@/assets/images/commute/sevici-logo.png';
+import ElecmoveLogo from '@/assets/images/commute/elecmove-logo.png';
+import AccionaLogo from '@/assets/images/commute/acciona-logo.png';
+import YegoLogo from '@/assets/images/commute/yego-logo.webp';
+import CooltraLogo from '@/assets/images/commute/cooltra-logo.png';
+
+import IMaterialSymbolsInfoOutline from 'virtual:icons/material-symbols/info-outline';
+import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
 ---
 
 <Layout
@@ -11,4 +29,312 @@ import HeaderTussam from '@/assets/images/hero/header-tussam.png';
     src: HeaderTussam,
     alt: 'Urban bus in Seville (TUSSAM)'
   }}>
+
+  <Content
+    classes={{
+      images: '!shadow-none'
+    }}
+    images={[
+      {
+        src: Sevici,
+        alt: 'Sevici bike (public bike service) in Seville'
+      }
+    ]}>
+    <p slot="content">
+      The pedestrian city center and the narrow streets make walking around the best option for transport in Seville.
+      Nevertheless, many options exist in case you need to travel longer distances.
+    </p>
+  </Content>
+
+  <Content
+    title="TUSSAM"
+    isReversed
+    images={[
+      {
+        src: TussamLogo,
+        alt: 'TUSSAM logo, the public bus and tram service in Seville'
+      }
+    ]}
+    items={[
+      {
+        title: 'About',
+        description: `Tussam is the company that controls both bus and tram transport in Seville.
+        Both services have the same fares and Tussam Cards can be used for any of them.
+        Most of their services run from about 6am to 11.30pm, with night buses leaving from the Prado from 12 midnight to 2am.
+        For a single ride, the fare is of 1.40 euros. In case you need to make intensive use of buses or trams,
+        there is also a Tarjeta Turistica (Tourist Card) valid for 1 and 3 days.
+        <br />
+        <br />
+        You can purchase it at Tussam information stands and you can use it for all buses
+        (except the special ones such as the airport bus service). It costs 5 euros for a 1-day card and 10 euros for a 3-day card.
+        You’ll need to pay 1.5 euros extra that will be refunded if you return the card to a Tussam information stand.`,
+        callsToAction: [{
+          text: 'More about TUSSAM in their official website',
+          href: 'https://www.tussam.es/en',
+          variant: 'secondary',
+          icon: IMaterialSymbolsInfoOutline
+        }]
+      },
+      {
+        title: 'Bus',
+        description: `Metropolitan buses are the public transport per excellence in Seville.
+        The extensive network can get you to any part of the city. If you are staying at the Nervion Neighborhood,
+        the most recomended line to get to the venue would be <b>Line 5</b> or the <b>C1</b>. The reccomended stop is <b>El Prado de San Sebastián</b>.`,
+        extraHtml: `<iframe
+          title="Directions from Prado San Sebastián to Meliá Sevilla (BPM2025 venue)"
+          class="border-0 h-96 w-full mt-3"
+          src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d4682.151961865971!2d-5.992016771800484!3d37.38001059414352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0xd126c21e0907c31%3A0x40582fc2a40ca91!2sPrado%20de%20San%20Sebasti%C3%A1n%2C%20Sevilla!3m2!1d37.3806188!2d-5.987266399999999!4m5!1s0xd126c207841835b%3A0xe81ae59a539c7fd3!2sMeli%C3%A1%20Sevilla%2C%20Calle%20Doctor%20Pedro%20de%20Castro%2C%20Sevilla!3m2!1d37.3781122!2d-5.9831901!5e0!3m2!1ses!2ses!4v1697450368519!5m2!1ses!2ses"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"></iframe>`
+      },
+      {
+        title: 'Tramway',
+        description: `Trams are the only vehicles allowed into the pedestrian area of the city,
+        so they can be useful for moving around the historical center. There is only one line, and the stop <b>Puerta Jerez</b>
+        is just 2 minutes away from the venue. If you are staying in the Viapol neighborhood
+        (NH Collection, Barceló Occidental Viapol, Sevilla Center...) there is a stop at <b>San Bernardo</b> station
+        that can take you all the way to the venue.`,
+        extraHtml: `<iframe 
+        title="San Bernardo tram station" 
+        class="border-0 h-96 w-full mt-3"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2241.8578122193844!2d-5.979445813944903!3d37.37881700541597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126e9f20daf5a9%3A0x50d44f82165aba09!2sSan+Bernardo!5e0!3m2!1sen!2ses!4v1561552342326!5m2!1sen!2ses" 
+        allowfullscreen 
+        referrerpolicy="no-referrer-when-downgrade"></iframe>`
+      }
+    ]}>
+    <HighlightBackground slot="bg" />
+  </Content>
+
+  <Content
+    title="Metro"
+    classes={{
+      images: '!shadow-none'
+    }}
+    images={[
+      {
+        src: MetroLogo,
+        alt: 'Metro de Sevilla logo'
+      }
+    ]}
+    callsToAction={[
+      {
+        text: 'Metro Sevilla webpage',
+        href: 'https://www.metro-sevilla.es/',
+        icon: ITablerChevronRight,
+        variant: 'secondary'
+      }
+    ]}>
+    <Fragment slot="content">
+      <p>
+        In case you are staying near <b>Gran Plaza</b> or <b>Nervión</b> you may prefer to use the Metro Line 1.
+        The nearest stops to the venue are <b>El Prado de San Sebastián</b> and <b>San Bernardo</b>.
+      </p>
+      <br />
+      <iframe
+        title="Directions from San Bernardo metro station to Meliá Sevilla (BPM2025 venue)"
+        class="border-0 h-96 w-full mt-3 mb-3"
+        src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d1585.2439274010853!2d-5.982706661259783!3d37.37829347442666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0xd126e9ededa70bf%3A0xb222d0681ef1b1f0!2sSan%20Bernardo%2C%20Sevilla!3m2!1d37.378267799999996!2d-5.9791148!4m5!1s0xd126c207841835b%3A0xe81ae59a539c7fd3!2sMeli%C3%A1%20Sevilla%2C%20Calle%20Dr.%20Pedro%20de%20Castro%2C%201%2C%2041004%20Sevilla!3m2!1d37.3781122!2d-5.9831901!5e0!3m2!1ses!2ses!4v1697214730240!5m2!1ses!2ses"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+      <br />
+    </Fragment>
+  </Content>
+
+  <Content
+    title="Taxi"
+    isReversed
+    images={[
+      {
+        src: Teletaxi,
+        alt: 'Teletaxi logo, the business that helps arrange taxis in Seville'
+      }
+    ]}
+    callsToAction={[
+      {
+        text: 'Learn more about Taxis',
+        href: 'https://teletaxisevilla.es/',
+        icon: ITablerChevronRight,
+        variant: 'secondary'
+      }
+    ]}>
+    <Fragment slot="content">
+      <p>
+        In case you prefer an individual transport, taxi services are available 24 hours the day.
+        Some apps, like <b>MyTaxi</b> may help you see if there is any available around you.
+      </p>
+      <br />
+      <p>
+        The fares are regulated and vary depending on the length of your travel,
+        the weekday and the time when you require their services (more expensive at late night).
+      </p>
+      <br />
+    </Fragment>
+    <HighlightBackground slot="bg" />
+  </Content>
+
+  <Content
+    title="Uber, Cabify & Bolt"
+    classes={{
+      images: '!shadow-none'
+    }}
+    images={[
+      {
+        src: UberLogo,
+        alt: 'Uber logo',
+        class: 'dark:invert'
+      },
+      {
+        src: CabifyLogo,
+        alt: 'Cabify logo'
+      },
+      {
+        src: BoltLogo,
+        alt: 'Bolt logo'
+      }
+    ]}
+    callsToAction={[
+      {
+        text: 'Learn more about Uber',
+        href: 'https://www.uber.com/global/en/price-estimate/',
+        icon: ITablerChevronRight,
+        variant: 'secondary'
+      },
+      {
+        text: 'Learn more about Cabify',
+        href: 'https://cabify.com/en',
+        icon: ITablerChevronRight,
+        variant: 'secondary'
+      },
+      {
+        text: 'Learn more about Bolt',
+        href: 'https://bolt.eu/en-es/',
+        icon: ITablerChevronRight,
+        variant: 'secondary'
+      }
+    ]}>
+    <Fragment slot="content">
+      <p>
+        These are the available VTC services in the city. Their services can be reserved through their apps, just like in many other cities.
+      </p>
+      <br />
+      <p>
+        The estimated fare for an UberX is aproximately of 1.20 per kilometre and 0.10 per minute of travel,
+        which may lead to cheaper services when compared to the taxi.
+      </p>
+    </Fragment>
+  </Content>
+
+  <Content
+    title="Bicycle"
+    isReversed
+    items={[
+      {
+        title: 'Sevici',
+        description: `Would you rather choose a green alternative and go biking to the venue?
+        Seville has a local bike rental with many parking stations all around the city.
+        In every parking station there is an System Access Terminal where you can get a weekly subscription to the rental, check the map,
+        get information in both spanish and english...
+        <br />
+        <br />
+        Note that a 150 € deposit that is recovered later is needed in short term subscriptions.
+        The weekly subscription costs 13.33 € and, with that, the first 30 minutes of biking are free.`,
+        image: {
+          src: SeviciLogo,
+          alt: 'Sevici logo (public bike service in Seville)'
+        },
+        callsToAction: [
+          {
+            text: 'Learn more about Sevici rates',
+            href: 'https://www.sevici.es/en/offers/groups/list#154415',
+            icon: ITablerChevronRight,
+            variant: 'secondary'
+          }
+        ]
+      },
+      {
+        title: 'Elecmove',
+        description: `The leading company in Seville offering all services related to electric bikes.
+        Discover a city riding a bike is fun and eco-friendly!`,
+        image: {
+          src: ElecmoveLogo,
+          alt: 'Elecmove logo'
+        },
+        callsToAction: [
+          {
+            text: 'Learn more about Elecmove rates',
+            href: 'https://elecmove.com/en/electric-bike-rental/',
+            icon: ITablerChevronRight,
+            variant: 'secondary'
+          }
+        ]
+      }
+    ]}>
+    <HighlightBackground slot="bg" />
+  </Content>
+
+  <Content
+    title="Motorbike"
+    items={[
+      {
+        title: 'Acciona',
+        description: `The standard fare is 0.25 euros per minute,
+        but there are passes available in case you know you are going to use it more often.
+        The first 20 minutes are free of charge.`,
+        image: {
+          src: AccionaLogo,
+          alt: 'Acciona logo'
+        },
+        callsToAction: [
+          {
+            text: 'Learn more about Acciona',
+            href: 'https://movilidad.acciona.com/en_ES/seville/',
+            icon: ITablerChevronRight,
+            variant: 'secondary'
+          }
+        ]
+      },
+      {
+        title: 'Yego',
+        description: `The standard fare is 0.31 euros per minute,
+        but there are passes available in case you know you are going to use it more often.`,
+        image: {
+          src: YegoLogo,
+          alt: 'Yego logo',
+          width: 200
+        },
+        callsToAction: [
+          {
+            text: 'Learn more about Yego',
+            href: 'https://rideyego.com/en/how-it-works/sevilla',
+            icon: ITablerChevronRight,
+            variant: 'secondary'
+          }
+        ]
+      },
+      {
+        title: 'Cooltra',
+        description: `The standard fare is 0.26 euros per minute,
+        but there are passes available in case you know you are going to use it more often.`,
+        image: {
+          src: CooltraLogo,
+          alt: 'Cooltra logo',
+          width: 200
+        },
+        callsToAction: [
+          {
+            text: 'Learn more about Cooltra rates',
+            href: 'https://cooltra.com/en/rent-by-minutes-hours/our-prices/',
+            icon: ITablerChevronRight,
+            variant: 'secondary'
+          }
+        ]
+      }
+    ]}>
+    <p slot="content">
+      There are three main operating motorbike renting systems: Acciona, Yego and Cooltra.
+      This kind of rental, also known as "motosharing", lets you take and leave the motorbike anywhere around the city.
+      The renting is controlled through their mobile apps.
+    </p>
+  </Content>
 </Layout>

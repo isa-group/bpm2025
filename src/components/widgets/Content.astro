@@ -11,7 +11,7 @@ const {
   subtitle = await Astro.slots.render('subtitle'),
   tagline,
   content = await Astro.slots.render('content'),
-  callToAction,
+  callsToAction,
   items = [],
   columns,
   images,
@@ -47,10 +47,12 @@ const {
         {content && <div class="mb-12 text-lg dark:text-slate-400" set:html={content} />}
 
         {
-          callToAction && (
-            <div class="mt-[-40px] mb-8 text-primary">
-              <Button variant="link" {...callToAction} />
-            </div>
+          callsToAction && callsToAction.length && (
+            callsToAction.map(c => (
+              <div class="mt-[-25px] mb-8 text-primary">
+                <Button variant="link" {...c} />
+              </div>
+            ))
           )
         }
 
@@ -77,7 +79,7 @@ const {
               <div class="relative m-auto max-w-4xl">
                 {/* @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 */}
                 <Image
-                  class="mx-auto w-full rounded-lg bg-gray-500 shadow-lg"
+                  class={`mx-auto w-full rounded-lg shadow-lg ${classes?.images ?? ''}`}
                   width={500}
                   height={500}
                   widths={[400, 768]}

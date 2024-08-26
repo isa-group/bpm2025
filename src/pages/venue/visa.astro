@@ -62,12 +62,13 @@ import Invitation from '@/assets/images/visa/invitation.jpg';
         alt: 'United States passport'
       }
     ]}
-    callToAction={{
-      text: 'Find requisites from country of origin',
-      href: 'https://www.exteriores.gob.es/en/ServiciosAlCiudadano/Paginas/Servicios-consulares.aspx',
-      icon: ITablerChevronRight,
-      variant: 'secondary'
-    }}>
+    callsToAction={[
+      {
+        text: 'Find requisites from country of origin',
+        href: 'https://www.exteriores.gob.es/en/ServiciosAlCiudadano/Paginas/Servicios-consulares.aspx',
+        icon: ITablerChevronRight,
+        variant: 'secondary'
+      }]}>
     <HighlightBackground slot="bg" />
     <Fragment slot="content">
       <p>
