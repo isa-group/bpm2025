@@ -26,6 +26,7 @@
     "@astrojs/sitemap": "3.1.6",
     "@astrojs/tailwind": "5.1.0",
     "@astrolib/seo": "1.0.0-beta.5",
+    "@dword-design/eslint-plugin-import-alias": "5.1.1",
     "@eslint/config-inspector": "0.5.4",
     "@eslint/js": "9.9.0",
     "@iconify/json": "2.2.239",

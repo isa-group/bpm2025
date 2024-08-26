@@ -6,6 +6,7 @@ import tseslint from 'typescript-eslint';
 import stylistic from '@stylistic/eslint-plugin';
 import fileProgress from 'eslint-plugin-file-progress';
 import gitignore from 'eslint-config-flat-gitignore';
+import eslintPluginImportAlias from '@dword-design/eslint-plugin-import-alias';
 
 const CI_environment = process.env.CI ? 0 : 1;
 
@@ -35,6 +36,22 @@ export default tseslint.config(
       blockSpacing: true
     }),
     name: '(@stylistic) Extended config from plugin'
+  },
+  {
+    name: 'Common rules for all files',
+    plugins: {
+      '@dword-design/import-alias': eslintPluginImportAlias
+    },
+    rules: {
+      '@dword-design/import-alias/prefer-alias': [
+        'error',
+        {
+          alias: {
+            '@/*': './src/*'
+          }
+        }
+      ]
+    }
   },
   {
     files: ['**/*.astro'],
