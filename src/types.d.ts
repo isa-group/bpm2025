@@ -14,6 +14,7 @@ type MakeOptional<T, K extends keyof T> = {
 type SkippedProps = 'width' | 'height' | 'inferSize';
 type ImageComponentProps = Omit<ComponentProps<typeof ImageComponent>, 'slot' | 'children'>;
 type ExtendedImageProps = MakeOptional<ImageComponentProps, SkippedProps>;
+type ExtendedImagePropsWithDescription = ExtendedImageProps & { description?: boolean | string };
 
 export interface MetaDataRobots {
   index?: boolean;
@@ -227,7 +228,7 @@ export interface Steps extends BetterOmit<Headline, 'classes'>, Widget {
 
 export interface Content extends BetterOmit<Headline, 'classes'>, Widget {
   content?: string;
-  images?: (ExtendedImageProps & { description?: boolean | string })[];
+  images?: ExtendedImagePropsWithDescription[];
   items?: Item[];
   columns?: number;
   isReversed?: boolean;

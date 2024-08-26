@@ -1,6 +1,20 @@
 ---
 import Layout from '@/layouts/PageLayout.astro';
+import Content from '@/components/widgets/Content.astro';
+import ImageGrid from '@/components/ui/ImageGrid.astro';
+import HighlightBackground from '@/components/ui/HighlightBackground.astro';
+import { YouTube } from 'astro-embed';
+
 import Sevilla from '@/assets/images/hero/panoramica-sevilla.jpg';
+import PlazaEspanaHero from '@/assets/images/hero/plaza-espana.jpg';
+import PlazaEspanaEntera from '@/assets/images/city/plaza-espana-entera.jpg';
+import Cathedral from '@/assets/images/hero/cathedral.jpg';
+import TorreOro from '@/assets/images/city/torre-oro.jpg';
+import Naranja from '@/assets/images/city/naranja.jpg';
+import SanTelmo from '@/assets/images/city/san-telmo.jpg';
+import Piripi from '@/assets/images/city/piripi-cuadrado.png';
+import Horse from '@/assets/images/city/coche-caballo-cuadrada.png';
+import Setas from '@/assets/images/city/setas.jpg';
 ---
 
 <Layout
@@ -11,4 +25,141 @@ import Sevilla from '@/assets/images/hero/panoramica-sevilla.jpg';
     src: Sevilla,
     alt: 'Panorama of Plaza España in Seville'
   }}>
+  <Content>
+    <p slot="content">
+      Seville is a tourist location par excellence. Its streets still preserve the cultural wealth of all stages of the city history.
+    </p>
+    <HighlightBackground slot="bg" />
+  </Content>
+
+  <ImageGrid
+    classes={{ container: '!pt-0' }}
+    images={[
+      {
+        src: PlazaEspanaEntera,
+        alt: 'Plaza España in Seville'
+      },
+      {
+        src: Cathedral,
+        alt: 'Cathedral of Seville'
+      },
+      {
+        src: TorreOro,
+        alt: 'Tower of Gold in Seville'
+      }
+    ]}>
+    <HighlightBackground slot="bg" />
+  </ImageGrid>
+
+  <Content>
+    <Fragment slot="content">
+      <p>
+        According to legend, Seville was founded by Hercules and its origins are linked with the Tartessian civilisation.
+        It was called Hispalis under the Romans and Isbiliya with the Moors.
+        The high point in its history was following the discovery of America in 1492.
+      </p>
+      <br />
+      <p>
+        The 20th century in Seville saw decisive cultural milestones such as the Ibero-American Exposition of 1929 and Expo '92,
+        and the city's election as the capital of the Autonomous Community of Andalusia.
+        For all its important monuments and fascinating history, Seville is universally famous for being a joyous town
+        and one of the most beloved places by visitors to Spain. While Sevillians are known for their wit and sparkle,
+        the city itself is striking for its vitality. It is currently the capital and largest city of the autonomous community of Andalusia,
+        in Southern Spain, and the city of Carmen, Don Juan and Figaro.
+      </p>
+    </Fragment>
+  </Content>
+
+  <ImageGrid
+    images={[
+      {
+        src: SanTelmo,
+        alt: 'San Telmo Palace in Seville'
+      },
+      {
+        src: Naranja,
+        alt: 'Orange trees in Seville'
+      },
+      {
+        src: PlazaEspanaHero,
+        alt: 'Plaza España in Seville'
+      }
+    ]}>
+    <HighlightBackground slot="bg" />
+  </ImageGrid>
+
+  <Content>
+    <Fragment slot="content">
+      <p>
+        Seville lies on the banks of the Guadalquivir. It has a municipal population of about 700,000, and a metropolitan population
+        of about 1.5 million, making it the fourth-largest city in Spain and the 30th most populous municipality in the European Union.
+        Its Old Town, the third largest in Europe with an area of 4 square kilometres (2 sq mi),
+        contains three UNESCO World Heritage Sites: the Alcázar palace complex, the Cathedral and the General Archive of the Indies
+        (where the historical records of the American continent are kept).
+      </p>
+      <br />
+      <p>
+        Another important element of the city is the Seville harbour, located around 80 kilometres from the Atlantic Ocean.
+        It is the only commercial river port in Spain, with Mediterranean and Atlantic projection.
+        It had great importance in the XVI century when it was established in Seville the House of Trade to monopolize all trade with America.
+      </p>
+      <br />
+    </Fragment>
+  </Content>
+
+  <ImageGrid
+    images={[
+      {
+        src: Piripi,
+        alt: 'Piripi in Bodeguita Antonio Romero'
+      },
+      {
+        src: Horse,
+        alt: 'Carriage in Plaza España'
+      },
+      {
+        src: Setas,
+        alt: 'Metropol Parasol (Setas) in Seville'
+      }
+    ]}>
+    <HighlightBackground slot="bg" />
+  </ImageGrid>
+
+  <Content>
+    <Fragment slot="content">
+      <p>
+        In Seville, visitors will not want to miss the old city, with the Cathedral and the Giralda tower at its heart
+        (you can go up the ramp inside the tower for a magnificent view of the City).
+        Very close by are the royal Mudejar palace known as the Alcazar with marvellous gardens and the Santa Cruz quarter,
+        with cramped streets, flowered balconies, richly decorated facades, hidden patios...
+      </p>
+      <br />
+      <p>
+        Other sights not to be missed are: the Casa de Pilatos, a large sixteenth-century mansion where Mudejar,
+        Gothic and Renaissance styles blend harmoniously amidst exuberant patios and gardens: La Maestranza bullring,
+        the Tower of Gold, María Luisa park, crossing the Triana bridge over the large Guadalquivir River,
+        and the lively popular quarter Triana with charming narrow streets around the church of Santa Ana and traditional ceramic factories.
+        It is required to interrupt sightseeing from time to time to have a few "tapas", those amazing typical "small Spanish dishes",
+        and a glass of Sherry wine in one of the probably thousands of bars in this city.
+      </p>
+      <br />
+      <p>
+        It will be the end of summer time in Seville during BPM Conference, with comfortable temperatures averaging around
+        28ºC (82ºF) and low probabilities of rainfalls.
+      </p>
+      <br />
+    </Fragment>
+  </Content>
+
+  <Content
+    title="Come to Seville!"
+    classes={{ contentContainer: 'justify-center w-full' }}>
+    <Fragment slot="content">
+      <YouTube
+        class="w-screen"
+        id="9-PCsRiv6Us"
+        title="Come to Seville with BPM2O25!"
+        posterQuality="max" />
+    </Fragment>
+  </Content>
 </Layout>
