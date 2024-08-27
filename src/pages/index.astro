@@ -5,15 +5,19 @@ import CallToAction from '@/components/widgets/CallToAction.astro';
 import Steps from '@/components/widgets/Steps.astro';
 import Headline from '@/components/ui/Headline.astro';
 import HighlightBackground from '@/components/ui/HighlightBackground.astro';
+import { getPermalink } from '@/utils/permalinks';
+import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
+import Sponsors from '@/components/ui/Sponsors.astro';
+import { Image } from 'astro:assets';
 
 import IHugeIconsTeacher from 'virtual:icons/hugeicons/teacher';
 import IMaterialSymbolsResearch from 'virtual:icons/material-symbols-light/lab-research';
 import IMaterialSymbolsForum from 'virtual:icons/material-symbols/forum';
 
 import SevilleCathedral from '@/assets/images/hero/cathedral.jpg';
-import Sponsors from '@/components/ui/Sponsors.astro';
-import { getPermalink } from '@/utils/permalinks';
-import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
+import BPMLogo from '@/assets/favicons/favicon.svg';
+
+const cathedralText = 'Cathedral of Seville';
 ---
 
 <Layout
@@ -25,20 +29,42 @@ import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
     tagline: '31st Aug - 5th Sep 2025 | Seville, Spain',
     actions: [{ variant: 'primary', text: 'Register', href: getPermalink('/register') }]
   }}>
-  <Fragment slot="hero-subtitle">
+  <p slot="hero-subtitle">
     BPM 2025 is the 23rd conference in a series that provides the most prestigious forum
     for researchers and practitioners in the field of Business Process Management.
-  </Fragment>
+    <br />
+    <br />
+  </p>
+
+  <div class="mt-10 -mb-12 w-full print:hidden flex justify-center" slot="hero-content">
+    <div class="hero-picture-container">
+      <figure class="hero-picture">
+        <picture>
+          <Image class="bg-black" src={BPMLogo} alt="Logo BPM 2025" width={300} height={300} />
+        </picture>
+        <figcaption class="text-center font-bold pt-3 dark:text-black">
+          BPM 2025
+        </figcaption>
+      </figure>
+      <figure class="hero-picture hero-picture--odd">
+        <picture>
+          <Image class="bg-black" src={SevilleCathedral} width={352} height={312} alt={cathedralText} />
+        </picture>
+        <figcaption class="text-center font-bold pt-3 dark:text-black">
+          <a href="https://www.catedraldesevilla.es/" target="_blank">{cathedralText}</a>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
 
   {/* Calendar */}
 
   <Content
-    id="calendar"
     title="Calendar"
     images={[
       {
         src: SevilleCathedral,
-        alt: 'Cathedral of Seville',
+        alt: cathedralText,
         description: true
       }
     ]}
@@ -49,7 +75,6 @@ import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
         and will host hundreds of attendees from all over the world
       </p>
       <Steps
-        id="dates"
         classes={{ container: '!pt-2 !pb-0' }}
         items={[
           {
@@ -112,3 +137,77 @@ import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
     <HighlightBackground slot="bg" />
   </CallToAction>
 </Layout>
+
+<style>
+/**
+ * Polaroid-style pictures, animated on page load to slide down from the top of the page.
+ */
+.hero-picture {
+  --rest-angle: -9deg;
+  --slide-start-x: 0%;
+  --slide-start-y: -15%;
+  --slide-end-x: 0%;
+  --slide-end-y: 0%;
+  display: inline-block;
+  max-width: 30vw;
+  position: relative;
+  border: 5px solid #FFFFFF;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  background-color: #FFFFFF;
+  transform: translate(var(--slide-end-x), var(--slide-end-y)) rotate(var(--rest-angle));
+  animation: 0.5s slideDown ease-out;
+  transition-property: transform, filter;
+  transition-duration: 0.3s;
+  z-index: 11;
+}
+
+.hero-picture--odd {
+  --slide-start-x: 0%;
+  --slide-start-y: 0%;
+  --slide-end-x: 20%;
+  --slide-end-y: 10%;
+  --rest-angle: 6deg;
+  animation-duration: 0.9s;
+  z-index: 0;
+}
+
+.hero-picture:hover, .hero-picture:focus-within {
+  transform: translate(var(--slide-end-x), var(--slide-end-y)) rotate(0) scale(1.25);
+  filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.5));
+  z-index: 12;
+}
+
+@media (min-width: 720px) {
+  .hero-picture {
+    border-width: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-picture {
+    animation-iteration-count: 0;
+  }
+}
+
+@media (min-width: 960px) {
+  div.hero-picture-container {
+    margin-left: 100px;
+  }
+  .hero-picture--odd {
+    --slide-end-x: -60%;
+    --slide-end-y: 0%;
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translate(var(--slide-start-x), var(--slide-start-y)) rotate(0);
+  }
+  50% {
+    transform: translate(calc(var(--slide-start-x) + var(--slide-end-x) / 2), calc(var(--slide-start-y) + var(--slide-end-y) / 2)) rotate(calc(-1 * var(--rest-angle) / 4));
+  }
+  100% {
+    transform: translate(var(--slide-end-x), var(--slide-end-y)) rotate(var(--rest-angle));
+  }
+}
+</style>
