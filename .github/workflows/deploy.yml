@@ -33,7 +33,7 @@ jobs:
           check-latest: true
 
       - name: Install dependencies 📦
-        run: npm ci
+        run: npm ci --no-audit
 
       - name: Build 🏗️
         env:
