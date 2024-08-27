@@ -18,6 +18,7 @@ const classes = {
   {Object.entries(conferenceChairs).map(([section, chairs]) => (
     <Testimonials
       title={section}
+      id={encodeURIComponent(section.toLowerCase().replace(' ', '-'))}
       testimonials={Object.entries(chairs).map(([name, info]) => ({
         name,
         job: info.job,

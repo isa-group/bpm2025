@@ -1,8 +1,9 @@
 import type { CallToAction, MenuLink } from '@/types';
 import type { Props as FooterProps } from '@/components/widgets/Footer.astro';
-import { getHomePermalink, getPermalink } from '@/utils/permalinks';
+import { getAsset, getHomePermalink, getPermalink } from '@/utils/permalinks';
 import ITablerBrandX from 'virtual:icons/tabler/brand-x';
 import ITablerMail from 'virtual:icons/tabler/mail';
+import { conferenceChairs } from '@/data/people';
 
 interface HeaderData {
   links?: MenuLink[];
@@ -102,53 +103,65 @@ export const headerData: HeaderData = {
 export const footerData: FooterData = {
   links: [
     {
-      title: 'Product',
+      title: 'Conference Chairs',
+      links: Object.keys(conferenceChairs).map(k => ({
+        text: k,
+        href: getPermalink(`/conference/chairs/#${encodeURIComponent(k.toLowerCase().replace(' ', '-'))}`)
+      }))
+    },
+    {
+      title: 'Venue',
       links: [
-        { text: 'Features', href: '#' },
-        { text: 'Security', href: '#' },
-        { text: 'Team', href: '#' },
-        { text: 'Enterprise', href: '#' },
-        { text: 'Customer stories', href: '#' },
-        { text: 'Pricing', href: '#' },
-        { text: 'Resources', href: '#' }
+        { text: 'Location', href: getPermalink('/venue/#location') }
       ]
     },
     {
-      title: 'Platform',
+      title: 'Getting there',
       links: [
-        { text: 'Developer API', href: '#' },
-        { text: 'Partners', href: '#' },
-        { text: 'Atom', href: '#' },
-        { text: 'Electron', href: '#' },
-        { text: 'AstroWind Desktop', href: '#' }
+        { text: 'From Seville airport (SVQ)', href: getPermalink('/venue/getting-there/#from-seville-airport-svq') },
+        { text: 'From Malaga airport (AGP)', href: getPermalink('/venue/getting-there/#from-malaga-airport-agp') },
+        { text: 'From Madrid airport (MAD)', href: getPermalink('/venue/getting-there/#from-madrid-airport-mad') },
+        { text: 'Train station', href: getPermalink('/venue/getting-there/#train-station') }
       ]
     },
     {
-      title: 'Support',
+      title: 'Where to stay',
       links: [
-        { text: 'Docs', href: '#' },
-        { text: 'Community Forum', href: '#' },
-        { text: 'Professional Services', href: '#' },
-        { text: 'Skills', href: '#' },
-        { text: 'Status', href: '#' }
+        { text: 'Hesperia Sevilla Hotel', href: getPermalink('venue/where-to-stay/#hesperia') },
+        { text: 'Novotel Sevilla', href: getPermalink('venue/where-to-stay/#novotel') },
+        { text: 'Barceló Occidental Sevilla Viapol', href: getPermalink('venue/where-to-stay/#barcelo') }
       ]
     },
     {
-      title: 'Company',
+      title: 'Visa information',
       links: [
-        { text: 'About', href: '#' },
-        { text: 'Blog', href: '#' },
-        { text: 'Careers', href: '#' },
-        { text: 'Press', href: '#' },
-        { text: 'Inclusion', href: '#' },
-        { text: 'Social Impact', href: '#' },
-        { text: 'Shop', href: '#' }
+        { text: 'EU/EEA Nationals', href: getPermalink('/venue/visa/#eu') },
+        { text: 'Non-EU/EEA Nationals', href: getPermalink('/venue/visa/#non-eu') },
+        { text: 'How do I apply for a visa?', href: getPermalink('/venue/visa/#apply') },
+        { text: 'How can I get an invitation letter?', href: getPermalink('/venue/visa/#invitation-letter') }
+      ]
+    },
+    {
+      title: 'Getting around',
+      links: [
+        { text: 'TUSSAM', href: getPermalink('/venue/getting-around/#tussam') },
+        { text: 'Metro', href: getPermalink('/venue/getting-around/#metro') },
+        { text: 'Taxi', href: getPermalink('/venue/getting-around/#taxi') },
+        { text: 'Uber, Cabify & Bolt', href: getPermalink('/venue/getting-around/#vtc') },
+        { text: 'Bicycle', href: getPermalink('/venue/getting-around/#bicycle') },
+        { text: 'Motorbike', href: getPermalink('/venue/getting-around/#motorbike') }
+      ]
+    },
+    {
+      title: 'Sponsors',
+      links: [
+        { text: 'Our sponsors', href: getPermalink('/sponsors') },
+        { text: 'Become a sponsor', href: getPermalink('/sponsors/become-a-sponsor') }
       ]
     }
   ],
   secondaryLinks: [
-    { text: 'Terms', href: getPermalink('/terms') },
-    { text: 'Privacy Policy', href: getPermalink('/privacy') }
+    { text: 'Sitemap', href: getAsset('/sitemap-index.xml') }
   ],
   socialLinks: [
     { ariaLabel: 'X', icon: ITablerBrandX, href: 'https://x.com/bpmconf' },

@@ -1,5 +1,7 @@
 import config from '../../astro.config';
 
+const trailingSlash = config.trailingSlash === 'always';
+
 function trim(str = '', ch?: string) {
   let start = 0,
     end = str.length || 0;
@@ -14,7 +16,7 @@ const createPath = (...params: string[]) => {
     .map(el => trimSlash(el))
     .filter(el => !!el)
     .join('/');
-  return '/' + paths + (config.trailingSlash && paths ? '/' : '');
+  return '/' + paths + (trailingSlash && paths ? '/' : '');
 };
 
 const BASE_PATHNAME = config.base ?? '/';
@@ -22,9 +24,9 @@ const BASE_PATHNAME = config.base ?? '/';
 /** */
 export const getCanonical = (path = ''): string | URL => {
   const url = String(new URL(path, config.site));
-  if (config.trailingSlash === 'ignore' && path && url.endsWith('/')) {
+  if (!trailingSlash && path && url.endsWith('/')) {
     return url.slice(0, -1);
-  } else if (config.trailingSlash !== 'ignore' && path && !url.endsWith('/')) {
+  } else if (trailingSlash && path && !url.endsWith('/')) {
     return url + '/';
   }
   return url;
