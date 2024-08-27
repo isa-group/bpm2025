@@ -1,10 +1,8 @@
 ---
-import { merge } from 'lodash-es';
 import { AstroSeo } from '@astrolib/seo';
-
 import type { Props as AstroSeoProps } from '@astrolib/seo';
 
-import { site, metadata, i18n } from '@/config.json';
+import { metadata, i18n } from '@/config.json';
 import type { MetaData } from '@/types';
 import { getCanonical } from '@/utils/permalinks';
 
@@ -16,47 +14,30 @@ const {
   title,
   ignoreTitleTemplate = false,
   canonical = String(getCanonical(String(Astro.url.pathname))),
-  robots = {},
   description,
   openGraph = {},
   twitter = {}
 } = Astro.props;
 
-const seoProps: AstroSeoProps = merge(
-  {
-    title: '',
-    titleTemplate: '%s',
-    canonical: canonical,
-    noindex: false,
-    nofollow: false,
-    description: undefined,
-    openGraph: {
-      url: canonical,
-      site_name: site.name,
-      images: [],
-      locale: i18n.language,
-      type: 'website'
-    },
-    twitter: {
-      cardType: openGraph?.images?.length ? 'summary_large_image' : 'summary'
-    }
+const seoProps: AstroSeoProps = {
+  title: title ?? metadata.title.default ?? '',
+  titleTemplate: ignoreTitleTemplate ? '%s' : metadata.title.template ?? '%s',
+  canonical: canonical,
+  noindex: false,
+  nofollow: false,
+  description: description ?? metadata.description,
+  openGraph: {
+    url: canonical,
+    images: [],
+    locale: i18n.language,
+    ...metadata.openGraph,
+    ...openGraph
   },
-  {
-    title: metadata.title.default,
-    titleTemplate: metadata.title.template,
-    description: metadata.description,
-    openGraph: metadata.openGraph,
-    twitter: metadata.twitter
-  },
-  {
-    title: title,
-    titleTemplate: ignoreTitleTemplate ? '%s' : undefined,
-    canonical: canonical,
-    description: description,
-    openGraph: { url: canonical, ...openGraph },
-    twitter: twitter
+  twitter: {
+    ...metadata.twitter,
+    ...twitter
   }
-);
+};
 ---
 
 <AstroSeo {...seoProps} />

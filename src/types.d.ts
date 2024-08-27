@@ -1,4 +1,5 @@
 import type { HTMLAttributes, ComponentProps } from 'astro/types';
+import type { Props as AstroSeoProps } from '@astrolib/seo';
 import { Image as ImageComponent } from 'astro:assets';
 import ITablerCheck from 'virtual:icons/tabler/check';
 
@@ -16,32 +17,13 @@ type ImageComponentProps = Omit<ComponentProps<typeof ImageComponent>, 'slot' | 
 type ExtendedImageProps = MakeOptional<ImageComponentProps, SkippedProps>;
 type ExtendedImagePropsWithDescription = ExtendedImageProps & { description?: boolean | string };
 
-export interface MetaDataRobots {
-  index?: boolean;
-  follow?: boolean;
-}
-
-export interface MetaDataOpenGraph {
-  url?: string;
-  siteName?: string;
-  images?: MetaDataImage[];
-  locale?: string;
-  type?: string;
-}
-
-export interface MetaDataTwitter {
-  handle?: string;
-  site?: string;
-  cardType?: string;
-}
 export interface MetaData {
-  title?: string;
+  title?: AstroSeoProps['title'];
   ignoreTitleTemplate?: boolean;
-  canonical?: string;
-  robots?: MetaDataRobots;
-  description?: string;
-  openGraph?: MetaDataOpenGraph;
-  twitter?: MetaDataTwitter;
+  canonical?: AstroSeoProps['canonical'];
+  description?: AstroSeoProps['description'];
+  openGraph?: AstroSeoProps['openGraph'];
+  twitter?: AstroSeoProps['twitter'];
 }
 
 export interface Widget {

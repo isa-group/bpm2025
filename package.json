@@ -17,8 +17,7 @@
   },
   "dependencies": {
     "@fontsource-variable/inter": "5.0.20",
-    "astro-embed": "0.7.2",
-    "lodash-es": "4.17.21"
+    "astro-embed": "0.7.2"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.3",
@@ -33,7 +32,6 @@
     "@stylistic/eslint-plugin": "2.6.4",
     "@tailwindcss/typography": "0.5.14",
     "@types/eslint": "9.6.1",
-    "@types/lodash-es": "4.17.12",
     "astro": "4.14.5",
     "astro-compress": "2.3.1",
     "astro-eslint-parser": "1.0.2",

@@ -18,7 +18,7 @@
         },
         "twitter": {
             "site": "@bpmconf",
-            "cardType": "summary_large_image"
+            "cardType": "summary"
         }
     },
     "i18n": {
