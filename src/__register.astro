@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layouts/PageLayout.astro';
 import HeroText from '@/components/widgets/HeroText.astro';
-import ContactUs from '@/components/widgets/Contact.astro';
+import Contact from '@/components/widgets/Contact.astro';
 
 const metadata = {
   title: 'Register'
@@ -12,7 +12,7 @@ const metadata = {
   <span slot="announcement"></span>
   <span slot="hero"></span>
   <HeroText tagline="Register" title="Register as an attendee" />
-  <ContactUs
+  <Contact
     id="form"
     inputs={[
       {

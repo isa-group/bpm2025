@@ -90,14 +90,14 @@ export const headerData: HeaderData = {
         }
       ]
     }
-  ],
-  actions: [
-    {
-      text: 'Register',
-      href: getPermalink('/register'),
-      variant: 'primary'
-    }
   ]
+  // actions: [
+  //   {
+  //     text: 'Register',
+  //     href: getPermalink('/register'),
+  //     variant: 'primary'
+  //   }
+  // ]
 };
 
 export const footerData: FooterData = {
