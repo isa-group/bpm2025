@@ -40,7 +40,7 @@ const cathedralText = 'Cathedral of Seville';
     <div class="hero-picture-container">
       <figure class="hero-picture">
         <picture>
-          <Image class="bg-black" src={BPMLogo} alt="Logo BPM 2025" width={300} height={300} />
+          <Image class="bg-black" src={BPMLogo} alt="Logo BPM 2025" width={300} height={300} loading="eager" />
         </picture>
         <figcaption class="text-center font-bold pt-3 dark:text-black">
           BPM 2025
@@ -48,7 +48,7 @@ const cathedralText = 'Cathedral of Seville';
       </figure>
       <figure class="hero-picture hero-picture--odd">
         <picture>
-          <Image class="bg-black" src={SevilleCathedral} width={352} height={312} alt={cathedralText} />
+          <Image class="bg-black" src={SevilleCathedral} width={352} height={312} alt={cathedralText} loading="eager" />
         </picture>
         <figcaption class="text-center font-bold pt-3 dark:text-black">
           <a href="https://www.catedraldesevilla.es/" target="_blank">{cathedralText}</a>

@@ -27,8 +27,8 @@ const seoProps: AstroSeoProps = merge(
     title: '',
     titleTemplate: '%s',
     canonical: canonical,
-    noindex: true,
-    nofollow: true,
+    noindex: false,
+    nofollow: false,
     description: undefined,
     openGraph: {
       url: canonical,
@@ -44,8 +44,6 @@ const seoProps: AstroSeoProps = merge(
   {
     title: metadata.title.default,
     titleTemplate: metadata.title.template,
-    noindex: typeof metadata.robots.index,
-    nofollow: typeof metadata.robots.follow,
     description: metadata.description,
     openGraph: metadata.openGraph,
     twitter: metadata.twitter
@@ -54,8 +52,6 @@ const seoProps: AstroSeoProps = merge(
     title: title,
     titleTemplate: ignoreTitleTemplate ? '%s' : undefined,
     canonical: canonical,
-    noindex: typeof robots?.index !== 'undefined' ? !robots.index : undefined,
-    nofollow: typeof robots?.follow !== 'undefined' ? !robots.follow : undefined,
     description: description,
     openGraph: { url: canonical, ...openGraph },
     twitter: twitter

@@ -15,7 +15,7 @@ const classes = {
 <Layout metadata={{
   title: 'Conference Chairs'
 }}>
-  {Object.entries(conferenceChairs).map(([section, chairs]) => (
+  {Object.entries(conferenceChairs).map(([section, chairs], section_index) => (
     <Testimonials
       title={section}
       id={encodeURIComponent(section.toLowerCase().replace(' ', '-'))}
@@ -49,7 +49,9 @@ const classes = {
         ...(info.image && ({
           image: {
             src: info.image,
-            alt: name
+            alt: name,
+            /* Suggested by Astro audit */
+            loading: section_index >= 1 ? 'lazy' : 'eager'
           }
         }))
       }))} />

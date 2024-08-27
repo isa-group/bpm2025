@@ -24,7 +24,7 @@ const classes = {
   </Fragment>
 
   <Testimonials
-    testimonials={Object.entries(steeringCommittee).map(([name, p]) => ({
+    testimonials={Object.entries(steeringCommittee).map(([name, p], index) => ({
       name: `${p.treatment} ${name}`,
       job: p.job,
       testimonial: p.bio,
@@ -54,7 +54,8 @@ const classes = {
       ...(p.image && ({
         image: {
           src: p.image,
-          alt: name
+          alt: name,
+          loading: index >= 6 ? 'lazy' : 'eager'
         }
       }))
     }))} />
