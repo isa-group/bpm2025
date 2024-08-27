@@ -4,8 +4,8 @@
     },
     "metadata": {
         "title": {
-            "default": "BPM2025 Conference (Seville)",
-            "template": "%s — BPM2025 Conference (Seville)"
+            "default": "23rd International Conference on Business Process Management (BPM 2025)",
+            "template": "%s — 23rd International Conference on Business Process Management (BPM 2025)"
         },
         "description": "BPM 2025 is the 23rd conference in a series that provides the most prestigious forum for researchers and practitioners in the field of Business Process Management.",
         "robots": {
