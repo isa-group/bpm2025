@@ -58,26 +58,6 @@ export interface Headline {
   classes?: Record<string, string>;
 }
 
-interface TeamMember {
-  name?: string;
-  job?: string;
-  image?: ExtendedImageProps;
-  socials?: Social[];
-  description?: string;
-  classes?: Record<string, string>;
-}
-
-interface Social {
-  icon?: IconElement;
-  href?: string;
-}
-
-export interface Stat {
-  amount?: number | string;
-  title?: string;
-  icon?: IconElement;
-}
-
 export interface Item {
   title?: string;
   description?: string;
@@ -86,18 +66,6 @@ export interface Item {
   callsToAction?: CallToAction[];
   extraHtml?: string;
   image?: ExtendedImageProps;
-}
-
-export interface Price {
-  title?: string;
-  subtitle?: string;
-  description?: string;
-  price?: number | string;
-  period?: string;
-  items?: Item[];
-  callToAction?: CallToAction;
-  hasRibbon?: boolean;
-  ribbonTitle?: string;
 }
 
 export interface Testimonial {
@@ -147,14 +115,6 @@ export interface ItemGrid {
 
 export type ItemList = BetterOmit<ItemGrid, 'columns'>;
 
-export interface Collapse {
-  iconUp?: string;
-  iconDown?: string;
-  items?: Item[];
-  columns?: number;
-  classes?: Record<string, string>;
-}
-
 export interface Form {
   inputs?: Input[];
   textarea?: Textarea;
@@ -168,18 +128,6 @@ export interface Hero extends BetterOmit<Headline, 'classes'>, BetterOmit<Widget
   content?: string;
   actions?: string | CallToAction[];
   image?: ExtendedImageProps;
-}
-
-export interface Team extends BetterOmit<Headline, 'classes'>, Widget {
-  team?: TeamMember[];
-}
-
-export interface Stats extends BetterOmit<Headline, 'classes'>, Widget {
-  stats?: Stat[];
-}
-
-export interface Pricing extends BetterOmit<Headline, 'classes'>, Widget {
-  prices?: Price[];
 }
 
 export interface Testimonials extends BetterOmit<Headline, 'classes'>, Widget {
@@ -206,13 +154,6 @@ export interface Features extends BetterOmit<Headline, 'classes'>, Widget {
   isReversed?: boolean;
   isBeforeContent?: boolean;
   isAfterContent?: boolean;
-}
-
-export interface Faqs extends BetterOmit<Headline, 'classes'>, Widget {
-  iconUp?: string;
-  iconDown?: string;
-  items?: Item[];
-  columns?: number;
 }
 
 export interface Steps extends BetterOmit<Headline, 'classes'>, Widget {

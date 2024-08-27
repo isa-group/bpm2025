@@ -1,25 +1,8 @@
 ---
 import '@fontsource-variable/inter';
-
-// 'DM Sans'
-// Nunito
-// Dosis
-// Outfit
-// Roboto
-// Literata
-// 'IBM Plex Sans'
-// Karla
-// Poppins
-// 'Fira Sans'
-// 'Libre Franklin'
-// Inconsolata
-// Raleway
-// Oswald
-// 'Space Grotesk'
-// Urbanist
 ---
 
-<style is:inline>
+<style is:global>
   :root {
     --aw-font-sans: 'InterVariable';
     --aw-font-serif: 'InterVariable';
@@ -39,6 +22,10 @@ import '@fontsource-variable/inter';
     ::selection {
       background-color: lavender;
     }
+  }
+
+  img {
+    content-visibility: auto;
   }
 
   .dark {

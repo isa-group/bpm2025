@@ -1,13 +1,8 @@
----
-import { ui } from '@/config.json';
----
+<script>
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-nocheck
 
-<script is:inline define:vars={{ defaultTheme: ui.theme }}>
-  if (window.basic_script) {
-    return;
-  }
-
-  window.basic_script = true;
+  import { ui } from '@/config.json';
 
   function applyTheme(theme) {
     if (theme === 'dark') {
@@ -18,8 +13,8 @@ import { ui } from '@/config.json';
   }
 
   const initTheme = function () {
-    if ((defaultTheme && defaultTheme.endsWith(':only')) || (!localStorage.theme && defaultTheme !== 'system')) {
-      applyTheme(defaultTheme.replace(':only', ''));
+    if ((ui.theme && ui.theme.endsWith(':only')) || (!localStorage.theme && ui.theme !== 'system')) {
+      applyTheme(ui.theme.replace(':only', ''));
     } else if (
       localStorage.theme === 'dark'
       || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
@@ -29,6 +24,7 @@ import { ui } from '@/config.json';
       applyTheme('light');
     }
   };
+
   initTheme();
 
   function attachEvent(selector, event, fn) {
@@ -65,44 +61,11 @@ import { ui } from '@/config.json';
     });
 
     attachEvent('[data-aw-toggle-color-scheme]', 'click', function () {
-      if (defaultTheme.endsWith(':only')) {
+      if (ui.theme.endsWith(':only')) {
         return;
       }
       document.documentElement.classList.toggle('dark');
       localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-    });
-
-    attachEvent('[data-aw-social-share]', 'click', function (_, elem) {
-      const network = elem.getAttribute('data-aw-social-share');
-      const url = encodeURIComponent(elem.getAttribute('data-aw-url'));
-      const text = encodeURIComponent(elem.getAttribute('data-aw-text'));
-
-      let href;
-      switch (network) {
-        case 'facebook':
-          href = `https://www.facebook.com/sharer.php?u=${url}`;
-          break;
-        case 'twitter':
-          href = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
-          break;
-        case 'linkedin':
-          href = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${text}`;
-          break;
-        case 'whatsapp':
-          href = `https://wa.me/?text=${text}%20${url}`;
-          break;
-        case 'mail':
-          href = `mailto:?subject=%22${text}%22&body=${text}%20${url}`;
-          break;
-
-        default:
-          return;
-      }
-
-      const newlink = document.createElement('a');
-      newlink.target = '_blank';
-      newlink.href = href;
-      newlink.click();
     });
 
     const screenSize = window.matchMedia('(max-width: 767px)');
