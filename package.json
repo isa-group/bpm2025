@@ -16,7 +16,7 @@
     "eslint-inspect": "eslint-config-inspector"
   },
   "dependencies": {
-    "@fontsource-variable/inter": "5.0.20",
+    "@fontsource-variable/inter": "5.0.21",
     "astro-embed": "0.7.2"
   },
   "devDependencies": {
