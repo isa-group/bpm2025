@@ -8,8 +8,7 @@
       "matchDepTypes": [
         "devDependencies"
       ],
-      "groupName": "npm development dependencies",
-      "groupSlug": "npm-dev"
+      "groupName": "npm (development)"
     },
     {
       "matchManagers": [
@@ -18,34 +17,30 @@
       "matchDepTypes": [
         "dependencies"
       ],
-      "groupName": "npm dependencies",
-      "groupSlug": "npm"
+      "groupName": "npm (runtime)"
     },
     {
       "matchManagers": [
         "github-actions"
       ],
       "separateMajorMinor": false,
-      "groupName": "CI dependencies",
-      "groupSlug": "ci-deps"
+      "groupName": "ci"
     },
     {
       "matchUpdateTypes": [
         "lockFileMaintenance"
       ],
-      "groupSlug": "lockfiles",
+      "groupName": "lockfiles",
       "dependencyDashboardApproval": true
     }
   ],
   "dependencyDashboard": true,
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
-  "transitiveRemediation": true,
   "osvVulnerabilityAlerts": true,
   "vulnerabilityAlerts": {
     "enabled": true,
-    "groupName": "vulnerable dependencies",
-    "groupSlug": "vulnerabilities",
+    "groupName": "vulnerable",
     "labels": [
       "security",
       "dependencies"
@@ -66,8 +61,12 @@
   "rangeStrategy": "pin",
   "lockFileMaintenance": {
     "enabled": true,
+    "groupName": "lockfiles",
     "schedule": [
       "every month"
     ]
-  }
+  },
+  "extends": [
+    "mergeConfidence:age-confidence-badges"
+  ]
 }
