@@ -36,9 +36,9 @@ const cathedralText = 'Cathedral of Seville';
     <br />
   </p>
 
-  <div class="mt-10 -mb-12 w-full print:hidden flex justify-center" slot="hero-content">
-    <div class="hero-picture-container">
-      <figure class="hero-picture">
+  <div class="lg:-mb-12 w-full print:hidden flex justify-center" slot="hero-content">
+    <div class="hero-picture-container lg:-mb-60 mx-12">
+      <figure class="hero-picture bg-white lg:border-8 border-4 border-white">
         <picture>
           <Image class="bg-black" src={BPMLogo} alt="Logo BPM 2025" width={300} height={300} loading="eager" />
         </picture>
@@ -46,7 +46,7 @@ const cathedralText = 'Cathedral of Seville';
           BPM 2025
         </figcaption>
       </figure>
-      <figure class="hero-picture hero-picture--odd">
+      <figure class="hero-picture hero-picture--odd bg-white lg:border-8 border-4 border-white">
         <picture>
           <Image class="bg-black" src={SevilleCathedral} width={352} height={312} alt={cathedralText} loading="eager" />
         </picture>
@@ -145,15 +145,13 @@ const cathedralText = 'Cathedral of Seville';
 .hero-picture {
   --rest-angle: -9deg;
   --slide-start-x: 0%;
-  --slide-start-y: -15%;
+  --slide-start-y: 0%;
   --slide-end-x: 0%;
-  --slide-end-y: 0%;
+  --slide-end-y: -10%;
   display: inline-block;
   max-width: 30vw;
   position: relative;
-  border: 5px solid #FFFFFF;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  background-color: #FFFFFF;
   transform: translate(var(--slide-end-x), var(--slide-end-y)) rotate(var(--rest-angle));
   animation: 0.5s slideDown ease-out;
   transition-property: transform, filter;
@@ -162,10 +160,7 @@ const cathedralText = 'Cathedral of Seville';
 }
 
 .hero-picture--odd {
-  --slide-start-x: 0%;
-  --slide-start-y: 0%;
-  --slide-end-x: 20%;
-  --slide-end-y: 10%;
+  --slide-end-x: -50%;
   --rest-angle: 6deg;
   animation-duration: 0.9s;
   z-index: 0;
@@ -177,25 +172,16 @@ const cathedralText = 'Cathedral of Seville';
   z-index: 12;
 }
 
-@media (min-width: 720px) {
-  .hero-picture {
-    border-width: 10px;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .hero-picture {
     animation-iteration-count: 0;
   }
 }
 
-@media (min-width: 960px) {
-  div.hero-picture-container {
-    margin-left: 100px;
-  }
+@media (min-width: 1024px) {
   .hero-picture--odd {
-    --slide-end-x: -60%;
-    --slide-end-y: 0%;
+    --slide-end-x: 20%;
+    --slide-end-y: -80%;
   }
 }
 
