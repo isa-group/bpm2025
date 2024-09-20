@@ -6,11 +6,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--aw-color-primary)',
-        secondary: 'var(--aw-color-secondary)',
-        accent: 'var(--aw-color-accent)',
-        default: 'var(--aw-color-text-default)',
-        muted: 'var(--aw-color-text-muted)'
+        primary: 'rgb(var(--aw-color-primary))',
+        secondary: 'rgb(var(--aw-color-secondary))',
+        accent: 'rgb(var(--aw-color-accent))',
+        default: 'rgb(var(--aw-color-text-default))',
+        muted: 'rgb(var(--aw-color-text-muted))'
       },
       fontFamily: {
         sans: ['var(--aw-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],

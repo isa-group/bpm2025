@@ -35,7 +35,7 @@ const {
             <Fragment set:html={content} />
           </div>
         )}
-        <div class="bg-opacity-30 bg-blend-darken">
+        <div class={subtitle && 'text-shadow'}>
           {
             tagline && (
               <p
@@ -47,13 +47,13 @@ const {
           {
             title && (
               <h1
-                class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading dark:text-gray-200"
+                class="text-5xl md:text-6xl font-bold leading-tight tracking-tighter mb-4 font-heading dark:text-gray-200"
                 set:html={title}
               />
             )
           }
           <div class="max-w-3xl mx-auto">
-            {subtitle && <p class="text-xl text-muted mb-6 dark:text-slate-300" set:html={subtitle} />}
+            {subtitle && <p class="text-xl mb-6 dark:text-slate-300" set:html={subtitle} />}
             {
               actions && (
                 <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4">
@@ -118,7 +118,22 @@ const {
       hsla(0, 0%, 0%, 0.999) 81.7%,
       hsl(0, 0%, 0%) 100%
     );
-    mask-composite: intersect;
   }
+}
+
+.text-shadow:not(.dark *) {
+  background:
+    radial-gradient(
+      ellipse closest-side,
+      rgb(var(--aw-color-bg-page) / 0.8) 0%,
+      rgb(var(--aw-color-bg-page) / 0.75) 30%,
+      rgb(var(--aw-color-bg-page) / 0.65) 50%,
+      rgb(var(--aw-color-bg-page) / 0.4) 85%,
+      rgb(var(--aw-color-bg-page) / 0.3) 92%,
+      rgb(var(--aw-color-bg-page) / 0.15) 95%,
+      rgb(var(--aw-color-bg-page) / 0.08) 97%,
+      rgb(var(--aw-color-bg-page) / 0) 100%
+    )
+  ;
 }
 </style>
