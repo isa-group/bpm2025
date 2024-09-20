@@ -1,7 +1,8 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import typographyPlugin from '@tailwindcss/typography';
+import type { Config } from 'tailwindcss';
 
-module.exports = {
+export default {
   content: ['./src/**/*.{astro,html,js,jsx,json,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
@@ -21,4 +22,4 @@ module.exports = {
   },
   plugins: [typographyPlugin],
   darkMode: 'class'
-};
+} satisfies Config;
