@@ -24,7 +24,6 @@ export interface Props {
 }
 
 const {
-  id = 'header',
   links = headerData.links,
   actions = headerData.actions,
   isSticky = false,
@@ -41,11 +40,10 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 <header
   class:list={[
     { sticky: isSticky, relative: !isSticky, dark: isDark },
-    'top-0 z-40 flex-none mx-auto w-full border-b border-gray-50/0 transition-[opacity]'
+    'top-0 z-40 flex-none mx-auto w-full border-b border-gray-50/0'
   ]}
   {...isSticky ? { 'data-aw-sticky-header': true } : {}}
-  {...id ? { id } : {}}
->
+  id="header">
   <div class="absolute inset-0"></div>
   <div
     class:list={[

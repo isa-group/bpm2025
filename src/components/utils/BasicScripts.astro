@@ -4,6 +4,8 @@
 
   import { ui } from '@/config.json';
 
+  const header_sticky_attribute = 'data-aw-sticky-header';
+
   function applyTheme(theme) {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
@@ -72,20 +74,34 @@
     screenSize.addEventListener('change', () => {
       document.querySelector('[data-aw-toggle-menu]')?.classList.remove('expanded');
       document.body.classList.remove('overflow-hidden');
-      document.getElementById('header')?.classList.remove('h-screen');
-      document.getElementById('header')?.classList.remove('expanded');
-      document.getElementById('header')?.classList.remove('bg-page');
+      const header = document.getElementById('header');
+
+      if (header) {
+        header.classList.remove('h-screen', 'expanded', 'bg-page');
+
+        if (screenSize.matches) {
+          header.classList.remove('dark');
+        } else if (header.hasAttribute(header_sticky_attribute)) {
+          header.classList.add('dark');
+        }
+      }
+
       document.querySelector('#header nav')?.classList.add('hidden');
       document.querySelector('#header > div > div:last-child')?.classList.add('hidden');
     });
 
     function applyHeaderStylesOnScroll() {
-      const header = document.querySelector('#header[data-aw-sticky-header]');
+      const header = document.querySelector(`#header[${header_sticky_attribute}]`);
       if (!header) return;
-      if (lastKnownScrollPosition > 60 && !header.classList.contains('scroll')) {
+      if (lastKnownScrollPosition > 60) {
         header.classList.add('scroll');
-      } else if (lastKnownScrollPosition <= 60 && header.classList.contains('scroll')) {
+        header.classList.remove('dark');
+      } else if (lastKnownScrollPosition <= 60) {
         header.classList.remove('scroll');
+
+        if (!screenSize.matches) {
+          header.classList.add('dark');
+        }
       }
       ticking = false;
     }

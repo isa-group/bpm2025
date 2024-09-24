@@ -22,12 +22,16 @@ const {
   !(ui.theme && ui.theme.endsWith(':only')) && (
     <button type="button" class={className} aria-label={label} data-aw-toggle-color-scheme>
       <IMdiTablerSun class={twMerge(iconClass, 'icon-sun')} />
-      <IMdiTablerMoon class={twMerge(iconClass, 'dark:!hidden')} />
+      <IMdiTablerMoon class={twMerge(iconClass, 'icon-moon')} />
     </button>
   )
 }
 
 <style>
+html.dark .icon-moon {
+  display: none !important;
+}
+
 html:not(.dark) .icon-sun {
   display: none !important;
 }
