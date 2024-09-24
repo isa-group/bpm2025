@@ -73,7 +73,7 @@ jobs:
           show-progress: false
 
       - name: Setup node environment ⚙️
-        uses: actions/setup-node@v4.0.3
+        uses: actions/setup-node@v4.0.4
         with:
           node-version: 20
           cache: 'npm'
