@@ -118,5 +118,5 @@ jobs:
       - name: Install dependencies 📦
         run: npm ci --no-audit
 
-      - name: Run typecheck 📖
+      - name: Run build 👨‍🔧
         run: npm run build
