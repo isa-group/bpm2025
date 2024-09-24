@@ -55,9 +55,16 @@ jobs:
       - name: Check commits
         uses: greenled/no-merge-commits-check@v1.0.1
 
-  lint:
-    name: Lint 🧹
+  quality:
+    name: Run ${{ matrix.command }} 🕵️‍♂️
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        command:
+          - lint
+          - check
+          - build
 
     steps:
       - name: Checkout ⬇️
@@ -69,54 +76,11 @@ jobs:
         uses: actions/setup-node@v4.0.3
         with:
           node-version: 20
+          cache: 'npm'
           check-latest: true
 
       - name: Install dependencies 📦
         run: npm ci --no-audit
 
-      - name: Run linter ✏️
-        run: npm run lint
-
-  check:
-    name: Check 🧪
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout ⬇️
-        uses: actions/checkout@v4.1.7
-        with:
-          show-progress: false
-
-      - name: Setup node environment ⚙️
-        uses: actions/setup-node@v4.0.3
-        with:
-          node-version: 20
-          check-latest: true
-
-      - name: Install dependencies 📦
-        run: npm ci --no-audit
-
-      - name: Run typecheck 📖
-        run: npm run check
-  
-  build:
-    name: Build 🏗️
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout ⬇️
-        uses: actions/checkout@v4.1.7
-        with:
-          show-progress: false
-
-      - name: Setup node environment ⚙️
-        uses: actions/setup-node@v4.0.3
-        with:
-          node-version: 20
-          check-latest: true
-
-      - name: Install dependencies 📦
-        run: npm ci --no-audit
-
-      - name: Run build 👨‍🔧
-        run: npm run build
+      - name: Run ${{ matrix.command }} ⚙️
+        run: npm run ${{ matrix.command }}
