@@ -38,7 +38,13 @@ const { metadata, heroProps = {}, heroImage } = Astro.props;
     >
       <slot name="hero-subtitle" slot="subtitle" />
       <slot name="hero-content" slot="content" />
-      <Image slot="bg" src={heroImage?.src ?? SevilleHeroImage} alt={heroImage?.alt ?? 'Plaza España in Seville'} loading="eager" />
+      <slot name="bg" slot="bg">
+        <Image
+          src={heroImage?.src ?? SevilleHeroImage}
+          alt={heroImage?.alt ?? 'Plaza España in Seville'}
+          loading="eager"
+          decoding="sync" />
+      </slot>
     </Hero>
   </slot>
   <main>

@@ -19,13 +19,11 @@ const {
 ---
 
 <section class="relative md:-mt-20 not-prose bg-dark dark" {...id ? { id } : {}}>
-  <div class="absolute top-0 right-0 left-0 bottom-0 w-full h-full pointer-events-none" aria-hidden="true">
-    <BSlot class="absolute top-0 right-0 left-0 bottom-0 w-full h-full object-cover opacity-30 mask-image">
-      <slot name="bg">
-        {bg && <Fragment set:html={bg} />}
-      </slot>
-    </BSlot>
-  </div>
+  <BSlot class="absolute top-0 w-full h-full object-cover opacity-30 mask-image pointer-events-none" aria-hidden="true">
+    <slot name="bg">
+      {bg && <Fragment set:html={bg} />}
+    </slot>
+  </BSlot>
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
     <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
     <div class="py-12 md:py-20">
