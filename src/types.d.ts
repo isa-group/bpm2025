@@ -2,6 +2,7 @@ import type { HTMLAttributes, ComponentProps } from 'astro/types';
 import type { Props as AstroSeoProps } from '@astrolib/seo';
 import { Image as ImageComponent } from 'astro:assets';
 import ITablerCheck from 'virtual:icons/tabler/check';
+import type { ImageMetadata } from 'astro';
 
 export type IconElement = typeof ITablerCheck;
 // There are some hacks to get this type working properly:
@@ -29,7 +30,7 @@ export interface MetaData {
 export interface Widget {
   id?: string;
   isDark?: boolean;
-  bg?: string;
+  bg?: ImageMetadata | boolean;
   classes?: Record<string, string | Record<string, string>>;
 }
 

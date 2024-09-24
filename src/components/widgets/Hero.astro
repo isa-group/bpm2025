@@ -1,8 +1,8 @@
 ---
 import { Image } from 'astro:assets';
-import BSlot from '@/components/utils/BSlot.astro';
 import Button from '@/components/ui/Button/Button.astro';
 import type { Hero as Props } from '@/types';
+import { isObj } from '@/utils/validation';
 
 const {
   title = await Astro.slots.render('title'),
@@ -14,16 +14,19 @@ const {
   image,
 
   id,
-  bg = await Astro.slots.render('bg')
+  bg
 } = Astro.props;
 ---
 
 <section class="relative md:-mt-20 not-prose bg-dark dark" {...id ? { id } : {}}>
-  <BSlot class="absolute top-0 w-full h-full object-cover opacity-30 mask-image pointer-events-none" aria-hidden="true">
-    <slot name="bg">
-      {bg && <Fragment set:html={bg} />}
-    </slot>
-  </BSlot>
+  <span
+    class:list={[
+      'absolute inset-0 opacity-30 pointer-events-none',
+      'bg-fixed bg-cover bg-center bg-no-repeat'
+    ]}
+    style={isObj(bg) ? { backgroundImage: `url(${bg.src})` } : undefined}
+    aria-hidden="true">
+  </span>
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
     <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
     <div class="py-12 md:py-20">
@@ -95,30 +98,6 @@ const {
 </section>
 
 <style>
-@media (min-width: 768px) {
-  .mask-image {
-    mask-image: linear-gradient(
-      to bottom,
-      hsla(0, 0%, 0%, 0) 0%,
-      hsla(0, 0%, 0%, 0.182) 5.6%,
-      hsla(0, 0%, 0%, 0.34) 9.9%,
-      hsla(0, 0%, 0%, 0.476) 13.1%,
-      hsla(0, 0%, 0%, 0.593) 15.7%,
-      hsla(0, 0%, 0%, 0.69) 17.9%,
-      hsla(0, 0%, 0%, 0.771) 20.2%,
-      hsla(0, 0%, 0%, 0.836) 22.9%,
-      hsla(0, 0%, 0%, 0.888) 26.3%,
-      hsla(0, 0%, 0%, 0.927) 30.8%,
-      hsla(0, 0%, 0%, 0.956) 36.7%,
-      hsla(0, 0%, 0%, 0.976) 44.4%,
-      hsla(0, 0%, 0%, 0.989) 54.3%,
-      hsla(0, 0%, 0%, 0.996) 66.6%,
-      hsla(0, 0%, 0%, 0.999) 81.7%,
-      hsl(0, 0%, 0%) 100%
-    );
-  }
-}
-
 .text-shadow {
   background:
     radial-gradient(

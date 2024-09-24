@@ -3,6 +3,7 @@
   // @ts-nocheck
 
   import { ui } from '@/config.json';
+  import { isStr } from '@/utils/validation';
 
   const header_sticky_attribute = 'data-aw-sticky-header';
 
@@ -30,7 +31,7 @@
   initTheme();
 
   function attachEvent(selector, event, fn) {
-    const matches = typeof selector === 'string' ? document.querySelectorAll(selector) : selector;
+    const matches = isStr(selector) ? document.querySelectorAll(selector) : selector;
     if (matches && matches.length) {
       matches.forEach((elem) => {
         elem.addEventListener(event, e => fn(e, elem), false);

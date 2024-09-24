@@ -4,7 +4,6 @@ import Content from '@/components/widgets/Content.astro';
 import CallToAction from '@/components/widgets/CallToAction.astro';
 import Steps from '@/components/widgets/Steps.astro';
 import Headline from '@/components/ui/Headline.astro';
-import HighlightBackground from '@/components/ui/HighlightBackground.astro';
 import { getPermalink } from '@/utils/permalinks';
 import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
 import Sponsors from '@/components/ui/Sponsors.astro';
@@ -100,7 +99,7 @@ const cathedralText = 'Cathedral of Seville';
 
   { /* Cite */ }
 
-  <Content>
+  <Content bg>
     <Fragment slot="content">
       <blockquote class="text-muted font-serif p-10">
         <div>
@@ -132,7 +131,6 @@ const cathedralText = 'Cathedral of Seville';
         (BPM 2025 General Chairs)
       </cite>
     </Fragment>
-    <HighlightBackground slot="bg" />
   </Content>
 
   {/* Sponsors */}
@@ -160,6 +158,7 @@ const cathedralText = 'Cathedral of Seville';
     title="Let's get together!"
     subtitle="Join us in Seville for BPM 2025 and transform the way you think about <br /> Business Process Management"
     boxed={false}
+    bg
     actions={[
       {
         variant: 'primary',
@@ -168,7 +167,6 @@ const cathedralText = 'Cathedral of Seville';
       }
     ]}
   >
-    <HighlightBackground slot="bg" />
   </CallToAction>
 </Layout>
 

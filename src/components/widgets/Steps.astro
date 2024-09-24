@@ -4,6 +4,7 @@ import Timeline from '@/components/ui/Timeline.astro';
 import Headline from '@/components/ui/Headline.astro';
 import { Image } from 'astro:assets';
 import type { Steps as Props } from '@/types';
+import { isObj } from '@/utils/validation';
 
 const {
   title = await Astro.slots.render('title'),
@@ -16,7 +17,7 @@ const {
   id,
   isDark = false,
   classes = {},
-  bg = await Astro.slots.render('bg')
+  bg
 } = Astro.props;
 ---
 
@@ -30,10 +31,10 @@ const {
         classes={{
           container: 'text-left rtl:text-right',
           title: 'text-3xl lg:text-4xl',
-          ...(typeof classes?.headline === 'object' ? classes.headline : {})
+          ...(isObj(classes?.headline) ? classes.headline : {})
         }}
       />
-      <Timeline items={items} classes={typeof classes?.items === 'object' ? classes.items : {}} />
+      <Timeline items={items} classes={isObj(classes?.items) ? classes.items : {}} />
     </div>
     {
       image && (

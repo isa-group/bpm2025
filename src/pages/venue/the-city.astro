@@ -2,7 +2,6 @@
 import Layout from '@/layouts/PageLayout.astro';
 import Content from '@/components/widgets/Content.astro';
 import ImageGrid from '@/components/ui/ImageGrid.astro';
-import HighlightBackground from '@/components/ui/HighlightBackground.astro';
 import { YouTube } from 'astro-embed';
 
 import Sevilla from '@/assets/images/hero/panoramica-sevilla.jpg';
@@ -21,18 +20,15 @@ import Setas from '@/assets/images/city/setas.jpg';
   metadata={{
     title: 'Seville'
   }}
-  heroImage={{
-    src: Sevilla,
-    alt: 'Panorama of Plaza España in Seville'
-  }}>
-  <Content>
+  heroImage={Sevilla}>
+  <Content bg>
     <p slot="content">
       Seville is a tourist location par excellence. Its streets still preserve the cultural wealth of all stages of the city history.
     </p>
-    <HighlightBackground slot="bg" />
   </Content>
 
   <ImageGrid
+    bg
     classes={{ container: '!pt-0' }}
     images={[
       {
@@ -51,7 +47,6 @@ import Setas from '@/assets/images/city/setas.jpg';
         loading: 'eager'
       }
     ]}>
-    <HighlightBackground slot="bg" />
   </ImageGrid>
 
   <Content>
@@ -74,6 +69,7 @@ import Setas from '@/assets/images/city/setas.jpg';
   </Content>
 
   <ImageGrid
+    bg
     images={[
       {
         src: SanTelmo,
@@ -88,7 +84,6 @@ import Setas from '@/assets/images/city/setas.jpg';
         alt: 'Plaza España in Seville'
       }
     ]}>
-    <HighlightBackground slot="bg" />
   </ImageGrid>
 
   <Content>
@@ -111,6 +106,7 @@ import Setas from '@/assets/images/city/setas.jpg';
   </Content>
 
   <ImageGrid
+    bg
     images={[
       {
         src: Piripi,
@@ -125,7 +121,6 @@ import Setas from '@/assets/images/city/setas.jpg';
         alt: 'Metropol Parasol (Setas) in Seville'
       }
     ]}>
-    <HighlightBackground slot="bg" />
   </ImageGrid>
 
   <Content>

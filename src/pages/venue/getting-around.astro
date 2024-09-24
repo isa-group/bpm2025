@@ -1,7 +1,6 @@
 ---
 import Layout from '@/layouts/PageLayout.astro';
 import Content from '@/components/widgets/Content.astro';
-import HighlightBackground from '@/components/ui/HighlightBackground.astro';
 
 import HeaderTussam from '@/assets/images/hero/header-tussam.png';
 import Sevici from '@/assets/images/commute/sevici.png';
@@ -25,10 +24,7 @@ import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
   metadata={{
     title: 'Getting around'
   }}
-  heroImage={{
-    src: HeaderTussam,
-    alt: 'Urban bus in Seville (TUSSAM)'
-  }}>
+  heroImage={HeaderTussam}>
 
   <Content
     classes={{
@@ -51,6 +47,7 @@ import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
     title="TUSSAM"
     id="tussam"
     isReversed
+    bg
     images={[
       {
         src: TussamLogo,
@@ -106,7 +103,6 @@ import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
           referrerpolicy="no-referrer-when-downgrade"></iframe>`
       }
     ]}>
-    <HighlightBackground slot="bg" />
   </Content>
 
   <Content
@@ -151,6 +147,7 @@ import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
     title="Taxi"
     id="taxi"
     isReversed
+    bg
     images={[
       {
         src: Teletaxi,
@@ -177,7 +174,6 @@ import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
       </p>
       <br />
     </Fragment>
-    <HighlightBackground slot="bg" />
   </Content>
 
   <Content
@@ -237,6 +233,7 @@ import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
     title="Bicycle"
     id="bicycle"
     isReversed
+    bg
     items={[
       {
         title: 'Sevici',
@@ -279,7 +276,6 @@ import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
         ]
       }
     ]}>
-    <HighlightBackground slot="bg" />
   </Content>
 
   <Content

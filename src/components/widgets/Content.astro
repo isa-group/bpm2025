@@ -5,6 +5,7 @@ import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
 import { Image } from 'astro:assets';
 import Button from '@/components/ui/Button/Button.astro';
 import ItemGrid from '@/components/ui/ItemGrid.astro';
+import { isStr } from '@/utils/validation';
 
 const {
   title = await Astro.slots.render('title'),
@@ -21,7 +22,7 @@ const {
   id,
   isDark = false,
   classes = {},
-  bg = await Astro.slots.render('bg')
+  bg
 } = Astro.props;
 ---
 
@@ -88,7 +89,7 @@ const {
                   description={undefined}
                 />
                 <p class="py-2 text-center">
-                  {i.description === true ? i.alt : typeof i.description === 'string' ? i.description : ''}
+                  {i.description === true ? i.alt : isStr(i.description) ? i.description : ''}
                 </p>
               </div>
             ))}

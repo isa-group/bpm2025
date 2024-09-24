@@ -2,7 +2,6 @@
 import Layout from '@/layouts/PageLayout.astro';
 import ReceptionImage from '@/assets/images/hero/reception.jpg';
 import Content from '@/components/widgets/Content.astro';
-import HighlightBackground from '@/components/ui/HighlightBackground.astro';
 
 import Novotel from '@/assets/images/accomodation/novotel.jpg';
 import Novotel2 from '@/assets/images/accomodation/novotel-2.jpg';
@@ -24,13 +23,11 @@ import { getPermalink } from '@/utils/permalinks';
   metadata={{
     title: 'Where to stay'
   }}
-  heroImage={{
-    src: ReceptionImage,
-    alt: 'Receptionist attending a phone call'
-  }}>
+  heroImage={ReceptionImage}>
   <Content
     subtitle="There are many hotels around the venue in a varied range of prices. Here we list some of them:"
     isReversed
+    bg
     classes={{ container: '!pb-0 !mb-0' }}
     images={[
       {
@@ -38,17 +35,16 @@ import { getPermalink } from '@/utils/permalinks';
         alt: 'Breakfast at viapol hotel',
         loading: 'eager'
       }]}>
-    <HighlightBackground slot="bg" />
   </Content>
   <Content
     classes={{ container: '!pt-0 !mt-0 !pb-0 !mb-0' }}
+    bg
     images={[
       {
         src: Novotel,
         alt: 'Novotel reception',
         loading: 'eager'
       }]}>
-    <HighlightBackground slot="bg" />
   </Content>
   <Content
     title="Hesperia Sevilla Hotel ★★★★"
@@ -95,6 +91,7 @@ import { getPermalink } from '@/utils/permalinks';
   <Content
     title="Novotel Sevilla ★★★★"
     id="novotel"
+    bg
     callsToAction={[
       {
         text: 'Book now',
@@ -131,7 +128,6 @@ import { getPermalink } from '@/utils/permalinks';
         referrerpolicy="no-referrer-when-downgrade">
       </iframe>
     </Fragment>
-    <HighlightBackground slot="bg" />
   </Content>
 
   <Content

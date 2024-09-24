@@ -1,6 +1,7 @@
 ---
 import type { CallToAction } from '@/types';
 import Button from '@/components/ui/Button/Button.astro';
+import { isStr } from '@/utils/validation';
 
 export interface Props {
   title?: string;
@@ -49,7 +50,7 @@ const {
             {
               callToAction && (
                 <div class="flex w-full sm:w-auto">
-                  {typeof callToAction === 'string'
+                  {isStr(callToAction)
                     ? (
                         <Fragment set:html={callToAction} />
                       )
@@ -62,7 +63,7 @@ const {
             {
               callToAction2 && (
                 <div class="flex w-full sm:w-auto">
-                  {typeof callToAction2 === 'string'
+                  {isStr(callToAction2)
                     ? (
                         <Fragment set:html={callToAction2} />
                       )

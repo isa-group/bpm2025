@@ -1,7 +1,6 @@
 ---
 import Layout from '@/layouts/PageLayout.astro';
 import Content from '@/components/widgets/Content.astro';
-import HighlightBackground from '@/components/ui/HighlightBackground.astro';
 
 import AirportTerminal from '@/assets/images/arriving/terminal.jpg';
 import TussamEA from '@/assets/images/arriving/tussam-EA.png';
@@ -28,18 +27,16 @@ import IIconParkConnection from 'virtual:icons/icon-park-solid/connection';
   metadata={{
     title: 'How to get there'
   }}
-  heroImage={{
-    src: PlaneImg,
-    alt: 'Plane flying in the sky'
-  }}>
-  <Content images={[
-    {
-      src: AirportTerminal,
-      alt: 'Person waiting at an airport lounge',
-      loading: 'eager'
-    }
-  ]}>
-    <HighlightBackground slot="bg" />
+  heroImage={PlaneImg}>
+  <Content
+    bg
+    images={[
+      {
+        src: AirportTerminal,
+        alt: 'Person waiting at an airport lounge',
+        loading: 'eager'
+      }
+    ]}>
     <Fragment slot="content">
       <p class="text-2xl">
         Seville is the capital of the southern region of Spain, Andalucía.
@@ -301,6 +298,7 @@ import IIconParkConnection from 'virtual:icons/icon-park-solid/connection';
       }
     ]}
     isReversed
+    bg
     callsToAction={[
       {
         text: 'Learn more',
@@ -309,7 +307,6 @@ import IIconParkConnection from 'virtual:icons/icon-park-solid/connection';
         variant: 'secondary'
       }
     ]}>
-    <HighlightBackground slot="bg" />
     <Fragment slot="content">
       <p>
         If you decide to arrive by train, Santa Justa Train Station will be your destination.

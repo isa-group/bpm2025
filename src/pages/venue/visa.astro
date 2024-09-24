@@ -1,7 +1,6 @@
 ---
 import Layout from '@/layouts/PageLayout.astro';
 import Compass from '@/assets/images/hero/compass.jpg';
-import HighlightBackground from '@/components/ui/HighlightBackground.astro';
 import Content from '@/components/widgets/Content.astro';
 
 import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
@@ -20,12 +19,10 @@ import Invitation from '@/assets/images/visa/invitation.jpg';
   metadata={{
     title: 'Visa information'
   }}
-  heroImage={{
-    src: Compass,
-    alt: 'Compass'
-  }}>
+  heroImage={Compass}>
 
   <Content
+    bg
     images={[
       {
         src: PassportImg,
@@ -33,7 +30,6 @@ import Invitation from '@/assets/images/visa/invitation.jpg';
         loading: 'eager'
       }
     ]}>
-    <HighlightBackground slot="bg" />
     <p slot="content">
       International registrants should be particularly aware and careful about visa requirements
       and should plan travel well in advance.
@@ -59,6 +55,7 @@ import Invitation from '@/assets/images/visa/invitation.jpg';
   <Content
     title="Non-EU/EEA Nationals"
     id="non-eu"
+    bg
     images={[
       {
         src: NonEU,
@@ -72,7 +69,6 @@ import Invitation from '@/assets/images/visa/invitation.jpg';
         icon: ITablerChevronRight,
         variant: 'secondary'
       }]}>
-    <HighlightBackground slot="bg" />
     <Fragment slot="content">
       <p>
         Holders of an EEA (EU Member States, Iceland, Liechtenstein, and Norway) or Swiss passport do not require a visa.
@@ -112,6 +108,7 @@ import Invitation from '@/assets/images/visa/invitation.jpg';
     id="invitation-letter"
     title="How can I get an invitation letter?"
     id="invitation-letter"
+    bg
     classes={{
       icon: 'flex-shrink-0 mt-1 text-primary w-6 h-6'
     }}
@@ -147,7 +144,6 @@ import Invitation from '@/assets/images/visa/invitation.jpg';
         icon: ITablerPointFilled
       }
     ]}>
-    <HighlightBackground slot="bg" />
     <Fragment slot="content">
       <p>
         For registered participants and authors of accepted papers, we can provide an invitation letter for visas.

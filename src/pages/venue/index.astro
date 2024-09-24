@@ -1,6 +1,5 @@
 ---
 import Layout from '@/layouts/PageLayout.astro';
-import HighlightBackground from '@/components/ui/HighlightBackground.astro';
 import MeliaHeader from '@/assets/images/hero/melia-header.jpg';
 import Melia1 from '@/assets/images/venue/melia.png';
 import Melia2 from '@/assets/images/venue/melia-2.png';
@@ -18,13 +17,11 @@ const alt = 'Hotel Meliá Sevilla';
   heroProps={{
     tagline: alt
   }}
-  heroImage={{
-    src: MeliaHeader,
-    alt: 'Terrace of Meliá Sevilla'
-  }}>
+  heroImage={MeliaHeader}>
   <Content
     title="Location"
     id="location"
+    bg
     images={[
       {
         src: Melia1,
@@ -41,7 +38,6 @@ const alt = 'Hotel Meliá Sevilla';
         alt: alt
       }
     ]}>
-    <HighlightBackground slot="bg" />
     <Fragment slot="content">
       {/* <HeroText title="Location" /> */}
       {/* <div class="grid lg:grid-cols-2 md:grid-cols-1 gap-6 items-center"> */}

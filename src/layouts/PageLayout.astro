@@ -8,16 +8,12 @@ import { headerData, footerData } from '@/data/navigation';
 import type { MetaData, Hero as HeroProps } from '@/types';
 import type { ImageMetadata } from 'astro';
 
-import { Image } from 'astro:assets';
 import SevilleHeroImage from '@/assets/images/hero/plaza-espana.jpg';
 
 export interface Props {
   metadata?: MetaData;
   heroProps?: HeroProps;
-  heroImage?: {
-    src: ImageMetadata;
-    alt: string;
-  };
+  heroImage?: ImageMetadata;
 }
 
 const { metadata, heroProps = {}, heroImage } = Astro.props;
@@ -34,17 +30,11 @@ const { metadata, heroProps = {}, heroImage } = Astro.props;
     <Hero
       id="hero"
       title={metadata?.title}
+      bg={heroImage ?? SevilleHeroImage}
       {...heroProps}
     >
       <slot name="hero-subtitle" slot="subtitle" />
       <slot name="hero-content" slot="content" />
-      <slot name="bg" slot="bg">
-        <Image
-          src={heroImage?.src ?? SevilleHeroImage}
-          alt={heroImage?.alt ?? 'Plaza España in Seville'}
-          loading="eager"
-          decoding="sync" />
-      </slot>
     </Hero>
   </slot>
   <main>
