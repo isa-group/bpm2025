@@ -45,6 +45,10 @@ export const headerData: HeaderData = {
         {
           text: 'Call for research papers',
           href: getPermalink('/calls/research-papers')
+        },
+        {
+          text: 'Call for workshops',
+          href: getPermalink('/calls/workshops')
         }
       ]
     },

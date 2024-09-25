@@ -20,14 +20,9 @@ function setAttr(el: Element) {
 
 const { document: parsed_doc } = parseHTML(html);
 const children = parsed_doc.children;
-const doc_el = parsed_doc.documentElement;
 
-if (doc_el) {
-  setAttr(doc_el);
-} else {
-  for (const child of children) {
-    setAttr(child);
-  }
+for (const child of children) {
+  setAttr(child);
 }
 
 ---

@@ -3,6 +3,7 @@ import path from 'node:path';
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
+import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
 import Icons from 'unplugin-icons/vite';
 import compress from 'astro-compress';
@@ -11,6 +12,11 @@ export default defineConfig({
   output: 'static',
   base: process.env.CI && process.env.STAGING ? process.env.BASE_URL : '/',
   site: process.env.CI && process.env.STAGING ? process.env.SITE_URL : 'https://www.bpm2025seville.org',
+  markdown: {
+    rehypePlugins: [
+      rehypeHeadingIds
+    ]
+  },
   integrations: [
     tailwind({
       applyBaseStyles: false
