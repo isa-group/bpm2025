@@ -9,11 +9,19 @@ title: Call for workshops
 
 BPM 2025 is the 23rd conference in a series that provides the most prestigious forum for researchers and practitioners in the field of Business Process Management (BPM). The conference has a record of attracting innovative research of the highest quality related to all aspects of BPM, including theories, frameworks, methods, techniques, architectures, and empirical findings. BPM 2025 will take place in Seville, Spain from August 31 to September 5.
 
-BPM 2025 is soliciting proposals for workshops to be held on Monday September 1. Workshops facilitate the exchange of ideas and experiences among active researchers and trigger in-depth discussion of technical, application, and novel perspectives in line with the conference topics. For BPM 2025, we are looking for workshops that jointly cover the full spectrum of BPM research, from foundations to engineering to management, thus reflecting the diversity of the BPM community. A proposed workshop should focus on a specific topic (see e.g., https://bpm2024.agh.edu.pl/workshops/ for an overview of the previous edition); we explicitly encourage workshops that cover contemporary topics in BPM or research in general.
+BPM 2025 is soliciting proposals for workshops to be held on Monday September 1. Workshops facilitate the exchange of ideas and experiences among active researchers and trigger in-depth discussion of technical, application, and novel perspectives in line with the conference topics. For BPM 2025, we are looking for workshops that jointly cover the full spectrum of BPM research, from foundations to engineering to management, thus reflecting the diversity of the BPM community. A proposed workshop should focus on a specific topic (see e.g., [https://bpm2024.agh.edu.pl/workshops/](https://bpm2024.agh.edu.pl/workshops/) for an overview of the previous edition); we explicitly encourage workshops that cover contemporary topics in BPM or research in general.
 
 If you intend to submit a workshop proposal for BPM 2025, please consider that a typical BPM workshop is expected to attract around 20 participants and about 10 submissions. The workshop proposers should have a strong affinity with the proposed workshop topic and be well-connected with experts on that topic. The workshop itself should provide a forum for important, innovative, and timely BPM subtopics. We encourage workshop proposals to broadly cover and expand the topics and paradigms traditionally represented at the BPM conference.
 
-We intend to sustain the increased interaction level in all BPM workshops. Therefore, we require that every workshop includes at least one session dedicated to a creative format, e.g., a panel, a forum to connect practitioners and researchers, a research experiment, a brainstorming or co-creation session, a manifesto or paper writing session, or a session with lightning talks based on research-in-progress abstracts (kept outside of the official proceedings). This way, we envision that the workshop proposers can integrate mechanisms in their workshop to stimulate discussion and interaction beyond what is possible in a plenary conference session.
+We intend to sustain the increased interaction level in all BPM workshops. Therefore, we require that every workshop includes at least one session dedicated to a creative format, e.g.:
+- a panel, 
+- a forum to connect practitioners and researchers, 
+- a research experiment, 
+- a brainstorming or co-creation session, 
+- a manifesto or paper writing session, or 
+- a session with lightning talks based on research-in-progress abstracts (kept outside of the official proceedings). 
+
+This way, we envision that the workshop proposers can integrate mechanisms in their workshop to stimulate discussion and interaction beyond what is possible in a plenary conference session.
 
 Proposals that meet the aforementioned criteria will be evaluated by the general workshop chairs, with the target to accept between six to eight workshops covering a broad spectrum of the BPM research discipline. In the case of very similar workshop proposals, we might negotiate with the organizers to merge into a single workshop.
 
@@ -28,7 +36,7 @@ Workshop proposals should include the following elements:
 - The activities envisioned to stimulate submissions to the workshop.
 - The tentative PC and call for papers.
 
-Proposals must be submitted as a PDF file to bpmworkshops2025@gmail.com. Any inquiries and requests for further information about the organization of workshops should be sent to this email address, too.
+Proposals must be submitted as a PDF file to [bpmworkshops2025@gmail.com](mailto:bpmworkshops2025@gmail.com). Any inquiries and requests for further information about the organization of workshops should be sent to this email address, too.
 
 ## Important Dates
 
