@@ -23,7 +23,7 @@ jobs:
         with:
           ## Workaround from https://github.com/actions/dependency-review-action/issues/456
           ## TODO: Remove when necessary
-          base-ref: ${{ github.event.pull_request.base.sha || 'master' }}
+          base-ref: ${{ github.event.pull_request.base.sha || 'main' }}
           head-ref: ${{ github.event.pull_request.head.sha || github.ref }}
 
   conventional_commits:

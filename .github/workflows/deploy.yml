@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages 🚀
 on:
   push:
     branches: 
-      - master
+      - main
   workflow_dispatch:
 
 # Allow this job to clone the repo and create a page deployment
@@ -38,9 +38,9 @@ jobs:
 
       - name: Build 🏗️
         env:
-          STAGING: 1
-          BASE_URL: /bpm2025
-          SITE_URL: https://us-ferferga.github.io
+          STAGING: 0
+          BASE_URL: /
+          SITE_URL: https://www.bpm2025seville.org/
         run: npm run build
 
       - name: Upload GitHub Pages artifact ⬆️
