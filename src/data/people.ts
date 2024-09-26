@@ -94,7 +94,16 @@ export const steeringCommittee: Record<string, CommitteeMember> = {
     image: Reijers,
     institution: 'University of Utrecht',
     location: 'Utrecht, The Netherlands',
-    email: 'h.a.reijers@uu.nl'
+    email: 'h.a.reijers@uu.nl',
+    bio: `
+      Hajo Reijers is a full professor at Utrecht University, leading the Process Science group in the
+      Department of Information and Computing Sciences, and holds additional professorships at
+      Eindhoven University of Technology and Queensland University of Technology. Formerly a consultant at
+      Deloitte and Accenture, he has also led the BPM research group at Lexmark, served as a professor at
+      Vrije Universiteit Amsterdam and advised multiple high-tech start-ups. His research focuses on
+      business process redesign, automation, conceptual modeling, and enterprise information systems,
+      with over 300 academic publications. See his website (www.reijers.com) for more info or follow his musings on X via @profBPM.
+    `
   },
   'Stefanie Rinderle-Ma': {
     treatment,
@@ -266,7 +275,24 @@ export const conferenceChairs: Record<string, Record<string, CommitteeMember>> =
     }
   },
   'Industry Forum': {
-    'Hugo A. López': {},
+    'Hugo A. López': {
+      email: 'hulo@dtu.dk',
+      institution: 'Technical University of Denmark',
+      location: 'Lyngby, Denmark',
+      bio: `
+        Hugo A. López holds an associate professor position at the Technical University of Denmark.
+        His research objectives involve the maturing of a new generation of process technologies that
+        can adapt to citizen needs while still being compliant with regulations and laws. Such technologies
+        should have a digital component in terms of software tools that support the digitalization of work processes.
+        Finally, technologies should be understandable, even for people who do not have a computer science background.
+        He is an active researcher in the business process management and formal methods communities.
+        Previous academic positions include assistant professorships at DTU and Copenhagen University and postdoctoral
+        positions at IT University of Copenhagen, The University of Lisbon, and DTU.
+        His industry experience includes positions in software consultancy and product ownership at different firms in Denmark,
+        and he regularly supports Danish companies in technology transfer and applied research initiatives.
+        Currently, he is the leader of the Danish Center For Digital Compliance.
+      `
+    },
     'Andrés Jiménez-Ramírez': {
       image: AndresJimenezRamirez,
       ...USData,
@@ -522,6 +548,17 @@ export const conferenceChairs: Record<string, Record<string, CommitteeMember>> =
         His research interests include business process management (BPM), business process simulation, optimization, and blockchain.
         His current area of research is data-driven discovery, simulation, and optimization of business processes.
         He received a PhD in Computer Science in 2020 at the University of Tartu, for which he obtained the best dissertation award at the CAiSE’21.
+      `
+    },
+    'Rehan Syed': {
+      email: 'r.syed@qut.edu.au',
+      institution: 'Queensland University of Technology',
+      location: 'Brisbane, Australia',
+      bio: `
+        Syed is a leading expert and lecturer in Business Process Management (BPM) and Information Systems
+        at Queensland University of Technology, Australia. His research focuses on the socio-technical aspects of
+        Process Automation, Cyber-Human Systems, and Business Process Management for Transparency (BPM4T) in the public sector.
+        Syed has maintained his technical expertise through active consultancy work with the World Bank and various government ICT organizations globally.
       `
     }
   },
