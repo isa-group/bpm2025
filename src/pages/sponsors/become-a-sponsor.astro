@@ -2,8 +2,12 @@
 import Layout from '@/layouts/PageLayout.astro';
 import Content from '@/components/widgets/Content.astro';
 import CallToAction from '@/components/widgets/CallToAction.astro';
+import { getPermalink } from '@/utils/permalinks';
+// import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
+import TablerDownload from 'virtual:icons/tabler/download';
 
 const contactEmail = 'mailto:info@bpm2025seville.org';
+const pdfBrochure = getPermalink('/BPM2025-sponsoring-offer_EN.pdf');
 ---
 
 <Layout
@@ -11,12 +15,19 @@ const contactEmail = 'mailto:info@bpm2025seville.org';
     title: 'Become a sponsor'
   }}
   heroProps={{
-    actions: [{ variant: 'primary', text: 'Contact us', href: contactEmail }]
+    actions: [{ variant: 'primary', text: 'Download brochure', href: pdfBrochure }]
   }}>
   <Content
     id="calendar"
     bg
-    title="Why sponsor BPM 2025?">
+    title="Why sponsor BPM 2025?"
+    callsToAction={[
+      {
+        text: 'Download the BPM 2025 sponsorship brochure',
+        href: pdfBrochure,
+        icon: TablerDownload,
+        variant: 'secondary'
+      }]}>
     <Fragment slot="content">
       <p>
         This will be the 23rd Conference on Business Process Management, and is being held in Seville on September 2025.
@@ -29,7 +40,6 @@ const contactEmail = 'mailto:info@bpm2025seville.org';
         promote a product that’s useful to academy, promote awareness of your organisation,
         or just give something back to the community, then you should sponsor BPM 2025.
       </p>
-
     </Fragment>
   </Content>
 
