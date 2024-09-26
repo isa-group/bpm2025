@@ -34,6 +34,7 @@ import AndresJimenezRamirez from '@/assets/images/people/andres_jimenez_ramirez.
 import DanielCalegari from '@/assets/images/people/daniel_calegari.jpeg';
 import OrlenysLopezPintado from '@/assets/images/people/orlenys_lopez_pintado.jpg';
 import SimoneAgostinelli from '@/assets/images/people/simone_agostinelli.jpg';
+import ManuelResinas from '@/assets/images/people/resinas.jpg';
 
 interface CommitteeMember {
   treatment?: string;
@@ -163,7 +164,17 @@ export const conferenceChairs: Record<string, Record<string, CommitteeMember>> =
     'Adela del Río Ortega': steeringCommittee['Adela del Río Ortega'] ?? {},
     'Manuel Resinas': {
       ...USData,
-      email: 'resinas@us.es'
+      image: ManuelResinas,
+      email: 'resinas@us.es',
+      bio: `
+        Manuel Resinas is a Professor at the University of Seville, where he leads the Information Systems 
+        group in the Smart Computer Systems Research and Engineering lab. His current research interests 
+        include process performance and compliance management, personal productivity analytics, and the 
+        process of process mining. Previously, he worked on the analysis and management of service level 
+        agreements. His research is regularly published in journals like IEEE Trans. Serv. Comp. or BISE, 
+        and conferences like BPM or CAiSE. He has been general chair and PC chair of the BPM conference, 
+        and is currently associate editor in the BISE journal.        
+      `
     }
   },
   'Program Committee': {
