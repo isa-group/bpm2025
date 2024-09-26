@@ -3,8 +3,8 @@ import Layout from '@/layouts/PageLayout.astro';
 import Content from '@/components/widgets/Content.astro';
 import CallToAction from '@/components/widgets/CallToAction.astro';
 import { getPermalink } from '@/utils/permalinks';
-// import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
 import TablerDownload from 'virtual:icons/tabler/download';
+import TablerMail from 'virtual:icons/tabler/mail';
 
 const contactEmail = 'mailto:info@bpm2025seville.org';
 const pdfBrochure = getPermalink('/BPM2025-sponsoring-offer_EN.pdf');
@@ -15,7 +15,10 @@ const pdfBrochure = getPermalink('/BPM2025-sponsoring-offer_EN.pdf');
     title: 'Become a sponsor'
   }}
   heroProps={{
-    actions: [{ variant: 'primary', text: 'Download brochure', href: pdfBrochure }]
+    actions: [
+      { variant: 'primary', text: 'Download brochure', icon: TablerDownload, href: pdfBrochure },
+      { variant: 'primary', text: 'Contact us', icon: TablerMail, href: contactEmail }
+    ]
   }}>
   <Content
     id="calendar"
