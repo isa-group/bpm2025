@@ -36,7 +36,7 @@ import OrlenysLopezPintado from '@/assets/images/people/orlenys_lopez_pintado.jp
 import SimoneAgostinelli from '@/assets/images/people/simone_agostinelli.jpg';
 import ManuelResinas from '@/assets/images/people/resinas.jpg';
 
-interface CommitteeMember {
+interface ConferenceMember {
   treatment?: string;
   job?: string;
   image?: ImageMetadata;
@@ -52,7 +52,37 @@ const USData = {
   location: 'Seville, Spain'
 };
 
-export const steeringCommittee: Record<string, CommitteeMember> = {
+const sharedPeopleData = {
+  'Hajo Reijers': {
+    treatment: 'Prof. Dr. ir.',
+    image: Reijers,
+    institution: 'University of Utrecht',
+    location: 'Utrecht, The Netherlands',
+    email: 'h.a.reijers@uu.nl',
+    bio: `
+      Hajo Reijers is a full professor at Utrecht University, leading the Process Science group in the
+      Department of Information and Computing Sciences, and holds additional professorships at
+      Eindhoven University of Technology and Queensland University of Technology. Formerly a consultant at
+      Deloitte and Accenture, he has also led the BPM research group at Lexmark, served as a professor at
+      Vrije Universiteit Amsterdam and advised multiple high-tech start-ups. His research focuses on
+      business process redesign, automation, conceptual modeling, and enterprise information systems,
+      with over 300 academic publications. See his website (www.reijers.com) for more info or follow his musings on X via @profBPM.
+    `
+  },
+  'Adela del Río Ortega': {
+    treatment,
+    image: Adela,
+    ...USData,
+    email: 'adeladelrio@us.es'
+  }
+} satisfies Record<string, ConferenceMember>;
+
+/**
+ * This type also ensures that IntelliSense is provided for the shared people's keys.
+ */
+type ConferenceMemberData = Partial<Record<keyof typeof sharedPeopleData, ConferenceMember>> & Record<string, ConferenceMember>;
+
+export const steeringCommittee: ConferenceMemberData = {
   'Jan Mendling': {
     treatment,
     job: 'Chair',
@@ -90,22 +120,7 @@ export const steeringCommittee: Record<string, CommitteeMember> = {
     location: 'Ulm, Germany',
     email: 'manfred.reichert@uni-ulm.de'
   },
-  'Hajo Reijers': {
-    treatment: 'Prof. Dr. ir.',
-    image: Reijers,
-    institution: 'University of Utrecht',
-    location: 'Utrecht, The Netherlands',
-    email: 'h.a.reijers@uu.nl',
-    bio: `
-      Hajo Reijers is a full professor at Utrecht University, leading the Process Science group in the
-      Department of Information and Computing Sciences, and holds additional professorships at
-      Eindhoven University of Technology and Queensland University of Technology. Formerly a consultant at
-      Deloitte and Accenture, he has also led the BPM research group at Lexmark, served as a professor at
-      Vrije Universiteit Amsterdam and advised multiple high-tech start-ups. His research focuses on
-      business process redesign, automation, conceptual modeling, and enterprise information systems,
-      with over 300 academic publications. See his website (www.reijers.com) for more info or follow his musings on X via @profBPM.
-    `
-  },
+  'Hajo Reijers': sharedPeopleData['Hajo Reijers'] ?? {},
   'Stefanie Rinderle-Ma': {
     treatment,
     job: 'Vice-Chair',
@@ -114,12 +129,7 @@ export const steeringCommittee: Record<string, CommitteeMember> = {
     location: 'Munich, Germany',
     email: 'stefanie.rinderle-ma@tum.de'
   },
-  'Adela del Río Ortega': {
-    treatment,
-    image: Adela,
-    ...USData,
-    email: 'adeladelrio@us.es'
-  },
+  'Adela del Río Ortega': sharedPeopleData['Adela del Río Ortega'] ?? {},
   'Michael Rosemann': {
     treatment,
     image: Rosemann,
@@ -159,9 +169,9 @@ export const steeringCommittee: Record<string, CommitteeMember> = {
   }
 };
 
-export const conferenceChairs: Record<string, Record<string, CommitteeMember>> = {
+export const conferenceChairs: Record<string, ConferenceMemberData> = {
   'General chairs': {
-    'Adela del Río Ortega': steeringCommittee['Adela del Río Ortega'] ?? {},
+    'Adela del Río Ortega': sharedPeopleData['Adela del Río Ortega'] ?? {},
     'Manuel Resinas': {
       ...USData,
       image: ManuelResinas,
@@ -184,7 +194,7 @@ export const conferenceChairs: Record<string, Record<string, CommitteeMember>> =
       email: 'cristinacabanillas@us.es'
     },
     'Irene Vanderfeesten': {},
-    'Hajo Reijers': steeringCommittee['Hajo Reijers'] ?? {}
+    'Hajo Reijers': sharedPeopleData['Hajo Reijers'] ?? {}
   },
   'Workshops': {
     'Han van der Aa': {
