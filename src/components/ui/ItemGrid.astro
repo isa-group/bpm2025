@@ -66,7 +66,7 @@ const mergedIconClasses = twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2', defaultIconC
                 <Fragment set:html={extraHtml} />
               )}
               {callsToAction && callsToAction.length && (
-                <div class="flex">
+                <div class="flex flex-wrap justify-center">
                   {callsToAction.map(act => (
                     <div class={twMerge(`${title || description ? 'mt-3' : ''}`, actionClass, itemClasses?.actionClass)}>
                       <Button variant="link" {...act} />
