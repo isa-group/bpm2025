@@ -35,6 +35,8 @@ import DanielCalegari from '@/assets/images/people/daniel_calegari.jpeg';
 import OrlenysLopezPintado from '@/assets/images/people/orlenys_lopez_pintado.jpg';
 import SimoneAgostinelli from '@/assets/images/people/simone_agostinelli.jpg';
 import ManuelResinas from '@/assets/images/people/resinas.jpg';
+import HugoALopez from '@/assets/images/people/hugo_a_lopez.jpg';
+import RehanSyed from '@/assets/images/people/rehan_syed.jpg';
 
 interface ConferenceMember {
   treatment?: string;
@@ -73,7 +75,16 @@ const sharedPeopleData = {
     treatment,
     image: Adela,
     ...USData,
-    email: 'adeladelrio@us.es'
+    email: 'adeladelrio@us.es',
+    bio: `
+      Adela del Río Ortega is a professor at Universidad de Sevilla and a member of the ISA Research group,
+      where she initiated the Business Process Management research line with her PhD thesis.
+      She serves on the Steering Committee of the BPM conference and is known for her work on process performance indicators (PPIs)
+      and their automatic analysis. Her current research interests include process performance management,
+      RPA and personal productivity analytics. With over 50 publications in top computer science and information systems outlets,
+      she has developed two registered software tools valued at over €60k and participated in more than 10 externally funded projects.
+      She has also collaborated with various IT companies as a consultant and researcher.
+    `
   }
 } satisfies Record<string, ConferenceMember>;
 
@@ -300,6 +311,7 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
       email: 'hulo@dtu.dk',
       institution: 'Technical University of Denmark',
       location: 'Lyngby, Denmark',
+      image: HugoALopez,
       bio: `
         Hugo A. López holds an associate professor position at the Technical University of Denmark.
         His research objectives involve the maturing of a new generation of process technologies that
@@ -575,6 +587,7 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
       email: 'r.syed@qut.edu.au',
       institution: 'Queensland University of Technology',
       location: 'Brisbane, Australia',
+      image: RehanSyed,
       bio: `
         Syed is a leading expert and lecturer in Business Process Management (BPM) and Information Systems
         at Queensland University of Technology, Australia. His research focuses on the socio-technical aspects of
