@@ -1,6 +1,6 @@
 {
     "site": {
-        "name": "BPM2025"
+        "name": "BPM 2025"
     },
     "metadata": {
         "title": {
@@ -13,7 +13,7 @@
             "follow": true
         },
         "openGraph": {
-            "site_name": "BPM2025 Conference (Seville)",
+            "site_name": "BPM 2025 Conference (Seville)",
             "type": "website"
         },
         "twitter": {
