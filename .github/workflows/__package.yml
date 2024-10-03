@@ -1,30 +1,30 @@
-name: Deploy to GitHub Pages 🚀
+name: Packaging 📦
 
 on:
-  push:
-    branches: 
-      - main
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      commit:
+        required: false
+        type: string
+      is_prerelease:
+        required: true
+        type: boolean
 
-# Allow this job to clone the repo and create a page deployment
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+env:
+  SITE_URL: https://www.bpm2025seville.org/
+  BASE_URL: /
 
 jobs:
   build:
     name: Build 🏗️
     runs-on: ubuntu-latest
-    environment: 
-      name: Production
-      url: ${{ steps.deploy.outputs.page_url }}
 
     steps:
       - name: Checkout ⬇️
         uses: actions/checkout@v4.2.0
         with:
           show-progress: false
+          ref: ${{ inputs.commit || github.sha }}
 
       - name: Setup node environment ⚙️
         uses: actions/setup-node@v4.0.4
@@ -38,16 +38,12 @@ jobs:
 
       - name: Build 🏗️
         env:
-          STAGING: 0
-          BASE_URL: /
-          SITE_URL: https://www.bpm2025seville.org/
+          STAGING: ${{ inputs.is_prerelease && 1 || 0 }}
+          BASE_URL: ${{ env.BASE_URL }}
+          SITE_URL: ${{ env.SITE_URL }}
         run: npm run build
 
       - name: Upload GitHub Pages artifact ⬆️
         uses: actions/upload-pages-artifact@v3.0.1
         with:
           path: dist
-
-      - name: Deploy to GitHub Pages 🚀
-        id: deploy
-        uses: actions/deploy-pages@v4.0.5

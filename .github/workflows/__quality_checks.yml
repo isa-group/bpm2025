@@ -1,12 +1,12 @@
 name: Quality checks 👌🧪
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
-  cancel-in-progress: true
-
 on:
-  pull_request:
-  merge_group:
+  workflow_call:
+    inputs:
+      commit:
+        required: true
+        type: string
+  workflow_dispatch:
 
 jobs:
   dependency-review:
@@ -16,6 +16,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4.2.0
         with:
+          ref: ${{ inputs.commit }}
           show-progress: false
 
       - name: Scan
@@ -35,6 +36,7 @@ jobs:
       - name: Checkout ⬇️
         uses: actions/checkout@v4.2.0
         with:
+          ref: ${{ inputs.commit }}
           show-progress: false
 
       - name: Check if all commits comply with the specification
@@ -50,6 +52,7 @@ jobs:
         uses: actions/checkout@v4.2.0
         with:
           show-progress: false
+          ref: ${{ inputs.commit }}
           fetch-depth: 0
 
       - name: Check commits
@@ -64,12 +67,12 @@ jobs:
         command:
           - lint
           - check
-          - build
 
     steps:
       - name: Checkout ⬇️
         uses: actions/checkout@v4.2.0
         with:
+          ref: ${{ inputs.commit }}
           show-progress: false
 
       - name: Setup node environment ⚙️
