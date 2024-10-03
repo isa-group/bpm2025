@@ -37,6 +37,8 @@ import SimoneAgostinelli from '@/assets/images/people/simone_agostinelli.jpg';
 import ManuelResinas from '@/assets/images/people/resinas.jpg';
 import HugoALopez from '@/assets/images/people/hugo_a_lopez.jpg';
 import RehanSyed from '@/assets/images/people/rehan_syed.jpg';
+import CristinaCabanillas from '@/assets/images/people/Cristina_Cabanillas.png';
+import ArikSenderovich from '@/assets/images/people/arik_senderovich.jpg';
 
 interface ConferenceMember {
   treatment?: string;
@@ -199,10 +201,43 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
     }
   },
   'Program Committee': {
-    'Arik Senderovich': {},
+    'Arik Senderovich': {
+      image: ArikSenderovich,
+      institution: 'School of Information Technologies (ITEC), York University',
+      location: 'Toronto, Canada',
+      email: 'sariks@yorku.ca',
+      bio: `
+        Arik Senderovich is an Assistant Professor at the School of Information Technologies (ITEC) at York University in Toronto, Canada.
+        He also holds a Status-Only Assistant Professor position at the Rotman School of Management, University of Toronto,
+        where he supervises Master of Management Analytics (MMA) student projects, teaches colloquia, and organizes professional events.
+        Prior to his current role at ITEC, Arik served as an Assistant Professor at both the Rotman School of Management and
+        the Faculty of Information at the University of Toronto.
+
+        Arik is the Chief Technology Officer (CTO) and co-founder of SiMLQ, a process mining company with a vibrant
+        R&D center in Toronto. His research lies at the intersection of Operations Management, Data Science, and
+        Artificial Intelligence, with a current focus on developing methodologies for automatically learning models
+        of complex and congested environments—such as hospitals and public transportation systems—based on data logs.
+
+        Arik’s work has been published in leading conferences including AAAI, BPM, ICAPS, ICPM, and the
+        Winter Simulation Conference (WSC). He has also authored numerous papers in top-tier journals such as
+        Information Systems and INFORMS Journal on Computing. Additionally, Arik has served as a Guest Editor for
+        Information Systems and was the Program Chair for ICPM 2023.
+      `
+    },
     'Cristina Cabanillas': {
+      image: CristinaCabanillas,
       ...USData,
-      email: 'cristinacabanillas@us.es'
+      email: 'cristinacabanillas@us.es',
+      bio: `
+        Cristina Cabanillas is a Professor at the University of Seville and a member of the Information Systems group in the SCORE lab.
+        She worked for seven years at WU Vienna, where she got the Habilitation. She has coordinated three research projects and
+        a technology transfer project of competitive Austrian and Spanish calls. Her current research interests include
+        resource management in business processes; process mining, with a focus on easing process mining analysis tasks;
+        and business process compliance. She has over 70 academic publications and two registered software tools,
+        she has chaired a number of tracks and workshops in top international conferences, she has given invited talks in
+        international institutions, and she has collaborated with the Spanish public administration, national and
+        international companies.
+      `
     },
     'Irene Vanderfeesten': {},
     'Hajo Reijers': sharedPeopleData['Hajo Reijers'] ?? {}
