@@ -1,0 +1,51 @@
+name: Packaging 📦
+
+on:
+  workflow_call:
+    inputs:
+      commit:
+        required: false
+        type: string
+      is_prerelease:
+        required: true
+        type: boolean
+
+env:
+  SITE_URL: https://www.bpm2025seville.org/
+  BASE_URL: /
+
+jobs:
+  build:
+    name: Build 🏗️
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout ⬇️
+        uses: actions/checkout@v4.2.0
+        with:
+          show-progress: false
+          ref: ${{ inputs.commit || github.sha }}
+
+      - name: Setup node environment ⚙️
+        uses: actions/setup-node@v4.0.4
+        with:
+          node-version: 20
+          cache: 'npm'
+          check-latest: true
+
+      - name: Install dependencies 📦
+        run: npm ci --no-audit
+
+      - name: Build 🏗️
+        env:
+          STAGING: ${{ inputs.is_prerelease && 1 || 0 }}
+          BASE_URL: ${{ env.BASE_URL }}
+          SITE_URL: ${{ env.SITE_URL }}
+        run: npm run build
+
+      - name: Upload client artifact ⬆️💻
+        uses: actions/upload-artifact@v4.4.0
+        with:
+          compression-level: 0
+          name: page
+          path: dist
