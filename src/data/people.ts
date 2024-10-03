@@ -87,6 +87,29 @@ const sharedPeopleData = {
       she has developed two registered software tools valued at over €60k and participated in more than 10 externally funded projects.
       She has also collaborated with various IT companies as a consultant and researcher.
     `
+  },
+  'Iris Beerepoot': {
+    image: IrisBeerepoot,
+    email: 'i.m.beerepoot@uu.nl',
+    treatment: 'Dr.',
+    institution: 'University of Utrecht',
+    location: 'Utrecht, The Netherlands',
+    job: 'Community Manager',
+    bio: `
+      Iris Beerepoot is an Assistant Professor in the Process Science group at the
+      Department of Information & Computing Sciences at Utrecht University.
+      Her research focuses on work processes in organisations and the extent to which
+      this work is supported by and recorded in information systems. In her Ph.D. thesis,
+      she studied the use of workarounds in healthcare organisations and analysed them with a mix of methods,
+      including process mining. Her work has been published in the proceedings of leading conferences
+      such as BPM, ICPM, ICIS, and ECIS, as well as in journals such as Computers in
+      Industry, Business & Information Systems Engineering, Information Technology and Management,
+      and the Journal of Biomedical Informatics. She served on several organising and program committees
+      at BPM and ICPM, was awarded the BPM runner-up best dissertation award, and won an outstanding reviewer
+      award at ECIS for two consecutive years. She chairs the AI Lab for Public Services
+      which currently houses ten Ph.D. students. As a guest researcher, she visited
+      the University of Haifa, the Sapienza University of Rome, the University of Seville, and the University of Queensland.
+    `
   }
 } satisfies Record<string, ConferenceMember>;
 
@@ -95,90 +118,96 @@ const sharedPeopleData = {
  */
 type ConferenceMemberData = Partial<Record<keyof typeof sharedPeopleData, ConferenceMember>> & Record<string, ConferenceMember>;
 
-export const steeringCommittee: ConferenceMemberData = {
-  'Jan Mendling': {
-    treatment,
-    job: 'Chair',
-    image: Mendling,
-    institution: 'Humboldt University Berlin',
-    location: 'Berlin, Germany',
-    email: 'jan.mendling@hu-berlin.de'
+export const steeringCommittee: Record<string, ConferenceMemberData> = {
+  'Steering Committee': {
+    'Jan Mendling': {
+      treatment,
+      job: 'Chair',
+      image: Mendling,
+      institution: 'Humboldt University Berlin',
+      location: 'Berlin, Germany',
+      email: 'jan.mendling@hu-berlin.de'
+    },
+    'Avigador Gal': {
+      treatment,
+      image: Gal,
+      institution: 'Technion - Israel Institute of Technology',
+      location: 'Haifa, Israel',
+      email: 'avigal@technion.ac.il'
+    },
+    'Chiara Ghidini': {
+      treatment,
+      image: Ghidini,
+      institution: 'Fondazione Bruno Kessler',
+      location: 'Trento, Italy',
+      email: 'ghidini@fbk.eu'
+    },
+    'Manfred Reichert': {
+      treatment,
+      image: Reichert,
+      institution: 'University of Ulm',
+      location: 'Ulm, Germany',
+      email: 'manfred.reichert@uni-ulm.de'
+    },
+    'Hajo Reijers': sharedPeopleData['Hajo Reijers'] ?? {},
+    'Stefanie Rinderle-Ma': {
+      treatment,
+      job: 'Vice-Chair',
+      image: RinderleMa,
+      institution: 'Technical University of Munich',
+      location: 'Munich, Germany',
+      email: 'stefanie.rinderle-ma@tum.de'
+    },
+    'Adela del Río Ortega': sharedPeopleData['Adela del Río Ortega'] ?? {},
+    'Michael Rosemann': {
+      treatment,
+      image: Rosemann,
+      institution: 'Queensland University of Technology',
+      location: 'Brisbane, Australia',
+      email: 'm.rosemann@qut.edu.au'
+    },
+    'Shazia Sadiq': {
+      treatment,
+      image: Sadiq,
+      institution: 'University of Queensland',
+      location: 'Brisbane, Australia',
+      email: 'shazia@itee.uq.edu.au'
+    },
+    'Barbara Weber': {
+      treatment,
+      image: Weber,
+      institution: 'University of St. Gallen',
+      location: 'St. Gallen, Switzerland',
+      email: 'barbara.weber@unisg.ch'
+    },
+    'Matthias Weidlich': {
+      treatment,
+      image: Weidlich,
+      institution: 'Humboldt University Berlin',
+      location: 'Berlin, Germany',
+      email: 'matthias.weidlich@hu-berlin.de'
+    }
   },
-  'Marlon Dumas': {
-    treatment,
-    job: 'Vice-Chair 2017 - 2022',
-    image: Dumas,
-    institution: 'University of Tartu',
-    location: 'Tartu, Estonia',
-    email: 'marlon.dumas@ut.ee'
+  'Advisory board': {
+    'Mathias Weske': {
+      treatment,
+      job: 'Chair 2017 - 2022',
+      image: Weske,
+      institution: 'HPI, University of Potsdam',
+      location: 'Potsdam, Germany',
+      email: 'mathias.weske@hpi.de'
+    },
+    'Marlon Dumas': {
+      treatment,
+      job: 'Vice-Chair 2017 - 2022',
+      image: Dumas,
+      institution: 'University of Tartu',
+      location: 'Tartu, Estonia',
+      email: 'marlon.dumas@ut.ee'
+    }
   },
-  'Avigador Gal': {
-    treatment,
-    image: Gal,
-    institution: 'Technion - Israel Institute of Technology',
-    location: 'Haifa, Israel',
-    email: 'avigal@technion.ac.il'
-  },
-  'Chiara Ghidini': {
-    treatment,
-    image: Ghidini,
-    institution: 'Fondazione Bruno Kessler',
-    location: 'Trento, Italy',
-    email: 'ghidini@fbk.eu'
-  },
-  'Manfred Reichert': {
-    treatment,
-    image: Reichert,
-    institution: 'University of Ulm',
-    location: 'Ulm, Germany',
-    email: 'manfred.reichert@uni-ulm.de'
-  },
-  'Hajo Reijers': sharedPeopleData['Hajo Reijers'] ?? {},
-  'Stefanie Rinderle-Ma': {
-    treatment,
-    job: 'Vice-Chair',
-    image: RinderleMa,
-    institution: 'Technical University of Munich',
-    location: 'Munich, Germany',
-    email: 'stefanie.rinderle-ma@tum.de'
-  },
-  'Adela del Río Ortega': sharedPeopleData['Adela del Río Ortega'] ?? {},
-  'Michael Rosemann': {
-    treatment,
-    image: Rosemann,
-    institution: 'Queensland University of Technology',
-    location: 'Brisbane, Australia',
-    email: 'm.rosemann@qut.edu.au'
-  },
-  'Shazia Sadiq': {
-    treatment,
-    image: Sadiq,
-    institution: 'University of Queensland',
-    location: 'Brisbane, Australia',
-    email: 'shazia@itee.uq.edu.au'
-  },
-  'Barbara Weber': {
-    treatment,
-    image: Weber,
-    institution: 'University of St. Gallen',
-    location: 'St. Gallen, Switzerland',
-    email: 'barbara.weber@unisg.ch'
-  },
-  'Matthias Weidlich': {
-    treatment,
-    image: Weidlich,
-    institution: 'Humboldt University Berlin',
-    location: 'Berlin, Germany',
-    email: 'matthias.weidlich@hu-berlin.de'
-  },
-  'Mathias Weske':
-  {
-    treatment,
-    job: 'Chair 2017 - 2022',
-    image: Weske,
-    institution: 'HPI, University of Potsdam',
-    location: 'Potsdam, Germany',
-    email: 'mathias.weske@hpi.de'
+  'Assistants to the Steering Committee': {
+    'Iris Beerepoot': sharedPeopleData['Iris Beerepoot'] ?? {}
   }
 };
 
@@ -307,27 +336,7 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         She also serves as editor and reviewer for various journals.
       `
     },
-    'Iris Beerepoot': {
-      image: IrisBeerepoot,
-      email: 'i.m.beerepoot@uu.nl',
-      institution: 'University of Utrecht',
-      location: 'Utrecht, The Netherlands',
-      bio: `
-        Iris Beerepoot is an Assistant Professor in the Process Science group at the
-        Department of Information & Computing Sciences at Utrecht University.
-        Her research focuses on work processes in organisations and the extent to which
-        this work is supported by and recorded in information systems. In her Ph.D. thesis,
-        she studied the use of workarounds in healthcare organisations and analysed them with a mix of methods,
-        including process mining. Her work has been published in the proceedings of leading conferences
-        such as BPM, ICPM, ICIS, and ECIS, as well as in journals such as Computers in
-        Industry, Business & Information Systems Engineering, Information Technology and Management,
-        and the Journal of Biomedical Informatics. She served on several organising and program committees
-        at BPM and ICPM, was awarded the BPM runner-up best dissertation award, and won an outstanding reviewer
-        award at ECIS for two consecutive years. She chairs the AI Lab for Public Services
-        which currently houses ten Ph.D. students. As a guest researcher, she visited
-        the University of Haifa, the Sapienza University of Rome, the University of Seville, and the University of Queensland.
-      `
-    },
+    'Iris Beerepoot': sharedPeopleData['Iris Beerepoot'] ?? {},
     'Alfonso E. Márquez-Chamorro': {
       ...USData,
       image: AlfonsoMarquez,

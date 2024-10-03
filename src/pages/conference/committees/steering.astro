@@ -23,39 +23,44 @@ const classes = {
     The Steering Committee of the BPM conference series includes the following people:
   </Fragment>
 
-  <Testimonials
-    testimonials={Object.entries(steeringCommittee).map(([name, p], index) => ({
-      name: `${p.treatment} ${name}`,
-      job: p.job,
-      items: [
-        ...(p.institution
-          ? ([{
-              icon: IMdiUniversity,
-              description: p.institution,
-              classes
-            }])
-          : []),
-        ...(p.location
-          ? ([{
-              icon: IHugeIconsGlobe,
-              description: p.location,
-              classes
-            }])
-          : []),
-        ...(p.email
-          ? ([{
-              icon: ITablerMail,
-              description: `<a href="mailto:${p.email}" class="underline">${p.email}</a>`,
-              classes
-            }])
-          : [])
-      ],
-      ...(p.image && ({
-        image: {
-          src: p.image,
-          alt: name,
-          loading: index >= 6 ? 'lazy' : 'eager'
-        }
-      }))
-    }))} />
+  {Object.entries(steeringCommittee).map(([section, chairs], section_index) => (
+    <Testimonials
+      title={section}
+      id={encodeURIComponent(section.toLowerCase().replace(' ', '-'))}
+      testimonials={Object.entries(chairs).map(([name, info]) => ({
+        name: `${info.treatment} ${name}`,
+        job: info.job,
+        items: [
+          ...(info.institution
+            ? ([{
+                icon: IMdiUniversity,
+                description: info.institution,
+                classes
+              }])
+            : []),
+          ...(info.location
+            ? ([{
+                icon: IHugeIconsGlobe,
+                description: info.location,
+                classes
+              }])
+            : []),
+          ...(info.email
+            ? ([{
+                icon: ITablerMail,
+                description: `<a href="mailto:${info.email}" class="underline">${info.email}</a>`,
+                classes
+              }])
+            : [])
+        ],
+        ...(info.image && ({
+          image: {
+            src: info.image,
+            alt: name,
+            /* Suggested by Astro audit */
+            loading: section_index >= 1 ? 'lazy' : 'eager'
+          }
+        }))
+      }))} />
+  ))}
 </Layout>
