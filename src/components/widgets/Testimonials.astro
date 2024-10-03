@@ -2,9 +2,9 @@
 import Headline from '@/components/ui/Headline.astro';
 import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
 import Button from '@/components/ui/Button/Button.astro';
-import { Image } from 'astro:assets';
 import type { Testimonials as Props } from '@/types';
 import ItemList from '@/components/ui/ItemList.astro';
+import Avatar from '@/components/ui/Avatar.astro';
 
 const {
   title = '',
@@ -31,16 +31,7 @@ const {
           <div class="flex flex-col p-4 md:p-6 rounded-md shadow-xl dark:shadow-none dark:border dark:border-slate-600 items-stretch grow">
 
             <div class="flex items-center">
-              {image && (
-                <div class="h-20 w-20 rounded-full border border-slate-200 dark:border-slate-600">
-                  {/* @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 */}
-                  <Image
-                    class="h-20 w-20 rounded-full border border-slate-200 dark:border-slate-600 min-w-full min-h-full object-cover"
-                    {...image}
-                  />
-                </div>
-              )}
-
+              {image && <Avatar image={image} />}
               <div class="grow ml-3 rtl:ml-0 rtl:mr-3">
                 {name && <p class="text-base font-semibold">{name}</p>}
                 {job && <p class="text-xs text-muted">{job}</p>}
