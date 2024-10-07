@@ -4,14 +4,24 @@ import { Image } from 'astro:assets';
 
 interface Props {
   image: ExtendedImageProps;
+  xl?: boolean;
 }
 
-const { image } = Astro.props;
+const { image, xl = false } = Astro.props;
 ---
-<div class="h-20 w-20 rounded-full">
+<div
+  class="rounded-full"
+  class:list={[{
+    'h-20 w-20': !xl,
+    'h-40 w-40': xl
+  }]}>
   {/* @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 */}
   <Image
-    class="h-20 w-20 rounded-full border-4 border-slate-200 dark:border-slate-600 min-w-full min-h-full object-cover"
+    class="rounded-full border-4 border-slate-200 dark:border-slate-600 min-w-full min-h-full object-cover"
+    class:list={[{
+      'h-20 w-20': !xl,
+      'h-40 w-40': xl
+    }]}
     {...image}
   />
 </div>
