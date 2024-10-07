@@ -36,6 +36,10 @@ export const headerData: HeaderData = {
         {
           text: 'Steering Committee',
           href: getPermalink('/conference/committees/steering')
+        },
+        {
+          text: 'Organizing Team',
+          href: getPermalink('/conference/organization')
         }
       ]
     },

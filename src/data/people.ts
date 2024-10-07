@@ -44,6 +44,7 @@ import ThomasGrisold from '@/assets/images/people/ThomasGrisold.png';
 import Mahendra from '@/assets/images/people/Mahendra.jpg';
 import JohannesSmedt from '@/assets/images/people/JohannesSmedt.jpg';
 import IreneVanderfeesten from '@/assets/images/people/IreneVanderfeesten.jpg';
+import RocioGoni from '@/assets/images/people/RocioGoni.jpg';
 
 interface ConferenceMember {
   treatment?: string;
@@ -159,6 +160,52 @@ const sharedPeopleData = {
       which currently houses ten Ph.D. students. As a guest researcher, she visited
       the University of Haifa, the Sapienza University of Rome, the University of Seville, and the University of Queensland.
     `
+  },
+  'Manuel Resinas': {
+    ...USData,
+    image: ManuelResinas,
+    email: 'resinas@us.es',
+    bio: `
+      Manuel Resinas is a Professor at the University of Seville, where he leads the Information Systems 
+      group in the Smart Computer Systems Research and Engineering lab. His current research interests 
+      include process performance and compliance management, personal productivity analytics, and the 
+      process of process mining. Previously, he worked on the analysis and management of service level 
+      agreements. His research is regularly published in journals like IEEE Trans. Serv. Comp. or BISE, 
+      and conferences like BPM or CAiSE. He has been general chair and PC chair of the BPM conference, 
+      and is currently associate editor in the BISE journal.        
+    `
+  },
+  'Cristina Cabanillas': {
+    image: CristinaCabanillas,
+    ...USData,
+    email: 'cristinacabanillas@us.es',
+    bio: `
+      Cristina Cabanillas is a Professor at the University of Seville and a member of the Information Systems group in the SCORE lab.
+      She worked for seven years at WU Vienna, where she got the Habilitation. She has coordinated three research projects and
+      a technology transfer project of competitive Austrian and Spanish calls. Her current research interests include
+      resource management in business processes; process mining, with a focus on easing process mining analysis tasks;
+      and business process compliance. She has over 70 academic publications and two registered software tools,
+      she has chaired a number of tracks and workshops in top international conferences, she has given invited talks in
+      international institutions, and she has collaborated with the Spanish public administration, national and
+      international companies.
+    `
+  },
+  'Bedilia Estrada Torres': {
+    ...USData,
+    image: BediliaEstrada,
+    email: 'iestrada@us.es',
+    bio: `
+      Bedilia Estrada Torres is an assistant professor at the Department of Languages and Computer Systems
+      and a member of the ISA Research Group at the University of Seville, Spain.
+      She received her international PhD in Computer Engineering in 2018.
+      Her research interests include business process management, the analysis, modeling, and management
+      of process performance indicators in different scenarios, such as structured processes,
+      variability in process families, knowledge-intensive processes, their relationship with
+      decision-making processes, and the use of chatbots in process management. Bedilia collaborated and
+      conducted research stays in Brazil and Estonia and has participated in more than ten Spanish and
+      European research, development, and innovation projects. She serves as a program committee member
+      in business process management conferences and as a peer reviewer in scientific journals.
+    `
   }
 } satisfies Record<string, ConferenceMember>;
 
@@ -262,20 +309,7 @@ export const steeringCommittee: Record<string, ConferenceMemberData> = {
 export const conferenceChairs: Record<string, ConferenceMemberData> = {
   'General chairs': {
     'Adela del Río Ortega': sharedPeopleData['Adela del Río Ortega'],
-    'Manuel Resinas': {
-      ...USData,
-      image: ManuelResinas,
-      email: 'resinas@us.es',
-      bio: `
-        Manuel Resinas is a Professor at the University of Seville, where he leads the Information Systems 
-        group in the Smart Computer Systems Research and Engineering lab. His current research interests 
-        include process performance and compliance management, personal productivity analytics, and the 
-        process of process mining. Previously, he worked on the analysis and management of service level 
-        agreements. His research is regularly published in journals like IEEE Trans. Serv. Comp. or BISE, 
-        and conferences like BPM or CAiSE. He has been general chair and PC chair of the BPM conference, 
-        and is currently associate editor in the BISE journal.        
-      `
-    }
+    'Manuel Resinas': sharedPeopleData['Manuel Resinas']
   },
   'Program Committee': {
     'Arik Senderovich': {
@@ -301,21 +335,7 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         Information Systems and was the Program Chair for ICPM 2023.
       `
     },
-    'Cristina Cabanillas': {
-      image: CristinaCabanillas,
-      ...USData,
-      email: 'cristinacabanillas@us.es',
-      bio: `
-        Cristina Cabanillas is a Professor at the University of Seville and a member of the Information Systems group in the SCORE lab.
-        She worked for seven years at WU Vienna, where she got the Habilitation. She has coordinated three research projects and
-        a technology transfer project of competitive Austrian and Spanish calls. Her current research interests include
-        resource management in business processes; process mining, with a focus on easing process mining analysis tasks;
-        and business process compliance. She has over 70 academic publications and two registered software tools,
-        she has chaired a number of tracks and workshops in top international conferences, she has given invited talks in
-        international institutions, and she has collaborated with the Spanish public administration, national and
-        international companies.
-      `
-    },
+    'Cristina Cabanillas': sharedPeopleData['Cristina Cabanillas'],
     'Irene Vanderfeesten': {
       image: IreneVanderfeesten,
       email: 'irene.vanderfeesten@kuleuven.be',
@@ -349,23 +369,7 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         His research has been published in premier conferences (BPM, CAISE, ICPM, ICDE, SIGMOD) and journals (IS, TKDE, TSE, DSS).
       `
     },
-    'Bedilia Estrada Torres': {
-      ...USData,
-      image: BediliaEstrada,
-      email: 'iestrada@us.es',
-      bio: `
-        Bedilia Estrada Torres is an assistant professor at the Department of Languages and Computer Systems
-        and a member of the ISA Research Group at the University of Seville, Spain.
-        She received her international PhD in Computer Engineering in 2018.
-        Her research interests include business process management, the analysis, modeling, and management
-        of process performance indicators in different scenarios, such as structured processes,
-        variability in process families, knowledge-intensive processes, their relationship with
-        decision-making processes, and the use of chatbots in process management. Bedilia collaborated and
-        conducted research stays in Brazil and Estonia and has participated in more than ten Spanish and
-        European research, development, and innovation projects. She serves as a program committee member
-        in business process management conferences and as a peer reviewer in scientific journals.
-      `
-    },
+    'Bedilia Estrada Torres': sharedPeopleData['Bedilia Estrada Torres'],
     'Inge van der Weerd': {
       image: IngeVanDerWeed,
       email: 'g.c.vandeweerd@uu.nl',
@@ -755,5 +759,18 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
     },
     'Avigdor Gal': sharedPeopleData['Avigdor Gal'],
     'Flavia Santoro': sharedPeopleData['Flavia Santoro']
+  }
+};
+
+export const organizingTeam: ConferenceMemberData = {
+  'Cristina Cabanillas': sharedPeopleData['Cristina Cabanillas'],
+  'Bedilia Estrada Torres': sharedPeopleData['Bedilia Estrada Torres'],
+  'Rocío Goñi': {
+    ...USData,
+    image: RocioGoni
+  },
+  'Fernando Fernández': {
+    ...USData,
+    email: 'ferferga@us.es'
   }
 };
