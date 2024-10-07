@@ -39,6 +39,10 @@ import HugoALopez from '@/assets/images/people/hugo_a_lopez.jpg';
 import RehanSyed from '@/assets/images/people/rehan_syed.jpg';
 import CristinaCabanillas from '@/assets/images/people/Cristina_Cabanillas.png';
 import ArikSenderovich from '@/assets/images/people/arik_senderovich.jpg';
+import VanDerAalst from '@/assets/images/people/vanderaalst.jpg';
+import ThomasGrisold from '@/assets/images/people/ThomasGrisold.png';
+import Mahendra from '@/assets/images/people/Mahendra.jpg';
+import JohannesSmedt from '@/assets/images/people/JohannesSmedt.jpg';
 
 interface ConferenceMember {
   treatment?: string;
@@ -88,27 +92,48 @@ const sharedPeopleData = {
       She has also collaborated with various IT companies as a consultant and researcher.
     `
   },
-  'Iris Beerepoot': {
-    image: IrisBeerepoot,
-    email: 'i.m.beerepoot@uu.nl',
-    treatment: 'Dr.',
-    institution: 'University of Utrecht',
-    location: 'Utrecht, The Netherlands',
-    job: 'Community Manager',
+  'Avigdor Gal': {
+    treatment,
+    image: Gal,
+    institution: 'Technion - Israel Institute of Technology',
+    location: 'Haifa, Israel',
+    email: 'avigal@technion.ac.il',
     bio: `
-      Iris Beerepoot is an Assistant Professor in the Process Science group at the
-      Department of Information & Computing Sciences at Utrecht University.
-      Her research focuses on work processes in organisations and the extent to which
-      this work is supported by and recorded in information systems. In her Ph.D. thesis,
-      she studied the use of workarounds in healthcare organisations and analysed them with a mix of methods,
-      including process mining. Her work has been published in the proceedings of leading conferences
-      such as BPM, ICPM, ICIS, and ECIS, as well as in journals such as Computers in
-      Industry, Business & Information Systems Engineering, Information Technology and Management,
-      and the Journal of Biomedical Informatics. She served on several organising and program committees
-      at BPM and ICPM, was awarded the BPM runner-up best dissertation award, and won an outstanding reviewer
-      award at ECIS for two consecutive years. She chairs the AI Lab for Public Services
-      which currently houses ten Ph.D. students. As a guest researcher, she visited
-      the University of Haifa, the Sapienza University of Rome, the University of Seville, and the University of Queensland.
+      Avigdor Gal is the Benjamin and Florence Free Chaired Professor of Data Science and
+      the Co-chair of the Center for Humanities & AI at the Technion - Israel Institute of Technology.
+      He is with the Faculty of Data & Decision Sciences, where he led the design of the first
+      engineering program in data science in Israel (and possibly the world). Gal’s research
+      focuses on elements of data integration and process management and mining under uncertainty,
+      making use of state-of-the-art machine learning and deep learning techniques to offer an improved
+      data quality with about 150 publications in leading journals, books, and conference proceedings
+      (including multiple best paper and test-of-time awards). His research is implemented,
+      through his ties as a consultant, in multiple industries including FinTech (e.g., Pagaya).
+      In recent years, with the increasing penetration of AI to all aspects of life,
+      Gal has been involved in developing methods for embedding responsible AI in companies and
+      government authorities through an education process that increases dialogue abilities between data
+      scientists and other stake-holders (e.g., lawyers and regulators).
+    `
+  },
+  'Flavia Santoro': {
+    image: FlaviaSantoro,
+    email: 'flaviamariasantoro@gmail.com',
+    institution: 'Institute of Technology and Leadership (Inteli)',
+    location: 'Rio de Janeiro, Brazil',
+    bio: `
+      Flavia Santoro is the Academic Dean of the Institute of Technology and Leadership (Inteli),
+      and she is a professor at the University of the State of Rio de Janeiro. She earned her Ph.D. in
+      Systems and Computer Engineering from the Federal University of Rio de Janeiro (UFRJ), alongside a
+      Bachelor's degree in Electronic Engineering from the UFRJ's Polytechnic School,
+      and a Master's degree in Contemporary Philosophy from the Pontifical Catholic University of Rio de Janeiro.
+      Since 2009, she has been a recipient of the prestigious National Council of
+      Technological and Scientific Development (CNPq) Fellowship.
+      Her academic journey also includes sabbaticals at the Université Pierre et Marie Curie - Paris VI, France,
+      during 2004-2005, and at Queensland University of Technology, Australia,
+      from 2012 to 2013. With over two decades of experience as an educator and researcher in the field of
+      Information Systems, Santoro's work primarily focuses on Business Process Management,
+      Knowledge-intensive Processes, Knowledge Management, and Computer Supported Cooperative Work and Learning.
+      Beyond academia, she has lent her expertise as a consultant on numerous projects related to BPM and
+      software development for various companies.
     `
   }
 } satisfies Record<string, ConferenceMember>;
@@ -128,13 +153,7 @@ export const steeringCommittee: Record<string, ConferenceMemberData> = {
       location: 'Berlin, Germany',
       email: 'jan.mendling@hu-berlin.de'
     },
-    'Avigador Gal': {
-      treatment,
-      image: Gal,
-      institution: 'Technion - Israel Institute of Technology',
-      location: 'Haifa, Israel',
-      email: 'avigal@technion.ac.il'
-    },
+    'Avigdor Gal': sharedPeopleData['Avigdor Gal'],
     'Chiara Ghidini': {
       treatment,
       image: Ghidini,
@@ -149,7 +168,7 @@ export const steeringCommittee: Record<string, ConferenceMemberData> = {
       location: 'Ulm, Germany',
       email: 'manfred.reichert@uni-ulm.de'
     },
-    'Hajo Reijers': sharedPeopleData['Hajo Reijers'] ?? {},
+    'Hajo Reijers': sharedPeopleData['Hajo Reijers'],
     'Stefanie Rinderle-Ma': {
       treatment,
       job: 'Vice-Chair',
@@ -158,7 +177,7 @@ export const steeringCommittee: Record<string, ConferenceMemberData> = {
       location: 'Munich, Germany',
       email: 'stefanie.rinderle-ma@tum.de'
     },
-    'Adela del Río Ortega': sharedPeopleData['Adela del Río Ortega'] ?? {},
+    'Adela del Río Ortega': sharedPeopleData['Adela del Río Ortega'],
     'Michael Rosemann': {
       treatment,
       image: Rosemann,
@@ -189,6 +208,14 @@ export const steeringCommittee: Record<string, ConferenceMemberData> = {
     }
   },
   'Advisory board': {
+    'Wil van der Aalst': {
+      treatment: 'Prof.dr.ir.',
+      job: 'SC Member 2003-2022, SC Chair 2003-2017',
+      image: VanDerAalst,
+      institution: 'RWTH Aachen',
+      location: 'Aachen, Germany',
+      email: 'wvdaalst@pads.rwth-aachen.de'
+    },
     'Mathias Weske': {
       treatment,
       job: 'Chair 2017 - 2022',
@@ -205,15 +232,12 @@ export const steeringCommittee: Record<string, ConferenceMemberData> = {
       location: 'Tartu, Estonia',
       email: 'marlon.dumas@ut.ee'
     }
-  },
-  'Assistants to the Steering Committee': {
-    'Iris Beerepoot': sharedPeopleData['Iris Beerepoot'] ?? {}
   }
 };
 
 export const conferenceChairs: Record<string, ConferenceMemberData> = {
   'General chairs': {
-    'Adela del Río Ortega': sharedPeopleData['Adela del Río Ortega'] ?? {},
+    'Adela del Río Ortega': sharedPeopleData['Adela del Río Ortega'],
     'Manuel Resinas': {
       ...USData,
       image: ManuelResinas,
@@ -269,7 +293,7 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
       `
     },
     'Irene Vanderfeesten': {},
-    'Hajo Reijers': sharedPeopleData['Hajo Reijers'] ?? {}
+    'Hajo Reijers': sharedPeopleData['Hajo Reijers']
   },
   'Workshops': {
     'Han van der Aa': {
@@ -336,7 +360,29 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         She also serves as editor and reviewer for various journals.
       `
     },
-    'Iris Beerepoot': sharedPeopleData['Iris Beerepoot'] ?? {},
+    'Iris Beerepoot': {
+      image: IrisBeerepoot,
+      email: 'i.m.beerepoot@uu.nl',
+      treatment: 'Dr.',
+      institution: 'University of Utrecht',
+      location: 'Utrecht, The Netherlands',
+      job: 'Community Manager',
+      bio: `
+        Iris Beerepoot is an Assistant Professor in the Process Science group at the
+        Department of Information & Computing Sciences at Utrecht University.
+        Her research focuses on work processes in organisations and the extent to which
+        this work is supported by and recorded in information systems. In her Ph.D. thesis,
+        she studied the use of workarounds in healthcare organisations and analysed them with a mix of methods,
+        including process mining. Her work has been published in the proceedings of leading conferences
+        such as BPM, ICPM, ICIS, and ECIS, as well as in journals such as Computers in
+        Industry, Business & Information Systems Engineering, Information Technology and Management,
+        and the Journal of Biomedical Informatics. She served on several organising and program committees
+        at BPM and ICPM, was awarded the BPM runner-up best dissertation award, and won an outstanding reviewer
+        award at ECIS for two consecutive years. She chairs the AI Lab for Public Services
+        which currently houses ten Ph.D. students. As a guest researcher, she visited
+        the University of Haifa, the Sapienza University of Rome, the University of Seville, and the University of Queensland.
+      `
+    },
     'Alfonso E. Márquez-Chamorro': {
       ...USData,
       image: AlfonsoMarquez,
@@ -511,28 +557,7 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
     }
   },
   'Doctoral Consortium': {
-    'Flavia Santoro': {
-      image: FlaviaSantoro,
-      email: 'flaviamariasantoro@gmail.com',
-      institution: 'Institute of Technology and Leadership (Inteli)',
-      location: 'Rio de Janeiro, Brazil',
-      bio: `
-        Flavia Santoro is the Academic Dean of the Institute of Technology and Leadership (Inteli),
-        and she is a professor at the University of the State of Rio de Janeiro. She earned her Ph.D. in
-        Systems and Computer Engineering from the Federal University of Rio de Janeiro (UFRJ), alongside a
-        Bachelor's degree in Electronic Engineering from the UFRJ's Polytechnic School,
-        and a Master's degree in Contemporary Philosophy from the Pontifical Catholic University of Rio de Janeiro.
-        Since 2009, she has been a recipient of the prestigious National Council of
-        Technological and Scientific Development (CNPq) Fellowship.
-        Her academic journey also includes sabbaticals at the Université Pierre et Marie Curie - Paris VI, France,
-        during 2004-2005, and at Queensland University of Technology, Australia,
-        from 2012 to 2013. With over two decades of experience as an educator and researcher in the field of
-        Information Systems, Santoro's work primarily focuses on Business Process Management,
-        Knowledge-intensive Processes, Knowledge Management, and Computer Supported Cooperative Work and Learning.
-        Beyond academia, she has lent her expertise as a consultant on numerous projects related to BPM and
-        software development for various companies.
-      `
-    },
+    'Flavia Santoro': sharedPeopleData['Flavia Santoro'],
     'Benoit Depaire': {
       image: BenoitDepaire,
       institution: 'Hasselt University',
@@ -657,6 +682,61 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         21st International Conference on Business Process Management (BPM'23). He served as both the PC Chair of the RPA Forum and
         the Proceedings Chair for the BPM'24 conference. He is currently the Proceedings Chair for the BPM'25 conference.
       `
+    },
+    'Johannes De Smedt': {
+      image: JohannesSmedt,
+      email: 'johannes.desmedt@kuleuven.be',
+      institution: 'KU Leuven',
+      location: 'Leuven, Belgium',
+      bio: `
+        Johannes De Smedt is an Assistant Professor at the Department of Decision Sciences and
+        Information Management at the Faculty of Economics and Business of KU Leuven, Belgium.
+        He holds a PhD in Information Systems Engineering and previously held the Dixons Carphone (Senior)
+        Lectureship in Business Analytics at the University of Edinburgh. His research interests
+        include declarative process approaches, the analysis of ordered data, including sequence mining,
+        time series, as well as process analytics geared towards process model forecasting and XAI
+        in predictive process monitoring. He has published over 30 journal papers in major outlets including
+        IEEE Transactions on Knowledge and Data Engineering, Knowledge-Based Systems,
+        and Decision Support Systems, and has published in the proceedings of and is programme committee
+        member of numerous conferences including the International Conference on Business Process Management,
+        Advanced Information Systems Engineering, and Process Mining.
+      `
     }
+  },
+  'Responsible BPM Forum': {
+    'Mahendrawathi Erawan': {
+      image: Mahendra,
+      institution: 'Institut Teknologi Sepuluh Nopember',
+      location: 'Surabaya, Indonesia',
+      email: 'mahendrawathi.er@gmail.com',
+      bio: `
+        Mahendrawathi Erawan is a full Professor and the Head of the Enterprise Systems Laboratory
+        in the Information Systems Department, Institut Teknologi Sepuluh Nopember, Surabaya, Indonesia.
+        She specializes in Business Process Management, Enterprise Resource Planning, and
+        Supply Chain Management and has written books in all three domains.  Her research interests
+        include entrepreneurial process management, inclusive business process management and digital transformation.
+        Her research has been published in various academic journals. She is passionate about applying
+        process-oriented approaches to empower individuals and organizations to drive positive
+        societal impact and contribute toward achieving the Sustainable Development Goals.
+      `
+    },
+    'Thomas Grisold': {
+      image: ThomasGrisold,
+      location: 'St. Gallen, Switzerland',
+      institution: 'University of St. Gallen',
+      email: 'thomas.grisold@unisg.ch',
+      bio: `
+        Thomas Grisold is an assistant professor at the University of St. Gallen.
+        Thomas studies the dynamics of business processes. He applies a variety of theoretical lenses,
+        such as routine dynamics theory, affordance theory, or predictive mind theory.
+        He uses mixed-methods research designs combining qualitative-inductive theorizing with
+        computationally-intensive analyses of digital traces. Thomas’ work has contributed to research
+        in business process management, information systems, and organization studies.
+        He obtained his PhD from WU Vienna and was a a visiting researcher at the University of Notre Dame (US),
+        the Queensland University of Technology (AUS) and Lancaster University (UK).
+      `
+    },
+    'Avigdor Gal': sharedPeopleData['Avigdor Gal'],
+    'Flavia Santoro': sharedPeopleData['Flavia Santoro']
   }
 };
