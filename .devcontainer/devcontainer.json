@@ -1,22 +1,16 @@
 {
-    "name": "BPM2025 website Codespace",
-    "image": "node:20-slim",
-    "features": {
-      "ghcr.io/devcontainers/features/github-cli:1": {},
-      "ghcr.io/eitsupi/devcontainer-features/jq-likes:2": {}
-    },
-    "forwardPorts": [4321],
-    "portsAttributes": {
-      "4321": {
-        "label": "Astro server",
-        "onAutoForward": "notify"
-      }
-    },
-    "postCreateCommand": {
-      "npm": "npm ci --no-audit",
-      "no-yarn": "unset YARN_VERSION && rm -rf /opt/yarn*",
-      "use-bash": "rm -rf /bin/sh && ln -s /bin/bash /bin/sh",
-      "git-config": "git config --global core.editor 'code --wait'"
-    },
-    "postAttachCommand": "cat .vscode/extensions.json | jq -r .recommendations[] | xargs -n 1 code --install-extension"
+  "name": "BPM205 webpage Codespace",
+  "build": { 
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "postCreateCommand": {
+    "npm": "npm ci --no-audit",
+    "unshallow": "git fetch --unshallow || true"
+  },
+  "postAttachCommand": {
+    "install-extensions": "cat .vscode/extensions.json | jq -r .recommendations[] | xargs -n 1 code --install-extension"
   }
+}
