@@ -51,6 +51,18 @@ export interface Item {
   image?: ExtendedImageProps;
 }
 
+export interface Price {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  price?: number | string;
+  period?: string;
+  items?: Array<Item>;
+  callToAction?: CallToAction;
+  hasRibbon?: boolean;
+  ribbonTitle?: string;
+}
+
 export interface Testimonial {
   title?: string;
   testimonial?: string;
@@ -111,6 +123,10 @@ export interface Hero extends BetterOmit<Headline, 'classes'>, BetterOmit<Widget
   content?: string;
   actions?: string | CallToAction[];
   image?: ExtendedImageProps;
+}
+
+export interface Pricing extends BetterOmit<Headline, 'classes'>, Widget {
+  prices?: Array<Price>;
 }
 
 export interface Testimonials extends BetterOmit<Headline, 'classes'>, Widget {
