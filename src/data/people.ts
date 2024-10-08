@@ -644,7 +644,7 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
   'Publicity': {
     'Daniel Calegari': {
       image: DanielCalegari,
-      institution: 'Universidad ORT Uruguay and Universidad de la República',
+      institution: 'Universidad ORT Uruguay & Universidad de la República',
       email: 'dcalegar@fing.edu.uy',
       location: 'Montevideo, Uruguay',
       bio: `
