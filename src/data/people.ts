@@ -43,6 +43,7 @@ import VanDerAalst from '@/assets/images/people/vanderaalst.jpg';
 import ThomasGrisold from '@/assets/images/people/ThomasGrisold.png';
 import Mahendra from '@/assets/images/people/Mahendra.jpg';
 import JohannesSmedt from '@/assets/images/people/JohannesSmedt.jpg';
+import IreneVanderfeesten from '@/assets/images/people/IreneVanderfeesten.jpg';
 
 interface ConferenceMember {
   treatment?: string;
@@ -134,6 +135,29 @@ const sharedPeopleData = {
       Knowledge-intensive Processes, Knowledge Management, and Computer Supported Cooperative Work and Learning.
       Beyond academia, she has lent her expertise as a consultant on numerous projects related to BPM and
       software development for various companies.
+    `
+  },
+  'Iris Beerepoot': {
+    image: IrisBeerepoot,
+    email: 'i.m.beerepoot@uu.nl',
+    treatment: 'Dr.',
+    institution: 'University of Utrecht',
+    location: 'Utrecht, The Netherlands',
+    job: 'Community Manager',
+    bio: `
+      Iris Beerepoot is an Assistant Professor in the Process Science group at the
+      Department of Information & Computing Sciences at Utrecht University.
+      Her research focuses on work processes in organisations and the extent to which
+      this work is supported by and recorded in information systems. In her Ph.D. thesis,
+      she studied the use of workarounds in healthcare organisations and analysed them with a mix of methods,
+      including process mining. Her work has been published in the proceedings of leading conferences
+      such as BPM, ICPM, ICIS, and ECIS, as well as in journals such as Computers in
+      Industry, Business & Information Systems Engineering, Information Technology and Management,
+      and the Journal of Biomedical Informatics. She served on several organising and program committees
+      at BPM and ICPM, was awarded the BPM runner-up best dissertation award, and won an outstanding reviewer
+      award at ECIS for two consecutive years. She chairs the AI Lab for Public Services
+      which currently houses ten Ph.D. students. As a guest researcher, she visited
+      the University of Haifa, the Sapienza University of Rome, the University of Seville, and the University of Queensland.
     `
   }
 } satisfies Record<string, ConferenceMember>;
@@ -292,7 +316,22 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         international companies.
       `
     },
-    'Irene Vanderfeesten': {},
+    'Irene Vanderfeesten': {
+      image: IreneVanderfeesten,
+      email: 'irene.vanderfeesten@kuleuven.be',
+      institution: 'KU Leuven',
+      location: 'Leuven, Belgium',
+      bio: `
+        Irene Vanderfeesten is Associate Professor of Business Information Systems at KU Leuven, Belgium.
+        She previously held scientific positions with Eindhoven University of Technology and
+        Open Universiteit in the Netherlands. Her research concentrates on
+        Business Process Management and Digital Transformation, with a specific emphasis on improving
+        complex business processes that involve physical components, particularly in fields such as
+        manufacturing and healthcare. Her work involves developing methods, tools, and techniques for
+        analyzing, redesigning, and automating these business processes. Of particular interest to her
+        are the human aspects and sustainability factors in these transformations.
+      `
+    },
     'Hajo Reijers': sharedPeopleData['Hajo Reijers']
   },
   'Workshops': {
@@ -360,29 +399,7 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         She also serves as editor and reviewer for various journals.
       `
     },
-    'Iris Beerepoot': {
-      image: IrisBeerepoot,
-      email: 'i.m.beerepoot@uu.nl',
-      treatment: 'Dr.',
-      institution: 'University of Utrecht',
-      location: 'Utrecht, The Netherlands',
-      job: 'Community Manager',
-      bio: `
-        Iris Beerepoot is an Assistant Professor in the Process Science group at the
-        Department of Information & Computing Sciences at Utrecht University.
-        Her research focuses on work processes in organisations and the extent to which
-        this work is supported by and recorded in information systems. In her Ph.D. thesis,
-        she studied the use of workarounds in healthcare organisations and analysed them with a mix of methods,
-        including process mining. Her work has been published in the proceedings of leading conferences
-        such as BPM, ICPM, ICIS, and ECIS, as well as in journals such as Computers in
-        Industry, Business & Information Systems Engineering, Information Technology and Management,
-        and the Journal of Biomedical Informatics. She served on several organising and program committees
-        at BPM and ICPM, was awarded the BPM runner-up best dissertation award, and won an outstanding reviewer
-        award at ECIS for two consecutive years. She chairs the AI Lab for Public Services
-        which currently houses ten Ph.D. students. As a guest researcher, she visited
-        the University of Haifa, the Sapienza University of Rome, the University of Seville, and the University of Queensland.
-      `
-    },
+    'Iris Beerepoot': sharedPeopleData['Iris Beerepoot'],
     'Alfonso E. Márquez-Chamorro': {
       ...USData,
       image: AlfonsoMarquez,
