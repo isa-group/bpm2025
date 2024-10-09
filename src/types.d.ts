@@ -18,6 +18,19 @@ type ImageComponentProps = Omit<ComponentProps<typeof ImageComponent>, 'slot' | 
 type ExtendedImageProps = MakeOptional<ImageComponentProps, SkippedProps>;
 type ExtendedImagePropsWithDescription = ExtendedImageProps & { description?: boolean | string };
 
+interface Classes {
+  container: string;
+  panel: string;
+  title: string;
+  description: string;
+  icon: string;
+  action: string;
+  subtitle: string;
+  images: string;
+  headline: string;
+  content: string;
+}
+
 export interface MetaData {
   title?: AstroSeoProps['title'];
   ignoreTitleTemplate?: boolean;
@@ -31,21 +44,21 @@ export interface Widget {
   id?: string;
   isDark?: boolean;
   bg?: ImageMetadata | boolean;
-  classes?: Record<string, string | Record<string, string>>;
+  classes?: Partial<Classes>;
 }
 
 export interface Headline {
   title?: string;
   subtitle?: string;
   tagline?: string;
-  classes?: Record<string, string>;
+  classes?: Partial<Classes>;
 }
 
 export interface Item {
   title?: string;
   description?: string;
   icon?: IconElement;
-  classes?: Record<string, string>;
+  classes?: Partial<Classes>;
   callsToAction?: CallToAction[];
   extraHtml?: string;
   image?: ExtendedImageProps;
@@ -57,7 +70,7 @@ export interface Price {
   description?: string;
   price?: number | string;
   period?: string;
-  items?: Array<Item>;
+  items?: Item[];
   callToAction?: CallToAction;
   hasRibbon?: boolean;
   ribbonTitle?: string;
@@ -98,14 +111,14 @@ export interface CallToAction extends BetterOmit<HTMLAttributes<'a'>, 'slot'> {
   variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
   text?: string;
   icon?: IconElement;
-  classes?: Record<string, string>;
+  classes?: Partial<Classes>;
   type?: 'button' | 'submit' | 'reset';
 }
 
 export interface ItemGrid {
   items?: Item[];
   columns?: number;
-  classes?: Record<string, string>;
+  classes?: Partial<Classes>;
 }
 
 export type ItemList = BetterOmit<ItemGrid, 'columns'>;
@@ -123,6 +136,11 @@ export interface Hero extends BetterOmit<Headline, 'classes'>, BetterOmit<Widget
   content?: string;
   actions?: string | CallToAction[];
   image?: ExtendedImageProps;
+}
+
+export interface Timeline {
+  items?: Item[];
+  classes?: Partial<Classes>;
 }
 
 export interface Pricing extends BetterOmit<Headline, 'classes'>, Widget {
@@ -156,12 +174,7 @@ export interface Features extends BetterOmit<Headline, 'classes'>, Widget {
 }
 
 export interface Steps extends BetterOmit<Headline, 'classes'>, Widget {
-  items: {
-    title: string;
-    description?: string;
-    icon?: IconElement;
-    classes?: Record<string, string>;
-  }[];
+  items: Item[];
   callToAction?: string | CallToAction;
   image?: ExtendedImageProps;
   isReversed?: boolean;
