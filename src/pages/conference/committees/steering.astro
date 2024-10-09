@@ -28,7 +28,7 @@ const classes = {
       title={section}
       id={encodeURIComponent(section.toLowerCase().replace(' ', '-'))}
       testimonials={Object.entries(chairs).map(([name, info]) => ({
-        name: `${info.treatment} ${name}`,
+        name: info.treatment ? `${info.treatment} ${name}` : name,
         job: info.job,
         items: [
           ...(info.institution
