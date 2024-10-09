@@ -4,7 +4,7 @@ import Header from '@/components/widgets/Header.astro';
 import Footer from '@/components/widgets/Footer.astro';
 import Hero from '@/components/widgets/Hero.astro';
 // import Announcement from '@/components/widgets/Announcement.astro';
-import { headerData, footerData } from '@/data/navigation';
+import { getHeaderData, footerData /* isInRegistrationPage */ } from '@/data/navigation';
 import type { MetaData, Hero as HeroProps } from '@/types';
 import type { ImageMetadata } from 'astro';
 
@@ -16,12 +16,15 @@ export interface Props {
   heroImage?: ImageMetadata;
 }
 
+const url = Astro.url;
+const headerData = getHeaderData(url);
+
 const { metadata, heroProps = {}, heroImage } = Astro.props;
 ---
 
 <Layout metadata={metadata}>
   <slot name="announcement">
-    {/* <Announcement /> */}
+    {/* !isInRegistrationPage(url) && <Announcement /> */}
   </slot>
   <slot name="header">
     <Header {...headerData} isSticky showToggleTheme />
