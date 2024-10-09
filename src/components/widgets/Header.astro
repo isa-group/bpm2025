@@ -7,7 +7,7 @@ import ToggleMenu from '@/components/ui/ToggleMenu.astro';
 import Button from '@/components/ui/Button/Button.astro';
 
 import { getHomePermalink } from '@/utils/permalinks';
-import { headerData } from '@/data/navigation';
+import { getHeaderData } from '@/data/navigation';
 import { trimSlash, getAsset } from '@/utils/permalinks';
 import type { CallToAction, MenuLink } from '@/types';
 
@@ -22,6 +22,9 @@ export interface Props {
   showRssFeed?: boolean;
   position?: string;
 }
+
+const url = Astro.url;
+const headerData = getHeaderData(url);
 
 const {
   links = headerData.links,
