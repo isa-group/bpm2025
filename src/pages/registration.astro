@@ -1,18 +1,17 @@
 ---
 import Layout from '@/layouts/PageLayout.astro';
-import HeroText from '@/components/widgets/HeroText.astro';
-import Contact from '@/components/widgets/Contact.astro';
-
-const metadata = {
-  title: 'Register'
-};
+// import Contact from '@/components/widgets/Contact.astro';
 ---
 
-<Layout metadata={metadata}>
-  <span slot="announcement"></span>
-  <span slot="hero"></span>
-  <HeroText tagline="Register" title="Register as an attendee" />
-  <Contact
+<Layout
+  metadata={{
+    title: 'Registration info'
+  }}
+  heroProps={{
+    title: 'Registration info'
+    // tagline: 'Register'
+  }}>
+  {/* <Contact
     id="form"
     inputs={[
       {
@@ -42,5 +41,5 @@ const metadata = {
       }
     ]}
     description="You will receive a confirmation email shortly after checkout"
-  />
+  /> */}
 </Layout>
