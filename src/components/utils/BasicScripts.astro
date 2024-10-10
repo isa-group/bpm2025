@@ -71,7 +71,7 @@
       localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
     });
 
-    const screenSize = window.matchMedia('(max-width: 767px)');
+    const screenSize = window.matchMedia('(max-width: 1023px)');
     screenSize.addEventListener('change', () => {
       document.querySelector('[data-aw-toggle-menu]')?.classList.remove('expanded');
       document.body.classList.remove('overflow-hidden');
