@@ -66,7 +66,7 @@ const sharedPeopleData = {
     treatment: 'Prof. Dr. ir.',
     job: 'Consolidation chair',
     image: Reijers,
-    institution: 'University of Utrecht',
+    institution: 'Utrecht Univerity',
     location: 'Utrecht, The Netherlands',
     email: 'h.a.reijers@uu.nl',
     bio: `
@@ -144,7 +144,6 @@ const sharedPeopleData = {
     treatment: 'Dr.',
     institution: 'University of Utrecht',
     location: 'Utrecht, The Netherlands',
-    job: 'Community Manager',
     bio: `
       Iris Beerepoot is an Assistant Professor in the Process Science group at the
       Department of Information & Computing Sciences at Utrecht University.
@@ -193,13 +192,7 @@ export const steeringCommittee: Record<string, ConferenceMemberData> = {
       location: 'Ulm, Germany',
       email: 'manfred.reichert@uni-ulm.de'
     },
-    'Hajo Reijers': {
-      treatment,
-      image: Reijers,
-      institution: 'Utrecht Univerity',
-      location: 'Utrecht, The Netherlands',
-      email: 'h.a.reijers@uu.nl'
-    },
+    'Hajo Reijers': sharedPeopleData['Hajo Reijers'],
     'Stefanie Rinderle-Ma': {
       treatment,
       job: 'Vice-Chair',
