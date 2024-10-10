@@ -64,6 +64,7 @@ const USData = {
 const sharedPeopleData = {
   'Hajo Reijers': {
     treatment: 'Prof. Dr. ir.',
+    job: 'Consolidation chair',
     image: Reijers,
     institution: 'University of Utrecht',
     location: 'Utrecht, The Netherlands',
@@ -192,7 +193,13 @@ export const steeringCommittee: Record<string, ConferenceMemberData> = {
       location: 'Ulm, Germany',
       email: 'manfred.reichert@uni-ulm.de'
     },
-    'Hajo Reijers': sharedPeopleData['Hajo Reijers'],
+    'Hajo Reijers': {
+      treatment,
+      image: Reijers,
+      institution: 'Utrecht Univerity',
+      location: 'Utrecht, The Netherlands',
+      email: 'h.a.reijers@uu.nl'
+    },
     'Stefanie Rinderle-Ma': {
       treatment,
       job: 'Vice-Chair',
@@ -234,7 +241,7 @@ export const steeringCommittee: Record<string, ConferenceMemberData> = {
   'Advisory board': {
     'Wil van der Aalst': {
       treatment: 'Prof.dr.ir.',
-      job: 'SC Member 2003-2022, Chair 2003-2017',
+      job: 'SC Member 2003-2022, SC Chair 2003-2017',
       image: VanDerAalst,
       institution: 'RWTH Aachen',
       location: 'Aachen, Germany',
@@ -242,7 +249,7 @@ export const steeringCommittee: Record<string, ConferenceMemberData> = {
     },
     'Mathias Weske': {
       treatment,
-      job: 'SC Member 2003-2024, Chair 2017-2022',
+      job: 'Chair 2017 - 2022',
       image: Weske,
       institution: 'HPI, University of Potsdam',
       location: 'Potsdam, Germany',
@@ -250,7 +257,7 @@ export const steeringCommittee: Record<string, ConferenceMemberData> = {
     },
     'Marlon Dumas': {
       treatment,
-      job: 'SC Member 2007-2024, Vice-Chair 2017-2022',
+      job: 'Vice-Chair 2017 - 2022',
       image: Dumas,
       institution: 'University of Tartu',
       location: 'Tartu, Estonia',
@@ -280,6 +287,7 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
   'Program Committee': {
     'Arik Senderovich': {
       image: ArikSenderovich,
+      job: 'Track I chair',      
       institution: 'School of Information Technologies (ITEC), York University',
       location: 'Toronto, Canada',
       email: 'sariks@yorku.ca',
@@ -304,6 +312,7 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
     'Cristina Cabanillas': {
       image: CristinaCabanillas,
       ...USData,
+      job: 'Track II chair',      
       email: 'cristinacabanillas@us.es',
       bio: `
         Cristina Cabanillas is a Professor at the University of Seville and a member of the Information Systems group in the SCORE lab.
@@ -318,6 +327,7 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
     },
     'Irene Vanderfeesten': {
       image: IreneVanderfeesten,
+      job: 'Track III chair',      
       email: 'irene.vanderfeesten@kuleuven.be',
       institution: 'KU Leuven',
       location: 'Leuven, Belgium',
@@ -383,6 +393,19 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
     }
   },
   'Demos & Resources': {
+    'Iris Beerepoot': sharedPeopleData['Iris Beerepoot'],
+    'Alfonso E. Márquez-Chamorro': {
+      ...USData,
+      image: AlfonsoMarquez,
+      email: 'amarquez6@us.es',
+      bio: `
+        Alfonso E. Márquez-Chamorro obtained his Ph.D. degree with honours from the Pablo de Olavide University of Sevilla in 2013.
+        Currently, he is an Associate Professor at the University of Sevilla, member of the ISA Research Group and SCORE Laboratory.
+        His current research interests include business process management, process mining and data science.
+        Previously, he worked on bioinformatics and evolutionary computation. He has contributed to more than 40 scientific publications
+        in prestigious journals and conferences and took part in more than 15 R&D&I projects.
+      `
+    },
     'Francesca Zerbato': {
       image: FrancescaZerbato,
       email: 'f.zerbato@tue.nl',
@@ -398,22 +421,60 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         the BPM and ICPM conferences and is a co-organizer of the EduPM and ERPM workshops.
         She also serves as editor and reviewer for various journals.
       `
-    },
-    'Iris Beerepoot': sharedPeopleData['Iris Beerepoot'],
-    'Alfonso E. Márquez-Chamorro': {
-      ...USData,
-      image: AlfonsoMarquez,
-      email: 'amarquez6@us.es',
+    }    
+  },
+  'Responsible BPM Forum': {
+    'Mahendrawathi Erawan': {
+      image: Mahendra,
+      institution: 'Institut Teknologi Sepuluh Nopember',
+      location: 'Surabaya, Indonesia',
+      email: 'mahendrawathi.er@gmail.com',
       bio: `
-        Alfonso E. Márquez-Chamorro obtained his Ph.D. degree with honours from the Pablo de Olavide University of Sevilla in 2013.
-        Currently, he is an Associate Professor at the University of Sevilla, member of the ISA Research Group and SCORE Laboratory.
-        His current research interests include business process management, process mining and data science.
-        Previously, he worked on bioinformatics and evolutionary computation. He has contributed to more than 40 scientific publications
-        in prestigious journals and conferences and took part in more than 15 R&D&I projects.
+        Mahendrawathi Erawan is a full Professor and the Head of the Enterprise Systems Laboratory
+        in the Information Systems Department, Institut Teknologi Sepuluh Nopember, Surabaya, Indonesia.
+        She specializes in Business Process Management, Enterprise Resource Planning, and
+        Supply Chain Management and has written books in all three domains.  Her research interests
+        include entrepreneurial process management, inclusive business process management and digital transformation.
+        Her research has been published in various academic journals. She is passionate about applying
+        process-oriented approaches to empower individuals and organizations to drive positive
+        societal impact and contribute toward achieving the Sustainable Development Goals.
       `
-    }
+    },
+    'Avigdor Gal': sharedPeopleData['Avigdor Gal'],
+    'Thomas Grisold': {
+      image: ThomasGrisold,
+      location: 'St. Gallen, Switzerland',
+      institution: 'University of St. Gallen',
+      email: 'thomas.grisold@unisg.ch',
+      bio: `
+        Thomas Grisold is an assistant professor at the University of St. Gallen.
+        Thomas studies the dynamics of business processes. He applies a variety of theoretical lenses,
+        such as routine dynamics theory, affordance theory, or predictive mind theory.
+        He uses mixed-methods research designs combining qualitative-inductive theorizing with
+        computationally-intensive analyses of digital traces. Thomas’ work has contributed to research
+        in business process management, information systems, and organization studies.
+        He obtained his PhD from WU Vienna and was a a visiting researcher at the University of Notre Dame (US),
+        the Queensland University of Technology (AUS) and Lancaster University (UK).
+      `
+    },
+    'Flavia Santoro': sharedPeopleData['Flavia Santoro']
   },
   'Industry Forum': {
+    'Andrés Jiménez-Ramírez': {
+      image: AndresJimenezRamirez,
+      ...USData,
+      email: 'ajramirez@us.es',
+      bio: `
+        Andrés Jiménez Ramírez is a lecturer and researcher at the University of Seville.
+        He started his career as a software engineer in the R&D department of a Spanish consultancy firm.
+        In 2010 he transitioned to the University, where he is a member of the Engineering and Science for Software Systems (ES3) research group.
+        He is currently an Associate Professor at the Computer Languages and Systems department and also works as a Software Engineer at Vitaltech.
+
+        His main research interests are Process Automation, Human Factors, Flexible Process Modelling, and Constraint Programming.
+        In these areas, he has co-authored more than 30 contributions to prestigious international conferences and journals and
+        participated in 7 research projects and over 20 technology transfer projects involving IT companies.
+      `
+    },
     'Hugo A. López': {
       email: 'hulo@dtu.dk',
       institution: 'Technical University of Denmark',
@@ -431,21 +492,6 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         His industry experience includes positions in software consultancy and product ownership at different firms in Denmark,
         and he regularly supports Danish companies in technology transfer and applied research initiatives.
         Currently, he is the leader of the Danish Center For Digital Compliance.
-      `
-    },
-    'Andrés Jiménez-Ramírez': {
-      image: AndresJimenezRamirez,
-      ...USData,
-      email: 'ajramirez@us.es',
-      bio: `
-        Andrés Jiménez Ramírez is a lecturer and researcher at the University of Seville.
-        He started his career as a software engineer in the R&D department of a Spanish consultancy firm.
-        In 2010 he transitioned to the University, where he is a member of the Engineering and Science for Software Systems (ES3) research group.
-        He is currently an Associate Professor at the Computer Languages and Systems department and also works as a Software Engineer at Vitaltech.
-
-        His main research interests are Process Automation, Human Factors, Flexible Process Modelling, and Constraint Programming.
-        In these areas, he has co-authored more than 30 contributions to prestigious international conferences and journals and
-        participated in 7 research projects and over 20 technology transfer projects involving IT companies.
       `
     },
     'Estefanía Serral Asensio': {
@@ -470,20 +516,6 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
     }
   },
   'Education Forum': {
-    'Kate Revoredo': {
-      image: KateRevoredo,
-      email: 'kate.revoredo@hu-berlin.de',
-      institution: 'Humboldt-Universität zu Berlin',
-      location: 'Berlin, Germany',
-      bio: `
-        Kate Revoredo is a research associate at the Chair of Process Management and Information Systems
-        at Humboldt-Universität zu Berlin. She specializes in Business Process Management, Data Management, and
-        Information Systems, with a focus on data-centric approaches. Kate obtained her habilitation (Privatdozentin)
-        in Information Systems from WU Vienna. She earned her Ph.D. in Computer Science and Engineering from the
-        Federal University of Rio de Janeiro, where her thesis on probabilistic machine learning received national recognition.
-        With over 100 published scientific contributions, her work appears in leading journals such as Information Systems, Computers in Industry and Machine Learning, and top conferences like BPM and CAiSE. Previously, she was an assistant professor at WU Vienna and an associate professor at Federal University of the State of Rio de Janeiro. Kate has taught 25 different courses across various levels, including executive education, and finds great satisfaction in designing stimulating and challenging courses that focus on enhancing the student learning experience.
-      `
-    },
     'Banu Aysolmaz': {
       location: 'Eindhoven, The Netherlands',
       image: BanuAysolmaz,
@@ -521,7 +553,21 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         innovate and enhance productivity through IT and process changes. Her work spans various sectors,
         including public administration, healthcare, insurance, banking, education, and manufacturing.
       `
-    }
+    },
+    'Kate Revoredo': {
+      image: KateRevoredo,
+      email: 'kate.revoredo@hu-berlin.de',
+      institution: 'Humboldt-Universität zu Berlin',
+      location: 'Berlin, Germany',
+      bio: `
+        Kate Revoredo is a research associate at the Chair of Process Management and Information Systems
+        at Humboldt-Universität zu Berlin. She specializes in Business Process Management, Data Management, and
+        Information Systems, with a focus on data-centric approaches. Kate obtained her habilitation (Privatdozentin)
+        in Information Systems from WU Vienna. She earned her Ph.D. in Computer Science and Engineering from the
+        Federal University of Rio de Janeiro, where her thesis on probabilistic machine learning received national recognition.
+        With over 100 published scientific contributions, her work appears in leading journals such as Information Systems, Computers in Industry and Machine Learning, and top conferences like BPM and CAiSE. Previously, she was an assistant professor at WU Vienna and an associate professor at Federal University of the State of Rio de Janeiro. Kate has taught 25 different courses across various levels, including executive education, and finds great satisfaction in designing stimulating and challenging courses that focus on enhancing the student learning experience.
+      `
+    }    
   },
   'Tutorial & Panel': {
     'Marco Comuzzi': {
@@ -540,21 +586,6 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         recently wrote a textbook on blockchain systems.
       `
     },
-    'Victoria Torres': {
-      image: VictoriaTorres,
-      email: 'victorbo@upv.edu.es',
-      institution: 'Universitat Politècnica de València',
-      location: 'Valencia, Spain',
-      bio: `
-        Victoria Torres Bosch is a Lecturer and a member of the Software Production Methods (PROS)
-        research center and the Valencian Research Institute for Artificial Intelligence (VRAIN) at
-        the Universitat Politècnica de València (Spain). She works actively in areas such as Business Process Management,
-        Microservices architecture, Process Variability, the Internet of Things, Web Engineering, and Model-Driven Development.
-        She has published several papers and articles in journals such as
-        Information and Software Technology, Information Systems, and Software and System Modeling.
-        For many years, she has actively participated in various National and European Projects in which PROS has been involved.
-      `
-    },
     'Jorge Muñoz-Gama': {
       image: JorgeMunozGama,
       institution: 'Pontificia Universidad Católica de Chile',
@@ -571,10 +602,24 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         He is a Steering Committee member of the IEEE Task Force on Process Mining and he organizes the Workshop
         'Education Meets Process Mining' (EduPM).
       `
+    },
+    'Victoria Torres': {
+      image: VictoriaTorres,
+      email: 'victorbo@upv.edu.es',
+      institution: 'Universitat Politècnica de València',
+      location: 'Valencia, Spain',
+      bio: `
+        Victoria Torres Bosch is a Lecturer and a member of the Software Production Methods (PROS)
+        research center and the Valencian Research Institute for Artificial Intelligence (VRAIN) at
+        the Universitat Politècnica de València (Spain). She works actively in areas such as Business Process Management,
+        Microservices architecture, Process Variability, the Internet of Things, Web Engineering, and Model-Driven Development.
+        She has published several papers and articles in journals such as
+        Information and Software Technology, Information Systems, and Software and System Modeling.
+        For many years, she has actively participated in various National and European Projects in which PROS has been involved.
+      `
     }
   },
   'Doctoral Consortium': {
-    'Flavia Santoro': sharedPeopleData['Flavia Santoro'],
     'Benoit Depaire': {
       image: BenoitDepaire,
       institution: 'Hasselt University',
@@ -604,7 +649,8 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         and a visiting research scholar at Stevens Institute of Technology in Hoboken, NJ.
         She obtained her PhD from Saarland University in 2019.
       `
-    }
+    },
+    'Flavia Santoro': sharedPeopleData['Flavia Santoro']    
   },
   'Journal First Track': {
     'Niels Martin': {
@@ -719,41 +765,5 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         Advanced Information Systems Engineering, and Process Mining.
       `
     }
-  },
-  'Responsible BPM Forum': {
-    'Mahendrawathi Erawan': {
-      image: Mahendra,
-      institution: 'Institut Teknologi Sepuluh Nopember',
-      location: 'Surabaya, Indonesia',
-      email: 'mahendrawathi.er@gmail.com',
-      bio: `
-        Mahendrawathi Erawan is a full Professor and the Head of the Enterprise Systems Laboratory
-        in the Information Systems Department, Institut Teknologi Sepuluh Nopember, Surabaya, Indonesia.
-        She specializes in Business Process Management, Enterprise Resource Planning, and
-        Supply Chain Management and has written books in all three domains.  Her research interests
-        include entrepreneurial process management, inclusive business process management and digital transformation.
-        Her research has been published in various academic journals. She is passionate about applying
-        process-oriented approaches to empower individuals and organizations to drive positive
-        societal impact and contribute toward achieving the Sustainable Development Goals.
-      `
-    },
-    'Thomas Grisold': {
-      image: ThomasGrisold,
-      location: 'St. Gallen, Switzerland',
-      institution: 'University of St. Gallen',
-      email: 'thomas.grisold@unisg.ch',
-      bio: `
-        Thomas Grisold is an assistant professor at the University of St. Gallen.
-        Thomas studies the dynamics of business processes. He applies a variety of theoretical lenses,
-        such as routine dynamics theory, affordance theory, or predictive mind theory.
-        He uses mixed-methods research designs combining qualitative-inductive theorizing with
-        computationally-intensive analyses of digital traces. Thomas’ work has contributed to research
-        in business process management, information systems, and organization studies.
-        He obtained his PhD from WU Vienna and was a a visiting researcher at the University of Notre Dame (US),
-        the Queensland University of Technology (AUS) and Lancaster University (UK).
-      `
-    },
-    'Avigdor Gal': sharedPeopleData['Avigdor Gal'],
-    'Flavia Santoro': sharedPeopleData['Flavia Santoro']
   }
 };
