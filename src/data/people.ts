@@ -287,7 +287,7 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
   'Program Committee': {
     'Arik Senderovich': {
       image: ArikSenderovich,
-      job: 'Track I chair',      
+      job: 'Track I chair',
       institution: 'School of Information Technologies (ITEC), York University',
       location: 'Toronto, Canada',
       email: 'sariks@yorku.ca',
@@ -312,7 +312,7 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
     'Cristina Cabanillas': {
       image: CristinaCabanillas,
       ...USData,
-      job: 'Track II chair',      
+      job: 'Track II chair',
       email: 'cristinacabanillas@us.es',
       bio: `
         Cristina Cabanillas is a Professor at the University of Seville and a member of the Information Systems group in the SCORE lab.
@@ -327,7 +327,7 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
     },
     'Irene Vanderfeesten': {
       image: IreneVanderfeesten,
-      job: 'Track III chair',      
+      job: 'Track III chair',
       email: 'irene.vanderfeesten@kuleuven.be',
       institution: 'KU Leuven',
       location: 'Leuven, Belgium',
@@ -421,7 +421,7 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         the BPM and ICPM conferences and is a co-organizer of the EduPM and ERPM workshops.
         She also serves as editor and reviewer for various journals.
       `
-    }    
+    }
   },
   'Responsible BPM Forum': {
     'Mahendrawathi Erawan': {
@@ -567,7 +567,7 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         Federal University of Rio de Janeiro, where her thesis on probabilistic machine learning received national recognition.
         With over 100 published scientific contributions, her work appears in leading journals such as Information Systems, Computers in Industry and Machine Learning, and top conferences like BPM and CAiSE. Previously, she was an assistant professor at WU Vienna and an associate professor at Federal University of the State of Rio de Janeiro. Kate has taught 25 different courses across various levels, including executive education, and finds great satisfaction in designing stimulating and challenging courses that focus on enhancing the student learning experience.
       `
-    }    
+    }
   },
   'Tutorial & Panel': {
     'Marco Comuzzi': {
@@ -650,7 +650,7 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         She obtained her PhD from Saarland University in 2019.
       `
     },
-    'Flavia Santoro': sharedPeopleData['Flavia Santoro']    
+    'Flavia Santoro': sharedPeopleData['Flavia Santoro']
   },
   'Journal First Track': {
     'Niels Martin': {
