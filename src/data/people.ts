@@ -234,7 +234,7 @@ export const steeringCommittee: Record<string, ConferenceMemberData> = {
   'Advisory board': {
     'Wil van der Aalst': {
       treatment: 'Prof.dr.ir.',
-      job: 'SC Member 2003-2022, SC Chair 2003-2017',
+      job: 'SC Member 2003-2022, Chair 2003-2017',
       image: VanDerAalst,
       institution: 'RWTH Aachen',
       location: 'Aachen, Germany',
@@ -242,7 +242,7 @@ export const steeringCommittee: Record<string, ConferenceMemberData> = {
     },
     'Mathias Weske': {
       treatment,
-      job: 'Chair 2017 - 2022',
+      job: 'SC Member 2003-2024, Chair 2017-2022',
       image: Weske,
       institution: 'HPI, University of Potsdam',
       location: 'Potsdam, Germany',
@@ -250,7 +250,7 @@ export const steeringCommittee: Record<string, ConferenceMemberData> = {
     },
     'Marlon Dumas': {
       treatment,
-      job: 'Vice-Chair 2017 - 2022',
+      job: 'SC Member 2007-2024, Vice-Chair 2017-2022',
       image: Dumas,
       institution: 'University of Tartu',
       location: 'Tartu, Estonia',
