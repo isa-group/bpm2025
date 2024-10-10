@@ -104,7 +104,21 @@ const cathedralText = 'Cathedral of Seville';
 
   <Content bg>
     <Fragment slot="content">
-      <blockquote class="text-muted font-serif p-10">
+      <div class="flex justify-center gap-2">
+        <Avatar
+          xl
+          image={{
+            src: Adela_img,
+            alt: 'Adela del Río Ortega'
+          }} />
+        <Avatar
+          xl
+          image={{
+            src: ManuelResinas_img,
+            alt: 'Manuel Resinas'
+          }} />
+      </div>
+      <blockquote class="text-muted font-serif px-10">
         <div>
           <p>
             We are delighted to invite you to the 23rd edition of the International Conference on Business Process Management (BPM 2025),
@@ -129,20 +143,6 @@ const cathedralText = 'Cathedral of Seville';
           </p>
         </div>
       </blockquote>
-      <div class="flex justify-center gap-2 -mt-5 mb-10">
-        <Avatar
-          xl
-          image={{
-            src: Adela_img,
-            alt: 'Adela del Río Ortega'
-          }} />
-        <Avatar
-          xl
-          image={{
-            src: ManuelResinas_img,
-            alt: 'Manuel Resinas'
-          }} />
-      </div>
       <cite class="flex flex-row-reverse">
         Adela del Río Ortega, Manuel Resinas
         (BPM 2025 General Chairs)
