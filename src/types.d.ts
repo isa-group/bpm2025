@@ -68,11 +68,13 @@ export interface Price {
   title?: string;
   subtitle?: string;
   description?: string;
-  price?: number | string;
-  period?: string;
+  pricing?: {
+    price: number | string;
+    currency: string;
+    period?: string;
+  }[];
   items?: Item[];
   callToAction?: CallToAction;
-  hasRibbon?: boolean;
   ribbonTitle?: string;
 }
 
