@@ -44,7 +44,7 @@ jobs:
         run: npm run build
 
       - name: Upload client artifact ⬆️💻
-        uses: actions/upload-artifact@v4.4.2
+        uses: actions/upload-artifact@v4.4.3
         with:
           compression-level: 0
           name: page
