@@ -1,4 +1,5 @@
-import path from 'node:path';
+import { resolve } from 'node:path';
+import { availableParallelism } from 'node:os';
 
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
@@ -33,13 +34,14 @@ export default defineConfig({
     })
   ],
   build: {
-    assets: 'assets'
+    assets: 'assets',
+    concurrency: availableParallelism()
   },
   vite: {
-    cacheDir: path.resolve(import.meta.dirname, './node_modules/.vite'),
+    cacheDir: resolve(import.meta.dirname, './node_modules/.vite'),
     resolve: {
       alias: {
-        '@': path.resolve(import.meta.dirname, './src')
+        '@': resolve(import.meta.dirname, './src')
       }
     },
     plugins: [Icons({
