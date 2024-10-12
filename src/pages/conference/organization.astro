@@ -1,0 +1,53 @@
+---
+import Layout from '@/layouts/PageLayout.astro';
+import Testimonials from '@/components/widgets/Testimonials.astro';
+import { organizingTeam } from '@/data/people';
+
+import IMdiUniversity from 'virtual:icons/mdi/university';
+import IHugeIconsGlobe from 'virtual:icons/hugeicons/globe';
+import ITablerMail from 'virtual:icons/tabler/mail';
+
+const classes = {
+  panel: 'mt-3'
+};
+---
+
+<Layout metadata={{
+  title: 'Organizing Team'
+}}>
+  <Testimonials
+    testimonials={Object.entries(organizingTeam).map(([name, p], index) => ({
+      name,
+      job: p.job,
+      items: [
+        ...(p.institution
+          ? ([{
+              icon: IMdiUniversity,
+              description: p.institution,
+              classes
+            }])
+          : []),
+        ...(p.location
+          ? ([{
+              icon: IHugeIconsGlobe,
+              description: p.location,
+              classes
+            }])
+          : []),
+        ...(p.email
+          ? ([{
+              icon: ITablerMail,
+              description: `<a href="mailto:${p.email}" class="underline">${p.email}</a>`,
+              classes
+            }])
+          : [])
+      ],
+      ...(p.image && ({
+        image: {
+          src: p.image,
+          alt: name,
+          loading: index >= 6 ? 'lazy' : 'eager'
+        }
+      }))
+    }))} />
+</Layout>
