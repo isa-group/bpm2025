@@ -44,6 +44,7 @@ import ThomasGrisold from '@/assets/images/people/ThomasGrisold.png';
 import Mahendra from '@/assets/images/people/Mahendra.jpg';
 import JohannesSmedt from '@/assets/images/people/JohannesSmedt.jpg';
 import IreneVanderfeesten from '@/assets/images/people/IreneVanderfeesten.jpg';
+import MariaSalas from '@/assets/images/people/MariaSalas.jpg';
 
 interface ConferenceMember {
   treatment?: string;
@@ -718,6 +719,18 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         at Queensland University of Technology, Australia. His research focuses on the socio-technical aspects of
         Process Automation, Cyber-Human Systems, and Business Process Management for Transparency (BPM4T) in the public sector.
         Syed has maintained his technical expertise through active consultancy work with the World Bank and various government ICT organizations globally.
+      `
+    },
+    'María Salas Urbano': {
+      ...USData,
+      email: 'msurbano@us.es',
+      image: MariaSalas,
+      bio: `
+        María Salas Urbano is a PhD student at the University of Seville, Spain, and a member of the ISA research group
+        in the Department of Languages and Computer Systems. Her research focuses on process mining, specifically on providing support
+        to process mining analysts in performing their tasks. She has published her work in prestigious conferences such as BPM or ICSOC.
+        Her contributions aim to enhance techniques and tools for process mining, and she actively participates in the academic community
+        in this area.
       `
     }
   },
