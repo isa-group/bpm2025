@@ -1,44 +1,45 @@
 ---
 import Brands from '@/components/widgets/Brands.astro';
 import { sponsors } from '@/data/sponsors';
+import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
+
 interface Props {
   showEmpty?: boolean;
 }
 const { showEmpty = false } = Astro.props;
 ---
-<table class="w-full">
-  <tbody>
-    {sponsors.map((s) => {
-      const innerText = (
-        <td class="py-10">
-          <b class="text-muted">
-            {s.category}:
-          </b>
-        </td>
-      );
 
-      const innerBrands = s.brands.length
-        ? (
-            <td>
-              <Brands images={s.brands} />
-            </td>
-          )
-        : (
-            <td>
-              <p class="text-center">There are no sponsors in this category yet</p>
-            </td>
-          );
+<div class="py-6">
+  {sponsors.map((s) => {
+    const innerText = (
+      <h3 class="text-center font-medium uppercase tracking-widest">
+        {s.category}
+      </h3>
+    );
 
-      if (!s.brands.length && !showEmpty) {
-        return (<></>);
-      } else {
-        return (
-          <tr>
-            {innerText}
-            {innerBrands}
-          </tr>
+    const innerBrands = s.brands.length
+      ? (
+          <Brands
+            images={s.brands}
+            classes={{
+              container: '!py-4'
+            }} />
+        )
+      : (
+          <WidgetWrapper containerClass="!py-4">
+            <p class="text-center text-muted">There are no sponsors in this category yet</p>
+          </WidgetWrapper>
         );
-      }
-    })}
-  </tbody>
-</table>
+
+    if (!s.brands.length && !showEmpty) {
+      return (<></>);
+    } else {
+      return (
+        <>
+          {innerText}
+          {innerBrands}
+        </>
+      );
+    }
+  })}
+</div>
