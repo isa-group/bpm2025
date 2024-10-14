@@ -135,9 +135,13 @@ export const footerData: FooterData = {
     {
       title: 'Where to stay',
       links: [
+        { text: 'Meliá Sevilla', href: getPermalink('venue/where-to-stay/#melia') },
         { text: 'Hesperia Sevilla Hotel', href: getPermalink('venue/where-to-stay/#hesperia') },
         { text: 'Novotel Sevilla', href: getPermalink('venue/where-to-stay/#novotel') },
-        { text: 'Barceló Occidental Sevilla Viapol', href: getPermalink('venue/where-to-stay/#barcelo') }
+        { text: 'Barceló Occidental Sevilla Viapol', href: getPermalink('venue/where-to-stay/#barcelo') },
+        { text: 'Hotel Pasarela', href: getPermalink('venue/where-to-stay/#pasarela') },
+        { text: 'NH Collection', href: getPermalink('venue/where-to-stay/#nh') },
+        { text: 'Ibis Styles Sevilla City Santa Justa', href: getPermalink('venue/where-to-stay/#ibis') }
       ]
     },
     {

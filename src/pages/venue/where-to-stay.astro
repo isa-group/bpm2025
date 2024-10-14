@@ -2,7 +2,11 @@
 import Layout from '@/layouts/PageLayout.astro';
 import ReceptionImage from '@/assets/images/hero/reception.jpg';
 import Content from '@/components/widgets/Content.astro';
+import CallToAction from '@/components/widgets/CallToAction.astro';
 
+import Melia1 from '@/assets/images/hero/melia-header.jpg';
+import Melia2 from '@/assets/images/venue/melia-2.png';
+import Melia3 from '@/assets/images/venue/melia-3.png';
 import Novotel from '@/assets/images/accomodation/novotel.jpg';
 import Novotel2 from '@/assets/images/accomodation/novotel-2.jpg';
 import Novotel3 from '@/assets/images/accomodation/novotel-3.jpg';
@@ -14,6 +18,15 @@ import Viapol4 from '@/assets/images/accomodation/viapol-4.webp';
 import Hesperia1 from '@/assets/images/accomodation/hesperia-1.jpg';
 import Hesperia2 from '@/assets/images/accomodation/hesperia-2.jpg';
 import Hesperia3 from '@/assets/images/accomodation/hesperia-3.jpg';
+import Pasarela1 from '@/assets/images/accomodation/pasarela-1.jpg';
+import Pasarela2 from '@/assets/images/accomodation/pasarela-2.jpg';
+import Pasarela3 from '@/assets/images/accomodation/pasarela-3.jpg';
+import NH1 from '@/assets/images/accomodation/nh-1.jpg';
+import NH2 from '@/assets/images/accomodation/nh-2.jpg';
+import NH3 from '@/assets/images/accomodation/nh-3.jpg';
+import Ibis1 from '@/assets/images/accomodation/ibis-1.jpg';
+import Ibis2 from '@/assets/images/accomodation/ibis-2.jpg';
+import Ibis3 from '@/assets/images/accomodation/ibis-3.jpg';
 
 import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
 import { getPermalink } from '@/utils/permalinks';
@@ -47,8 +60,39 @@ import { getPermalink } from '@/utils/permalinks';
       }]}>
   </Content>
   <Content
-    title="Hesperia Sevilla Hotel ★★★★"
+    title="Meliá Sevilla ★★★★"
     isReversed
+    id="melia"
+    callsToAction={[
+      {
+        text: 'Book now',
+        href: 'https://www.melia.com/es/hoteles/espana/sevilla/melia-sevilla',
+        icon: ITablerChevronRight,
+        variant: 'secondary'
+      }
+    ]}
+    images={[
+      {
+        src: Melia1,
+        alt: 'Meliá Sevilla'
+      },
+      {
+        src: Melia2,
+        alt: 'Meliá Sevilla'
+      },
+      {
+        src: Melia3,
+        alt: 'Meliá Sevilla'
+      }
+    ]}>
+    <Fragment slot="content">
+      <p>
+        Why stay elsewhere when you can stay at the conference's <a href={getPermalink('/venue')} class="underline">venue</a>?
+      </p>
+    </Fragment>
+  </Content>
+  <Content
+    title="Hesperia Sevilla Hotel ★★★★"
     id="hesperia"
     callsToAction={[
       {
@@ -61,15 +105,15 @@ import { getPermalink } from '@/utils/permalinks';
     images={[
       {
         src: Hesperia1,
-        alt: 'Hesperia Sevilla Hotel'
+        alt: 'Hesperia Sevilla Hotel Room'
       },
       {
         src: Hesperia2,
-        alt: 'Hesperia Sevilla Hotel'
+        alt: 'Hesperia Sevilla Hotel Room'
       },
       {
         src: Hesperia3,
-        alt: 'Hesperia Sevilla Hotel'
+        alt: 'Hesperia Sevilla Hotel Buffet'
       }
     ]}>
     <Fragment slot="content">
@@ -78,7 +122,7 @@ import { getPermalink } from '@/utils/permalinks';
         <a href={getPermalink('/venue')} class="underline">BPM2025 venue</a>.
       </p>
       <iframe
-        title="Directions from Hesperia to Meliá Sevilla (BPM2025 venue)"
+        title="Directions walking from Hesperia to Meliá Sevilla (BPM2025 venue)"
         class="border-0 h-96 w-full mt-3"
         src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d6340.801808345873!2d-5.984433456229711!3d37.38035026375266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0xd126ea2f1bc2955%3A0x309b61069c4791a0!2sHotel%20Hesperia%20Sevilla%2C%20Avenida%20Eduardo%20Dato%2C%20Sevilla!3m2!1d37.3838037!2d-5.974969199999999!4m5!1s0xd126c207841835b%3A0xe81ae59a539c7fd3!2sMeli%C3%A1%20Sevilla%2C%20Calle%20Doctor%20Pedro%20de%20Castro%2C%20Sevilla!3m2!1d37.3781122!2d-5.9831901!5e0!3m2!1ses!2ses!4v1697211892451!5m2!1ses!2ses"
         allowfullscreen
@@ -91,6 +135,7 @@ import { getPermalink } from '@/utils/permalinks';
   <Content
     title="Novotel Sevilla ★★★★"
     id="novotel"
+    isReversed
     bg
     callsToAction={[
       {
@@ -103,15 +148,15 @@ import { getPermalink } from '@/utils/permalinks';
     images={[
       {
         src: Novotel2,
-        alt: 'Novotel Sevilla Hotel'
+        alt: 'Novotel Sevilla Hotel Room'
       },
       {
         src: Novotel3,
-        alt: 'Novotel Sevilla Hotel'
+        alt: 'Novotel Sevilla Hotel Bar'
       },
       {
         src: Novotel4,
-        alt: 'Novotel Sevilla Hotel'
+        alt: 'Novotel Sevilla Hotel Room'
       }
     ]}>
     <Fragment slot="content">
@@ -120,7 +165,7 @@ import { getPermalink } from '@/utils/permalinks';
         <a href={getPermalink('/venue')} class="underline">BPM2025 venue</a>.
       </p>
       <iframe
-        title="Directions from Novotel to Meliá Sevilla (BPM2025 venue)"
+        title="Directions walking from Novotel to Meliá Sevilla (BPM2025 venue)"
         class="border-0 h-96 w-full mt-3"
         src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d6340.850273143824!2d-5.98299355622974!3d37.379777063818516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0xd126ebd838f662d%3A0x96ca9d939c947a67!2sNovotel%20Sevilla%2C%20Sevilla!3m2!1d37.38285!2d-5.9719342!4m5!1s0xd126c207841835b%3A0xe81ae59a539c7fd3!2sMeli%C3%A1%20Sevilla%2C%20Calle%20Doctor%20Pedro%20de%20Castro%2C%20Sevilla!3m2!1d37.3781122!2d-5.9831901!5e0!3m2!1ses!2ses!4v1697211839704!5m2!1ses!2ses"
         allowfullscreen
@@ -133,7 +178,6 @@ import { getPermalink } from '@/utils/permalinks';
   <Content
     title="Barceló Occidental Sevilla Viapol ★★★★"
     id="barcelo"
-    isReversed
     callsToAction={[
       {
         text: 'Book now',
@@ -145,15 +189,15 @@ import { getPermalink } from '@/utils/permalinks';
     images={[
       {
         src: Viapol,
-        alt: 'Barceló Occidental Sevilla Viapol Hotel'
+        alt: 'Barceló Occidental Sevilla Viapol Hotel Reception'
       },
       {
         src: Viapol2,
-        alt: 'Barceló Occidental Sevilla Viapol Hotel'
+        alt: 'Barceló Occidental Sevilla Viapol Hotel Room'
       },
       {
         src: Viapol3,
-        alt: 'Barceló Occidental Sevilla Viapol Hotel'
+        alt: 'Barceló Occidental Sevilla Viapol Hotel Bar'
       }
     ]}>
     <Fragment slot="content">
@@ -162,7 +206,7 @@ import { getPermalink } from '@/utils/permalinks';
         <a href={getPermalink('/venue')} class="underline">BPM2025 venue</a>.
       </p>
       <iframe
-        title="Directions from Barceló to Meliá Sevilla (BPM2025 venue)"
+        title="Directions walking from Barceló to Meliá Sevilla (BPM2025 venue)"
         class="border-0 h-96 w-full mt-3"
         src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3170.4928109718317!2d-5.983466824384812!3d37.378176234907016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0xd126e9ed6fec221%3A0xe9502064b6b1a195!2sHotel%20Occidental%20Sevilla%20Viapol%2C%20C.%20Balbino%20Marr%C3%B3n%2C%209%2C%2041018%20Sevilla!3m2!1d37.378653!2d-5.978030599999999!4m5!1s0xd126c207841835b%3A0xe81ae59a539c7fd3!2sMeli%C3%A1%20Sevilla%2C%20Calle%20Doctor%20Pedro%20de%20Castro%2C%20Sevilla!3m2!1d37.3781122!2d-5.9831901!5e0!3m2!1ses!2ses!4v1697211789063!5m2!1ses!2ses"
         allowfullscreen
@@ -171,4 +215,145 @@ import { getPermalink } from '@/utils/permalinks';
       </iframe>
     </Fragment>
   </Content>
+
+  <Content
+    title="Hotel Pasarela ★★★★"
+    id="pasarela"
+    bg
+    isReversed
+    callsToAction={[
+      {
+        text: 'Book now',
+        href: 'https://www.hotelpasarela.com/en/',
+        icon: ITablerChevronRight,
+        variant: 'secondary'
+      }
+    ]}
+    images={[
+      {
+        src: Pasarela1,
+        alt: 'Hotel Pasarela Reception'
+      },
+      {
+        src: Pasarela2,
+        alt: 'Hotel Pasarela Room'
+      },
+      {
+        src: Pasarela3,
+        alt: 'Hotel Pasarela Bar'
+      }
+    ]}>
+    <Fragment slot="content">
+      <p>
+        Hotel Pasarela is the nearest option to the <a href={getPermalink('/venue')} class="underline">BPM2025 venue</a>.
+        It's only 150 meters away, the equivalent to 1 or 2 minutes walking.
+      </p>
+      <iframe
+        title="Directions walking from Hotel Pasarela to Meliá Sevilla (BPM2025 Venue)"
+        class="border-0 h-96 w-full mt-3"
+        src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3170.516723548749!2d-5.986257824358954!3d37.37761057208813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0xd126c2096503839%3A0x39066401252558c8!2sHotel%20Pasarela%2C%20Avenida%20de%20la%20Borbolla%2C%20Sevilla!3m2!1d37.377131!2d-5.984062!4m5!1s0xd126c207841835b%3A0xe81ae59a539c7fd3!2sMeli%C3%A1%20Sevilla%2C%20Calle%20Doctor%20Pedro%20de%20Castro%2C%20Sevilla!3m2!1d37.3781122!2d-5.983185799999999!5e0!3m2!1ses!2ses!4v1729159843648!5m2!1ses!2ses"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </Fragment>
+  </Content>
+
+  <Content
+    title="NH Collection ★★★★"
+    id="nh"
+    callsToAction={[
+      {
+        text: 'Book now',
+        href: 'https://www.nh-collection.com/en/hotel/nh-collection-sevilla',
+        icon: ITablerChevronRight,
+        variant: 'secondary'
+      }
+    ]}
+    images={[
+      {
+        src: NH1,
+        alt: 'NH Reception and lobby'
+      },
+      {
+        src: NH2,
+        alt: 'NH Room'
+      },
+      {
+        src: NH3,
+        alt: 'NH Buffet'
+      }
+    ]}>
+    <Fragment slot="content">
+      <p>
+        NH Collection Seville is 12 minutes away walking straightforward or 3 minutes away by bike from the
+        <a href={getPermalink('/venue')} class="underline">BPM2025 venue</a>.
+      </p>
+      <iframe
+        title="Directions walking from NH Collection to Meliá Sevilla (BPM2025 venue)"
+        class="border-0 h-96 w-full mt-3"
+        src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d6341.131042130723!2d-5.984911395064073!3d37.376456222088514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0xd126e9bafbca101%3A0xb6ea7726bf3aad28!2sHotel%20NH%20Collection%20Sevilla%2C%20Avenida%20de%20Diego%20Mart%C3%ADnez%20Barrio%2C%20Sevilla!3m2!1d37.374932!2d-5.976261999999999!4m5!1s0xd126c207841835b%3A0xe81ae59a539c7fd3!2sMeli%C3%A1%20Sevilla%2C%20Calle%20Doctor%20Pedro%20de%20Castro%2C%20Sevilla!3m2!1d37.3781122!2d-5.983185799999999!5e0!3m2!1ses!2ses!4v1729159523928!5m2!1ses!2ses"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </Fragment>
+  </Content>
+
+  <Content
+    title="Ibis Styles Sevilla City Santa Justa ★★★★"
+    id="ibis"
+    isReversed
+    bg
+    callsToAction={[
+      {
+        text: 'Book now',
+        href: 'https://all.accor.com/ssr/app/ibis/rates/B7H3/index.en.shtml',
+        icon: ITablerChevronRight,
+        variant: 'secondary'
+      }
+    ]}
+    images={[
+      {
+        src: Ibis1,
+        alt: 'Ibis Bar'
+      },
+      {
+        src: Ibis2,
+        alt: 'Ibis Room'
+      },
+      {
+        src: Ibis3,
+        alt: 'Ibis lounge'
+      }
+    ]}>
+    <Fragment slot="content">
+      <p>
+        Ibis Styles Sevilla City Santa Justa is 18 minutes away walking or 5 minutes away by bike from the
+        <a href={getPermalink('/venue')} class="underline">BPM2025 venue</a>.
+      </p>
+      <iframe
+        title="Directions walking from Ibis Styles Sevilla City Santa Justa to Meliá Sevilla (BPM2025 venue)"
+        class="border-0 h-96 w-full mt-3"
+        src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d6340.599496799914!2d-5.985368464585383!3d37.38274294960612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0xd126ffb87c5abdb%3A0x481f612fd9026b59!2sibis%20styles%20Sevilla%20City%20Santa%20Justa%2C%20Avenue%20Of%20The%2C%20Av.%20de%20la%20Buhaira%2C%202%2C%2041018%20Sevilla!3m2!1d37.386807499999996!2d-5.9785138!4m5!1s0xd126c207841835b%3A0xe81ae59a539c7fd3!2sMeli%C3%A1%20Sevilla%2C%20Calle%20Doctor%20Pedro%20de%20Castro%2C%20Sevilla!3m2!1d37.3781122!2d-5.983185799999999!5e0!3m2!1ses!2ses!4v1729159293994!5m2!1ses!2ses"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </Fragment>
+  </Content>
+
+  <CallToAction
+    title="Want more alternatives?"
+    subtitle="You can find more hotels near the conference venue at Booking.com"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Check in Booking.com',
+        href: 'https://www.booking.com/searchresults.es.html?ss=Melia+Sevilla%2C+Sevilla%2C+Andaluc%C3%ADa%2C+Espa%C3%B1a&ssne=Sevilla&ssne_untouched=Sevilla&label=gen173nr-1BCAEoggI46AdIM1gEaEaIAQGYAQq4ARfIAQzYAQHoAQGIAgGoAgO4Ar6ktLgGwAIB0gIkNzUyOGE0MzctNjkzMy00ODI5LTk1ZjQtMmZlMjQxNDEyMDQy2AIF4AIB&sid=9d2899da6cd4ba98e1550eb352f4b9f1&aid=304142&lang=es&sb=1&src_elem=sb&src=searchresults&dest_id=91632&dest_type=hotel&ac_position=0&ac_click_type=b&ac_langcode=es&ac_suggestion_list_length=3&search_selected=true&search_pageview_id=d50359c5e25c08f6&ac_meta=GhBkNTAzNTljNWUyNWMwOGY2IAAoATICZXM6Dk1lbGnDoSBTZXZpbGxhQABKAFAA&checkin=2025-08-30&checkout=2025-09-06&group_adults=1&no_rooms=1&group_children=0',
+        icon: ITablerChevronRight
+      }
+    ]}
+  >
+  </CallToAction>
 </Layout>
