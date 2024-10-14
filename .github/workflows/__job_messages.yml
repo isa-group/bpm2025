@@ -63,4 +63,4 @@ jobs:
         if: ${{ inputs.comment && steps.compose.conclusion == 'success' }}
         with:
           message: ${{ env.msg }}
-          comment_tag: ${{ inputs.marker }}
+          comment-tag: ${{ inputs.marker }}
