@@ -72,6 +72,7 @@ export interface Price {
     price: number | string;
     currency: string;
     period?: string;
+    variant?: 'primary' | 'secondary';
   }[];
   items?: Item[];
   callToAction?: CallToAction;
