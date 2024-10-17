@@ -1,13 +1,33 @@
 ---
 import Layout from '@/layouts/PageLayout.astro';
 import Pricing from '@/components/widgets/Pricing.astro';
-import ITablerX from 'virtual:icons/tabler/x';
+import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
+import ItemList from '@/components/ui/ItemList.astro';
+import Headline from '@/components/ui/Headline.astro';
 // import Contact from '@/components/widgets/Contact.astro';
+
+import ITablerX from 'virtual:icons/tabler/x';
+import IClarityInfoStandardLine from 'virtual:icons/clarity/info-standard-line';
+import ITablerFileCheck from 'virtual:icons/tabler/file-check';
+import ITablerTicketOff from 'virtual:icons/tabler/ticket-off';
+import ITablerCalendarMonth from 'virtual:icons/tabler/calendar-month';
+import ITablerCreditCard from 'virtual:icons/tabler/credit-card';
+import ITablerCreditCardRefund from 'virtual:icons/tabler/credit-card-refund';
+import ITablerPigMoney from 'virtual:icons/tabler/pig-money';
+import ITablerPigOff from 'virtual:icons/tabler/pig-off';
+import ITablerPodium from 'virtual:icons/tabler/podium';
+
 const currency = '€';
 const disadvantage = {
   icon: ITablerX,
   classes: {
     icon: 'bg-red-500'
+  }
+};
+const neutral = {
+  icon: IClarityInfoStandardLine,
+  classes: {
+    icon: 'bg-slate-500'
   }
 };
 ---
@@ -47,19 +67,30 @@ const disadvantage = {
         ],
         items: [
           {
-            title: 'Assist a single day'
+            title: 'All workshop sessions',
+            description: '1st of September'
           },
           {
-            title: 'Assist multiple days',
-            description: 'Workshops only take place the 1st of September 2025',
+            title: 'All conference sessions',
+            description: '2nd-4th of September',
             ...disadvantage
           },
           {
-            title: 'Access to workshops'
+            title: 'Reception',
+            description: '1st of September'
           },
           {
-            title: 'Access to talks',
+            title: 'Guided tour',
+            description: '2nd of September',
             ...disadvantage
+          },
+          {
+            title: 'Conference dinner',
+            description: '3rd of September',
+            ...disadvantage
+          },
+          {
+            title: 'Conference bag'
           }
         ]
       },
@@ -86,17 +117,28 @@ const disadvantage = {
         ],
         items: [
           {
-            title: 'Assist a single day'
-          },
-          {
-            title: 'Assist multiple days'
-          },
-          {
-            title: 'Access to workshops',
+            title: 'All workshop sessions',
+            description: '1st of September',
             ...disadvantage
           },
           {
-            title: 'Access to talks'
+            title: 'All conference sessions',
+            description: '2nd-4th of September'
+          },
+          {
+            title: 'Reception',
+            description: '1st of September'
+          },
+          {
+            title: 'Guided tour',
+            description: '2nd of September'
+          },
+          {
+            title: 'Conference dinner',
+            description: '3rd of September'
+          },
+          {
+            title: 'Conference bag'
           }
         ]
       },
@@ -124,16 +166,27 @@ const disadvantage = {
         ribbonTitle: 'Best value',
         items: [
           {
-            title: 'Assist a single day'
+            title: 'All workshop sessions',
+            description: '1st of September'
           },
           {
-            title: 'Assist multiple days'
+            title: 'All conference sessions',
+            description: '2nd-4th of September'
           },
           {
-            title: 'Access to workshops'
+            title: 'Reception',
+            description: '1st of September'
           },
           {
-            title: 'Access to talks'
+            title: 'Guided tour',
+            description: '2nd of September'
+          },
+          {
+            title: 'Conference dinner',
+            description: '3rd of September'
+          },
+          {
+            title: 'Conference bag'
           }
         ]
       },
@@ -148,24 +201,87 @@ const disadvantage = {
         ],
         items: [
           {
-            title: 'Assist a single day'
+            title: 'Conference sessions',
+            description: 'Only the day of the ticket',
+            ...neutral
           },
           {
-            title: 'Assist multiple days',
-            ...disadvantage
-          },
-          {
-            title: 'Access to workshops',
-            description: 'Not applicable: Purchase <i>Workshops Only</i> instead',
-            ...disadvantage
-          },
-          {
-            title: 'Access to talks'
+            title: 'Social event',
+            description: 'Only the day of the ticket',
+            ...neutral
           }
         ]
       }
     ]}
   />
+  <WidgetWrapper bg>
+    <Headline title="Additional information" />
+    <ItemList items={[
+      {
+        description: `
+          We offer a 100€ discount for students. If you register as a student, you must provide proof of your student status
+          (e.g. a student card including the academic year). You are eligible for the "Student fee" if you are a student in the academic year 2024-2025.
+          In case you are not able to provide a proof in time, your student registration will be automatically changed into a
+          regular registration, and you will be charged accordingly.
+        `,
+        icon: ITablerPigMoney
+      },
+      {
+        description: `
+          If you are a MSc/PhD student and the presenting author
+          (i.e., the only one among the authors who is present at the event) of a paper accepted at a workshop/co-located
+          event/main conference, then you need to buy a regular registration, regardless of whether or not you are a student.
+        `,
+        icon: ITablerPigOff
+      },
+      {
+        description: `
+          If you are a PhD student and you have been accepted to participate in the Doctoral Consortium,
+          the participation to the Doctoral Consortium is free of charge. If you want to attend the rest of the
+          workshops and/or conference, you can register as a student.
+        `,
+        icon: ITablerPodium
+      }
+    ]} />
+  </WidgetWrapper>
+  <WidgetWrapper>
+    <Headline title="Cancellation policy" />
+    <ItemList items={[
+      {
+        description: 'The registration of participation is binding.',
+        icon: ITablerFileCheck
+      },
+      {
+        description: `
+          If you cancel your registration no later than 30 days before the start of the conference,
+          and you are not a presenting author of an accepted paper, you get 80% back of the registration fee.
+          In all other cases, the financial responsibilities of the participants remain fully effective.
+        `,
+        icon: ITablerTicketOff
+      },
+      {
+        description: `
+          The registration fees are owed upon registration and are payable within 7 days
+          following submission of the registration (but not later than 7 days before the starting day of the event).
+        `,
+        icon: ITablerCalendarMonth
+      },
+      {
+        description: `
+          Participation is not guaranteed until full payment of the registration fee is received.
+        `,
+        icon: ITablerCreditCard
+      },
+      {
+        description: `
+          Payments will be refunded if the conference is canceled by the organizer. In that case,
+          the organizer will have no further liability to the client.
+          In case the conference must be postponed, registrations remain valid.
+        `,
+        icon: ITablerCreditCardRefund
+      }
+    ]} />
+  </WidgetWrapper>
   {/* <Contact
     id="form"
     inputs={[
