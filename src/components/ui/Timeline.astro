@@ -1,14 +1,9 @@
 ---
 import { twMerge } from 'tailwind-merge';
-import type { Item } from '@/types';
+import type { Timeline as Props } from '@/types';
 import BSlot from '@/components/utils/BSlot.astro';
 
-export interface Props {
-  items?: Item[];
-  classes?: Record<string, string>;
-}
-
-const { items = [], classes = {} } = Astro.props as Props;
+const { items = [], classes = {} } = Astro.props;
 
 const {
   container: containerClass = '',
