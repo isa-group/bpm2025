@@ -47,6 +47,7 @@ import IreneVanderfeesten from '@/assets/images/people/IreneVanderfeesten.jpg';
 import MariaSalas from '@/assets/images/people/MariaSalas.jpg';
 import RocioGoni from '@/assets/images/people/RocioGoni.jpg';
 import FernandoFernandez from '@/assets/images/people/FernandoFernandez.jpg';
+import CarlosCapitan from '@/assets/images/people/CarlosCapitan.jpg';
 
 interface ConferenceMember {
   treatment?: string;
@@ -209,6 +210,38 @@ const sharedPeopleData = {
       European research, development, and innovation projects. She serves as a program committee member
       in business process management conferences and as a peer reviewer in scientific journals.
     `
+  },
+  'Shazia Sadiq': {
+    treatment,
+    image: Sadiq,
+    institution: 'University of Queensland',
+    location: 'Brisbane, Australia',
+    email: 'shazia@itee.uq.edu.au',
+    bio: `
+      Shazia Sadiq FTSE is a Professor of Computer Science at the University of Queensland. Her main research
+      interests are innovative solutions for Business Information Systems that span several areas including business process management,
+      governance, risk and compliance, and information quality and use. She has published over 200 peer-reviewed publications and
+      attracted research funding from the Australian Research Council, industry and various national and international funding bodies.
+      Shazia is currently serving on the National Committee on Information and Communication Sciences at the Australian Academy of Science,
+      a fellow of the Australian Academy of Technology and Engineering, member of The Australian Research Council College of Experts 2018-2021,
+      and Centre Director for the ARC Industry Transformation Training Centre on Information Resilience 2020-2025.
+    `
+  },
+  'Irene Vanderfeesten': {
+    image: IreneVanderfeesten,
+    email: 'irene.vanderfeesten@kuleuven.be',
+    institution: 'KU Leuven',
+    location: 'Leuven, Belgium',
+    bio: `
+        Irene Vanderfeesten is Associate Professor of Business Information Systems at KU Leuven, Belgium.
+        She previously held scientific positions with Eindhoven University of Technology and
+        Open Universiteit in the Netherlands. Her research concentrates on
+        Business Process Management and Digital Transformation, with a specific emphasis on improving
+        complex business processes that involve physical components, particularly in fields such as
+        manufacturing and healthcare. Her work involves developing methods, tools, and techniques for
+        analyzing, redesigning, and automating these business processes. Of particular interest to her
+        are the human aspects and sustainability factors in these transformations.
+      `
   }
 } satisfies Record<string, ConferenceMember>;
 
@@ -259,13 +292,7 @@ export const steeringCommittee: Record<string, ConferenceMemberData> = {
       location: 'Brisbane, Australia',
       email: 'm.rosemann@qut.edu.au'
     },
-    'Shazia Sadiq': {
-      treatment,
-      image: Sadiq,
-      institution: 'University of Queensland',
-      location: 'Brisbane, Australia',
-      email: 'shazia@itee.uq.edu.au'
-    },
+    'Shazia Sadiq': sharedPeopleData['Shazia Sadiq'],
     'Barbara Weber': {
       treatment,
       image: Weber,
@@ -341,21 +368,8 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
     },
     'Cristina Cabanillas': sharedPeopleData['Cristina Cabanillas'],
     'Irene Vanderfeesten': {
-      image: IreneVanderfeesten,
-      job: 'Track III chair',
-      email: 'irene.vanderfeesten@kuleuven.be',
-      institution: 'KU Leuven',
-      location: 'Leuven, Belgium',
-      bio: `
-        Irene Vanderfeesten is Associate Professor of Business Information Systems at KU Leuven, Belgium.
-        She previously held scientific positions with Eindhoven University of Technology and
-        Open Universiteit in the Netherlands. Her research concentrates on
-        Business Process Management and Digital Transformation, with a specific emphasis on improving
-        complex business processes that involve physical components, particularly in fields such as
-        manufacturing and healthcare. Her work involves developing methods, tools, and techniques for
-        analyzing, redesigning, and automating these business processes. Of particular interest to her
-        are the human aspects and sustainability factors in these transformations.
-      `
+      ...sharedPeopleData['Irene Vanderfeesten'],
+      job: 'Track III chair'
     },
     'Hajo Reijers': sharedPeopleData['Hajo Reijers']
   },
@@ -776,6 +790,23 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         Advanced Information Systems Engineering, and Process Mining.
       `
     }
+  },
+  'Diversity, Equity & Inclusion': {
+    'Carlos Capitán Agudo': {
+      ...USData,
+      image: CarlosCapitan,
+      email: 'ccagudo@us.es',
+      bio: `
+        Carlos Capitán-Agudo is a graduate in health engineering, and he received a MSc in software engineering at the University of Seville.
+        For his final degree work, he was awarded in the national competition XVIII “Arquimedes” of introduction to scientific research.
+        Currently, he is a PhD student at the University of Seville. His thesis aims to facilitate time performance analyses in process mining,
+        and it is under the supervision of Manuel Resinas, and Cristina Cabanillas. He has co-authored publications in conferences such as
+        BPMNDS, BPM, and ICSOC. One of the publications he co-authored received the Best Student Paper Award at BPM 2022.
+        His current research interests include process performance, neuronal networks, and explainable artificial intelligence.
+      `
+    },
+    'Shazia Sadiq': sharedPeopleData['Shazia Sadiq'],
+    'Irene Vanderfeesten': sharedPeopleData['Irene Vanderfeesten']
   }
 };
 
