@@ -26,11 +26,11 @@ const iconClasses = 'w-5 h-5 font-bold p-1 text-white';
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${containerClass ?? ''}`} bg={bg}>
   <Headline title={title} subtitle={subtitle} tagline={tagline} />
-  <div class="flex gap-6 justify-center flex-wrap">
+  <div class="flex gap-4 justify-center flex-wrap">
     {
       prices
       && prices.map(({ title, subtitle, pricing, items, callToAction, ribbonTitle }) => (
-        <div class="flex flex-1 justify-center min-w-80">
+        <div class="flex flex-1 justify-center min-w-40">
           <div class="rounded-lg backdrop-blur border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 shadow px-6 py-8 flex w-full max-w-sm flex-col text-center">
             {ribbonTitle && (
               <div class="absolute right-[-5px] 2xl:right-[-8px] rtl:right-auto rtl:left-[-8px] rtl:2xl:left-[-10px] top-[-5px] 2xl:top-[-10px] z-[1] h-[100px] w-[100px] overflow-hidden text-right">
