@@ -1,8 +1,9 @@
 ---
 import Layout from '@/layouts/PageLayout.astro';
 import Content from '@/components/widgets/Content.astro';
+import type { CallForPapers } from '@/types';
 const matches = await import.meta.glob('./*.mdx', { eager: true });
-const posts = Object.values(matches);
+const posts = Object.values(matches) as CallForPapers[];
 ---
 
 <Layout
@@ -11,7 +12,7 @@ const posts = Object.values(matches);
   }}
 >
   <p slot="content">All dates are AoE</p>
-  {posts.sort((a, b) => a.frontmatter.order - b.frontmatter.order).map(post =>
+  {posts.sort((a: CallForPapers, b: CallForPapers) => a.frontmatter.order - b.frontmatter.order).map(post =>
     (
       <Content
         title={post.frontmatter.title}>

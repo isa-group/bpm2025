@@ -2,7 +2,7 @@ import type { HTMLAttributes, ComponentProps } from 'astro/types';
 import type { Props as AstroSeoProps } from '@astrolib/seo';
 import { Image as ImageComponent } from 'astro:assets';
 import ITablerCheck from 'virtual:icons/tabler/check';
-import type { ImageMetadata } from 'astro';
+import type { ImageMetadata, MarkdownInstance } from 'astro';
 
 export type IconElement = typeof ITablerCheck;
 // There are some hacks to get this type working properly:
@@ -205,3 +205,13 @@ interface Link {
 export interface MenuLink extends Link {
   links?: MenuLink[];
 }
+
+export type BareCall = {
+  layout: string;
+  title: string;
+  order: int;
+  showHeading: boolean;
+  importantDates: Record<string, string>;
+};
+
+export type CallForPapers = MarkdownInstance<BareCall>;
