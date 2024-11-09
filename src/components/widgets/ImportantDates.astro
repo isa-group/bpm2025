@@ -1,0 +1,19 @@
+---
+// Define the prop type for frontmatter
+interface Props {
+  importantDates: Record<string, string>;
+}
+
+// Destructure the importantDates prop
+const { importantDates } = Astro.props;
+---
+
+<ul>
+  {Object.entries(importantDates).map(([key, value]) => (
+    <li>
+      <strong>{key}</strong>: {value}
+    </li>
+  ))}
+</ul>
+
+<p><em>Deadlines correspond to Anywhere on Earth (AoE or UTC-12).</em></p>

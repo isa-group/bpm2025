@@ -2,7 +2,14 @@
 title: 'Call for Research Papers'
 layout: '@/layouts/MarkdownLayout.astro'
 showHeading: false
+order: 1
+importantDates:
+  "Paper Abstract submission": 4 March 2025
+  "Paper submission": 11 March 2025
+  "Notification to authors": 8 May 2025
+  "Camera-ready submission": 13 June 2025
 ---
+import ImportantDates from '@/components/widgets/ImportantDates.astro';
   
 The International Conference on Business Process Management (BPM) is the premium forum for researchers and practitioners in the field of BPM. The conference embraces the interdisciplinary nature of BPM to its fullest extent. To this end, the conference explicitly seeks to bring together the finest research contributions and viewpoints from the fields of computer science, information systems engineering, and information systems management. The objective is to enhance or refine the existing portfolio of theories, methods, and tools for managing and improving business processes. 
 
@@ -107,11 +114,7 @@ Other than for the award, student papers are treated as any other paper in the r
 Papers that do not fully meet the quality criteria for the main conference, but make a significant contribution to the community, will be invited for presentation at the BPM Forum. Those papers make interesting contributions and will be published in full length in a separate post-proceedings volume in the Lecture Notes in Business Information Processing (LNBIP) series. They will be presented during the main conference. There will be no short papers. 
 
 ## Key Dates 
-- Paper Abstract submission: 4 March 2025 AoE 
-- Paper submission: 11 March 2025 AoE 
-- Notification to authors: 8 May 2025
-- Camera-ready submission: 13 June 2025
-- Conference: August 31 - September 5, 2025 
+<ImportantDates importantDates={frontmatter.importantDates}/>
 
 ## Program Chairs 
 Hajo Reijers, Utrecht University, The Netherlands (Consolidation Chair) 

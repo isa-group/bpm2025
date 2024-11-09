@@ -52,12 +52,44 @@ export function getHeaderData(currentUrl: URL): HeaderData {
         text: 'Calls',
         links: [
           {
+            text: 'Important dates',
+            href: getPermalink('/calls/dates')
+          },
+          {
             text: 'Call for research papers',
             href: getPermalink('/calls/research-papers')
           },
           {
             text: 'Call for workshops',
             href: getPermalink('/calls/workshops')
+          },
+          {
+            text: 'Call for industry & society forum',
+            href: getPermalink('/calls/industry-forum')
+          },
+          {
+            text: 'Call for educators forum',
+            href: getPermalink('/calls/educators-forum')
+          },
+          {
+            text: 'Call for responsible BPM forum',
+            href: getPermalink('/calls/responsible-forum')
+          },
+          {
+            text: 'Call for demos and resources',
+            href: getPermalink('/calls/demos-resources')
+          },
+          {
+            text: 'Call for tutorials',
+            href: getPermalink('/calls/tutorials')
+          },
+          {
+            text: 'Call for doctoral consortium',
+            href: getPermalink('/calls/doctoral-consortium')
+          },
+          {
+            text: 'Call for doctoral journal first track',
+            href: getPermalink('/calls/journal-first')
           }
         ]
       },

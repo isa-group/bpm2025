@@ -2,7 +2,13 @@
 title: 'Call for workshops'
 layout: '@/layouts/MarkdownLayout.astro'
 showHeading: false
+order: 2
+importantDates:
+  "Deadline for submitting workshop proposals": November 29, 2024
+  "Notification of proposal acceptance, rejection, or invitation to negotiation": December 16, 2024
+
 ---
+import ImportantDates from '@/components/widgets/ImportantDates.astro';
 
 BPM 2025 is the 23rd conference in a series that provides the most prestigious forum for researchers and practitioners in the field of Business Process Management (BPM). The conference has a record of attracting innovative research of the highest quality related to all aspects of BPM, including theories, frameworks, methods, techniques, architectures, and empirical findings. BPM 2025 will take place in Seville, Spain from August 31 to September 5.
 
@@ -39,8 +45,8 @@ Any inquiries and requests for further information about the organization of wor
 ## Important Dates
 
 ### Dates for workshop proposals
-- Deadline for submitting workshop proposals: November 29, 2024
-- Notification of proposal acceptance, rejection, or invitation to negotiation: December 16, 2024
+<ImportantDates importantDates={frontmatter.importantDates}/>
+
 
 ### Tentative dates for workshop papers
 - Workshop paper submission: 29 May 2025
