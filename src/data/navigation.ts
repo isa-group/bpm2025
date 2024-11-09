@@ -1,9 +1,12 @@
-import type { CallToAction, MenuLink } from '@/types';
+import type { CallForPapers, CallToAction, MenuLink } from '@/types';
 import type { Props as FooterProps } from '@/components/widgets/Footer.astro';
 import { getAsset, getHomePermalink, getPermalink } from '@/utils/permalinks';
 import ITablerBrandX from 'virtual:icons/tabler/brand-x';
 import ITablerMail from 'virtual:icons/tabler/mail';
 import { conferenceChairs } from '@/data/people';
+
+const matches = await import.meta.glob('../pages/calls/*.mdx', { eager: true });
+const posts = Object.values(matches) as CallForPapers[];
 
 interface HeaderData {
   links?: MenuLink[];
@@ -21,6 +24,13 @@ export function isInRegistrationPage(currentUrl: URL): boolean {
 }
 
 export function getHeaderData(currentUrl: URL): HeaderData {
+  const calls = posts.sort((a, b) => a.frontmatter.order - b.frontmatter.order).map(post =>
+    ({
+      text: post.frontmatter.title,
+      href: getPermalink(post.url)
+    })
+  );
+
   const initialData: HeaderData = {
     links: [
       {
@@ -52,13 +62,10 @@ export function getHeaderData(currentUrl: URL): HeaderData {
         text: 'Calls',
         links: [
           {
-            text: 'Call for research papers',
-            href: getPermalink('/calls/research-papers')
+            text: 'Important dates',
+            href: getPermalink('/calls/dates')
           },
-          {
-            text: 'Call for workshops',
-            href: getPermalink('/calls/workshops')
-          }
+          ...calls
         ]
       },
       {
