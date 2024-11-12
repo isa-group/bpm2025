@@ -48,9 +48,9 @@
     "unplugin-icons": "0.20.0"
   },
   "engines": {
-    "node": ">=20.8.1 <21.0.0",
-    "npm": ">=10.1.0",
-    "yarn": "Yarn is not supported. Please use NPM.",
-    "pnpm": "PNPM is not supported. Please use NPM."
+    "node": ">=22.11.0 <23.0.0",
+    "npm": ">=10.9.0",
+    "yarn": "yarn is not supported. Please use npm",
+    "pnpm": "pnpm is not supported. Please use NPM."
   }
 }
