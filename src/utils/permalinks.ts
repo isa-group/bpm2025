@@ -1,6 +1,7 @@
 import config from '../../astro.config';
 
 const trailingSlash = config.trailingSlash === 'always';
+const BASE_PATHNAME = config.base ?? '/';
 
 function trim(str = '', ch?: string) {
   let start = 0,
@@ -19,20 +20,35 @@ const createPath = (...params: string[]) => {
   return '/' + paths + (trailingSlash && paths ? '/' : '');
 };
 
-const BASE_PATHNAME = config.base ?? '/';
-
-/** */
+/**
+ * Generates a canonical URL based on the provided path.
+ * A canonical URL is the preferred URL for a web page, used to avoid duplicate content issues.
+ *
+ * @param {string} [path=''] - The relative path to generate the canonical URL.
+ * @returns {string | URL} - The complete canonical URL as a string or URL object.
+ */
 export const getCanonical = (path = ''): string | URL => {
   const url = String(new URL(path, config.site));
-  if (!trailingSlash && path && url.endsWith('/')) {
-    return url.slice(0, -1);
-  } else if (trailingSlash && path && !url.endsWith('/')) {
-    return url + '/';
+
+  if (path) {
+    if (!trailingSlash && url.endsWith('/')) {
+      return url.slice(0, -1);
+    } else if (trailingSlash && !url.endsWith('/')) {
+      return url + '/';
+    }
   }
+
   return url;
 };
 
-/** */
+/**
+ * Creates the permalink using the base path name as base and the provided permalink.
+ */
+const definitivePermalink = (permalink: string): string => createPath(BASE_PATHNAME, permalink);
+
+/**
+ * Gets the URL to an specific page
+ */
 export const getPermalink = (slug = '', type = 'page'): string => {
   let permalink: string;
 
@@ -70,16 +86,17 @@ export const getPermalink = (slug = '', type = 'page'): string => {
   return definitivePermalink(permalink);
 };
 
-/** */
+/**
+ * Gets the link to the homepage
+ */
 export const getHomePermalink = (): string => getPermalink('/');
 
-/** */
+/**
+ * Gets the link to an specific asset
+ */
 export const getAsset = (path: string): string =>
   '/'
   + [BASE_PATHNAME, path]
     .map(el => trimSlash(el))
     .filter(el => !!el)
     .join('/');
-
-/** */
-const definitivePermalink = (permalink: string): string => createPath(BASE_PATHNAME, permalink);
