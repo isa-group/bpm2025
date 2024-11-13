@@ -2,12 +2,11 @@
 import Layout from '@/layouts/PageLayout.astro';
 import Content from '@/components/widgets/Content.astro';
 import CallToAction from '@/components/widgets/CallToAction.astro';
-import { getPermalink } from '@/utils/permalinks';
 import TablerDownload from 'virtual:icons/tabler/download';
 import TablerMail from 'virtual:icons/tabler/mail';
+import pdfBrochure from '@/assets/documents/sponsoring/BPM2025-sponsoring-offer_EN.pdf';
 
 const contactEmail = 'mailto:info@bpm2025seville.org';
-const pdfBrochure = getPermalink('/BPM2025-sponsoring-offer_EN.pdf');
 ---
 
 <Layout
