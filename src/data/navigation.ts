@@ -191,6 +191,7 @@ export const footerData: FooterData = {
     }
   ],
   secondaryLinks: [
+    { text: 'Terms', href: getPermalink('/terms') },
     { text: 'Sitemap', href: getAsset('/sitemap-index.xml') }
   ],
   socialLinks: [

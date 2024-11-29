@@ -4,10 +4,13 @@ import Pricing from '@/components/widgets/Pricing.astro';
 import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
 import ItemList from '@/components/ui/ItemList.astro';
 import Headline from '@/components/ui/Headline.astro';
+import CallToAction from '@/components/widgets/CallToAction.astro';
 // import Contact from '@/components/widgets/Contact.astro';
+import { getPermalink } from '@/utils/permalinks';
 
 import ITablerX from 'virtual:icons/tabler/x';
 import IClarityInfoStandardLine from 'virtual:icons/clarity/info-standard-line';
+import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
 import ITablerFileCheck from 'virtual:icons/tabler/file-check';
 import ITablerTicketOff from 'virtual:icons/tabler/ticket-off';
 import ITablerCalendarMonth from 'virtual:icons/tabler/calendar-month';
@@ -282,6 +285,19 @@ const neutral = {
       }
     ]} />
   </WidgetWrapper>
+  <CallToAction
+    classes={{ container: '!pt-0' }}
+    title="Terms and conditions"
+    subtitle="The general terms and conditions for this website are also applicable after registration"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Read terms and conditions',
+        href: getPermalink('/terms'),
+        icon: ITablerChevronRight
+      }
+    ]}
+  />
   {/* <Contact
     id="form"
     inputs={[
