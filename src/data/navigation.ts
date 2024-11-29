@@ -1,11 +1,11 @@
 import type { CallForPapers, CallToAction, MenuLink } from '@/types';
 import type { Props as FooterProps } from '@/components/widgets/Footer.astro';
-import { getAsset, getHomePermalink, getPermalink } from '@/utils/permalinks';
+import { getAsset, getHomePermalink, getPermalink, trimSlash } from '@/utils/permalinks';
 import ITablerBrandX from 'virtual:icons/tabler/brand-x';
 import ITablerMail from 'virtual:icons/tabler/mail';
 import { conferenceChairs } from '@/data/people';
 
-const matches = await import.meta.glob('../pages/calls/*.mdx', { eager: true });
+const matches = import.meta.glob('../pages/calls/*.mdx', { eager: true });
 const posts = Object.values(matches) as CallForPapers[];
 
 interface HeaderData {
@@ -20,7 +20,7 @@ interface FooterData {
 }
 
 export function isInRegistrationPage(currentUrl: URL): boolean {
-  return currentUrl.pathname === '/registration';
+  return trimSlash(currentUrl.pathname) === 'registration';
 }
 
 export function getHeaderData(currentUrl: URL): HeaderData {
