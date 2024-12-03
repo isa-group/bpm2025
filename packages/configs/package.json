@@ -2,7 +2,7 @@
   "name": "@bpm2025-website/configs",
   "type": "module",
   "exports": {
-    "./typescript/base.json": "./typescript/base.json",
+    "./typescript": "./typescript/base.json",
     "./lint": "./lint/index.ts"
   },
   "scripts": {

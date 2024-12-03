@@ -1,0 +1,42 @@
+{
+  "products": {
+    "Workshops Only": {
+      "id": 1,
+      "price": 350
+    },
+    "Conference Only": {
+      "id": 2,
+      "price": 650
+    },
+    "Conference + Workshops": {
+      "id": 3,
+      "price": 750
+    },
+    "Day ticket": {
+      "id": 4,
+      "price": 400
+    }
+  },
+  "discounts": {
+    "Student": {
+      "id": 1,
+      "reduction": 100
+    },
+    "Early (with conference)": {
+      "id": 2,
+      "reduction": 50
+    },
+    "Super early (with conference)": {
+      "id": 3,
+      "reduction": 100
+    },
+    "Early workshops-only": {
+      "id": 4,
+      "reduction": 70
+    },
+    "Super early workshops-only": {
+      "id": 5,
+      "reduction": 110
+    }
+  }
+}

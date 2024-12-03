@@ -2,7 +2,7 @@
 import type { ExtendedImagePropsWithDescription, Widget } from '@/types';
 import { Image } from 'astro:assets';
 import WidgetWrapper from './WidgetWrapper.astro';
-import { isStr } from '@/utils/validation';
+import { isStr } from '@bpm2025-website/shared/validation';
 
 export interface Props extends Widget {
   images: ExtendedImagePropsWithDescription[];

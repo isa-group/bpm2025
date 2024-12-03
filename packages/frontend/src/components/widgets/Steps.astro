@@ -4,7 +4,7 @@ import Timeline from '@/components/ui/Timeline.astro';
 import Headline from '@/components/ui/Headline.astro';
 import { Image } from 'astro:assets';
 import type { Steps as Props } from '@/types';
-import { isObj } from '@/utils/validation';
+import { isObj } from '@bpm2025-website/shared/validation';
 
 const {
   title = await Astro.slots.render('title'),

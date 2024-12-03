@@ -1,0 +1,5 @@
+# For Prisma generated client
+node_modules
+
+.env
+data/
