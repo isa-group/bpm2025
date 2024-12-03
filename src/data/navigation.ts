@@ -191,6 +191,8 @@ export const footerData: FooterData = {
     }
   ],
   secondaryLinks: [
+    { text: 'Legal', href: getPermalink('/terms/legal') },
+    { text: 'T&Cs', href: getPermalink('/terms/registration') },
     { text: 'Sitemap', href: getAsset('/sitemap-index.xml') }
   ],
   socialLinks: [
