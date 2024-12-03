@@ -1,0 +1,34 @@
+{
+  "name": "@bpm2025-website/backend",
+  "type": "module",
+  "scripts": {
+    "prisma": "npm run prisma:generate && npm run prisma:migrate",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate deploy",
+    "prisma:create-migration": "prisma migrate dev",
+    "start": "npm run prisma && NODE_OPTIONS='--experimental-strip-types' NODE_NO_WARNINGS=1 npm run listhen:dev",
+    "prod": "npm run prisma && NODE_OPTIONS='--experimental-strip-types' NODE_NO_WARNINGS=1 npm run listhen:prod",
+    "listhen:dev": "DEV=1 listhen -w ./src/app.ts",
+    "listhen:prod": "listhen --host --qr false ./src/app.ts",
+    "check": "npm run check:types",
+    "check:types": "tsc",
+    "lint": "eslint . --flag unstable_ts_config",
+    "lint:fix": "eslint . --fix --flag unstable_ts_config",
+    "lint:inspect": "eslint-config-inspector"
+  },
+  "devDependencies": {
+    "@bpm2025-website/configs": "*",
+    "dotenv": "16.4.7"
+  },
+  "dependencies": {
+    "@bpm2025-website/shared": "*",
+    "@prisma/client": "6.0.1",
+    "consola": "3.2.3",
+    "destr": "2.0.3",
+    "h3": "1.13.0",
+    "image-size": "1.1.1",
+    "listhen": "1.9.0",
+    "microinvoice": "1.0.6",
+    "prisma": "6.0.1"
+  }
+}

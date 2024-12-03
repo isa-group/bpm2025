@@ -1,0 +1,73 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["views"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../data/db.sqlite3"
+}
+
+model discount {
+  id             Int              @id @default(autoincrement()) @map("_id")
+  name           String           @unique(map: "sqlite_autoindex_discount_1")
+  reduction      Float
+  discount_order discount_order[]
+}
+
+model discount_order {
+  id          Int      @id @default(autoincrement()) @map("_id")
+  order_id    String
+  discount_id Int
+  order       order    @relation(fields: [order_id], references: [id], onDelete: Cascade)
+  discount    discount @relation(fields: [discount_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([order_id, discount_id], map: "sqlite_autoindex_discount_order_1")
+}
+
+model order {
+  id             String           @id @map("_id")
+  user_id        Int
+  product_id     Int
+  paid           Boolean?         @default(false)
+  notes          String?
+  createdAt      DateTime?        @default(dbgenerated("CURRENT_TIMESTAMP"))
+  updatedAt      DateTime?        @updatedAt
+  discount_order discount_order[]
+  user           user             @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  product        product          @relation(fields: [product_id], references: [id], onDelete: Cascade)
+
+  @@unique([id, user_id, product_id], map: "sqlite_autoindex_order_2")
+}
+
+model product {
+  id    Int     @id @default(autoincrement()) @map("_id")
+  name  String  @unique(map: "sqlite_autoindex_product_1")
+  price Float
+  order order[]
+}
+
+model user {
+  id              Int       @id @default(autoincrement()) @map("_id")
+  email           String    @unique(map: "sqlite_autoindex_user_1")
+  name            String
+  billing_address String
+  institution     String?
+  order           order[]
+  createdAt       DateTime  @default(dbgenerated("CURRENT_TIMESTAMP"))
+  updatedAt       DateTime? @updatedAt
+}
+view full_order_details {
+  order_ID                    String          @id @map("Order ID")
+  user_ID                     Int             @map("User ID")
+  user_name                   String          @map("User name")
+  user_email                  String          @map("User email")
+  user_billing_address        String          @map("User billing address")
+  user_institution            String?         @map("User institution")
+  user_notes                  String?         @map("Order notes")
+  product_name                String          @map("Product name")
+  paid                        Boolean
+  price_paid_with_discounts   Float           @map("Price paid (with discounts)")
+  applied_discounts           String?         @map("Applied Discounts")
+  created_at                  DateTime        @map("Created at")
+}
