@@ -2,27 +2,34 @@
 import type { Form as Props } from '@/types';
 import Button from '@/components/ui/Button/Button.astro';
 
-const { inputs, textarea, disclaimers, button = 'Submit', description = '' } = Astro.props;
+const {
+  inputs,
+  textarea,
+  disclaimers,
+  button = { text: 'Submit' },
+  description = '',
+  formProps = {}
+} = Astro.props;
 ---
 
-<form>
+<form {...formProps}>
   {
     inputs
     && inputs.map(
-      ({ type = 'text', name, label = '', autocomplete = 'on', placeholder = '' }) =>
-        name && (
+      input =>
+        input.name && (
           <div class="mb-6">
-            {label && (
-              <label for={name} class="block text-sm font-medium">
-                {label}
+            {input.label && (
+              <label for={input.name} class="block text-sm font-medium">
+                <Fragment set:html={input.label} />
+                {input.required && (
+                  <span class="text-red-500" aria-hidden="true">*</span>
+                )}
               </label>
             )}
             <input
-              type={type}
-              name={name}
-              id={name}
-              autocomplete={autocomplete}
-              placeholder={placeholder}
+              autocomplete={input.autocomplete ?? 'on'}
+              {...input}
               class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
             />
           </div>
@@ -33,14 +40,18 @@ const { inputs, textarea, disclaimers, button = 'Submit', description = '' } = A
   {
     textarea && (
       <div>
-        <label for="textarea" class="block text-sm font-medium">
-          {textarea.label}
-        </label>
+        {textarea.label && (
+          <label for="textarea" class="block text-sm font-medium">
+            <Fragment set:html={textarea.label} />
+            {textarea.required && (
+              <span class="text-red-500" aria-hidden="true">*</span>
+            )}
+          </label>
+        )}
         <textarea
           id="textarea"
-          name={textarea.name ? textarea.name : 'message'}
-          rows={textarea.rows ? textarea.rows : 4}
-          placeholder={textarea.placeholder}
+          rows={textarea.rows ?? 4}
+          {...textarea}
           class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
         />
       </div>
@@ -48,20 +59,24 @@ const { inputs, textarea, disclaimers, button = 'Submit', description = '' } = A
   }
 
   {
-    disclaimers && disclaimers.length && disclaimers.map(d => (
+    disclaimers?.length && disclaimers.map(d => (
       <div class="mt-3 flex items-start">
         <div class="flex mt-0.5">
           <input
-            id={d.id}
-            name={d.name}
+            {...d}
             type="checkbox"
             class="cursor-pointer mt-1 py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
           />
         </div>
         <div class="ml-3">
-          <label for="disclaimer" class="cursor-pointer select-none text-sm text-gray-600 dark:text-gray-400">
-            {d.label}
-          </label>
+          {d.label && (
+            <label for={d.id} class="cursor-pointer select-none text-sm text-gray-600 dark:text-gray-400">
+              <Fragment set:html={d.label} />
+              {d.required && (
+                <span class="text-red-500" aria-hidden="true">*</span>
+              )}
+            </label>
+          )}
         </div>
       </div>
     ))
@@ -70,7 +85,7 @@ const { inputs, textarea, disclaimers, button = 'Submit', description = '' } = A
   {
     button && (
       <div class="mt-10 grid">
-        <Button variant="primary" type="submit" text={button} />
+        <Button variant="primary" type="submit" {...button} />
       </div>
     )
   }

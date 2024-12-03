@@ -85,22 +85,6 @@ export function getBaseConfig(packageName: string, forceCache = !CI_environment,
       name: '(@stylistic) Extended config from plugin'
     },
     {
-      name: 'Common rules for all files',
-      plugins: {
-        '@dword-design/import-alias': eslintPluginImportAlias
-      },
-      rules: {
-        '@dword-design/import-alias/prefer-alias': [
-          'error',
-          {
-            alias: {
-              '@/*': './src/*'
-            }
-          }
-        ]
-      }
-    },
-    {
       rules: {
         'no-empty': ['error', { allowEmptyCatch: true }],
         '@stylistic/quotes': ['error', 'single', { avoidEscape: true }],
@@ -133,6 +117,32 @@ export function getBaseConfig(packageName: string, forceCache = !CI_environment,
       },
       rules: {
         'file-progress/activate': CI_environment ? 0 : 1
+      }
+    }
+  ] satisfies Linter.Config[];
+}
+
+/**
+ * Forces the module imports to use the @/* aliases. Only to be used
+ * in projects that have a bundler or proper module resolution
+ * configured.
+ */
+export function getImportAliasConfig() {
+  return [
+    {
+      name: 'Common rules for all files',
+      plugins: {
+        '@dword-design/import-alias': eslintPluginImportAlias
+      },
+      rules: {
+        '@dword-design/import-alias/prefer-alias': [
+          'error',
+          {
+            alias: {
+              '@/*': './src/*'
+            }
+          }
+        ]
       }
     }
   ] satisfies Linter.Config[];

@@ -17,7 +17,8 @@ const {
   id,
   isDark = false,
   classes = {},
-  bg
+  bg,
+  formProps = {}
 } = Astro.props;
 ---
 
@@ -33,6 +34,7 @@ const {
           disclaimers={disclaimers}
           button={button}
           description={description}
+          formProps={formProps}
         />
       </div>
     )

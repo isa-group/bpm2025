@@ -1,7 +1,7 @@
 {
   "extends": [
     "astro/tsconfigs/strictest",
-    "@bpm2025-website/configs/typescript/base.json"
+    "@bpm2025-website/configs/typescript"
   ],
   "compilerOptions": {
     "baseUrl": ".",
