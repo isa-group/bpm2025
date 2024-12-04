@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "astro/tsconfigs/strictest",
+    "@bpm2025-website/configs/typescript/base.json"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "types": [
+      "src/env.d.ts",
+      "unplugin-icons/types/astro",
+    ],
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.astro",
+    "*.config.*"
+  ]
+}

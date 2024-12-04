@@ -1,0 +1,10 @@
+{
+  "extends": "./typescript/base.json",
+  "compilerOptions": {
+    "lib": ["ESNext"]
+  },
+  "include": [
+    "lint/**/*.ts",
+    "*.ts"
+  ]
+}

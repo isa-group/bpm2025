@@ -34,18 +34,18 @@ jobs:
           check-latest: true
 
       - name: Install dependencies 📦
-        run: npm ci --no-audit
+        run: npm -w @bpm2025-website/frontend ci --no-audit
 
       - name: Build 🏗️
         env:
           STAGING: ${{ inputs.is_prerelease && 1 || 0 }}
           BASE_URL: ${{ env.BASE_URL }}
           SITE_URL: ${{ env.SITE_URL }}
-        run: npm run build
+        run: npm -w @bpm2025-website/frontend run build
 
       - name: Upload client artifact ⬆️💻
         uses: actions/upload-artifact@v4.4.3
         with:
           compression-level: 0
           name: page
-          path: dist
+          path: packages/frontend/dist

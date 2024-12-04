@@ -1,0 +1,28 @@
+{
+  "name": "@bpm2025-website/configs",
+  "version": "0.0.1",
+  "type": "module",
+  "exports": {
+    "./typescript/base.json": "./typescript/base.json",
+    "./lint": "./lint/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint . --flag unstable_ts_config",
+    "lint:fix": "eslint . --fix --flag unstable_ts_config",
+    "lint:inspect": "eslint-config-inspector",
+    "check": "npm run check:types",
+    "check:types": "tsc"
+  },
+  "devDependencies": {
+    "@dword-design/eslint-plugin-import-alias": "5.1.1",
+    "@eslint/js": "9.16.0",
+    "@stylistic/eslint-plugin": "2.11.0",
+    "astro-eslint-parser": "1.1.0",
+    "eslint-config-flat-gitignore": "0.3.0",
+    "eslint-plugin-astro": "1.3.1",
+    "eslint-plugin-file-progress": "3.0.1",
+    "find-up-simple": "1.0.0",
+    "globals": "15.13.0",
+    "typescript-eslint": "8.17.0"
+  }
+}
