@@ -24,8 +24,8 @@ const createPath = (...params: string[]) => {
  * Generates a canonical URL based on the provided path.
  * A canonical URL is the preferred URL for a web page, used to avoid duplicate content issues.
  *
- * @param {string} [path=''] - The relative path to generate the canonical URL.
- * @returns {string | URL} - The complete canonical URL as a string or URL object.
+ * @param - The relative path to generate the canonical URL.
+ * @returns - The complete canonical URL as a string or URL object.
  */
 export const getCanonical = (path = ''): string | URL => {
   const url = String(new URL(path, config.site));

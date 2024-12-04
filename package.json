@@ -1,56 +1,27 @@
 {
-  "name": "@isa-group/bpm2025",
-  "version": "1.0.0",
+  "name": "bpm2025-website",
   "private": true,
-  "description": "The 2025 BPM Conference website",
   "type": "module",
-  "scripts": {
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "prod": "npm run build && npm run preview",
-    "astro": "astro",
-    "check": "astro check",
-    "lint": "eslint . --max-warnings=0 --cache --cache-location node_modules/.cache/eslint",
-    "lint-fix": "eslint . --fix --max-warnings=0 --cache --cache-location node_modules/.cache/eslint",
-    "eslint-inspect": "eslint-config-inspector"
-  },
-  "dependencies": {
-    "@fontsource-variable/inter": "5.1.0",
-    "astro-embed": "0.9.0"
-  },
-  "devDependencies": {
-    "@astrojs/check": "0.9.4",
-    "@astrojs/mdx": "4.0.1",
-    "@astrojs/sitemap": "3.2.1",
-    "@astrojs/tailwind": "5.1.3",
-    "@astrolib/seo": "1.0.0-beta.8",
-    "@dword-design/eslint-plugin-import-alias": "5.1.1",
-    "@eslint/config-inspector": "0.5.6",
-    "@eslint/js": "9.16.0",
-    "@iconify/json": "2.2.279",
-    "@stylistic/eslint-plugin": "2.11.0",
-    "@tailwindcss/typography": "0.5.15",
-    "@types/eslint": "9.6.1",
-    "astro": "5.0.1",
-    "astro-compress": "2.3.5",
-    "astro-eslint-parser": "1.1.0",
-    "eslint": "9.16.0",
-    "eslint-config-flat-gitignore": "0.3.0",
-    "eslint-plugin-astro": "1.3.1",
-    "eslint-plugin-file-progress": "3.0.1",
-    "globals": "15.13.0",
-    "linkedom": "0.18.5",
-    "tailwind-merge": "2.5.5",
-    "tailwindcss": "3.4.15",
-    "typescript": "5.7.2",
-    "typescript-eslint": "8.17.0",
-    "unplugin-icons": "0.21.0"
-  },
+  "description": "The 2025 BPM Conference website",
+  "workspaces": [
+    "packages/*"
+  ],
   "engines": {
     "node": ">=22.11.0 <23.0.0",
     "npm": ">=10.9.0",
     "yarn": "yarn is not supported. Please use npm",
-    "pnpm": "pnpm is not supported. Please use NPM."
+    "pnpm": "pnpm is not supported. Please use npm"
+  },
+  "scripts": {
+    "lint": "npm run lint --workspaces",
+    "lint:fix": "npm run lint:fix --workspaces",
+    "check": "npm run check --workspaces"
+  },
+  "devDependencies": {
+    "@eslint/config-inspector": "0.5.6",
+    "@types/node": "22.10.1",
+    "eslint": "9.16.0",
+    "jiti": "2.4.1",
+    "typescript": "5.7.2"
   }
 }

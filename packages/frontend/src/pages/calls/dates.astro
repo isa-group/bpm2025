@@ -2,7 +2,8 @@
 import Layout from '@/layouts/PageLayout.astro';
 import Content from '@/components/widgets/Content.astro';
 import type { CallForPapers } from '@/types';
-const matches = await import.meta.glob('./*.mdx', { eager: true });
+
+const matches = import.meta.glob('./*.mdx', { eager: true });
 const posts = Object.values(matches) as CallForPapers[];
 ---
 
