@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Button from '@/components/ui/Button/Button.astro';
 import type { Hero as Props } from '@/types';
-import { isObj } from '@/utils/validation';
+import { isObj } from '@bpm2025-website/shared/validation';
 
 const {
   title = await Astro.slots.render('title'),
