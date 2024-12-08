@@ -20,7 +20,9 @@ interface FooterData {
 }
 
 export function isInRegistrationPage(currentUrl: URL): boolean {
-  return trimSlash(currentUrl.pathname) === 'registration';
+  const sanitized = trimSlash(currentUrl.pathname);
+
+  return sanitized.includes('registration') && !sanitized.includes('terms');
 }
 
 export function getHeaderData(currentUrl: URL): HeaderData {
