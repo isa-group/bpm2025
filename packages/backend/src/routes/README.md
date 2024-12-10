@@ -16,8 +16,16 @@ Your file must import `router` from `app.ts`, like this:
 import { router } from '../app.ts';
 
 router.get('/',
+    // This handler gets executed for GET requests at /
+    ....
+)
+
+router.post('/test',
+    // This handler gets executed for POST requests at /test
     ....
 )
 
 // The rest of the custom handlers you want to register
 ```
+
+See https://h3.unjs.io/guide/router for more information
