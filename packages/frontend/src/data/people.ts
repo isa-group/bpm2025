@@ -242,6 +242,23 @@ const sharedPeopleData = {
         analyzing, redesigning, and automating these business processes. Of particular interest to her
         are the human aspects and sustainability factors in these transformations.
       `
+  },
+  'Mathias Weske': {
+    treatment,
+    image: Weske,
+    institution: 'HPI, University of Potsdam',
+    location: 'Potsdam, Germany',
+    email: 'mathias.weske@hpi.de',
+    bio: `
+        Professor Dr. Mathias Weske is a Fellow of the German Computer Science Society and chair of the business 
+        process technology research group at Hasso Plattner Institute at the Digital Engineering Faculty, 
+        University of Potsdam, Germany.  The BPT research group has a track record in engineering prototypes 
+        with a significant impact on research and practice, including projects like Oryx and jBPT. Dr. Weske 
+        authored the first textbook on business process management in 2007, currently in its 4th edition. 
+        He is a founding member of the steering committee of the BPM conference series and was its chair from 
+        September 2017 through September 2022. Since 2024, Dr. Weske is an Adjunct Faculty member in the 
+        Windreich Department of AI and Human Health at the Icahn School of Medicine at Mount Sinai in New York.
+       `
   }
 } satisfies Record<string, ConferenceMember>;
 
@@ -318,12 +335,8 @@ export const steeringCommittee: Record<string, ConferenceMemberData> = {
       email: 'wvdaalst@pads.rwth-aachen.de'
     },
     'Mathias Weske': {
-      treatment,
-      job: 'Chair 2017 - 2022',
-      image: Weske,
-      institution: 'HPI, University of Potsdam',
-      location: 'Potsdam, Germany',
-      email: 'mathias.weske@hpi.de'
+      ...sharedPeopleData['Mathias Weske'],
+      job: 'Chair 2017 - 2022'
     },
     'Marlon Dumas': {
       treatment,
@@ -471,6 +484,9 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
       `
     },
     'Flavia Santoro': sharedPeopleData['Flavia Santoro']
+  },
+  'Process Technology Forum': {
+    'Mathias Weske': sharedPeopleData['Mathias Weske']
   },
   'Industry Forum': {
     'Andrés Jiménez-Ramírez': {
