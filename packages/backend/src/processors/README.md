@@ -7,7 +7,7 @@ TypeScript and JavaScript ESM (not CommonJS!) modules are supported.
 
 ---
 
-This folder contains the logic that gets executed for every discount.
+This folder contains the logic that gets executed for every order.
 This allows you to apply discounts to the order.
 
 In order to achieve that, you must make a default function export
