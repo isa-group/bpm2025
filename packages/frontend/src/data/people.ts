@@ -245,7 +245,6 @@ const sharedPeopleData = {
   },
   'Mathias Weske': {
     treatment,
-    job: 'Chair 2017 - 2022',
     image: Weske,
     institution: 'HPI, University of Potsdam',
     location: 'Potsdam, Germany',
@@ -260,7 +259,7 @@ const sharedPeopleData = {
         September 2017 through September 2022. Since 2024, Dr. Weske is an Adjunct Faculty member in the 
         Windreich Department of AI and Human Health at the Icahn School of Medicine at Mount Sinai in New York.
        `
-  } 
+  }
 } satisfies Record<string, ConferenceMember>;
 
 /**
@@ -335,7 +334,10 @@ export const steeringCommittee: Record<string, ConferenceMemberData> = {
       location: 'Aachen, Germany',
       email: 'wvdaalst@pads.rwth-aachen.de'
     },
-    'Mathias Weske': sharedPeopleData['Mathias Weske'],
+    'Mathias Weske': {
+      ...sharedPeopleData['Mathias Weske'],
+      job: 'Chair 2017 - 2022'
+    },
     'Marlon Dumas': {
       treatment,
       job: 'Vice-Chair 2017 - 2022',
@@ -484,10 +486,7 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
     'Flavia Santoro': sharedPeopleData['Flavia Santoro']
   },
   'Process Technology Forum': {
-    'Mathias Weske': sharedPeopleData['Mathias Weske'],
-    
-
-
+    'Mathias Weske': sharedPeopleData['Mathias Weske']
   },
   'Industry Forum': {
     'Andrés Jiménez-Ramírez': {
