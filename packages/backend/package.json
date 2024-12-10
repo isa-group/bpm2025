@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "@bpm2025-website/configs": "*",
+    "@types/nodemailer": "6.4.17",
     "dotenv": "16.4.7"
   },
   "dependencies": {
@@ -29,6 +30,7 @@
     "image-size": "1.1.1",
     "listhen": "1.9.0",
     "microinvoice": "1.0.6",
+    "nodemailer": "6.9.16",
     "prisma": "6.0.1"
   }
 }
