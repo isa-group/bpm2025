@@ -5,7 +5,6 @@ import { logger } from '../util/logger.ts';
 import { processors, router } from '../app.ts';
 import { generateOrderId, getBaseMerchantParameters, getTPVOperationData } from '../redsys.ts';
 import type { TPVOperation } from '@bpm2025-website/shared';
-import { generateOrderInvoice } from '../util/invoicing';
 
 /**
  * Gets a form data object from the event body for creating an
@@ -102,24 +101,6 @@ router.post(
         productName: `${final_order.product_name} (${final_order.applied_discounts})`,
         orderId: order_id
       });
-
-      // TODO: Move this to payment route handler
-      const full_order = await db.order.findUniqueOrThrow({
-        where: {
-          id: order_id
-        },
-        include: {
-          user: true,
-          product: true,
-          discount_order: {
-            include: {
-              discount: true
-            }
-          }
-        }
-      });
-
-      await generateOrderInvoice({ order: full_order, vat_rate: 0.21 });
 
       return {
         ...getTPVOperationData(merchant_params),
