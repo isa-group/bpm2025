@@ -39,3 +39,30 @@ export function isBool(value: unknown): value is boolean {
 export function isFunc(value: unknown): value is (...args: unknown[]) => unknown {
   return typeof value === 'function';
 }
+
+/**
+ * Check if the value is undefined
+ */
+export function isUndef(value: unknown): value is undefined {
+  return value === undefined;
+}
+
+/**
+ * Check if the value is null or undefined
+ */
+export function isNil(value: unknown): value is null | undefined {
+  return isUndef(value) || isNull(value);
+}
+
+/**
+ * Checks if the passed object is empty or not
+ *
+ * @param value - Object to test
+ */
+export function isEmpty(value: object): boolean {
+  for (const _ in value) {
+    return false;
+  }
+
+  return true;
+}

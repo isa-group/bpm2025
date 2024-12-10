@@ -5,7 +5,8 @@ import { createApp, createRouter, handleCors } from 'h3';
 import { isDev } from './util/logger.ts';
 import { registerDynamicModules } from './util/dynamic-modules.ts';
 import { destr } from 'destr';
-import { register } from './util/invoicing';
+import { registerInvoicing } from './util/invoicing';
+import { registerMailing } from './util/mailing';
 
 if (isDev) {
   await import('dotenv/config');
@@ -28,7 +29,8 @@ await mkdir(invoices_folder, { recursive: true });
  */
 const seed_folder = join(import.meta.dirname, '..', 'seeds');
 await seedDb(join(seed_folder, 'items.json'));
-await register(invoices_folder, seed_folder);
+await registerInvoicing(invoices_folder, seed_folder);
+registerMailing();
 
 /**
  * export is needed for listhen to work
@@ -46,7 +48,9 @@ export const app = createApp({
     });
   }
 });
-export const router = createRouter();
+export const router = createRouter({
+  preemptive: true
+});
 export const processors = await registerDynamicModules(import.meta.dirname);
 
 app.use(router);
