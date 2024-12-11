@@ -7,7 +7,7 @@ import CommonMeta from '@/components/utils/CommonMeta.astro';
 import Favicons from '@/components/utils/Favicons.astro';
 import Metadata from '@/components/utils/Metadata.astro';
 import BasicScripts from '@/components/utils/BasicScripts.astro';
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 
 import type { MetaData as MetaDataType } from '@/types';
 
@@ -26,7 +26,7 @@ const { language, textDirection } = i18n;
     <Favicons />
     <Metadata {...metadata} />
     <BasicScripts />
-    <ViewTransitions fallback="swap" />
+    <ClientRouter fallback="swap" />
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight overscroll-none">
