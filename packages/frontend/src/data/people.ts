@@ -48,6 +48,7 @@ import MariaSalas from '@/assets/images/people/MariaSalas.jpg';
 import RocioGoni from '@/assets/images/people/RocioGoni.jpg';
 import FernandoFernandez from '@/assets/images/people/FernandoFernandez.jpg';
 import CarlosCapitan from '@/assets/images/people/CarlosCapitan.jpg';
+import RemcoDijkman from '@/assets/images/people/Remko-Dijkman.jpg';
 
 interface ConferenceMember {
   treatment?: string;
@@ -233,15 +234,15 @@ const sharedPeopleData = {
     institution: 'KU Leuven',
     location: 'Leuven, Belgium',
     bio: `
-        Irene Vanderfeesten is Associate Professor of Business Information Systems at KU Leuven, Belgium.
-        She previously held scientific positions with Eindhoven University of Technology and
-        Open Universiteit in the Netherlands. Her research concentrates on
-        Business Process Management and Digital Transformation, with a specific emphasis on improving
-        complex business processes that involve physical components, particularly in fields such as
-        manufacturing and healthcare. Her work involves developing methods, tools, and techniques for
-        analyzing, redesigning, and automating these business processes. Of particular interest to her
-        are the human aspects and sustainability factors in these transformations.
-      `
+      Irene Vanderfeesten is Associate Professor of Business Information Systems at KU Leuven, Belgium.
+      She previously held scientific positions with Eindhoven University of Technology and
+      Open Universiteit in the Netherlands. Her research concentrates on
+      Business Process Management and Digital Transformation, with a specific emphasis on improving
+      complex business processes that involve physical components, particularly in fields such as
+      manufacturing and healthcare. Her work involves developing methods, tools, and techniques for
+      analyzing, redesigning, and automating these business processes. Of particular interest to her
+      are the human aspects and sustainability factors in these transformations.
+    `
   },
   'Mathias Weske': {
     treatment,
@@ -250,15 +251,15 @@ const sharedPeopleData = {
     location: 'Potsdam, Germany',
     email: 'mathias.weske@hpi.de',
     bio: `
-        Professor Dr. Mathias Weske is a Fellow of the German Computer Science Society and chair of the business 
-        process technology research group at Hasso Plattner Institute at the Digital Engineering Faculty, 
-        University of Potsdam, Germany.  The BPT research group has a track record in engineering prototypes 
-        with a significant impact on research and practice, including projects like Oryx and jBPT. Dr. Weske 
-        authored the first textbook on business process management in 2007, currently in its 4th edition. 
-        He is a founding member of the steering committee of the BPM conference series and was its chair from 
-        September 2017 through September 2022. Since 2024, Dr. Weske is an Adjunct Faculty member in the 
-        Windreich Department of AI and Human Health at the Icahn School of Medicine at Mount Sinai in New York.
-       `
+      Professor Dr. Mathias Weske is a Fellow of the German Computer Science Society and chair of the business 
+      process technology research group at Hasso Plattner Institute at the Digital Engineering Faculty, 
+      University of Potsdam, Germany.  The BPT research group has a track record in engineering prototypes 
+      with a significant impact on research and practice, including projects like Oryx and jBPT. Dr. Weske 
+      authored the first textbook on business process management in 2007, currently in its 4th edition. 
+      He is a founding member of the steering committee of the BPM conference series and was its chair from 
+      September 2017 through September 2022. Since 2024, Dr. Weske is an Adjunct Faculty member in the 
+      Windreich Department of AI and Human Health at the Icahn School of Medicine at Mount Sinai in New York.
+    `
   }
 } satisfies Record<string, ConferenceMember>;
 
@@ -486,7 +487,24 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
     'Flavia Santoro': sharedPeopleData['Flavia Santoro']
   },
   'Process Technology Forum': {
-    'Mathias Weske': sharedPeopleData['Mathias Weske']
+    'Mathias Weske': sharedPeopleData['Mathias Weske'],
+    'Remco Dijkman': {
+      image: RemcoDijkman,
+      institution: 'Eindhoven University of Technology',
+      location: 'Eindhoven, The Netherlands',
+      email: 'r.m.dijkman@tue.nl',
+      bio: `
+        Remco Dijkman is a Full Professor in Information Systems and the chair of the
+        Information Systems group at Eindhoven University of Technology (TU/e).
+        His research primarily focuses on Business Process Management, with a particular
+        emphasis on data-driven optimization of business processes.
+        He has published over 100 papers in scientific journals, conferences, and workshops.
+        Remco received his PhD in computer science from the University of Twente, where he also
+        completed his Master's degree. He has been involved in numerous research projects
+        and serves as the research director for high-tech supply chains at
+        the European Supply Chain Forum.
+      `
+    }
   },
   'Industry Forum': {
     'Andrés Jiménez-Ramírez': {
