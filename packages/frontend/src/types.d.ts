@@ -88,22 +88,18 @@ export interface Testimonial {
   image?: ExtendedImageProps;
 }
 
-export interface Input {
-  type: HTMLInputTypeAttribute;
-  name: string;
+export interface Input extends astroHTML.JSX.InputHTMLAttributes {
   label?: string;
-  autocomplete?: string;
-  placeholder?: string;
 }
 
-export interface Textarea {
+export interface Textarea extends astroHTML.JSX.TextareaHTMLAttributes {
   label?: string;
   name?: string;
   placeholder?: string;
   rows?: number;
 }
 
-export interface Disclaimer {
+export interface Disclaimer extends BetterOmit<astroHTML.JSX.InputHTMLAttributes, 'type'> {
   id?: string;
   name?: string;
   label?: string;
@@ -130,8 +126,9 @@ export interface Form {
   inputs?: Input[];
   textarea?: Textarea;
   disclaimers?: Disclaimer[];
-  button?: string;
+  button?: CallToAction;
   description?: string;
+  formProps?: astroHTML.JSX.FormHTMLAttributes;
 }
 
 // WIDGETS

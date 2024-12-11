@@ -1,0 +1,309 @@
+---
+import Contact from '@/components/widgets/Contact.astro';
+import Layout from '@/layouts/PageLayout.astro';
+import Button from '@/components/ui/Button/Button.astro';
+import { getPermalink } from '@/utils/permalinks';
+
+import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
+import ISpinner from 'virtual:icons/svg-spinners/ring-resize';
+import tickets from '@/data/tickets';
+
+/**
+ * Dynamic route generator
+ */
+export function getStaticPaths() {
+  return tickets.map((_t, index) => ({ params: { product: index + 1 } }));
+}
+export const sitemap = false;
+
+const { product } = Astro.params;
+---
+
+<Layout
+  metadata={{
+    title: `Register for ${tickets[product - 1]?.title}`
+  }}>
+  <Contact
+    formProps={{
+      action: import.meta.env.DEV ? 'https://sis-t.redsys.es:25443/sis/realizarPago' : 'https://sis.redsys.es/sis/realizarPago',
+      id: 'payment-form',
+      method: 'POST'
+    }}
+    inputs={[
+      {
+        type: 'text',
+        name: 'name',
+        required: true,
+        label: 'Full Name'
+      },
+      {
+        type: 'email',
+        name: 'email',
+        required: true,
+        label: 'Email'
+      },
+      {
+        type: 'text',
+        name: 'billing_address',
+        required: true,
+        label: 'Address (for generating the invoice)'
+      },
+      {
+        type: 'text',
+        name: 'institution',
+        label: 'Institution'
+      },
+      // Product id marker for the backend
+      {
+        type: 'hidden',
+        name: 'product_id',
+        value: product
+      },
+      // Santander TPV Params
+      {
+        'type': 'hidden',
+        'name': 'Ds_SignatureVersion',
+        'value': 'HMAC_SHA256_V1',
+        'data-tpv': ''
+      },
+      {
+        'type': 'hidden',
+        'name': 'Ds_MerchantParameters',
+        'data-tpv': ''
+      },
+      {
+        'type': 'hidden',
+        'name': 'Ds_Signature',
+        'data-tpv': ''
+      }
+    ]}
+    textarea={{
+      name: 'notes',
+      label: 'Additional comments',
+      placeholder: `
+        Tell us if you need an invitation letter for visa,
+        have any dietary restrictions, or any other comments...
+      `
+    }}
+    disclaimers={[
+      {
+        required: true,
+        label: `I agree to the
+          <a class="underline" href="${getPermalink('/terms/registration')}">
+            registration terms and conditions
+          </a>
+        `
+      },
+      {
+        name: 'is_student',
+        label: `
+          <b>I am a student and I will provide proof of my student status (100 € discount)</b>.
+          I understand that my registration will be pending until the proof is validated
+          and will be revoked if incorrect or not provided.
+          `
+      }
+    ]}
+    button={{
+      text: 'Validate',
+      variant: 'secondary',
+      id: 'submit-button',
+      icon: ITablerChevronRight
+    }}
+    description="You will receive a confirmation email shortly after checkout"
+  />
+  <Button
+    id="spinner-button"
+    class="hidden"
+    variant="tertiary"
+    type="button"
+    class="hidden"
+    icon={ISpinner} />
+</Layout>
+
+<script>
+  import type { OrderPayload, SignupPayload, TPVOperation } from '@bpm2025-website/shared';
+  import { isStr } from '@bpm2025-website/shared/validation';
+  import { isNumber } from '@bpm2025-website/shared/validation';
+  import { validateOrderBody } from '@bpm2025-website/shared/validation/data';
+
+  const baseUrl = import.meta.env.DEV ? 'http://127.0.0.1:3000' : 'https://registration.bpm2025seville.org';
+  const userPostUrl = `${baseUrl}/user`;
+  const orderPostUrl = `${baseUrl}/order`;
+  const spinnerId = 'spinner-button';
+  const submitId = 'submit-button';
+  let order_response: TPVOperation;
+
+  const { formRef, spinner, button } = (() => {
+    const _class = 'hidden';
+    const formRef = document.getElementById('payment-form') as HTMLFormElement;
+    const _spinner = document.getElementById(spinnerId) as HTMLButtonElement;
+    const button = document.getElementById(submitId)?.cloneNode(true) as HTMLButtonElement;
+
+    _spinner.classList.remove(_class);
+    const spinner = _spinner.cloneNode(true);
+    // @ts-expect-error - The function does indeed exist
+    spinner.setAttribute('disabled', '');
+
+    /**
+     * Astro gets buggy when there are DOM mismatches on development
+     */
+    if (!import.meta.env.DEV) {
+      _spinner.remove();
+    } else {
+      _spinner.classList.add(_class);
+    }
+
+    return { formRef, spinner, button };
+  })();
+
+  function onFail({ msg = 'There was an error in the backend', e = undefined as unknown, showDefault = true }): never {
+    const message = showDefault
+      ? `${msg}. Please try again later and contact us at info@bpm2025seville.org if it keeps happening`
+      : msg;
+
+    window.requestAnimationFrame(() => {
+      showSpinner(false);
+    });
+    alert(message);
+
+    if (e instanceof Error) {
+      throw e;
+    }
+
+    throw new Error(message);
+  }
+
+  async function request(url: string, payload: unknown) {
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      return response;
+    } catch (error) {
+      onFail({ e: error });
+    }
+  }
+
+  function showSpinner(show = true) {
+    if (show) {
+      for (const el of formRef.querySelectorAll('input:not([data-tpv]), textarea')) {
+        // @ts-expect-error - TypeScript can't properly infer types from multiple elements
+        el.readOnly = true;
+        // @ts-expect-error - TypeScript can't properly infer types from multiple elements
+        el.disabled = true;
+      }
+
+      formRef.querySelector(`#${submitId}`)?.replaceWith(spinner);
+    } else {
+      formRef.querySelector(`#${spinnerId}`)?.replaceWith(button);
+    }
+  }
+
+  function setPayButton(amount: number) {
+    const btn = formRef.querySelector(`#${submitId}`);
+
+    if (btn?.firstChild) {
+      btn.classList.add('btn-primary');
+      btn.classList.remove('btn-secondary');
+      btn.firstChild.textContent = `Pay ${amount} €`;
+    }
+  }
+
+  /**
+   * Serializes the form inputs
+   */
+  function getFormData() {
+    const obj = Object.fromEntries(new FormData(formRef));
+
+    delete obj['Ds_SignatureVersion'];
+    delete obj['Ds_Signature'];
+    delete obj['Ds_MerchantParameters'];
+
+    if (obj['is_student'] === 'on') {
+      // @ts-expect-error - We're serializing this for backend
+      obj['is_student'] = true;
+    }
+
+    for (const key of ['notes', 'institution']) {
+      if (obj[key] === '') {
+        delete obj[key];
+      }
+    }
+
+    // @ts-expect-error - We're serializing this for backend
+    obj['product_id'] = Number(obj['product_id']);
+
+    if (!validateOrderBody(obj)) {
+      onFail({ msg: 'Data validation failed' });
+    } else {
+      return obj as SignupPayload & OrderPayload;
+    }
+  }
+
+  async function createUser(inputs: SignupPayload) {
+    await request(userPostUrl, inputs);
+  }
+
+  async function createOrder(inputs: OrderPayload): Promise<TPVOperation> {
+    const response = await request(orderPostUrl, inputs);
+    const json = await response.json();
+
+    if (response.status === 409) {
+      onFail({
+        e: new Error('You are already registered and paid for this event, so you are probably paying twice by mistake'),
+        showDefault: false
+      });
+    }
+
+    if (
+      (!('price' in json) || !isNumber(json.price))
+      || (!('signature' in json) || !isStr(json.signature))
+      || (!('parameters' in json) || !isStr(json.parameters))
+    ) {
+      onFail({ msg: 'Data validation failed' });
+    }
+
+    return json;
+  }
+
+  function updateInputsOnPay(response: TPVOperation) {
+    for (const input of formRef.querySelectorAll('input[data-tpv]')) {
+      switch (input.getAttribute('name')) {
+        case 'Ds_MerchantParameters':
+          input.setAttribute('value', response.parameters);
+          break;
+        case 'Ds_Signature':
+          input.setAttribute('value', response.signature);
+          break;
+      }
+    }
+  }
+
+  formRef.addEventListener('submit', async (event) => {
+    if (!order_response) {
+      event.preventDefault();
+
+      try {
+        const inputs = getFormData();
+        showSpinner();
+
+        await createUser(inputs);
+        order_response = await createOrder(inputs);
+
+        updateInputsOnPay(order_response);
+      } catch (e) {
+        onFail({ msg: 'Frontend error', e });
+      } finally {
+        window.requestAnimationFrame(() => {
+          showSpinner(false);
+          setPayButton(order_response.price);
+        });
+      }
+    }
+  });
+</script>

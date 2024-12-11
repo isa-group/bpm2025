@@ -1,0 +1,125 @@
+---
+import Layout from '@/layouts/PageLayout.astro';
+import Pricing from '@/components/widgets/Pricing.astro';
+import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
+import ItemList from '@/components/ui/ItemList.astro';
+import Headline from '@/components/ui/Headline.astro';
+import CallToAction from '@/components/widgets/CallToAction.astro';
+import { getPermalink } from '@/utils/permalinks';
+import tickets from '@/data/tickets';
+
+import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
+import ITablerFileCheck from 'virtual:icons/tabler/file-check';
+import ITablerTicketOff from 'virtual:icons/tabler/ticket-off';
+import ITablerCalendarMonth from 'virtual:icons/tabler/calendar-month';
+import ITablerCreditCard from 'virtual:icons/tabler/credit-card';
+import ITablerCreditCardRefund from 'virtual:icons/tabler/credit-card-refund';
+import ITablerPigMoney from 'virtual:icons/tabler/pig-money';
+import ITablerPigOff from 'virtual:icons/tabler/pig-off';
+import ITablerPodium from 'virtual:icons/tabler/podium';
+
+---
+
+<Layout
+  metadata={{
+    title: 'Registration info'
+  }}
+  heroProps={{
+    title: 'Registration info'
+    // tagline: 'Register'
+  }}>
+  <Pricing
+    title="Prices"
+    subtitle="The last day to register will be the 15th of August 2025"
+    prices={tickets.map((t, index) => ({
+      ...t,
+      callToAction: {
+        text: 'Register now',
+        variant: 'primary',
+        href: getPermalink(`/registration/${index + 1}`),
+        icon: ITablerChevronRight
+      }
+    }))}
+  />
+  <WidgetWrapper bg>
+    <Headline title="Additional information" />
+    <ItemList items={[
+      {
+        description: `
+          We offer a 100€ discount for students. If you register as a student, you must provide proof of your student status
+          (e.g. a student card including the academic year). You are eligible for the "Student fee" if you are a student in the academic year 2024-2025.
+          In case you are not able to provide a proof in time, your student registration will be automatically changed into a
+          regular registration, and you will be charged accordingly.
+        `,
+        icon: ITablerPigMoney
+      },
+      {
+        description: `
+          If you are a MSc/PhD student and the presenting author
+          (i.e., the only one among the authors who is present at the event) of a paper accepted at a workshop/co-located
+          event/main conference, then you need to buy a regular registration, regardless of whether or not you are a student.
+        `,
+        icon: ITablerPigOff
+      },
+      {
+        description: `
+          If you are a PhD student and you have been accepted to participate in the Doctoral Consortium,
+          the participation to the Doctoral Consortium is free of charge. If you want to attend the rest of the
+          workshops and/or conference, you can register as a student.
+        `,
+        icon: ITablerPodium
+      }
+    ]} />
+  </WidgetWrapper>
+  <WidgetWrapper>
+    <Headline title="Cancellation policy" />
+    <ItemList items={[
+      {
+        description: 'The registration of participation is binding.',
+        icon: ITablerFileCheck
+      },
+      {
+        description: `
+          If you cancel your registration no later than 30 days before the start of the conference,
+          and you are not a presenting author of an accepted paper, you get 80% back of the registration fee.
+          In all other cases, the financial responsibilities of the participants remain fully effective.
+        `,
+        icon: ITablerTicketOff
+      },
+      {
+        description: `
+          The registration fees are owed upon registration and are payable within 7 days
+          following submission of the registration (but not later than 7 days before the starting day of the event).
+        `,
+        icon: ITablerCalendarMonth
+      },
+      {
+        description: `
+          Participation is not guaranteed until full payment of the registration fee is received.
+        `,
+        icon: ITablerCreditCard
+      },
+      {
+        description: `
+          Payments will be refunded if the conference is canceled by the organizer. In that case,
+          the organizer will have no further liability to the client.
+          In case the conference must be postponed, registrations remain valid.
+        `,
+        icon: ITablerCreditCardRefund
+      }
+    ]} />
+  </WidgetWrapper>
+  <CallToAction
+    classes={{ container: '!pt-0' }}
+    title="Terms & Conditions"
+    subtitle="When registering, you agree to our terms and conditions"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Read terms & conditions',
+        href: getPermalink('/terms/registration'),
+        icon: ITablerChevronRight
+      }
+    ]}
+  />
+</Layout>

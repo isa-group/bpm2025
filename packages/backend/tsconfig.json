@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "@bpm2025-website/configs/typescript"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "allowImportingTsExtensions": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "*.config.*"]
+}
