@@ -49,6 +49,7 @@ import RocioGoni from '@/assets/images/people/RocioGoni.jpg';
 import FernandoFernandez from '@/assets/images/people/FernandoFernandez.jpg';
 import CarlosCapitan from '@/assets/images/people/CarlosCapitan.jpg';
 import RemcoDijkman from '@/assets/images/people/Remko-Dijkman.jpg';
+import DimkaKarastoyanova from '@/assets/images/people/Dimka_Karastoyanova.jpg';
 
 interface ConferenceMember {
   treatment?: string;
@@ -503,6 +504,20 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
         completed his Master's degree. He has been involved in numerous research projects
         and serves as the research director for high-tech supply chains at
         the European Supply Chain Forum.
+      `
+    },
+    'Dimka Karastoyanova': {
+      image: DimkaKarastoyanova,
+      institution: 'University of Groningen',
+      location: 'Groningen, The Netherlands',
+      email: 'd.karastoyanova@rug.nl',
+      bio: `
+        Dimka Karastoyanova is a professor of Information Systems at the University of Groningen, The Netherlands.
+        Dimka’s research is in the field of adaptive information systems and process automation from conceptual and applied perspectives.
+        Specifically, she investigates topics like autonomic process performance improvement for business and scientific applications,
+        trusted and flexible cross-organizational collaboration, provenance, security, and sustainability.
+        She applies her research in application fields like manufacturing, logistics, supply chain management,
+        eScience, Data Science, healthcare, infrastructures for AI and ML, and others.
       `
     }
   },
