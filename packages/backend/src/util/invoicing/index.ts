@@ -41,7 +41,8 @@ export async function registerInvoicing(target_path: string, seed_folder: string
           height: Math.ceil((dimensions.height ?? 100) / 1.5)
         },
         billing_details: process.env.BILLING_DETAILS?.split(':') ?? [],
-        billing_vat_number: process.env.BILLING_VAT_NUMBER
+        billing_vat_number: process.env.BILLING_VAT_NUMBER,
+        invoice_name: process.env.BILLING_INVOICE_NAME
       } satisfies WorkerData
     });
 

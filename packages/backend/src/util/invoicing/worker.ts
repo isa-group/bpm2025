@@ -13,6 +13,7 @@ export interface WorkerData {
   };
   billing_details?: string[];
   billing_vat_number?: string;
+  invoice_name?: string;
 }
 
 declare const workerData: WorkerData;
@@ -106,7 +107,7 @@ parentPort?.on('message', async (inputs: Inputs) => {
         : {}),
       data: {
         invoice: {
-          name: 'Invoice',
+          name: workerData.invoice_name ?? 'Invoice',
           header: [{
             label: 'Order number',
             value: inputs.order.id
@@ -171,24 +172,28 @@ parentPort?.on('message', async (inputs: Inputs) => {
             parts: getInvoiceParts(inputs.order),
             total: [
               {
-                label: 'Total (without VAT)',
+                label: inputs.vat_rate > 0 ? 'Total (without VAT)' : 'Total paid',
                 value: (total_paid / (1 + inputs.vat_rate)).toFixed(2),
                 price: true
               },
-              {
-                label: 'VAT Rate',
-                value: `${(inputs.vat_rate * 100).toFixed(0)}%`
-              },
-              {
-                label: 'VAT Paid',
-                value: (total_paid - (total_paid / (1 + inputs.vat_rate))).toFixed(2),
-                price: true
-              },
-              {
-                label: 'Total paid (with VAT)',
-                value: total_paid.toFixed(2),
-                price: true
-              }
+              ...(inputs.vat_rate > 0
+                ? [
+                    {
+                      label: 'VAT Rate',
+                      value: `${(inputs.vat_rate * 100).toFixed(0)}%`
+                    },
+                    {
+                      label: 'VAT Paid',
+                      value: (total_paid - (total_paid / (1 + inputs.vat_rate))).toFixed(2),
+                      price: true
+                    },
+                    {
+                      label: 'Total paid (with VAT)',
+                      value: total_paid.toFixed(2),
+                      price: true
+                    }
+                  ]
+                : [])
             ]
           }
         }
