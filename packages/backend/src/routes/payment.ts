@@ -2,6 +2,8 @@ import { defineEventHandler, getQuery, readBody } from 'h3';
 import { router } from '../app.ts';
 import { isEmpty } from '@bpm2025-website/shared/validation';
 
+// TODO: Implement this once credit card payment is implemented.
+
 /**
  * Gets the payment result from Redsys TPV. Is valid for both
  * the DS_MERCHANT_MERCHANTURL (POST) and DS_MERCHANT_URLOK (GET) endpoints.
@@ -15,6 +17,7 @@ import { isEmpty } from '@bpm2025-website/shared/validation';
 const handler = defineEventHandler(async (event) => {
   const query = getQuery(event);
   const body = await readBody(event);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const payload = isEmpty(body) ? query : body;
 
   console.log('body', body);
