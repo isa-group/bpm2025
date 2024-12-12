@@ -17,6 +17,15 @@ export function getStaticPaths() {
 export const sitemap = false;
 
 const { product } = Astro.params;
+const formSubtitle = `
+  <b class="text-red-800">In the meantime, payments are through bank transfer only</b>
+  <br />
+  Soon, we will be able to process credit card payments. Bank transfers will be disabled then.
+`;
+const formDescription = `
+  After validation, you will receive an email with payment instructions.
+  If you don't receive it, check your spam folder or contact us at info@bpm2025seville.org
+`;
 ---
 
 <Layout
@@ -24,6 +33,7 @@ const { product } = Astro.params;
     title: `Register for ${tickets[product - 1]?.title}`
   }}>
   <Contact
+    subtitle={formSubtitle}
     formProps={{
       action: import.meta.env.DEV ? 'https://sis-t.redsys.es:25443/sis/realizarPago' : 'https://sis.redsys.es/sis/realizarPago',
       id: 'payment-form',
@@ -109,7 +119,7 @@ const { product } = Astro.params;
       id: 'submit-button',
       icon: ITablerChevronRight
     }}
-    description="You will receive a confirmation email shortly after checkout"
+    description={formDescription}
   />
   <Button
     id="spinner-button"
@@ -208,9 +218,16 @@ const { product } = Astro.params;
     const btn = formRef.querySelector(`#${submitId}`);
 
     if (btn?.firstChild) {
-      btn.classList.add('btn-primary');
-      btn.classList.remove('btn-secondary');
-      btn.firstChild.textContent = `Pay ${amount} €`;
+      // TODO: Uncoment when credit card payment is implemented
+      // btn.classList.add('btn-primary');
+      // btn.classList.remove('btn-secondary');
+      // btn.firstChild.textContent = `Pay ${amount} €`;
+      btn.textContent = `Your registration is ${amount} €. Check your e-mail`;
+      // TODO: Remove this when credit card payment is implemented
+      btn.setAttribute('disabled', '');
+      btn.setAttribute('readonly', '');
+      // @ts-expect-error - Incorrect types
+      btn.style.opacity = '0.5';
     }
   }
 

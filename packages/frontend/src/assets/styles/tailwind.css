@@ -124,6 +124,11 @@ img {
   @apply rotate-45 translate-y-[-8px] translate-x-[14px];
 }
 
-[readonly] {
+[readonly], [disabled] {
   background-color: lightgray;
+}
+
+[readonly]:hover, [disabed]:hover {
+  cursor: not-allowed !important;
+  pointer-events: none !important;
 }
