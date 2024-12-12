@@ -1,7 +1,7 @@
 import { join } from 'node:path';
 import { mkdir } from 'node:fs/promises';
 import { seedDb } from './util/db.ts';
-import { createApp, createRouter, handleCors } from 'h3';
+import { createApp, createRouter, handleCors, sendNoContent } from 'h3';
 import { isDev } from './util/logger.ts';
 import { registerDynamicModules } from './util/dynamic-modules.ts';
 import { destr } from 'destr';
@@ -37,7 +37,7 @@ registerMailing();
  */
 export const app = createApp({
   debug: isDev,
-  onError: () => new Response(null, { status: 500 }),
+  onError: (_, event) => sendNoContent(event, 500),
   onRequest: (event) => {
     handleCors(event, {
       origin: isDev || Boolean(process.env.ALLOW_ALL_CORS) ? '*' : destr(process.env.CORS_ORIGINS),

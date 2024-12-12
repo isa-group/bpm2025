@@ -9,7 +9,7 @@
     "start": "npm run prisma && NODE_OPTIONS='--experimental-strip-types' NODE_NO_WARNINGS=1 npm run listhen:dev",
     "prod": "npm run prisma && NODE_OPTIONS='--experimental-strip-types' NODE_NO_WARNINGS=1 npm run listhen:prod",
     "listhen:dev": "DEV=1 listhen -w ./src/app.ts",
-    "listhen:prod": "listhen --host --qr false ./src/app.ts",
+    "listhen:prod": "listhen --public --qr false ./src/app.ts",
     "check": "npm run check:types",
     "check:types": "tsc",
     "lint": "eslint . --flag unstable_ts_config",

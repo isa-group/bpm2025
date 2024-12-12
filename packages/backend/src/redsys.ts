@@ -21,7 +21,8 @@ if (!process.env.REDSYS_MERCHANT_CODE
   if (isDev) {
     console.warn(`${msg}.\nRedsys testing values will be used in development, but make sure to set those in production`);
   } else {
-    throw new Error(`${msg}.\nHalting...`);
+    console.error(`${msg}.\nHalting...`);
+    process.exit(1);
   }
 }
 
