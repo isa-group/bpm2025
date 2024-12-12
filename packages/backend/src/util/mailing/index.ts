@@ -12,7 +12,7 @@ const is_available = Boolean(process.env.SMTP_HOST)
   && Boolean(process.env.MAIL_FROM)
   && Boolean(process.env.MAIL_SUBJECT);
 let worker: Worker;
-const is_registered = false;
+let is_registered = false;
 
 if (!is_available) {
   const msg = 'Mailing configuration not set in the environment variables';
@@ -43,6 +43,8 @@ export function registerMailing() {
         MAIL_SUBJECT: process.env.MAIL_SUBJECT
       } as WorkerData
     });
+
+    is_registered = true;
   }
 }
 
