@@ -20,7 +20,8 @@ if (!is_available) {
   if (isDev) {
     console.warn(`${msg}.\nContinuing without mailing capabilities, but make sure to set those in production`);
   } else {
-    throw new Error(`${msg}.\nPlease set those in the environment variables.\n\nHalting...`);
+    console.error(`${msg}.\nPlease set those in the environment variables.\n\nHalting...`);
+    process.exit(1);
   }
 }
 
