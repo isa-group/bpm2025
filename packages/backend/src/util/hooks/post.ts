@@ -60,7 +60,7 @@ IBAN: ES56 0049 0919 1426 1025 1252
 BIC/Swift: BSCHESMM
 Address: Avda Reina Mercedes, 19, 41012, Sevilla
 
-If you have any doubt or problem, don't hesitate in contacting us at info@bpm2025seville.org
+If you have any doubt or problem, don't hesitate to contact us at info@bpm2025seville.org
 
 Thank you very much for joining us! 🚀
       `.trim()
