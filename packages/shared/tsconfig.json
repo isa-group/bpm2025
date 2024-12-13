@@ -3,6 +3,7 @@
     "@bpm2025-website/configs/typescript"
   ],
   "compilerOptions": {
+    "lib": ["ESNext"],
     "baseUrl": "."
   },
   "include": [
