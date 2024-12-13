@@ -21,10 +21,10 @@ const posts = Object.values(matches) as CallForPapers[];
           <ul>
             {post.frontmatter.importantDates
               ? Object.entries(post.frontmatter.importantDates).map(([key, value]) => (
-                <li>
-                  <strong>{key}</strong>: {value}
-                </li>
-              ))
+                  <li>
+                    <strong>{key}</strong>: {value}
+                  </li>
+                ))
               : ''}
           </ul>
         </Fragment>
