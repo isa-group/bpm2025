@@ -11,6 +11,8 @@ export interface WorkerData {
   MAIL_FROM: string;
   MAIL_REPLY_TO?: string;
   MAIL_SUBJECT: string;
+  MAIL_CC?: string;
+  MAIL_BCC?: string;
   MAIL_CONTENT?: string;
 }
 
@@ -24,6 +26,8 @@ export interface Inputs {
     subject?: string;
     from?: string;
     reply_to?: string;
+    cc?: string;
+    bcc?: string;
   };
   invoice_path?: string;
 }
@@ -52,6 +56,8 @@ parentPort?.on('message', async (inputs: Inputs) => {
       to: inputs.mail.destination,
       subject: (workerData.MAIL_SUBJECT ?? inputs.mail.subject).replace('{order_id}', inputs.order_id),
       replyTo: inputs.mail.reply_to ?? workerData.MAIL_REPLY_TO,
+      cc: inputs.mail.cc ?? workerData.MAIL_CC,
+      bcc: inputs.mail.bcc ?? workerData.MAIL_BCC,
       text: inputs.mail.content ?? workerData.MAIL_CONTENT ?? 'Please find your invoice attached.',
       ...(inputs.invoice_path
         ? {
