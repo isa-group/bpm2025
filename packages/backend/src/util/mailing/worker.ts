@@ -43,9 +43,13 @@ const transporter = createTransport({
   pool: true
 });
 
-transporter.verify((err) => {
+transporter.verify((err, success) => {
   if (err) {
     console.error('SMTP connection could not be verified. Please check your configuration\n\n', err);
+  }
+
+  if (success) {
+    console.log('Mailing module started up successfully!');
   }
 });
 
