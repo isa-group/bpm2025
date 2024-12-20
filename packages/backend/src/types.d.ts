@@ -2,7 +2,6 @@ export interface RedsysMerchantParameters {
   DS_MERCHANT_AMOUNT: string;
   DS_MERCHANT_CURRENCY: string;
   DS_MERCHANT_MERCHANTCODE: string;
-  DS_MERCHANT_MERCHANTURL: string;
   DS_MERCHANT_ORDER: string;
   DS_MERCHANT_TERMINAL: string;
   DS_MERCHANT_TRANSACTIONTYPE: string;
@@ -13,22 +12,14 @@ export interface RedsysMerchantParameters {
   DS_MERCHANT_TITULAR: string;
 };
 
-export interface RedsysResponse extends RedsysMerchantParameters {
-  Ds_Response?: string;
-  DS_RESPONSE?: string;
-  Ds_Order?: string;
-  DS_ORDER?: string;
-}
-
 export type Awaitable<T> = T | Promise<T>;
 export type ProcessorSignature = Record<number, (req_body: OrderPayload) => Awaitable<boolean>>;
 
-interface ProductSeed {
-  id: number;
-  reduction: number;
-}
-
-interface DiscountSeed {
-  id: number;
-  discount: number;
+/**
+ * The Ds_MerchantParameters decoded from the Redsys response,
+ * received after a successful or failed operation.
+ */
+export interface RedsysResponseMerchantParametersDecoded {
+  Ds_Order: string;
+  Ds_Response: string;
 }

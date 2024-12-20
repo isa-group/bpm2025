@@ -1,66 +1,42 @@
 import { db } from '../db.ts';
-// TODO: Implement once credit card payment is implemented
-// import { generateOrderInvoice } from '../invoicing/index.ts';
+import { generateOrderInvoice } from '../invoicing/index.ts';
 import { sendConfirmationEmail } from '../mailing/index.ts';
 
 /**
  * Runs all the logic after the payment has been confirmed
  */
 export async function postPaymentConfirm(order_id: string) {
-  // TODO: This is the query that should be run once the credit card payment is implemented.
-  // const full_order = await db.order.findUniqueOrThrow({
-  //   where: {
-  //     id: order_id
-  //   },
-  //   include: {
-  //     user: true,
-  //     product: true,
-  //     discount_order: {
-  //       include: {
-  //         discount: true
-  //       }
-  //     }
-  //   }
-  // });
-
-  // TODO: Remove once credit card payment is implemented, since it will be calculated in the receipt.
-  const order_details = await db.full_order_details.findUniqueOrThrow({
+  const full_order = await db.order.findUniqueOrThrow({
     where: {
-      order_ID: order_id
+      id: order_id
     },
-    select: {
-      price_paid_with_discounts: true,
-      user_email: true
+    include: {
+      user: true,
+      product: true,
+      discount_order: {
+        include: {
+          discount: true
+        }
+      }
     }
   });
 
-  // const invoice_path = await generateOrderInvoice({
-  //   order: full_order,
-  //   vat_rate: 0
-  // });
+  const invoice_path = await generateOrderInvoice({
+    order: full_order,
+    vat_rate: 0
+  });
 
   await sendConfirmationEmail({
     order_id,
+    invoice_path,
     mail: {
-      destination: order_details.user_email,
-      subject: `[BPM2025 Conference] Payment details for order ${order_id}`,
+      destination: full_order.user.email,
+      subject: `[BPM2025 Conference - ${order_id}] Your registration has been confirmed!`,
       content: `
-Thank you for registering in BPM2025!
+Thank you for registering in BPM2025! 🎉
 
-We have received your details. However, since right now we don't
-have payments by credit card enabled yet, you need to pay through
-a SEPA bank transfer. Once we confirm your payment, you will receive
-an additional email with the confirmation receipt.
-
-Here are the transfer details:
-
-Amount: ${order_details.price_paid_with_discounts}€
-Concept: ${order_id} BPM2025 Registration
-IBAN: ES56 0049 0919 1426 1025 1252
-BIC/Swift: BSCHESMM
-Address: Avda Reina Mercedes, 19, 41012, Sevilla
-
-If you have any doubt or problem, don't hesitate to contact us at info@bpm2025seville.org
+Attached to this email you will find a receipt for your order.
+If you need an invoice with VAT, please reply to this email
 
 Thank you very much for joining us! 🚀
       `.trim()

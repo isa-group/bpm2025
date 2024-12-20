@@ -18,13 +18,11 @@ export const sitemap = false;
 
 const { product } = Astro.params;
 const formSubtitle = `
-  <b class="text-red-800">Right now payments can only be made by bank transfer</b>
-  <br />
-  Soon, we will be able to process credit card payments.
+  <b>Accepted payment methods:</b> Visa, Mastercard, JCB, UnionPay, Discover and Bizum
 `;
 const formDescription = `
-  After validation, you will receive an email with payment instructions.
-  If you don't receive it, check your spam folder or contact us at info@bpm2025seville.org
+  After a successful payment, you will receive an email with a receipt.
+  If you don't receive it, check your spam folder or contact us at info@bpm2025seville.org.
 `;
 ---
 
@@ -218,16 +216,9 @@ const formDescription = `
     const btn = formRef.querySelector(`#${submitId}`);
 
     if (btn?.firstChild) {
-      // TODO: Uncoment when credit card payment is implemented
-      // btn.classList.add('btn-primary');
-      // btn.classList.remove('btn-secondary');
-      // btn.firstChild.textContent = `Pay ${amount} €`;
-      btn.textContent = `Your registration is ${amount} €. Check your e-mail`;
-      // TODO: Remove this when credit card payment is implemented
-      btn.setAttribute('disabled', '');
-      btn.setAttribute('readonly', '');
-      // @ts-expect-error - Incorrect types
-      btn.style.opacity = '0.5';
+      btn.classList.add('btn-primary');
+      btn.classList.remove('btn-secondary');
+      btn.firstChild.textContent = `Pay ${amount} €`;
     }
   }
 
