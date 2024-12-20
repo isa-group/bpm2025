@@ -1,35 +1,43 @@
-import { defineEventHandler, getQuery, readBody } from 'h3';
+import { defineEventHandler, readBody } from 'h3';
 import { router } from '../app.ts';
-import { isEmpty } from '@bpm2025-website/shared/validation';
-
-// TODO: Implement this once credit card payment is implemented.
+import { validateRedsysResponse } from '@bpm2025-website/shared/validation/data';
+import { validateTransactionResponse } from '../redsys.ts';
+import { postPaymentConfirm } from '../util/hooks/post.ts';
+import { db } from '../util/db.ts';
 
 /**
- * Gets the payment result from Redsys TPV. Is valid for both
- * the DS_MERCHANT_MERCHANTURL (POST) and DS_MERCHANT_URLOK (GET) endpoints.
+ * Gets the payment result from Redsys and updates the order status
+ * In order for this to work, you must enable the HTTP notification
+ * in the Redsys dashboard and set the URL to this endpoint.
  *
- * The availability of either of those depends on the configuration of your
- * TPV in the merchant panel. The best one is to use the POST one, as it
- * is sent by Redsys automatically as soon as there are updates to the payment,
- * while the DS_MERCHANT_URLOK is only called when the user clicks on the "Continue"
- * button in Redsys's screen and it's called by the user's browser.
+ * You may also configure the NOTIFICATION_OK and NOTIFICATION_KO
+ * to redirect the user to the appropiate pages when the payment
+ * is confirmed.
  */
-const handler = defineEventHandler(async (event) => {
-  const query = getQuery(event);
+router.post('/payment', defineEventHandler(async (event) => {
   const body = await readBody(event);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const payload = isEmpty(body) ? query : body;
 
-  console.log('body', body);
-  console.log('query', query);
+  if (validateRedsysResponse(body)) {
+    const validation = validateTransactionResponse(body);
 
-  /**
-   * We use void so we return rightaway, but the promise is queued
-   * to run in the next tick of the JS event loop.
-   */
-  // void postPaymentConfirm();
+    if (validation.success && validation.orderId) {
+      await db.order.update({
+        data: {
+          paid: true
+        },
+        where: {
+          id: validation.orderId
+        }
+      });
+      /**
+       * We use void so we return rightaway, but the promise is queued
+       * to run in the next tick of the JS event loop.
+       */
+      void postPaymentConfirm(validation.orderId);
 
-  return new Response(null, { status: 200 });
-});
+      return new Response(null, { status: 200 });
+    }
+  }
 
-router.use('/payment', handler, ['get', 'post']);
+  return new Response(null, { status: 400 });
+}));
