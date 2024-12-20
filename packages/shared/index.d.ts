@@ -24,3 +24,12 @@ export interface TPVOperation {
   signature: string;
   price: number;
 }
+
+/**
+ * The HTTP POST notification payload that Redsys sends to the backend
+ */
+export interface RedsysResponse {
+  Ds_SignatureVersion: 'HMAC_SHA256_V1';
+  Ds_MerchantParameters: string;
+  Ds_Signature: string;
+}
