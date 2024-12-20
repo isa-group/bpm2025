@@ -164,37 +164,38 @@ const formDescription = `
     return { formRef, spinner, button };
   })();
 
-  function onFail({ msg = 'There was an error in the backend', e = undefined as unknown, showDefault = true }): never {
+  function onFail({ e = new Error('There was an error in the backend'), showDefault = true } = {}): never {
     const message = showDefault
-      ? `${msg}. Please try again later and contact us at info@bpm2025seville.org if it keeps happening`
-      : msg;
+      ? `${e.message}.\n\nPlease try again later and contact us at info@bpm2025seville.org if it keeps happening`
+      : e.message;
 
     window.requestAnimationFrame(() => {
       showSpinner(false);
     });
     alert(message);
 
-    if (e instanceof Error) {
-      throw e;
-    }
-
-    throw new Error(message);
+    throw e;
   }
 
   async function request(url: string, payload: unknown) {
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
 
-      return response;
-    } catch (error) {
-      onFail({ e: error });
+    if (response.status === 409) {
+      onFail({
+        e: new Error('You are already registered and paid for this event, so you are probably paying twice by mistake'),
+        showDefault: false
+      });
+    } else if (response.status >= 400) {
+      onFail();
     }
+
+    return response;
   }
 
   function showSpinner(show = true) {
@@ -247,7 +248,7 @@ const formDescription = `
     obj['product_id'] = Number(obj['product_id']);
 
     if (!validateOrderBody(obj)) {
-      onFail({ msg: 'Data validation failed' });
+      onFail({ e: new Error('Data validation failed') });
     } else {
       return obj as SignupPayload & OrderPayload;
     }
@@ -261,19 +262,12 @@ const formDescription = `
     const response = await request(orderPostUrl, inputs);
     const json = await response.json();
 
-    if (response.status === 409) {
-      onFail({
-        e: new Error('You are already registered and paid for this event, so you are probably paying twice by mistake'),
-        showDefault: false
-      });
-    }
-
     if (
       (!('price' in json) || !isNumber(json.price))
       || (!('signature' in json) || !isStr(json.signature))
       || (!('parameters' in json) || !isStr(json.parameters))
     ) {
-      onFail({ msg: 'Data validation failed' });
+      onFail({ e: new Error('Data validation failed') });
     }
 
     return json;
@@ -304,12 +298,13 @@ const formDescription = `
         order_response = await createOrder(inputs);
 
         updateInputsOnPay(order_response);
-      } catch (e) {
-        onFail({ msg: 'Frontend error', e });
-      } finally {
+      } catch {} finally {
         window.requestAnimationFrame(() => {
           showSpinner(false);
-          setPayButton(order_response.price);
+
+          if (order_response) {
+            setPayButton(order_response.price);
+          }
         });
       }
     }
