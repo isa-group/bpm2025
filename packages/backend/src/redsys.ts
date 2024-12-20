@@ -1,5 +1,5 @@
-import type { RedsysResponse, RedsysMerchantParameters } from '@/types';
-import type { TPVOperation } from '@bpm2025-website/shared';
+import type { TPVOperation, RedsysResponse } from '@bpm2025-website/shared';
+import type { RedsysMerchantParameters, RedsysResponseMerchantParametersDecoded } from '@/types';
 import { destr } from 'destr';
 import { createCipheriv, createHmac } from 'node:crypto';
 import { isDev } from './util/logger';
@@ -13,9 +13,8 @@ import { isDev } from './util/logger';
 
 if (!process.env.REDSYS_MERCHANT_CODE
   || !process.env.REDSYS_MERCHANT_TERMINAL
-  || !process.env.REDSYS_MERCHANT_KEY
-  || !process.env.BASE_URL) {
-  const msg = 'REDSYS_MERCHANT_CODE, REDSYS_MERCHANT_TERMINAL, REDSYS_MERCHANT_KEY or BASE_URL'
+  || !process.env.REDSYS_MERCHANT_KEY) {
+  const msg = 'REDSYS_MERCHANT_CODE, REDSYS_MERCHANT_TERMINAL or REDSYS_MERCHANT_KEY'
     + ' not set in the environment variables';
 
   if (isDev) {
@@ -29,8 +28,6 @@ if (!process.env.REDSYS_MERCHANT_CODE
 const REDSYS_MERCHANT_KEY = process.env.REDSYS_MERCHANT_KEY || 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
 const DS_MERCHANT_MERCHANTCODE = process.env.REDSYS_MERCHANT_CODE || '999008881';
 const DS_MERCHANT_TERMINAL = process.env.REDSYS_MERCHANT_TERMINAL || '049';
-const DS_MERCHANT_MERCHANTURL = `${process.env.BASE_URL}/payment`;
-const DS_MERCHANT_URLOK = DS_MERCHANT_MERCHANTURL;
 
 /**
  * Pads a buffer with zeros to reach a multiple of blocksize
@@ -84,7 +81,7 @@ function encodeBase64(data: string) {
  * @param data - Redsys merchant parameters
  * @returns - Base64 encoded JSON
  */
-function encodeMerchantParameters(data: RedsysMerchantParameters) {
+function encodeMerchantParameters(data: RedsysMerchantParameters | RedsysResponseMerchantParametersDecoded) {
   return encodeURIComponent(encodeBase64(JSON.stringify(data)));
 }
 
@@ -103,23 +100,25 @@ function decodeBase64(data: string) {
  * @returns - Base64 encoded JSON
  */
 function decodeRedsysResponse(data: string) {
-  return destr<RedsysResponse>(decodeURIComponent(decodeBase64(data)));
+  return destr<RedsysResponseMerchantParametersDecoded>
+  (decodeURIComponent(decodeBase64(data)));
 }
 
 /**
- * Generates signature for a Redsys transaction
+ * Generates signature for Redsys parameters
  * @param merchant_key - Merchant key in Base64 format
  * @param merchant_params - Redsys merchant parameters
  * @returns - Transaction signature in Base64
  */
-function createMerchantSignature(
-  merchant_key: string,
-  merchant_params: RedsysMerchantParameters,
-  encoded_merchant_parameters = encodeMerchantParameters(merchant_params)
+function createSignature(
+  merchant_params: RedsysMerchantParameters | RedsysResponseMerchantParametersDecoded,
+  orderId: string,
+  encoded_merchant_parameters = encodeMerchantParameters(merchant_params),
+  merchant_key = REDSYS_MERCHANT_KEY
 ) {
   return mac256(
     encoded_merchant_parameters,
-    encrypt3DES(merchant_params.DS_MERCHANT_ORDER, merchant_key)
+    encrypt3DES(orderId, merchant_key)
   );
 }
 
@@ -129,28 +128,6 @@ function createMerchantSignature(
  */
 function merchantSignatureIsValid(signature: string, expectedSignature: string) {
   return decodeBase64(signature) === decodeBase64(expectedSignature);
-}
-
-/**
- * Generates the signature from a RedsysResponse, so we can verify if it matches
- * @param decoded_response - Decoded TPV response as string
- * @param response - Parsed TPV response object (optional, automatically decoded if not provided)
- * @param key - Merchant key in Base64 format (optional, defaults to REDSYS_MERCHANT_KEY)
- * @returns Notification signature in Base64 format
- * @throws {Error} When order ID is not found in the response
- */
-function createMerchantSignatureNotif(
-  decoded_response: string,
-  response = decodeRedsysResponse(decoded_response),
-  key = REDSYS_MERCHANT_KEY
-) {
-  const orderId = response.Ds_Order || response.DS_ORDER;
-
-  if (!orderId) {
-    throw new Error('No order ID found in the response');
-  }
-
-  return encodeBase64(mac256(decoded_response, encrypt3DES(orderId, key)));
 }
 
 /**
@@ -206,7 +183,6 @@ export const getBaseMerchantParameters = ({
   DS_MERCHANT_AMOUNT: String(amount * 100),
   DS_MERCHANT_CURRENCY: '978',
   DS_MERCHANT_MERCHANTCODE,
-  DS_MERCHANT_MERCHANTURL,
   DS_MERCHANT_ORDER: orderId,
   DS_MERCHANT_TERMINAL,
   DS_MERCHANT_TRANSACTIONTYPE: '0',
@@ -215,7 +191,6 @@ export const getBaseMerchantParameters = ({
    * English language. See https://pagosonline.redsys.es/conexion-insite.html#catalogo-idiomas
    */
   DS_MERCHANT_CONSUMERLANGUAGE: '002',
-  ...(DS_MERCHANT_URLOK ? { DS_MERCHANT_URLOK } : {}),
   DS_MERCHANT_TITULAR: name.slice(0, 60)
 });
 
@@ -227,14 +202,13 @@ export const getBaseMerchantParameters = ({
  * @returns - The full TPV operation data, including the encoded parameters and the signature.
  */
 export function getTPVOperationData(
-  merchant_params: RedsysMerchantParameters,
-  merchant_key = REDSYS_MERCHANT_KEY
+  merchant_params: RedsysMerchantParameters
 ): Omit<TPVOperation, 'order_id' | 'price'> {
   const parameters = encodeMerchantParameters(merchant_params);
 
   return {
     parameters,
-    signature: createMerchantSignature(merchant_key, merchant_params, parameters)
+    signature: createSignature(merchant_params, merchant_params.DS_MERCHANT_ORDER, parameters)
   };
 }
 
@@ -242,18 +216,24 @@ export function getTPVOperationData(
  * Verifies if the operation signature given by the user is valid,
  * ensuring that the payment was not tampered.
  */
-export function isValidTransaction(op: TPVOperation, merchant_key = REDSYS_MERCHANT_KEY): boolean {
-  const { parameters: merchantParams, signature } = op;
+export function validateTransactionResponse(op: RedsysResponse) {
+  const { Ds_MerchantParameters, Ds_Signature } = op;
 
-  const merchantParamsDecoded = decodeRedsysResponse(merchantParams);
-  const merchantSignatureNotif = createMerchantSignatureNotif(merchantParams, merchantParamsDecoded, merchant_key);
-  const response = merchantParamsDecoded.Ds_Response ?? merchantParamsDecoded.DS_RESPONSE;
+  const merchantParamsDecoded = decodeRedsysResponse(Ds_MerchantParameters);
+  const merchantSignatureNotif = createSignature(merchantParamsDecoded, merchantParamsDecoded.Ds_Order, Ds_MerchantParameters);
 
-  if (!response) {
-    throw new Error('No valid DS_RESPONSE found in the response');
+  if (!merchantParamsDecoded.Ds_Response) {
+    console.error('No valid DS_RESPONSE found in the response:', JSON.stringify(merchantParamsDecoded));
+
+    return {
+      success: false
+    };
   }
 
-  const dsResponse = parseInt(response, 10);
+  const dsResponse = parseInt(merchantParamsDecoded.Ds_Response, 10);
 
-  return merchantSignatureIsValid(signature, merchantSignatureNotif) && dsResponse > -1 && dsResponse < 100;
+  return {
+    success: merchantSignatureIsValid(Ds_Signature, merchantSignatureNotif) && dsResponse > -1 && dsResponse < 100,
+    orderId: merchantParamsDecoded.Ds_Order
+  };
 }

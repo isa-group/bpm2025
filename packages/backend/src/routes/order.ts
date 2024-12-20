@@ -5,7 +5,6 @@ import { logger } from '../util/logger.ts';
 import { processors, router } from '../app.ts';
 import { generateOrderId, getBaseMerchantParameters, getTPVOperationData } from '../redsys.ts';
 import type { TPVOperation } from '@bpm2025-website/shared';
-import { postPaymentConfirm } from '../util/hooks/post.ts';
 
 /**
  * Gets a form data object from the event body for creating an
@@ -102,8 +101,6 @@ router.post(
         productName: `${final_order.product_name} (${final_order.applied_discounts})`,
         orderId: order_id
       });
-
-      void postPaymentConfirm(order_id);
 
       return {
         ...getTPVOperationData(merchant_params),
