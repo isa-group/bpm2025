@@ -67,7 +67,7 @@ parentPort?.on('message', async (inputs: Inputs) => {
         ? {
             attachments: [
               {
-                filename: 'invoice.pdf',
+                filename: 'receipt.pdf',
                 path: inputs.invoice_path
               }
             ]
