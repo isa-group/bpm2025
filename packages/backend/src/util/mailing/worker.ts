@@ -74,11 +74,15 @@ parentPort?.on('message', async (inputs: Inputs) => {
           }
         : {})
     });
+
+    console.log(`Mail to ${inputs.mail.destination} sent successfully`);
+
     parentPort?.postMessage({
       success: true,
       order_id: inputs.order_id
     });
   } catch (e) {
+    console.error(`Error when sending email to ${inputs.mail.destination}:`, e);
     parentPort?.postMessage({
       success: false,
       order_id: inputs.order_id,
