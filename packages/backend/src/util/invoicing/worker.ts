@@ -11,7 +11,7 @@ export interface WorkerData {
     width: number;
     height: number;
   };
-  billing_details?: string[];
+  billing_details: string[];
   billing_vat_number?: string;
   invoice_name?: string;
 }
@@ -121,7 +121,7 @@ parentPort?.on('message', async (inputs: Inputs) => {
           currency: 'EUR',
           customer: [
             {
-              label: 'Billed To',
+              label: 'Billed to',
               value: getUserBillingDetails(inputs.order.user)
             }
           // {
@@ -129,24 +129,20 @@ parentPort?.on('message', async (inputs: Inputs) => {
           //   value: '352352342333'
           // }
           ],
-          seller: [
-            ...(workerData.billing_details
-              ? [
+          ...(workerData.billing_details.length > 0 && workerData.billing_vat_number
+            ? {
+                seller: [
                   {
                     label: 'Bill From',
                     value: workerData.billing_details
-                  }
-                ]
-              : []),
-            ...(workerData.billing_vat_number
-              ? [
+                  },
                   {
                     label: 'Tax Identifier',
                     value: workerData.billing_vat_number
                   }
                 ]
-              : [])
-          ],
+              }
+            : {}),
           // legal: [{
           //   value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
           //   weight: 'bold',
@@ -199,6 +195,14 @@ parentPort?.on('message', async (inputs: Inputs) => {
         }
       }
     });
+
+    /**
+     * The library we use merges the default options automatically, so no matter what we
+     * do they will be appended when they're merged. We forcefully overwrite this
+     */
+    if (!(workerData.billing_details.length > 0 && workerData.billing_vat_number)) {
+      pdf.options.data.invoice.seller = [];
+    }
 
     const targetPath
       = `${workerData.target_path}/${inputs.order.user.email.replace('.', '_')}-${inputs.order.id}.pdf`;
