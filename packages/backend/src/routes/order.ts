@@ -98,7 +98,7 @@ router.post(
       const merchant_params = getBaseMerchantParameters({
         amount: final_order.price_paid_with_discounts,
         name: user.name,
-        productName: `${final_order.product_name} (${final_order.applied_discounts})`,
+        productName: `${final_order.product_name}${final_order.applied_discounts ? ` (${final_order.applied_discounts})` : ''}`,
         orderId: order_id
       });
 
