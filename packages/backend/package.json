@@ -23,14 +23,14 @@
   },
   "dependencies": {
     "@bpm2025-website/shared": "*",
-    "@prisma/client": "6.0.1",
-    "consola": "3.2.3",
+    "@prisma/client": "6.1.0",
+    "consola": "3.3.0",
     "destr": "2.0.3",
     "h3": "1.13.0",
     "image-size": "1.1.1",
     "listhen": "1.9.0",
     "microinvoice": "1.0.6",
     "nodemailer": "6.9.16",
-    "prisma": "6.0.1"
+    "prisma": "6.1.0"
   }
 }
