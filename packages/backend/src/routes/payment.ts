@@ -29,6 +29,8 @@ router.post('/payment', defineEventHandler(async (event) => {
           id: validation.orderId
         }
       });
+
+      console.log(`Order ${validation.orderId} has been paid!`);
       /**
        * We use void so we return rightaway, but the promise is queued
        * to run in the next tick of the JS event loop.
