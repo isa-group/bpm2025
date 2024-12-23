@@ -24,10 +24,10 @@
   "dependencies": {
     "@bpm2025-website/shared": "*",
     "@prisma/client": "6.1.0",
-    "consola": "3.3.0",
+    "consola": "3.3.1",
     "destr": "2.0.3",
     "h3": "1.13.0",
-    "image-size": "1.1.1",
+    "image-size": "1.2.0",
     "listhen": "1.9.0",
     "microinvoice": "1.0.6",
     "nodemailer": "6.9.16",
