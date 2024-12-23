@@ -18,13 +18,11 @@ export const sitemap = false;
 
 const { product } = Astro.params;
 const formSubtitle = `
-  <b class="text-red-800">Right now payments can only be made by bank transfer</b>
-  <br />
-  Soon, we will be able to process credit card payments.
+  <b>Accepted payment methods:</b> Visa, Mastercard, JCB, UnionPay, Discover and Bizum
 `;
 const formDescription = `
-  After validation, you will receive an email with payment instructions.
-  If you don't receive it, check your spam folder or contact us at info@bpm2025seville.org
+  After a successful payment, you will receive an email with a receipt.
+  If you don't receive it, check your spam folder or contact us at info@bpm2025seville.org.
 `;
 ---
 
@@ -107,7 +105,8 @@ const formDescription = `
       {
         name: 'is_student',
         label: `
-          <b>I am a student and I will provide proof of my student status (100 € discount)</b>.
+          <b>I am a student and I will provide proof of my status to
+          <a class="underline text-primary" href="mailto:info@bpm2025seville.org">info@bpm2025seville.org</a> (100 € discount)</b>.
           I understand that my registration will be pending until the proof is validated
           and will be revoked if incorrect or not provided.
           `
@@ -166,37 +165,38 @@ const formDescription = `
     return { formRef, spinner, button };
   })();
 
-  function onFail({ msg = 'There was an error in the backend', e = undefined as unknown, showDefault = true }): never {
+  function onFail({ e = new Error('There was an error in the backend'), showDefault = true } = {}): never {
     const message = showDefault
-      ? `${msg}. Please try again later and contact us at info@bpm2025seville.org if it keeps happening`
-      : msg;
+      ? `${e.message}.\n\nPlease try again later and contact us at info@bpm2025seville.org if it keeps happening`
+      : e.message;
 
     window.requestAnimationFrame(() => {
       showSpinner(false);
     });
     alert(message);
 
-    if (e instanceof Error) {
-      throw e;
-    }
-
-    throw new Error(message);
+    throw e;
   }
 
   async function request(url: string, payload: unknown) {
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
 
-      return response;
-    } catch (error) {
-      onFail({ e: error });
+    if (response.status === 409) {
+      onFail({
+        e: new Error('You are already registered and paid for this event, so you are probably paying twice by mistake'),
+        showDefault: false
+      });
+    } else if (response.status >= 400) {
+      onFail();
     }
+
+    return response;
   }
 
   function showSpinner(show = true) {
@@ -218,16 +218,9 @@ const formDescription = `
     const btn = formRef.querySelector(`#${submitId}`);
 
     if (btn?.firstChild) {
-      // TODO: Uncoment when credit card payment is implemented
-      // btn.classList.add('btn-primary');
-      // btn.classList.remove('btn-secondary');
-      // btn.firstChild.textContent = `Pay ${amount} €`;
-      btn.textContent = `Your registration is ${amount} €. Check your e-mail`;
-      // TODO: Remove this when credit card payment is implemented
-      btn.setAttribute('disabled', '');
-      btn.setAttribute('readonly', '');
-      // @ts-expect-error - Incorrect types
-      btn.style.opacity = '0.5';
+      btn.classList.add('btn-primary');
+      btn.classList.remove('btn-secondary');
+      btn.firstChild.textContent = `Pay ${amount} €`;
     }
   }
 
@@ -256,7 +249,7 @@ const formDescription = `
     obj['product_id'] = Number(obj['product_id']);
 
     if (!validateOrderBody(obj)) {
-      onFail({ msg: 'Data validation failed' });
+      onFail({ e: new Error('Data validation failed') });
     } else {
       return obj as SignupPayload & OrderPayload;
     }
@@ -270,19 +263,12 @@ const formDescription = `
     const response = await request(orderPostUrl, inputs);
     const json = await response.json();
 
-    if (response.status === 409) {
-      onFail({
-        e: new Error('You are already registered and paid for this event, so you are probably paying twice by mistake'),
-        showDefault: false
-      });
-    }
-
     if (
       (!('price' in json) || !isNumber(json.price))
       || (!('signature' in json) || !isStr(json.signature))
       || (!('parameters' in json) || !isStr(json.parameters))
     ) {
-      onFail({ msg: 'Data validation failed' });
+      onFail({ e: new Error('Data validation failed') });
     }
 
     return json;
@@ -313,12 +299,13 @@ const formDescription = `
         order_response = await createOrder(inputs);
 
         updateInputsOnPay(order_response);
-      } catch (e) {
-        onFail({ msg: 'Frontend error', e });
-      } finally {
+      } catch {} finally {
         window.requestAnimationFrame(() => {
           showSpinner(false);
-          setPayButton(order_response.price);
+
+          if (order_response) {
+            setPayButton(order_response.price);
+          }
         });
       }
     }

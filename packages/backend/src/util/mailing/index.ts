@@ -9,8 +9,7 @@ const is_available = Boolean(process.env.SMTP_HOST)
   && !isNil(process.env.SMTP_SECURE)
   && Boolean(process.env.SMTP_USER)
   && Boolean(process.env.SMTP_PASSWORD)
-  && Boolean(process.env.MAIL_FROM)
-  && Boolean(process.env.MAIL_SUBJECT);
+  && Boolean(process.env.MAIL_FROM);
 let worker: Worker;
 let is_registered = false;
 
