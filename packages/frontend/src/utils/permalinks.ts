@@ -27,7 +27,7 @@ const createPath = (...params: string[]) => {
  * @param - The relative path to generate the canonical URL.
  * @returns - The complete canonical URL as a string or URL object.
  */
-export const getCanonical = (path = ''): string | URL => {
+export const getCanonical = (path = ''): string => {
   const url = String(new URL(path, config.site));
 
   if (path) {
