@@ -134,179 +134,189 @@ const formDescription = `
   import { isNumber } from '@bpm2025-website/shared/validation';
   import { validateOrderBody } from '@bpm2025-website/shared/validation/data';
 
+  const registrationPageRegex = /\/registration\/\d+\/?$/;
   const baseUrl = import.meta.env.DEV ? 'http://127.0.0.1:3000' : 'https://registration.bpm2025seville.org';
   const userPostUrl = `${baseUrl}/user`;
   const orderPostUrl = `${baseUrl}/order`;
   const spinnerId = 'spinner-button';
   const submitId = 'submit-button';
-  let order_response: TPVOperation;
 
-  const { formRef, spinner, button } = (() => {
-    const _class = 'hidden';
-    const formRef = document.getElementById('payment-form') as HTMLFormElement;
-    const _spinner = document.getElementById(spinnerId) as HTMLButtonElement;
-    const button = document.getElementById(submitId)?.cloneNode(true) as HTMLButtonElement;
+  document.addEventListener('astro:page-load', () => {
+    /**
+     * Only run this script on the registration pages
+     */
+    if (!registrationPageRegex.test(window.location.pathname)) {
+      return;
+    }
 
-    _spinner.classList.remove(_class);
-    const spinner = _spinner.cloneNode(true);
-    // @ts-expect-error - The function does indeed exist
-    spinner.setAttribute('disabled', '');
+    let order_response: TPVOperation;
+    const { formRef, spinner, button } = (() => {
+      const _class = 'hidden';
+      const formRef = document.getElementById('payment-form') as HTMLFormElement;
+      const _spinner = document.getElementById(spinnerId) as HTMLButtonElement;
+      const button = document.getElementById(submitId)?.cloneNode(true) as HTMLButtonElement;
+
+      _spinner.classList.remove(_class);
+      const spinner = _spinner.cloneNode(true);
+      // @ts-expect-error - The function does indeed exist
+      spinner.setAttribute('disabled', '');
+
+      /**
+       * Astro gets buggy when there are DOM mismatches on development
+       */
+      if (!import.meta.env.DEV) {
+        _spinner.remove();
+      } else {
+        _spinner.classList.add(_class);
+      }
+
+      return { formRef, spinner, button };
+    })();
+
+    function onFail({ e = new Error('There was an error in the backend'), showDefault = true } = {}): never {
+      const message = showDefault
+        ? `${e.message}.\n\nPlease try again later and contact us at info@bpm2025seville.org if it keeps happening`
+        : e.message;
+
+      window.requestAnimationFrame(() => {
+        showSpinner(false);
+      });
+      alert(message);
+
+      throw e;
+    }
+
+    async function request(url: string, payload: unknown) {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.status === 409) {
+        onFail({
+          e: new Error('You are already registered and paid for this event, so you are probably paying twice by mistake'),
+          showDefault: false
+        });
+      } else if (response.status >= 400) {
+        onFail();
+      }
+
+      return response;
+    }
+
+    function showSpinner(show = true) {
+      if (show) {
+        for (const el of formRef.querySelectorAll('input:not([data-tpv]), textarea')) {
+          // @ts-expect-error - TypeScript can't properly infer types from multiple elements
+          el.readOnly = true;
+          // @ts-expect-error - TypeScript can't properly infer types from multiple elements
+          el.disabled = true;
+        }
+
+        formRef.querySelector(`#${submitId}`)?.replaceWith(spinner);
+      } else {
+        formRef.querySelector(`#${spinnerId}`)?.replaceWith(button);
+      }
+    }
+
+    function setPayButton(amount: number) {
+      const btn = formRef.querySelector(`#${submitId}`);
+
+      if (btn?.firstChild) {
+        btn.classList.add('btn-primary');
+        btn.classList.remove('btn-secondary');
+        btn.firstChild.textContent = `Pay ${amount} €`;
+      }
+    }
 
     /**
-     * Astro gets buggy when there are DOM mismatches on development
+     * Serializes the form inputs
      */
-    if (!import.meta.env.DEV) {
-      _spinner.remove();
-    } else {
-      _spinner.classList.add(_class);
-    }
+    function getFormData() {
+      const obj = Object.fromEntries(new FormData(formRef));
 
-    return { formRef, spinner, button };
-  })();
+      delete obj['Ds_SignatureVersion'];
+      delete obj['Ds_Signature'];
+      delete obj['Ds_MerchantParameters'];
 
-  function onFail({ e = new Error('There was an error in the backend'), showDefault = true } = {}): never {
-    const message = showDefault
-      ? `${e.message}.\n\nPlease try again later and contact us at info@bpm2025seville.org if it keeps happening`
-      : e.message;
-
-    window.requestAnimationFrame(() => {
-      showSpinner(false);
-    });
-    alert(message);
-
-    throw e;
-  }
-
-  async function request(url: string, payload: unknown) {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    });
-
-    if (response.status === 409) {
-      onFail({
-        e: new Error('You are already registered and paid for this event, so you are probably paying twice by mistake'),
-        showDefault: false
-      });
-    } else if (response.status >= 400) {
-      onFail();
-    }
-
-    return response;
-  }
-
-  function showSpinner(show = true) {
-    if (show) {
-      for (const el of formRef.querySelectorAll('input:not([data-tpv]), textarea')) {
-        // @ts-expect-error - TypeScript can't properly infer types from multiple elements
-        el.readOnly = true;
-        // @ts-expect-error - TypeScript can't properly infer types from multiple elements
-        el.disabled = true;
+      if (obj['is_student'] === 'on') {
+        // @ts-expect-error - We're serializing this for backend
+        obj['is_student'] = true;
       }
 
-      formRef.querySelector(`#${submitId}`)?.replaceWith(spinner);
-    } else {
-      formRef.querySelector(`#${spinnerId}`)?.replaceWith(button);
-    }
-  }
+      for (const key of ['notes', 'institution']) {
+        if (obj[key] === '') {
+          delete obj[key];
+        }
+      }
 
-  function setPayButton(amount: number) {
-    const btn = formRef.querySelector(`#${submitId}`);
-
-    if (btn?.firstChild) {
-      btn.classList.add('btn-primary');
-      btn.classList.remove('btn-secondary');
-      btn.firstChild.textContent = `Pay ${amount} €`;
-    }
-  }
-
-  /**
-   * Serializes the form inputs
-   */
-  function getFormData() {
-    const obj = Object.fromEntries(new FormData(formRef));
-
-    delete obj['Ds_SignatureVersion'];
-    delete obj['Ds_Signature'];
-    delete obj['Ds_MerchantParameters'];
-
-    if (obj['is_student'] === 'on') {
       // @ts-expect-error - We're serializing this for backend
-      obj['is_student'] = true;
-    }
+      obj['product_id'] = Number(obj['product_id']);
 
-    for (const key of ['notes', 'institution']) {
-      if (obj[key] === '') {
-        delete obj[key];
+      if (!validateOrderBody(obj)) {
+        onFail({ e: new Error('Data validation failed') });
+      } else {
+        return obj as SignupPayload & OrderPayload;
       }
     }
 
-    // @ts-expect-error - We're serializing this for backend
-    obj['product_id'] = Number(obj['product_id']);
-
-    if (!validateOrderBody(obj)) {
-      onFail({ e: new Error('Data validation failed') });
-    } else {
-      return obj as SignupPayload & OrderPayload;
-    }
-  }
-
-  async function createUser(inputs: SignupPayload) {
-    await request(userPostUrl, inputs);
-  }
-
-  async function createOrder(inputs: OrderPayload): Promise<TPVOperation> {
-    const response = await request(orderPostUrl, inputs);
-    const json = await response.json();
-
-    if (
-      (!('price' in json) || !isNumber(json.price))
-      || (!('signature' in json) || !isStr(json.signature))
-      || (!('parameters' in json) || !isStr(json.parameters))
-    ) {
-      onFail({ e: new Error('Data validation failed') });
+    async function createUser(inputs: SignupPayload) {
+      await request(userPostUrl, inputs);
     }
 
-    return json;
-  }
+    async function createOrder(inputs: OrderPayload): Promise<TPVOperation> {
+      const response = await request(orderPostUrl, inputs);
+      const json = await response.json();
 
-  function updateInputsOnPay(response: TPVOperation) {
-    for (const input of formRef.querySelectorAll('input[data-tpv]')) {
-      switch (input.getAttribute('name')) {
-        case 'Ds_MerchantParameters':
-          input.setAttribute('value', response.parameters);
-          break;
-        case 'Ds_Signature':
-          input.setAttribute('value', response.signature);
-          break;
+      if (
+        (!('price' in json) || !isNumber(json.price))
+        || (!('signature' in json) || !isStr(json.signature))
+        || (!('parameters' in json) || !isStr(json.parameters))
+      ) {
+        onFail({ e: new Error('Data validation failed') });
+      }
+
+      return json;
+    }
+
+    function updateInputsOnPay(response: TPVOperation) {
+      for (const input of formRef.querySelectorAll('input[data-tpv]')) {
+        switch (input.getAttribute('name')) {
+          case 'Ds_MerchantParameters':
+            input.setAttribute('value', response.parameters);
+            break;
+          case 'Ds_Signature':
+            input.setAttribute('value', response.signature);
+            break;
+        }
       }
     }
-  }
 
-  formRef.addEventListener('submit', async (event) => {
-    if (!order_response) {
-      event.preventDefault();
+    formRef.addEventListener('submit', async (event) => {
+      if (!order_response) {
+        event.preventDefault();
 
-      try {
-        const inputs = getFormData();
-        showSpinner();
+        try {
+          const inputs = getFormData();
+          showSpinner();
 
-        await createUser(inputs);
-        order_response = await createOrder(inputs);
+          await createUser(inputs);
+          order_response = await createOrder(inputs);
 
-        updateInputsOnPay(order_response);
-      } catch {} finally {
-        window.requestAnimationFrame(() => {
-          showSpinner(false);
+          updateInputsOnPay(order_response);
+        } catch {} finally {
+          window.requestAnimationFrame(() => {
+            showSpinner(false);
 
-          if (order_response) {
-            setPayButton(order_response.price);
-          }
-        });
+            if (order_response) {
+              setPayButton(order_response.price);
+            }
+          });
+        }
       }
-    }
+    });
   });
 </script>
