@@ -81,3 +81,7 @@ This microservice uses Prisma as an ORM (with an SQLite backend) and h3 as an sm
 over node's native APIs. Is extremely efficient and has been running without issues in an
 `e2-micro` instance in Google Cloud, handling all our requirements.
 
+> [!CAUTION]
+> Be aware that, by default, this microservice exposes in the `/order/show` endpoint the contents
+> of the `full_order_details` table. The protection of this route is intended to be implemented at
+> the reverse proxy level (with something like HTTP Basic Auth or Authentik's SSO).

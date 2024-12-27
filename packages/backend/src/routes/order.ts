@@ -5,6 +5,7 @@ import { logger } from '../util/logger.ts';
 import { processors, router } from '../app.ts';
 import { generateOrderId, getBaseMerchantParameters, getTPVOperationData } from '../redsys.ts';
 import type { TPVOperation } from '@bpm2025-website/shared';
+import { generateTableMarkup } from '../util/listing.ts';
 
 /**
  * Gets a form data object from the event body for creating an
@@ -111,3 +112,24 @@ router.post(
     }
   })
 );
+
+/**
+ * Lists the orders for a user
+ */
+router.get(
+  '/order/show',
+  defineEventHandler(async () => {
+    const final_orders = await db.full_order_details.findMany();
+
+    return new Response(
+      generateTableMarkup({
+        name: 'Transacciones',
+        rows: final_orders
+      }),
+      {
+        headers: {
+          'Content-Type': 'text/html'
+        }
+      }
+    );
+  }));
