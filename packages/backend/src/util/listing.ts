@@ -1,3 +1,5 @@
+import { isNil } from "@bpm2025-website/shared/validation";
+
 /**
  * Creates an HTML markup, useful for displaying tables
  */
@@ -39,12 +41,11 @@ export function generateTableMarkup(
         <tbody>
             ${rows.map(row => `
             <tr>  
-                ${columns.map(key => `<td>${key in row && Boolean(row[key]) ? row[key] : '-'}</td>`).join('\n')}
+                ${columns.map(key => `<td>${key in row && !isNil(row[key]) ? row[key] : '-'}</td>`).join('\n')}
             </tr>
             `).join('\n')}
         </tbody>
     </table>
 </body>
-</html>
-    `;
+</html>`;
 }
