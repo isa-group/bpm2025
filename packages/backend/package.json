@@ -24,7 +24,7 @@
   "dependencies": {
     "@bpm2025-website/shared": "*",
     "@prisma/client": "6.1.0",
-    "consola": "3.3.2",
+    "consola": "3.3.3",
     "destr": "2.0.3",
     "h3": "1.13.0",
     "image-size": "1.2.0",
