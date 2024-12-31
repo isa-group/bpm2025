@@ -1,4 +1,4 @@
-import { isNil } from "@bpm2025-website/shared/validation";
+import { isNil } from '@bpm2025-website/shared/validation';
 
 /**
  * Creates an HTML markup, useful for displaying tables
