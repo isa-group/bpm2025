@@ -195,6 +195,7 @@ export const footerData: FooterData = {
   secondaryLinks: [
     { text: 'Legal', href: getPermalink('/terms/legal') },
     { text: 'T&Cs', href: getPermalink('/terms/registration') },
+    { text: 'Privacy', href: getPermalink('/terms/privacy') },
     { text: 'Sitemap', href: getAsset('/sitemap-index.xml') }
   ],
   socialLinks: [
