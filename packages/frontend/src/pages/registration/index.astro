@@ -48,8 +48,7 @@ import ITablerPodium from 'virtual:icons/tabler/podium';
         description: `
           We offer a 100€ discount for students. If you register as a student, you must provide proof of your student status
           (e.g. a student card including the academic year). You are eligible for the "Student fee" if you are a student in the academic year 2024-2025.
-          In case you are not able to provide a proof in time, your student registration will be automatically changed into a
-          regular registration, and you will be charged accordingly.
+          In case you are not able to provide a proof in time, your student registration will be automatically cancelled.
         `,
         icon: ITablerPigMoney
       },
@@ -70,6 +69,40 @@ import ITablerPodium from 'virtual:icons/tabler/podium';
         icon: ITablerPodium
       }
     ]} />
+    <br />
+    <details>
+      <summary>Leer en Español</summary>
+      <ItemList
+        items={[
+          {
+            description: `
+            Ofrecemos un descuento de 100€ para estudiantes. Si te registras como estudiante, debes proporcionar una
+            prueba de tu condición de estudiante (por ejemplo, una matrícula con el año académico). 
+            Eres elegible para la "tarifa de estudiante" si eres estudiante en el año académico 2024-2025.
+            En caso de no poder proporcionar una prueba a tiempo, tu registro de estudiante se cancelará.
+          `,
+            icon: ITablerPigMoney
+          },
+          {
+            description: `
+            Si eres estudiante de Máster/Doctorado y autor/a presentador/a 
+            (es decir, la única persona entre los autores que asiste al evento) de un artículo aceptado 
+            en un taller/evento co-ubicado/conferencia principal, entonces necesitas adquirir un 
+            registro regular, independientemente de si eres estudiante o no.
+          `,
+            icon: ITablerPigOff
+          },
+          {
+            description: `
+            Si eres estudiante de Doctorado y has sido aceptado/a para participar en el Doctoral Consortium, 
+            la participación en el Doctoral Consortium es gratuita. 
+            Si deseas asistir al resto de los talleres y/o a la conferencia, puedes registrarte como estudiante.
+          `,
+            icon: ITablerPodium
+          }
+        ]}
+      />
+    </details>
   </WidgetWrapper>
   <WidgetWrapper>
     <Headline title="Cancellation policy" />
@@ -108,6 +141,51 @@ import ITablerPodium from 'virtual:icons/tabler/podium';
         icon: ITablerCreditCardRefund
       }
     ]} />
+    <br />
+    <details>
+      <summary>Leer en Español</summary>
+      <ItemList
+        items={[
+          {
+            description: 'La inscripción para participar es obligatoria.',
+            icon: ITablerFileCheck
+          },
+          {
+            description: `
+            Si cancelas tu registro 30 días antes del inicio de la conferencia
+            y no eres autor/a presentador/a de un trabajo aceptado, 
+            recibirás el 80% del reembolso de la cuota de registro. 
+            En todos los demás casos, las responsabilidades financieras de los participantes 
+            permanecen plenamente vigentes.
+          `,
+            icon: ITablerTicketOff
+          },
+          {
+            description: `
+            Las tarifas de registro se adeudan en el momento de la inscripción y se deben pagar 
+            dentro de los 7 días posteriores al envío de la inscripción 
+            (pero no más tarde de 7 días antes del día de inicio del evento).
+          `,
+            icon: ITablerCalendarMonth
+          },
+          {
+            description: `
+            La participación no está garantizada hasta que se reciba el pago completo 
+            de la cuota de inscripción.
+          `,
+            icon: ITablerCreditCard
+          },
+          {
+            description: `
+            Los pagos serán reembolsados si la conferencia es cancelada por el organizador. 
+            En ese caso, el organizador no tendrá ninguna otra responsabilidad con el cliente. 
+            En caso de que la conferencia deba aplazarse, las inscripciones siguen siendo válidas.
+          `,
+            icon: ITablerCreditCardRefund
+          }
+        ]}
+      />
+    </details>
   </WidgetWrapper>
   <CallToAction
     classes={{ container: '!pt-0' }}
