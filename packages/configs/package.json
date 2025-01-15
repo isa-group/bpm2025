@@ -6,8 +6,8 @@
     "./lint": "./lint/index.ts"
   },
   "scripts": {
-    "lint": "eslint . --flag unstable_ts_config",
-    "lint:fix": "eslint . --fix --flag unstable_ts_config",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "lint:inspect": "eslint-config-inspector",
     "check": "npm run check:types",
     "check:types": "tsc"
