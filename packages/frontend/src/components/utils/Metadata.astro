@@ -2,9 +2,9 @@
 import { AstroSeo } from '@astrolib/seo';
 import type { Props as AstroSeoProps } from '@astrolib/seo';
 
-import { metadata, i18n } from '@/config.json';
-import type { MetaData } from '@/types';
-import { getCanonical } from '@/utils/permalinks';
+import { metadata, i18n } from '#/config.json';
+import type { MetaData } from '#/types';
+import { getCanonical } from '#/utils/permalinks';
 
 export interface Props extends MetaData {
   dontUseTitleTemplate?: boolean;

@@ -1,14 +1,14 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import Header from '@/components/widgets/Header.astro';
-import Footer from '@/components/widgets/Footer.astro';
-import Hero from '@/components/widgets/Hero.astro';
-import Announcement from '@/components/widgets/Announcement.astro';
-import { getHeaderData, footerData, isInRegistrationPage } from '@/data/navigation';
-import type { MetaData, Hero as HeroProps } from '@/types';
+import Layout from '#/layouts/Layout.astro';
+import Header from '#/components/widgets/Header.astro';
+import Footer from '#/components/widgets/Footer.astro';
+import Hero from '#/components/widgets/Hero.astro';
+import Announcement from '#/components/widgets/Announcement.astro';
+import { getHeaderData, footerData, isInRegistrationPage } from '#/data/navigation';
+import type { MetaData, Hero as HeroProps } from '#/types';
 import type { ImageMetadata } from 'astro';
 
-import SevilleHeroImage from '@/assets/images/hero/plaza-espana.jpg';
+import SevilleHeroImage from '#/assets/images/hero/plaza-espana.jpg';
 
 export interface Props {
   metadata?: MetaData;

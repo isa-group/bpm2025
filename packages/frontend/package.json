@@ -1,6 +1,9 @@
 {
   "name": "@bpm2025-website/frontend",
   "type": "module",
+  "imports": {
+    "#/*": "./src/*"
+  },
   "scripts": {
     "start": "astro dev",
     "build": "astro build",

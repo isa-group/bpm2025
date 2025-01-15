@@ -2,7 +2,7 @@ import type { OrderPayload } from '@bpm2025-website/shared';
 import { isFunc } from '@bpm2025-website/shared/validation';
 import { readdir } from 'node:fs/promises';
 import { join } from 'node:path';
-import type { Awaitable } from '@/types';
+import type { Awaitable } from '#/types';
 
 /**
  * Imports ESM safely, ignoring any potential errors

@@ -1,8 +1,8 @@
-import type { SponsorInfo } from '@/types';
-import CEURLogo from '@/assets/images/sponsors/CEUR-WS-logo.png';
-import SCORELogo from '@/assets/images/sponsors/score.png';
-import SpringerLogo from '@/assets/images/sponsors/springer.jpg';
-import USLogo from '@/assets/images/sponsors/us.png';
+import type { SponsorInfo } from '#/types';
+import CEURLogo from '#/assets/images/sponsors/CEUR-WS-logo.png';
+import SCORELogo from '#/assets/images/sponsors/score.png';
+import SpringerLogo from '#/assets/images/sponsors/springer.jpg';
+import USLogo from '#/assets/images/sponsors/us.png';
 
 export const sponsors: SponsorInfo[] = [
   {

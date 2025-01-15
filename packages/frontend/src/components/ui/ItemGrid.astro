@@ -1,9 +1,9 @@
 ---
-import type { ItemGrid as Props } from '@/types';
+import type { ItemGrid as Props } from '#/types';
 import { Image } from 'astro:assets';
 import { twMerge } from 'tailwind-merge';
-import Button from '@/components/ui/Button/Button.astro';
-import BSlot from '@/components/utils/BSlot.astro';
+import Button from '#/components/ui/Button/Button.astro';
+import BSlot from '#/components/utils/BSlot.astro';
 
 const { items = [], columns, classes = {} } = Astro.props;
 

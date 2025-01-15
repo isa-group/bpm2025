@@ -1,8 +1,8 @@
 import { defineEventHandler, readBody } from 'h3';
-import { router } from '../app.ts';
-import { db } from '../util/db.ts';
+import { router } from '#/app.ts';
+import { db } from '#/util/db.ts';
 import { validateUserBody } from '@bpm2025-website/shared/validation/data';
-import { logger } from '../util/logger.ts';
+import { logger } from '#/util/logger.ts';
 
 /**
  * Gets a form data object from the event body for creating an
