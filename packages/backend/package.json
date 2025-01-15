@@ -1,6 +1,9 @@
 {
   "name": "@bpm2025-website/backend",
   "type": "module",
+  "imports": {
+    "#/*": "./src/*"
+  },
   "scripts": {
     "prisma": "npm run prisma:generate && npm run prisma:migrate",
     "prisma:generate": "prisma generate",

@@ -1,6 +1,9 @@
 {
   "name": "@bpm2025-website/shared",
   "type": "module",
+  "imports": {
+    "#/*": "./src/*"
+  },
   "exports": {
     ".": {
       "types": "./index.d.ts"

@@ -13,7 +13,7 @@ the server receives requests (also known as "route handlers").
 Your file must import `router` from `app.ts`, like this:
 
 ```typescript
-import { router } from '../app.ts';
+import { router } from '#/app.ts';
 
 router.get('/',
     // This handler gets executed for GET requests at /

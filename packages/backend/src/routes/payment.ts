@@ -1,9 +1,9 @@
 import { defineEventHandler, readBody } from 'h3';
-import { router } from '../app.ts';
+import { router } from '#/app.ts';
 import { validateRedsysResponse } from '@bpm2025-website/shared/validation/data';
-import { validateTransactionResponse } from '../redsys.ts';
-import { postPaymentConfirm } from '../util/hooks/post.ts';
-import { db } from '../util/db.ts';
+import { validateTransactionResponse } from '#/redsys.ts';
+import { postPaymentConfirm } from '#/util/hooks/post.ts';
+import { db } from '#/util/db.ts';
 
 /**
  * Gets the payment result from Redsys and updates the order status

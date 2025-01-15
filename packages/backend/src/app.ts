@@ -1,12 +1,12 @@
 import { join } from 'node:path';
 import { mkdir } from 'node:fs/promises';
-import { seedDb } from './util/db.ts';
+import { seedDb } from '#/util/db.ts';
 import { createApp, createRouter, handleCors, sendNoContent } from 'h3';
-import { isDev } from './util/logger.ts';
-import { registerDynamicModules } from './util/dynamic-modules.ts';
+import { isDev } from '#/util/logger.ts';
+import { registerDynamicModules } from '#/util/dynamic-modules.ts';
 import { destr } from 'destr';
-import { registerInvoicing } from './util/invoicing';
-import { registerMailing } from './util/mailing';
+import { registerInvoicing } from '#/util/invoicing';
+import { registerMailing } from '#/util/mailing';
 
 if (isDev) {
   await import('dotenv/config');

@@ -1,15 +1,15 @@
 ---
 import ITablerChevronDown from 'virtual:icons/tabler/chevron-down';
 import ITablerRss from 'virtual:icons/tabler/rss';
-import Logo from '@/components/ui/Logo.astro';
-import ToggleTheme from '@/components/ui/ToggleTheme.astro';
-import ToggleMenu from '@/components/ui/ToggleMenu.astro';
-import Button from '@/components/ui/Button/Button.astro';
+import Logo from '#/components/ui/Logo.astro';
+import ToggleTheme from '#/components/ui/ToggleTheme.astro';
+import ToggleMenu from '#/components/ui/ToggleMenu.astro';
+import Button from '#/components/ui/Button/Button.astro';
 
-import { getHomePermalink } from '@/utils/permalinks';
-import { getHeaderData } from '@/data/navigation';
-import { trimSlash, getAsset } from '@/utils/permalinks';
-import type { CallToAction, MenuLink } from '@/types';
+import { getHomePermalink } from '#/utils/permalinks';
+import { getHeaderData } from '#/data/navigation';
+import { trimSlash, getAsset } from '#/utils/permalinks';
+import type { CallToAction, MenuLink } from '#/types';
 
 export interface Props {
   id?: string;

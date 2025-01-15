@@ -1,6 +1,6 @@
 import ITablerX from 'virtual:icons/tabler/x';
 import IClarityInfoStandardLine from 'virtual:icons/clarity/info-standard-line';
-import type { Price } from '@/types';
+import type { Price } from '#/types';
 
 const currency = '€';
 const disadvantage = {

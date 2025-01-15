@@ -123,7 +123,7 @@ export function getBaseConfig(packageName: string, forceCache = !CI_environment,
 }
 
 /**
- * Forces the module imports to use the @/* aliases. Only to be used
+ * Forces the module imports to use the #/* aliases. Only to be used
  * in projects that have a bundler or proper module resolution
  * configured.
  */
@@ -139,7 +139,7 @@ export function getImportAliasConfig() {
           'error',
           {
             alias: {
-              '@/*': './src/*'
+              '#/*': './src/*'
             }
           }
         ]

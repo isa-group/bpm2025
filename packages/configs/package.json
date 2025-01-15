@@ -1,6 +1,9 @@
 {
   "name": "@bpm2025-website/configs",
   "type": "module",
+  "imports": {
+    "#/*": "./src/*"
+  },
   "exports": {
     "./typescript": "./typescript/base.json",
     "./lint": "./lint/index.ts"
