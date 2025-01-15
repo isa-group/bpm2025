@@ -2,10 +2,14 @@ import { defineEventHandler, readBody } from 'h3';
 import { db } from '../util/db.ts';
 import { validateOrderBody } from '@bpm2025-website/shared/validation/data';
 import { logger } from '../util/logger.ts';
-import { processors, router } from '../app.ts';
+import { invoices_folder, processors, router } from '../app.ts';
 import { generateOrderId, getBaseMerchantParameters, getTPVOperationData } from '../redsys.ts';
 import type { TPVOperation } from '@bpm2025-website/shared';
 import { generateTableMarkup } from '../util/listing.ts';
+import { createReadStream } from 'node:fs';
+import { stat } from 'node:fs/promises';
+import { basename } from 'node:path';
+import { getInvoicePath } from '../util/invoicing/index.ts';
 
 /**
  * Gets a form data object from the event body for creating an
@@ -128,7 +132,11 @@ router.get(
     return new Response(
       generateTableMarkup({
         name: 'Transacciones',
-        rows: final_orders
+        rows: final_orders.map(order => ({
+          ...order,
+          Recibo:
+          order.paid ? `<a href="download/${encodeURIComponent(order.user_email)}/${encodeURIComponent(order.order_ID)}">Descargar</a>` : undefined
+        }))
       }),
       {
         headers: {
@@ -136,4 +144,36 @@ router.get(
         }
       }
     );
-  }));
+  })
+);
+
+async function isFile(path: string): Promise<boolean> {
+  try {
+    const stats = await stat(path);
+    return stats.isFile();
+  } catch {
+    return false;
+  }
+}
+
+router.get(
+  '/order/show/download/:email/:order_id',
+  defineEventHandler(async (event) => {
+    const order_id = decodeURIComponent(event.context.params?.order_id ?? '');
+    const email = decodeURIComponent(event.context.params?.email ?? '');
+    const path = getInvoicePath(invoices_folder, email, order_id);
+
+    if (!order_id || !email || !(await isFile(path))) {
+      return new Response(null, { status: 400 });
+    } else {
+      const fileStream = createReadStream(path);
+
+      return new Response(fileStream, {
+        headers: {
+          'Content-Type': 'application/octet-stream',
+          'Content-Disposition': `attachment; filename="${basename(path)}"`
+        }
+      });
+    }
+  })
+);
