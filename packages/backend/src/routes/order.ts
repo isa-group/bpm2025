@@ -119,7 +119,11 @@ router.post(
 router.get(
   '/order/show',
   defineEventHandler(async () => {
-    const final_orders = await db.full_order_details.findMany();
+    const final_orders = await db.full_order_details.findMany({
+      orderBy: {
+        created_at: 'desc'
+      }
+    });
 
     return new Response(
       generateTableMarkup({
