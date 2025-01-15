@@ -9,8 +9,8 @@
     "astro": "astro",
     "check": "astro check",
     "check:types": "npm run check",
-    "lint": "eslint . --flag unstable_ts_config",
-    "lint:fix": "eslint . --fix --flag unstable_ts_config",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "lint:inspect": "eslint-config-inspector"
   },
   "dependencies": {
