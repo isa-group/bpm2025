@@ -8,7 +8,6 @@ import type { TPVOperation } from '@bpm2025-website/shared';
 import { generateTableMarkup } from '../util/listing.ts';
 import { createReadStream } from 'node:fs';
 import { stat } from 'node:fs/promises';
-import { basename } from 'node:path';
 import { getInvoicePath } from '../util/invoicing/index.ts';
 
 /**
@@ -135,7 +134,7 @@ router.get(
         rows: final_orders.map(order => ({
           ...order,
           Recibo:
-          order.paid ? `<a href="download/${encodeURIComponent(order.user_email)}/${encodeURIComponent(order.order_ID)}">Descargar</a>` : undefined
+          order.paid ? `<a href="show/download/${encodeURIComponent(order.user_email)}/${encodeURIComponent(order.order_ID)}">Descargar</a>` : undefined
         }))
       }),
       {
@@ -170,8 +169,8 @@ router.get(
 
       return new Response(fileStream, {
         headers: {
-          'Content-Type': 'application/octet-stream',
-          'Content-Disposition': `attachment; filename="${basename(path)}"`
+          'Content-Type': 'application/pdf',
+          'Content-Disposition': 'inline'
         }
       });
     }

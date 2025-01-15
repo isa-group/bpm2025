@@ -22,8 +22,8 @@ jobs:
       - name: Checkout repository ⬇️
         uses: actions/checkout@v4.2.2
         with:
-          ref: ${{ inputs.commit }}
           show-progress: false
+          ref: ${{ inputs.commit || github.sha }}
 
       - name: Initialize CodeQL 🛠️
         uses: github/codeql-action/init@v3.28.1
