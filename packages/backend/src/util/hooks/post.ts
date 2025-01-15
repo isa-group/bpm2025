@@ -1,6 +1,6 @@
-import { db } from '#/util/db.ts';
-import { generateOrderInvoice } from '#/util/invoicing/index.ts';
-import { sendConfirmationEmail } from '#/util/mailing/index.ts';
+import { db } from '../db.ts';
+import { generateOrderInvoice } from '../invoicing/index.ts';
+import { sendConfirmationEmail } from '../mailing/index.ts';
 
 /**
  * Runs all the logic after the payment has been confirmed

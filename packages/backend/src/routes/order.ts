@@ -1,11 +1,11 @@
 import { defineEventHandler, readBody } from 'h3';
-import { db } from '#/util/db.ts';
+import { db } from '../util/db.ts';
 import { validateOrderBody } from '@bpm2025-website/shared/validation/data';
-import { logger } from '#/util/logger.ts';
-import { processors, router } from '#/app.ts';
+import { logger } from '../util/logger.ts';
+import { processors, router } from '../app.ts';
 import { generateOrderId, getBaseMerchantParameters, getTPVOperationData } from '../redsys.ts';
 import type { TPVOperation } from '@bpm2025-website/shared';
-import { generateTableMarkup } from '#/util/listing.ts';
+import { generateTableMarkup } from '../util/listing.ts';
 
 /**
  * Gets a form data object from the event body for creating an
