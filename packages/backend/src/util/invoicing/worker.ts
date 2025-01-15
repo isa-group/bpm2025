@@ -205,7 +205,7 @@ parentPort?.on('message', async (inputs: Inputs) => {
     }
 
     const targetPath
-      = `${workerData.target_path}/${inputs.order.user.email.replace('.', '_')}-${inputs.order.id}.pdf`;
+      = `${workerData.target_path}/${inputs.order.user.email.replaceAll('.', '_')}-${inputs.order.id}.pdf`;
 
     await pdf.generate(targetPath);
     parentPort?.postMessage({
