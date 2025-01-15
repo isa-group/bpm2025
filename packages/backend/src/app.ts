@@ -19,7 +19,7 @@ if (isDev) {
  * - The invoices
  */
 const data_folder = join(import.meta.dirname, '..', 'data');
-const invoices_folder = join(data_folder, 'invoices');
+export const invoices_folder = join(data_folder, 'invoices');
 await mkdir(invoices_folder, { recursive: true });
 
 /**

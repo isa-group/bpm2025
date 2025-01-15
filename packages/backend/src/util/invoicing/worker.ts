@@ -3,6 +3,7 @@ import type { Prisma } from '@prisma/client';
 import { parentPort, workerData } from 'node:worker_threads';
 // @ts-expect-error - The module doesn't have types
 import MicroInvoice from 'microinvoice';
+import { getInvoicePath } from '.';
 
 export interface WorkerData {
   target_path: string;
@@ -204,8 +205,7 @@ parentPort?.on('message', async (inputs: Inputs) => {
       pdf.options.data.invoice.seller = [];
     }
 
-    const targetPath
-      = `${workerData.target_path}/${inputs.order.user.email.replaceAll('.', '_')}-${inputs.order.id}.pdf`;
+    const targetPath = getInvoicePath(workerData.target_path, inputs.order.user.email, inputs.order.id);
 
     await pdf.generate(targetPath);
     parentPort?.postMessage({

@@ -4,7 +4,7 @@ FROM node:lts AS build
 
 WORKDIR /tmp/install
 COPY . .
-RUN git clean -fxd
+RUN git clean -fxd || true
 
 WORKDIR /tmp/install/packages/backend
 RUN npm ci --no-audit --omit=dev

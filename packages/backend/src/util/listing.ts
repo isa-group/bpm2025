@@ -5,7 +5,7 @@ import { isNil } from '@bpm2025-website/shared/validation';
  */
 export function generateTableMarkup(
   { name = 'Table', rows = [] }:
-  { name?: string; rows: Array<Record<string, unknown>> } = { rows: [] }
+  { name?: string; rows: Record<string, unknown>[] } = { rows: [] }
 ) {
   const keys = new Map<string, undefined>();
 
