@@ -59,6 +59,7 @@ jobs:
         uses: actions/checkout@v4.2.2
         with:
           show-progress: false
+          ref: ${{ inputs.commit || github.sha }}
 
       - name: Configure Docker Buildx ⚙️
         uses: docker/setup-buildx-action@v3.8.0
