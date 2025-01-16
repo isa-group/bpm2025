@@ -7,9 +7,6 @@ import imageSize from 'image-size';
 let worker: Worker;
 let is_registered = false;
 
-export const getInvoicePath = (targetPath: string, email: string, order_id: string) =>
-  `${targetPath}/${email.replaceAll('.', '_')}-${order_id}.pdf`;
-
 /**
  * Registers the invoicing capabilities at application startup
  * (spawns the worker thread and sets the appropiate variables).
