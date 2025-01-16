@@ -10,7 +10,7 @@
     "prisma:migrate": "prisma migrate deploy",
     "prisma:create-migration": "prisma migrate dev",
     "start": "npm run prisma && npm run listhen:dev",
-    "prod": "npm run prisma && npm run listhen:prod",
+    "prod": "npm run prisma && TZ=Pacific/Midway npm run listhen:prod",
     "listhen:dev": "DEV=1 listhen -w ./src/app.ts",
     "listhen:prod": "listhen --public --qr false ./src/app.ts",
     "check": "npm run check:types",
