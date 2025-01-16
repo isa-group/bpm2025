@@ -1,16 +1,15 @@
 import { join } from 'node:path';
 import { mkdir } from 'node:fs/promises';
-import { seedDb } from './util/db.ts';
+import { db, seedDb } from './util/db.ts';
 import { createApp, createRouter, handleCors, sendNoContent } from 'h3';
 import { isDev } from './util/logger.ts';
 import { registerDynamicModules } from './util/dynamic-modules.ts';
 import { destr } from 'destr';
-import { registerInvoicing } from './util/workers/invoicing';
-import { registerMailing } from './util/workers/mailing';
+import { registerInvoicing } from './util/workers/invoicing/index.ts';
+import { registerMailing } from './util/workers/mailing/index.ts';
+import { postPaymentConfirm } from './util/hooks/post.ts';
 
-if (isDev) {
-  await import('dotenv/config');
-}
+await import('dotenv/config');
 
 /**
  * == DATA FOLDER CREATION ==
@@ -54,3 +53,20 @@ export const router = createRouter({
 export const processors = await registerDynamicModules(import.meta.dirname);
 
 app.use(router);
+
+globalThis.setTimeout(async () => {
+  // Type in this array the orders to manually confirm and generate invoices
+  for (const order of []) {
+    await db.order.update({
+      data: {
+        paid: 'REDSYS'
+      },
+      where: {
+        id: order
+      }
+    });
+    await db.order.findFirstOrThrow({ where: { id: order } });
+    await postPaymentConfirm(order);
+    console.log('confirmation send to', order);
+  }
+}, 10000);
