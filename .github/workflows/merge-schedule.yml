@@ -1,0 +1,26 @@
+name: Merge pull requests on schedule ⏰
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+  push:
+  release:
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  merge_schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: gr2m/merge-schedule-action@v2.5.0
+        with:
+          merge_method: rebase
+          # Time zone to use. Default is UTC.
+          time_zone: Pacific/Midway
+          require_statuses_success: true
+          automerge_fail_label: merge-schedule-failed
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
