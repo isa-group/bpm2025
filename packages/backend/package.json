@@ -29,11 +29,11 @@
     "@prisma/client": "6.2.1",
     "consola": "3.4.0",
     "destr": "2.0.3",
-    "h3": "1.13.1",
+    "h3": "1.14.0",
     "image-size": "1.2.0",
     "listhen": "1.9.0",
     "microinvoice": "1.0.6",
-    "nodemailer": "6.9.16",
+    "nodemailer": "6.10.0",
     "prisma": "6.2.1"
   }
 }
