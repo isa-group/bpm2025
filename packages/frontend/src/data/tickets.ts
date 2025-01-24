@@ -27,13 +27,13 @@ export default [
       {
         price: 280,
         currency,
-        period: 'between 1st February 2025 and ~14th July 2025~ 20th July 2025'
+        period: 'between 1st February 2025 and ~14th July 2025~ 20th July 2025',
+        variant: 'secondary'
       },
       {
         price: 350,
         currency,
-        period: 'between ~15th July 2025~ 21st July 2025 and 15th August 2025',
-        variant: 'secondary'
+        period: 'between ~15th July 2025~ 21st July 2025 and 15th August 2025'
       }
     ],
     items: [
@@ -77,13 +77,13 @@ export default [
       {
         price: 600,
         currency,
-        period: 'between 1st February 2025 and ~14th July 2025~ 20th July 2025'
+        period: 'between 1st February 2025 and ~14th July 2025~ 20th July 2025',
+        variant: 'secondary'
       },
       {
         price: 650,
         currency,
-        period: 'between ~15th July 2025~ 21st July 2025 and 15th August 2025',
-        variant: 'secondary'
+        period: 'between ~15th July 2025~ 21st July 2025 and 15th August 2025'
       }
     ],
     items: [
@@ -125,13 +125,13 @@ export default [
       {
         price: 700,
         currency,
-        period: 'between 1st February 2025 and ~14th July 2025~ 20th July 2025'
+        period: 'between 1st February 2025 and ~14th July 2025~ 20th July 2025',
+        variant: 'secondary'
       },
       {
         price: 750,
         currency,
-        period: 'between ~15th July 2025~ 21st July 2025 and 15th August 2025',
-        variant: 'secondary'
+        period: 'between ~15th July 2025~ 21st July 2025 and 15th August 2025'
       }
     ],
     ribbonTitle: 'Best value',
