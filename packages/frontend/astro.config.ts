@@ -3,7 +3,7 @@ import { availableParallelism } from 'node:os';
 
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import tailwind from '@astrojs/tailwind';
+import UnoCSS from 'unocss/astro';
 import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
 import Icons from 'unplugin-icons/vite';
@@ -26,8 +26,8 @@ export default defineConfig({
     ]
   },
   integrations: [
-    tailwind({
-      applyBaseStyles: false
+    UnoCSS({
+      injectReset: true
     }),
     sitemap(),
     mdx(),
