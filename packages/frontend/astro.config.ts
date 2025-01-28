@@ -3,7 +3,7 @@ import { availableParallelism } from 'node:os';
 
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
 import Icons from 'unplugin-icons/vite';
@@ -26,9 +26,6 @@ export default defineConfig({
     ]
   },
   integrations: [
-    tailwind({
-      applyBaseStyles: false
-    }),
     sitemap(),
     mdx(),
     compress({
@@ -51,11 +48,14 @@ export default defineConfig({
         '@': resolve(import.meta.dirname, './src')
       }
     },
-    plugins: [Icons({
-      compiler: 'astro',
-      iconCustomizer(_, __, props) {
-        props['astro-icon'] = '';
-      }
-    })]
+    plugins: [
+      Icons({
+        compiler: 'astro',
+        iconCustomizer(_, __, props) {
+          props['astro-icon'] = '';
+        }
+      }),
+      tailwindcss()
+    ]
   }
 });
