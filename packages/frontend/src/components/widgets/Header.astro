@@ -83,10 +83,10 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               {links?.length
                 ? (
                     <>
-                      <button type="button" class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center">
+                      <span class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center cursor-pointer">
                         {text}{' '}
                         <ITablerChevronDown class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden lg:inline" />
-                      </button>
+                      </span>
                       <ul class="dropdown-menu lg:backdrop-blur-md dark:lg:bg-dark rounded lg:absolute pl-4 lg:pl-0 lg:hidden font-medium lg:bg-white/90 lg:min-w-[200px] drop-shadow-xl">
                         {links.map(({ text: text2, href: href2 }) => (
                           <li>
