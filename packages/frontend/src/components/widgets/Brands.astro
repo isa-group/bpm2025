@@ -10,6 +10,7 @@ const {
   tagline = '',
   icons = [],
   images = [],
+  description = false,
   id,
   isDark = false,
   classes = {},
@@ -27,10 +28,18 @@ const {
       && images.map(
         image => (
           <div class="flex justify-center col-span-1 my-2 lg:my-4 py-1 px-3 rounded-md dark:bg-gray-200">
-            <a href={image.href} target="_blank">
-              {/* @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 */}
-              <Image class="max-h-16" height={64} {...image} href={undefined} />
-            </a>
+            <div class="flex lg:flex-nowrap flex-wrap justify-center items-center">
+              <a class="min-w-sm mb-10 ml-10" href={image.href} target="_blank">
+                <div class="flex flex-col items-center justify-center">
+                  {/* @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 */}
+                  <Image class="max-h-16" height={64} {...image} href={undefined} />
+                  {image.alt && <p class="text-lg font-semibold">{image.alt}</p>}
+                </div>
+              </a>
+              {description && image.description && 
+                <blockquote class="text-muted text-lg font-oblique font-serif" set:html={image.description} />
+              }
+            </div>
           </div>
         )
       )
