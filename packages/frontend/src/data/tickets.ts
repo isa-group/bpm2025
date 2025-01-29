@@ -23,13 +23,13 @@ export default [
       {
         price: 240,
         currency,
-        period: 'until 31st January 2025'
+        period: 'until 31st January 2025',
+        variant: 'secondary'
       },
       {
         price: 280,
         currency,
-        period: 'between 1st February 2025 and 14th July 2025',
-        variant: 'secondary'
+        period: 'between 1st February 2025 and 14th July 2025'
       },
       {
         price: 350,
@@ -73,13 +73,13 @@ export default [
       {
         price: 550,
         currency,
-        period: 'until 31st January 2025'
+        period: 'until 31st January 2025',
+        variant: 'secondary'
       },
       {
         price: 600,
         currency,
-        period: 'between 1st February 2025 and 14th July 2025',
-        variant: 'secondary'
+        period: 'between 1st February 2025 and 14th July 2025'
       },
       {
         price: 650,
@@ -121,13 +121,13 @@ export default [
       {
         price: 650,
         currency,
-        period: 'until 31st January 2025'
+        period: 'until 31st January 2025',
+        variant: 'secondary'
       },
       {
         price: 700,
         currency,
-        period: 'between 1st February 2025 and 14th July 2025',
-        variant: 'secondary'
+        period: 'between 1st February 2025 and 14th July 2025'
       },
       {
         price: 750,
