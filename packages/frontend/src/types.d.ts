@@ -154,7 +154,7 @@ export interface Testimonials extends BetterOmit<Headline, 'classes'>, Widget {
 
 export interface SponsorInfo {
   category: string;
-  brands: (ExtendedImageProps & { href?: string, description?: string })[];
+  brands: (ExtendedImageProps & { href?: string; description?: string })[];
 }
 export interface Brands extends BetterOmit<Headline, 'classes'>, Widget {
   icons?: IconElement[];
