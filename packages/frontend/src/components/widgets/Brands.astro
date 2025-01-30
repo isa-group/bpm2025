@@ -27,7 +27,7 @@ const {
       images
       && images.map(
         image => (
-          <div class="flex justify-center col-span-1 my-2 lg:my-4 py-1 px-3 rounded-md dark:bg-gray-200">
+          <div class="flex justify-center col-span-1 my-2 lg:my-4 py-1 px-3 rounded-md">
             <div class="flex lg:flex-nowrap flex-wrap justify-center items-center">
               <a class="min-w-sm mb-10 ml-10" href={image.href} target="_blank">
                 <div class="flex flex-col items-center justify-center">
@@ -36,9 +36,8 @@ const {
                   {image.alt && <p class="text-lg font-semibold">{image.alt}</p>}
                 </div>
               </a>
-              {description && image.description && 
-                <blockquote class="text-muted text-lg font-oblique font-serif" set:html={image.description} />
-              }
+              {description && image.description
+              && <blockquote class="text-muted text-lg font-oblique font-serif" set:html={image.description} />}
             </div>
           </div>
         )
