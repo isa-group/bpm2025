@@ -1,7 +1,7 @@
 import type { SponsorInfo } from '#/types';
 import CEURLogo from '#/assets/images/sponsors/CEUR-WS-logo.png';
 import SCORELogo from '#/assets/images/sponsors/score.png';
-import SpringerLogo from '#/assets/images/sponsors/springer.jpg';
+import SpringerLogo from '#/assets/images/sponsors/springer.svg';
 import USLogo from '#/assets/images/sponsors/us.png';
 import ProcessScience from '#/assets/images/sponsors/process-science.png';
 
@@ -44,9 +44,9 @@ export const sponsors: SponsorInfo[] = [
     category: 'Academic',
     brands: [
       {
-        src: CEURLogo,
-        alt: 'CEUR-WS',
-        href: 'https://ceur-ws.org/'
+        src: USLogo,
+        alt: 'University of Seville',
+        href: 'https://www.us.es/'
       },
       {
         src: SCORELogo,
@@ -54,14 +54,14 @@ export const sponsors: SponsorInfo[] = [
         href: 'https://score.us.es/'
       },
       {
+        src: CEURLogo,
+        alt: 'CEUR-WS',
+        href: 'https://ceur-ws.org/'
+      },
+      {
         src: SpringerLogo,
         alt: 'Springer',
         href: 'https://link.springer.com/'
-      },
-      {
-        src: USLogo,
-        alt: 'University of Seville',
-        href: 'https://www.us.es/'
       }
     ]
   }
