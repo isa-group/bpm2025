@@ -31,7 +31,7 @@
     "astro": "5.1.10",
     "astro-compress": "2.3.6",
     "linkedom": "0.18.7",
-    "tailwind-merge": "2.6.0",
+    "tailwind-merge": "3.0.1",
     "unocss": "65.4.3",
     "unplugin-icons": "22.0.0"
   }
