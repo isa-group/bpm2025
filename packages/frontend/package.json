@@ -28,7 +28,7 @@
     "@bpm2025-website/configs": "*",
     "@bpm2025-website/shared": "*",
     "@iconify/json": "2.2.302",
-    "astro": "5.2.3",
+    "astro": "5.2.4",
     "astro-compress": "2.3.6",
     "linkedom": "0.18.7",
     "tailwind-merge": "3.0.1",
