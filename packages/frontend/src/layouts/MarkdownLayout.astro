@@ -24,7 +24,9 @@ const metadata: MetaData = {
         'prose-headings:font-heading prose-headings:leading-tight prose-headings:tracking-tighter',
         'prose-headings:font-bold prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-8'
       ]}
-    >
+      style={{
+        '--un-prose-hr': 'currentColor'
+      }}>
       <BSlot class="list-disc">
         <slot />
       </BSlot>
