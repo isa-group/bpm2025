@@ -142,6 +142,44 @@ export const footerData: FooterData = {
       }))
     },
     {
+      title: 'Workshops',
+      links: [
+        { text: 'AI4BPM', href: getPermalink(
+          '/workshops/#9th-international-workshop-on-artificial-intelligence-for-business-process-management-ai4bpm'
+        ) },
+        { text: 'AUTOMATE', href: getPermalink(
+          '/workshops/#1st-international-workshop-on-implementation-and-management-of-intelligent-process-automation-solutions-automate'
+        ) },
+        { text: 'BP-Meet-IoT', href: getPermalink(
+          '/workshops/#9th-international-workshop-on-business-processes-meet-the-internet-of-things-bp-meet-iot'
+        ) },
+        { text: 'ProDy', href: getPermalink(
+          '/workshops/#5th-workshop-on-change-drift-and-dynamics-of-organizational-processes-prody'
+        ) },
+        { text: 'DLT4BPM', href: getPermalink(
+          '/workshops/#1st-workshop-on-distributed-ledger-technologies-in-business-process-management-dlt4bpm'
+        ) },
+        { text: 'FM-BPM', href: getPermalink(
+          '/workshops/#3rd-international-workshop-on-formal-methods-for-business-process-management-fm-bpm'
+        ) },
+        { text: 'Innov8BPM', href: getPermalink(
+          '/workshops/#2nd-international-workshop-on-managing-process-innovation-in-the-era-of-digital-transformation-innov8bpm'
+        ) },
+        { text: 'NLP4BPM', href: getPermalink(
+          '/workshops/#4th-workshop-on-natural-language-processing-for-business-process-management-nlp4bpm'
+        ) },
+        { text: 'OBJECTS', href: getPermalink(
+          '/workshops/#3rd-workshop-on-object-centric-processes-from-a-to-z-objects'
+        ) },
+        { text: 'PLC', href: getPermalink(
+          '/workshops/#2nd-international-workshop-on-processes-laws-and-compliance-plc'
+        ) },
+        { text: 'VIPRA', href: getPermalink(
+          '/workshops/#2nd-workshop-on-visual-process-analytics-vipra'
+        ) }
+      ]
+    },
+    {
       title: 'Venue',
       links: [
         { text: 'Location', href: getPermalink('/venue/#location') }
