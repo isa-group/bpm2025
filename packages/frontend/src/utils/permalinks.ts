@@ -57,6 +57,8 @@ export const getPermalink = (slug = '', type = 'page'): string => {
     || slug.startsWith('http://')
     || slug.startsWith('://')
     || slug.startsWith('#')
+    || slug.split('/').at(-1)?.startsWith('#')
+    || slug.startsWith('mailto:')
     || slug.startsWith('javascript:')
     || slug.startsWith('data:')
     || slug.startsWith('vbscript:')
