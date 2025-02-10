@@ -57,12 +57,12 @@ export function getHeaderData(currentUrl: URL): HeaderData {
           {
             text: 'Organizing Team',
             href: getPermalink('/conference/organization')
-          },
-          {
-            text: 'Workshops',
-            href: getPermalink('/conference/workshops')
           }
         ]
+      },
+      {
+        text: 'Workshops',
+        href: getPermalink('/workshops')
       },
       {
         text: 'Calls',
