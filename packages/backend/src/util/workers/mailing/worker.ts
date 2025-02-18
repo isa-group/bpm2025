@@ -1,22 +1,5 @@
-// @ts-expect-error - workerData is redeclared for types only, but TS doesn't know.
-import { parentPort, workerData } from 'node:worker_threads';
+import { parentPort } from 'node:worker_threads';
 import { createTransport } from 'nodemailer';
-
-export interface WorkerData {
-  SMTP_HOST: string;
-  SMTP_PORT: number;
-  SMTP_SECURE: boolean;
-  SMTP_USER: string;
-  SMTP_PASSWORD: string;
-  MAIL_FROM: string;
-  MAIL_REPLY_TO?: string;
-  MAIL_SUBJECT: string;
-  MAIL_CC?: string;
-  MAIL_BCC?: string;
-  MAIL_CONTENT?: string;
-}
-
-declare const workerData: WorkerData;
 
 export interface Inputs {
   order_id: string;
@@ -33,12 +16,12 @@ export interface Inputs {
 }
 
 const transporter = createTransport({
-  host: workerData.SMTP_HOST,
-  port: workerData.SMTP_PORT,
-  secure: workerData.SMTP_SECURE,
+  host: process.env.SMTP_HOST,
+  port: Number(process.env.SMTP_PORT),
+  secure: Boolean(process.env.SMTP_SECURE),
   auth: {
-    user: workerData.SMTP_USER,
-    pass: workerData.SMTP_PASSWORD
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASSWORD
   },
   pool: true
 });
@@ -53,16 +36,23 @@ transporter.verify((err, success) => {
   }
 });
 
+const MAIL_FROM = process.env.MAIL_FROM;
+const MAIL_REPLY_TO = process.env.MAIL_REPLY_TO;
+const MAIL_SUBJECT = process.env.MAIL_SUBJECT;
+const MAIL_CONTENT = process.env.MAIL_CONTENT;
+const MAIL_CC = process.env.MAIL_CC;
+const MAIL_BCC = process.env.MAIL_BCC;
+
 parentPort?.on('message', async (inputs: Inputs) => {
   try {
     await transporter.sendMail({
-      from: inputs.mail.from ?? workerData.MAIL_FROM,
+      from: inputs.mail.from ?? MAIL_FROM,
       to: inputs.mail.destination,
-      subject: (workerData.MAIL_SUBJECT ?? inputs.mail.subject).replace('{order_id}', inputs.order_id),
-      replyTo: inputs.mail.reply_to ?? workerData.MAIL_REPLY_TO,
-      cc: inputs.mail.cc ?? workerData.MAIL_CC,
-      bcc: inputs.mail.bcc ?? workerData.MAIL_BCC,
-      text: inputs.mail.content ?? workerData.MAIL_CONTENT ?? 'Please find your invoice attached.',
+      subject: (MAIL_SUBJECT ?? inputs.mail.subject ?? '').replace('{order_id}', inputs.order_id),
+      replyTo: inputs.mail.reply_to ?? MAIL_REPLY_TO,
+      cc: inputs.mail.cc ?? MAIL_CC,
+      bcc: inputs.mail.bcc ?? MAIL_BCC,
+      text: inputs.mail.content ?? MAIL_CONTENT ?? 'Please find your invoice attached.',
       ...(inputs.invoice_path
         ? {
             attachments: [

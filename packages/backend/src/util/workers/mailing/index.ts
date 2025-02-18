@@ -2,7 +2,7 @@ import { join } from 'node:path';
 import { Worker } from 'node:worker_threads';
 import { isNil } from '@bpm2025-website/shared/validation';
 import { isDev } from '../../logger';
-import type { Inputs, WorkerData } from './worker';
+import type { Inputs } from './worker';
 
 const is_available = Boolean(process.env.SMTP_HOST)
   && !isNil(process.env.SMTP_PORT)
@@ -30,19 +30,7 @@ if (!is_available) {
  */
 export function registerMailing() {
   if (!is_registered && is_available) {
-    worker = new Worker(join(import.meta.dirname, 'worker.ts'), {
-      workerData: {
-        SMTP_HOST: process.env.SMTP_HOST,
-        SMTP_PORT: Number(process.env.SMTP_PORT),
-        SMTP_SECURE: Boolean(process.env.SMTP_SECURE),
-        SMTP_USER: process.env.SMTP_USER,
-        SMTP_PASSWORD: process.env.SMTP_PASSWORD,
-        MAIL_FROM: process.env.MAIL_FROM,
-        MAIL_REPLY_TO: process.env.MAIL_REPLY_TO,
-        MAIL_SUBJECT: process.env.MAIL_SUBJECT
-      } as WorkerData
-    });
-
+    worker = new Worker(join(import.meta.dirname, 'worker.ts'));
     is_registered = true;
   }
 }
