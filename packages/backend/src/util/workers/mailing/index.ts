@@ -1,7 +1,7 @@
 import { join } from 'node:path';
 import { Worker } from 'node:worker_threads';
 import { isNil } from '@bpm2025-website/shared/validation';
-import { isDev } from '../logger';
+import { isDev } from '../../logger';
 import type { Inputs, WorkerData } from './worker';
 
 const is_available = Boolean(process.env.SMTP_HOST)

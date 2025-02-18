@@ -8,7 +8,7 @@ import type { TPVOperation } from '@bpm2025-website/shared';
 import { generateTableMarkup } from '../util/listing.ts';
 import { createReadStream } from 'node:fs';
 import { stat } from 'node:fs/promises';
-import { getInvoicePath } from '../util/index.ts';
+import { getInvoicePath } from '../util';
 
 /**
  * Gets a form data object from the event body for creating an

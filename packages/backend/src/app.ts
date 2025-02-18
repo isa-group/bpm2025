@@ -5,8 +5,8 @@ import { createApp, createRouter, handleCors, sendNoContent } from 'h3';
 import { isDev } from './util/logger.ts';
 import { registerDynamicModules } from './util/dynamic-modules.ts';
 import { destr } from 'destr';
-import { registerInvoicing } from './util/invoicing';
-import { registerMailing } from './util/mailing';
+import { registerInvoicing } from './util/workers/invoicing';
+import { registerMailing } from './util/workers/mailing';
 
 if (isDev) {
   await import('dotenv/config');
