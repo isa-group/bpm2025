@@ -5,9 +5,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "lib": ["ESNext"],
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext"
   },
   "include": [
-    "src/**/*.ts",
-    "*.config.*"]
+    "src/**/*.ts"
+  ]
 }

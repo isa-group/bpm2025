@@ -1,8 +1,8 @@
 import { join } from 'node:path';
 import { Worker } from 'node:worker_threads';
 import { readdir } from 'node:fs/promises';
-import type { Inputs, WorkerData } from './worker';
-import imageSize from 'image-size';
+import type { Inputs, WorkerData } from './worker.ts';
+import { imageSize } from 'image-size';
 
 let worker: Worker;
 let is_registered = false;
@@ -47,6 +47,9 @@ export async function registerInvoicing(target_path: string, seed_folder: string
     });
 
     is_registered = true;
+    await new Promise<void>((resolve) => {
+      worker.once('online', () => resolve());
+    });
   }
 }
 

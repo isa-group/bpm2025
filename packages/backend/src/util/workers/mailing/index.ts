@@ -1,8 +1,8 @@
 import { join } from 'node:path';
 import { Worker } from 'node:worker_threads';
 import { isNil } from '@bpm2025-website/shared/validation';
-import { isDev } from '../../logger';
-import type { Inputs } from './worker';
+import { isDev } from '../../logger.ts';
+import type { Inputs } from './worker.ts';
 
 const is_available = Boolean(process.env.SMTP_HOST)
   && !isNil(process.env.SMTP_PORT)
@@ -28,10 +28,13 @@ if (!is_available) {
  * Registers the mailing capabilities at application startup
  * (spawns the worker thread and sets the appropiate variables).
  */
-export function registerMailing() {
+export async function registerMailing() {
   if (!is_registered && is_available) {
     worker = new Worker(join(import.meta.dirname, 'worker.ts'));
     is_registered = true;
+    await new Promise<void>((resolve) => {
+      worker.once('online', () => resolve());
+    });
   }
 }
 

@@ -1,8 +1,8 @@
 import type { TPVOperation, RedsysResponse } from '@bpm2025-website/shared';
-import type { RedsysMerchantParameters, RedsysResponseMerchantParametersDecoded } from '#/types';
+import type { RedsysMerchantParameters, RedsysResponseMerchantParametersDecoded } from '#/types.d.ts';
 import { destr } from 'destr';
 import { createCipheriv, createHmac } from 'node:crypto';
-import { isDev } from './util/logger';
+import { isDev } from './util/logger.ts';
 
 /**
  * Cryptography functions has been derived from the code of https://github.com/santiperez/node-redsys-api,

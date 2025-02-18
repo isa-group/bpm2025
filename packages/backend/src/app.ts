@@ -1,12 +1,13 @@
 import { join } from 'node:path';
 import { mkdir } from 'node:fs/promises';
+import Fastify from 'fastify';
+import cors from '@fastify/cors';
 import { seedDb } from './util/db.ts';
-import { createApp, createRouter, handleCors, sendNoContent } from 'h3';
-import { isDev } from './util/logger.ts';
+import { isDev, logger } from './util/logger.ts';
 import { registerDynamicModules } from './util/dynamic-modules.ts';
 import { destr } from 'destr';
-import { registerInvoicing } from './util/workers/invoicing';
-import { registerMailing } from './util/workers/mailing';
+import { registerInvoicing } from './util/workers/invoicing/index.ts';
+import { registerMailing } from './util/workers/mailing/index.ts';
 
 if (isDev) {
   await import('dotenv/config');
@@ -30,27 +31,37 @@ await mkdir(invoices_folder, { recursive: true });
 const seed_folder = join(import.meta.dirname, '..', 'seeds');
 await seedDb(join(seed_folder, 'items.json'));
 await registerInvoicing(invoices_folder, seed_folder);
-registerMailing();
+await registerMailing();
 
-/**
- * export is needed for listhen to work
- */
-export const app = createApp({
-  debug: isDev,
-  onError: (_, event) => sendNoContent(event, 500),
-  onRequest: (event) => {
-    handleCors(event, {
-      origin: isDev || Boolean(process.env.ALLOW_ALL_CORS) ? '*' : destr(process.env.CORS_ORIGINS),
-      methods: '*',
-      allowHeaders: '*',
-      credentials: false,
-      maxAge: false
-    });
-  }
-});
-export const router = createRouter({
-  preemptive: true
-});
 export const processors = await registerDynamicModules(import.meta.dirname);
 
-app.use(router);
+const app = Fastify();
+
+// @ts-expect-error - Typechecking cors fail for some reason
+await app.register(cors, {
+  origin: isDev || Boolean(process.env.ALLOW_ALL_CORS) ? '*' : destr(process.env.CORS_ORIGINS),
+  methods: '*',
+  allowHeaders: '*',
+  credentials: false,
+  maxAge: false
+});
+app.setErrorHandler((error, _, reply) => {
+  if (isDev) {
+    logger.error(error.stack);
+  }
+  reply.status(500).send();
+});
+await app.ready();
+
+try {
+  await app.listen({
+    port: 3000,
+    host: '::',
+    listenTextResolver: (address: string) => {
+      logger.info(`Server listening at ${address}`);
+      return address;
+    }
+  });
+} catch (error) {
+  logger.error(error);
+}

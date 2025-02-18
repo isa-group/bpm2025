@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { destr } from 'destr';
-import { logger } from './logger';
+import { logger } from './logger.ts';
 import { readFile } from 'node:fs/promises';
 
 export const db = new PrismaClient();

@@ -10,6 +10,7 @@
     "strict": true,
     "skipLibCheck": true,
     "exactOptionalPropertyTypes": false,
+    "allowImportingTsExtensions": true,
     "noEmit": true,
     "isolatedModules": true,
     "moduleDetection": "force",
@@ -23,7 +24,9 @@
     "incremental": true,
     "tsBuildInfoFile": "../../../node_modules/.cache/tsconfig.tsbuildinfo",
     "paths": {
-      "#/*": ["./src/*"]
+      "#/*": [
+        "./src/*"
+      ]
     },
   },
   "exclude": [

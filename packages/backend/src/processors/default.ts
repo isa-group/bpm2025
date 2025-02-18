@@ -1,5 +1,5 @@
 import type { OrderPayload } from '@bpm2025-website/shared';
-import type { ProcessorSignature } from '#/types';
+import type { ProcessorSignature } from '#/types.d.ts';
 
 const super_early_deadline = new Date(2025, 1, 1); // February 1st, 2025
 const early_deadline = new Date(2025, 6, 15); // July 15th, 2025

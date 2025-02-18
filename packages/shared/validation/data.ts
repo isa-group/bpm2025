@@ -1,5 +1,5 @@
-import type { OrderPayload, RedsysResponse, SignupPayload } from '..';
-import { isObj, isStr, isNumber } from '.';
+import type { OrderPayload, RedsysResponse, SignupPayload } from '../index.d.ts';
+import { isObj, isStr, isNumber } from './index.ts';
 
 /**
  * Validates the user body for creating a new user in the backend
