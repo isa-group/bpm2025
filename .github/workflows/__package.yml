@@ -45,7 +45,7 @@ jobs:
         run: npm -w @bpm2025-website/frontend run build
 
       - name: Upload client artifact ⬆️💻
-        uses: actions/upload-artifact@v4.6.0
+        uses: actions/upload-artifact@v4.6.1
         with:
           compression-level: 0
           name: page
@@ -66,7 +66,7 @@ jobs:
         uses: docker/setup-buildx-action@v3.9.0
 
       - name: Build images 🛠️
-        uses: docker/build-push-action@v6.13.0
+        uses: docker/build-push-action@v6.14.0
         id: image
         with:
           context: .
@@ -76,7 +76,7 @@ jobs:
           tags: bpm2025/payment-processing
 
       - name: Upload Docker image as artifact ⬆️📦
-        uses: actions/upload-artifact@v4.6.0
+        uses: actions/upload-artifact@v4.6.1
         with:
           compression-level: 0
           name: backend-docker_image
