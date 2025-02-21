@@ -13,6 +13,7 @@ on:
 env:
   SITE_URL: https://www.bpm2025seville.org/
   BASE_URL: /
+  DOCKER_BUILD_RECORD_UPLOAD: false
 
 jobs:
   build:
