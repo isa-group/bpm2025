@@ -6,6 +6,7 @@
     "baseUrl": ".",
     "lib": ["ESNext"],
     "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
     "moduleResolution": "NodeNext",
     "module": "NodeNext"
   },

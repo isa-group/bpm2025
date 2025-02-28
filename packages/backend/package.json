@@ -11,8 +11,8 @@
     "prisma:create-migration": "prisma migrate dev",
     "start": "npm run prisma && npm run app:dev",
     "prod": "npm run prisma && npm run app:prod",
-    "app:dev": "DEV=1 node --disable-warning=ExperimentalWarning --experimental-strip-types src/app.ts",
-    "app:prod": "node --disable-warning=ExperimentalWarning --experimental-strip-types src/app.ts",
+    "app:dev": "DEV=1 node --disable-warning=ExperimentalWarning --experimental-transform-types src/app.ts",
+    "app:prod": "node --disable-warning=ExperimentalWarning --experimental-transform-types src/app.ts",
     "check": "npm run check:types",
     "check:types": "npm run prisma:generate && tsc",
     "lint": "eslint .",
@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@bpm2025-website/shared": "*",
+    "@fastify/formbody": "8.0.2",
     "@prisma/client": "6.3.1",
     "consola": "3.4.0",
     "destr": "2.0.3",

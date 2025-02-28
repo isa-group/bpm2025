@@ -1,8 +1,7 @@
 import { join } from 'node:path';
 import { mkdir } from 'node:fs/promises';
 import Fastify from 'fastify';
-import cors from '@fastify/cors';
-import { seedDb } from './util/db.ts';
+import { db, seedDb } from './util/db.ts';
 import { isDev, logger } from './util/logger.ts';
 import { registerDynamicModules } from './util/dynamic-modules.ts';
 import { destr } from 'destr';
@@ -33,23 +32,36 @@ await seedDb(join(seed_folder, 'items.json'));
 await registerInvoicing(invoices_folder, seed_folder);
 await registerMailing();
 
-export const processors = await registerDynamicModules(import.meta.dirname);
-
-const app = Fastify();
+console.log('before registerDynamicModules');
+export const { processors, routes } = await registerDynamicModules(import.meta.dirname);
+console.log('after registerDynamicModules');
+const app = Fastify({
+  ignoreDuplicateSlashes: true,
+  forceCloseConnections: true
+});
 
 // @ts-expect-error - Typechecking cors fail for some reason
-await app.register(cors, {
+await app.register(import('@fastify/cors'), {
   origin: isDev || Boolean(process.env.ALLOW_ALL_CORS) ? '*' : destr(process.env.CORS_ORIGINS),
   methods: '*',
   allowHeaders: '*',
   credentials: false,
   maxAge: false
 });
+app.register(import('@fastify/formbody'));
 app.setErrorHandler((error, _, reply) => {
   if (isDev) {
     logger.error(error.stack);
   }
   reply.status(500).send();
+});
+console.log('beforeRoutes');
+for (const route of routes) {
+  console.log('route', route);
+  app.register(route.default);
+}
+app.addHook('onClose', async () => {
+  await db.$disconnect();
 });
 await app.ready();
 

@@ -3,6 +3,7 @@ import { isFunc } from '@bpm2025-website/shared/validation';
 import { readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import type { Awaitable } from '#/types.d.ts';
+import type { FastifyInstance } from 'fastify';
 
 /**
  * Imports ESM safely, ignoring any potential errors
@@ -25,10 +26,14 @@ async function safeImport(modulePath: string) {
 export async function registerDynamicModules(startPath: string) {
   const routePath = join(startPath, './routes');
   const processorsPath = join(startPath, './processors');
+  const routes = new Set<{ default: (fastify: FastifyInstance) => unknown }>();
   const processors = new Map<number, (req_body: OrderPayload) => Awaitable<boolean>>();
 
   for (const module of await readdir(routePath)) {
-    await safeImport(join(routePath, module));
+    const importedModule = await safeImport(join(routePath, module));
+    if (importedModule) {
+      routes.add(importedModule);
+    }
   }
 
   for (const module of await readdir(processorsPath)) {
@@ -40,5 +45,5 @@ export async function registerDynamicModules(startPath: string) {
     }
   }
 
-  return processors;
+  return { processors, routes };
 }

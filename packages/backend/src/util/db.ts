@@ -51,13 +51,3 @@ export async function seedDb(itemsPath: string) {
 
   await db.$transaction(promises);
 }
-
-function onExit() {
-  db.$disconnect();
-}
-
-process.on('SIGTERM', onExit);
-process.on('SIGINT', onExit);
-process.on('exit', onExit);
-process.on('unhandledRejection', onExit);
-process.on('uncaughtException', onExit);
