@@ -1,6 +1,6 @@
 import type { OrderPayload } from '@bpm2025-website/shared';
 import { isFunc } from '@bpm2025-website/shared/validation';
-import { readdir } from 'node:fs/promises';
+import { glob } from 'node:fs/promises';
 import { join } from 'node:path';
 import type { Awaitable } from '#/types';
 
@@ -9,9 +9,7 @@ import type { Awaitable } from '#/types';
  */
 async function safeImport(modulePath: string) {
   try {
-    if (!modulePath.endsWith('.md')) {
-      return await import(modulePath);
-    }
+    return await import(modulePath);
   } catch (e) {
     console.error(e);
     return;
@@ -23,22 +21,25 @@ async function safeImport(modulePath: string) {
  * @param startPath - The base path to start looking
  */
 export async function registerDynamicModules(startPath: string) {
-  const routePath = join(startPath, './routes');
-  const processorsPath = join(startPath, './processors');
+  const promises = [];
   const processors = new Map<number, (req_body: OrderPayload) => Awaitable<boolean>>();
 
-  for (const module of await readdir(routePath)) {
-    await safeImport(join(routePath, module));
+  for await (const module of glob(join(startPath, './routes/**/*.{ts,js}'))) {
+    promises.push(safeImport(module));
   }
 
-  for (const module of await readdir(processorsPath)) {
-    const processor = await safeImport(join(processorsPath, module)) ?? { default: {} };
-    const obj = isFunc(processor.default) ? processor.default() : processor.default;
+  for await (const module of glob(join(startPath, './processors/**/*.{ts,js}'))) {
+    promises.push((async () => {
+      const processor = await safeImport(module) ?? { default: {} };
+      const obj = isFunc(processor.default) ? processor.default() : processor.default;
 
-    for (const key in obj) {
-      processors.set(Number(key), obj[key]);
-    }
+      for (const key in obj) {
+        processors.set(Number(key), obj[key]);
+      }
+    })());
   }
+
+  await Promise.all(promises);
 
   return processors;
 }
