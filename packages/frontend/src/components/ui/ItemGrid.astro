@@ -38,12 +38,12 @@ const mergedIconClasses = twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2', defaultIconC
       {items.map(({ title, description, icon: IconElement, callsToAction, classes: itemClasses = {}, image, extraHtml }) => (
         <div class="flex justify-between">
           {image
-          && (
-            <div class="w-1/2">
-              {/* @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 */}
-              <Image inferSize class="object-contain" {...image} />
-            </div>
-          )}
+            && (
+              <div class="w-1/2">
+                {/* @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 */}
+                <Image inferSize class="object-contain" {...image} />
+              </div>
+            )}
           <div class="flex w-full">
             <div class={twMerge('max-w-md', panelClass, itemClasses?.panel)}>
               {IconElement
