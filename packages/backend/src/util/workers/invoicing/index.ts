@@ -1,6 +1,6 @@
 import { join } from 'node:path';
 import { Worker } from 'node:worker_threads';
-import { readdir } from 'node:fs/promises';
+import { readdir, readFile } from 'node:fs/promises';
 import type { Inputs, WorkerData } from './worker';
 import imageSize from 'image-size';
 
@@ -21,7 +21,7 @@ export async function registerInvoicing(target_path: string, seed_folder: string
      */
     const files = await readdir(seed_folder);
     const possible_file = files.filter(name => !name.endsWith('.json') || !name.endsWith('.md'))[0];
-    const dimensions = imageSize(join(seed_folder, possible_file));
+    const dimensions = imageSize(await readFile(join(seed_folder, possible_file)));
 
     worker = new Worker(join(import.meta.dirname, 'worker.ts'), {
       workerData: {
