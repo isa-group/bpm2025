@@ -72,7 +72,6 @@ export function getBaseConfig(packageName: string, forceCache = !CI_environment,
         }
       }
     },
-    // @ts-expect-error - @stylistic/eslint-plugin type mismatch with ESLint package
     {
       ...stylistic.configs.customize({
         quotes: 'single',
