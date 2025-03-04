@@ -1,6 +1,6 @@
-import { defineConfig, presetUno, transformerVariantGroup, presetTypography, transformerDirectives } from 'unocss';
+import { defineConfig, presetWind3, transformerVariantGroup, presetTypography, transformerDirectives } from 'unocss';
 
-const defaultPreset = presetUno({
+const defaultPreset = presetWind3({
   preflight: 'on-demand'
 });
 
