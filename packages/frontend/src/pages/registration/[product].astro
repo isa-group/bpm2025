@@ -8,6 +8,10 @@ import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
 import ISpinner from 'virtual:icons/svg-spinners/ring-resize';
 import tickets from '#/data/tickets';
 
+import countries from 'world-countries';
+
+console.log(countries.map(c => c.name.common));
+
 /**
  * Dynamic route generator
  */
@@ -61,6 +65,7 @@ const formDescription = `
         name: 'institution',
         label: 'Institution'
       },
+
       // Product id marker for the backend
       {
         type: 'hidden',
