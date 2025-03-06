@@ -43,7 +43,9 @@ export async function seedDb(itemsPath: string) {
           id: items.discounts[key].id,
           name: key,
           // @ts-expect-error - The JSON is not typed
-          reduction: items.discounts[key].reduction
+          reduction: items.discounts[key].reduction,
+          // @ts-expect-error - The JSON is not typed
+          is_percentage: items.discounts[key].is_percentage
         }
       }));
     }
