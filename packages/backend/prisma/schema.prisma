@@ -12,6 +12,7 @@ model discount {
   id             Int              @id @default(autoincrement()) @map("_id")
   name           String           @unique(map: "sqlite_autoindex_discount_1")
   reduction      Float
+  is_percentage  Boolean          @default(false)
   discount_order discount_order[]
 }
 
@@ -29,9 +30,9 @@ model order {
   id             String           @id @map("_id")
   user_id        Int
   product_id     Int
-  paid           Boolean?         @default(false)
+  paid           Boolean          @default(false)
   notes          String?
-  createdAt      DateTime?        @default(dbgenerated("CURRENT_TIMESTAMP"))
+  createdAt      DateTime         @default(dbgenerated("CURRENT_TIMESTAMP"))
   updatedAt      DateTime?        @updatedAt
   discount_order discount_order[]
   user           user             @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
@@ -57,6 +58,7 @@ model user {
   createdAt       DateTime  @default(dbgenerated("CURRENT_TIMESTAMP"))
   updatedAt       DateTime? @updatedAt
 }
+
 view full_order_details {
   order_ID                    String          @id @map("Order ID")
   user_ID                     Int             @map("User ID")

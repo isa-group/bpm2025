@@ -59,8 +59,28 @@ SELECT
   o.notes "Order notes",
   p.name "Product name",
   o.paid "Paid",
-  p.price - SUM(COALESCE(d.reduction, 0)) AS "Price paid (with discounts)",
-  GROUP_CONCAT(d.name, ' + ') AS "Applied Discounts",
+  CASE
+    WHEN (p.price - SUM(CASE WHEN NOT d.is_percentage THEN COALESCE(d.reduction, 0) ELSE 0 END)) * 
+         (1 - CASE 
+            WHEN SUM(CASE WHEN d.is_percentage THEN COALESCE(d.reduction, 0) ELSE 0 END) > 100 THEN 1.0
+            WHEN SUM(CASE WHEN d.is_percentage THEN COALESCE(d.reduction, 0) ELSE 0 END) < 0 THEN 0.0
+            ELSE SUM(CASE WHEN d.is_percentage THEN COALESCE(d.reduction, 0) ELSE 0 END) / 100.0
+          END) < 0 
+    THEN 0
+    ELSE (p.price - SUM(CASE WHEN NOT d.is_percentage THEN COALESCE(d.reduction, 0) ELSE 0 END)) * 
+         (1 - CASE 
+            WHEN SUM(CASE WHEN d.is_percentage THEN COALESCE(d.reduction, 0) ELSE 0 END) > 100 THEN 1.0
+            WHEN SUM(CASE WHEN d.is_percentage THEN COALESCE(d.reduction, 0) ELSE 0 END) < 0 THEN 0.0
+            ELSE SUM(CASE WHEN d.is_percentage THEN COALESCE(d.reduction, 0) ELSE 0 END) / 100.0
+          END)
+  END AS "Price paid (with discounts)",
+  GROUP_CONCAT(
+    CASE 
+      WHEN d.is_percentage THEN '|-% ' || d.name || ' -%|'
+      ELSE d.name 
+    END, 
+    ' + '
+  ) AS "Applied Discounts",
   o.createdAt "Created at"
 FROM
   "order" o 
