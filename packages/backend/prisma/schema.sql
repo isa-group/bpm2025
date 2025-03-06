@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS "discount";
 CREATE TABLE "discount" (
 	"_id"	INTEGER PRIMARY KEY AUTOINCREMENT,
 	"name"	TEXT UNIQUE NOT NULL,
-	"reduction"	REAL NOT NULL
+	"reduction"	DECIMAL(10,2) NOT NULL
 );
 DROP TABLE IF EXISTS "discount_order";
 CREATE TABLE "discount_order" (
@@ -25,8 +25,8 @@ CREATE TABLE "order" (
 	"product_id"	INTEGER NOT NULL,
 	"paid"	BOOLEAN DEFAULT FALSE,
 	"notes"	TEXT,
-	"createdAt"	NUMERIC DEFAULT CURRENT_TIMESTAMP,
-	"updatedAt"	NUMERIC,
+	"createdAt"	DATETIME DEFAULT CURRENT_TIMESTAMP,
+	"updatedAt"	DATETIME,
 	UNIQUE("_id", "user_id","product_id"),
 	FOREIGN KEY("product_id") REFERENCES "product"("_id") ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY("user_id") REFERENCES "user"("_id") ON DELETE CASCADE
@@ -35,7 +35,7 @@ DROP TABLE IF EXISTS "product";
 CREATE TABLE "product" (
 	"_id"	INTEGER PRIMARY KEY AUTOINCREMENT,
 	"name"	TEXT UNIQUE NOT NULL,
-	"price"	REAL NOT NULL
+	"price"	DECIMAL(10,2) NOT NULL
 );
 DROP TABLE IF EXISTS "user";
 CREATE TABLE "user" (
@@ -44,8 +44,8 @@ CREATE TABLE "user" (
 	"name"				TEXT NOT NULL,
 	"billing_address"	TEXT NOT NULL,
 	"institution"		TEXT,
-	"createdAt"			NUMERIC DEFAULT CURRENT_TIMESTAMP,
-	"updatedAt"			NUMERIC
+	"createdAt"			DATETIME DEFAULT CURRENT_TIMESTAMP,
+	"updatedAt"			DATETIME
 );
 DROP VIEW IF EXISTS "full_order_details";
 CREATE VIEW full_order_details AS 
@@ -59,8 +59,33 @@ SELECT
   o.notes "Order notes",
   p.name "Product name",
   o.paid "Paid",
-  p.price - SUM(COALESCE(d.reduction, 0)) AS "Price paid (with discounts)",
-  GROUP_CONCAT(d.name, ' + ') AS "Applied Discounts",
+  CAST(
+    ROUND(
+      CASE 
+        WHEN (p.price - SUM(CASE WHEN NOT d.is_percentage THEN COALESCE(d.reduction, 0) ELSE 0 END)) * 
+             (1 - CASE 
+                WHEN SUM(CASE WHEN d.is_percentage THEN COALESCE(d.reduction, 0) ELSE 0 END) > 100 THEN 1.0 
+                WHEN SUM(CASE WHEN d.is_percentage THEN COALESCE(d.reduction, 0) ELSE 0 END) < 0 THEN 0.0 
+                ELSE SUM(CASE WHEN d.is_percentage THEN COALESCE(d.reduction, 0) ELSE 0 END) / 100.0 
+              END) < 0 
+        THEN 0 
+        ELSE (p.price - SUM(CASE WHEN NOT d.is_percentage THEN COALESCE(d.reduction, 0) ELSE 0 END)) * 
+             (1 - CASE 
+                WHEN SUM(CASE WHEN d.is_percentage THEN COALESCE(d.reduction, 0) ELSE 0 END) > 100 THEN 1.0 
+                WHEN SUM(CASE WHEN d.is_percentage THEN COALESCE(d.reduction, 0) ELSE 0 END) < 0 THEN 0.0 
+                ELSE SUM(CASE WHEN d.is_percentage THEN COALESCE(d.reduction, 0) ELSE 0 END) / 100.0 
+              END)
+      END,
+      2
+    ) AS NUMERIC
+  ) AS "Price paid (with discounts)",
+  GROUP_CONCAT(
+    CASE 
+      WHEN d.is_percentage THEN '|-% ' || d.name || ' -%|'
+      ELSE d.name 
+    END, 
+    ' + '
+  ) AS "Applied Discounts",
   o.createdAt "Created at"
 FROM
   "order" o 
