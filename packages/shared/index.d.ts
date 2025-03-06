@@ -13,6 +13,7 @@ export interface SignupPayload {
  */
 export interface OrderPayload extends SignupPayload {
   product_id: number;
+  country: string;
   notes?: string;
 }
 

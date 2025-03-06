@@ -90,6 +90,14 @@ export interface Testimonial {
 
 export interface Input extends astroHTML.JSX.InputHTMLAttributes {
   label?: string;
+  options: {
+    value: string;
+    label: string;
+  }[];
+}
+
+export interface Select extends astroHTML.JSX.SelectHTMLAttributes {
+  label?: string;
 }
 
 export interface Textarea extends astroHTML.JSX.TextareaHTMLAttributes {
@@ -123,7 +131,7 @@ export interface ItemGrid {
 export type ItemList = BetterOmit<ItemGrid, 'columns'>;
 
 export interface Form {
-  inputs?: Input[];
+  inputs?: (Input | Select)[];
   textarea?: Textarea;
   disclaimers?: Disclaimer[];
   button?: CallToAction;
