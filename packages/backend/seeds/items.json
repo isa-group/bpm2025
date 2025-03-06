@@ -37,6 +37,16 @@
     "Super early workshops-only": {
       "id": 5,
       "reduction": 110
+    },
+    "From developing country (lowest income)": {
+      "id": 6,
+      "reduction": 90,
+      "is_percentage": true
+    },
+    "From developing country": {
+      "id": 7,
+      "reduction": 50,
+      "is_percentage": true
     }
   }
 }
