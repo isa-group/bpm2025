@@ -41,7 +41,10 @@ export function generateTableMarkup(
         <tbody>
             ${rows.map(row => `
             <tr>  
-                ${columns.map(key => `<td>${key in row && !isNil(row[key]) ? row[key] : '-'}</td>`).join('\n')}
+                ${columns.map(key => `<td>${
+                  key in row && !isNil(row[key])
+                    ? String(row[key]).replaceAll('\n', '<br />')
+                    : '-'}</td>`).join('\n')}
             </tr>
             `).join('\n')}
         </tbody>
