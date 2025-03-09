@@ -1,19 +1,40 @@
 ---
-// Define the prop type for frontmatter
+import { parse } from 'marked';
+import BSlot from '../utils/BSlot.astro';
+
 interface Props {
   importantDates: Record<string, string>;
+  disclaimer?: string;
 }
 
-// Destructure the importantDates prop
-const { importantDates } = Astro.props;
+const { 
+  importantDates,
+  disclaimer = 'Deadlines correspond to Anywhere on Earth (AoE or UTC-12).' 
+} = Astro.props;
 ---
 
 <ul>
   {Object.entries(importantDates).map(([key, value]) => (
     <li>
-      <strong>{key}</strong>: {value}
+      <strong>{key}</strong>: <BSlot data-marked-markdown>
+        <Fragment set:html={parse(value, { async: false })} />
+      </BSlot>
     </li>
   ))}
 </ul>
 
-<p><em>Deadlines correspond to Anywhere on Earth (AoE or UTC-12).</em></p>
+{disclaimer && (
+  <em>
+    <BSlot data-marked-markdown>
+      <Fragment set:html={parse(disclaimer, { async: false })} />
+    </BSlot>
+  </em>
+)}
+
+<style>
+  /* Eliminar márgenes de párrafos dentro de los items de la lista */
+  li p[data-marked-markdown] {
+    margin: 0;
+    display: inline;
+  }
+</style>
