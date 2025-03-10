@@ -2,16 +2,20 @@
 title: 'BPM Program Comittee'
 layout: '#/layouts/MarkdownLayout.astro'
 ---
-
-import Testimonials from '#/components/widgets/Testimonials.astro';
-import { conferenceChairs } from '#/data/people';
-import IMdiUniversity from 'virtual:icons/mdi/university';
-import IHugeIconsGlobe from 'virtual:icons/hugeicons/globe';
-import ITablerMail from 'virtual:icons/tabler/mail';
+import TestimonialCard from '#/components/ui/TestimonialCard.astro';
+import { conferenceChairs, toTestimonial } from '#/data/people';
 
 # Track I: Foundations
 
-* **Track chair:** Arik Senderovich, York University, Canada
+<TestimonialCard {...(() => {
+    const name = 'Arik Senderovich';
+    const info = conferenceChairs()['Program Committee'][name];
+    return toTestimonial(name, info, {
+        includeTestimonial: false,
+        includeTreatment: false,
+        includeClasses: false
+      });
+})()} />
 
 ## Senior Program Committee
 
@@ -72,7 +76,15 @@ import ITablerMail from 'virtual:icons/tabler/mail';
 
 # Track II: Engineering
 
-* **Track chair:** Cristina Cabanillas, University of Seville, Spain	
+<TestimonialCard {...(() => {
+    const name = 'Cristina Cabanillas';
+    const info = conferenceChairs()['Program Committee'][name];
+    return toTestimonial(name, info, {
+        includeTestimonial: false,
+        includeTreatment: false,
+        includeClasses: false
+      });
+})()} />
 
 ## Senior Program Committee
 
@@ -165,7 +177,15 @@ import ITablerMail from 'virtual:icons/tabler/mail';
 
 # Track III: Management
 
-* **Track chair:** Irene Vanderfeesten, KU Leuven, Belgium
+<TestimonialCard {...(() => {
+    const name = 'Irene Vanderfeesten';
+    const info = conferenceChairs()['Program Committee'][name];
+    return toTestimonial(name, info, {
+        includeTestimonial: false,
+        includeTreatment: false,
+        includeClasses: false
+      });
+})()} />
 
 ## Senior Program Committee
 

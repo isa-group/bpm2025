@@ -51,6 +51,11 @@ import CarlosCapitan from '#/assets/images/people/CarlosCapitan.jpg';
 import RemcoDijkman from '#/assets/images/people/Remko-Dijkman.jpg';
 import DimkaKarastoyanova from '#/assets/images/people/Dimka_Karastoyanova.jpg';
 
+import IMdiUniversity from 'virtual:icons/mdi/university';
+import IHugeIconsGlobe from 'virtual:icons/hugeicons/globe';
+import ITablerMail from 'virtual:icons/tabler/mail';
+import type { Testimonial } from '#/types';
+
 interface ConferenceMember {
   treatment?: string;
   job?: string;
@@ -269,7 +274,7 @@ const sharedPeopleData = {
  */
 type ConferenceMemberData = Partial<Record<keyof typeof sharedPeopleData, ConferenceMember>> & Record<string, ConferenceMember>;
 
-export const steeringCommittee: Record<string, ConferenceMemberData> = {
+export const steeringCommittee = (): Record<string, ConferenceMemberData> => ({
   'Steering Committee': {
     'Jan Mendling': {
       treatment,
@@ -349,9 +354,9 @@ export const steeringCommittee: Record<string, ConferenceMemberData> = {
       email: 'marlon.dumas@ut.ee'
     }
   }
-};
+});
 
-export const conferenceChairs: Record<string, ConferenceMemberData> = {
+export const conferenceChairs = (): Record<string, ConferenceMemberData> => ({
   'General chairs': {
     'Adela del Río Ortega': sharedPeopleData['Adela del Río Ortega'],
     'Manuel Resinas': sharedPeopleData['Manuel Resinas']
@@ -857,9 +862,9 @@ export const conferenceChairs: Record<string, ConferenceMemberData> = {
     'Shazia Sadiq': sharedPeopleData['Shazia Sadiq'],
     'Irene Vanderfeesten': sharedPeopleData['Irene Vanderfeesten']
   }
-};
+});
 
-export const organizingTeam: ConferenceMemberData = {
+export const organizingTeam = (): ConferenceMemberData => ({
   'Cristina Cabanillas': sharedPeopleData['Cristina Cabanillas'],
   'Bedilia Estrada Torres': sharedPeopleData['Bedilia Estrada Torres'],
   'Rocío Goñi': {
@@ -872,4 +877,56 @@ export const organizingTeam: ConferenceMemberData = {
     email: 'ferferga@us.es',
     image: FernandoFernandez
   }
-};
+});
+
+/**
+ * Converts the data of a conference member to a testimonial object,
+ * to be used inside Testimonials components
+ */
+export function toTestimonial(
+  name: string,
+  m: ConferenceMember,
+  {
+    includeTreatment = true,
+    includeTestimonial = true
+  }
+): Testimonial {
+  const classes = {
+    panel: 'mt-3'
+  };
+
+  return {
+    name: m.treatment && includeTreatment ? `${m.treatment} ${name}` : name,
+    job: m.job,
+    testimonial: includeTestimonial ? m.bio : undefined,
+    items: [
+      ...(m.institution
+        ? ([{
+            icon: IMdiUniversity,
+            description: m.institution,
+            classes
+          }])
+        : []),
+      ...(m.location
+        ? ([{
+            icon: IHugeIconsGlobe,
+            description: m.location,
+            classes
+          }])
+        : []),
+      ...(m.email
+        ? ([{
+            icon: ITablerMail,
+            description: `<a href="mailto:${m.email}" class="underline">${m.email}</a>`,
+            classes
+          }])
+        : [])
+    ],
+    ...(m.image && ({
+      image: {
+        src: m.image,
+        alt: name
+      }
+    }))
+  };
+}
