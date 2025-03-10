@@ -1,59 +1,24 @@
 ---
 import Layout from '#/layouts/PageLayout.astro';
 import Testimonials from '#/components/widgets/Testimonials.astro';
-import { conferenceChairs } from '#/data/people';
-
-import IMdiUniversity from 'virtual:icons/mdi/university';
-import IHugeIconsGlobe from 'virtual:icons/hugeicons/globe';
-import ITablerMail from 'virtual:icons/tabler/mail';
-
-const classes = {
-  panel: 'mt-3'
-};
+import { conferenceChairs, toTestimonial } from '#/data/people';
 ---
 
 <Layout metadata={{
   title: 'Conference Chairs'
 }}>
-  {Object.entries(conferenceChairs).map(([section, chairs], section_index) => (
+  {Object.entries(conferenceChairs()).map(([section, chairs], section_index) => (
     <Testimonials
       title={section}
       id={encodeURIComponent(section.toLowerCase().replace(' ', '-'))}
-      testimonials={Object.entries(chairs).map(([name, info]) => ({
-        name,
-        job: info.job,
-        testimonial: info.bio,
-        items: [
-          ...(info.institution
-            ? ([{
-                icon: IMdiUniversity,
-                description: info.institution,
-                classes
-              }])
-            : []),
-          ...(info.location
-            ? ([{
-                icon: IHugeIconsGlobe,
-                description: info.location,
-                classes
-              }])
-            : []),
-          ...(info.email
-            ? ([{
-                icon: ITablerMail,
-                description: `<a href="mailto:${info.email}" class="underline">${info.email}</a>`,
-                classes
-              }])
-            : [])
-        ],
-        ...(info.image && ({
-          image: {
-            src: info.image,
-            alt: name,
-            /* Suggested by Astro audit */
-            loading: section_index >= 1 ? 'lazy' : 'eager'
-          }
-        }))
-      }))} />
+      testimonials={Object.entries(chairs).map(([name, info]) => {
+        const testimonial = toTestimonial(name, info, { includeTreatment: false });
+        /* Suggested by Astro audit */
+        if (testimonial.image) {
+          testimonial.image.loading = section_index >= 1 ? 'lazy' : 'eager';
+        }
+
+        return testimonial;
+      })} />
   ))}
 </Layout>
