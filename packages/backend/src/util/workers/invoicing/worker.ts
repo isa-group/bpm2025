@@ -3,7 +3,7 @@ import type { Prisma } from '@prisma/client';
 import { parentPort, workerData } from 'node:worker_threads';
 // @ts-expect-error - The module doesn't have types
 import MicroInvoice from 'microinvoice';
-import { getInvoicePath } from '../../../util';
+import { getInvoicePath } from '../../../util/index.ts';
 
 export interface WorkerData {
   target_path: string;
@@ -214,6 +214,7 @@ parentPort?.on('message', async (inputs: Inputs) => {
       path: targetPath
     });
   } catch (e) {
+    console.error(e);
     parentPort?.postMessage({
       success: false,
       order_id: inputs.order.id,
