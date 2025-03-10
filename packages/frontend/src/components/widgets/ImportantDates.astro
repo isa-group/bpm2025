@@ -7,16 +7,17 @@ interface Props {
   disclaimer?: string;
 }
 
-const { 
+const {
   importantDates,
-  disclaimer = 'Deadlines correspond to Anywhere on Earth (AoE or UTC-12).' 
+  disclaimer = 'Deadlines correspond to Anywhere on Earth (AoE or UTC-12).'
 } = Astro.props;
 ---
 
 <ul>
   {Object.entries(importantDates).map(([key, value]) => (
     <li>
-      <strong>{key}</strong>: <BSlot data-marked-markdown>
+      <strong>{key}</strong>:
+      <BSlot data-marked-markdown>
         <Fragment set:html={parse(value, { async: false })} />
       </BSlot>
     </li>
