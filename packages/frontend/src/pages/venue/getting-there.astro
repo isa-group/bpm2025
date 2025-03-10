@@ -8,6 +8,7 @@ import Teletaxi from '#/assets/images/arriving/teletaxi.png';
 import PlaneImg from '#/assets/images/hero/plane.png';
 import ALSALogo from '#/assets/images/arriving/logo-alsa.jpg';
 import RenfeLogo from '#/assets/images/arriving/renfe-logo.jpeg';
+import TrainlineLogo from '#/assets/images/arriving/trainline-logo.svg';
 import IberiaLogo from '#/assets/images/arriving/iberia-logo.jpg';
 import IryoLogo from '#/assets/images/arriving/iryo.png';
 import SantaJusta from '#/assets/images/arriving/santa-justa.png';
@@ -21,6 +22,7 @@ import IMaterialSymbolsTrain from 'virtual:icons/material-symbols/train';
 import ITablerPlaneTilt from 'virtual:icons/tabler/plane-tilt';
 import IMaterialSymbolsInfoOutline from 'virtual:icons/material-symbols/info-outline';
 import IIconParkConnection from 'virtual:icons/icon-park-solid/connection';
+import IMaterialSymbolsSearchRounded from 'virtual:icons/material-symbols/search-rounded';
 ---
 
 <Layout
@@ -289,6 +291,29 @@ import IIconParkConnection from 'virtual:icons/icon-park-solid/connection';
     ]} />
 
   <Content
+    title="Other options"
+    bg
+    items={[
+      {
+        title: 'Trainline',
+        description: 'If you want to check other train offerings, you can book your ticket through Trainline.',
+        icon: IMaterialSymbolsTrain,
+        image: {
+          src: TrainlineLogo,
+          alt: 'Trainline logo'
+        },
+        callsToAction: [
+          {
+            text: 'Find tickets',
+            href: 'https://www.thetrainline.com/es/descuentos-ofertas',
+            icon: IMaterialSymbolsSearchRounded,
+            variant: 'secondary'
+          }
+        ]
+      }
+    ]} />
+
+  <Content
     title="Santa Justa train station (Seville)"
     id="train-station"
     images={[
@@ -298,7 +323,6 @@ import IIconParkConnection from 'virtual:icons/icon-park-solid/connection';
       }
     ]}
     isReversed
-    bg
     callsToAction={[
       {
         text: 'Learn more',
