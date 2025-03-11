@@ -5,6 +5,16 @@ layout: '#/layouts/MarkdownLayout.astro'
 import TestimonialCard from '#/components/ui/TestimonialCard.astro';
 import { conferenceChairs, toTestimonial } from '#/data/people';
 
+<TestimonialCard {...(() => {
+    const name = 'Hajo Reijers';
+    const info = conferenceChairs()['Program Committee'][name];
+    return toTestimonial(name, info, {
+        includeTestimonial: false,
+        includeTreatment: false,
+        includeClasses: false
+      });
+})()} />
+
 # Track I: Foundations
 
 <TestimonialCard {...(() => {
