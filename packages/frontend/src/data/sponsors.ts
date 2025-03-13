@@ -4,6 +4,7 @@ import SCORELogo from '#/assets/images/sponsors/score.png';
 import SpringerLogo from '#/assets/images/sponsors/springer.svg';
 import USLogo from '#/assets/images/sponsors/us.png';
 import ProcessScience from '#/assets/images/sponsors/process-science.png';
+import GBTEC from '#/assets/images/sponsors/GBTEC.png';
 
 export const sponsors: SponsorInfo[] = [
   {
@@ -38,7 +39,24 @@ export const sponsors: SponsorInfo[] = [
   },
   {
     category: 'Bronze',
-    brands: []
+    brands: [{
+      src: GBTEC,
+      alt: 'GBTEC',
+      href: 'https://www.gbtec.com/',
+      description: `
+        GBTEC is a leading provider of SaaS software in the fields of Business Process Management (BPM),
+        Enterprise Architecture Management (EAM), Digital Process Automation (DPA), and Governance, Risk, and Compliance (GRC).
+        The extensive product portfolio of GBTEC includes Business Process Design & Modeling, Process Execution,
+        Process Mining, as well as Governance, Risk, and Compliance (GRC). The company is known for its modern and user-friendly
+        products, which are based on no-code and low-code technologies and a state-of-the-art product platform.
+        Customers also benefit from competent customer support and comprehensive training offerings.
+        The products of GBTEC are used by companies of all sizes, from SMEs to Fortune 500 companies,
+        as well as by public institutions. The company is headquartered in Bochum and employs around 300 employees at locations
+        in the DACH region, Spain, Australia, the UK and the USA.
+        <br /><br />
+        For more information, see <a href="https://www.gbtec.com/" class="underline">https://www.gbtec.com/</a>.
+      `
+    }]
   },
   {
     category: 'Academic',
