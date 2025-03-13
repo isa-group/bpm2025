@@ -18,9 +18,9 @@
     "check": "npm run check -ws --if-present"
   },
   "devDependencies": {
-    "@eslint/config-inspector": "1.0.1",
-    "@types/node": "22.13.9",
-    "eslint": "9.21.0",
+    "@eslint/config-inspector": "1.0.2",
+    "@types/node": "22.13.10",
+    "eslint": "9.22.0",
     "jiti": "2.4.2",
     "typescript": "5.8.2"
   }
