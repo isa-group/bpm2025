@@ -64,6 +64,11 @@ const formDescription = `
         label: 'Institution'
       },
       {
+        type: 'text',
+        name: 'coupon',
+        label: 'Discount code (if you have one)'
+      },
+      {
         name: 'country',
         label: 'Country of work',
         options: countries.map(c => ({ value: c.name.common, label: c.name.common }))
