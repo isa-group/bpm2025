@@ -12,6 +12,7 @@ export interface SignupPayload {
  * This is the payload for creating an order in the backend
  */
 export interface OrderPayload extends SignupPayload {
+  discount_code?: string;
   product_id: number;
   country: string;
   notes?: string;

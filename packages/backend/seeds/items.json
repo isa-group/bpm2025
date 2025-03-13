@@ -47,6 +47,46 @@
       "id": 7,
       "reduction": 40,
       "is_percentage": true
+    },
+    "Sponsor: Celonis": {
+      "id": 8,
+      "reduction": 100,
+      "is_percentage": true
+    },
+    "Sponsor: Process.Science": {
+      "id": 9,
+      "reduction": 100,
+      "is_percentage": true
+    },
+    "Sponsor: DCR Solutions": {
+      "id": 10,
+      "reduction": 100,
+      "is_percentage": true
+    },
+    "Sponsor: GBTec": {
+      "id": 11,
+      "reduction": 100,
+      "is_percentage": true
+    },
+    "Sponsor: Iterem": {
+      "id": 12,
+      "reduction": 100,
+      "is_percentage": true
+    },
+    "Sponsor: SAP Signavio": {
+      "id": 13,
+      "reduction": 100,
+      "is_percentage": true
+    },
+    "Sponsor: Interact Solutions": {
+      "id": 14,
+      "reduction": 100,
+      "is_percentage": true
+    },
+    "Guest (Free access)": {
+      "id": 15,
+      "reduction": 100,
+      "is_percentage": true
     }
   }
 }

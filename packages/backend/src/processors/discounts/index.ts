@@ -4,16 +4,14 @@ import type { ProcessorSignature } from '#/types';
 const super_early_deadline = new Date(2025, 1, 1); // February 1st, 2025
 const early_deadline = new Date(2025, 6, 15); // July 15th, 2025
 const includesConference
-  = (product_id: number | string): boolean => [2, 3].includes(Number(product_id));
+  = (product_id: number | string) => [2, 3].includes(Number(product_id));
 const isWorkshopsOnly
-  = (product_id: number | string): boolean => Number(product_id) === 1;
+  = (product_id: number | string) => Number(product_id) === 1;
 
 export default (): ProcessorSignature => {
   return {
-    1: (req_body: OrderPayload): boolean => {
-      return 'is_student' in req_body && Boolean(req_body.is_student);
-    },
-    2: (req_body: OrderPayload): boolean => {
+    1: (req_body: OrderPayload) => 'is_student' in req_body && Boolean(req_body.is_student),
+    2: (req_body: OrderPayload) => {
       const current_date = new Date();
 
       return includesConference(req_body.product_id)
