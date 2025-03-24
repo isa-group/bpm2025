@@ -5,6 +5,7 @@ import SpringerLogo from '#/assets/images/sponsors/springer.svg';
 import USLogo from '#/assets/images/sponsors/us.png';
 import ProcessScience from '#/assets/images/sponsors/process-science.png';
 import GBTEC from '#/assets/images/sponsors/GBTEC.png';
+import Iterem from '#/assets/images/sponsors/iterem.png';
 
 export const sponsors: SponsorInfo[] = [
   {
@@ -55,6 +56,34 @@ export const sponsors: SponsorInfo[] = [
         in the DACH region, Spain, Australia, the UK and the USA.
         <br /><br />
         For more information, see <a href="https://www.gbtec.com/" class="underline">https://www.gbtec.com/</a>.
+      `
+    },
+    {
+      src: Iterem,
+      alt: 'Iterem',
+      href: 'https://iterem.com/',
+      description: `
+        We accompany organizations on their journey towards operational efficiency, process optimization, and digital innovation.
+        We offer a consultative and customized approach that integrates advanced process management solutions.
+        We guide businesses at every stage to ensure sustainable evolution aligned with their strategic objectives.
+        We design strategies, manage change, and empower teams to maximize the business impact of technology.
+        With a methodology that integrates people, processes, and technology, we help companies to visualize, control, and optimize their operations through:
+        <br />
+        <br />
+        <ul class="list-disc list-inside">
+          <li>Strategic consulting in BPM and Process architecture</li>
+          <li>Process automation</li>
+          <li>Process mining and operational intelligence</li>
+          <li>AI-based solutions</li>
+        </ul>
+        <br />
+        Our projects have enabled organizations ranging from public entities to private sector companies to significantly improve their processes and operations.
+        We have helped to optimize user service management, digitize administrative procedures and increase agility and accuracy in decision making, among others.
+        These projects have not only improved efficiency and transparency, but have also facilitated regulatory compliance, fostered innovation and
+        promoted new ways of working. At the 23rd International Conference on Business Process Management (BPM 2025), we look forward to sharing ideas,
+        experiences, and contributing to the advancement of BPM practices as part of this community dedicated to continuous improvement,
+        always with an eye on the future. We invite you to meet us at the venue so that we can share experiences and continue to drive the collective success of
+        process management.
       `
     }]
   },
