@@ -159,6 +159,7 @@ export interface SponsorInfo {
 export interface Brands extends BetterOmit<Headline, 'classes'>, Widget {
   icons?: IconElement[];
   description?: boolean;
+  image_footer?: boolean;
   images?: SponsorInfo['brands'];
 }
 
