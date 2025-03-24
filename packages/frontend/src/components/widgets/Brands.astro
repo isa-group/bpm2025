@@ -11,6 +11,7 @@ const {
   icons = [],
   images = [],
   description = false,
+  image_footer = true,
   id,
   isDark = false,
   classes = {},
@@ -33,11 +34,16 @@ const {
                 <div class="flex flex-col items-center justify-center">
                   {/* @ts-expect-error - Astro doesn't adhere to property overwriting */}
                   <img class="max-h-20 dark:bg-white rounded" src={isStr(image.src) ? image.src : image.src.src} href={undefined} {...image} />
-                  {image.alt && <p class="text-lg font-semibold">{image.alt}</p>}
+                  {image.alt && image_footer && <p class="text-lg font-semibold">{image.alt}</p>}
                 </div>
               </a>
               {description && image.description
-                && <blockquote class="text-muted text-lg font-oblique font-serif" set:html={image.description} />}
+                && (
+                  <div>
+                    <h3 class="text-lg font-semibold">— {image.alt}</h3>
+                    <blockquote class="text-muted text-lg font-oblique font-serif" set:html={image.description} />
+                  </div>
+                )}
             </div>
           </div>
         )

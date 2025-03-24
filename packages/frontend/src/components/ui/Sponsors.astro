@@ -23,6 +23,7 @@ const { empty = false, description = false } = Astro.props;
           <Brands
             images={s.brands}
             description={description}
+            image_footer={!description}
             classes={{
               container: '!py-4'
             }} />
