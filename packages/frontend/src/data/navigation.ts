@@ -36,10 +36,6 @@ export function getHeaderData(currentUrl: URL): HeaderData {
   const initialData: HeaderData = {
     links: [
       {
-        text: 'Home',
-        href: getHomePermalink()
-      },
-      {
         text: 'Conference',
         links: [
           {
@@ -57,6 +53,15 @@ export function getHeaderData(currentUrl: URL): HeaderData {
           {
             text: 'Organizing Team',
             href: getPermalink('/conference/organization')
+          }
+        ]
+      },
+      {
+        text: 'Program',
+        links: [
+          {
+            text: 'Keynotes',
+            href: getPermalink('/program/keynotes')
           }
         ]
       },
