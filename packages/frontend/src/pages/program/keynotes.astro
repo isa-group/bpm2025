@@ -1,0 +1,22 @@
+---
+import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
+import Layout from '#/layouts/PageLayout.astro';
+---
+<Layout
+  metadata={{
+    title: 'Keynotes'
+  }}
+  heroProps={{
+    title: 'Keynotes',
+    subtitle: 'In the tradition of our conference series, BPM 2025 features three outstanding keynotes with different perspectives on business process management.'
+  }}>
+  <WidgetWrapper>
+    <h2 class="text-3xl font-bold mb-4">Keynotes</h2>
+    <p class="mb-4">In the tradition of our conference series, BPM 2025 features three outstanding keynotes with different perspectives on business process management.</p>
+    <ul class="list-disc pl-6">
+      <li>Keynote 1: <a href="https://example.com/keynote1" class="text-blue-500 hover:underline">Title of Keynote 1</a></li>
+      <li>Keynote 2: <a href="https://example.com/keynote2" class="text-blue-500 hover:underline">Title of Keynote 2</a></li>
+      <li>Keynote 3: <a href="https://example.com/keynote3" class="text-blue-500 hover:underline">Title of Keynote 3</a></li>
+    </ul>
+  </WidgetWrapper>
+</Layout>

@@ -1,6 +1,6 @@
 import type { CallForPapers, CallToAction, MenuLink } from '#/types';
 import type { Props as FooterProps } from '#/components/widgets/Footer.astro';
-import { getAsset, getHomePermalink, getPermalink, trimSlash } from '#/utils/permalinks';
+import { getAsset, getPermalink, trimSlash } from '#/utils/permalinks';
 import ITablerBrandX from 'virtual:icons/tabler/brand-x';
 import ITablerMail from 'virtual:icons/tabler/mail';
 import { conferenceChairs } from '#/data/people';
