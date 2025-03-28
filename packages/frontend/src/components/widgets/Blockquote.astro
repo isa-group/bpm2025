@@ -1,6 +1,13 @@
 ---
+interface Props {
+  class?: string;
+}
+
+const {
+  class: classes = ''
+} = Astro.props;
 ---
-<blockquote class="text-muted font-serif px-10">
+<blockquote class="text-muted font-serif px-10" class:list={[classes]}>
   <slot />
 </blockquote>
 
