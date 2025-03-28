@@ -1,6 +1,6 @@
 import type { CallForPapers, CallToAction, MenuLink } from '#/types';
 import type { Props as FooterProps } from '#/components/widgets/Footer.astro';
-import { getAsset, getHomePermalink, getPermalink, trimSlash } from '#/utils/permalinks';
+import { getAsset, getPermalink, trimSlash } from '#/utils/permalinks';
 import ITablerBrandX from 'virtual:icons/tabler/brand-x';
 import ITablerMail from 'virtual:icons/tabler/mail';
 import { conferenceChairs } from '#/data/people';
@@ -36,10 +36,6 @@ export function getHeaderData(currentUrl: URL): HeaderData {
   const initialData: HeaderData = {
     links: [
       {
-        text: 'Home',
-        href: getHomePermalink()
-      },
-      {
         text: 'Conference',
         links: [
           {
@@ -57,6 +53,15 @@ export function getHeaderData(currentUrl: URL): HeaderData {
           {
             text: 'Organizing Team',
             href: getPermalink('/conference/organization')
+          }
+        ]
+      },
+      {
+        text: 'Program',
+        links: [
+          {
+            text: 'Keynotes',
+            href: getPermalink('/program/keynotes')
           }
         ]
       },

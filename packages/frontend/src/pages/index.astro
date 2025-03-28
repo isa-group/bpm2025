@@ -18,6 +18,7 @@ import SevilleCathedral from '#/assets/images/hero/cathedral.jpg';
 import BPMLogo from '#/assets/favicons/favicon.svg';
 import ManuelResinas_img from '#/assets/images/people/resinas.jpg';
 import Adela_img from '#/assets/images/people/ortega.jpg';
+import Blockquote from '#/components/widgets/Blockquote.astro';
 
 const cathedralText = 'Cathedral of Seville';
 ---
@@ -118,7 +119,7 @@ const cathedralText = 'Cathedral of Seville';
             alt: 'Manuel Resinas'
           }} />
       </div>
-      <blockquote class="text-muted font-serif px-10">
+      <Blockquote>
         <div>
           <p>
             We are delighted to invite you to the 23rd edition of the International Conference on Business Process Management (BPM 2025),
@@ -142,7 +143,7 @@ const cathedralText = 'Cathedral of Seville';
             We look forward to welcoming you to Seville for an unforgettable experience of knowledge exchange, networking, and cultural exploration.
           </p>
         </div>
-      </blockquote>
+      </Blockquote>
       <cite class="flex flex-row-reverse">
         Adela del Río Ortega, Manuel Resinas
         (BPM 2025 General Chairs)
@@ -244,27 +245,5 @@ const cathedralText = 'Cathedral of Seville';
   100% {
     transform: translate(var(--slide-end-x), var(--slide-end-y)) rotate(var(--rest-angle));
   }
-}
-
-blockquote::before,
-blockquote::after {
-  --size: 4rem;
-  display: block;
-  font-size: calc(var(--size) * 2);
-  max-width: var(--size);
-  max-height: var(--size);
-  line-height: normal;
-  position: relative;
-}
-
-blockquote::before {
-  right: var(--size);
-  top: calc(var(--size) / 2);
-  content: '“';
-}
-blockquote::after {
-  left: 100%;
-  bottom: calc(var(--size) / 1.5);
-  content: '”';
 }
 </style>
