@@ -1,0 +1,30 @@
+---
+---
+<blockquote class="text-muted font-serif px-10">
+  <slot />
+</blockquote>
+
+<style>
+blockquote::before,
+blockquote::after {
+  --size: 4rem;
+  display: block;
+  font-size: calc(var(--size) * 2);
+  max-width: var(--size);
+  max-height: var(--size);
+  line-height: normal;
+  position: relative;
+}
+
+blockquote::before {
+  right: var(--size);
+  top: calc(var(--size) / 2);
+  content: '“';
+}
+
+blockquote::after {
+  left: 100%;
+  bottom: calc(var(--size) / 1.5);
+  content: '”';
+}
+</style>
