@@ -1,17 +1,15 @@
-import { defineEventHandler, readBody } from 'h3';
-import { router } from '../app.ts';
 import { db } from '../util/db.ts';
 import { validateUserBody } from '@bpm2025-website/shared/validation/data';
 import { logger } from '../util/logger.ts';
+import type { FastifyInstance } from 'fastify';
 
-/**
- * Gets a form data object from the event body for creating an
- * user
- */
-router.post(
-  '/user',
-  defineEventHandler(async (event) => {
-    const body = await readBody(event);
+export default function (fastify: FastifyInstance) {
+  /**
+   * Gets a form data object from the event body for creating an
+   * user
+   */
+  fastify.post('/user', async (request, reply) => {
+    const body = request.body;
 
     if (validateUserBody(body)) {
       body.email = body.email.toLowerCase();
@@ -31,7 +29,7 @@ router.post(
 
         logger.info(`User created: ${new_user.id} - ${new_user.name} - ${new_user.email}`);
 
-        return new Response(null, { status: 201 });
+        return reply.status(201).send();
       } else {
         logger.info(
           `User ${user.id} - ${user.name} - ${user.email} already exists, updating in DB...`
@@ -40,10 +38,10 @@ router.post(
           data,
           where: { email: body.email }
         });
-        return new Response(null, { status: 202 });
+        return reply.status(202).send();
       }
     } else {
-      return new Response(null, { status: 400 });
+      return reply.status(400).send();
     }
-  })
-);
+  });
+}

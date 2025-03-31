@@ -1,7 +1,7 @@
 import { db } from '../util/db.ts';
 import { validateOrderBody } from '@bpm2025-website/shared/validation/data';
 import { logger } from '../util/logger.ts';
-import { invoices_folder, processors } from '../app.ts';
+import { invoices_folder, processors } from '../constants.ts';
 import { generateOrderId, getBaseMerchantParameters, getTPVOperationData } from '../redsys.ts';
 import type { TPVOperation } from '@bpm2025-website/shared';
 import { generateTableMarkup } from '../util/listing.ts';
@@ -9,8 +9,6 @@ import { createReadStream } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import { getInvoicePath } from '../util/index.ts';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
-
-console.log('order imported successfully!');
 
 async function isFile(path: string): Promise<boolean> {
   try {

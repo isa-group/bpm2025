@@ -4,6 +4,10 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
+    "outDir": "dist",
+    "noEmit": false,
+    "sourceMap": false,
+    "target": "ESNext",
     "lib": ["ESNext"],
     "allowImportingTsExtensions": true,
     "rewriteRelativeImportExtensions": true,

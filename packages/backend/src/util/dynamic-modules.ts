@@ -8,10 +8,12 @@ import type { FastifyInstance } from 'fastify';
 /**
  * Imports ESM safely, ignoring any potential errors
  */
-async function safeImport(modulePath: string) {
+function safeImport(modulePath: string) {
   try {
     if (!modulePath.endsWith('.md')) {
-      return await import(modulePath);
+      const test = import(modulePath);
+      debugger;
+      return new Promise((resolve) => setTimeout(resolve, 50000));
     }
   } catch (e) {
     console.error(e);
