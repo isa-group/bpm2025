@@ -7,6 +7,14 @@ import { conferenceChairs } from '#/data/people';
 
 const matches = import.meta.glob('../pages/calls/*.mdx', { eager: true });
 const posts = Object.values(matches) as CallForPapers[];
+const calls = () => posts
+  .sort((a, b) => a.frontmatter.order - b.frontmatter.order)
+  .map(post =>
+    ({
+      text: post.frontmatter.title,
+      href: getPermalink(post.url)
+    })
+  );
 
 interface HeaderData {
   links?: MenuLink[];
@@ -26,13 +34,6 @@ export function isInRegistrationPage(currentUrl: URL): boolean {
 }
 
 export function getHeaderData(currentUrl: URL): HeaderData {
-  const calls = posts.sort((a, b) => a.frontmatter.order - b.frontmatter.order).map(post =>
-    ({
-      text: post.frontmatter.title,
-      href: getPermalink(post.url)
-    })
-  );
-
   const initialData: HeaderData = {
     links: [
       {
@@ -71,7 +72,7 @@ export function getHeaderData(currentUrl: URL): HeaderData {
             text: 'Important dates',
             href: getPermalink('/calls/dates')
           },
-          ...calls
+          ...calls()
         ]
       },
       {
@@ -132,7 +133,7 @@ export function getHeaderData(currentUrl: URL): HeaderData {
   return initialData;
 };
 
-export const footerData: FooterData = {
+export const getFooterData = (): FooterData => ({
   links: [
     {
       title: 'Conference Chairs',
@@ -177,6 +178,16 @@ export const footerData: FooterData = {
         { text: 'VIPRA', href: getPermalink(
           '/workshops/#2nd-workshop-on-visual-process-analytics-vipra'
         ) }
+      ]
+    },
+    {
+      title: 'Calls',
+      links: [
+        {
+          text: 'Important dates',
+          href: getPermalink('/calls/dates')
+        },
+        ...calls()
       ]
     },
     {
@@ -244,4 +255,4 @@ export const footerData: FooterData = {
     { ariaLabel: 'X', icon: ITablerBrandX, href: 'https://x.com/bpmconf' },
     { ariaLabel: 'Email', icon: ITablerMail, href: 'mailto:info@bpm2025seville.org' }
   ]
-};
+});
