@@ -15,7 +15,7 @@ jobs:
   merge_schedule:
     runs-on: ubuntu-latest
     steps:
-      - uses: gr2m/merge-schedule-action@v2.6.1
+      - uses: gr2m/merge-schedule-action@v2.6.2
         with:
           merge_method: rebase
           # Time zone to use. Default is UTC.
