@@ -33,7 +33,7 @@ const isBgImage = isObj(bg) && isStr(bg.src);
     : undefined}
   class:list={[{
     'bg-dark': isDark && !isBgImage,
-    'bg-blue-50': isBool(bg)
+    'bg-blue-50': isBool(bg) && bg
   }, parentClasses]}>
   <div
     class:list={[

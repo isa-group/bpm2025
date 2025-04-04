@@ -18,7 +18,7 @@ import { keynotes } from '#/data/keynotes';
   {keynotes.map((k, index) => (
     <WidgetWrapper
       containerClass="lg:mx-0 flex flex-col"
-      bg={index % 2 === 0}>
+      bg={index === 0 || index % 2 === 0}>
       <Headline
         title={k.name}
         subtitle={k.subtitle}
