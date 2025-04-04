@@ -3,9 +3,9 @@ import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
 import Layout from '#/layouts/PageLayout.astro';
 import Headline from '#/components/ui/Headline.astro';
 import Blockquote from '#/components/widgets/Blockquote.astro';
-
-import ShaziaSadiq from '#/assets/images/keynotes/ShaziaSadiq.jpg';
 import { Image } from 'astro:assets';
+
+import { keynotes } from '#/data/keynotes';
 ---
 <Layout
   metadata={{
@@ -15,43 +15,34 @@ import { Image } from 'astro:assets';
     title: 'Keynotes',
     subtitle: 'In the tradition of our conference series, BPM 2025 features three outstanding keynotes with different perspectives on business process management.'
   }}>
-  <WidgetWrapper
-    containerClass="lg:mx-0"
-    bg>
-    <Headline
-      title="Shazia Sadiq"
-      subtitle="University of Queensland, Australia"
-      classes={{
-        container: 'max-w-xl sm:mx-auto lg:max-w-2xl lg:relative lg:right-[50%] lg:left-[50%] lg:translate-x-[-50%] lg:translate-y-[-50%]',
-        title: 'text-4xl md:text-5xl font-bold tracking-tighter mb-4 font-heading',
-        subtitle: 'max-w-3xl mx-auto sm:text-center text-xl text-muted dark:text-slate-400'
-      }}
-    />
-    <div class="flex flex-col lg:flex-row justify-between items-center w-full">
-      <div class="lg:w-[38%] lg:absolute lg:inset-0 lg:left-0 speaker-gradient">
-        <Image
-          class="w-full h-full object-cover"
-          src={ShaziaSadiq}
-          alt="Shazia Sadiq" />
+  {keynotes.map((k, index) => (
+    <WidgetWrapper
+      containerClass="lg:mx-0 flex flex-col"
+      bg={index % 2 === 0}>
+      <Headline
+        title={k.name}
+        subtitle={k.subtitle}
+        classes={{
+          container: 'max-w-xl sm:mx-auto lg:max-w-2xl',
+          title: 'text-4xl md:text-5xl font-bold tracking-tighter mb-4 font-heading',
+          subtitle: 'max-w-3xl mx-auto sm:text-center text-xl text-muted dark:text-slate-400'
+        }}
+      />
+      <div class="flex flex-col lg:flex-row justify-between items-center w-full">
+        <div class="lg:w-[38%] lg:absolute lg:inset-0 lg:left-0 speaker-gradient">
+          <Image
+            class="w-full h-full object-cover"
+            src={k.image}
+            alt={k.name} />
+        </div>
+        <div class="p-4 lg:p-0 lg:ml-[40%] min-w-[60%]">
+          <Blockquote>
+            <Fragment set:html={k.description} />
+          </Blockquote>
+        </div>
       </div>
-      <div class="p-4 lg:p-0 lg:ml-[40%] min-w-[60%]">
-        <Blockquote>
-          <b>Shazia Sadiq</b> is a globally recognized leader in data and process management,
-          with a 25-year career as a researcher and educator focused on dismantling socio-technical barriers to technology-driven
-          transformation. Her work has significantly advanced the fields of data quality management, scalable data curation
-          process modelling and compliance, and information resilience. She has published over 200 peer-reviewed publications
-          and attracted research funding from the Australian Research Council, industry and various national and international funding
-          bodies. Shazia is an elected Fellow of the Australian Academy of Technological Sciences and Engineering, Director for the
-          ARC Industry Transformation Training Centre on Information Resilience 2021-2026, past chair of the National Committee on
-          Information and Communication Sciences at the Australian Academy of Science 2019-2022, and member of
-          The Australian Research Council College of Experts 2018-2021.
-          <br />
-          <br />
-          <p>During her keynote, Shazia will talk about “The Essential Toolkit for Process Scientists: Comprehension, Compliance and Change.”</p>
-        </Blockquote>
-      </div>
-    </div>
-  </WidgetWrapper>
+    </WidgetWrapper>
+  ))}
 </Layout>
 
 <style>
