@@ -25,7 +25,8 @@ import { keynotes } from '#/data/keynotes';
           'lg:right-0 lg:top-0 lg:bottom-0 gradient-right': !isPar
         }}>
         <Image
-          class="w-full h-full object-cover aspect-ratio-[16/14] object-top lg:aspect-ratio-[1/1] lg:object-center"
+          class="w-full h-full object-cover"
+          class:list={[k.imageClass]}
           src={k.image}
           alt={k.name} />
       </div>
@@ -44,7 +45,7 @@ import { keynotes } from '#/data/keynotes';
     );
     return (
       <WidgetWrapper
-        containerClass="lg:mx-0 flex flex-col"
+        containerClass="lg:mx-0 flex flex-col min-w-full"
         bg={isPar}>
         <Headline
           title={k.name}
