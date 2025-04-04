@@ -1,13 +1,17 @@
 ---
 interface Props {
   class?: string;
+  quotes?: boolean;
 }
 
 const {
-  class: classes = ''
+  class: classes = '',
+  quotes = false
 } = Astro.props;
 ---
-<blockquote class="text-muted font-serif px-10" class:list={[classes]}>
+<blockquote
+  class="text-muted font-serif px-10"
+  class:list={[classes, { quotes: quotes }]}>
   <slot />
 </blockquote>
 
@@ -23,13 +27,13 @@ blockquote::after {
   position: relative;
 }
 
-blockquote::before {
+blockquote.quotes::before {
   right: var(--size);
   top: calc(var(--size) / 2);
   content: '“';
 }
 
-blockquote::after {
+blockquote.quotes::after {
   left: 100%;
   bottom: calc(var(--size) / 1.5);
   content: '”';
