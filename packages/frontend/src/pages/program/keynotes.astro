@@ -15,34 +15,64 @@ import { keynotes } from '#/data/keynotes';
     title: 'Keynotes',
     subtitle: 'In the tradition of our conference series, BPM 2025 features three outstanding keynotes with different perspectives on business process management.'
   }}>
-  {keynotes.map((k, index) => (
-    <WidgetWrapper
-      containerClass="lg:mx-0 flex flex-col"
-      bg={index === 0 || index % 2 === 0}>
-      <Headline
-        title={k.name}
-        subtitle={k.subtitle}
-        classes={{
-          container: 'max-w-xl sm:mx-auto lg:max-w-2xl',
-          title: 'text-4xl md:text-5xl font-bold tracking-tighter mb-4 font-heading',
-          subtitle: 'max-w-3xl mx-auto sm:text-center text-xl text-muted dark:text-slate-400'
-        }}
-      />
-      <div class="flex flex-col lg:flex-row justify-between items-center w-full">
-        <div class="lg:w-[38%] lg:absolute lg:inset-0 lg:left-0 speaker-gradient">
-          <Image
-            class="w-full h-full object-cover aspect-ratio-[16/14] object-top lg:aspect-ratio-[1/1] lg:object-center"
-            src={k.image}
-            alt={k.name} />
-        </div>
-        <div class="p-4 lg:p-0 lg:ml-[40%] min-w-[60%]">
-          <Blockquote>
-            <Fragment set:html={k.description} />
-          </Blockquote>
-        </div>
+  {keynotes.map((k, index) => {
+    const isPar = index === 0 || index % 2 === 0;
+    const imageLayout = (
+      <div
+        class="lg:w-[38%] lg:absolute speaker-gradient"
+        class:list={{
+          'lg:left-0 lg:inset-0 gradient-left': isPar,
+          'lg:right-0 lg:top-0 lg:bottom-0 gradient-right': !isPar
+        }}>
+        <Image
+          class="w-full h-full object-cover aspect-ratio-[16/14] object-top lg:aspect-ratio-[1/1] lg:object-center"
+          src={k.image}
+          alt={k.name} />
       </div>
-    </WidgetWrapper>
-  ))}
+    );
+    const descriptionLayout = (
+      <div
+        class="p-4 lg:p-0 min-w-[60%]"
+        class:list={{
+          'lg:ml-[40%]': isPar,
+          'lg:mr-[40%]': !isPar
+        }}>
+        <Blockquote>
+          <Fragment set:html={k.description} />
+        </Blockquote>
+      </div>
+    );
+    return (
+      <WidgetWrapper
+        containerClass="lg:mx-0 flex flex-col"
+        bg={isPar}>
+        <Headline
+          title={k.name}
+          subtitle={k.subtitle}
+          classes={{
+            container: 'max-w-xl sm:mx-auto lg:max-w-2xl',
+            title: 'text-4xl md:text-5xl font-bold tracking-tighter mb-4 font-heading',
+            subtitle: 'max-w-3xl mx-auto sm:text-center text-xl text-muted dark:text-slate-400'
+          }}
+        />
+        <div class="flex flex-col lg:flex-row justify-between items-center w-full">
+          {isPar
+            ? (
+                <>
+                  {imageLayout}
+                  {descriptionLayout}
+                </>
+              )
+            : (
+                <>
+                  {descriptionLayout}
+                  {imageLayout}
+                </>
+              )}
+        </div>
+      </WidgetWrapper>
+    );
+  })}
 </Layout>
 
 <style>
@@ -54,8 +84,7 @@ import { keynotes } from '#/data/keynotes';
   .speaker-gradient {
     /* TODO: Check why dark:[--bg-color:var(--aw-color-bg-page-dark)] [--bg-color:theme(colors.blue.50)] classes does not work */
     --bg-color: 239 246 255;
-    mask-image: linear-gradient(
-      to left,
+    --gradient-steps:
       rgb(var(--bg-color) / 0) 0%,
       rgb(var(--bg-color) / 0.182) 5.6%,
       rgb(var(--bg-color) / 0.34) 9.9%,
@@ -71,8 +100,20 @@ import { keynotes } from '#/data/keynotes';
       rgb(var(--bg-color) / 0.989) 54.3%,
       rgb(var(--bg-color) / 0.996) 66.6%,
       rgb(var(--bg-color) / 0.999) 81.7%,
-      rgb(var(--bg-color) / 1) 100%
-    );
+      rgb(var(--bg-color) / 1) 100%;
+  }
+  .speaker-gradient.gradient-left {
+    mask-image: linear-gradient(
+      to left,
+      var(--gradient-steps)
+    )
+  }
+
+  .speaker-gradient.gradient-right {
+    mask-image: linear-gradient(
+      to right,
+      var(--gradient-steps)
+    )
   }
 }
 </style>
