@@ -22,7 +22,7 @@
   "devDependencies": {
     "@bpm2025-website/configs": "*",
     "@types/nodemailer": "6.4.17",
-    "dotenv": "16.4.7"
+    "dotenv": "16.5.0"
   },
   "dependencies": {
     "@bpm2025-website/shared": "*",
