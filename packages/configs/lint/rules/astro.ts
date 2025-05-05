@@ -1,11 +1,11 @@
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import astroEslintParser from 'astro-eslint-parser';
 import eslintPluginAstro from 'eslint-plugin-astro';
-import type { Linter } from 'eslint';
 
 export function getAstroConfig() {
-  return [
+  return defineConfig([
     ...eslintPluginAstro.configs['flat/recommended'],
     {
       files: ['**/*.astro'],
@@ -20,5 +20,5 @@ export function getAstroConfig() {
         }
       }
     }
-  ] satisfies Linter.Config[];
+  ]);
 }

@@ -1,8 +1,8 @@
-import type { Linter } from 'eslint';
+import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 
 export function getTypeScriptConfig(tsconfigRootDir = import.meta.dirname) {
-  return [
+  return defineConfig([
     // @ts-expect-error - typescript-eslint type mismatch with ESLint package
     ...tseslint.configs.recommended,
     // @ts-expect-error - typescript-eslint type mismatch with ESLint package
@@ -22,5 +22,5 @@ export function getTypeScriptConfig(tsconfigRootDir = import.meta.dirname) {
         '@typescript-eslint/no-non-null-assertion': 'off'
       }
     }
-  ] satisfies Linter.Config[];
+  ]);
 }

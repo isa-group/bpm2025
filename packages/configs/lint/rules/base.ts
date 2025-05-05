@@ -1,3 +1,4 @@
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 import js from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
@@ -6,11 +7,10 @@ import gitignore from 'eslint-config-flat-gitignore';
 // @ts-expect-error - Missing types from package
 import eslintPluginImportAlias from '@dword-design/eslint-plugin-import-alias';
 import { findUpSync } from 'find-up-simple';
-import type { Linter } from 'eslint';
 import { spawnSync } from 'node:child_process';
 import { basename, join } from 'node:path';
 
-const CI_environment = Boolean(process.env.CI);
+const CI_environment = !!process.env.CI;
 
 /**
  * Gets ESLint's minimal configuration for the monorepo
@@ -60,7 +60,7 @@ export function getBaseConfig(packageName: string, forceCache = !CI_environment,
     }
   }
 
-  return [
+  return defineConfig([
     js.configs.recommended,
     {
       languageOptions: {
@@ -118,7 +118,7 @@ export function getBaseConfig(packageName: string, forceCache = !CI_environment,
         'file-progress/activate': CI_environment ? 0 : 1
       }
     }
-  ] satisfies Linter.Config[];
+  ]);
 }
 
 /**
@@ -127,7 +127,7 @@ export function getBaseConfig(packageName: string, forceCache = !CI_environment,
  * configured.
  */
 export function getImportAliasConfig() {
-  return [
+  return defineConfig([
     {
       name: 'Common rules for all files',
       plugins: {
@@ -144,5 +144,5 @@ export function getImportAliasConfig() {
         ]
       }
     }
-  ] satisfies Linter.Config[];
+  ]);
 }
