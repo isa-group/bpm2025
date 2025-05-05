@@ -22,18 +22,18 @@ const {
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
   <Headline title={title} subtitle={subtitle} tagline={tagline} />
 
-  <div class="flex flex-wrap justify-center gap-x-6 sm:gap-x-12 lg:gap-x-24">
-    {icons && icons.map(Icon => <Icon class="py-3 lg:py-5 w-12 h-auto mx-auto sm:mx-0 text-gray-500" />)}
+  <div class="flex flex-wrap justify-center gap-x-6 lg:gap-x-24 sm:gap-x-12">
+    {icons && icons.map(Icon => <Icon class="mx-auto h-auto w-12 py-3 text-gray-500 sm:mx-0 lg:py-5" />)}
     {
       images
       && images.map(
         image => (
-          <div class="flex justify-center col-span-1 my-2 lg:my-4 py-1 px-3 rounded-md">
-            <div class="flex lg:flex-nowrap flex-wrap justify-center items-center">
+          <div class="col-span-1 my-2 flex justify-center rounded-md px-3 py-1 lg:my-4">
+            <div class="flex flex-wrap items-center justify-center lg:flex-nowrap">
               <a class="min-w-sm gap-10" href={image.href} target="_blank">
                 <div class="flex flex-col items-center justify-center">
                   {/* @ts-expect-error - Astro doesn't adhere to property overwriting */}
-                  <img class="max-h-20 dark:bg-white rounded" src={isStr(image.src) ? image.src : image.src.src} href={undefined} {...image} />
+                  <img class="max-h-20 rounded dark:bg-white" src={isStr(image.src) ? image.src : image.src.src} href={undefined} {...image} />
                   {image.alt && image_footer && <p class="text-lg font-semibold">{image.alt}</p>}
                 </div>
               </a>
@@ -41,7 +41,7 @@ const {
                 && (
                   <div>
                     <h3 class="text-lg font-semibold">— {image.alt}</h3>
-                    <blockquote class="text-muted text-lg font-oblique font-serif" set:html={image.description} />
+                    <blockquote class="text-lg font-serif font-oblique text-muted" set:html={image.description} />
                   </div>
                 )}
             </div>

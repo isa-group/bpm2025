@@ -71,11 +71,11 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       </div>
     </div>
     <nav
-      class="items-center w-full lg:w-auto hidden lg:flex lg:mx-5 text-default overflow-y-auto overflow-x-hidden lg:overflow-y-visible lg:overflow-x-auto lg:justify-self-center"
+      class="hidden w-full items-center overflow-x-hidden overflow-y-auto text-default lg:mx-5 lg:w-auto lg:flex lg:justify-self-center lg:overflow-x-auto lg:overflow-y-visible"
       aria-label="Main navigation"
     >
       <ul
-        class="flex flex-col lg:flex-row lg:self-center w-full lg:w-auto text-xl lg:text-[0.9375rem] tracking-[0.01rem] font-medium lg:justify-center"
+        class="w-full flex flex-col text-xl font-medium tracking-[0.01rem] lg:w-auto lg:flex-row lg:self-center lg:justify-center lg:text-[0.9375rem]"
       >
         {
           (links ?? []).map(({ text, href, links }) => (
@@ -83,11 +83,11 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               {links?.length
                 ? (
                     <>
-                      <span class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center cursor-pointer">
+                      <span class="hover:text-link flex cursor-pointer items-center px-4 py-3 dark:hover:text-white">
                         {text}{' '}
-                        <ITablerChevronDown class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden lg:inline" />
+                        <ITablerChevronDown class="ml-0.5 hidden h-3.5 w-3.5 rtl:ml-0 rtl:mr-0.5 lg:inline" />
                       </span>
-                      <ul class="dropdown-menu lg:backdrop-blur-md dark:lg:bg-dark rounded lg:absolute pl-4 lg:pl-0 lg:hidden font-medium lg:bg-white/90 lg:min-w-[200px] drop-shadow-xl">
+                      <ul class="dropdown-menu rounded pl-4 font-medium drop-shadow-xl lg:absolute lg:hidden lg:min-w-[200px] lg:bg-white/90 lg:pl-0 lg:backdrop-blur-md dark:lg:bg-dark">
                         {links.map(({ text: text2, href: href2 }) => (
                           <li>
                             <a
@@ -126,17 +126,17 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         'hidden lg:self-center lg:flex items-center lg:mb-0 fixed w-full lg:w-auto lg:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 lg:p-0 lg:justify-self-end'
       ]}
     >
-      <div class="items-center flex justify-between w-full lg:w-auto">
+      <div class="w-full flex items-center justify-between lg:w-auto">
         <div class="flex">
           {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 lg:w-5 lg:h-5 lg:inline-block" />}
           {
             showRssFeed && (
               <a
-                class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+                class="inline-flex items-center rounded-lg p-2.5 text-sm text-muted hover:bg-gray-100 dark:text-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
                 aria-label="RSS Feed"
                 href={getAsset('/rss.xml')}
               >
-                <ITablerRss class="w-5 h-5" />
+                <ITablerRss class="h-5 w-5" />
               </a>
             )
           }
@@ -146,7 +146,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             ? (
                 <span class="ml-2 rtl:ml-0 rtl:mr-2">
                   {actions.map(btnProps => (
-                    <Button {...btnProps} class="py-2.5 px-5.5 lg:px-6 font-semibold shadow-none text-sm w-auto" />
+                    <Button {...btnProps} class="w-auto px-5.5 py-2.5 text-sm font-semibold shadow-none lg:px-6" />
                   ))}
                 </span>
               )
