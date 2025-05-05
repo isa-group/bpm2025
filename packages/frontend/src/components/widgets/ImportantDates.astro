@@ -16,7 +16,7 @@ const {
 <ul>
   {Object.entries(importantDates).map(([key, value]) => (
     <li>
-      <span class="inline-block mr-2"><strong>{key}</strong>:</span>
+      <span class="mr-2 inline-block"><strong>{key}</strong>:</span>
       <BSlot class="inline-block" data-marked-markdown>
         <Fragment set:html={parse(value, { async: false })} />
       </BSlot>

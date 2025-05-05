@@ -19,13 +19,13 @@ import { keynotes } from '#/data/keynotes';
     const isPar = index === 0 || index % 2 === 0;
     const imageLayout = (
       <div
-        class="lg:w-[38%] lg:absolute speaker-gradient"
+        class="speaker-gradient lg:absolute lg:w-[38%]"
         class:list={{
           'lg:left-0 lg:inset-0 gradient-left': isPar,
           'lg:right-0 lg:top-0 lg:bottom-0 gradient-right': !isPar
         }}>
         <Image
-          class="w-full h-full object-cover"
+          class="h-full w-full object-cover"
           class:list={[k.imageClass]}
           src={k.image}
           alt={k.name} />
@@ -33,7 +33,7 @@ import { keynotes } from '#/data/keynotes';
     );
     const descriptionLayout = (
       <div
-        class="p-4 lg:p-0 min-w-[60%]"
+        class="min-w-[60%] p-4 lg:p-0"
         class:list={{
           'lg:ml-[40%]': isPar,
           'lg:mr-[40%]': !isPar
@@ -56,7 +56,7 @@ import { keynotes } from '#/data/keynotes';
             subtitle: 'max-w-3xl mx-auto sm:text-center text-xl text-muted dark:text-slate-400'
           }}
         />
-        <div class="flex flex-col lg:flex-row justify-between items-center w-full">
+        <div class="w-full flex flex-col items-center justify-between lg:flex-row">
           {isPar
             ? (
                 <>

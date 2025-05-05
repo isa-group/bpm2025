@@ -12,26 +12,26 @@ const {
   items
 } = Astro.props;
 ---
-<div class="flex h-auto">
-  <div class="flex flex-col p-4 md:p-6 rounded-md shadow-xl dark:shadow-none dark:border dark:border-slate-600 items-stretch grow">
+<div class="h-auto flex">
+  <div class="flex grow flex-col items-stretch rounded-md p-4 shadow-xl dark:border dark:border-slate-600 md:p-6 dark:shadow-none">
 
     <div class="flex items-center">
       {image && <Avatar image={image} />}
-      <div class="grow ml-3 rtl:ml-0 rtl:mr-3">
+      <div class="ml-3 grow rtl:ml-0 rtl:mr-3">
         {name && <p class="text-base font-semibold">{name}</p>}
         {job && <p class="text-xs text-muted">{job}</p>}
       </div>
     </div>
 
-    {(title || testimonial) && <hr class="border-slate-200 dark:border-slate-600 my-4" />}
+    {(title || testimonial) && <hr class="my-4 border-slate-200 dark:border-slate-600" />}
 
-    {title && <h2 class="text-lg font-medium leading-6 pb-4">{title}</h2>}
+    {title && <h2 class="pb-4 text-lg font-medium leading-6">{title}</h2>}
     {testimonial && (
       <blockquote class="flex-auto">
-        <p class="text-muted text-justify">{testimonial}</p>
+        <p class="text-justify text-muted">{testimonial}</p>
       </blockquote>
     )}
-    {((items?.length ?? 0) > 0) && <hr class="border-slate-200 dark:border-slate-600 my-4" />}
+    {((items?.length ?? 0) > 0) && <hr class="my-4 border-slate-200 dark:border-slate-600" />}
     {items && (
       <ItemList items={items} classes={{ description: 'text-pretty' }} />
     )}

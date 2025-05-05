@@ -30,7 +30,7 @@ const {
             <input
               autocomplete={input.autocomplete ?? 'on'}
               {...input}
-              class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
+              class="text-md block w-full border border-gray-200 rounded-lg bg-white px-4 py-3 dark:border-gray-700 dark:bg-slate-900"
             />
           </div>
         )
@@ -52,7 +52,7 @@ const {
           id="textarea"
           rows={textarea.rows ?? 4}
           {...textarea}
-          class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
+          class="text-md block w-full border border-gray-200 rounded-lg bg-white px-4 py-3 dark:border-gray-700 dark:bg-slate-900"
         />
       </div>
     )
@@ -61,11 +61,11 @@ const {
   {
     disclaimers?.length && disclaimers.map(d => (
       <div class="mt-3 flex items-start">
-        <div class="flex mt-0.5">
+        <div class="mt-0.5 flex">
           <input
             {...d}
             type="checkbox"
-            class="cursor-pointer mt-1 py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
+            class="text-md mt-1 block w-full cursor-pointer border border-gray-200 rounded-lg bg-white px-4 py-3 dark:border-gray-700 dark:bg-slate-900"
           />
         </div>
         <div class="ml-3">
@@ -84,7 +84,7 @@ const {
 
   {
     button && (
-      <div class="mt-10 grid">
+      <div class="grid mt-10">
         <Button variant="primary" type="submit" {...button} />
       </div>
     )
