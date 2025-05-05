@@ -27,13 +27,13 @@
     "@astrolib/seo": "1.0.0-beta.8",
     "@bpm2025-website/configs": "*",
     "@bpm2025-website/shared": "*",
-    "@iconify/json": "2.2.333",
+    "@iconify/json": "2.2.335",
     "astro": "5.7.10",
     "astro-compress": "2.3.8",
     "linkedom": "0.18.10",
     "marked": "15.0.11",
     "tailwind-merge": "3.2.0",
-    "unocss": "66.0.0",
+    "unocss": "66.1.0",
     "unplugin-icons": "22.1.0"
   }
 }
