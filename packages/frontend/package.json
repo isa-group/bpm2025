@@ -23,17 +23,17 @@
   "devDependencies": {
     "@astrojs/check": "0.9.4",
     "@astrojs/mdx": "4.2.6",
-    "@astrojs/sitemap": "3.3.1",
+    "@astrojs/sitemap": "3.4.0",
     "@astrolib/seo": "1.0.0-beta.8",
     "@bpm2025-website/configs": "*",
     "@bpm2025-website/shared": "*",
-    "@iconify/json": "2.2.335",
-    "astro": "5.7.10",
+    "@iconify/json": "2.2.337",
+    "astro": "5.7.12",
     "astro-compress": "2.3.8",
     "linkedom": "0.18.10",
     "marked": "15.0.11",
-    "tailwind-merge": "3.2.0",
-    "unocss": "66.1.0",
+    "tailwind-merge": "3.3.0",
+    "unocss": "66.1.1",
     "unplugin-icons": "22.1.0"
   }
 }
