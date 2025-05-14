@@ -14,6 +14,7 @@ export const sponsors: SponsorInfo[] = [
     brands: [{
       src: CelonisLogo,
       alt: 'Celonis',
+      href: 'https://www.celonis.com',
       class: 'max-h-50',
       description: `
         Celonis makes processes work for people, companies and the planet.
@@ -23,7 +24,7 @@ export const sponsors: SponsorInfo[] = [
         Celonis enables its customers to continuously realize significant value across the top, bottom, and green line.
         Celonis is headquartered in Munich, Germany, and New York City, USA, with more than 20 offices worldwide.
         <br />
-        <a href="www.celonis.com" class="underline">www.celonis.com</a>
+        <a href="https://www.celonis.com" class="underline">https://www.celonis.com</a>
       `
     }]
   },
