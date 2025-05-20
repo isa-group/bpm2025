@@ -48,7 +48,7 @@ router.post(
       const order_paid = await db.order.findFirst({
         where: {
           user_id: user.id,
-          paid: true,
+          paid: { not: null },
           product_id: body.product_id
         },
         select: {
