@@ -117,7 +117,14 @@ router.post(
 );
 
 /**
- * Lists the orders for a user
+ * Lists all the orders that have been made as a basic HTML page
+ * 
+ * THIS ROUTE DOESN'T HAVE ANY AUTHENTICATION/AUTHORIZATION AS IMPLEMENTED HERE,
+ * HENCE IS PROBABLY NOT SECURE TO EXPOSE AS IS TO PRODUCTION.
+ *
+ * YOU MUST PROTECT THIS WITH A REVERSE PROXY!!!
+ * 
+ * @see ../../README.md
  */
 router.get(
   '/order/show',
