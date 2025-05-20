@@ -23,7 +23,7 @@ router.post('/payment', defineEventHandler(async (event) => {
     if (validation.success && validation.orderId) {
       await db.order.update({
         data: {
-          paid: true
+          paid: 'REDSYS'
         },
         where: {
           id: validation.orderId
@@ -42,4 +42,33 @@ router.post('/payment', defineEventHandler(async (event) => {
   }
 
   return new Response(null, { status: 400 });
+}));
+
+router.post('/payment/manual/:order_id', defineEventHandler(async (event) => {
+  const order_id = decodeURIComponent(event.context.params?.order_id ?? '');
+  if (!order_id) {
+    return new Response(null, { status: 400 });
+  } else {
+    try {
+      await db.order.findFirstOrThrow({ where: { id: order_id } });
+      await db.order.update({
+        data: {
+          paid: 'TRANSFER'
+        },
+        where: {
+          id: order_id
+        }
+      });
+
+      /**
+       * We use void so we return rightaway, but the promise is queued
+       * to run in the next tick of the JS event loop.
+       */
+      void postPaymentConfirm(order_id);
+      
+      return new Response(null, { status: 200 });
+    } catch {
+      return new Response(null, { status: 404 });
+    }
+  }
 }));
