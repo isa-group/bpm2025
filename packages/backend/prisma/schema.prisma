@@ -30,7 +30,7 @@ model order {
   id             String           @id @map("_id")
   user_id        Int
   product_id     Int
-  paid           Boolean          @default(false)
+  paid           String?
   notes          String?
   createdAt      DateTime         @default(dbgenerated("CURRENT_TIMESTAMP"))
   updatedAt      DateTime?        @updatedAt
@@ -68,7 +68,7 @@ view full_order_details {
   user_institution            String?         @map("User institution")
   user_notes                  String?         @map("Order notes")
   product_name                String          @map("Product name")
-  paid                        Boolean
+  paid                        String?
   price_paid_with_discounts   Float           @map("Price paid (with discounts)")
   applied_discounts           String?         @map("Applied Discounts")
   created_at                  DateTime        @map("Created at")
