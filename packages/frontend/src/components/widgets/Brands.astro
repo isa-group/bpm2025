@@ -33,7 +33,7 @@ const {
               <a class="min-w-sm gap-10" href={image.href} target="_blank">
                 <div class="flex flex-col items-center justify-center">
                   {/* @ts-expect-error - Astro doesn't adhere to property overwriting */}
-                  <img class="max-h-20 rounded dark:bg-white" src={isStr(image.src) ? image.src : image.src.src} href={undefined} {...image} />
+                  <img class={`max-h-20 rounded dark:bg-white ${image.class ?? ''}`} src={isStr(image.src) ? image.src : image.src.src} href={undefined} {...image} />
                   {image.alt && image_footer && <p class="text-lg font-semibold">{image.alt}</p>}
                 </div>
               </a>

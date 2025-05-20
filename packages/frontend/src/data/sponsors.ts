@@ -1,5 +1,6 @@
 import type { SponsorInfo } from '#/types';
 import CEURLogo from '#/assets/images/sponsors/CEUR-WS-logo.png';
+import CelonisLogo from '#/assets/images/sponsors/celonis.jpg';
 import SCORELogo from '#/assets/images/sponsors/score.png';
 import SpringerLogo from '#/assets/images/sponsors/springer.svg';
 import USLogo from '#/assets/images/sponsors/us.png';
@@ -8,6 +9,25 @@ import GBTEC from '#/assets/images/sponsors/GBTEC.png';
 import Iterem from '#/assets/images/sponsors/iterem.png';
 
 export const sponsors: SponsorInfo[] = [
+  {
+    category: 'Platinum',
+    brands: [{
+      src: CelonisLogo,
+      alt: 'Celonis',
+      href: 'https://www.celonis.com',
+      class: 'max-h-50',
+      description: `
+        Celonis makes processes work for people, companies and the planet.
+        The Celonis Process Intelligence Platform uses industry-leading process mining and AI technology
+        and augments it with business context to give customers a living digital twin of their business operation.
+        It’s system-agnostic and without bias, and provides everyone with a common language for understanding and improving businesses.
+        Celonis enables its customers to continuously realize significant value across the top, bottom, and green line.
+        Celonis is headquartered in Munich, Germany, and New York City, USA, with more than 20 offices worldwide.
+        <br />
+        <a href="https://www.celonis.com" class="underline">https://www.celonis.com</a>
+      `
+    }]
+  },
   {
     category: 'Gold',
     brands: [{
