@@ -44,6 +44,16 @@ router.post('/payment', defineEventHandler(async (event) => {
   return new Response(null, { status: 400 });
 }));
 
+/**
+ * Marks an specific order as paid manually.
+ *
+ * THIS ROUTE DOESN'T HAVE ANY AUTHENTICATION/AUTHORIZATION AS IMPLEMENTED HERE,
+ * HENCE IS PROBABLY NOT SECURE TO EXPOSE AS IS TO PRODUCTION.
+ *
+ * YOU MUST PROTECT THIS WITH A REVERSE PROXY!!!
+ *
+ * @see ../../README.md
+ */
 router.post('/payment/manual/:order_id', defineEventHandler(async (event) => {
   const order_id = decodeURIComponent(event.context.params?.order_id ?? '');
   if (!order_id) {
