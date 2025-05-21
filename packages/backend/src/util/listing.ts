@@ -2,20 +2,28 @@ import { isNil } from '@bpm2025-website/shared/validation';
 
 /**
  * Creates an HTML markup, useful for displaying tables
+ * @param {Object} options - Options for the table.
+ * @param {string} [options.name='Table'] - The title of the table.
+ * @param {Record<string, unknown>[]} options.rows - Array of objects representing table rows. Each object key is a column.
+ * @param {Record<number, string>} options.colors - Optional. An object mapping row indices to background color values.
  */
 export function generateTableMarkup(
-  { name = 'Table', rows = [] }:
-  { name?: string; rows: Record<string, unknown>[] } = { rows: [] }
+  { name = 'Table', rows = [], colors = {} }:
+  {
+    name?: string;
+    rows: Record<string, unknown>[];
+    colors?: Record<number, string>;
+  } = { rows: [], colors: {} }
 ) {
-  const keys = new Map<string, undefined>();
+  const keys = new Set<string>();
 
   for (const row of rows) {
     for (const key in row) {
-      keys.set(key, undefined);
+      keys.add(key);
     }
   }
 
-  const columns = [...keys.keys()];
+  const columns = [...keys.values()];
 
   return `
 <!DOCTYPE html>
@@ -39,8 +47,8 @@ export function generateTableMarkup(
             </tr>
         </thead>
         <tbody>
-            ${rows.map(row => `
-            <tr>  
+            ${rows.map((row, index) => `
+            <tr ${index in colors ? `style="background-color: ${colors[index]};"` : ''}>  
                 ${columns.map(key => `<td>${key in row && !isNil(row[key]) ? row[key] : '-'}</td>`).join('\n')}
             </tr>
             `).join('\n')}
