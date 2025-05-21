@@ -75,7 +75,7 @@ router.post('/payment/manual/:order_id', defineEventHandler(async (event) => {
        * to run in the next tick of the JS event loop.
        */
       void postPaymentConfirm(order_id);
-      
+
       return new Response(null, { status: 200 });
     } catch {
       return new Response(null, { status: 404 });
