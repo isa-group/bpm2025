@@ -7,6 +7,7 @@ import USLogo from '#/assets/images/sponsors/us.png';
 import ProcessScience from '#/assets/images/sponsors/process-science.png';
 import GBTEC from '#/assets/images/sponsors/GBTEC.png';
 import Iterem from '#/assets/images/sponsors/iterem.png';
+import DCRSolutions from '#/assets/images/sponsors/dcr-solutions.webp';
 
 export const sponsors: SponsorInfo[] = [
   {
@@ -60,11 +61,24 @@ export const sponsors: SponsorInfo[] = [
   },
   {
     category: 'Bronze',
-    brands: [{
-      src: GBTEC,
-      alt: 'GBTEC',
-      href: 'https://www.gbtec.com/',
-      description: `
+    brands: [
+      {
+        src: DCRSolutions,
+        alt: 'DCR Solutions',
+        href: 'https://dcrsolutions.net/',
+        description: `
+          <a href="https://dcrsolutions.net/" class="underline">DCR Solutions</a> spearheads Business Process Management
+          with its declarative, rules-based approach, fostering operational excellence through modeling or process
+          mining, marking a paradigm shift towards multi-faceted objects. While BPM traditionally demands technical
+          proficiency, DCR empowers business professionals across sectors, enabling lawyers and social workers to
+          seamlessly integrate legal frameworks into processes, ensuring both compliance and efficiency.
+        `
+      },
+      {
+        src: GBTEC,
+        alt: 'GBTEC',
+        href: 'https://www.gbtec.com/',
+        description: `
         GBTEC is a leading provider of SaaS software in the fields of Business Process Management (BPM),
         Enterprise Architecture Management (EAM), Digital Process Automation (DPA), and Governance, Risk, and Compliance (GRC).
         The extensive product portfolio of GBTEC includes Business Process Design & Modeling, Process Execution,
@@ -77,12 +91,12 @@ export const sponsors: SponsorInfo[] = [
         <br /><br />
         For more information, see <a href="https://www.gbtec.com/" class="underline">https://www.gbtec.com/</a>.
       `
-    },
-    {
-      src: Iterem,
-      alt: 'Iterem',
-      href: 'https://iterem.com/',
-      description: `
+      },
+      {
+        src: Iterem,
+        alt: 'Iterem',
+        href: 'https://iterem.com/',
+        description: `
         We accompany organizations on their journey towards operational efficiency, process optimization, and digital innovation.
         We offer a consultative and customized approach that integrates advanced process management solutions.
         We guide businesses at every stage to ensure sustainable evolution aligned with their strategic objectives.
@@ -105,7 +119,7 @@ export const sponsors: SponsorInfo[] = [
         always with an eye on the future. We invite you to meet us at the venue so that we can share experiences and continue to drive the collective success of
         process management.
       `
-    }]
+      }]
   },
   {
     category: 'Academic',
