@@ -1,5 +1,6 @@
 import ShaziaSadiq from '#/assets/images/keynotes/ShaziaSadiq.jpg';
 import JosepCarmona from '#/assets/images/keynotes/JosepCarmona.jpg';
+import PernilleBjorn from '#/assets/images/keynotes/PernilleBjorn.jpg';
 
 export const keynotes = [
   {
@@ -36,6 +37,28 @@ export const keynotes = [
       <p>As an entrepreneur, he is building a technology company amidst the unprecedented revolution brought on by the disruption of
       generative AI. This exciting journey is filled with lessons learned and best practices that Josep plans to share
       with the BPM community in this keynote.</p>
+    `
+  },
+  {
+    name: 'Pernille Bjørn',
+    subtitle: 'University of Copenhagen, Denmark',
+    image: PernilleBjorn,
+    imageClass: 'aspect-ratio-[16/14] object-top lg:aspect-ratio-[1/1]',
+    description: `
+      <p><b>Pernille Bjørn</b> is an ACM Distinguish member and professor at the Department of Computer Science,
+      University of Copenhagen, Denmark (DIKU). Professor Bjørn’s research is centred within the area of
+      Computer Supported Cooperative Work (CSCW), studying cooperative practices to design cooperative technologies.
+      Professor Bjørn is best known for research on distributed work (e.g., global software development),
+      large information systems (e.g., healthcare systems), and tech entrepreneurship (e.g., Palestine).
+      Currently, Professor Bjørn research interest focuses on Hybrid Work, Cooperative Virtual Reality, and Diversity,
+      Equity, and Inclusion bridging gender and neurodiversity. Professor Bjørn spent several years in North America at the
+      University of California, Irvine, Simon Fraser University, Vancouver, and lastly, as a Fulbright scholar at the
+      University of Washington. Professor Bjørn was a visiting researcher at the Indian Institute of Management, Bangalore
+      (IIM-B) in periods between 2012-2014, and published her second book: Diversity in Computer Science in 2023.</p>
+      <br />
+      <p>In this keynote, Professor Bjørn will explore the connections between research on Computer Supported Cooperative Work
+      and Business Process Management and explore the benefit of engaging in collaboration producing new forms of
+      research together and across the fields.</p>
     `
   }
 ];
