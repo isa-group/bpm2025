@@ -27,7 +27,7 @@
     "@astrolib/seo": "1.0.0-beta.8",
     "@bpm2025-website/configs": "*",
     "@bpm2025-website/shared": "*",
-    "@iconify/json": "2.2.341",
+    "@iconify/json": "2.2.342",
     "astro": "5.8.0",
     "astro-compress": "2.3.8",
     "linkedom": "0.18.10",
