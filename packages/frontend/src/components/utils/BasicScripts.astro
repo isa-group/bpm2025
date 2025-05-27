@@ -14,7 +14,7 @@
     }
   }
 
-  const initTheme = () => {
+  function initTheme() {
     if ((ui.theme && ui.theme.endsWith(':only')) || (!localStorage.theme && ui.theme !== 'system')) {
       applyTheme(ui.theme.replace(':only', ''));
     } else if (
@@ -26,8 +26,6 @@
       applyTheme(light_class);
     }
   };
-
-  initTheme();
 
   function attachEvent<K extends keyof HTMLElementEventMap>(
     selector: string | NodeListOf<Element> | Element[] | string[] | Document | Element,
@@ -55,14 +53,22 @@
     }
   }
 
-  const onLoad = () => {
+  function onLoad() {
+    const announcement = document.getElementById('announcement');
     const toggle = document.querySelector('[data-aw-toggle-menu]');
     const header = document.querySelector('header');
     const headerWithNav = document.querySelector('header nav');
     const headerLastChild = document.querySelector('header > div > div:last-child');
     const screenSize = window.matchMedia('(max-width: 1023px)');
 
-    const toggleMobileMenu = () => {
+    function setAnnouncementHeight() {
+      header?.style.setProperty(
+        '--bpm-announcement-height',
+        `${announcement?.offsetHeight ?? 0}px`
+      );
+    }
+
+    function toggleMobileMenu() {
       window.requestAnimationFrame(() => {
         toggle?.classList.toggle('expanded');
         header?.classList.toggle('expanded');
@@ -80,7 +86,7 @@
           return;
         }
 
-        const isScrolled = scrollPos > 60;
+        const isScrolled = scrollPos > (header.offsetHeight / 2);
 
         header.classList.toggle('scroll', isScrolled);
         header.classList.toggle(dark_class, !isScrolled && !screenSize.matches);
@@ -110,8 +116,11 @@
       applyHeaderStylesOnScroll();
     });
 
-    applyHeaderStylesOnScroll();
     attachEvent(document, 'scroll', () => applyHeaderStylesOnScroll());
+
+    initTheme();
+    setAnnouncementHeight();
+    applyHeaderStylesOnScroll();
   };
 
   window.addEventListener('load', onLoad, { once: true });
