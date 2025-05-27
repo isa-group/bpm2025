@@ -6,6 +6,13 @@ export function isNumber(value: unknown): value is number {
 }
 
 /**
+ * Check if the value is an array.
+ */
+export function isArray<T = unknown>(value: unknown): value is T[] {
+  return Array.isArray(value);
+}
+
+/**
  * Check if the value is null
  */
 export function isNull(value: unknown): value is null {
