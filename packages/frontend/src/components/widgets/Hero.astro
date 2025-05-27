@@ -1,8 +1,11 @@
 ---
 import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
+import type { UnresolvedImageTransform } from 'astro';
+
 import Button from '#/components/ui/Button/Button.astro';
 import type { Hero as Props } from '#/types';
-import { isObj } from '@bpm2025-website/shared/validation';
+import { isStr } from '@bpm2025-website/shared/validation';
 
 const {
   title = await Astro.slots.render('title'),
@@ -16,6 +19,8 @@ const {
   id,
   bg
 } = Astro.props;
+
+const { src } = bg ? await getImage({ src: bg } as UnresolvedImageTransform) : {};
 ---
 
 <section class="not-prose dark relative bg-dark lg:-mt-20" {...id ? { id } : {}}>
@@ -24,7 +29,7 @@ const {
       'absolute inset-0 opacity-30 pointer-events-none',
       'bg-fixed bg-cover bg-center bg-no-repeat'
     ]}
-    style={isObj(bg) ? { backgroundImage: `url(${bg.src})` } : undefined}
+    style={isStr(src) ? { backgroundImage: `url(${src})` } : undefined}
     aria-hidden="true">
   </span>
   <div class="relative mx-auto max-w-7xl px-4 sm:px-6">

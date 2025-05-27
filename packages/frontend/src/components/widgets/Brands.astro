@@ -1,9 +1,11 @@
 ---
-import type { Brands as Props } from '#/types';
+import type { UnresolvedImageTransform } from 'astro';
+import { getImage } from 'astro:assets';
 
+import type { Brands as Props } from '#/types';
 import Headline from '#/components/ui/Headline.astro';
 import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
-import { isStr } from '@bpm2025-website/shared/validation';
+
 const {
   title = '',
   subtitle = '',
@@ -27,26 +29,37 @@ const {
     {
       images
       && images.map(
-        image => (
-          <div class="col-span-1 my-2 flex justify-center rounded-md px-3 py-1 lg:my-4">
-            <div class="flex flex-wrap items-center justify-center lg:flex-nowrap">
-              <a class="min-w-sm gap-10" href={image.href} target="_blank">
-                <div class="flex flex-col items-center justify-center">
-                  {/* @ts-expect-error - Astro doesn't adhere to property overwriting */}
-                  <img class={`max-h-20 rounded dark:bg-white ${image.class ?? ''}`} src={isStr(image.src) ? image.src : image.src.src} href={undefined} {...image} />
-                  {image.alt && image_footer && <p class="text-lg font-semibold">{image.alt}</p>}
-                </div>
-              </a>
-              {description && image.description
-                && (
-                  <div>
-                    <h3 class="text-lg font-semibold">— {image.alt}</h3>
-                    <blockquote class="text-lg font-serif font-oblique text-muted" set:html={image.description} />
+        async (image) => {
+          const { src, attributes } = await getImage(image as UnresolvedImageTransform);
+
+          for (const key of ['width', 'height', 'href', 'description']) {
+            delete attributes[key];
+          }
+
+          return (
+            <div class="col-span-1 my-2 flex justify-center rounded-md px-3 py-1 lg:my-4">
+              <div class="flex flex-wrap items-center justify-center lg:flex-nowrap">
+                <a class="min-w-sm gap-10" href={image.href} target="_blank">
+                  <div class="flex flex-col items-center justify-center">
+                    <img
+                      class={`max-h-20 rounded dark:bg-white ${image.class ?? ''}`}
+                      src={src}
+                      {...attributes}
+                    />
+                    {image.alt && image_footer && <p class="text-lg font-semibold">{image.alt}</p>}
                   </div>
-                )}
+                </a>
+                {description && image.description
+                  && (
+                    <div>
+                      <h3 class="text-lg font-semibold">— {image.alt}</h3>
+                      <blockquote class="text-lg font-serif font-oblique text-muted" set:html={image.description} />
+                    </div>
+                  )}
+              </div>
             </div>
-          </div>
-        )
+          );
+        }
       )
     }
   </div>
