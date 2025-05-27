@@ -7,7 +7,7 @@ import UnoCSS from 'unocss/astro';
 import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
 import Icons from 'unplugin-icons/vite';
-import compress from 'astro-compress';
+import compress from '@playform/compress';
 
 export default defineConfig({
   output: 'static',
