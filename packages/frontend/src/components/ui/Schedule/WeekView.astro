@@ -135,6 +135,136 @@ function getDaysInRange(startDate: Date, endDate: Date): Date[] {
 
 const weekDays = getDaysInRange(dateRange.start, dateRange.end);
 
+// Enhanced event positioning for overlapping events
+interface PositionedEvent extends TScheduleEvent {
+  leftOffset: number;
+  width: number;
+  column: number;
+  totalColumns: number;
+}
+
+/**
+ * Detects overlapping events and calculates their positioning.
+ * Only events that actually overlap will share width - independent events get full width.
+ */
+function calculateEventPositions(events: TScheduleEvent[]): PositionedEvent[] {
+  if (events.length === 0) return [];
+  
+  // Helper function to check if two events overlap
+  function eventsOverlap(event1: TScheduleEvent, event2: TScheduleEvent): boolean {
+    const event1End = event1.end ?? new Date(event1.start.getTime() + 60 * 60 * 1000);
+    const event2End = event2.end ?? new Date(event2.start.getTime() + 60 * 60 * 1000);
+    
+    return event1.start < event2End && event2.start < event1End;
+  }
+  
+  // Group events that overlap with each other
+  const overlapGroups: TScheduleEvent[][] = [];
+  const processedEvents = new Set<TScheduleEvent>();
+  
+  for (const event of events) {
+    if (processedEvents.has(event)) continue;
+    
+    // Find all events that overlap with this one (including transitively)
+    const currentGroup: TScheduleEvent[] = [event];
+    processedEvents.add(event);
+    
+    // Keep expanding the group until no more overlapping events are found
+    let foundNewOverlap = true;
+    while (foundNewOverlap) {
+      foundNewOverlap = false;
+      
+      for (const candidateEvent of events) {
+        if (processedEvents.has(candidateEvent)) continue;
+        
+        // Check if candidate overlaps with any event in the current group
+        const overlapsWithGroup = currentGroup.some(groupEvent => 
+          eventsOverlap(candidateEvent, groupEvent)
+        );
+        
+        if (overlapsWithGroup) {
+          currentGroup.push(candidateEvent);
+          processedEvents.add(candidateEvent);
+          foundNewOverlap = true;
+        }
+      }
+    }
+    
+    overlapGroups.push(currentGroup);
+  }
+  
+  // Calculate positions for each group
+  const positionedEvents: PositionedEvent[] = [];
+  
+  for (const group of overlapGroups) {
+    if (group.length === 1) {
+      // Single event with no overlaps - takes full width
+      positionedEvents.push({
+        ...group[0]!,
+        leftOffset: 0,
+        width: 100,
+        column: 0,
+        totalColumns: 1
+      });
+    } else {
+      // Multiple overlapping events - arrange them using a column algorithm
+      const sortedGroup = [...group].sort((a, b) => {
+        const startDiff = a.start.getTime() - b.start.getTime();
+        if (startDiff !== 0) return startDiff;
+        
+        const aEnd = (a.end ?? new Date(a.start.getTime() + 60 * 60 * 1000)).getTime();
+        const bEnd = (b.end ?? new Date(b.start.getTime() + 60 * 60 * 1000)).getTime();
+        return aEnd - bEnd;
+      });
+      
+      const columns: { events: TScheduleEvent[]; endTime: number }[] = [];
+      const eventToColumn = new Map<TScheduleEvent, number>();
+      
+      for (const event of sortedGroup) {
+        const eventEnd = event.end ?? new Date(event.start.getTime() + 60 * 60 * 1000);
+        const eventStartTime = event.start.getTime();
+        const eventEndTime = eventEnd.getTime();
+        
+        // Find the first available column
+        let assignedColumn = -1;
+        
+        for (let i = 0; i < columns.length; i++) {
+          if (columns[i]!.endTime <= eventStartTime) {
+            assignedColumn = i;
+            break;
+          }
+        }
+        
+        if (assignedColumn === -1) {
+          assignedColumn = columns.length;
+          columns.push({ events: [], endTime: 0 });
+        }
+        
+        columns[assignedColumn]!.events.push(event);
+        columns[assignedColumn]!.endTime = eventEndTime;
+        eventToColumn.set(event, assignedColumn);
+      }
+      
+      // Calculate width and position for this group
+      const totalColumns = columns.length;
+      const columnWidth = 100 / totalColumns;
+      
+      for (const event of sortedGroup) {
+        const column = eventToColumn.get(event)!;
+        positionedEvents.push({
+          ...event,
+          leftOffset: column * columnWidth,
+          width: columnWidth - 0.5, // Small gap between events
+          column,
+          totalColumns
+        });
+      }
+    }
+  }
+  
+  return positionedEvents;
+}
+
 // Group events by day using Object.groupBy
 const eventsByDateKey = Object.groupBy(events, event =>
   `${event.start.getFullYear()}-${event.start.getMonth()}-${event.start.getDate()}`
@@ -142,9 +272,11 @@ const eventsByDateKey = Object.groupBy(events, event =>
 
 const eventsByDay = weekDays.map((day) => {
   const dayKey = `${day.getFullYear()}-${day.getMonth()}-${day.getDate()}` as `${number}-${number}-${number}`;
+  const dayEvents = eventsByDateKey[dayKey] ?? [];
+  
   return {
     date: day,
-    events: eventsByDateKey[dayKey] ?? []
+    events: calculateEventPositions(dayEvents)
   };
 });
 
@@ -180,7 +312,12 @@ const hours = Array.from({ length: 13 }, (_, i) => i + 8);
             {hours.map(() => (
               <div class="h-16 border-b border-gray-100 lg:h-12 md:h-10"></div>
             ))}
-            {events.map(event => <EventItem event={event} locale={locale} />)}
+            {events.map(event => <EventItem 
+              event={event} 
+              locale={locale}
+              leftOffset={event.leftOffset}
+              width={event.width}
+            />)}
           </div>
         </div>
       ))}
