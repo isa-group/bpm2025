@@ -4,11 +4,15 @@ import type { ScheduleEvent } from '#/data/schedule';
 interface Props {
   event: ScheduleEvent;
   locale?: Intl.UnicodeBCP47LocaleIdentifier;
+  leftOffset?: number;
+  width?: number;
 }
 
 const {
   event,
-  locale = 'en-EN'
+  locale = 'en-EN',
+  leftOffset = 0,
+  width = 100
 } = Astro.props;
 
 const categoryColors = {
@@ -42,10 +46,12 @@ const bgColor = categoryColors[event.category] || categoryColors.default;
 ---
 
 <div
-  class="absolute left-1 right-1 z-10 min-h-[30px] cursor-pointer overflow-hidden rounded-md px-3 py-2 transition-all duration-200 md:left-0.5 md:right-0.5 hover:z-20 hover:transform md:px-1.5 md:py-1 hover:shadow-lg hover:-translate-y-0.5"
+  class="absolute z-10 min-h-[30px] cursor-pointer overflow-hidden rounded-md px-3 py-2 transition-all duration-200 md:px-1.5 md:py-1 hover:z-20 hover:transform hover:shadow-lg hover:-translate-y-0.5"
   style={{
     top: `${topPosition}px`,
     height: `${height}px`,
+    left: `${leftOffset}%`,
+    width: `${width}%`,
     backgroundColor: `${bgColor}15`,
     borderLeft: `4px solid ${bgColor}`
   }}
