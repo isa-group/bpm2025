@@ -1,0 +1,21 @@
+---
+import Layout from '#/layouts/PageLayout.astro';
+import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
+import WeekView from '#/components/ui/Schedule/WeekView.astro';
+import { conferenceInfo, events } from '#/data/schedule';
+---
+
+<Layout
+  metadata={{
+    title: 'Program Overview'
+  }}>
+  <WidgetWrapper bg>
+    <WeekView events={events} date={conferenceInfo.startDate} />
+    <div class="mt-6 animate-fade-in overflow-hidden rounded-xl bg-white shadow-md">
+      <div class="p-6 text-center">
+        <p class="text-base text-gray-700 font-medium leading-relaxed">{conferenceInfo.description}</p>
+        <p class="mt-4 text-sm text-gray-500 opacity-75">* This is a tentative schedule. The definitive hours will be published soon.</p>
+      </div>
+    </div>
+  </WidgetWrapper>
+</Layout>
