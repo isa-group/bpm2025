@@ -4,17 +4,41 @@ import EventItem from './EventItem.astro';
 
 interface Props {
   events: TScheduleEvent[];
-  date?: Date;
   locale?: Intl.UnicodeBCP47LocaleIdentifier;
   dateHeaderFormat?: Intl.DateTimeFormatOptions['weekday'];
+  dateRange?: { start: Date; end: Date };
 }
 
 const {
   events = [],
-  date = new Date(),
   locale = 'en-EN',
-  dateHeaderFormat = 'short'
+  dateHeaderFormat = 'short',
+  dateRange = calculateDateRangeFromEvents(events)
 } = Astro.props;
+
+// Calculate default date range from events if not provided
+function calculateDateRangeFromEvents(events: TScheduleEvent[]): { start: Date; end: Date } {
+  if (events.length === 0) {
+    const today = new Date();
+    return { start: today, end: today };
+  }
+
+  let minDate = events[0]!.start;
+  let maxDate = events[0]!.end ?? events[0]!.start;
+
+  events.forEach((event) => {
+    const endDate = event.end ?? event.start;
+
+    if (event.start < minDate) {
+      minDate = event.start;
+    }
+    if (endDate > maxDate) {
+      maxDate = endDate;
+    }
+  });
+
+  return { start: minDate, end: maxDate };
+};
 
 // @ts-expect-error - getWeekInfo is not widely supported yet, so there are no types for it
 const firstDayOfWeek = new Intl.Locale(locale).getWeekInfo?.()?.firstDay ?? 1;
@@ -42,15 +66,43 @@ const dayNames = (() => {
 })();
 
 /**
- * Creates a localized week title using Intl.DateTimeFormat with a template
- * that tries to automatically detect the week pattern from the locale.
+ * Creates a localized title showing the date range in the format appropriate for the locale.
+ * Examples: "August 31 - September 5" (en), "31 agosto - 5 septiembre" (es)
  */
-function formatWeekTitle(startDate: Date): string {
-  const formatter = new Intl.DateTimeFormat(locale, {
-    month: 'long'
+function formatWeekTitle(startDate: Date, endDate: Date): string {
+  const startFormatter = new Intl.DateTimeFormat(locale, {
+    month: 'long',
+    day: 'numeric'
   });
 
-  return formatter.format(startDate);
+  const endFormatter = new Intl.DateTimeFormat(locale, {
+    month: 'long',
+    day: 'numeric'
+  });
+
+  // Check if it's the same month and year
+  const startMonth = startDate.getMonth();
+  const startYear = startDate.getFullYear();
+  const endMonth = endDate.getMonth();
+  const endYear = endDate.getFullYear();
+
+  if (startMonth === endMonth && startYear === endYear) {
+    // Same month: "August 31 - 5" or "31 - 5 agosto" depending on locale
+    const dayOnlyFormatter = new Intl.DateTimeFormat(locale, {
+      day: 'numeric'
+    });
+
+    const startFormatted = startFormatter.format(startDate);
+    const endDay = dayOnlyFormatter.format(endDate);
+
+    return `${startFormatted} - ${endDay}`;
+  }
+
+  // Different months: "August 31 - September 5" or "31 agosto - 5 septiembre"
+  const startFormatted = startFormatter.format(startDate);
+  const endFormatted = endFormatter.format(endDate);
+
+  return `${startFormatted} - ${endFormatted}`;
 }
 
 /**
@@ -69,38 +121,30 @@ function formatHour(hour: number): string {
   return formatter.format(date);
 }
 
-function getWeekDays(date: Date): Date[] {
-  const startOfWeek = new Date(date);
-
-  // Calculate the start of the week based on locale's first day
-  const currentDay = startOfWeek.getDay();
-  const adjustedFirstDay = firstDayOfWeek === 7 ? 0 : firstDayOfWeek; // Convert to JS week format (0=Sunday)
-  const daysFromFirstDay = (currentDay - adjustedFirstDay + 7) % 7;
-
-  startOfWeek.setDate(startOfWeek.getDate() - daysFromFirstDay);
-
+function getDaysInRange(startDate: Date, endDate: Date): Date[] {
   const days = [];
-  for (let i = 0; i < 7; i++) {
-    const day = new Date(startOfWeek);
-    day.setDate(startOfWeek.getDate() + i);
-    days.push(day);
+  const currentDate = new Date(startDate);
+
+  while (currentDate <= endDate) {
+    days.push(new Date(currentDate));
+    currentDate.setDate(currentDate.getDate() + 1);
   }
+
   return days;
 }
 
-const weekDays = getWeekDays(date);
+const weekDays = getDaysInRange(dateRange.start, dateRange.end);
 
 // Group events by day using Object.groupBy
-const eventsByDateKey = Object.groupBy(events, (event) => {
-  const eventDate = new Date(event.startTime);
-  return `${eventDate.getFullYear()}-${eventDate.getMonth()}-${eventDate.getDate()}`;
-});
+const eventsByDateKey = Object.groupBy(events, event =>
+  `${event.start.getFullYear()}-${event.start.getMonth()}-${event.start.getDate()}`
+);
 
 const eventsByDay = weekDays.map((day) => {
   const dayKey = `${day.getFullYear()}-${day.getMonth()}-${day.getDate()}` as `${number}-${number}-${number}`;
   return {
     date: day,
-    events: eventsByDateKey[dayKey] || []
+    events: eventsByDateKey[dayKey] ?? []
   };
 });
 
@@ -110,10 +154,10 @@ const hours = Array.from({ length: 13 }, (_, i) => i + 8);
 <div class="h-full min-h-125 w-full lg:min-h-150">
   <div class="h-full flex flex-col overflow-hidden rounded-xl bg-white shadow-md">
     <div class="border-b border-gray-200 bg-gray-50 px-6 py-5">
-      <h3 class="m-0 text-xl text-gray-800 font-semibold">{formatWeekTitle(weekDays[0]!)}</h3>
+      <h3 class="m-0 text-xl text-gray-800 font-semibold">{formatWeekTitle(weekDays[0]!, weekDays[weekDays.length - 1]!)}</h3>
     </div>
 
-    <div class="grid grid-cols-[80px_repeat(7,1fr)] flex-1 overflow-hidden lg:grid-cols-[60px_repeat(7,1fr)] md:grid-cols-[50px_repeat(7,1fr)]">
+    <div class="grid flex-1 overflow-hidden" style={`grid-template-columns: 80px repeat(${weekDays.length}, 1fr);`}>
       {/* Time column */}
       <div class="border-r border-gray-200 bg-gray-50">
         <div class="h-20 border-b border-gray-200 bg-gray-50 lg:h-16 md:h-12"></div>
