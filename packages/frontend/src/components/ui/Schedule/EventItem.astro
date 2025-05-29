@@ -32,11 +32,10 @@ function formatTime(time: Date): string {
   });
 }
 
-const startTime = new Date(event.startTime);
-const endTime = event.endTime ? new Date(event.endTime) : new Date(startTime.getTime() + 60 * 60 * 1000);
-const startHour = startTime.getHours();
-const startMinute = startTime.getMinutes();
-const duration = (endTime.getTime() - startTime.getTime()) / (60 * 60 * 1000);
+const endTime = event.end ?? new Date(event.start.getTime() + 60 * 60 * 1000);
+const startHour = event.start.getHours();
+const startMinute = event.start.getMinutes();
+const duration = (endTime.getTime() - event.start.getTime()) / (60 * 60 * 1000);
 const topPosition = (startHour - 8) * 60 + startMinute;
 const height = Math.max(duration * 60, 30);
 const bgColor = categoryColors[event.category] || categoryColors.default;
@@ -51,7 +50,7 @@ const bgColor = categoryColors[event.category] || categoryColors.default;
     borderLeft: `4px solid ${bgColor}`
   }}
 >
-  <div class="mb-1 text-[11px] text-gray-700 font-semibold opacity-80 lg:text-[10px] md:text-[9px]">{formatTime(startTime)} - {formatTime(endTime)}</div>
+  <div class="mb-1 text-[11px] text-gray-700 font-semibold opacity-80 lg:text-[10px] md:text-[9px]">{formatTime(event.start)} - {formatTime(endTime)}</div>
   <div class="mb-1 text-[13px] text-gray-800 font-semibold leading-tight lg:text-xs md:text-[11px]">{event.title}</div>
   {event.location && <div class="mb-1 flex items-center gap-0.5 text-[11px] text-gray-600 lg:text-[10px] md:text-[9px]">📍 {event.location}</div>}
   {event.description && <div class="line-clamp-2 text-[11px] text-gray-600 leading-tight lg:text-[10px] md:text-[9px]">{event.description}</div>}
