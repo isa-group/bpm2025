@@ -16,16 +16,17 @@ const {
 } = Astro.props;
 
 const categoryColors = {
-  meeting: '#1982c4',
-  personal: '#8ac926',
-  deadline: '#ff595e',
-  reminder: '#6a4c93',
+  conference_1: '#3498db',
+  conference_2: '#1982c4',
+  demos: '#3f7cab',
+  default: '#757bc8',
+  forum_1: '#8ac926',
+  forum_2: '#ff595e',
+  forum_3: '#6a4c93',
   keynote: '#9b59b6',
-  conference: '#3498db',
-  workshop: '#e67e22',
-  social: '#2ecc71',
   lunch: '#f39c12',
-  default: '#757bc8'
+  social: '#2ecc71',
+  workshop: '#e67e22'
 };
 
 function formatTime(time: Date): string {
@@ -46,7 +47,7 @@ const bgColor = categoryColors[event.category] || categoryColors.default;
 ---
 
 <div
-  class="absolute z-10 min-h-[30px] cursor-pointer overflow-hidden rounded-md px-3 py-2 transition-all duration-200 md:px-1.5 md:py-1 hover:z-20 hover:transform hover:shadow-lg hover:-translate-y-0.5"
+  class="absolute z-10 min-h-[30px] cursor-pointer overflow-hidden rounded-md px-3 py-2 transition-all duration-200 hover:z-20 hover:transform md:px-1.5 md:py-1 hover:shadow-lg hover:-translate-y-0.5"
   style={{
     top: `${topPosition}px`,
     height: `${height}px`,
