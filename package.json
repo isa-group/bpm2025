@@ -19,8 +19,8 @@
   },
   "devDependencies": {
     "@eslint/config-inspector": "1.0.2",
-    "@types/node": "22.15.21",
-    "eslint": "9.27.0",
+    "@types/node": "22.15.29",
+    "eslint": "9.28.0",
     "jiti": "2.4.2",
     "typescript": "5.8.3"
   }
