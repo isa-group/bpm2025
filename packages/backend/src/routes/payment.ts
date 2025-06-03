@@ -74,7 +74,7 @@ router.post('/payment/manual/:order_id', defineEventHandler(async (event) => {
        * We use void so we return rightaway, but the promise is queued
        * to run in the next tick of the JS event loop.
        */
-      void postPaymentConfirm(order_id);
+      void postPaymentConfirm(order_id, false);
 
       return new Response(null, { status: 200 });
     } catch {
