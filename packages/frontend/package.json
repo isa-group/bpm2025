@@ -23,17 +23,17 @@
     "@astro-community/astro-embed-youtube": "0.5.6",
     "@astrojs/check": "0.9.4",
     "@astrojs/mdx": "4.3.0",
-    "@astrojs/sitemap": "3.4.0",
+    "@astrojs/sitemap": "3.4.1",
     "@astrolib/seo": "1.0.0-beta.8",
     "@bpm2025-website/configs": "*",
     "@bpm2025-website/shared": "*",
-    "@iconify/json": "2.2.342",
+    "@iconify/json": "2.2.345",
     "@playform/compress": "0.1.9",
-    "astro": "5.8.0",
-    "linkedom": "0.18.10",
+    "astro": "5.8.2",
+    "linkedom": "0.18.11",
     "marked": "15.0.12",
     "tailwind-merge": "3.3.0",
-    "unocss": "66.1.2",
+    "unocss": "66.1.3",
     "unplugin-icons": "22.1.0"
   }
 }
