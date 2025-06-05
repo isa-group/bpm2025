@@ -190,7 +190,10 @@ router.get(
     return createOrderPage(
       final_orders,
       'Transacciones',
-      'Todos los pedidos realizados por los usuarios, incluyendo aquellos incompletos o no pagados'
+      `Todos los pedidos realizados por los usuarios, incluyendo aquellos incompletos o no pagado.<br /><br />
+      Para no mostrar aquellos pedidos que los usuarios han dejado incompletos y ver solo aquellos pagados o los más recientes sin pagar
+      agrupados por usuario, acceder a <a href="/order/show/unique">/order/show/unique</a>. 
+      `
     );
   })
 );
@@ -219,7 +222,8 @@ router.get(
       'Transacciones únicas',
       `Se muestra: <br />
       · El último pedido realizado por un usuario en caso de que no posea ninguno pagado<br />
-      · Todos los pedidos pagados por un usuario (los no pagados se excluyen)
+      · Todos los pedidos pagados por un usuario (los no pagados se excluyen)<br />
+      · other_order_count hace referencia al número de registros que se han excluido de esta vista (y que pueden verse en <a href="/order/show">/order/show</a>)
       `
     );
   })
