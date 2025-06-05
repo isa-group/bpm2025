@@ -8,9 +8,10 @@ import { isNil } from '@bpm2025-website/shared/validation';
  * @param {Record<number, string>} options.colors - Optional. An object mapping row indices to background color values.
  */
 export function generateTableMarkup(
-  { name = 'Table', rows = [], colors = {} }:
+  { name = 'Table', description, rows = [], colors = {} }:
   {
     name?: string;
+    description?: string;
     rows: Record<string, unknown>[];
     colors?: Record<number, string>;
   } = { rows: [], colors: {} }
@@ -40,6 +41,7 @@ export function generateTableMarkup(
 </head>
 <body>
   <h1>${name}</h1>
+  ${description ? `<p>${description}</p>` : ''}
     <table>
         <thead>
             <tr>

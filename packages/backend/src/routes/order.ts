@@ -117,7 +117,11 @@ router.post(
   })
 );
 
-function createOrderPage(orders: full_order_details[]) {
+function createOrderPage(
+  orders: full_order_details[],
+  name: string,
+  description?: string
+) {
   const colors: Record<number, string> = {};
   const rows: Record<string, unknown>[] = [];
 
@@ -137,10 +141,7 @@ function createOrderPage(orders: full_order_details[]) {
 
     rows.push({
       ...order,
-      'Recibo':
-          order.paid === 'REDSYS'
-            ? `<a href="show/download/${email}/${order_id}">Descargar</a>`
-            : undefined,
+      'Recibo': `<a href="show/download/${email}/${order_id}">Descargar</a>`,
       'Marcar como pagado':
           !order.paid
             ? `
@@ -154,7 +155,8 @@ function createOrderPage(orders: full_order_details[]) {
 
   return new Response(
     generateTableMarkup({
-      name: 'Transacciones',
+      name,
+      description,
       rows,
       colors
     }),
@@ -185,7 +187,11 @@ router.get(
       }
     });
 
-    return createOrderPage(final_orders);
+    return createOrderPage(
+      final_orders,
+      'Transacciones',
+      'Todos los pedidos realizados por los usuarios, incluyendo aquellos incompletos o no pagados'
+    );
   })
 );
 
@@ -208,7 +214,14 @@ router.get(
       }
     });
 
-    return createOrderPage(unique_orders);
+    return createOrderPage(
+      unique_orders,
+      'Transacciones únicas',
+      `Se muestra: <br />
+      · El último pedido realizado por un usuario en caso de que no posea ninguno pagado<br />
+      · Todos los pedidos pagados por un usuario (los no pagados se excluyen)
+      `
+    );
   })
 );
 
