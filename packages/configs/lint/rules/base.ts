@@ -130,9 +130,7 @@ export function getImportAliasConfig() {
   return defineConfig([
     {
       name: 'Common rules for all files',
-      plugins: {
-        '@dword-design/import-alias': eslintPluginImportAlias
-      },
+      ...eslintPluginImportAlias.configs.recommended,
       rules: {
         '@dword-design/import-alias/prefer-alias': [
           'error',
