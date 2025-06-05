@@ -73,3 +73,19 @@ view full_order_details {
   applied_discounts           String?         @map("Applied Discounts")
   created_at                  DateTime        @map("Created at")
 }
+
+view unique_full_order_details {
+  order_ID                    String          @id @map("Order ID")
+  user_ID                     Int             @map("User ID")
+  user_name                   String          @map("User name")
+  user_email                  String          @map("User email")
+  user_billing_address        String          @map("User billing address")
+  user_institution            String?         @map("User institution")
+  user_notes                  String?         @map("Order notes")
+  product_name                String          @map("Product name")
+  paid                        String?
+  price_paid_with_discounts   Float           @map("Price paid (with discounts)")
+  applied_discounts           String?         @map("Applied Discounts")
+  created_at                  DateTime        @map("Created at")
+  other_order_count           Int             @map("Number of other orders from this user")
+}
