@@ -16,7 +16,7 @@
     "check:types": "tsc"
   },
   "devDependencies": {
-    "@dword-design/eslint-plugin-import-alias": "5.1.2",
+    "@dword-design/eslint-plugin-import-alias": "6.0.3",
     "@eslint/js": "9.28.0",
     "@stylistic/eslint-plugin": "4.4.1",
     "@unocss/eslint-config": "66.1.3",
