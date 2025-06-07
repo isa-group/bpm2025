@@ -42,7 +42,8 @@ export default defineConfig({
   ],
   build: {
     assets: 'assets',
-    concurrency: availableParallelism()
+    concurrency: availableParallelism(),
+    inlineStylesheets: 'never'
   },
   vite: {
     cacheDir: resolve(import.meta.dirname, './node_modules/.vite'),
