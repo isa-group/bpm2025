@@ -18,8 +18,8 @@
     "check": "npm run check -ws --include-workspace-root=false"
   },
   "devDependencies": {
-    "@eslint/config-inspector": "1.0.2",
-    "@types/node": "22.15.29",
+    "@eslint/config-inspector": "1.1.0",
+    "@types/node": "22.15.30",
     "eslint": "9.28.0",
     "jiti": "2.4.2",
     "typescript": "5.8.3"
