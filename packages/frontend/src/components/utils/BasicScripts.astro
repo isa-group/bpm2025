@@ -54,19 +54,11 @@
   }
 
   function onLoad() {
-    const announcement = document.getElementById('announcement');
     const toggle = document.querySelector('[data-aw-toggle-menu]');
     const header = document.querySelector('header');
     const headerWithNav = document.querySelector('header nav');
     const headerLastChild = document.querySelector('header > div > div:last-child');
     const screenSize = window.matchMedia('(max-width: 1023px)');
-
-    function setAnnouncementHeight() {
-      header?.style.setProperty(
-        '--bpm-announcement-height',
-        `${announcement?.offsetHeight ?? 0}px`
-      );
-    }
 
     function toggleMobileMenu() {
       window.requestAnimationFrame(() => {
@@ -119,7 +111,6 @@
     attachEvent(document, 'scroll', () => applyHeaderStylesOnScroll());
 
     initTheme();
-    setAnnouncementHeight();
     applyHeaderStylesOnScroll();
   };
 
