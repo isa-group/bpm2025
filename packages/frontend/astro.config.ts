@@ -46,11 +46,6 @@ export default defineConfig({
   },
   vite: {
     cacheDir: resolve(import.meta.dirname, './node_modules/.vite'),
-    resolve: {
-      alias: {
-        '@': resolve(import.meta.dirname, './src')
-      }
-    },
     plugins: [Icons({
       compiler: 'astro',
       iconCustomizer(_, __, props) {
