@@ -30,7 +30,17 @@ export function validateUserBody(
 export function validateOrderBody(
   payload: unknown
 ): payload is OrderPayload {
-  return validateUserBody(payload) && 'product_id' in payload && isNumber(payload.product_id);
+  const result = validateUserBody(payload) && 'product_id' in payload && isNumber(payload.product_id);
+
+  if (result) {
+    for (const key in payload) {
+      if (isStr((payload as Record<string, unknown>)[key])) {
+        (payload as Record<string, unknown>)[key] = ((payload as Record<string, unknown>)[key] as string).trim();
+      }
+    }
+  }
+
+  return result;
 }
 
 /***
