@@ -13,9 +13,9 @@
     "pnpm": "pnpm is not supported. Please use npm"
   },
   "scripts": {
-    "lint": "npm run lint -ws --if-present",
-    "lint:fix": "npm run lint:fix -ws --if-present",
-    "check": "npm run check -ws --if-present"
+    "lint": "npm run lint -ws --include-workspace-root=false",
+    "lint:fix": "npm run lint:fix -ws --include-workspace-root=false",
+    "check": "npm run check -ws --include-workspace-root=false"
   },
   "devDependencies": {
     "@eslint/config-inspector": "1.0.2",
