@@ -49,6 +49,11 @@ const elemClasses = 'block w-full border border-gray-200 rounded-lg bg-white px-
                     class={elemClasses}
                   />
                 )}
+            {input.description && (
+              <p class="mt-1 text-[14px] text-gray-600 dark:text-gray-400">
+                <Fragment set:html={input.description} />
+              </p>
+            )}
           </div>
         )
     )
