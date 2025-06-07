@@ -131,7 +131,7 @@ export interface ItemGrid {
 export type ItemList = BetterOmit<ItemGrid, 'columns'>;
 
 export interface Form {
-  inputs?: (Input | Select)[];
+  inputs?: ((Input | Select) & { description?: string })[];
   textarea?: Textarea;
   disclaimers?: Disclaimer[];
   button?: CallToAction;
