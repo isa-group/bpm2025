@@ -10,39 +10,48 @@ interface Props {
 const { empty = false, description = false } = Astro.props;
 ---
 
-<div class="py-6">
-  {sponsors.map((s) => {
-    const innerText = (
-      <h3 class="text-center font-medium tracking-widest uppercase">
-        {s.category}
-      </h3>
-    );
+<div class="pt-6">
+  {(() => {
+    let visualIndex = 0;
+    return sponsors.map((s) => {
+      const shouldShow = s.brands.length || empty;
 
-    const innerBrands = s.brands.length
-      ? (
-          <Brands
-            images={s.brands}
-            description={description}
-            image_footer={!description}
-            classes={{
-              container: '!py-4'
-            }} />
-        )
-      : (
-          <WidgetWrapper containerClass="!py-4">
-            <p class="text-center text-muted">There are no sponsors in this category yet</p>
-          </WidgetWrapper>
-        );
+      if (!shouldShow) {
+        return (<></>);
+      }
 
-    if (!s.brands.length && !empty) {
-      return (<></>);
-    } else {
+      const bgAlternate = visualIndex % 2 === 0;
+      visualIndex++;
+
+      const innerText = (
+        <h3 class="my-5 text-center font-medium tracking-widest uppercase">
+          {s.category}
+        </h3>
+      );
+
+      const innerBrands = s.brands.length
+        ? (
+            <Brands
+              images={s.brands}
+              description={description}
+              image_footer={!description}
+              bg={bgAlternate}
+              classes={{
+                container: '!py-4'
+              }} />
+          )
+        : (
+            <WidgetWrapper bg={bgAlternate}>
+              <p class="text-center text-muted">There are no sponsors in this category yet</p>
+            </WidgetWrapper>
+          );
+
       return (
         <>
           {innerText}
           {innerBrands}
         </>
       );
-    }
-  })}
+    });
+  })()}
 </div>
