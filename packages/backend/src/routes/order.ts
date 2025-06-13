@@ -69,7 +69,7 @@ router.post(
           id: order_id,
           user_id: user.id,
           product_id: body.product_id,
-          notes: body.country ? `COUNTRY: ${body.country}\n\n${body.notes}` : body.notes
+          notes: body.country ? `COUNTRY: ${body.country}${body.notes ? `\n\n${body.notes}` : ''}` : body.notes
         }
       }));
 
