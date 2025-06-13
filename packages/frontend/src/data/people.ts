@@ -45,7 +45,6 @@ import Mahendra from '#/assets/images/people/Mahendra.jpg';
 import JohannesSmedt from '#/assets/images/people/JohannesSmedt.jpg';
 import IreneVanderfeesten from '#/assets/images/people/IreneVanderfeesten.jpg';
 import MariaSalas from '#/assets/images/people/MariaSalas.jpg';
-import RocioGoni from '#/assets/images/people/RocioGoni.jpg';
 import FernandoFernandez from '#/assets/images/people/FernandoFernandez.jpg';
 import CarlosCapitan from '#/assets/images/people/CarlosCapitan.jpg';
 import RemcoDijkman from '#/assets/images/people/Remko-Dijkman.jpg';
@@ -867,11 +866,6 @@ export const conferenceChairs = (): Record<string, ConferenceMemberData> => ({
 export const organizingTeam = (): ConferenceMemberData => ({
   'Cristina Cabanillas': sharedPeopleData['Cristina Cabanillas'],
   'Bedilia Estrada Torres': sharedPeopleData['Bedilia Estrada Torres'],
-  'Rocío Goñi': {
-    ...USData,
-    email: 'rgoni@us.es',
-    image: RocioGoni
-  },
   'Fernando Fernández': {
     ...USData,
     email: 'ferferga@us.es',
