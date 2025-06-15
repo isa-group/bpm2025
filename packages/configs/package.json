@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@dword-design/eslint-plugin-import-alias": "6.0.3",
-    "@eslint/js": "9.28.0",
+    "@eslint/js": "9.29.0",
     "@stylistic/eslint-plugin": "4.4.1",
     "@unocss/eslint-config": "66.2.0",
     "astro-eslint-parser": "1.2.2",
