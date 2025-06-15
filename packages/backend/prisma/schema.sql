@@ -23,6 +23,7 @@ CREATE TABLE "order" (
 	"_id"	TEXT PRIMARY KEY,
 	"user_id"	INTEGER NOT NULL,
 	"product_id"	INTEGER NOT NULL,
+  "article_id" TEXT,
 	"paid" TEXT,
 	"notes"	TEXT,
 	"createdAt"	DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -86,6 +87,7 @@ SELECT
     END, 
     ' + '
   ) AS "Applied Discounts",
+  o.article_id "Presented article ID",
   o.createdAt "Created at"
 FROM
   "order" o 
@@ -107,6 +109,7 @@ GROUP BY
   o.notes,
   o.paid,
   p.price,
+  o.article_id,
   o.createdAt;
 
 DROP VIEW IF EXISTS unique_full_order_details;
