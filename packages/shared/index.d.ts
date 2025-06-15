@@ -16,6 +16,7 @@ export interface OrderPayload extends SignupPayload {
   product_id: number;
   country: string;
   notes?: string;
+  article_id?: string;
 }
 
 /**
