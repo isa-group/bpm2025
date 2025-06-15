@@ -51,10 +51,12 @@ export async function seedDb(itemsPath: string) {
     }
   }
 
+  logger.info('Saving changes to database...');
   await db.$transaction(promises);
 }
 
 function onExit() {
+  db.$executeRawUnsafe('PRAGMA optimize;');
   db.$disconnect();
 }
 
@@ -63,3 +65,11 @@ process.on('SIGINT', onExit);
 process.on('exit', onExit);
 process.on('unhandledRejection', onExit);
 process.on('uncaughtException', onExit);
+
+// Source: https://sqlite.org/lang_analyze.html
+db.$executeRawUnsafe('PRAGMA optimize=0x10002;');
+db.$executeRawUnsafe('VACUUM;');
+
+setInterval(() => {
+  db.$executeRawUnsafe('PRAGMA optimize;');
+}, 864e5); // 24 hours
