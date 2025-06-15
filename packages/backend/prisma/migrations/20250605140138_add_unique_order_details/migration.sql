@@ -1,3 +1,5 @@
+BEGIN TRANSACTION;
+
 DROP VIEW IF EXISTS unique_full_order_details;
 CREATE VIEW unique_full_order_details AS 
 WITH filtered_data AS (
@@ -51,3 +53,7 @@ SELECT
 FROM filtered_data f
 JOIN user_totals ut ON f."User ID" = ut."User ID"
 JOIN user_returned ur ON f."User ID" = ur."User ID";
+
+COMMIT;
+--- As suggested: https://sqlite.org/lang_analyze.html
+PRAGMA optimize;

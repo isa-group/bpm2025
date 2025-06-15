@@ -1,3 +1,5 @@
+BEGIN TRANSACTION;
+
 -- CreateTable
 CREATE TABLE "discount" (
     "_id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -125,3 +127,7 @@ BEGIN
   SET updatedAt = CURRENT_TIMESTAMP
   WHERE _id = NEW._id;
 END;
+
+COMMIT;
+--- As suggested: https://sqlite.org/lang_analyze.html
+PRAGMA optimize;

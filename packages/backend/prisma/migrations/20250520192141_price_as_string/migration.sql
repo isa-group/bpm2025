@@ -1,3 +1,5 @@
+BEGIN TRANSACTION;
+
 -- Drop old references
 DROP VIEW "full_order_details";
 DROP TRIGGER "update_order_timestamp";
@@ -97,3 +99,7 @@ GROUP BY
   o.paid,
   p.price,
   o.createdAt;
+
+COMMIT;
+--- As suggested: https://sqlite.org/lang_analyze.html
+PRAGMA optimize;
