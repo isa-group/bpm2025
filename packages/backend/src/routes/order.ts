@@ -10,6 +10,7 @@ import { createReadStream } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import { getInvoicePath } from '../util';
 import type { full_order_details } from '@prisma/client';
+import { createOrderAndDiscounts } from '../util/hooks/pre.ts';
 
 /**
  * Gets a form data object from the event body for creating an
@@ -61,35 +62,17 @@ router.post(
         return new Response(null, { status: 409 });
       }
 
-      const transaction_promises = [];
       const order_id = generateOrderId();
 
-      transaction_promises.push(db.order.create({
-        data: {
+      await createOrderAndDiscounts(
+        {
           id: order_id,
           user_id: user.id,
           product_id: body.product_id,
           notes: body.country ? `COUNTRY: ${body.country}${body.notes ? `\n\n${body.notes}` : ''}` : body.notes
-        }
-      }));
-
-      /**
-       * Applies discount processors to the order
-       */
-      for (const [discount_id, func] of processors) {
-        if (await func(body)) {
-          transaction_promises.push(
-            db.discount_order.create({
-              data: {
-                order_id: order_id,
-                discount_id
-              }
-            })
-          );
-        }
-      }
-
-      await db.$transaction(transaction_promises);
+        },
+        body
+      );
       logger.info(`Order created: ${order_id}`);
 
       const final_order = await db.full_order_details.findUniqueOrThrow({
