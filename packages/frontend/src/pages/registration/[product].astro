@@ -192,6 +192,17 @@ const formDescription = `
       const formRef = document.getElementById('payment-form') as HTMLFormElement;
       const _spinner = document.getElementById(spinnerId) as HTMLButtonElement;
       const button = document.getElementById(submitId)?.cloneNode(true) as HTMLButtonElement;
+      const article_id_input = formRef.querySelector('[name="article_id"]') as HTMLInputElement;
+      const is_student_checkbox = formRef.querySelector('[name="is_student"]') as HTMLInputElement;
+
+      article_id_input?.addEventListener('change', () => {
+        if (article_id_input.value.trim()) {
+          is_student_checkbox.checked = false;
+          is_student_checkbox.disabled = true;
+        } else {
+          is_student_checkbox.disabled = false;
+        }
+      });
 
       _spinner.classList.remove(_class);
       const spinner = _spinner.cloneNode(true);
@@ -284,7 +295,7 @@ const formDescription = `
         obj['is_student'] = true;
       }
 
-      for (const key of ['notes', 'institution']) {
+      for (const key of ['notes', 'institution', 'discount_code', 'article_id']) {
         if (obj[key] === '') {
           delete obj[key];
         }
