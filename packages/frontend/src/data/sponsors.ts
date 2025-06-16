@@ -7,6 +7,7 @@ import USLogo from '#/assets/images/sponsors/us.png';
 import ProcessScience from '#/assets/images/sponsors/process-science.png';
 import GBTEC from '#/assets/images/sponsors/GBTEC.png';
 import Iterem from '#/assets/images/sponsors/iterem.png';
+import InteractSolutions from '#/assets/images/sponsors/interact.svg';
 import DCRSolutions from '#/assets/images/sponsors/dcr-solutions.webp';
 
 export const sponsors: SponsorInfo[] = [
@@ -119,7 +120,66 @@ export const sponsors: SponsorInfo[] = [
         always with an eye on the future. We invite you to meet us at the venue so that we can share experiences and continue to drive the collective success of
         process management.
       `
-      }]
+      },
+      {
+        src: InteractSolutions,
+        alt: 'Interact Solutions',
+        href: 'https://www.interactsolutions.com/en/',
+        description: `
+          <p>
+            Interact Solutions has been in the market for over 25 years,
+            offering comprehensive software for Corporate Governance.
+            In our portfolio, we highlight Interact Flow, a free platform for process modeling. 
+            <a class="underline" href="https://www.interactsolutions.com/interact-flow/">Try it here</a>.
+          </p>
+          <br />
+          <p>
+            With Interact Suite SA, we provide our clients with integrated solutions for
+            Business Process Management (BPM), Project Management, Strategic Planning (BSC),
+            Risk and Compliance Management (GRC), Quality Management, as well as
+            Audit Management, Services, Surveys, and Competency Management.
+          </p>
+          <br />
+          <p>
+            Interact also makes available a specialized team for project development,
+            with the possibility of customization according to the needs of each organization,
+            in addition to offering specialized and multilingual technical support.
+          </p>
+          <br />
+          <p>
+            Through our platform, institutions can visualize their businesses end-to-end,
+            covering KPIs, action plans, process modeling and automation,
+            project structuring and management, risk mapping and mitigation,
+            among others.
+          </p>
+          <br />
+          <p>
+            Interact has a strong presence in public and private companies,
+            both nationally and internationally, with experience in various sectors.
+            It stands out especially in institutions seeking accreditations and
+            certifications, relying on the collaboration between methodologies and technology.
+          </p>
+          <br />
+          <p>
+            We believe that methodologies are fundamental for the strategic understanding
+            of businesses, while technology provides the foundation for the effective
+            structuring and execution of operations. For this reason, we have the collaboration
+            of two leading figures in the field: Gart Capote and Pedro Robledo,
+            who have contributed significantly to the evolution and expansion of our tools.
+          </p>
+          <br />
+          <p>
+            Currently, Interact is present in 16 countries, operating through clients, 
+            partners, and distributors, with a focus on expansion into Europe.
+          </p>
+          <br />
+          <p>
+            For more information, see
+            <a class="underline" href="https://www.interactsolutions.com/en/">https://www.interactsolutions.com/en/</a>
+          </p>
+        `
+      }
+    ]
   },
   {
     category: 'Academic',
