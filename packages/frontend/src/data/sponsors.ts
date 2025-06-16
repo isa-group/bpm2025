@@ -7,6 +7,7 @@ import USLogo from '#/assets/images/sponsors/us.png';
 import ProcessScience from '#/assets/images/sponsors/process-science.png';
 import GBTEC from '#/assets/images/sponsors/GBTEC.png';
 import Iterem from '#/assets/images/sponsors/iterem.png';
+import SAPSignavio from '#/assets/images/sponsors/SAP_Signavio.png';
 import DCRSolutions from '#/assets/images/sponsors/dcr-solutions.webp';
 
 export const sponsors: SponsorInfo[] = [
@@ -62,6 +63,12 @@ export const sponsors: SponsorInfo[] = [
   {
     category: 'Bronze',
     brands: [
+      {
+        src: SAPSignavio,
+        alt: 'SAP Signavio',
+        href: 'https://www.signavio.com/',
+        description: ''
+      },
       {
         src: DCRSolutions,
         alt: 'DCR Solutions',
