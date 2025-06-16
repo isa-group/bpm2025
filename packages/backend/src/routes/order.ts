@@ -2,7 +2,7 @@ import { defineEventHandler, readBody } from 'h3';
 import { db } from '../util/db.ts';
 import { validateOrderBody } from '@bpm2025-website/shared/validation/data';
 import { logger } from '../util/logger.ts';
-import { invoices_folder, processors, router } from '../app.ts';
+import { invoices_folder, router } from '../app.ts';
 import { generateOrderId, getBaseMerchantParameters, getTPVOperationData } from '../redsys.ts';
 import type { TPVOperation } from '@bpm2025-website/shared';
 import { generateTableMarkup } from '../util/listing.ts';
