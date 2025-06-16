@@ -64,18 +64,6 @@ export const sponsors: SponsorInfo[] = [
     category: 'Bronze',
     brands: [
       {
-        src: DCRSolutions,
-        alt: 'DCR Solutions',
-        href: 'https://dcrsolutions.net/',
-        description: `
-          <a href="https://dcrsolutions.net/" class="underline">DCR Solutions</a> spearheads Business Process Management
-          with its declarative, rules-based approach, fostering operational excellence through modeling or process
-          mining, marking a paradigm shift towards multi-faceted objects. While BPM traditionally demands technical
-          proficiency, DCR empowers business professionals across sectors, enabling lawyers and social workers to
-          seamlessly integrate legal frameworks into processes, ensuring both compliance and efficiency.
-        `
-      },
-      {
         src: GBTEC,
         alt: 'GBTEC',
         href: 'https://www.gbtec.com/',
@@ -120,6 +108,18 @@ export const sponsors: SponsorInfo[] = [
         always with an eye on the future. We invite you to meet us at the venue so that we can share experiences and continue to drive the collective success of
         process management.
       `
+      },
+      {
+        src: DCRSolutions,
+        alt: 'DCR Solutions',
+        href: 'https://dcrsolutions.net/',
+        description: `
+          <a href="https://dcrsolutions.net/" class="underline">DCR Solutions</a> spearheads Business Process Management
+          with its declarative, rules-based approach, fostering operational excellence through modeling or process
+          mining, marking a paradigm shift towards multi-faceted objects. While BPM traditionally demands technical
+          proficiency, DCR empowers business professionals across sectors, enabling lawyers and social workers to
+          seamlessly integrate legal frameworks into processes, ensuring both compliance and efficiency.
+        `
       },
       {
         src: InteractSolutions,
