@@ -30,11 +30,11 @@
     "@bpm2025-website/shared": "*",
     "@iconify/json": "2.2.349",
     "@playform/compress": "0.2.0",
-    "astro": "5.9.3",
+    "astro": "5.9.4",
     "linkedom": "0.18.11",
     "marked": "15.0.12",
     "tailwind-merge": "3.3.1",
-    "unocss": "66.2.1",
+    "unocss": "66.2.3",
     "unplugin-icons": "22.1.0"
   }
 }
