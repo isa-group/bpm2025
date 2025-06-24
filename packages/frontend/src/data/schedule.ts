@@ -19,7 +19,7 @@ export const events: ScheduleEvent[] = [
   {
     title: 'Lunch',
     start: new Date(2025, 7, 31, 12, 30),
-    end: new Date(2025, 7, 31, 14, 00),
+    end: new Date(2025, 7, 31, 14, 0),
     category: 'lunch'
   },
   {
@@ -39,7 +39,7 @@ export const events: ScheduleEvent[] = [
   {
     title: 'Lunch',
     start: new Date(2025, 8, 1, 12, 30),
-    end: new Date(2025, 8, 1, 14, 00),
+    end: new Date(2025, 8, 1, 14, 0),
     category: 'lunch'
   },
   {
@@ -84,7 +84,7 @@ export const events: ScheduleEvent[] = [
   {
     title: 'Lunch',
     start: new Date(2025, 8, 2, 12, 30),
-    end: new Date(2025, 8, 2, 14, 00),
+    end: new Date(2025, 8, 2, 14, 0),
     category: 'lunch'
   },
   {
@@ -146,7 +146,7 @@ export const events: ScheduleEvent[] = [
   {
     title: 'Lunch',
     start: new Date(2025, 8, 3, 12, 30),
-    end: new Date(2025, 8, 3, 14, 00),
+    end: new Date(2025, 8, 3, 14, 0),
     category: 'lunch'
   },
   {
@@ -169,7 +169,7 @@ export const events: ScheduleEvent[] = [
   },
   {
     title: 'Conference dinner',
-    start: new Date(2025, 8, 3, 20, 00),
+    start: new Date(2025, 8, 3, 20, 0),
     end: new Date(2025, 8, 3, 23, 0),
     category: 'social'
   },
@@ -196,7 +196,7 @@ export const events: ScheduleEvent[] = [
   {
     title: 'Lunch',
     start: new Date(2025, 8, 4, 12, 30),
-    end: new Date(2025, 8, 4, 14, 00),
+    end: new Date(2025, 8, 4, 14, 0),
     category: 'lunch'
   },
   {
