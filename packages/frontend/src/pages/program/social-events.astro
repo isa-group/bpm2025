@@ -1,0 +1,45 @@
+---
+import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
+import Layout from '#/layouts/PageLayout.astro';
+import Headline from '#/components/ui/Headline.astro';
+import GradientContent from '#/components/ui/GradientContent.astro';
+
+import { events } from '#/data/program/events';
+---
+<Layout
+  metadata={{
+    title: 'Social Events'
+  }}
+  heroProps={{
+    title: 'Social Events'
+  }}>
+  {events.map((k, index) => {
+    const isPar = index === 0 || index % 2 === 0;
+    return (
+      <WidgetWrapper
+        containerClass="lg:mx-0 flex flex-col min-w-full"
+        bg={isPar}>
+        <Headline
+          title={k.name}
+          subtitle={k.subtitle}
+          classes={{
+            container: 'max-w-xl sm:mx-auto lg:max-w-2xl',
+            title: 'text-4xl md:text-5xl font-bold tracking-tighter mb-4 font-heading',
+            subtitle: 'max-w-3xl mx-auto sm:text-center text-xl text-muted dark:text-slate-400'
+          }}
+        />
+        <div class="w-full flex flex-col items-center justify-between lg:flex-row">
+          <GradientContent
+            image={{
+              src: k.image,
+              alt: k.name,
+              class: k.imageClass
+            }}
+            isReversed={isPar}>
+            <Fragment set:html={k.description} />
+          </GradientContent>
+        </div>
+      </WidgetWrapper>
+    );
+  })}
+</Layout>
