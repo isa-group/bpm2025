@@ -1,14 +1,16 @@
 import {
   defineConfig,
-  presetWind3,
+  presetWind4,
   transformerVariantGroup,
   presetTypography,
   presetIcons,
   transformerDirectives
 } from 'unocss';
 
-const defaultPreset = presetWind3({
-  preflight: 'on-demand'
+const defaultPreset = presetWind4({
+  preflights: {
+    reset: true
+  }
 });
 
 export default defineConfig({
@@ -41,16 +43,16 @@ export default defineConfig({
   ],
   theme: {
     colors: {
-      primary: 'rgb(var(--aw-color-primary))',
-      secondary: 'rgb(var(--aw-color-secondary))',
-      accent: 'rgb(var(--aw-color-accent))',
-      default: 'rgb(var(--aw-color-text-default))',
-      muted: 'rgb(var(--aw-color-text-muted))'
+      primary: 'var(--aw-color-primary)',
+      secondary: 'var(--aw-color-secondary)',
+      accent: 'var(--aw-color-accent)',
+      default: 'var(--aw-color-text-default)',
+      muted: 'var(--aw-color-text-muted)'
     },
-    fontFamily: {
-      sans: ['var(--aw-font-sans, ui-sans-serif)', defaultPreset.theme!.fontFamily!.sans].join(','),
-      serif: ['var(--aw-font-serif, ui-serif)', defaultPreset.theme!.fontFamily!.serif].join(','),
-      heading: ['var(--aw-font-heading, ui-sans-serif)', defaultPreset.theme!.fontFamily!.sans].join(',')
+    font: {
+      sans: ['var(--aw-font-sans, ui-sans-serif)', defaultPreset.theme!.font!.sans].join(','),
+      serif: ['var(--aw-font-serif, ui-serif)', defaultPreset.theme!.font!.serif].join(','),
+      heading: ['var(--aw-font-heading, ui-sans-serif)', defaultPreset.theme!.font!.sans].join(',')
     }
   }
 });

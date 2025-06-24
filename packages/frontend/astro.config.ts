@@ -26,9 +26,7 @@ export default defineConfig({
     ]
   },
   integrations: [
-    UnoCSS({
-      injectReset: true
-    }),
+    UnoCSS(),
     sitemap(),
     mdx(),
     compress({
