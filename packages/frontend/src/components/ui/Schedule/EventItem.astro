@@ -50,12 +50,12 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
 ---
 
 <div
-  class="relative w-full cursor-pointer overflow-hidden break-words rounded-md bg-white px-3 py-2 hyphens-auto transition-all duration-200 hover:transform md:px-1.5 md:py-1 hover:shadow-lg hover:-translate-y-0.5"
+  class="event-item relative h[var(--duration)] w-full cursor-pointer overflow-hidden break-words rounded-md bg-white px-3 py-2 hyphens-auto transition-all duration-200 hover:z-10 hover:h-auto hover:min-h-[var(--duration)] hover:transform-scale-115 hover:transform md:px-1.5 md:py-1 hover:shadow-lg hover:-translate-y-0.5"
   lang="es"
   style={{
-    height: `${duration}%`,
-    top: `${startMinute}%`,
-    borderLeft: `4px solid ${bgColor}`
+    'top': `${startMinute}%`,
+    'borderLeft': `4px solid ${bgColor}`,
+    '--duration': `${duration}%`
   }}>
   <div
     class="absolute inset-0"
@@ -71,3 +71,9 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
     </div>
   </div>
 </div>
+
+<style>
+:global(:has(> .event-item:hover)) > .event-item:not(:hover) {
+  display: none;
+}
+</style>
