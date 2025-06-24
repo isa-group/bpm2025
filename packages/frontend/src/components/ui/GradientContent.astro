@@ -1,0 +1,104 @@
+---
+import type { ExtendedImageProps } from '#/types';
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import Blockquote from '#/components/widgets/Blockquote.astro';
+
+interface Props {
+  image: ExtendedImageProps | ImageMetadata;
+  isReversed?: boolean;
+}
+
+const {
+  image,
+  isReversed = false
+} = Astro.props;
+---
+
+{
+  (() => {
+    const imageLayout = (
+      <div
+        class="gradient dark:[--bg-color:var(--aw-color-bg-page-dark)] lg:absolute lg:w-[38%]"
+        class:list={{
+          'lg:left-0 lg:inset-0 gradient-left': isReversed,
+          'lg:right-0 lg:top-0 lg:bottom-0 gradient-right': !isReversed
+        }}>
+        {/* @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 */}
+        <Image
+          {...image}
+          class:list={[
+            'h-full w-full object-cover',
+            'class' in image ? image?.class : undefined
+          ]}
+        />
+      </div>
+    );
+    const descriptionLayout = (
+      <div
+        class="min-w-[60%] p-4 lg:p-0"
+        class:list={{
+          'lg:ml-[40%]': isReversed,
+          'lg:mr-[40%]': !isReversed
+        }}>
+        <Blockquote>
+          <slot />
+        </Blockquote>
+      </div>
+    );
+
+    return isReversed
+      ? (
+          <>
+            {imageLayout}
+            {descriptionLayout}
+          </>
+        )
+      : (
+          <>
+            {descriptionLayout}
+            {imageLayout}
+          </>
+        );
+  })()
+}
+
+<style>
+.gradient {
+  /* TODO: Check why [--bg-color:theme(colors.blue.50)] class does not work */
+  --bg-color: 239 246 255;
+  --gradient-steps:
+    rgb(var(--bg-color) / 0) 0%,
+    rgb(var(--bg-color) / 0.182) 5.6%,
+    rgb(var(--bg-color) / 0.34) 9.9%,
+    rgb(var(--bg-color) / 0.476) 13.1%,
+    rgb(var(--bg-color) / 0.593) 15.7%,
+    rgb(var(--bg-color) / 0.69) 17.9%,
+    rgb(var(--bg-color) / 0.771) 20.2%,
+    rgb(var(--bg-color) / 0.836) 22.9%,
+    rgb(var(--bg-color) / 0.888) 26.3%,
+    rgb(var(--bg-color) / 0.927) 30.8%,
+    rgb(var(--bg-color) / 0.956) 36.7%,
+    rgb(var(--bg-color) / 0.976) 44.4%,
+    rgb(var(--bg-color) / 0.989) 54.3%,
+    rgb(var(--bg-color) / 0.996) 66.6%,
+    rgb(var(--bg-color) / 0.999) 81.7%,
+    rgb(var(--bg-color) / 1) 100%;
+}
+
+@media (min-width: 1024px) {
+  .gradient.gradient-left {
+    mask-image: linear-gradient(
+      to left,
+      var(--gradient-steps)
+    )
+  }
+
+  .gradient.gradient-right {
+    mask-image: linear-gradient(
+      to right,
+      var(--gradient-steps)
+    )
+  }
+}
+</style>

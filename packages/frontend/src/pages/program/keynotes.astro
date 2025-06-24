@@ -2,10 +2,9 @@
 import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
 import Layout from '#/layouts/PageLayout.astro';
 import Headline from '#/components/ui/Headline.astro';
-import Blockquote from '#/components/widgets/Blockquote.astro';
-import { Image } from 'astro:assets';
+import GradientContent from '#/components/ui/GradientContent.astro';
 
-import { keynotes } from '#/data/keynotes';
+import { keynotes } from '#/data/program/keynotes';
 ---
 <Layout
   metadata={{
@@ -17,32 +16,6 @@ import { keynotes } from '#/data/keynotes';
   }}>
   {keynotes.map((k, index) => {
     const isPar = index === 0 || index % 2 === 0;
-    const imageLayout = (
-      <div
-        class="speaker-gradient dark:[--bg-color:var(--aw-color-bg-page-dark)] lg:absolute lg:w-[38%]"
-        class:list={{
-          'lg:left-0 lg:inset-0 gradient-left': isPar,
-          'lg:right-0 lg:top-0 lg:bottom-0 gradient-right': !isPar
-        }}>
-        <Image
-          class="h-full w-full object-cover"
-          class:list={[k.imageClass]}
-          src={k.image}
-          alt={k.name} />
-      </div>
-    );
-    const descriptionLayout = (
-      <div
-        class="min-w-[60%] p-4 lg:p-0"
-        class:list={{
-          'lg:ml-[40%]': isPar,
-          'lg:mr-[40%]': !isPar
-        }}>
-        <Blockquote>
-          <Fragment set:html={k.description} />
-        </Blockquote>
-      </div>
-    );
     return (
       <WidgetWrapper
         containerClass="lg:mx-0 flex flex-col min-w-full"
@@ -57,61 +30,17 @@ import { keynotes } from '#/data/keynotes';
           }}
         />
         <div class="w-full flex flex-col items-center justify-between lg:flex-row">
-          {isPar
-            ? (
-                <>
-                  {imageLayout}
-                  {descriptionLayout}
-                </>
-              )
-            : (
-                <>
-                  {descriptionLayout}
-                  {imageLayout}
-                </>
-              )}
+          <GradientContent
+            image={{
+              src: k.image,
+              alt: k.name,
+              class: k.imageClass
+            }}
+            isReversed={isPar}>
+            <Fragment set:html={k.description} />
+          </GradientContent>
         </div>
       </WidgetWrapper>
     );
   })}
 </Layout>
-
-<style>
-.speaker-gradient {
-  /* TODO: Check why [--bg-color:theme(colors.blue.50)] class does not work */
-  --bg-color: 239 246 255;
-  --gradient-steps:
-    rgb(var(--bg-color) / 0) 0%,
-    rgb(var(--bg-color) / 0.182) 5.6%,
-    rgb(var(--bg-color) / 0.34) 9.9%,
-    rgb(var(--bg-color) / 0.476) 13.1%,
-    rgb(var(--bg-color) / 0.593) 15.7%,
-    rgb(var(--bg-color) / 0.69) 17.9%,
-    rgb(var(--bg-color) / 0.771) 20.2%,
-    rgb(var(--bg-color) / 0.836) 22.9%,
-    rgb(var(--bg-color) / 0.888) 26.3%,
-    rgb(var(--bg-color) / 0.927) 30.8%,
-    rgb(var(--bg-color) / 0.956) 36.7%,
-    rgb(var(--bg-color) / 0.976) 44.4%,
-    rgb(var(--bg-color) / 0.989) 54.3%,
-    rgb(var(--bg-color) / 0.996) 66.6%,
-    rgb(var(--bg-color) / 0.999) 81.7%,
-    rgb(var(--bg-color) / 1) 100%;
-}
-
-@media (min-width: 1024px) {
-  .speaker-gradient.gradient-left {
-    mask-image: linear-gradient(
-      to left,
-      var(--gradient-steps)
-    )
-  }
-
-  .speaker-gradient.gradient-right {
-    mask-image: linear-gradient(
-      to right,
-      var(--gradient-steps)
-    )
-  }
-}
-</style>
