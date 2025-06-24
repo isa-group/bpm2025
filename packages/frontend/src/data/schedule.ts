@@ -195,6 +195,7 @@ export const events: ScheduleEvent[] = [
     title: 'Conference dinner',
     start: new Date(2025, 8, 3, 20, 0),
     end: new Date(2025, 8, 3, 23, 0),
+    location: 'Abades Triana',
     category: 'social'
   },
 
