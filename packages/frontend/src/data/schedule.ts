@@ -13,6 +13,12 @@ export const events: ScheduleEvent[] = [
   {
     title: 'Doctoral Consortium',
     start: new Date(2025, 7, 31, 9, 0),
+    end: new Date(2025, 7, 31, 10, 30),
+    category: 'workshop'
+  },
+  {
+    title: 'Doctoral Consortium',
+    start: new Date(2025, 7, 31, 11, 0),
     end: new Date(2025, 7, 31, 12, 30),
     category: 'workshop'
   },
@@ -25,6 +31,12 @@ export const events: ScheduleEvent[] = [
   {
     title: 'Doctoral Consortium',
     start: new Date(2025, 7, 31, 14, 0),
+    end: new Date(2025, 7, 31, 15, 30),
+    category: 'workshop'
+  },
+  {
+    title: 'Doctoral Consortium',
+    start: new Date(2025, 7, 31, 16, 0),
     end: new Date(2025, 7, 31, 17, 30),
     category: 'workshop'
   },
@@ -33,6 +45,12 @@ export const events: ScheduleEvent[] = [
   {
     title: 'Workshops',
     start: new Date(2025, 8, 1, 9, 0),
+    end: new Date(2025, 8, 1, 10, 30),
+    category: 'workshop'
+  },
+  {
+    title: 'Workshops',
+    start: new Date(2025, 8, 1, 11, 0),
     end: new Date(2025, 8, 1, 12, 30),
     category: 'workshop'
   },
@@ -45,6 +63,12 @@ export const events: ScheduleEvent[] = [
   {
     title: 'Workshops',
     start: new Date(2025, 8, 1, 14, 0),
+    end: new Date(2025, 8, 1, 15, 30),
+    category: 'workshop'
+  },
+  {
+    title: 'Workshops',
+    start: new Date(2025, 8, 1, 16, 0),
     end: new Date(2025, 8, 1, 17, 30),
     category: 'workshop'
   },
