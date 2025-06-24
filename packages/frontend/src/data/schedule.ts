@@ -13,14 +13,26 @@ export const events: ScheduleEvent[] = [
   {
     title: 'Doctoral Consortium',
     start: new Date(2025, 7, 31, 9, 0),
-    end: new Date(2025, 7, 31, 12, 0),
+    end: new Date(2025, 7, 31, 10, 30),
+    category: 'workshop'
+  },
+  {
+    title: 'Doctoral Consortium',
+    start: new Date(2025, 7, 31, 11, 0),
+    end: new Date(2025, 7, 31, 12, 30),
     category: 'workshop'
   },
   {
     title: 'Lunch',
+    start: new Date(2025, 7, 31, 12, 30),
+    end: new Date(2025, 7, 31, 14, 0),
+    category: 'lunch'
+  },
+  {
+    title: 'Doctoral Consortium',
     start: new Date(2025, 7, 31, 14, 0),
     end: new Date(2025, 7, 31, 15, 30),
-    category: 'lunch'
+    category: 'workshop'
   },
   {
     title: 'Doctoral Consortium',
@@ -33,14 +45,26 @@ export const events: ScheduleEvent[] = [
   {
     title: 'Workshops',
     start: new Date(2025, 8, 1, 9, 0),
+    end: new Date(2025, 8, 1, 10, 30),
+    category: 'workshop'
+  },
+  {
+    title: 'Workshops',
+    start: new Date(2025, 8, 1, 11, 0),
     end: new Date(2025, 8, 1, 12, 30),
     category: 'workshop'
   },
   {
     title: 'Lunch',
+    start: new Date(2025, 8, 1, 12, 30),
+    end: new Date(2025, 8, 1, 14, 0),
+    category: 'lunch'
+  },
+  {
+    title: 'Workshops',
     start: new Date(2025, 8, 1, 14, 0),
     end: new Date(2025, 8, 1, 15, 30),
-    category: 'lunch'
+    category: 'workshop'
   },
   {
     title: 'Workshops',
@@ -49,10 +73,10 @@ export const events: ScheduleEvent[] = [
     category: 'workshop'
   },
   {
-    title: 'Reception dinner',
+    title: 'Reception cocktail',
     start: new Date(2025, 8, 1, 19, 0),
-    end: new Date(2025, 8, 1, 21, 0),
-    location: 'Abades Triana',
+    end: new Date(2025, 8, 1, 22, 0),
+    location: 'Royal Tobacco Factory',
     category: 'social'
   },
 
@@ -83,9 +107,27 @@ export const events: ScheduleEvent[] = [
   },
   {
     title: 'Lunch',
+    start: new Date(2025, 8, 2, 12, 30),
+    end: new Date(2025, 8, 2, 14, 0),
+    category: 'lunch'
+  },
+  {
+    title: 'Conference',
     start: new Date(2025, 8, 2, 14, 0),
     end: new Date(2025, 8, 2, 15, 30),
-    category: 'lunch'
+    category: 'conference_1'
+  },
+  {
+    title: 'Educators Forum',
+    start: new Date(2025, 8, 2, 14, 0),
+    end: new Date(2025, 8, 2, 15, 30),
+    category: 'forum_1'
+  },
+  {
+    title: 'Process Technology Forum',
+    start: new Date(2025, 8, 2, 14, 0),
+    end: new Date(2025, 8, 2, 15, 30),
+    category: 'forum_2'
   },
   {
     title: 'Conference',
@@ -100,14 +142,8 @@ export const events: ScheduleEvent[] = [
     category: 'forum_1'
   },
   {
-    title: 'Process Technology Forum',
-    start: new Date(2025, 8, 2, 16, 0),
-    end: new Date(2025, 8, 2, 17, 30),
-    category: 'forum_2'
-  },
-  {
     title: 'Guided tour',
-    start: new Date(2025, 8, 2, 19, 0),
+    start: new Date(2025, 8, 2, 20, 0),
     end: new Date(2025, 8, 2, 21, 30),
     location: 'Reales Alcázares',
     category: 'social'
@@ -133,20 +169,20 @@ export const events: ScheduleEvent[] = [
   },
   {
     title: 'Lunch',
-    start: new Date(2025, 8, 3, 14, 0),
-    end: new Date(2025, 8, 3, 15, 30),
+    start: new Date(2025, 8, 3, 12, 30),
+    end: new Date(2025, 8, 3, 14, 0),
     category: 'lunch'
   },
   {
     title: 'Conference',
-    start: new Date(2025, 8, 3, 16, 0),
-    end: new Date(2025, 8, 3, 17, 30),
+    start: new Date(2025, 8, 3, 14, 0),
+    end: new Date(2025, 8, 3, 15, 30),
     category: 'conference_1'
   },
   {
     title: 'Industry & Society Forum',
-    start: new Date(2025, 8, 3, 16, 0),
-    end: new Date(2025, 8, 3, 17, 30),
+    start: new Date(2025, 8, 3, 14, 0),
+    end: new Date(2025, 8, 3, 15, 30),
     category: 'forum_2'
   },
   {
@@ -157,8 +193,8 @@ export const events: ScheduleEvent[] = [
   },
   {
     title: 'Conference dinner',
-    start: new Date(2025, 8, 3, 19, 30),
-    end: new Date(2025, 8, 3, 21, 0),
+    start: new Date(2025, 8, 3, 20, 0),
+    end: new Date(2025, 8, 3, 23, 0),
     category: 'social'
   },
 
@@ -183,20 +219,20 @@ export const events: ScheduleEvent[] = [
   },
   {
     title: 'Lunch',
-    start: new Date(2025, 8, 4, 14, 0),
-    end: new Date(2025, 8, 4, 15, 30),
+    start: new Date(2025, 8, 4, 12, 30),
+    end: new Date(2025, 8, 4, 14, 0),
     category: 'lunch'
   },
   {
     title: 'Conference',
-    start: new Date(2025, 8, 4, 16, 0),
-    end: new Date(2025, 8, 4, 17, 30),
+    start: new Date(2025, 8, 4, 14, 0),
+    end: new Date(2025, 8, 4, 15, 30),
     category: 'conference_1'
   },
   {
     title: 'Responsible BPM Forum',
-    start: new Date(2025, 8, 4, 16, 0),
-    end: new Date(2025, 8, 4, 17, 30),
+    start: new Date(2025, 8, 4, 14, 0),
+    end: new Date(2025, 8, 4, 15, 30),
     category: 'forum_3'
   },
   {
@@ -204,6 +240,12 @@ export const events: ScheduleEvent[] = [
     start: new Date(2025, 8, 4, 16, 0),
     end: new Date(2025, 8, 4, 17, 30),
     category: 'demos'
+  },
+  {
+    title: 'Closing',
+    start: new Date(2025, 8, 4, 17, 30),
+    end: new Date(2025, 8, 4, 18, 0),
+    category: 'conference_1'
   },
   {
     title: 'Farewell',
@@ -216,13 +258,13 @@ export const events: ScheduleEvent[] = [
   {
     title: 'BPM in Public Administration (Spanish)',
     start: new Date(2025, 8, 5, 9, 0),
-    end: new Date(2025, 8, 5, 12, 0),
+    end: new Date(2025, 8, 5, 13, 0),
     category: 'conference_2'
   },
   {
-    title: 'Lunch',
-    start: new Date(2025, 8, 5, 14, 0),
-    end: new Date(2025, 8, 5, 15, 30),
+    title: 'Cocktail',
+    start: new Date(2025, 8, 5, 13, 0),
+    end: new Date(2025, 8, 5, 14, 0),
     category: 'lunch'
   }
 ];
