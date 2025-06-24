@@ -67,6 +67,10 @@ export function getHeaderData(currentUrl: URL): HeaderData {
           {
             text: 'Keynotes',
             href: getPermalink('/program/keynotes')
+          },
+          {
+            text: 'Social events',
+            href: getPermalink('/program/social-events')
           }
         ]
       },
