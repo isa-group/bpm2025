@@ -104,7 +104,7 @@ export const events: ScheduleEvent[] = [
     start: new Date(2025, 8, 2, 14, 0),
     end: new Date(2025, 8, 2, 15, 30),
     category: 'forum_2'
-  },  
+  },
   {
     title: 'Conference',
     start: new Date(2025, 8, 2, 16, 0),
