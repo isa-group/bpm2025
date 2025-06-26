@@ -87,6 +87,16 @@
       "id": 15,
       "reduction": 100,
       "is_percentage": true
+    },
+    "From lowest income country - 45% OFF": {
+      "id": 16,
+      "reduction": 45,
+      "is_percentage": true
+    },
+    "From lower-middle income country - 20% OFF": {
+      "id": 17,
+      "reduction": 20,
+      "is_percentage": true
     }
   }
 }

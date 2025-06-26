@@ -37,7 +37,9 @@ const lowerMiddle_income = await parseFile('lower-middle_income.txt', linesToSet
 
 export default (): ProcessorSignature => {
   return {
-    6: (req_body: OrderPayload): boolean => lowest_income.has(req_body.country),
-    7: (req_body: OrderPayload): boolean => lowerMiddle_income.has(req_body.country)
+    6: (req_body: OrderPayload): boolean => false,
+    7: (req_body: OrderPayload): boolean => false,
+    16: (req_body: OrderPayload): boolean => lowest_income.has(req_body.country),
+    17: (req_body: OrderPayload): boolean => lowerMiddle_income.has(req_body.country)
   };
 };
