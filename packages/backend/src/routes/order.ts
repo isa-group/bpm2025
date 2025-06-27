@@ -124,7 +124,7 @@ function createOrderPage(
 
     rows.push({
       ...order,
-      'Recibo': `<a href="/order/show/download/${email}/${order_id}">Descargar</a>`,
+      'Recibo': order.paid ? `<a href="/order/show/download/${email}/${order_id}">Descargar</a>` : undefined,
       'Marcar como pagado':
           !order.paid
             ? `
