@@ -170,12 +170,58 @@ router.get(
       }
     });
 
+    const final_orders_set = new Set(final_orders);
+    const paid_orders = new Set(final_orders.filter(o => Boolean(o.paid)));
+    const unpaid_orders = final_orders_set.difference(paid_orders);
+    const product_name_grouping = new Map<string, number>();
+    const discount_grouping = new Map<string, number>();
+
+    for (const order of paid_orders) {
+      product_name_grouping.set(
+        order.product_name,
+        (product_name_grouping.get(order.product_name) ?? 0) + 1
+      );
+      if (order.applied_discounts) {
+        discount_grouping.set(
+          order.applied_discounts,
+          (discount_grouping.get(order.applied_discounts) ?? 0) + 1
+        );
+      }
+    }
+
     return createOrderPage(
       final_orders,
       'Transacciones',
       `Todos los pedidos realizados por los usuarios, incluyendo aquellos incompletos o no pagado.<br /><br />
       Para no mostrar aquellos pedidos que los usuarios han dejado incompletos y ver solo aquellos pagados o los más recientes sin pagar
-      agrupados por usuario, acceder a <a href="/order/show/unique">/order/show/unique</a>. 
+      agrupados por usuario, acceder a <a href="/order/show/unique">/order/show/unique</a>.
+      <br />
+      <h2>ESTADÍSTICAS SOBRE LOS DATOS MOSTRADOS EN ESTA PÁGINA:</h2>
+      <p><b>Total de registros mostrados:</b> ${final_orders_set.size}</p>
+      <p><b>Total de registros NO pagados:</b> ${unpaid_orders.size}</p>
+      <p><b>Total de registros pagados:</b> ${paid_orders.size}</p>
+      ${product_name_grouping.size > 0 || discount_grouping.size > 0
+        ? `
+        <h3>AGRUPACIONES DE REGISTROS (PAGADOS):</h3>
+        ${product_name_grouping
+            .entries()
+            .map(([product, count]) =>
+              `<p><b>Por producto '${product}':</b> ${count}</p>`
+            )
+            .toArray()
+            .join('\n')
+        }
+        <hr />
+        ${discount_grouping
+            .entries()
+            .map(([discount, count]) =>
+              `<p><b>Por descuentos '${discount}':</b> ${count}</p>`
+            )
+            .toArray()
+            .join('\n')
+        }
+        `
+        : ''}
       `
     );
   })
@@ -200,13 +246,59 @@ router.get(
       }
     });
 
+    const final_orders_set = new Set(unique_orders);
+    const paid_orders = new Set(unique_orders.filter(o => Boolean(o.paid)));
+    const unpaid_orders = final_orders_set.difference(paid_orders);
+    const product_name_grouping = new Map<string, number>();
+    const discount_grouping = new Map<string, number>();
+
+    for (const order of paid_orders) {
+      product_name_grouping.set(
+        order.product_name,
+        (product_name_grouping.get(order.product_name) ?? 0) + 1
+      );
+      if (order.applied_discounts) {
+        discount_grouping.set(
+          order.applied_discounts,
+          (discount_grouping.get(order.applied_discounts) ?? 0) + 1
+        );
+      }
+    }
+
     return createOrderPage(
       unique_orders,
       'Transacciones únicas',
       `Se muestra: <br />
       · El último pedido realizado por un usuario en caso de que no posea ninguno pagado<br />
       · Todos los pedidos pagados por un usuario (los no pagados se excluyen)<br />
-      · other_order_count hace referencia al número de registros que se han excluido de esta vista (y que pueden verse en <a href="/order/show">/order/show</a>)
+      · other_order_count hace referencia al número de registros que se han excluido de esta vista (y que pueden verse en <a href="/order/show">/order/show</a>).
+      <br />
+      <h2>ESTADÍSTICAS SOBRE LOS DATOS MOSTRADOS EN ESTA PÁGINA:</h2>
+      <p><b>Total de registros mostrados:</b> ${final_orders_set.size}</p>
+      <p><b>Total de registros NO pagados:</b> ${unpaid_orders.size}</p>
+      <p><b>Total de registros pagados:</b> ${paid_orders.size}</p>
+      ${product_name_grouping.size > 0 || discount_grouping.size > 0
+        ? `
+        <h3>AGRUPACIONES DE REGISTROS (PAGADOS):</h3>
+        ${product_name_grouping
+            .entries()
+            .map(([product, count]) =>
+              `<p><b>Por producto '${product}':</b> ${count}</p>`
+            )
+            .toArray()
+            .join('\n')
+        }
+        <hr />
+        ${discount_grouping
+            .entries()
+            .map(([discount, count]) =>
+              `<p><b>Por descuentos '${discount}':</b> ${count}</p>`
+            )
+            .toArray()
+            .join('\n')
+        }
+        `
+        : ''}
       `
     );
   })
