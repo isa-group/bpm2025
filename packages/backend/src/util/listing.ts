@@ -41,7 +41,7 @@ export function generateTableMarkup(
 </head>
 <body>
   <h1>${name}</h1>
-  ${description ? `<p>${description}</p>` : ''}
+  ${description ? `<p>${description}</p>` : `<b>Number of rows shown:</b> ${rows.length}`}
     <table>
         <thead>
             <tr>
@@ -51,7 +51,17 @@ export function generateTableMarkup(
         <tbody>
             ${rows.map((row, index) => `
             <tr ${index in colors ? `style="background-color: ${colors[index]};"` : ''}>  
-                ${columns.map(key => `<td>${key in row && !isNil(row[key]) ? String(row[key]).replaceAll('\n', '<br />') : '-'}</td>`).join('\n')}
+                ${columns.map(key => `<td>${key in row && !isNil(row[key])
+                  ? (() => {
+                      const text = String(row[key]).replaceAll('\n', '<br />');
+
+                      if (text.length > 100) {
+                        return `<details>${text}</details>`;
+                      }
+
+                      return text;
+                    })()
+                  : '-'}</td>`).join('\n')}
             </tr>
             `).join('\n')}
         </tbody>
