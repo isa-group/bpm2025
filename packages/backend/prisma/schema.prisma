@@ -30,6 +30,7 @@ model order {
   id             String           @id @map("_id")
   user_id        Int
   product_id     Int
+  article_id     String?
   paid           String?
   notes          String?
   createdAt      DateTime         @default(dbgenerated("CURRENT_TIMESTAMP"))
@@ -71,6 +72,7 @@ view full_order_details {
   paid                        String?
   price_paid_with_discounts   Float           @map("Price paid (with discounts)")
   applied_discounts           String?         @map("Applied Discounts")
+  article_id                  String?         @map("Presented article ID")
   created_at                  DateTime        @map("Created at")
 }
 
@@ -86,6 +88,7 @@ view unique_full_order_details {
   paid                        String?
   price_paid_with_discounts   Float           @map("Price paid (with discounts)")
   applied_discounts           String?         @map("Applied Discounts")
+  article_id                  String?         @map("Presented article ID")
   created_at                  DateTime        @map("Created at")
   other_order_count           Int             @map("Number of other orders from this user")
 }
