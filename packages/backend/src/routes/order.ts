@@ -11,6 +11,7 @@ import { stat } from 'node:fs/promises';
 import { getInvoicePath } from '../util';
 import type { full_order_details } from '@prisma/client';
 import { createOrderAndDiscounts } from '../util/hooks/pre.ts';
+import { postPaymentConfirm } from '../util/hooks/post.ts';
 
 /**
  * Gets a form data object from the event body for creating an
@@ -90,6 +91,24 @@ router.post(
         orderId: order_id
       });
 
+      if (final_order.price_paid_with_discounts === 0) {
+        await db.order.update({
+          data: {
+            paid: 'FREE'
+          },
+          where: {
+            id: order_id
+          }
+        });
+
+        console.log(`Order ${order_id} is free and has been marked directly as free!`);
+        /**
+         * We use void so we return rightaway, but the promise is queued
+         * to run in the next tick of the JS event loop.
+         */
+        void postPaymentConfirm(order_id);
+      }
+
       return {
         ...getTPVOperationData(merchant_params),
         price: final_order.price_paid_with_discounts
@@ -116,6 +135,9 @@ function createOrderPage(
     switch (order.paid) {
       case 'REDSYS':
         colors[i] = 'aquamarine';
+        break;
+      case 'FREE':
+        colors[i] = 'antiquewhite';
         break;
       case 'TRANSFER':
         colors[i] = 'dodgerblue';
