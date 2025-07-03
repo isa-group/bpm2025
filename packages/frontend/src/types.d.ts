@@ -1,10 +1,9 @@
 import type { HTMLAttributes, ComponentProps } from 'astro/types';
 import type { Props as AstroSeoProps } from '@astrolib/seo';
 import { Image as ImageComponent } from 'astro:assets';
-import ITablerCheck from 'virtual:icons/tabler/check';
 import type { ImageMetadata, MarkdownInstance } from 'astro';
 
-export type IconElement = typeof ITablerCheck;
+export type IconElement = `i-${string}:${string}`;
 // There are some hacks to get this type working properly:
 // https://github.com/withastro/astro/issues/10912
 // https://github.com/withastro/astro/issues/10780
