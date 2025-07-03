@@ -81,17 +81,16 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               {links?.length
                 ? (
                     <>
-                      <span class="hover:text-link flex cursor-pointer items-center px-4 py-3 dark:hover:text-white">
+                      <span class="flex cursor-pointer items-center px-4 py-3 dark:hover:text-white">
                         {text}{' '}
                         <div class="i-tabler:chevron-down ml-0.5 hidden h-3.5 w-3.5 rtl:ml-0 rtl:mr-0.5 lg:inline" />
                       </span>
-                      <ul class="dropdown-menu rounded pl-4 font-medium drop-shadow-xl lg:absolute lg:hidden lg:min-w-[200px] lg:bg-white/90 lg:pl-0 lg:backdrop-blur-md dark:lg:bg-dark">
+                      <ul class="dropdown-menu rounded-xs pl-4 font-medium drop-shadow-xl lg:absolute lg:hidden lg:min-w-[200px] lg:bg-white/90 lg:pl-0 lg:backdrop-blur-md dark:lg:bg-dark">
                         {links.map(({ text: text2, href: href2 }) => (
                           <li>
                             <a
                               class:list={[
-                                'first:rounded-t last:rounded-b lg:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap',
-                                { 'aw-link-active': href2 === currentPath }
+                                'first:rounded-t last:rounded-b lg:hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-nowrap'
                               ]}
                               href={href2}
                             >
@@ -105,8 +104,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                 : (
                     <a
                       class:list={[
-                        'hover:text-link dark:hover:text-white px-4 py-3 flex items-center',
-                        { 'aw-link-active': href === currentPath }
+                        'dark:hover:text-white px-4 py-3 flex items-center'
                       ]}
                       href={href}
                     >
@@ -130,7 +128,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           {
             showRssFeed && (
               <a
-                class="inline-flex items-center rounded-lg p-2.5 text-sm text-muted hover:bg-gray-100 dark:text-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                class="inline-flex items-center rounded-lg p-2.5 text-sm text-muted hover:bg-gray-100 dark:text-gray-400 focus:outline-hidden focus:ring-4 focus:ring-gray-200 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
                 aria-label="RSS Feed"
                 href={getAsset('/rss.xml')}
               >
