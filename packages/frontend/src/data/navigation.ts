@@ -1,7 +1,6 @@
 import type { CallForPapers, CallToAction, MenuLink } from '#/types';
 import type { Props as FooterProps } from '#/components/widgets/Footer.astro';
 import { getAsset, getPermalink, trimSlash } from '#/utils/permalinks';
-import { conferenceChairs } from '#/data/people';
 
 const matches = import.meta.glob('../pages/calls/*.mdx', { eager: true });
 const posts = Object.values(matches) as CallForPapers[];
@@ -146,13 +145,6 @@ export function getHeaderData(currentUrl: URL): HeaderData {
 
 export const getFooterData = (): FooterData => ({
   links: [
-    {
-      title: 'Conference Chairs',
-      links: Object.keys(conferenceChairs).map(k => ({
-        text: k,
-        href: getPermalink(`/conference/chairs/#${encodeURIComponent(k.toLowerCase().replace(' ', '-'))}`)
-      }))
-    },
     {
       title: 'Workshops',
       links: [
