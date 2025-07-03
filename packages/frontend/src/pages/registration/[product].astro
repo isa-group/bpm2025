@@ -1,7 +1,6 @@
 ---
 import Contact from '#/components/widgets/Contact.astro';
 import Layout from '#/layouts/PageLayout.astro';
-import Button from '#/components/ui/Button/Button.astro';
 import { getPermalink } from '#/utils/permalinks';
 
 import countries from 'world-countries';
@@ -145,13 +144,6 @@ const formDescription = `
     }}
     description={formDescription}
   />
-  <Button
-    id="spinner-button"
-    class="hidden"
-    variant="tertiary"
-    type="button"
-    class="hidden"
-    icon="i-svg-spinners:ring-resize" />
 </Layout>
 
 <script>
@@ -164,8 +156,6 @@ const formDescription = `
   const baseUrl = import.meta.env.DEV ? 'http://127.0.0.1:3000' : 'https://registration.bpm2025seville.org';
   const userPostUrl = `${baseUrl}/user`;
   const orderPostUrl = `${baseUrl}/order`;
-  const spinnerId = 'spinner-button';
-  const submitId = 'submit-button';
 
   document.addEventListener('astro:page-load', () => {
     /**
@@ -176,28 +166,11 @@ const formDescription = `
     }
 
     let order_response: TPVOperation;
-    const { formRef, spinner, button } = (() => {
-      const _class = 'hidden';
-      const formRef = document.getElementById('payment-form') as HTMLFormElement;
-      const _spinner = document.getElementById(spinnerId) as HTMLButtonElement;
-      const button = document.getElementById(submitId)?.cloneNode(true) as HTMLButtonElement;
-
-      _spinner.classList.remove(_class);
-      const spinner = _spinner.cloneNode(true);
-      // @ts-expect-error - The function does indeed exist
-      spinner.setAttribute('disabled', '');
-
-      /**
-       * Astro gets buggy when there are DOM mismatches on development
-       */
-      if (!import.meta.env.DEV) {
-        _spinner.remove();
-      } else {
-        _spinner.classList.add(_class);
-      }
-
-      return { formRef, spinner, button };
-    })();
+    const i_chevron = 'i-tabler:chevron-right';
+    const i_spinner = 'i-svg-spinners:ring-resize';
+    const formRef = document.getElementById('payment-form') as HTMLFormElement;
+    const button = formRef.querySelector('#submit-button') as HTMLButtonElement;
+    const buttonIcon = button.querySelector('[data-icon]') as HTMLDivElement;
 
     function onFail({ e = new Error('There was an error in the backend'), showDefault = true } = {}): never {
       const message = showDefault
@@ -242,19 +215,40 @@ const formDescription = `
           el.disabled = true;
         }
 
-        formRef.querySelector(`#${submitId}`)?.replaceWith(spinner);
+        /**
+         * font-size: 0 hides the text inside the button
+         */
+        button.classList.add('font-size-0');
+        buttonIcon.classList.remove(i_chevron);
+        buttonIcon.classList.add(i_spinner);
+        button.setAttribute('disabled', '');
       } else {
-        formRef.querySelector(`#${spinnerId}`)?.replaceWith(button);
+        buttonIcon.classList.remove(i_spinner);
+        buttonIcon.classList.add(i_chevron);
+        button.classList.remove('font-size-0');
+        button.removeAttribute('disabled');
       }
     }
 
     function setPayButton(amount: number) {
-      const btn = formRef.querySelector(`#${submitId}`);
+      showSpinner(false);
 
-      if (btn?.firstChild) {
-        btn.classList.add('btn-primary');
-        btn.classList.remove('btn-secondary');
-        btn.firstChild.textContent = `Pay ${amount} €`;
+      if (button?.firstChild) {
+        button.classList.add('btn-primary');
+        button.classList.remove('btn-secondary');
+        button.firstChild.textContent = `Pay ${amount} €`;
+      }
+    }
+
+    function setFreeButton() {
+      showSpinner(false);
+
+      if (button?.firstChild) {
+        button.setAttribute('disabled', '');
+        button.classList.add('text-white', 'bg-green-600', 'dark:bg-green-700');
+        buttonIcon.classList.remove(i_chevron);
+        buttonIcon.classList.add('i-tabler:check');
+        button.firstChild.textContent = 'Your registration was free and confirmed!';
       }
     }
 
@@ -338,7 +332,11 @@ const formDescription = `
             showSpinner(false);
 
             if (order_response) {
-              setPayButton(order_response.price);
+              if (order_response.price === 0) {
+                setFreeButton();
+              } else {
+                setPayButton(order_response.price);
+              }
             }
           });
         }
