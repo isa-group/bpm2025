@@ -1,4 +1,11 @@
-import { defineConfig, presetWind3, transformerVariantGroup, presetTypography, transformerDirectives } from 'unocss';
+import {
+  defineConfig,
+  presetWind3,
+  transformerVariantGroup,
+  presetTypography,
+  presetIcons,
+  transformerDirectives
+} from 'unocss';
 
 const defaultPreset = presetWind3({
   preflight: 'on-demand'
@@ -21,7 +28,12 @@ export default defineConfig({
   ],
   presets: [
     defaultPreset,
-    presetTypography()
+    presetTypography(),
+    presetIcons({
+      warn: true,
+      unit: '%',
+      scale: 100
+    })
   ],
   transformers: [
     transformerVariantGroup(),

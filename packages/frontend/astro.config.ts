@@ -6,10 +6,10 @@ import sitemap from '@astrojs/sitemap';
 import UnoCSS from 'unocss/astro';
 import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
-import Icons from 'unplugin-icons/vite';
 import compress from '@playform/compress';
 
 export default defineConfig({
+  /* @unocss-ignore */
   output: 'static',
   base: process.env.CI && process.env.STAGING ? process.env.BASE_URL : '/',
   site: process.env.CI && process.env.STAGING ? process.env.SITE_URL ?? '/' : 'https://www.bpm2025seville.org',
@@ -46,12 +46,6 @@ export default defineConfig({
     inlineStylesheets: 'never'
   },
   vite: {
-    cacheDir: resolve(import.meta.dirname, './node_modules/.vite'),
-    plugins: [Icons({
-      compiler: 'astro',
-      iconCustomizer(_, __, props) {
-        props['astro-icon'] = '';
-      }
-    })]
+    cacheDir: resolve(import.meta.dirname, './node_modules/.vite')
   }
 });

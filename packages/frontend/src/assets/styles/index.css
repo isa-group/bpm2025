@@ -21,14 +21,6 @@
   --at-apply: ease-in-out duration-150 transition-property-[opacity,background-color];
 }
 
-[astro-icon].icon-light > * {
-  stroke-width: 1.2;
-}
-
-[astro-icon].icon-bold > * {
-  stroke-width: 2.4;
-}
-
 [readonly],
 [disabled] {
   background-color: lightgray;
