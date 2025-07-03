@@ -8,6 +8,7 @@ import ProcessScience from '#/assets/images/sponsors/process-science.png';
 import GBTEC from '#/assets/images/sponsors/GBTEC.png';
 import Iterem from '#/assets/images/sponsors/iterem.png';
 import InteractSolutions from '#/assets/images/sponsors/interact.svg';
+import SAPSignavio from '#/assets/images/sponsors/SAP_Signavio.png';
 import DCRSolutions from '#/assets/images/sponsors/dcr-solutions.webp';
 
 export const sponsors: SponsorInfo[] = [
@@ -54,7 +55,17 @@ export const sponsors: SponsorInfo[] = [
         various industries identify and optimize their critical business processes. We invite you to explore
         how process excellence can be achieved without complex implementations or additional software investments.</p>
       `
-    }]
+    },
+    {
+      src: SAPSignavio,
+      alt: 'SAP Signavio',
+      href: 'https://www.signavio.com/',
+      description: `
+          Sharpen your competitive edge by making transformation a core capability. With SAP Signavio solutions,
+          focus on process excellence in business transformations and help bring your company vision to life.
+        `
+    }
+    ]
   },
   {
     category: 'Silver',
@@ -68,17 +79,17 @@ export const sponsors: SponsorInfo[] = [
         alt: 'GBTEC',
         href: 'https://www.gbtec.com/',
         description: `
-        GBTEC is a leading provider of SaaS software in the fields of Business Process Management (BPM),
-        Enterprise Architecture Management (EAM), Digital Process Automation (DPA), and Governance, Risk, and Compliance (GRC).
-        The extensive product portfolio of GBTEC includes Business Process Design & Modeling, Process Execution,
-        Process Mining, as well as Governance, Risk, and Compliance (GRC). The company is known for its modern and user-friendly
-        products, which are based on no-code and low-code technologies and a state-of-the-art product platform.
-        Customers also benefit from competent customer support and comprehensive training offerings.
-        The products of GBTEC are used by companies of all sizes, from SMEs to Fortune 500 companies,
-        as well as by public institutions. The company is headquartered in Bochum and employs around 300 employees at locations
-        in the DACH region, Spain, Australia, the UK and the USA.
-        <br /><br />
-        For more information, see <a href="https://www.gbtec.com/" class="underline">https://www.gbtec.com/</a>.
+          GBTEC is a leading provider of SaaS software in the fields of Business Process Management (BPM),
+          Enterprise Architecture Management (EAM), Digital Process Automation (DPA), and Governance, Risk, and Compliance (GRC).
+          The extensive product portfolio of GBTEC includes Business Process Design & Modeling, Process Execution,
+          Process Mining, as well as Governance, Risk, and Compliance (GRC). The company is known for its modern and user-friendly
+          products, which are based on no-code and low-code technologies and a state-of-the-art product platform.
+          Customers also benefit from competent customer support and comprehensive training offerings.
+          The products of GBTEC are used by companies of all sizes, from SMEs to Fortune 500 companies,
+          as well as by public institutions. The company is headquartered in Bochum and employs around 300 employees at locations
+          in the DACH region, Spain, Australia, the UK and the USA.
+          <br /><br />
+          For more information, see <a href="https://www.gbtec.com/" class="underline">https://www.gbtec.com/</a>.
       `
       },
       {
@@ -86,27 +97,27 @@ export const sponsors: SponsorInfo[] = [
         alt: 'Iterem',
         href: 'https://iterem.com/',
         description: `
-        We accompany organizations on their journey towards operational efficiency, process optimization, and digital innovation.
-        We offer a consultative and customized approach that integrates advanced process management solutions.
-        We guide businesses at every stage to ensure sustainable evolution aligned with their strategic objectives.
-        We design strategies, manage change, and empower teams to maximize the business impact of technology.
-        With a methodology that integrates people, processes, and technology, we help companies to visualize, control, and optimize their operations through:
-        <br />
-        <br />
-        <ul class="list-disc list-inside">
-          <li>Strategic consulting in BPM and Process architecture</li>
-          <li>Process automation</li>
-          <li>Process mining and operational intelligence</li>
-          <li>AI-based solutions</li>
-        </ul>
-        <br />
-        Our projects have enabled organizations ranging from public entities to private sector companies to significantly improve their processes and operations.
-        We have helped to optimize user service management, digitize administrative procedures and increase agility and accuracy in decision making, among others.
-        These projects have not only improved efficiency and transparency, but have also facilitated regulatory compliance, fostered innovation and
-        promoted new ways of working. At the 23rd International Conference on Business Process Management (BPM 2025), we look forward to sharing ideas,
-        experiences, and contributing to the advancement of BPM practices as part of this community dedicated to continuous improvement,
-        always with an eye on the future. We invite you to meet us at the venue so that we can share experiences and continue to drive the collective success of
-        process management.
+          We accompany organizations on their journey towards operational efficiency, process optimization, and digital innovation.
+          We offer a consultative and customized approach that integrates advanced process management solutions.
+          We guide businesses at every stage to ensure sustainable evolution aligned with their strategic objectives.
+          We design strategies, manage change, and empower teams to maximize the business impact of technology.
+          With a methodology that integrates people, processes, and technology, we help companies to visualize, control, and optimize their operations through:
+          <br />
+          <br />
+          <ul class="list-disc list-inside">
+            <li>Strategic consulting in BPM and Process architecture</li>
+            <li>Process automation</li>
+            <li>Process mining and operational intelligence</li>
+            <li>AI-based solutions</li>
+          </ul>
+          <br />
+          Our projects have enabled organizations ranging from public entities to private sector companies to significantly improve their processes and operations.
+          We have helped to optimize user service management, digitize administrative procedures and increase agility and accuracy in decision making, among others.
+          These projects have not only improved efficiency and transparency, but have also facilitated regulatory compliance, fostered innovation and
+          promoted new ways of working. At the 23rd International Conference on Business Process Management (BPM 2025), we look forward to sharing ideas,
+          experiences, and contributing to the advancement of BPM practices as part of this community dedicated to continuous improvement,
+          always with an eye on the future. We invite you to meet us at the venue so that we can share experiences and continue to drive the collective success of
+          process management.
       `
       },
       {
