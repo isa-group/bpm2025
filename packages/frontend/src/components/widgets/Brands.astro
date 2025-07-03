@@ -25,7 +25,7 @@ const {
   <Headline title={title} subtitle={subtitle} tagline={tagline} />
 
   <div class="flex flex-wrap justify-center gap-x-6 lg:gap-x-24 sm:gap-x-12">
-    {icons && icons.map(Icon => <Icon class="mx-auto h-auto w-12 py-3 text-gray-500 sm:mx-0 lg:py-5" />)}
+    {icons && icons.map(iconClass => <div class={`${iconClass} mx-auto h-auto w-12 py-3 text-gray-500 sm:mx-0 lg:py-5`} />)}
     {
       images
       && images.map(

@@ -35,7 +35,7 @@ const mergedIconClasses = twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2', defaultIconC
         containerClass
       )}
     >
-      {items.map(({ title, description, icon: IconElement, callsToAction, classes: itemClasses = {}, image, extraHtml }) => (
+      {items.map(({ title, description, icon: iconClass, callsToAction, classes: itemClasses = {}, image, extraHtml }) => (
         <div class="flex justify-between">
           {image
             && (
@@ -46,13 +46,15 @@ const mergedIconClasses = twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2', defaultIconC
             )}
           <div class="w-full flex">
             <div class={twMerge('max-w-md', panelClass, itemClasses?.panel)}>
-              {IconElement
-                ? <IconElement class={twMerge(mergedIconClasses, itemClasses?.icon)} />
-                : (
-                    <BSlot class={twMerge(mergedIconClasses, itemClasses?.icon)}>
-                      <slot name="default-icon" />
-                    </BSlot>
-                  )}
+              <BSlot class={twMerge(mergedIconClasses, itemClasses?.icon)}>
+                {iconClass
+                  ? (
+                      <div>
+                        <div class={iconClass} />
+                      </div>
+                    )
+                  : <slot name="default-icon" />}
+              </BSlot>
             </div>
             <div class="mt-0.5">
               {title && <h3 class={twMerge('text-xl font-bold', titleClass, itemClasses?.title)}>{title}</h3>}

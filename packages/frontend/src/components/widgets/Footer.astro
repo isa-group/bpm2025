@@ -77,14 +77,14 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
         socialLinks?.length
         && (
           <ul class="mb-4 flex md:order-1 -ml-2 md:mb-0 md:ml-4 rtl:ml-0 rtl:-mr-2 rtl:md:ml-0 rtl:md:mr-4">
-            {socialLinks.map(({ ariaLabel, href, text, icon: IconElement }) => (
+            {socialLinks.map(({ ariaLabel, href, text, icon: iconClass }) => (
               <li>
                 <a
                   class="inline-flex items-center rounded-lg p-2.5 text-sm text-muted hover:bg-gray-100 dark:text-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
                   aria-label={ariaLabel}
                   href={href}
                 >
-                  {IconElement && <IconElement class="h-5 w-5" />}
+                  {iconClass && <div class={`${iconClass} h-5 w-5`} />}
                   <Fragment set:html={text} />
                 </a>
               </li>

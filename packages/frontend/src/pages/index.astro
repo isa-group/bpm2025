@@ -10,10 +10,6 @@ import Sponsors from '#/components/ui/Sponsors.astro';
 import { Image } from 'astro:assets';
 import Avatar from '#/components/ui/Avatar.astro';
 
-import IHugeIconsTeacher from 'virtual:icons/hugeicons/teacher';
-import IMaterialSymbolsResearch from 'virtual:icons/material-symbols-light/lab-research';
-import IMaterialSymbolsForum from 'virtual:icons/material-symbols/forum';
-
 import SevilleCathedral from '#/assets/images/hero/cathedral.jpg';
 import BPMLogo from '#/assets/favicons/favicon.svg';
 import ManuelResinas_img from '#/assets/images/people/resinas.jpg';
@@ -79,19 +75,19 @@ const cathedralText = 'Cathedral of Seville';
             title:
           'Workshops <br class="hidden" /> <span class="font-normal hidden"></span> <br /> <span class="text-sm font-normal">1st of September</span>',
             // description: '[TO BE REDACTED]',
-            icon: IHugeIconsTeacher
+            icon: 'i-hugeicons:teacher'
           },
           {
             title:
           'Research tracks <br class="hidden" /> <span class="font-normal hidden"></span> <br /> <span class="text-sm font-normal">2nd - 4th of September</span>',
             // description: '[TO BE REDACTED]',
-            icon: IMaterialSymbolsResearch
+            icon: 'i-material-symbols-light:lab-research'
           },
           {
             title:
           'Forums, tutorials and demos <br class="hidden" /> <span class="font-normal hidden"></span> <br /> <span class="text-sm font-normal">2nd - 5th of September</span>',
             // description: '[TO BE REDACTED]',
-            icon: IMaterialSymbolsForum
+            icon: 'i-material-symbols:forum'
           }
         ]}
       />

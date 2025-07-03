@@ -12,17 +12,6 @@ import TrainlineLogo from '#/assets/images/arriving/trainline-logo.svg';
 import IberiaLogo from '#/assets/images/arriving/iberia-logo.jpg';
 import IryoLogo from '#/assets/images/arriving/iryo.png';
 import SantaJusta from '#/assets/images/arriving/santa-justa.png';
-
-import IMdiBus from 'virtual:icons/mdi/bus';
-import ITablerCalendarTime from 'virtual:icons/tabler/calendar-time';
-import IMdiTaxi from 'virtual:icons/mdi/taxi';
-import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
-import IParkSolidTicketsTwo from 'virtual:icons/icon-park-solid/tickets-two';
-import IMaterialSymbolsTrain from 'virtual:icons/material-symbols/train';
-import ITablerPlaneTilt from 'virtual:icons/tabler/plane-tilt';
-import IMaterialSymbolsInfoOutline from 'virtual:icons/material-symbols/info-outline';
-import IIconParkConnection from 'virtual:icons/icon-park-solid/connection';
-import IMaterialSymbolsSearchRounded from 'virtual:icons/material-symbols/search-rounded';
 ---
 
 <Layout
@@ -67,7 +56,7 @@ import IMaterialSymbolsSearchRounded from 'virtual:icons/material-symbols/search
         title: 'Airport bus (TUSSAM)',
         description: `Operate from the Airport from 05.20 A.M. to around 00.50 A.M. approximately.
           A single ticket costs 4 euros, round trip costs 6 euros. The journey time is approximately 35 minutes.`,
-        icon: IMdiBus,
+        icon: 'i-mdi:bus',
         image: {
           src: TussamEA,
           alt: 'Airport bus'
@@ -76,7 +65,7 @@ import IMaterialSymbolsSearchRounded from 'virtual:icons/material-symbols/search
           {
             text: 'Check the schedule',
             href: 'https://www.tussam.es/es/avisos-generales/horario-linea-especial-aeropuerto',
-            icon: ITablerCalendarTime,
+            icon: 'i-tabler:calendar-time',
             variant: 'secondary'
           }
         ]
@@ -85,7 +74,7 @@ import IMaterialSymbolsSearchRounded from 'virtual:icons/material-symbols/search
         title: 'Taxi',
         description: `Outside Seville Airport terminal there are several taxis waiting for the passengers.
         Travel time to the city center of Seville is about 30 minutes and costs around 20-31 euros.`,
-        icon: IMdiTaxi,
+        icon: 'i-mdi:taxi',
         image: {
           src: Teletaxi,
           alt: 'Teletaxi logo, the business that helps arrange taxis in Seville'
@@ -94,7 +83,7 @@ import IMaterialSymbolsSearchRounded from 'virtual:icons/material-symbols/search
           {
             text: 'Learn more',
             href: 'https://www.aena.es/en/sevilla/getting-there/taxi.html',
-            icon: ITablerChevronRight,
+            icon: 'i-tabler:chevron-right',
             variant: 'secondary'
           }
         ]
@@ -109,7 +98,7 @@ import IMaterialSymbolsSearchRounded from 'virtual:icons/material-symbols/search
         title: 'ALSA',
         description: `ALSA operates a bus line that goes from Malaga Airport to Seville’s main bus station: <b>Plaza de Armas</b>. 
         Their fares are usually around 20-30 euros and the total travel time is around 3 hours.`,
-        icon: IMdiBus,
+        icon: 'i-mdi:bus',
         image: {
           src: ALSALogo,
           alt: 'ALSA logo, the company that operates the bus line from Malaga to Seville'
@@ -118,7 +107,7 @@ import IMaterialSymbolsSearchRounded from 'virtual:icons/material-symbols/search
           {
             text: 'Purchase tickets',
             href: 'https://www.alsa.com/en/web/bus/airports/malaga-costa-del-sol',
-            icon: IParkSolidTicketsTwo,
+            icon: 'i-icon-park-solid:tickets-two',
             variant: 'secondary'
           }
         ]
@@ -145,7 +134,7 @@ import IMaterialSymbolsSearchRounded from 'virtual:icons/material-symbols/search
             Prices may vary depending on the fare, but you can expect an estimate of 46 euros per single ticket and a travel duration of 2 hours.
           </p>
         `,
-        icon: IMaterialSymbolsTrain,
+        icon: 'i-material-symbols:train',
         image: {
           src: RenfeLogo,
           alt: "Renfe logo, Spain's national state-owned railway company"
@@ -154,19 +143,19 @@ import IMaterialSymbolsSearchRounded from 'virtual:icons/material-symbols/search
           {
             text: 'Purchase tickets',
             href: 'https://www.renfe.com/es/en',
-            icon: IParkSolidTicketsTwo,
+            icon: 'i-icon-park-solid:tickets-two',
             variant: 'secondary'
           },
           {
             text: "About free 'Cercanías'",
             href: 'https://blog.renfe.com/asi-puedes-canjear-el-combinado-cercanias/',
-            icon: IMaterialSymbolsInfoOutline,
+            icon: 'i-material-symbols:info-outline',
             variant: 'secondary'
           },
           {
             text: 'Airport → AVE connection',
             href: 'https://www.aena.es/en/malaga-costa-del-sol/getting-there/trains.html',
-            icon: IIconParkConnection,
+            icon: 'i-icon-park-solid:connection',
             variant: 'secondary'
           }
         ]
@@ -180,7 +169,7 @@ import IMaterialSymbolsSearchRounded from 'virtual:icons/material-symbols/search
       {
         title: 'Iberia Express',
         description: 'Iberia Express operates daily connections from Madrid to Seville. The estimated flight duration is 1 hour.',
-        icon: ITablerPlaneTilt,
+        icon: 'i-tabler:plane-tilt',
         image: {
           src: IberiaLogo,
           alt: 'Logo of Iberia Express, one of the companies that operates flights between Madrid and Seville'
@@ -189,13 +178,13 @@ import IMaterialSymbolsSearchRounded from 'virtual:icons/material-symbols/search
           {
             text: 'Purchase tickets',
             href: 'https://www.iberiaexpress.com/',
-            icon: IParkSolidTicketsTwo,
+            icon: 'i-icon-park-solid:tickets-two',
             variant: 'secondary'
           },
           {
             text: 'Find other airlines',
             href: 'https://www.aena.es/en/adolfo-suarez-madrid-barajas/airlines-and-destinations/airlines.html',
-            icon: ITablerChevronRight,
+            icon: 'i-tabler:chevron-right',
             variant: 'secondary'
           }
         ]
@@ -217,7 +206,7 @@ import IMaterialSymbolsSearchRounded from 'virtual:icons/material-symbols/search
             Prices may vary depending on the fare, but you can expect an estimate of 56 euros per single ticket and a travel duration of 2 hours.
           </p>
         `,
-        icon: IMaterialSymbolsTrain,
+        icon: 'i-material-symbols:train',
         image: {
           src: RenfeLogo,
           alt: "Renfe logo, Spain's national state-owned railway company"
@@ -226,19 +215,19 @@ import IMaterialSymbolsSearchRounded from 'virtual:icons/material-symbols/search
           {
             text: 'Purchase tickets',
             href: 'https://www.renfe.com/es/en',
-            icon: IParkSolidTicketsTwo,
+            icon: 'i-icon-park-solid:tickets-two',
             variant: 'secondary'
           },
           {
             text: "About free 'Cercanías'",
             href: 'https://blog.renfe.com/asi-puedes-canjear-el-combinado-cercanias/',
-            icon: IMaterialSymbolsInfoOutline,
+            icon: 'i-material-symbols:info-outline',
             variant: 'secondary'
           },
           {
             text: 'Airport → AVE connection',
             href: 'https://www.aena.es/en/adolfo-suarez-madrid-barajas/getting-there/trains.html',
-            icon: IIconParkConnection,
+            icon: 'i-icon-park-solid:connection',
             variant: 'secondary'
           }
         ]
@@ -262,7 +251,7 @@ import IMaterialSymbolsSearchRounded from 'virtual:icons/material-symbols/search
             Prices may vary depending on the fare, but you can expect an estimate of 30 euros per single ticket and a travel duration of 2 hours.
           </p>
         `,
-        icon: IMaterialSymbolsTrain,
+        icon: 'i-material-symbols:train',
         image: {
           src: IryoLogo,
           alt: 'Logo of Iryo, another operator of high-speed trains in Spain'
@@ -271,19 +260,19 @@ import IMaterialSymbolsSearchRounded from 'virtual:icons/material-symbols/search
           {
             text: 'Purchase tickets',
             href: 'https://iryo.eu/en',
-            icon: IParkSolidTicketsTwo,
+            icon: 'i-icon-park-solid:tickets-two',
             variant: 'secondary'
           },
           {
             text: "About free 'Cercanías'",
             href: 'https://iryo.eu/en/conecta',
-            icon: IMaterialSymbolsInfoOutline,
+            icon: 'i-material-symbols:info-outline',
             variant: 'secondary'
           },
           {
             text: 'Airport → Iryo connection',
             href: 'https://www.aena.es/en/adolfo-suarez-madrid-barajas/getting-there/trains.html',
-            icon: IIconParkConnection,
+            icon: 'i-icon-park-solid:connection',
             variant: 'secondary'
           }
         ]
@@ -297,7 +286,7 @@ import IMaterialSymbolsSearchRounded from 'virtual:icons/material-symbols/search
       {
         title: 'Trainline',
         description: 'If you want to check other train offerings, you can book your ticket through Trainline.',
-        icon: IMaterialSymbolsTrain,
+        icon: 'i-material-symbols:train',
         image: {
           src: TrainlineLogo,
           alt: 'Trainline logo'
@@ -306,7 +295,7 @@ import IMaterialSymbolsSearchRounded from 'virtual:icons/material-symbols/search
           {
             text: 'Find tickets',
             href: 'https://www.thetrainline.com/es/descuentos-ofertas',
-            icon: IMaterialSymbolsSearchRounded,
+            icon: 'i-material-symbols:search-rounded',
             variant: 'secondary'
           }
         ]
@@ -327,7 +316,7 @@ import IMaterialSymbolsSearchRounded from 'virtual:icons/material-symbols/search
       {
         text: 'Learn more',
         href: 'https://www.adif.es/w/sevilla-santa-justa',
-        icon: ITablerChevronRight,
+        icon: 'i-tabler:chevron-right',
         variant: 'secondary'
       }
     ]}>

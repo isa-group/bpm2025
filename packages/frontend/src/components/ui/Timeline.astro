@@ -19,18 +19,20 @@ const mergedIconClasses = twMerge('w-10 h-10 p-2 rounded-full border-2', default
 {
   items && items.length && (
     <div class={containerClass}>
-      {items.map(({ title, description, icon: IconElement, classes: itemClasses = {} }, index = 0) => (
+      {items.map(({ title, description, icon: iconClass, classes: itemClasses = {} }, index = 0) => (
         <div class={twMerge('flex', panelClass, itemClasses?.panel)}>
           <div class="mr-4 flex flex-col items-center rtl:ml-4 rtl:mr-0">
             <div>
               <div class="flex items-center justify-center">
-                {IconElement
-                  ? <IconElement class={twMerge(mergedIconClasses, itemClasses?.icon)} />
-                  : (
-                      <BSlot class={twMerge(mergedIconClasses, itemClasses?.icon)}>
-                        <slot name="default-icon" />
-                      </BSlot>
-                    )}
+                <BSlot class={twMerge(mergedIconClasses, itemClasses?.icon)}>
+                  {iconClass
+                    ? (
+                        <div>
+                          <div class={iconClass} />
+                        </div>
+                      )
+                    : <slot name="default-icon" />}
+                </BSlot>
               </div>
             </div>
             {index !== items.length - 1 && <div class="h-full w-px bg-black/10 dark:bg-slate-400/50" />}

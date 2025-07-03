@@ -9,7 +9,7 @@ const {
   text,
   class: className = '',
   type,
-  icon: IconElement,
+  icon: iconClass,
   ...rest
 } = Astro.props;
 
@@ -26,7 +26,7 @@ const variants = {
     ? (
         <button type={type} class={twMerge(variants[variant] || '', className)} {...rest}>
           <ButtonContents text={text}>
-            {IconElement ? (<IconElement />) : (<slot name="icon" slot="icon" />)}
+            {iconClass ? (<div class={iconClass} />) : (<slot name="icon" slot="icon" />)}
           </ButtonContents>
         </button>
       )
@@ -37,7 +37,7 @@ const variants = {
           {...rest}
         >
           <ButtonContents text={text}>
-            {IconElement ? (<IconElement />) : (<slot name="icon" slot="icon" />)}
+            {iconClass ? (<div class={iconClass} />) : (<slot name="icon" slot="icon" />)}
           </ButtonContents>
         </a>
       )

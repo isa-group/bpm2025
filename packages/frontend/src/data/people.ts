@@ -50,9 +50,6 @@ import CarlosCapitan from '#/assets/images/people/CarlosCapitan.jpg';
 import RemcoDijkman from '#/assets/images/people/Remko-Dijkman.jpg';
 import DimkaKarastoyanova from '#/assets/images/people/Dimka_Karastoyanova.jpg';
 
-import IMdiUniversity from 'virtual:icons/mdi/university';
-import IHugeIconsGlobe from 'virtual:icons/hugeicons/globe';
-import ITablerMail from 'virtual:icons/tabler/mail';
 import type { Testimonial } from '#/types';
 
 interface ConferenceMember {
@@ -896,24 +893,24 @@ export function toTestimonial(
     items: [
       ...(m.institution
         ? ([{
-            icon: IMdiUniversity,
+            icon: 'i-mdi:university',
             description: m.institution,
             classes
-          }])
+          } as const])
         : []),
       ...(m.location
         ? ([{
-            icon: IHugeIconsGlobe,
+            icon: 'i-hugeicons:globe',
             description: m.location,
             classes
-          }])
+          } as const])
         : []),
       ...(m.email
         ? ([{
-            icon: ITablerMail,
+            icon: 'i-tabler:mail',
             description: `<a href="mailto:${m.email}" class="underline">${m.email}</a>`,
             classes
-          }])
+          } as const])
         : [])
     ],
     ...(m.image && ({

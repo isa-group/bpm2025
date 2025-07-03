@@ -1,8 +1,6 @@
 import type { CallForPapers, CallToAction, MenuLink } from '#/types';
 import type { Props as FooterProps } from '#/components/widgets/Footer.astro';
 import { getAsset, getPermalink, trimSlash } from '#/utils/permalinks';
-import ITablerBrandX from 'virtual:icons/tabler/brand-x';
-import ITablerMail from 'virtual:icons/tabler/mail';
 import { conferenceChairs } from '#/data/people';
 
 const matches = import.meta.glob('../pages/calls/*.mdx', { eager: true });
@@ -265,7 +263,7 @@ export const getFooterData = (): FooterData => ({
     { text: 'Sitemap', href: getAsset('/sitemap-index.xml') }
   ],
   socialLinks: [
-    { ariaLabel: 'X', icon: ITablerBrandX, href: 'https://x.com/bpmconf' },
-    { ariaLabel: 'Email', icon: ITablerMail, href: 'mailto:info@bpm2025seville.org' }
+    { ariaLabel: 'X', icon: 'i-tabler:brand-x', href: 'https://x.com/bpmconf' },
+    { ariaLabel: 'Email', icon: 'i-tabler:mail', href: 'mailto:info@bpm2025seville.org' }
   ]
 });

@@ -2,8 +2,6 @@
 import Layout from '#/layouts/PageLayout.astro';
 import Content from '#/components/widgets/Content.astro';
 import CallToAction from '#/components/widgets/CallToAction.astro';
-import TablerDownload from 'virtual:icons/tabler/download';
-import TablerMail from 'virtual:icons/tabler/mail';
 import pdfBrochure from '#/assets/documents/sponsoring/BPM2025-sponsoring-offer_EN.pdf';
 
 const contactEmail = 'mailto:info@bpm2025seville.org';
@@ -15,8 +13,8 @@ const contactEmail = 'mailto:info@bpm2025seville.org';
   }}
   heroProps={{
     actions: [
-      { variant: 'primary', text: 'Download brochure', icon: TablerDownload, href: pdfBrochure },
-      { variant: 'primary', text: 'Contact us', icon: TablerMail, href: contactEmail }
+      { variant: 'primary', text: 'Download brochure', icon: 'i-tabler:download', href: pdfBrochure },
+      { variant: 'primary', text: 'Contact us', icon: 'i-tabler:mail', href: contactEmail }
     ]
   }}>
   <Content
@@ -27,7 +25,7 @@ const contactEmail = 'mailto:info@bpm2025seville.org';
       {
         text: 'Download the BPM 2025 sponsorship brochure',
         href: pdfBrochure,
-        icon: TablerDownload,
+        icon: 'i-tabler:download',
         variant: 'secondary'
       }]}>
     <Fragment slot="content">
