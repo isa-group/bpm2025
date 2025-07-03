@@ -86,6 +86,15 @@ const formDescription = `
         name: 'discount_code',
         label: 'Discount code (if you have one)'
       },
+      {
+        type: 'text',
+        name: 'article_id',
+        label: 'Article ID',
+        description: `
+          If you are a BPM2025 author, please provide the article ID of your paper. We assigned it to you during the submission process
+          and you can find it in your review email.
+        `
+      },
       // Product id marker for the backend
       {
         type: 'hidden',
@@ -183,6 +192,17 @@ const formDescription = `
       const formRef = document.getElementById('payment-form') as HTMLFormElement;
       const _spinner = document.getElementById(spinnerId) as HTMLButtonElement;
       const button = document.getElementById(submitId)?.cloneNode(true) as HTMLButtonElement;
+      const article_id_input = formRef.querySelector('[name="article_id"]') as HTMLInputElement;
+      const is_student_checkbox = formRef.querySelector('[name="is_student"]') as HTMLInputElement;
+
+      article_id_input?.addEventListener('change', () => {
+        if (article_id_input.value.trim()) {
+          is_student_checkbox.checked = false;
+          is_student_checkbox.disabled = true;
+        } else {
+          is_student_checkbox.disabled = false;
+        }
+      });
 
       _spinner.classList.remove(_class);
       const spinner = _spinner.cloneNode(true);
@@ -275,7 +295,7 @@ const formDescription = `
         obj['is_student'] = true;
       }
 
-      for (const key of ['notes', 'institution']) {
+      for (const key of ['notes', 'institution', 'discount_code', 'article_id']) {
         if (obj[key] === '') {
           delete obj[key];
         }
