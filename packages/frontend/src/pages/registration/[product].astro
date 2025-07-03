@@ -4,8 +4,6 @@ import Layout from '#/layouts/PageLayout.astro';
 import Button from '#/components/ui/Button/Button.astro';
 import { getPermalink } from '#/utils/permalinks';
 
-import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
-import ISpinner from 'virtual:icons/svg-spinners/ring-resize';
 import countries from 'world-countries';
 import tickets from '#/data/tickets';
 
@@ -143,7 +141,7 @@ const formDescription = `
       text: 'Validate',
       variant: 'secondary',
       id: 'submit-button',
-      icon: ITablerChevronRight
+      icon: 'i-tabler:chevron-right'
     }}
     description={formDescription}
   />
@@ -153,7 +151,7 @@ const formDescription = `
     variant="tertiary"
     type="button"
     class="hidden"
-    icon={ISpinner} />
+    icon="i-svg-spinners:ring-resize" />
 </Layout>
 
 <script>

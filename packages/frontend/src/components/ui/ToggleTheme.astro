@@ -1,8 +1,5 @@
 ---
 import { ui } from '#/config.json';
-import IMdiTablerSun from 'virtual:icons/tabler/sun';
-import IMdiTablerMoon from 'virtual:icons/tabler/moon';
-import { twMerge } from 'tailwind-merge';
 
 export interface Props {
   label?: string;
@@ -14,25 +11,17 @@ const {
   label = 'Toggle between Dark and Light mode',
   class:
     className = 'text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center',
-  iconClass = 'w-6 h-6'
+  iconClass = '!w-6 !h-6'
 } = Astro.props;
 ---
 
 {
   !(ui.theme && ui.theme.endsWith(':only')) && (
     <button type="button" class={className} aria-label={label} data-aw-toggle-color-scheme>
-      <IMdiTablerSun class={twMerge(iconClass, 'icon-sun')} />
-      <IMdiTablerMoon class={twMerge(iconClass, 'icon-moon')} />
+      <div class:list={[
+        '[:root.dark_&]:i-tabler:sun i-tabler:moon',
+        iconClass
+      ]} />
     </button>
   )
 }
-
-<style>
-:root.dark .icon-moon {
-  display: none !important;
-}
-
-:root:not(.dark) .icon-sun {
-  display: none !important;
-}
-</style>

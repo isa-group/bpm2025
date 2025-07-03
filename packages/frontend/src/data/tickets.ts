@@ -1,20 +1,18 @@
-import ITablerX from 'virtual:icons/tabler/x';
-import IClarityInfoStandardLine from 'virtual:icons/clarity/info-standard-line';
 import type { Price } from '#/types';
 
 const currency = '€';
 const disadvantage = {
-  icon: ITablerX,
+  icon: 'i-tabler:x',
   classes: {
     icon: 'bg-red-500'
   }
-};
+} as const;
 const neutral = {
-  icon: IClarityInfoStandardLine,
+  icon: 'i-clarity:info-standard-line',
   classes: {
     icon: 'bg-slate-500'
   }
-};
+} as const;
 
 export default [
   {

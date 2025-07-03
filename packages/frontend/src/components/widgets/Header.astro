@@ -1,6 +1,4 @@
 ---
-import ITablerChevronDown from 'virtual:icons/tabler/chevron-down';
-import ITablerRss from 'virtual:icons/tabler/rss';
 import Logo from '#/components/ui/Logo.astro';
 import ToggleTheme from '#/components/ui/ToggleTheme.astro';
 import ToggleMenu from '#/components/ui/ToggleMenu.astro';
@@ -85,7 +83,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                     <>
                       <span class="hover:text-link flex cursor-pointer items-center px-4 py-3 dark:hover:text-white">
                         {text}{' '}
-                        <ITablerChevronDown class="ml-0.5 hidden h-3.5 w-3.5 rtl:ml-0 rtl:mr-0.5 lg:inline" />
+                        <div class="i-tabler:chevron-down ml-0.5 hidden h-3.5 w-3.5 rtl:ml-0 rtl:mr-0.5 lg:inline" />
                       </span>
                       <ul class="dropdown-menu rounded pl-4 font-medium drop-shadow-xl lg:absolute lg:hidden lg:min-w-[200px] lg:bg-white/90 lg:pl-0 lg:backdrop-blur-md dark:lg:bg-dark">
                         {links.map(({ text: text2, href: href2 }) => (
@@ -128,7 +126,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     >
       <div class="w-full flex items-center justify-between lg:w-auto">
         <div class="flex">
-          {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 lg:w-5 lg:h-5 lg:inline-block" />}
+          {showToggleTheme && <ToggleTheme iconClass="!w-6 !h-6 !lg:w-5 !lg:h-5 lg:inline-block" />}
           {
             showRssFeed && (
               <a
@@ -136,7 +134,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                 aria-label="RSS Feed"
                 href={getAsset('/rss.xml')}
               >
-                <ITablerRss class="h-5 w-5" />
+                <div class="i-tabler:rss h-5 w-5" />
               </a>
             )
           }

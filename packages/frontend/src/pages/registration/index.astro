@@ -7,17 +7,6 @@ import Headline from '#/components/ui/Headline.astro';
 import CallToAction from '#/components/widgets/CallToAction.astro';
 import { getPermalink } from '#/utils/permalinks';
 import tickets from '#/data/tickets';
-
-import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
-import ITablerFileCheck from 'virtual:icons/tabler/file-check';
-import ITablerTicketOff from 'virtual:icons/tabler/ticket-off';
-import ITablerCalendarMonth from 'virtual:icons/tabler/calendar-month';
-import ITablerCreditCard from 'virtual:icons/tabler/credit-card';
-import ITablerCreditCardRefund from 'virtual:icons/tabler/credit-card-refund';
-import ITablerPigMoney from 'virtual:icons/tabler/pig-money';
-import ITablerPigOff from 'virtual:icons/tabler/pig-off';
-import ITablerPodium from 'virtual:icons/tabler/podium';
-
 ---
 
 <Layout
@@ -37,7 +26,7 @@ import ITablerPodium from 'virtual:icons/tabler/podium';
         text: 'Register now',
         variant: 'primary',
         href: getPermalink(`/registration/${index + 1}`),
-        icon: ITablerChevronRight
+        icon: 'i-tabler:chevron-right'
       }
     }))}
   />
@@ -50,7 +39,7 @@ import ITablerPodium from 'virtual:icons/tabler/podium';
           (e.g. a student card including the academic year). You are eligible for the "Student fee" if you are a student in the academic year 2024-2025.
           In case you are not able to provide a proof in time, your student registration will be automatically cancelled.
         `,
-        icon: ITablerPigMoney
+        icon: 'i-tabler:pig-money'
       },
       {
         description: `
@@ -58,7 +47,7 @@ import ITablerPodium from 'virtual:icons/tabler/podium';
           (i.e., the only one among the authors who is present at the event) of a paper accepted at a workshop/co-located
           event/main conference, then you need to buy a regular registration, regardless of whether or not you are a student.
         `,
-        icon: ITablerPigOff
+        icon: 'i-tabler:pig-off'
       },
       {
         description: `
@@ -66,7 +55,7 @@ import ITablerPodium from 'virtual:icons/tabler/podium';
           the participation to the Doctoral Consortium is free of charge. If you want to attend the rest of the
           workshops and/or conference, you can register as a student.
         `,
-        icon: ITablerPodium
+        icon: 'i-tabler:podium'
       }
     ]} />
     <br />
@@ -81,7 +70,7 @@ import ITablerPodium from 'virtual:icons/tabler/podium';
             Eres elegible para la "tarifa de estudiante" si eres estudiante en el año académico 2024-2025.
             En caso de no poder proporcionar una prueba a tiempo, tu registro de estudiante se cancelará.
           `,
-            icon: ITablerPigMoney
+            icon: 'i-tabler:pig-money'
           },
           {
             description: `
@@ -90,7 +79,7 @@ import ITablerPodium from 'virtual:icons/tabler/podium';
             en un taller/evento co-ubicado/conferencia principal, entonces necesitas adquirir un 
             registro regular, independientemente de si eres estudiante o no.
           `,
-            icon: ITablerPigOff
+            icon: 'i-tabler:pig-off'
           },
           {
             description: `
@@ -98,7 +87,7 @@ import ITablerPodium from 'virtual:icons/tabler/podium';
             la participación en el Doctoral Consortium es gratuita. 
             Si deseas asistir al resto de los talleres y/o a la conferencia, puedes registrarte como estudiante.
           `,
-            icon: ITablerPodium
+            icon: 'i-tabler:podium'
           }
         ]}
       />
@@ -109,7 +98,7 @@ import ITablerPodium from 'virtual:icons/tabler/podium';
     <ItemList items={[
       {
         description: 'The registration of participation is binding.',
-        icon: ITablerFileCheck
+        icon: 'i-tabler:file-check'
       },
       {
         description: `
@@ -117,20 +106,20 @@ import ITablerPodium from 'virtual:icons/tabler/podium';
           and you are not a presenting author of an accepted paper, you get 80% back of the registration fee.
           In all other cases, the financial responsibilities of the participants remain fully effective.
         `,
-        icon: ITablerTicketOff
+        icon: 'i-tabler:ticket-off'
       },
       {
         description: `
           The registration fees are owed upon registration and are payable within 7 days
           following submission of the registration (but not later than 7 days before the starting day of the event).
         `,
-        icon: ITablerCalendarMonth
+        icon: 'i-tabler:calendar-month'
       },
       {
         description: `
           Participation is not guaranteed until full payment of the registration fee is received.
         `,
-        icon: ITablerCreditCard
+        icon: 'i-tabler:credit-card'
       },
       {
         description: `
@@ -138,7 +127,7 @@ import ITablerPodium from 'virtual:icons/tabler/podium';
           the organizer will have no further liability to the client.
           In case the conference must be postponed, registrations remain valid.
         `,
-        icon: ITablerCreditCardRefund
+        icon: 'i-tabler:credit-card-refund'
       }
     ]} />
     <br />
@@ -148,7 +137,7 @@ import ITablerPodium from 'virtual:icons/tabler/podium';
         items={[
           {
             description: 'La inscripción para participar es obligatoria.',
-            icon: ITablerFileCheck
+            icon: 'i-tabler:file-check'
           },
           {
             description: `
@@ -158,7 +147,7 @@ import ITablerPodium from 'virtual:icons/tabler/podium';
             En todos los demás casos, las responsabilidades financieras de los participantes 
             permanecen plenamente vigentes.
           `,
-            icon: ITablerTicketOff
+            icon: 'i-tabler:ticket-off'
           },
           {
             description: `
@@ -166,14 +155,14 @@ import ITablerPodium from 'virtual:icons/tabler/podium';
             dentro de los 7 días posteriores al envío de la inscripción 
             (pero no más tarde de 7 días antes del día de inicio del evento).
           `,
-            icon: ITablerCalendarMonth
+            icon: 'i-tabler:calendar-month'
           },
           {
             description: `
             La participación no está garantizada hasta que se reciba el pago completo 
             de la cuota de inscripción.
           `,
-            icon: ITablerCreditCard
+            icon: 'i-tabler:credit-card'
           },
           {
             description: `
@@ -181,7 +170,7 @@ import ITablerPodium from 'virtual:icons/tabler/podium';
             En ese caso, el organizador no tendrá ninguna otra responsabilidad con el cliente. 
             En caso de que la conferencia deba aplazarse, las inscripciones siguen siendo válidas.
           `,
-            icon: ITablerCreditCardRefund
+            icon: 'i-tabler:credit-card-refund'
           }
         ]}
       />
@@ -196,7 +185,7 @@ import ITablerPodium from 'virtual:icons/tabler/podium';
         variant: 'primary',
         text: 'Read terms & conditions',
         href: getPermalink('/terms/registration'),
-        icon: ITablerChevronRight
+        icon: 'i-tabler:chevron-right'
       }
     ]}
   />

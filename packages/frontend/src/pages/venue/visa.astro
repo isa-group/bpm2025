@@ -3,9 +3,6 @@ import Layout from '#/layouts/PageLayout.astro';
 import Compass from '#/assets/images/hero/compass.jpg';
 import Content from '#/components/widgets/Content.astro';
 
-import ITablerChevronRight from 'virtual:icons/tabler/chevron-right';
-import ITablerPointFilled from 'virtual:icons/tabler/point-filled';
-
 import { getPermalink } from '#/utils/permalinks';
 
 import PassportImg from '#/assets/images/visa/visa.jpg';
@@ -66,7 +63,7 @@ import Invitation from '#/assets/images/visa/invitation.jpg';
       {
         text: 'Find requisites from country of origin',
         href: 'https://www.exteriores.gob.es/en/ServiciosAlCiudadano/Paginas/Servicios-consulares.aspx',
-        icon: ITablerChevronRight,
+        icon: 'i-tabler:chevron-right',
         variant: 'secondary'
       }]}>
     <Fragment slot="content">
@@ -121,27 +118,27 @@ import Invitation from '#/assets/images/visa/invitation.jpg';
     items={[
       {
         description: 'Name (as it appears on your passport) and mailing address',
-        icon: ITablerPointFilled
+        icon: 'i-tabler:point-filled'
       },
       {
         description: 'Your passport ID and date of birth',
-        icon: ITablerPointFilled
+        icon: 'i-tabler:point-filled'
       },
       {
         description: 'Your registration confirmation number',
-        icon: ITablerPointFilled
+        icon: 'i-tabler:point-filled'
       },
       {
         description: 'The title of your accepted paper (if applicable)',
-        icon: ITablerPointFilled
+        icon: 'i-tabler:point-filled'
       },
       {
         description: 'EasyChair ID (if applicable, if you submitted to a workshop also the workshop name)',
-        icon: ITablerPointFilled
+        icon: 'i-tabler:point-filled'
       },
       {
         description: 'A fax number or an email address to where we can send the letter',
-        icon: ITablerPointFilled
+        icon: 'i-tabler:point-filled'
       }
     ]}>
     <Fragment slot="content">

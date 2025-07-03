@@ -1,5 +1,4 @@
 ---
-import IMdiTablerCheck from 'virtual:icons/tabler/check';
 import Button from '#/components/ui/Button/Button.astro';
 import Headline from '#/components/ui/Headline.astro';
 import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
@@ -62,9 +61,7 @@ const iconClasses = 'w-5 h-5 font-bold p-1 text-white';
                     ({ title, description, icon: CustomIcon, classes }) => (
                       <li class="mb-1.5 flex items-start leading-7 space-x-3">
                         <div class={twMerge('rounded-full bg-primary mt-1', classes?.icon)}>
-                          {CustomIcon
-                            ? <CustomIcon class={iconClasses} />
-                            : <IMdiTablerCheck class={iconClasses} />}
+                          <div class:list={[iconClasses, CustomIcon ?? 'i-tabler:check']} />
                         </div>
                         <span>
                           {title && (
