@@ -24,10 +24,7 @@
 [readonly],
 [disabled] {
   background-color: lightgray;
-}
-
-[readonly]:hover,
-[disabed]:hover {
+  user-select: none !important;
   cursor: not-allowed !important;
   pointer-events: none !important;
 }
