@@ -41,7 +41,7 @@ const {
         <div class="relative md:basis-1/2">
           {/* @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 */}
           <Image
-            class="inset-0 w-full rounded-md bg-gray-400 object-cover object-top shadow-lg md:absolute md:h-full dark:bg-slate-700"
+            class="rounded-md bg-gray-400 w-full shadow-lg inset-0 object-cover object-top dark:bg-slate-700 md:h-full md:absolute"
             sizes="(max-width: 768px) 100vw, 432px"
             height={768}
             {...image}

@@ -19,7 +19,7 @@ const {
   (() => {
     const imageLayout = (
       <div
-        class="gradient dark:[--bg-color:var(--aw-color-bg-page-dark)] lg:absolute lg:w-[38%]"
+        class="gradient lg:w-[38%] dark:[--bg-color:var(--aw-color-bg-page-dark)] lg:absolute"
         class:list={{
           'lg:left-0 lg:inset-0 gradient-left': isReversed,
           'lg:right-0 lg:top-0 lg:bottom-0 gradient-right': !isReversed
@@ -36,7 +36,7 @@ const {
     );
     const descriptionLayout = (
       <div
-        class="min-w-[60%] p-4 lg:p-0"
+        class="p-4 min-w-[60%] lg:p-0"
         class:list={{
           'lg:ml-[40%]': isReversed,
           'lg:mr-[40%]': !isReversed

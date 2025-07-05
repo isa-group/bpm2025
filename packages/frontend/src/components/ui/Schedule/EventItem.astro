@@ -50,7 +50,7 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
 ---
 
 <div
-  class="event-item relative h[var(--duration)] w-full cursor-pointer overflow-hidden break-words rounded-md bg-white px-3 py-2 hyphens-auto transition-all duration-200 hover:z-10 hover:h-auto hover:min-h-[var(--duration)] hover:transform-scale-115 hover:transform md:px-1.5 md:py-1 hover:shadow-lg hover:-translate-y-0.5"
+  class="event-item px-3 py-2 rounded-md bg-white h[var(--duration)] w-full cursor-pointer break-words transition-all duration-200 relative overflow-hidden hyphens-auto md:px-1.5 md:py-1 hover:h-auto hover:min-h-[var(--duration)] hover:shadow-lg hover:transform-scale-115 hover:transform hover:z-10 hover:-translate-y-0.5"
   lang="es"
   style={{
     'top': `${startMinute}%`,
@@ -58,16 +58,16 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
     '--duration': `${duration}%`
   }}>
   <div
-    class="absolute inset-0"
+    class="inset-0 absolute"
     style={{
       backgroundColor: `${bgColor}15`
     }}
   >
     <div class="p-1">
-      <div class="mb-1 text-[0.7rem] text-gray-700 font-semibold hyphens-auto opacity-80 lg:text-[0.6rem] md:text-[0.6rem]">{formatTime(event.start)} - {formatTime(endTime)}</div>
-      <div class="mb-1 text-[0.8rem] text-gray-800 font-semibold leading-tight hyphens-auto lg:text-xs md:text-[0.7rem]">{event.title}</div>
-      {event.location && <div class="mb-1 flex items-center gap-0.5 text-[0.7rem] text-gray-600 hyphens-auto lg:text-[0.6rem] md:text-[0.7rem]">📍 {event.location}</div>}
-      {event.description && <div class="line-clamp-3 text-[0.7rem] text-gray-600 leading-tight hyphens-auto lg:text-[0.6rem] md:text-[0.7rem]">{event.description}</div>}
+      <div class="text-[0.7rem] text-gray-700 font-semibold mb-1 opacity-80 hyphens-auto lg:text-[0.6rem] md:text-[0.6rem]">{formatTime(event.start)} - {formatTime(endTime)}</div>
+      <div class="text-[0.8rem] text-gray-800 leading-tight font-semibold mb-1 hyphens-auto lg:text-xs md:text-[0.7rem]">{event.title}</div>
+      {event.location && <div class="text-[0.7rem] text-gray-600 mb-1 flex gap-0.5 items-center hyphens-auto lg:text-[0.6rem] md:text-[0.7rem]">📍 {event.location}</div>}
+      {event.description && <div class="text-[0.7rem] text-gray-600 leading-tight hyphens-auto line-clamp-3 lg:text-[0.6rem] md:text-[0.7rem]">{event.description}</div>}
     </div>
   </div>
 </div>

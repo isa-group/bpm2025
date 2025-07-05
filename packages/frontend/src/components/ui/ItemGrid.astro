@@ -44,7 +44,7 @@ const mergedIconClasses = twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2', defaultIconC
                 <Image inferSize class="object-contain" {...image} />
               </div>
             )}
-          <div class="w-full flex">
+          <div class="flex w-full">
             <div class={twMerge('max-w-md', panelClass, itemClasses?.panel)}>
               <BSlot class={twMerge(mergedIconClasses, itemClasses?.icon)}>
                 {iconClass

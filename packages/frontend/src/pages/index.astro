@@ -30,13 +30,13 @@ const cathedralText = 'Cathedral of Seville';
     for researchers and practitioners in the field of Business Process Management.
   </Fragment>
 
-  <div class="w-full flex justify-center print:hidden lg:-mb-12" slot="hero-content">
+  <div class="flex w-full justify-center print:hidden lg:-mb-12" slot="hero-content">
     <div class="hero-picture-container mx-12 lg:-mb-60">
       <figure class="hero-picture border-4 border-white bg-white lg:border-8">
         <picture>
           <Image class="bg-black" src={BPMLogo} alt="Logo BPM 2025" width={300} height={300} loading="eager" />
         </picture>
-        <figcaption class="pt-3 text-center font-bold dark:text-black">
+        <figcaption class="font-bold pt-3 text-center dark:text-black">
           BPM 2025
         </figcaption>
       </figure>
@@ -44,7 +44,7 @@ const cathedralText = 'Cathedral of Seville';
         <picture>
           <Image class="bg-black" src={SevilleCathedral} width={352} height={312} alt={cathedralText} loading="eager" />
         </picture>
-        <figcaption class="pt-3 text-center font-bold dark:text-black">
+        <figcaption class="font-bold pt-3 text-center dark:text-black">
           <a href="https://www.catedraldesevilla.es/" target="_blank">{cathedralText}</a>
         </figcaption>
       </figure>
@@ -98,7 +98,7 @@ const cathedralText = 'Cathedral of Seville';
 
   <Content bg>
     <Fragment slot="content">
-      <div class="flex justify-center gap-2">
+      <div class="flex gap-2 justify-center">
         <Avatar
           xl
           image={{

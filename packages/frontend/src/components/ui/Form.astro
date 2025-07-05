@@ -22,7 +22,7 @@ const elemClasses = 'block w-full border border-gray-200 rounded-lg bg-white px-
         input.name && (
           <div class="mb-6">
             {input.label && (
-              <label for={input.name} class="block text-sm font-medium">
+              <label for={input.name} class="text-sm font-medium block">
                 <Fragment set:html={input.label} />
                 {input.required && (
                   <span class="text-red-500" aria-hidden="true">*</span>
@@ -50,7 +50,7 @@ const elemClasses = 'block w-full border border-gray-200 rounded-lg bg-white px-
                   />
                 )}
             {input.description && (
-              <p class="mt-1 text-[14px] text-gray-600 dark:text-gray-400">
+              <p class="text-[14px] text-gray-600 mt-1 dark:text-gray-400">
                 <Fragment set:html={input.description} />
               </p>
             )}
@@ -63,7 +63,7 @@ const elemClasses = 'block w-full border border-gray-200 rounded-lg bg-white px-
     textarea && (
       <div>
         {textarea.label && (
-          <label for="textarea" class="block text-sm font-medium">
+          <label for="textarea" class="text-sm font-medium block">
             <Fragment set:html={textarea.label} />
             {textarea.required && (
               <span class="text-red-500" aria-hidden="true">*</span>
@@ -87,12 +87,12 @@ const elemClasses = 'block w-full border border-gray-200 rounded-lg bg-white px-
           <input
             {...d}
             type="checkbox"
-            class="text-md mt-1 block w-full cursor-pointer border border-gray-200 rounded-lg bg-white px-4 py-3 dark:border-gray-700 dark:bg-slate-900"
+            class="text-md mt-1 px-4 py-3 border border-gray-200 rounded-lg bg-white w-full block cursor-pointer dark:border-gray-700 dark:bg-slate-900"
           />
         </div>
         <div class="ml-3">
           {d.label && (
-            <label for={d.id} class="cursor-pointer select-none text-sm text-gray-600 dark:text-gray-400">
+            <label for={d.id} class="text-sm text-gray-600 cursor-pointer select-none dark:text-gray-400">
               <Fragment set:html={d.label} />
               {d.required && (
                 <span class="text-red-500" aria-hidden="true">*</span>
@@ -106,7 +106,7 @@ const elemClasses = 'block w-full border border-gray-200 rounded-lg bg-white px-
 
   {
     button && (
-      <div class="grid mt-10">
+      <div class="mt-10 grid">
         <Button variant="primary" type="submit" {...button} />
       </div>
     )

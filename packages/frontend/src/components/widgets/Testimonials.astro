@@ -21,7 +21,7 @@ const {
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
   <Headline title={title} subtitle={subtitle} tagline={tagline} />
-  <div class="grid gap-6 lg:grid-cols-3 sm:grid-cols-2">
+  <div class="gap-6 grid lg:grid-cols-3 sm:grid-cols-2">
     {
       testimonials
       && testimonials.map(t => (
@@ -31,7 +31,7 @@ const {
   </div>
   {
     callToAction && (
-      <div class="mx-auto mt-8 w-fit flex justify-center font-medium md:mt-12">
+      <div class="font-medium mx-auto mt-8 flex w-fit justify-center md:mt-12">
         <Button {...callToAction} />
       </div>
     )
