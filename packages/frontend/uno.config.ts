@@ -40,7 +40,7 @@ export default defineConfig({
       dark: '#030620',
       primary: '#0161ef',
       secondary: '#0154cf',
-      //accent: '#6d28d9',
+      // accent: '#6d28d9',
       default: '#101010',
       muted: '#101010a8'
     },

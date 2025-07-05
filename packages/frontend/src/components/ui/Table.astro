@@ -35,11 +35,11 @@ const columns = (() => {
 })();
 ---
 <div class:list={['mt-4 h-full w-full', classes.container]}>
-  <div class="h-full flex flex-col overflow-hidden rounded-xl bg-white shadow-md">
+  <div class="rounded-xl bg-white flex flex-col h-full shadow-md overflow-hidden">
     {title && (
-      <div class="border-b border-gray-200 bg-gray-50 px-6 py-5">
+      <div class="px-6 py-5 border-b border-gray-200 bg-gray-50">
         <h3
-          class="m-0 text-xl text-gray-800 font-semibold"
+          class="text-xl text-gray-800 font-semibold m-0"
           set:html={title} />
       </div>
     )}
@@ -52,7 +52,7 @@ const columns = (() => {
             <col class="min-w-[180px]" />
           ))}
         </colgroup>
-        <thead class="sticky top-0 z-1">
+        <thead class="top-0 sticky z-1">
           <tr>
             {(showRowIndex || highlightFirstColumn) && (
               <>
@@ -73,12 +73,12 @@ const columns = (() => {
             )}
             {columns.slice(highlightFirstColumn ? 1 : 0).map(c => (
               <th
-                class="h-20 border-b border-r border-gray-200 bg-gray-50 font-semibold lg:h-20 md:h-16 last:border-r-0 md:px-1"
+                class="font-semibold border-b border-r border-gray-200 bg-gray-50 h-20 md:px-1 last:border-r-0 lg:h-20 md:h-16"
                 scope="col">
                 {isFunc(c)
                   ? c
                   : (
-                      <div class="h-full flex flex-col items-center justify-center">
+                      <div class="flex flex-col h-full items-center justify-center">
                         <div
                           class="text-lg text-gray-800 lg:text-base md:text-sm"
                           set:html={c} />
@@ -92,7 +92,7 @@ const columns = (() => {
           {rows.map((row, rowIndex) => (
             <tr>
               {(highlightFirstColumn || showRowIndex) && (
-                <th class="h-24 border-b border-r border-gray-100 border-gray-200 bg-gray-50 xl:h-16" scope="row">
+                <th class="border-b border-r border-gray-100 border-gray-200 bg-gray-50 h-24 xl:h-16" scope="row">
                   {highlightFirstColumn && isFunc(row.get(columns[0]!))
                     ? row.get(columns[0]!)
                     : (
@@ -108,11 +108,11 @@ const columns = (() => {
                 </th>
               )}
               {columns.slice(highlightFirstColumn ? 1 : 0).map(columnName => (
-                <td class="relative h-24 border-b border-r border-gray-100 border-gray-200 p-0 xl:h-16 last:border-r-0" role="gridcell">
+                <td class="p-0 border-b border-r border-gray-100 border-gray-200 h-24 relative last:border-r-0 xl:h-16" role="gridcell">
                   {isFunc(row.get(columnName))
                     ? row.get(columnName)
                     : (
-                        <div class="h-full w-full flex items-center justify-center p-2">
+                        <div class="p-2 flex h-full w-full items-center justify-center">
                           <span
                             class="text-sm text-gray-700"
                             set:html={row.get(columnName) ?? '-'}>

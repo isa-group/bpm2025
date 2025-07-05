@@ -45,7 +45,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   ]}
   data-aw-sticky-header={isSticky || undefined}>
   {/* Needed so the expanded menu is correctly shown when scrolled down */}
-  <div class="absolute inset-0"></div>
+  <div class="inset-0 absolute"></div>
   <div
     class:list={[
       'relative text-default py-3 px-3 lg:px-6 mx-auto w-full',
@@ -69,11 +69,11 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       </div>
     </div>
     <nav
-      class="hidden w-full items-center overflow-x-hidden overflow-y-auto text-default lg:mx-5 lg:w-auto lg:flex lg:justify-self-center lg:overflow-x-auto lg:overflow-y-visible"
+      class="text-default w-full hidden items-center overflow-x-hidden overflow-y-auto lg:mx-5 lg:flex lg:w-auto lg:justify-self-center lg:overflow-x-auto lg:overflow-y-visible"
       aria-label="Main navigation"
     >
       <ul
-        class="w-full flex flex-col text-xl font-medium tracking-[0.01rem] lg:w-auto lg:flex-row lg:self-center lg:justify-center lg:text-[0.9375rem]"
+        class="text-xl tracking-[0.01rem] font-medium flex flex-col w-full lg:text-[0.9375rem] lg:flex-row lg:w-auto lg:self-center lg:justify-center"
       >
         {
           (links ?? []).map(({ text, href, links }) => (
@@ -81,11 +81,11 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               {links?.length
                 ? (
                     <>
-                      <span class="flex cursor-pointer items-center px-4 py-3 dark:hover:text-white">
+                      <span class="px-4 py-3 flex cursor-pointer items-center dark:hover:text-white">
                         {text}{' '}
-                        <div class="i-tabler:chevron-down ml-0.5 hidden h-3.5 w-3.5 rtl:ml-0 rtl:mr-0.5 lg:inline" />
+                        <div class="i-tabler:chevron-down ml-0.5 h-3.5 w-3.5 hidden rtl:ml-0 rtl:mr-0.5 lg:inline" />
                       </span>
-                      <ul class="dropdown-menu rounded-xs pl-4 font-medium drop-shadow-xl lg:absolute lg:hidden lg:min-w-[200px] lg:bg-white/90 lg:pl-0 lg:backdrop-blur-md dark:lg:bg-dark">
+                      <ul class="dropdown-menu font-medium pl-4 rounded-xs drop-shadow-xl lg:pl-0 lg:bg-white/90 lg:min-w-[200px] lg:hidden lg:absolute lg:backdrop-blur-md dark:lg:bg-dark">
                         {links.map(({ text: text2, href: href2 }) => (
                           <li>
                             <a
@@ -122,13 +122,13 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         'hidden lg:self-center lg:flex items-center lg:mb-0 fixed w-full lg:w-auto lg:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 lg:p-0 lg:justify-self-end'
       ]}
     >
-      <div class="w-full flex items-center justify-between lg:w-auto">
+      <div class="flex w-full items-center justify-between lg:w-auto">
         <div class="flex">
           {showToggleTheme && <ToggleTheme iconClass="!w-6 !h-6 !lg:w-5 !lg:h-5 lg:inline-block" />}
           {
             showRssFeed && (
               <a
-                class="inline-flex items-center rounded-lg p-2.5 text-sm text-muted hover:bg-gray-100 dark:text-gray-400 focus:outline-hidden focus:ring-4 focus:ring-gray-200 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                class="text-sm text-muted p-2.5 rounded-lg inline-flex items-center dark:text-gray-400 focus:outline-hidden hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
                 aria-label="RSS Feed"
                 href={getAsset('/rss.xml')}
               >
@@ -142,7 +142,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             ? (
                 <span class="ml-2 rtl:ml-0 rtl:mr-2">
                   {actions.map(btnProps => (
-                    <Button {...btnProps} class="w-auto px-5.5 py-2.5 text-sm font-semibold shadow-none lg:px-6" />
+                    <Button {...btnProps} class="text-sm font-semibold px-5.5 py-2.5 w-auto shadow-none lg:px-6" />
                   ))}
                 </span>
               )

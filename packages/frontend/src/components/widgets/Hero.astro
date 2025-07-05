@@ -23,7 +23,7 @@ const {
 const { src } = bg ? await getImage({ src: bg } as UnresolvedImageTransform) : {};
 ---
 
-<section class="not-prose dark relative bg-dark lg:-mt-20" {...id ? { id } : {}}>
+<section class="not-prose dark bg-dark relative lg:-mt-20" {...id ? { id } : {}}>
   <span
     class:list={[
       'absolute inset-0 opacity-30 pointer-events-none',
@@ -32,8 +32,8 @@ const { src } = bg ? await getImage({ src: bg } as UnresolvedImageTransform) : {
     style={isStr(src) ? { backgroundImage: `url(${src})` } : undefined}
     aria-hidden="true">
   </span>
-  <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
-    <div class="pointer-events-none pt-0 md:pt-[76px]"></div>
+  <div class="mx-auto px-4 max-w-7xl relative sm:px-6">
+    <div class="pt-0 pointer-events-none md:pt-[76px]"></div>
     <div class="py-12 md:py-20">
       <div class={`text-center pb-10 md:pb-16 mx-auto ${content ? 'lg:flex' : 'max-w-5xl'}`}>
         {content && (
@@ -45,7 +45,7 @@ const { src } = bg ? await getImage({ src: bg } as UnresolvedImageTransform) : {
           {
             tagline && (
               <p
-                class="text-base text-secondary font-bold tracking-wide uppercase dark:text-blue-200"
+                class="text-base text-secondary tracking-wide font-bold uppercase dark:text-blue-200"
                 set:html={tagline}
               />
             )
@@ -53,20 +53,20 @@ const { src } = bg ? await getImage({ src: bg } as UnresolvedImageTransform) : {
           {
             title && (
               <h1
-                class="mb-4 text-5xl font-bold leading-tight tracking-tighter font-heading md:text-6xl dark:text-gray-200"
+                class="text-5xl leading-tight tracking-tighter font-bold font-heading mb-4 md:text-6xl dark:text-gray-200"
                 set:html={title}
               />
             )
           }
           <div class="mx-auto max-w-3xl">
-            {subtitle && <p class="mb-6 text-xl dark:text-slate-300" set:html={subtitle} />}
+            {subtitle && <p class="text-xl mb-6 dark:text-slate-300" set:html={subtitle} />}
             {
               actions && (
-                <div class="m-auto max-w-xs flex flex-col flex-nowrap gap-4 sm:max-w-md sm:flex-row sm:justify-center">
+                <div class="m-auto flex flex-col flex-nowrap gap-4 max-w-xs sm:flex-row sm:max-w-md sm:justify-center">
                   {Array.isArray(actions)
                     ? (
                         actions.map(action => (
-                          <div class="w-full flex sm:w-auto">
+                          <div class="flex w-full sm:w-auto">
                             <Button {...(action || {})} class="w-full sm:mb-0" />
                           </div>
                         ))
@@ -83,10 +83,10 @@ const { src } = bg ? await getImage({ src: bg } as UnresolvedImageTransform) : {
       <div>
         {
           image && (
-            <div class="relative m-auto max-w-5xl">
+            <div class="m-auto max-w-5xl relative">
               {/* @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 */}
               <Image
-                class="mx-auto w-full rounded-md"
+                class="mx-auto rounded-md w-full"
                 sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
                 loading="eager"
                 height={576}

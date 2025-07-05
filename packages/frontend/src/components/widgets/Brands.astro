@@ -24,7 +24,7 @@ const {
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
   <Headline title={title} subtitle={subtitle} tagline={tagline} />
 
-  <div class="flex flex-wrap justify-center gap-x-6 lg:gap-x-24 sm:gap-x-12">
+  <div class="flex flex-wrap gap-x-6 justify-center lg:gap-x-24 sm:gap-x-12">
     {icons && icons.map(iconClass => <div class={`${iconClass} mx-auto h-auto w-12 py-3 text-gray-500 sm:mx-0 lg:py-5`} />)}
     {
       images
@@ -37,9 +37,9 @@ const {
           }
 
           return (
-            <div class="col-span-1 my-2 flex justify-center rounded-md px-3 py-1 lg:my-4">
+            <div class="my-2 px-3 py-1 rounded-md flex col-span-1 justify-center lg:my-4">
               <div class="flex flex-wrap items-center justify-center lg:flex-nowrap">
-                <a class="min-w-sm gap-10" href={image.href} target="_blank">
+                <a class="gap-10 min-w-sm" href={image.href} target="_blank">
                   <div class="flex flex-col items-center justify-center">
                     <img
                       class={`max-h-20 rounded-xs dark:bg-white ${image.class ?? ''}`}
@@ -53,7 +53,7 @@ const {
                   && (
                     <div>
                       <h3 class="text-lg font-semibold">— {image.alt}</h3>
-                      <blockquote class="text-lg font-serif font-oblique text-muted" set:html={image.description} />
+                      <blockquote class="text-lg text-muted font-serif font-oblique" set:html={image.description} />
                     </div>
                   )}
               </div>
