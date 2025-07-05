@@ -32,8 +32,7 @@ export default [
       {
         price: 350,
         currency,
-        period: 'between 15th July 2025 and 15th August 2025',
-        variant: 'secondary'
+        period: 'between 15th July 2025 and 15th August 2025'
       }
     ],
     items: [
@@ -82,8 +81,7 @@ export default [
       {
         price: 650,
         currency,
-        period: 'between 15th July 2025 and 15th August 2025',
-        variant: 'secondary'
+        period: 'between 15th July 2025 and 15th August 2025'
       }
     ],
     items: [
@@ -130,8 +128,7 @@ export default [
       {
         price: 750,
         currency,
-        period: 'between 15th July 2025 and 15th August 2025',
-        variant: 'secondary'
+        period: 'between 15th July 2025 and 15th August 2025'
       }
     ],
     ribbonTitle: 'Best value',
