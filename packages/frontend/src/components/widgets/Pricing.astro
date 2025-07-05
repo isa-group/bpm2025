@@ -26,22 +26,22 @@ const iconClasses = 'w-5 h-5 font-bold p-1 text-white';
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${containerClass ?? ''}`} bg={bg}>
   <Headline title={title} subtitle={subtitle} tagline={tagline} />
-  <div class="flex flex-wrap justify-center gap-4">
+  <div class="flex flex-wrap gap-4 justify-center">
     {
       prices
       && prices.map(({ title, subtitle, pricing, items, callToAction, ribbonTitle }) => (
-        <div class="min-w-40 flex flex-1 justify-center">
-          <div class="max-w-sm w-full flex flex-col justify-between border border-gray-200 rounded-lg bg-white px-6 py-8 text-center shadow-xs backdrop-blur-xs dark:border-gray-700 dark:bg-slate-900">
+        <div class="flex flex-1 min-w-40 justify-center">
+          <div class="px-6 py-8 text-center border border-gray-200 rounded-lg bg-white flex flex-col max-w-sm w-full shadow-xs justify-between backdrop-blur-xs dark:border-gray-700 dark:bg-slate-900">
             {ribbonTitle && (
-              <div class="absolute right-[-5px] top-[-5px] z-[1] h-[100px] w-[100px] overflow-hidden text-right 2xl:right-[-8px] 2xl:top-[-10px] rtl:left-[-8px] rtl:right-auto rtl:2xl:left-[-10px]">
-                <span class="absolute right-[-21px] top-[19px] block w-full rotate-45 bg-green-700 text-center text-[10px] text-white font-bold leading-5 uppercase shadow-[0_3px_10px_-5px_rgba(0,0,0,0.3)] after:absolute before:absolute after:right-0 after:top-full before:left-0 before:top-full rtl:left-[-21px] rtl:right-auto after:z-[-1] before:z-[-1] after:border-[3px] before:border-[3px] after:border-b-transparent after:border-l-transparent after:border-r-green-800 after:border-t-green-800 before:border-b-transparent before:border-l-green-800 before:border-r-transparent before:border-t-green-800 after:content-[''] before:content-[''] rtl:-rotate-45">
+              <div class="text-right h-[100px] w-[100px] right-[-5px] top-[-5px] absolute z-[1] overflow-hidden 2xl:right-[-8px] 2xl:top-[-10px] rtl:left-[-8px] rtl:right-auto rtl:2xl:left-[-10px]">
+                <span class="text-[10px] text-white leading-5 font-bold text-center bg-green-700 w-full block uppercase shadow-[0_3px_10px_-5px_rgba(0,0,0,0.3)] rotate-45 right-[-21px] top-[19px] absolute after:border-[3px] before:border-[3px] after:border-b-transparent after:border-l-transparent after:border-r-green-800 after:border-t-green-800 before:border-b-transparent before:border-l-green-800 before:border-r-transparent before:border-t-green-800 after:content-[''] before:content-[''] after:right-0 after:top-full before:left-0 before:top-full rtl:left-[-21px] rtl:right-auto after:absolute before:absolute after:z-[-1] before:z-[-1] rtl:-rotate-45">
                   <Fragment set:html={parse(ribbonTitle)} />
                 </span>
               </div>
             )}
             <div class="px-2 py-0">
               {title && (
-                <h3 class="mb-2 text-center text-xl font-semibold leading-6 tracking-wider uppercase">
+                <h3 class="text-xl leading-6 tracking-wider font-semibold mb-2 text-center uppercase">
                   <Fragment set:html={parse(title)} />
                 </h3>
               )}
@@ -52,7 +52,7 @@ const iconClasses = 'w-5 h-5 font-bold p-1 text-white';
               )}
               <div class="my-8">
                 {(pricing ?? []).map(p => (
-                      <div class="mb-1 flex items-center justify-center text-center">
+                      <div class="mb-1 text-center flex items-center justify-center">
                         <span class={p.variant === 'secondary' ? 'text-muted text-xl' : 'text-4xl font-extrabold'}>
                           <Fragment set:html={parse(String(p.price))} />
                         </span>
@@ -68,10 +68,10 @@ const iconClasses = 'w-5 h-5 font-bold p-1 text-white';
               </div>
               <hr class="my-4 border-slate-200 dark:border-slate-600" />
               {items && (
-                <ul class="my-8 text-left md:my-10 space-y-2">
+                <ul class="my-8 text-left space-y-2 md:my-10">
                   {items.map(
                     ({ title, description, icon: CustomIcon, classes }) => (
-                      <li class="mb-1.5 flex items-start leading-7 space-x-3">
+                      <li class="leading-7 mb-1.5 flex items-start space-x-3">
                         <div class={twMerge('rounded-full bg-primary mt-1', classes?.icon)}>
                           <div class:list={[iconClasses, CustomIcon ?? 'i-tabler:check']} />
                         </div>

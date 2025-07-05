@@ -43,11 +43,11 @@ const {
     />
     {
       actions && (
-        <div class="m-auto mt-6 max-w-xs flex flex-col flex-nowrap gap-4 sm:max-w-md sm:flex-row sm:justify-center">
+        <div class="m-auto mt-6 flex flex-col flex-nowrap gap-4 max-w-xs sm:flex-row sm:max-w-md sm:justify-center">
           {Array.isArray(actions)
             ? (
                 actions.map(action => (
-                  <div class="w-full flex sm:w-auto">
+                  <div class="flex w-full sm:w-auto">
                     <Button {...(action || {})} class="w-full sm:mb-0" />
                   </div>
                 ))

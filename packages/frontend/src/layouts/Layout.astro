@@ -20,7 +20,7 @@ const { language, textDirection } = i18n;
 ---
 
 <!doctype html>
-<html lang={language} dir={textDirection} class="motion-safe:scroll-smooth 2xl:text-[20px]">
+<html lang={language} dir={textDirection} class="2xl:text-[20px] motion-safe:scroll-smooth">
   <head>
     <CommonMeta />
     <Favicons />
@@ -29,7 +29,7 @@ const { language, textDirection } = i18n;
     <ClientRouter fallback="animate" />
   </head>
 
-  <body class="overflow-x-hidden overscroll-none text-default tracking-tight antialiased bg-page">
+  <body class="text-default tracking-tight overscroll-none bg-page antialiased overflow-x-hidden">
     <slot />
   </body>
 </html>

@@ -3,11 +3,14 @@ import Layout from '#/layouts/Layout.astro';
 import { getHomePermalink } from '#/utils/permalinks';
 ---
 
-<Layout metadata={{ title: 'Error 404', description: 'Page not found' }}>
-  <section class="h-full flex items-center p-16">
-    <div class="container mx-auto my-8 flex flex-col items-center justify-center px-5">
-      <div class="max-w-md text-center">
-        <h2 class="mb-8 text-9xl font-bold">
+<Layout metadata={{
+  title: 'Error 404',
+  description: 'Page not found'
+}}>
+  <section class="p-16 flex h-full items-center">
+    <div class="mx-auto my-8 px-5 container flex flex-col items-center justify-center">
+      <div class="text-center max-w-md">
+        <h2 class="text-9xl font-bold mb-8">
           <span class="sr-only">Error</span>
           <span class="text-primary">404</span>
         </h2>

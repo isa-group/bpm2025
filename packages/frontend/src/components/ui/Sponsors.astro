@@ -24,7 +24,7 @@ const { empty = false, description = false } = Astro.props;
       visualIndex++;
 
       const innerText = (
-        <h3 class="my-5 text-center font-medium tracking-widest uppercase">
+        <h3 class="tracking-widest font-medium my-5 text-center uppercase">
           {s.category}
         </h3>
       );
@@ -42,7 +42,7 @@ const { empty = false, description = false } = Astro.props;
           )
         : (
             <WidgetWrapper bg={bgAlternate}>
-              <p class="text-center text-muted">There are no sponsors in this category yet</p>
+              <p class="text-muted text-center">There are no sponsors in this category yet</p>
             </WidgetWrapper>
           );
 

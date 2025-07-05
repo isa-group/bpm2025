@@ -17,7 +17,7 @@ const { image, xl = false } = Astro.props;
   }]}>
   {/* @ts-expect-error - Track https://github.com/withastro/astro/issues/10780 */}
   <Image
-    class="min-h-full min-w-full border-4 border-slate-200 rounded-full object-cover dark:border-slate-600"
+    class="border-4 border-slate-200 rounded-full min-h-full min-w-full object-cover dark:border-slate-600"
     class:list={[{
       'h-20 w-20': !xl,
       'h-40 w-40': xl
