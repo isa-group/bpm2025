@@ -114,7 +114,7 @@ export const sponsors: SponsorInfo[] = [
           Our projects have enabled organizations ranging from public entities to private sector companies to significantly improve their processes and operations.
           We have helped to optimize user service management, digitize administrative procedures and increase agility and accuracy in decision making, among others.
           These projects have not only improved efficiency and transparency, but have also facilitated regulatory compliance, fostered innovation and
-          promoted new ways of working. At the 23rd International Conference on Business Process Management (BPM 2025), we look forward to sharing ideas,
+          promoted new ways of working. At the 23<sup>rd</sup> International Conference on Business Process Management (BPM 2025), we look forward to sharing ideas,
           experiences, and contributing to the advancement of BPM practices as part of this community dedicated to continuous improvement,
           always with an eye on the future. We invite you to meet us at the venue so that we can share experiences and continue to drive the collective success of
           process management.
