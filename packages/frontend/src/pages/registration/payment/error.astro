@@ -1,4 +1,5 @@
 ---
+import Button from '#/components/ui/Button/Button.astro';
 import Layout from '#/layouts/Layout.astro';
 import { getPermalink } from '#/utils/permalinks';
 ---
@@ -19,18 +20,18 @@ import { getPermalink } from '#/utils/permalinks';
           Go back to check the error details if you have not already and retry registering again.
         </p>
       </div>
-      <div class="d-flex">
-        <a
+      <div class="flex">
+        <Button
+          class="ml-4 mt-4"
           id="back"
-          class="btn ml-4 mt-4">
-          Back to payment's processor page
-        </a>
-        <a
-          rel="noopener noreferrer"
+          icon="i-mdi:chevron-left"
+          text="Back to payment's processor page" />
+        <Button
+          class="ml-4 mt-4"
+          variant="primary"
           href={getPermalink('/registration')}
-          class="btn ml-4 mt-4">
-          Go to registration page
-        </a>
+          icon="i-mdi:chevron-right"
+          text="Go to registration page" />
       </div>
     </div>
   </section>

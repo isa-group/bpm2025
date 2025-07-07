@@ -1,4 +1,6 @@
 ---
+import Button from '#/components/ui/Button/Button.astro';
+import CallToAction from '#/components/widgets/CallToAction.astro';
 import Layout from '#/layouts/Layout.astro';
 import { getHomePermalink } from '#/utils/permalinks';
 ---
@@ -16,7 +18,22 @@ import { getHomePermalink } from '#/utils/permalinks';
         <br />
         <p class="text-xl font-semibold">We look forward to seeing you in Seville!</p>
       </div>
-      <a rel="noopener noreferrer" href={getHomePermalink()} class="btn ml-4 mt-4">Go to homepage</a>
+      <Button
+        class="ml-4 mt-4"
+        variant="primary"
+        href={getHomePermalink()}
+        icon="i-mdi:home"
+        text="Go to homepage" />
     </div>
   </section>
+  <CallToAction
+    title="Don't have a place to stay yet?"
+    subtitle="Book in the same place where the conference takes place!"
+    actions={[
+      {
+        href: 'https://sites.melia.com/en/events/melia-sevilla/CONGRESO-BPM-AGOSTO-2025.html?author=true',
+        icon: 'i-mdi:chevron-right',
+        text: 'Book room in Meliá Sevilla'
+      }
+    ]} />
 </Layout>
