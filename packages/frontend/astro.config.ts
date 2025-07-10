@@ -40,6 +40,10 @@ export default defineConfig({
       Logger: 1
     })
   ],
+  prefetch: {
+    defaultStrategy: 'viewport',
+    prefetchAll: true
+  },
   build: {
     assets: 'assets',
     concurrency: availableParallelism(),
