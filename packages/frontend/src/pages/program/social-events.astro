@@ -1,17 +1,15 @@
 ---
 import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
-import Layout from '#/layouts/PageLayout.astro';
+import PageLayout from '#/layouts/PageLayout.astro';
 import Headline from '#/components/ui/Headline.astro';
 import GradientContent from '#/components/ui/GradientContent.astro';
 
 import { events } from '#/data/program/events';
 ---
-<Layout
+<PageLayout
   metadata={{
-    title: 'Social Events'
-  }}
-  heroProps={{
-    title: 'Social Events'
+    title: 'Social Events',
+    description: 'The different social events that will take place in this edition of the conference'
   }}>
   {events.map((k, index) => {
     const isPar = index === 0 || index % 2 === 0;
@@ -42,4 +40,4 @@ import { events } from '#/data/program/events';
       </WidgetWrapper>
     );
   })}
-</Layout>
+</PageLayout>

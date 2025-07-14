@@ -1,5 +1,5 @@
 ---
-import Layout from '#/layouts/PageLayout.astro';
+import PageLayout from '#/layouts/PageLayout.astro';
 import Content from '#/components/widgets/Content.astro';
 import CallToAction from '#/components/widgets/CallToAction.astro';
 import Steps from '#/components/widgets/Steps.astro';
@@ -19,7 +19,7 @@ import Blockquote from '#/components/widgets/Blockquote.astro';
 const cathedralText = 'Cathedral of Seville';
 ---
 
-<Layout
+<PageLayout
   heroProps={{
     title: '23<sup>rd</sup> International Conference on Business Process Management <br /> (BPM 2025)',
     tagline: '31st Aug - 5th Sep 2025 | Seville, Spain',
@@ -178,7 +178,7 @@ const cathedralText = 'Cathedral of Seville';
     ]}
   >
   </CallToAction>
-</Layout>
+</PageLayout>
 
 <style>
 /**

@@ -1,5 +1,5 @@
 ---
-import Layout from '#/layouts/PageLayout.astro';
+import PageLayout from '#/layouts/PageLayout.astro';
 import Content from '#/components/widgets/Content.astro';
 import CallToAction from '#/components/widgets/CallToAction.astro';
 import pdfBrochure from '#/assets/documents/sponsoring/BPM2025-sponsoring-offer_EN.pdf';
@@ -7,9 +7,10 @@ import pdfBrochure from '#/assets/documents/sponsoring/BPM2025-sponsoring-offer_
 const contactEmail = 'mailto:info@bpm2025seville.org';
 ---
 
-<Layout
+<PageLayout
   metadata={{
-    title: 'Become a sponsor'
+    title: 'Become a sponsor',
+    description: 'Being an sponsor of BPM2025 comes with its own set of advantages'
   }}
   heroProps={{
     actions: [
@@ -55,4 +56,4 @@ const contactEmail = 'mailto:info@bpm2025seville.org';
     ]}
   >
   </CallToAction>
-</Layout>
+</PageLayout>

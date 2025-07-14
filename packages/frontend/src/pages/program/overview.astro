@@ -1,13 +1,14 @@
 ---
-import Layout from '#/layouts/PageLayout.astro';
+import PageLayout from '#/layouts/PageLayout.astro';
 import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
 import WeekView from '#/components/ui/Schedule/WeekView.astro';
 import { events } from '#/data/schedule';
 ---
 
-<Layout
+<PageLayout
   metadata={{
-    title: 'Program Overview'
+    title: 'Program Overview',
+    description: 'Tentative schedule of the conference'
   }}>
   <WidgetWrapper bg>
     <WeekView events={events} />
@@ -18,4 +19,4 @@ import { events } from '#/data/schedule';
       </div>
     </div>
   </WidgetWrapper>
-</Layout>
+</PageLayout>

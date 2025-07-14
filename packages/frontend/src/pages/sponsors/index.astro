@@ -1,14 +1,15 @@
 ---
-import Layout from '#/layouts/PageLayout.astro';
+import PageLayout from '#/layouts/PageLayout.astro';
 import Headline from '#/components/ui/Headline.astro';
 import Sponsors from '#/components/ui/Sponsors.astro';
 import { getPermalink } from '#/utils/permalinks';
 import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
 ---
 
-<Layout
+<PageLayout
   metadata={{
-    title: 'Sponsors'
+    title: 'Sponsors',
+    description: 'We are very happy and grateful to have received support from the following sponsors'
   }}
   heroProps={{
     actions: [{ variant: 'primary', text: 'Check out sponsorship opportunities', href: getPermalink('/sponsors/become-a-sponsor') }]
@@ -26,4 +27,4 @@ import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
       subtitle="These organizations make the BPM conference possible" />
   </WidgetWrapper>
   <Sponsors description />
-</Layout>
+</PageLayout>

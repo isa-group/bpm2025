@@ -1,11 +1,12 @@
 ---
-import Layout from '#/layouts/PageLayout.astro';
+import PageLayout from '#/layouts/PageLayout.astro';
 import Testimonials from '#/components/widgets/Testimonials.astro';
 import { organizingTeam, toTestimonial } from '#/data/people';
 ---
 
-<Layout metadata={{
-  title: 'Organizing Team'
+<PageLayout metadata={{
+  title: 'Organizing Team',
+  description: 'The team behind the organization of the conference'
 }}>
   <Testimonials
     testimonials={Object.entries(organizingTeam()).map(([name, p], index) => {
@@ -21,4 +22,4 @@ import { organizingTeam, toTestimonial } from '#/data/people';
 
       return testimonial;
     })} />
-</Layout>
+</PageLayout>

@@ -1,5 +1,5 @@
 ---
-import Layout from '#/layouts/PageLayout.astro';
+import PageLayout from '#/layouts/PageLayout.astro';
 import Content from '#/components/widgets/Content.astro';
 
 import AirportTerminal from '#/assets/images/arriving/terminal.jpg';
@@ -14,9 +14,10 @@ import IryoLogo from '#/assets/images/arriving/iryo.png';
 import SantaJusta from '#/assets/images/arriving/santa-justa.png';
 ---
 
-<Layout
+<PageLayout
   metadata={{
-    title: 'How to get there'
+    title: 'How to get there',
+    description: 'Some of the means of transportation to arrive in Seville for the conference'
   }}
   heroImage={PlaneImg}>
   <Content
@@ -331,4 +332,4 @@ import SantaJusta from '#/assets/images/arriving/santa-justa.png';
       </p>
     </Fragment>
   </Content>
-</Layout>
+</PageLayout>

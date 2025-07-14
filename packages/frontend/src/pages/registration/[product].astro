@@ -1,6 +1,6 @@
 ---
 import Contact from '#/components/widgets/Contact.astro';
-import Layout from '#/layouts/PageLayout.astro';
+import PageLayout from '#/layouts/PageLayout.astro';
 import { getPermalink } from '#/utils/permalinks';
 
 import countries from 'world-countries';
@@ -25,9 +25,10 @@ const formDescription = `
 `;
 ---
 
-<Layout
+<PageLayout
   metadata={{
-    title: `Register for ${tickets[product - 1]?.title}`
+    title: `Register for ${tickets[product - 1]?.title}`,
+    description: `Register for ${tickets[product - 1]?.title} package of the conference!`
   }}>
   <Contact
     subtitle={formSubtitle}
@@ -149,7 +150,7 @@ const formDescription = `
     }}
     description={formDescription}
   />
-</Layout>
+</PageLayout>
 
 <script>
   import type { OrderPayload, SignupPayload, TPVOperation } from '@bpm2025-website/shared';

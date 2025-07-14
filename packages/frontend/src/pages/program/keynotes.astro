@@ -1,19 +1,19 @@
 ---
 import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
-import Layout from '#/layouts/PageLayout.astro';
+import PageLayout from '#/layouts/PageLayout.astro';
 import Headline from '#/components/ui/Headline.astro';
 import GradientContent from '#/components/ui/GradientContent.astro';
 
 import { keynotes } from '#/data/program/keynotes';
+
+const description = 'In the tradition of our conference series, BPM 2025 features three outstanding keynotes with different perspectives on business process management.';
 ---
-<Layout
+<PageLayout
   metadata={{
-    title: 'Keynotes'
-  }}
-  heroProps={{
     title: 'Keynotes',
-    subtitle: 'In the tradition of our conference series, BPM 2025 features three outstanding keynotes with different perspectives on business process management.'
-  }}>
+    description
+  }}
+  heroProps={{ subtitle: description }}>
   {keynotes.map((k, index) => {
     const isPar = index === 0 || index % 2 === 0;
     return (
@@ -43,4 +43,4 @@ import { keynotes } from '#/data/program/keynotes';
       </WidgetWrapper>
     );
   })}
-</Layout>
+</PageLayout>

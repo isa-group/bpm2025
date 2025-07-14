@@ -1,5 +1,5 @@
 ---
-import Layout from '#/layouts/PageLayout.astro';
+import PageLayout from '#/layouts/PageLayout.astro';
 import Content from '#/components/widgets/Content.astro';
 import type { CallForPapers } from '#/types';
 import ImportantDates from '#/components/widgets/ImportantDates.astro';
@@ -8,9 +8,10 @@ const matches = import.meta.glob('./*.mdx', { eager: true });
 const posts = Object.values(matches) as CallForPapers[];
 ---
 
-<Layout
+<PageLayout
   metadata={{
-    title: 'Important dates'
+    title: 'Important dates',
+    description: 'Deadlines for the different calls of the conference'
   }}
 >
   <p slot="content">All dates are AoE</p>
@@ -24,4 +25,4 @@ const posts = Object.values(matches) as CallForPapers[];
       </Content>
     )
   )}
-</Layout>
+</PageLayout>

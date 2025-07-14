@@ -1,5 +1,5 @@
 ---
-import Layout from '#/layouts/PageLayout.astro';
+import PageLayout from '#/layouts/PageLayout.astro';
 import Compass from '#/assets/images/hero/compass.jpg';
 import Content from '#/components/widgets/Content.astro';
 
@@ -12,9 +12,10 @@ import EuropeFlag from '#/assets/images/visa/eu.jpg';
 import Invitation from '#/assets/images/visa/invitation.jpg';
 ---
 
-<Layout
+<PageLayout
   metadata={{
-    title: 'Visa information'
+    title: 'Visa information',
+    description: 'If you need a Visa for reaching Seville, we can help you to get one'
   }}
   heroImage={Compass}>
 
@@ -154,4 +155,4 @@ import Invitation from '#/assets/images/visa/invitation.jpg';
       </p>
     </Fragment>
   </Content>
-</Layout>
+</PageLayout>

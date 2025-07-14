@@ -1,5 +1,5 @@
 ---
-import Layout from '#/layouts/PageLayout.astro';
+import PageLayout from '#/layouts/PageLayout.astro';
 import MeliaHeader from '#/assets/images/hero/melia-header.jpg';
 import Melia1 from '#/assets/images/venue/melia.png';
 import Melia2 from '#/assets/images/venue/melia-2.png';
@@ -10,9 +10,10 @@ import Content from '#/components/widgets/Content.astro';
 const alt = 'Hotel Meliá Sevilla';
 ---
 
-<Layout
+<PageLayout
   metadata={{
-    title: 'Conference Venue'
+    title: 'Conference Venue',
+    description: 'Know more of the venue where the main events of the BPM2025 conference will take place'
   }}
   heroProps={{
     tagline: alt
@@ -76,4 +77,4 @@ const alt = 'Hotel Meliá Sevilla';
   <WidgetWrapper>
 
   </WidgetWrapper>
-</Layout>
+</PageLayout>

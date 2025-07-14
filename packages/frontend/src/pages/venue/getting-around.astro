@@ -1,5 +1,5 @@
 ---
-import Layout from '#/layouts/PageLayout.astro';
+import PageLayout from '#/layouts/PageLayout.astro';
 import Content from '#/components/widgets/Content.astro';
 
 import HeaderTussam from '#/assets/images/hero/header-tussam.png';
@@ -17,9 +17,10 @@ import YegoLogo from '#/assets/images/commute/yego-logo.webp';
 import CooltraLogo from '#/assets/images/commute/cooltra-logo.png';
 ---
 
-<Layout
+<PageLayout
   metadata={{
-    title: 'Getting around'
+    title: 'Getting around',
+    description: 'Some of the means of transportation available in Seville'
   }}
   heroImage={HeaderTussam}>
 
@@ -342,4 +343,4 @@ import CooltraLogo from '#/assets/images/commute/cooltra-logo.png';
       The renting is controlled through their mobile apps.
     </p>
   </Content>
-</Layout>
+</PageLayout>

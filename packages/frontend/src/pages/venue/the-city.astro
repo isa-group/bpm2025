@@ -1,5 +1,5 @@
 ---
-import Layout from '#/layouts/PageLayout.astro';
+import PageLayout from '#/layouts/PageLayout.astro';
 import Content from '#/components/widgets/Content.astro';
 import ImageGrid from '#/components/ui/ImageGrid.astro';
 import { YouTube } from '@astro-community/astro-embed-youtube';
@@ -16,9 +16,10 @@ import Horse from '#/assets/images/city/coche-caballo-cuadrada.png';
 import Setas from '#/assets/images/city/setas.jpg';
 ---
 
-<Layout
+<PageLayout
   metadata={{
-    title: 'Seville'
+    title: 'Seville',
+    description: 'Know more about the wonderful city of Seville, the home of this edition of the BPM conference'
   }}
   heroImage={Sevilla}>
   <Content bg>
@@ -163,4 +164,4 @@ import Setas from '#/assets/images/city/setas.jpg';
         posterQuality="max" />
     </Fragment>
   </Content>
-</Layout>
+</PageLayout>

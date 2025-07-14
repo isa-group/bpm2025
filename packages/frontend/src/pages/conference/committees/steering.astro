@@ -1,19 +1,17 @@
 ---
-import Layout from '#/layouts/PageLayout.astro';
+import PageLayout from '#/layouts/PageLayout.astro';
 import Testimonials from '#/components/widgets/Testimonials.astro';
 import { steeringCommittee, toTestimonial } from '#/data/people';
 ---
 
-<Layout
+<PageLayout
   metadata={{
-    title: 'BPM Steering Committee'
+    title: 'BPM Steering Committee',
+    description: 'The Steering Committee of the BPM conference series includes the following people:'
   }}
   heroProps={{
     actions: [{ variant: 'primary', text: 'About the steering committee', href: 'https://bpm-conference.org/organization/' }]
   }}>
-  <Fragment slot="hero-subtitle">
-    The Steering Committee of the BPM conference series includes the following people:
-  </Fragment>
 
   {Object.entries(steeringCommittee()).map(([section, chairs], section_index) => (
     <Testimonials
@@ -30,4 +28,4 @@ import { steeringCommittee, toTestimonial } from '#/data/people';
         return testimonial;
       })} />
   ))}
-</Layout>
+</PageLayout>

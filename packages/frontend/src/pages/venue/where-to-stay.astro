@@ -1,5 +1,5 @@
 ---
-import Layout from '#/layouts/PageLayout.astro';
+import PageLayout from '#/layouts/PageLayout.astro';
 import ReceptionImage from '#/assets/images/hero/reception.jpg';
 import Content from '#/components/widgets/Content.astro';
 import CallToAction from '#/components/widgets/CallToAction.astro';
@@ -31,9 +31,10 @@ import Ibis3 from '#/assets/images/accomodation/ibis-3.jpg';
 import { getPermalink } from '#/utils/permalinks';
 ---
 
-<Layout
+<PageLayout
   metadata={{
-    title: 'Where to stay'
+    title: 'Where to stay',
+    description: 'Here are some of the nearby hotels to the conference venue'
   }}
   heroImage={ReceptionImage}>
   <Content
@@ -355,4 +356,4 @@ import { getPermalink } from '#/utils/permalinks';
     ]}
   >
   </CallToAction>
-</Layout>
+</PageLayout>

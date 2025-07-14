@@ -1,11 +1,12 @@
 ---
 import BSlot from '#/components/utils/BSlot.astro';
-import Layout from '#/layouts/PageLayout.astro';
+import PageLayout from '#/layouts/PageLayout.astro';
 import type { MetaData, Hero as HeroProps } from '#/types';
 
 export interface Props {
   frontmatter: {
     title?: string;
+    description?: string;
     heroProps?: HeroProps;
   };
 }
@@ -13,11 +14,12 @@ export interface Props {
 const { frontmatter } = Astro.props;
 
 const metadata: MetaData = {
-  title: frontmatter?.title
+  title: frontmatter?.title,
+  description: frontmatter?.description ?? frontmatter?.heroProps?.subtitle
 };
 ---
 
-<Layout metadata={metadata} heroProps={frontmatter.heroProps}>
+<PageLayout metadata={metadata} heroProps={frontmatter.heroProps}>
   <section class="mx-auto max-w-4xl px-4 py-16 lg:px-8 lg:py-20 sm:px-6">
     <div
       class:list={[
@@ -33,4 +35,4 @@ const metadata: MetaData = {
       </BSlot>
     </div>
   </section>
-</Layout>
+</PageLayout>
