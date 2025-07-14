@@ -4,7 +4,7 @@
   "type": "module",
   "description": "The 2025 BPM Conference website",
   "workspaces": [
-    "packages/*"
+    "packages/**/*"
   ],
   "engines": {
     "node": ">=22.11.0 <23.0.0",

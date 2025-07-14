@@ -70,7 +70,7 @@ jobs:
         id: image
         with:
           context: .
-          file: packages/backend/Dockerfile
+          file: packages/backend/registration/Dockerfile
           platforms: linux/amd64
           outputs: type=docker,dest=docker_image.tar
           tags: bpm2025/payment-processing
