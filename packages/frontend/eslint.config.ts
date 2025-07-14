@@ -1,7 +1,8 @@
 import { getBaseConfig, getImportAliasConfig, getTypeScriptConfig, getAstroConfig, unocss } from '@bpm2025-website/configs/lint';
+import pkg from './package.json' with { type: 'json' };
 
 export default [
-  ...getBaseConfig('@bpm2025-website/frontend'),
+  ...getBaseConfig(pkg.name),
   ...getImportAliasConfig(),
   ...getTypeScriptConfig(),
   ...getAstroConfig(),

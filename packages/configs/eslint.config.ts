@@ -1,7 +1,8 @@
 import { getBaseConfig, getImportAliasConfig, getTypeScriptConfig } from './lint';
+import pkg from './package.json' with { type: 'json' };
 
 export default [
-  ...getBaseConfig('@bpm2025-website/configs'),
+  ...getBaseConfig(pkg.name),
   ...getImportAliasConfig(),
   ...getTypeScriptConfig()
 ];
