@@ -197,6 +197,7 @@ router.get(
     const unpaid_orders = final_orders_set.difference(paid_orders);
     const product_name_grouping = new Map<string, number>();
     const discount_grouping = new Map<string, number>();
+    let total_paid = 0;
 
     for (const order of paid_orders) {
       product_name_grouping.set(
@@ -209,6 +210,8 @@ router.get(
           (discount_grouping.get(order.applied_discounts) ?? 0) + 1
         );
       }
+
+      total_paid += order.price_paid_with_discounts;
     }
 
     return createOrderPage(
@@ -222,6 +225,7 @@ router.get(
       <p><b>Total de registros mostrados:</b> ${final_orders_set.size}</p>
       <p><b>Total de registros NO pagados:</b> ${unpaid_orders.size}</p>
       <p><b>Total de registros pagados:</b> ${paid_orders.size}</p>
+      <p><b>Total pagado:</b> ${total_paid} €</p>
       ${product_name_grouping.size > 0 || discount_grouping.size > 0
         ? `
         <h3>AGRUPACIONES DE REGISTROS (PAGADOS):</h3>
@@ -273,6 +277,7 @@ router.get(
     const unpaid_orders = final_orders_set.difference(paid_orders);
     const product_name_grouping = new Map<string, number>();
     const discount_grouping = new Map<string, number>();
+    let total_paid = 0;
 
     for (const order of paid_orders) {
       product_name_grouping.set(
@@ -285,6 +290,8 @@ router.get(
           (discount_grouping.get(order.applied_discounts) ?? 0) + 1
         );
       }
+
+      total_paid += order.price_paid_with_discounts;
     }
 
     return createOrderPage(
@@ -299,6 +306,7 @@ router.get(
       <p><b>Total de registros mostrados:</b> ${final_orders_set.size}</p>
       <p><b>Total de registros NO pagados:</b> ${unpaid_orders.size}</p>
       <p><b>Total de registros pagados:</b> ${paid_orders.size}</p>
+      <p><b>Total pagado:</b> ${total_paid} €</p>
       ${product_name_grouping.size > 0 || discount_grouping.size > 0
         ? `
         <h3>AGRUPACIONES DE REGISTROS (PAGADOS):</h3>
