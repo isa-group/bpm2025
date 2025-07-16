@@ -7,6 +7,7 @@ import { registerDynamicModules } from './util/dynamic-modules.ts';
 import { destr } from 'destr';
 import { registerInvoicing } from './util/workers/invoicing';
 import { registerMailing } from './util/workers/mailing';
+import { registerConferiaIntegration } from './util/workers/conferia';
 
 if (isDev) {
   await import('dotenv/config');
@@ -31,6 +32,7 @@ const seed_folder = join(import.meta.dirname, '..', 'seeds');
 await seedDb(join(seed_folder, 'items.json'));
 await registerInvoicing(invoices_folder, seed_folder);
 registerMailing();
+registerConferiaIntegration();
 
 /**
  * export is needed for listhen to work
