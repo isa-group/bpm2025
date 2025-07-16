@@ -1,6 +1,8 @@
 ---
+import { type AstroComponent } from '#/types';
 import type { ScheduleEvent as TScheduleEvent } from '#/data/schedule';
 import EventItem from './EventItem.astro';
+import Table from '#/components/ui/Table.astro';
 
 interface Props {
   events: TScheduleEvent[];
@@ -148,61 +150,45 @@ const hours = (() => {
   return Array.from({ length: hourCount }, (_, i) => minHour + i);
 })();
 
-const hourHeightClasses = 'h-24 xl:h-16';
+type MapType = Map<AstroComponent | string, AstroComponent | string>;
 ---
-<div class="h-full min-h-125 w-full lg:min-h-150">
-  <div class="h-full flex flex-col overflow-hidden rounded-xl bg-white shadow-md">
-    <div class="border-b border-gray-200 bg-gray-50 px-6 py-5">
-      <h3 class="m-0 text-xl text-gray-800 font-semibold">{formatWeekTitle(weekDays[0]!, weekDays[weekDays.length - 1]!)}</h3>
+{(() => {
+  const columns = eventsByDay.map(({ date }) => () => (
+    <div class="h-full flex flex-col items-center justify-center">
+      <div class="mb-1 text-sm text-gray-500 lg:text-xs md:text-[10px]">
+        {new Intl.DateTimeFormat(locale, { weekday: dateHeaderFormat }).format(date)}
+      </div>
+      <div class="text-lg text-gray-800 lg:text-base md:text-sm">{date.getDate()}</div>
     </div>
+  ));
 
-    <div class="flex-1 overflow-auto">
-      <div
-        class="grid min-w-fit"
-        style={{
-          gridTemplateColumns: `80px repeat(${weekDays.length}, minmax(180px, 1fr))`
-        }}>
-        {/* Time column */}
-        <div class="sticky left-0 z-1 border-r border-gray-200 bg-gray-50">
-          <div class="h-20 border-b border-gray-200 bg-gray-50 lg:h-20 md:h-16"></div>
-          {hours.map(hour => (
-            <div class:list={[
-              'flex items-start justify-center border-b border-gray-100 pt-2',
-              hourHeightClasses
-            ]}>
-              <span class="text-sm text-gray-500 font-medium lg:text-xs md:text-xs">{formatHour(hour)}</span>
-            </div>
+  const rows = hours.map((hour) => {
+    const m = new Map() as MapType;
+
+    m.set('', formatHour(hour));
+    eventsByDay.forEach(({ events }, index) => {
+      m.set(columns[index]!, () => (
+        <div class="h-full w-full flex">
+          {events.filter(e => e.start.getHours() === hour).map(event => (
+            <EventItem
+              event={event}
+              locale={locale}
+            />
           ))}
         </div>
+      ));
+    });
 
-        {/* Day columns */}
-        {eventsByDay.map(({ date, events }) => (
-          <div class="border-r border-gray-200 last:border-r-0">
-            <div class="h-20 flex flex-col items-center justify-center border-b border-gray-200 bg-gray-50 font-semibold lg:h-20 md:h-16 md:px-1">
-              <div class="mb-1 text-sm text-gray-500 lg:text-xs md:text-[10px]">
-                {new Intl.DateTimeFormat(locale, { weekday: dateHeaderFormat }).format(date)}
-              </div>
-              <div class="text-lg text-gray-800 lg:text-base md:text-sm">{date.getDate()}</div>
-            </div>
+    return m;
+  });
 
-            <div>
-              {hours.map(hour => (
-                <div class:list={[
-                  'flex border-b border-gray-100 w-full',
-                  hourHeightClasses
-                ]}>
-                  {events.filter(e => e.start.getHours() === hour).map(event => (
-                    <EventItem
-                      event={event}
-                      locale={locale}
-                    />
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-</div>
+  return (
+    <Table
+      title={formatWeekTitle(weekDays[0]!, weekDays[weekDays.length - 1]!)}
+      highlightFirstColumn
+      mergeFirstCell
+      classes={{ firstColumn: '!items-start' }}
+      rows={rows}
+    />
+  );
+})()}
