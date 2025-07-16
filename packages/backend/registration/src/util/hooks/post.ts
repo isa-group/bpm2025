@@ -1,6 +1,7 @@
 import { db } from '../db.ts';
 import { generateOrderInvoice } from '../workers/invoicing';
 import { sendConfirmationEmail } from '../workers/mailing';
+import { registerUserWithConferia } from '../workers/conferia';
 
 /**
  * Runs all the logic after the payment has been confirmed
@@ -25,6 +26,24 @@ export async function postPaymentConfirm(order_id: string, email = true) {
     order: full_order,
     vat_rate: 0
   });
+
+  try {
+    const nameParts = full_order.user.name.split(' ');
+    const firstName = nameParts[0] || '';
+    const lastName = nameParts.slice(1).join(' ') || '';
+    const company = full_order.user.institution;
+    const country = full_order.notes?.match(/COUNTRY: ([^\n]+)/)?.[1];
+
+    await registerUserWithConferia({
+      email: full_order.user.email,
+      firstname: firstName,
+      lastname: lastName,
+      company: company,
+      country: country
+    });
+  } catch (error) {
+    console.error('Failed to register user with CONFERIA:', error);
+  }
 
   if (email) {
     await sendConfirmationEmail({
