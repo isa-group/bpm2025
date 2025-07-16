@@ -1,6 +1,7 @@
 import type { CallForPapers, CallToAction, MenuLink } from '#/types';
 import type { Props as FooterProps } from '#/components/widgets/Footer.astro';
 import { getAsset, getPermalink, trimSlash } from '#/utils/permalinks';
+import { program_name_to_uri, program_overviews } from './program/overviews';
 
 const matches = import.meta.glob('../pages/calls/*.mdx', { eager: true });
 const posts = Object.values(matches) as CallForPapers[];
@@ -75,7 +76,11 @@ export function getHeaderData(currentUrl: URL): HeaderData {
           {
             text: 'Social events',
             href: getPermalink('/program/social-events')
-          }
+          },
+          ...program_overviews.map(o => ({
+            text: `${o.name} Program`,
+            href: getPermalink(`/program/${program_name_to_uri(o.name)}`)
+          }))
         ]
       },
       {
