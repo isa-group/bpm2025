@@ -50,8 +50,7 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
 ---
 
 <div
-  class="event-item relative h[var(--duration)] w-full cursor-pointer overflow-hidden break-words rounded-md bg-white px-3 py-2 hyphens-auto transition-all duration-200 hover:z-10 hover:h-auto hover:min-h-[var(--duration)] hover:transform-scale-115 hover:transform md:px-1.5 md:py-1 hover:shadow-lg hover:-translate-y-0.5"
-  lang="es"
+  class="event-item relative z-2 h[var(--duration)] w-full cursor-pointer overflow-hidden break-words rounded-md bg-white px-3 py-2 hyphens-auto transition-all duration-200 hover:z-3 hover:h-auto hover:min-h-[var(--duration)] hover:transform-scale-115 hover:transform md:px-1.5 md:py-1 hover:shadow-lg hover:-translate-y-0.5"
   style={{
     'top': `${startMinute}%`,
     'borderLeft': `4px solid ${bgColor}`,
