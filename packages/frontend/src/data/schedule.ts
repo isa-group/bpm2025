@@ -101,6 +101,7 @@ export const events: ScheduleEvent[] = [
   },
   {
     title: 'Process Technology Forum',
+    location: '"Nervión" Hall',
     start: new Date(2025, 8, 2, 10, 30),
     end: new Date(2025, 8, 2, 12, 30),
     category: 'forum_2'
@@ -125,6 +126,7 @@ export const events: ScheduleEvent[] = [
   },
   {
     title: 'Process Technology Forum',
+    location: '"Nervión" Hall',
     start: new Date(2025, 8, 2, 14, 0),
     end: new Date(2025, 8, 2, 15, 30),
     category: 'forum_2'
@@ -163,6 +165,7 @@ export const events: ScheduleEvent[] = [
   },
   {
     title: 'Industry & Society Forum',
+    location: '"Nervión" Hall',
     start: new Date(2025, 8, 3, 10, 30),
     end: new Date(2025, 8, 3, 12, 30),
     category: 'forum_2'
@@ -181,6 +184,7 @@ export const events: ScheduleEvent[] = [
   },
   {
     title: 'Industry & Society Forum',
+    location: '"Nervión" Hall',
     start: new Date(2025, 8, 3, 14, 0),
     end: new Date(2025, 8, 3, 15, 30),
     category: 'forum_2'
@@ -214,6 +218,7 @@ export const events: ScheduleEvent[] = [
   },
   {
     title: 'Responsible BPM Forum',
+    location: '"Nervión" Hall',
     start: new Date(2025, 8, 4, 10, 30),
     end: new Date(2025, 8, 4, 12, 30),
     category: 'forum_3'
@@ -232,6 +237,7 @@ export const events: ScheduleEvent[] = [
   },
   {
     title: 'Responsible BPM Forum',
+    location: '"Nervión" Hall',
     start: new Date(2025, 8, 4, 14, 0),
     end: new Date(2025, 8, 4, 15, 30),
     category: 'forum_3'
