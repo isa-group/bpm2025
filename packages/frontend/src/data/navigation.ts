@@ -73,14 +73,14 @@ export function getHeaderData(currentUrl: URL): HeaderData {
             text: 'Keynotes',
             href: getPermalink('/program/keynotes')
           },
-          {
-            text: 'Social events',
-            href: getPermalink('/program/social-events')
-          },
           ...program_overviews.map(o => ({
             text: `${o.name} Program`,
             href: getPermalink(`/program/${program_name_to_uri(o.name)}`)
-          }))
+          })),
+          {
+            text: 'Social events',
+            href: getPermalink('/program/social-events')
+          }
         ]
       },
       {
