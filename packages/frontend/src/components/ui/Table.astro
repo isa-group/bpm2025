@@ -1,0 +1,130 @@
+---
+import { type Table as Props, type AstroComponent } from '#/types';
+import { isFunc, isStr } from '@bpm2025-website/shared/validation';
+
+const {
+  classes = {},
+  title,
+  highlightFirstColumn,
+  showRowIndex,
+  mergeFirstCell = false,
+  rows: _rows = []
+} = Astro.props;
+
+if (!_rows.length) {
+  throw new TypeError('[Table.astro] At least one row must be provided');
+}
+
+if (highlightFirstColumn && showRowIndex) {
+  throw new TypeError('[Table.astro] Both highlightFirstColumn and showRowIndex are truthy and both are mutually exclusive');
+}
+
+const rows = _rows.map(r => r instanceof Map ? r : new Map(Object.entries(r)));
+const columns = (() => {
+  const c: Array<string | AstroComponent> = [];
+
+  for (const row of rows) {
+    for (const col of row.keys()) {
+      if (!c.includes(col)) {
+        c.push(col);
+      }
+    }
+  }
+
+  return c;
+})();
+---
+<div class:list={['mt-4 h-full w-full', classes.container]}>
+  <div class="h-full flex flex-col overflow-hidden rounded-xl bg-white shadow-md">
+    {title && (
+      <div class="border-b border-gray-200 bg-gray-50 px-6 py-5">
+        <h3
+          class="m-0 text-xl text-gray-800 font-semibold"
+          set:html={title} />
+      </div>
+    )}
+
+    <div class="flex-1 overflow-auto">
+      <table class="min-w-fit w-full table-fixed" role="grid">
+        <colgroup>
+          {(showRowIndex || highlightFirstColumn) && <col class="w-20" />}
+          {columns.slice(highlightFirstColumn ? 1 : 0).map(() => (
+            <col class="min-w-[180px]" />
+          ))}
+        </colgroup>
+        <thead class="sticky top-0 z-1">
+          <tr>
+            {(showRowIndex || highlightFirstColumn) && (
+              <>
+                {/* eslint-disable astro/no-conflict-set-directives */}
+                <th
+                  class:list={[
+                    'h-20 border-r border-gray-200 bg-gray-50 lg:h-20 md:h-16',
+                    { 'border-b': !mergeFirstCell }
+                  ]}
+                  scope="col"
+                  set:html={!showRowIndex && isStr(columns[0]) ? columns[0] : undefined}>
+                  {showRowIndex
+                    ? 'No.'
+                    : isFunc(columns[0]) && columns[0]}
+                </th>
+                {/* eslint-enable astro/no-conflict-set-directives */}
+              </>
+            )}
+            {columns.slice(highlightFirstColumn ? 1 : 0).map(c => (
+              <th
+                class="h-20 border-b border-r border-gray-200 bg-gray-50 font-semibold lg:h-20 md:h-16 last:border-r-0 md:px-1"
+                scope="col">
+                {isFunc(c)
+                  ? c
+                  : (
+                      <div class="h-full flex flex-col items-center justify-center">
+                        <div
+                          class="text-lg text-gray-800 lg:text-base md:text-sm"
+                          set:html={c} />
+                      </div>
+                    )}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, rowIndex) => (
+            <tr>
+              {(highlightFirstColumn || showRowIndex) && (
+                <th class="h-24 border-b border-r border-gray-100 border-gray-200 bg-gray-50 xl:h-16" scope="row">
+                  {highlightFirstColumn && isFunc(row.get(columns[0]!))
+                    ? row.get(columns[0]!)
+                    : (
+                        <div class:list={[
+                          'h-full flex items-center justify-center pt-2',
+                          classes.firstColumn
+                        ]}>
+                          <span
+                            class="text-sm text-gray-500 font-medium lg:text-xs md:text-xs"
+                            set:html={showRowIndex ? (rowIndex + 1) : row.get(columns[0]!)} />
+                        </div>
+                      )}
+                </th>
+              )}
+              {columns.slice(highlightFirstColumn ? 1 : 0).map(columnName => (
+                <td class="relative h-24 border-b border-r border-gray-100 border-gray-200 p-0 xl:h-16 last:border-r-0" role="gridcell">
+                  {isFunc(row.get(columnName))
+                    ? row.get(columnName)
+                    : (
+                        <div class="h-full w-full flex items-center justify-center p-2">
+                          <span
+                            class="text-sm text-gray-700"
+                            set:html={row.get(columnName) ?? '-'}>
+                          </span>
+                        </div>
+                      )}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
