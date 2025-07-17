@@ -75,4 +75,8 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
 :global(:has(> .event-item:hover)) > .event-item:not(:hover) {
   display: none;
 }
+
+:global(td:last-child) .event-item:hover {
+  --un-translate-x: -1rem;
+}
 </style>
