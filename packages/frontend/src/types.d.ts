@@ -1,10 +1,10 @@
 import type { HTMLAttributes, ComponentProps } from 'astro/types';
 import type { Props as AstroSeoProps } from '@astrolib/seo';
-import type { Image as ImageComponent } from 'astro:assets';
 import type { ImageMetadata, MarkdownInstance } from 'astro';
 
+export type AstroComponent = typeof import('astro:assets')['Image'];
 export type IconElement = `i-${string}:${string}`;
-// There are some hacks to get this type working properly:
+// These are some hacks to get this type working properly:
 // https://github.com/withastro/astro/issues/10912
 // https://github.com/withastro/astro/issues/10780
 type MakeOptional<T, K extends keyof T> = {
@@ -13,7 +13,7 @@ type MakeOptional<T, K extends keyof T> = {
   [P in keyof T as P extends K ? never : P]: T[P];
 };
 type SkippedProps = 'width' | 'height' | 'inferSize';
-type ImageComponentProps = Omit<ComponentProps<typeof ImageComponent>, 'slot' | 'children'>;
+type ImageComponentProps = Omit<ComponentProps<AstroComponent>, 'slot' | 'children'>;
 type ExtendedImageProps = MakeOptional<ImageComponentProps, SkippedProps>;
 type ExtendedImagePropsWithDescription = ExtendedImageProps & { description?: boolean | string };
 
@@ -37,6 +37,29 @@ export interface MetaData {
   description?: AstroSeoProps['description'];
   openGraph?: AstroSeoProps['openGraph'];
   twitter?: AstroSeoProps['twitter'];
+}
+
+export interface Table {
+  title?: string;
+  /**
+   * showRowIndex and highlightFirstColumn are used to display the first column
+   * with the same style as the header.
+   * Both are mutually exclusive
+   */
+  highlightFirstColumn?: boolean;
+  showRowIndex?: boolean;
+  /**
+   * Associates a column name with the value.
+   * Every item in the array represents a row: values are the column names, and
+   * the values are the corresponding data.
+   */
+  rows: Map<string | AstroComponent, string | AstroComponent>[] | Record<string, string | AstroComponent>[];
+  /**
+   * The cell that is located at the position [0, 0] is displayed with a border
+   * by default. Set this to false to disable this merge.
+   */
+  mergeFirstCell?: boolean;
+  classes?: Partial<Classes & { firstColumn?: string }>;
 }
 
 export interface Widget {
