@@ -115,6 +115,89 @@ export const program_overviews: ProgramOverview[] = [
     ]
   },
   {
+    name: 'Industry Forum',
+    location: '"Nervión" Hall',
+    date: 'Wednesday, Sept 3rd, 2025',
+    tables: [
+      {
+        title: 'First session (10:30 - 12:30)',
+        rows: [
+          {
+            Start: '10:00',
+            End: '10:05',
+            Paper: '<i>Opening</i>',
+            Authors: 'Chairs'
+          },
+          {
+            Start: '10:05',
+            End: '10:20',
+            Paper: 'Impact of Process Redesign: A Case Study from Indonesian Higher Education Data Reporting',
+            Authors: 'Indri Sudanawati Rozas, Sugianto Halim, Mahendrawathi Er and Arif Wibisono'
+          },
+          {
+            Start: '10:20',
+            End: '10:35',
+            Paper: 'Compliance Checking in Action for INGKA Group Inventory Management',
+            Authors: 'Alessio Galassi, Barbara Re, Stefan Reimann and Lorenzo Rossi'
+          },
+          {
+            Start: '10:35',
+            End: '10:50',
+            Paper: 'CreaDev - A Structured Framework for Embedding Creativity in Business Process Management',
+            Authors: 'Jasmin Fattah-Weil, Jako Roder, Lydia Schäfer, Doris Fay and Norbert Gronau'
+          },
+          {
+            Start: '10:50',
+            End: '11:05',
+            Paper: 'The process orientation in the Agencia Digital de Andalucia',
+            Authors: 'Juan Sebastián Ojeda Pérez, Elena Sauci Sánchez and Juan Francisco Fernández Ramos'
+          },
+          {
+            Start: '11:05',
+            End: '11:20',
+            Paper: 'Automating Financial Reconciliation: Leveraging RPA for Efficiency and Accuracy in Banking Operations',
+            Authors: 'Elheme Azemi and Saimir Bala'
+          },
+          {
+            Start: '11:20',
+            End: '11:35',
+            Paper: 'From Silos to Synergy: Embedding BPM at Sri Lanka Telecom to Drive Strategic Alignment',
+            Authors: 'Dinusha Rajapaksha, Wasana Bandara, Naleen Jayasuriya, Bandula Wimalasuriya, Rehan Syed and Ishadi Mirispelakotuwa'
+          },
+          {
+            Start: '11:35',
+            End: '12:30',
+            Paper: 'Round table: retrospectives and common trends on how BPM is changing the industry',
+            Authors: 'All authors + audience'
+          }
+        ]
+      },
+      {
+        title: 'Second session (14:00 - 15:30)',
+        rows: [
+          {
+            Topic: 'Focus Groups: Grand Challenges and Opportunities in the adoption of BPM in industry and the public sector'
+          },
+          {
+            Start: '14:00',
+            End: '14:05',
+            Topic: 'Introduction of the dynamics by the chairs'
+          },
+          {
+            Start: '14:05',
+            End: '15:05',
+            Topic: 'Focused Discussion and appointment of speaker'
+          },
+          {
+            Start: '15:10',
+            End: '15:30',
+            Topic: 'Selected speakers gives a retrospective of the discussion'
+          }
+        ]
+      }
+    ]
+  },
+  {
     name: 'Responsible BPM Forum',
     location: '"Nervión" Hall',
     date: 'Thursday, Sept 4th, 2025',
@@ -235,89 +318,6 @@ export const program_overviews: ProgramOverview[] = [
           {
             'PIC': '<b>TOTAL</b>',
             'Duration (minutes)': '90'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    name: 'Industry Forum',
-    location: '"Nervión" Hall',
-    date: 'Wednesday, Sept 3rd, 2025',
-    tables: [
-      {
-        title: 'First session (10:30 - 12:30)',
-        rows: [
-          {
-            Start: '10:00',
-            End: '10:05',
-            Paper: '<i>Opening</i>',
-            Authors: 'Chairs'
-          },
-          {
-            Start: '10:05',
-            End: '10:20',
-            Paper: 'Impact of Process Redesign: A Case Study from Indonesian Higher Education Data Reporting',
-            Authors: 'Indri Sudanawati Rozas, Sugianto Halim, Mahendrawathi Er and Arif Wibisono'
-          },
-          {
-            Start: '10:20',
-            End: '10:35',
-            Paper: 'Compliance Checking in Action for INGKA Group Inventory Management',
-            Authors: 'Alessio Galassi, Barbara Re, Stefan Reimann and Lorenzo Rossi'
-          },
-          {
-            Start: '10:35',
-            End: '10:50',
-            Paper: 'CreaDev - A Structured Framework for Embedding Creativity in Business Process Management',
-            Authors: 'Jasmin Fattah-Weil, Jako Roder, Lydia Schäfer, Doris Fay and Norbert Gronau'
-          },
-          {
-            Start: '10:50',
-            End: '11:05',
-            Paper: 'The process orientation in the Agencia Digital de Andalucia',
-            Authors: 'Juan Sebastián Ojeda Pérez, Elena Sauci Sánchez and Juan Francisco Fernández Ramos'
-          },
-          {
-            Start: '11:05',
-            End: '11:20',
-            Paper: 'Automating Financial Reconciliation: Leveraging RPA for Efficiency and Accuracy in Banking Operations',
-            Authors: 'Elheme Azemi and Saimir Bala'
-          },
-          {
-            Start: '11:20',
-            End: '11:35',
-            Paper: 'From Silos to Synergy: Embedding BPM at Sri Lanka Telecom to Drive Strategic Alignment',
-            Authors: 'Dinusha Rajapaksha, Wasana Bandara, Naleen Jayasuriya, Bandula Wimalasuriya, Rehan Syed and Ishadi Mirispelakotuwa'
-          },
-          {
-            Start: '11:35',
-            End: '12:30',
-            Paper: 'Round table: retrospectives and common trends on how BPM is changing the industry',
-            Authors: 'All authors + audience'
-          }
-        ]
-      },
-      {
-        title: 'Second session (14:00 - 15:30)',
-        rows: [
-          {
-            Topic: 'Focus Groups: Grand Challenges and Opportunities in the adoption of BPM in industry and the public sector'
-          },
-          {
-            Start: '14:00',
-            End: '14:05',
-            Topic: 'Introduction of the dynamics by the chairs'
-          },
-          {
-            Start: '14:05',
-            End: '15:05',
-            Topic: 'Focused Discussion and appointment of speaker'
-          },
-          {
-            Start: '15:10',
-            End: '15:30',
-            Topic: 'Selected speakers gives a retrospective of the discussion'
           }
         ]
       }
