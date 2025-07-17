@@ -1,3 +1,6 @@
+import { getPermalink } from '#/utils/permalinks';
+import { program_overviews, program_name_to_uri } from '#/data/program/overviews';
+
 export interface ScheduleEvent {
   title: string;
   start: Date;
@@ -5,7 +8,9 @@ export interface ScheduleEvent {
   description?: string;
   location?: string;
   category: 'forum_1' | 'forum_2' | 'forum_3' | 'keynote'
-    | 'conference_1' | 'conference_2' | 'workshop' | 'social' | 'lunch' | 'demos';
+    | 'conference_1' | 'conference_2' | 'workshop' | 'social'
+    | 'lunch' | 'demos' | 'consortium';
+  href?: string;
 }
 
 export const events: ScheduleEvent[] = [
@@ -14,13 +19,13 @@ export const events: ScheduleEvent[] = [
     title: 'Doctoral Consortium',
     start: new Date(2025, 7, 31, 9, 0),
     end: new Date(2025, 7, 31, 10, 30),
-    category: 'workshop'
+    category: 'consortium'
   },
   {
     title: 'Doctoral Consortium',
     start: new Date(2025, 7, 31, 11, 0),
     end: new Date(2025, 7, 31, 12, 30),
-    category: 'workshop'
+    category: 'consortium'
   },
   {
     title: 'Lunch',
@@ -32,21 +37,26 @@ export const events: ScheduleEvent[] = [
     title: 'Doctoral Consortium',
     start: new Date(2025, 7, 31, 14, 0),
     end: new Date(2025, 7, 31, 15, 30),
-    category: 'workshop'
+    category: 'consortium'
   },
   {
     title: 'Doctoral Consortium',
     start: new Date(2025, 7, 31, 16, 0),
     end: new Date(2025, 7, 31, 17, 30),
-    category: 'workshop'
+    category: 'consortium'
   },
-
   // 1 de Septiembre
   {
     title: 'Workshops',
     start: new Date(2025, 8, 1, 9, 0),
     end: new Date(2025, 8, 1, 10, 30),
     category: 'workshop'
+  },
+  {
+    title: 'Coffee break',
+    start: new Date(2025, 8, 1, 10, 30),
+    end: new Date(2025, 8, 1, 11, 0),
+    category: 'lunch'
   },
   {
     title: 'Workshops',
@@ -65,6 +75,12 @@ export const events: ScheduleEvent[] = [
     start: new Date(2025, 8, 1, 14, 0),
     end: new Date(2025, 8, 1, 15, 30),
     category: 'workshop'
+  },
+  {
+    title: 'Coffee break',
+    start: new Date(2025, 8, 1, 15, 30),
+    end: new Date(2025, 8, 1, 16, 0),
+    category: 'lunch'
   },
   {
     title: 'Workshops',
@@ -274,4 +290,14 @@ export const events: ScheduleEvent[] = [
     end: new Date(2025, 8, 5, 14, 0),
     category: 'lunch'
   }
-];
+].map((event) => {
+  const overview = program_overviews.find(o => o.name === event.title);
+
+  if (overview) {
+    Object.assign(event, {
+      href: getPermalink(`/program/${program_name_to_uri(overview.name)}`)
+    });
+  }
+
+  return event as ScheduleEvent;
+});

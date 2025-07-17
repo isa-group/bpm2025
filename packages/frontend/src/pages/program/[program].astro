@@ -32,13 +32,7 @@ if (!program.tables?.length && !program.items?.length) {
         tagline={program.date && `📅 ${program.date}`} />
     )}
     {program.tables
-      ? program.tables.map(t => (
-          <Table
-            title={t.title}
-            showRowIndex={t.showRowIndex}
-            rows={t.rows}
-          />
-        ))
+      ? program.tables.map(t => <Table {...t} />)
       : <ItemList items={program.items} />}
   </WidgetWrapper>
 </PageLayout>
