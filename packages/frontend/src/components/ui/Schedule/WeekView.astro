@@ -168,7 +168,7 @@ type MapType = Map<AstroComponent | string, AstroComponent | string>;
     m.set('', formatHour(hour));
     eventsByDay.forEach(({ events }, index) => {
       m.set(columns[index]!, () => (
-        <div class="h-full w-full flex">
+        <div class="group/cell h-full w-full flex">
           {events.filter(e => e.start.getHours() === hour).map(event => (
             <EventItem
               event={event}

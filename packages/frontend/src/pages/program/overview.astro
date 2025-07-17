@@ -3,6 +3,7 @@ import PageLayout from '#/layouts/PageLayout.astro';
 import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
 import WeekView from '#/components/ui/Schedule/WeekView.astro';
 import { events } from '#/data/program/schedule';
+import Headline from '#/components/ui/Headline.astro';
 ---
 
 <PageLayout
@@ -11,6 +12,7 @@ import { events } from '#/data/program/schedule';
     description: 'Tentative schedule of the conference'
   }}>
   <WidgetWrapper bg>
+    <Headline subtitle="Hover over the events to see the description & the location<br />Click on them to see the full program" />
     <WeekView events={events} />
     <div class="mt-6 overflow-hidden rounded-xl bg-white shadow-md">
       <div class="p-6 text-center">
