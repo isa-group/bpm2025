@@ -5,7 +5,8 @@ import Abades from '#/assets/images/program/events/abades.jpg';
 export const events = [
   {
     name: 'Welcome Reception',
-    subtitle: 'Royal Tobacco Factory',
+    date: 'Monday, Sept 1st, 2025',
+    location: 'Royal Tobacco Factory',
     image: Rectorate,
     description: `
       <p>
@@ -18,7 +19,8 @@ export const events = [
   },
   {
     name: 'Guided tour',
-    subtitle: 'Reales Alcázares',
+    date: 'Tuesday, Sept 2nd, 2025',
+    location: 'Reales Alcázares',
     imageClass: 'aspect-ratio-[16/14] object-[0_90%] lg:aspect-ratio-[1/1]',
     image: Alcazar,
     description: `
@@ -34,7 +36,8 @@ export const events = [
   },
   {
     name: 'Conference Dinner',
-    subtitle: 'Abades Triana',
+    date: 'Wednesday, Sept 3rd, 2025',
+    location: 'Abades Triana',
     image: Abades,
     imageClass: 'aspect-ratio-[16/14] object-top lg:aspect-ratio-[1/1]',
     description: `
