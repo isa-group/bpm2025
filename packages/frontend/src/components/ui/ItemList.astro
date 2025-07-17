@@ -37,7 +37,7 @@ const mergedIconClasses = twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2', defaultIconC
               </BSlot>
             </div>
             <div>
-              {title && <h3 class={twMerge('text-xl font-bold', titleClass, itemClasses?.title)}>{title}</h3>}
+              {title && <h3 class={twMerge('text-xl font-bold', titleClass, itemClasses?.title)} set:html={title} />}
               {description && (
                 <p
                   class={twMerge(`${title ? 'mt-3' : ''} text-muted`, descriptionClass, itemClasses?.description)}
