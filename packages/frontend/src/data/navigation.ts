@@ -74,7 +74,7 @@ export function getHeaderData(currentUrl: URL): HeaderData {
             href: getPermalink('/program/keynotes')
           },
           ...program_overviews.map(o => ({
-            text: `${o.name} Program`,
+            text: o.name,
             href: getPermalink(`/program/${program_name_to_uri(o.name)}`)
           })),
           {
