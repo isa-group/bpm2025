@@ -1,6 +1,7 @@
 ---
 import Headline from '#/components/ui/Headline.astro';
 import Table from '#/components/ui/Table.astro';
+import ItemList from '#/components/ui/ItemList.astro';
 import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
 import PageLayout from '#/layouts/PageLayout.astro';
 
@@ -14,6 +15,10 @@ export function getStaticPaths() {
 }
 
 const program = program_overviews.find(o => program_name_to_uri(o.name) === Astro.params.program)!;
+
+if (!program.tables?.length && !program.items?.length) {
+  throw new Error(`Program "${program.name}" does not have tables or items defined.`);
+}
 ---
 <PageLayout
   metadata={{
@@ -21,15 +26,19 @@ const program = program_overviews.find(o => program_name_to_uri(o.name) === Astr
     description: `The detailed program of the ${program.name}`
   }}>
   <WidgetWrapper bg>
-    <Headline
-      subtitle={`📍 ${program.location}`}
-      tagline={`📅 ${program.date}`} />
-    {program.tables.map(t => (
-      <Table
-        title={t.title}
-        showRowIndex={t.showRowIndex}
-        rows={t.rows}
-      />
-    ))}
+    {(program.location || program.date) && (
+      <Headline
+        subtitle={program.location && `📍 ${program.location}`}
+        tagline={program.date && `📅 ${program.date}`} />
+    )}
+    {program.tables
+      ? program.tables.map(t => (
+          <Table
+            title={t.title}
+            showRowIndex={t.showRowIndex}
+            rows={t.rows}
+          />
+        ))
+      : <ItemList items={program.items} />}
   </WidgetWrapper>
 </PageLayout>

@@ -1,14 +1,17 @@
+import type { Item } from '#/types';
+
 export interface ProgramOverview {
   name: string;
-  date: string;
-  location: string;
-  tables: {
+  date?: string;
+  location?: string;
+  tables?: {
     title?: string;
     showRowIndex?: boolean;
     rows: {
       [key: string]: string;
     }[];
   }[];
+  items?: Item[];
 }
 
 export function program_name_to_uri(n: string) {
@@ -251,6 +254,73 @@ export const program_overviews: ProgramOverview[] = [
             Title: '<i>Forum Wrap Up</i>'
           }
         ]
+      }
+    ]
+  },
+  {
+    name: 'Tutorials',
+    items: [
+      {
+        title: 'Tutorial 1: <u>AI-Assisted Business Process Monitoring</u>',
+        description: `
+          <i>Andreas Metzger</i>
+          <br /><br />
+          Business process monitoring involves tracking and analyzing operational business processes to
+          gain insights into their performance, identify bottlenecks, and facilitate that they are running efficiently.
+          This tutorial introduces the participants into how modern AI methods can be employed to realize
+          predictive as well as prescriptive business processes monitoring.
+          Where predictive monitoring helps to answer “what will happen and when?”,
+          prescriptive monitoring allows answering “when to intervene and how?” Together, these monitoring
+          approaches assist process managers and operators in deciding on when and how to intervene during an ongoing
+          business process in order to prevent or mitigate the occurrence of an undesired process outcome.
+          The tutorial introduces the participants to advanced deep learning methods for business process
+          monitoring: deep supervised learning for predictive monitoring, and deep reinforcement learning for
+          prescriptive monitoring. The tutorial positions these deep learning methods within the overall
+          framework of business process monitoring systems and explains how deep learning helps to address key
+          challenges. It presents empirical results on the effectiveness and cost savings of these
+          deep learning methods, which are distilled into a set of recommendations for selecting
+          appropriate deep learning methods in practice. Finally, the tutorial provides an outlook on future
+          directions in AI-assisted business process monitoring, particularly elaborating the opportunities
+          introduced by large language models (LLMs) and the need for explainable AI (XAI).
+        `
+      },
+      {
+        title: 'Tutorial 2: <u>Constraint-based reasoning and analysis for BPM: CSP to the rescue</u>',
+        description: `
+          <i>Alessandro Gianola, Andrey Rivkin and Mateusz Slazynski</i>
+          <br /><br />
+          Formal methods have always been an integral part of the BPM lifecycle. They are mathematically
+          grounded techniques used to specify and analyze complex systems with a high degree of precision.
+          In BPM, they help ensure that processes are correctly specified and capable of achieving the intended
+          outcomes, by detecting design flaws and verifying compliance with defined goals.
+          Among these techniques, the Constraint Satisfaction Problem (CSP) stands out as a powerful
+          approach to specifying and solving problems with clearly defined constraints. CSP techniques are known
+          for their high performance, yet a major barrier to broader use lies in the difficulty of defining
+          suitable encodings, which require expert knowledge. Nevertheless, modern tools have made substantial
+          progress in improving CSP accessibility for non-experts. In this tutorial, we define CSP, motivate its use
+          in BPM, and showcase how two CSP instances, one over Boolean and the other over structured domains,
+          can be used to solve BPM analysis problems via suitable encodings. Such encodings will be demonstrated
+          during hands-on sessions with the help of state-of-the-art CSP tools. As a key learning outcome,
+          participants will gain a deeper understanding of CSP-based formal methods and their integration into
+          process analysis. 
+        `
+      },
+      {
+        title: 'Tutorial 3: <u>Business Process Optimization</u>',
+        description: `
+          <i>Remco Dijkman and Arik Senderovich</i>
+          <br /><br />
+          Business Process Optimization (BPO) concerns making optimal operational decisions
+          during process redesign or process execution—such as task assignment, resource allocation,
+          resource staffing, and case advancement (e.g., admitting a patient). These decisions must balance
+          objectives like cost, time, and satisfaction while respecting constraints like availability,
+          deadlines, and budgets often under uncertaitny. Though related to Prescriptive Process Monitoring (PrPM),
+          BPO addresses constrained combinatorial problems that often exceed real-time capabilities.
+          This tutorial introduces key BPO problem types and solution approaches,
+          illustrating specific problem-solution pairs that were already explored.
+          While not exhaustive, the classification aims to provide a structured overview and spark future
+          research in this emerging area. 
+        `
       }
     ]
   }
