@@ -12,5 +12,3 @@ services:
       FILE_UPLOAD_DIR: /app/uploads
     volumes:
       - ./uploads:/app/uploads
-volumes:
-  db_data:

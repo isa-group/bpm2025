@@ -52,7 +52,7 @@ jobs:
           path: packages/frontend/dist
 
   build_docker:
-    name: Build registration backend 🐳
+    name: Build backend 🐳
     runs-on: ubuntu-latest
 
     steps:
@@ -70,7 +70,7 @@ jobs:
         id: image
         with:
           context: .
-          file: packages/backend/registration/Dockerfile
+          file: packages/backend/Dockerfile
           platforms: linux/amd64
           outputs: type=docker,dest=docker_image.tar
           tags: bpm2025/payment-processing
@@ -79,5 +79,5 @@ jobs:
         uses: actions/upload-artifact@v4.6.2
         with:
           compression-level: 0
-          name: registration-backend-docker_image
+          name: backend-docker_image
           path: docker_image.tar
