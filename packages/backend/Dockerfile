@@ -6,18 +6,18 @@ WORKDIR /tmp/install
 COPY . .
 RUN git clean -fxd || true
 
-WORKDIR /tmp/install/packages/backend/registration
+WORKDIR /tmp/install/packages/backend
 RUN npm ci --no-audit --omit=dev
 ## Workaround of https://github.com/npm/cli/issues/6874
-RUN cp -r ../../../node_modules . \
+RUN cp -r ../../node_modules . \
     && rm -rf node_modules/@bpm2025-website/shared \
     && mkdir -p node_modules/@bpm2025-website \
-    && mv ../../shared node_modules/@bpm2025-website
+    && mv ../shared node_modules/@bpm2025-website
 
 FROM node:lts-slim
 
 WORKDIR /app
-COPY --from=build /tmp/install/packages/backend/registration .
+COPY --from=build /tmp/install/packages/backend .
 # OpenSSL is needed for Prisma
 RUN rm -rf *.config* tsconfig.json seeds sample.env Dockerfile $(find . -type f -name "*.md" -name ".*") \
     && apt update \

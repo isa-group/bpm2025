@@ -1,5 +1,5 @@
 {
-  "name": "@bpm2025-website/registration-backend",
+  "name": "@bpm2025-website/backend",
   "type": "module",
   "imports": {
     "#/*": "./src/*"
