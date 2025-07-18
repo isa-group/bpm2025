@@ -1,0 +1,24 @@
+{
+  "name": "BPM Conference",
+  "short_name": "BPM",
+  "description": "International Conference on Business Process Management",
+  "icons": [
+    {
+      "src": "manifest_icons/64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "manifest_icons/192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "manifest_icons/512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone"
+}
