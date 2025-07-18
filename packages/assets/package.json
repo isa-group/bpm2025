@@ -1,0 +1,8 @@
+{
+  "name": "@bpm2025-website/assets",
+  "type": "module",
+  "exports": {
+    "./icon": "./favicon.svg",
+    "./favicon": "./favicon.ico"
+  }
+}

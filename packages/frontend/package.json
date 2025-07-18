@@ -17,6 +17,7 @@
     "lint:inspect": "eslint-config-inspector"
   },
   "dependencies": {
+    "@bpm2025-website/assets": "*",
     "@fontsource-variable/inter": "5.2.6",
     "world-countries": "5.1.0"
   },
