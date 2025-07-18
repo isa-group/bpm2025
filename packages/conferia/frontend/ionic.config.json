@@ -1,0 +1,7 @@
+{
+  "name": "icpm-navigator",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
