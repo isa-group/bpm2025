@@ -1,0 +1,38 @@
+---
+import Headline from '#/components/ui/Headline.astro';
+import Table from '#/components/ui/Table.astro';
+import ItemList from '#/components/ui/ItemList.astro';
+import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
+import PageLayout from '#/layouts/PageLayout.astro';
+
+import { program_overviews, program_name_to_uri } from '#/data/program/overviews';
+
+/**
+ * Dynamic route generator
+ */
+export function getStaticPaths() {
+  return program_overviews.map(o => ({ params: { program: program_name_to_uri(o.name) } }));
+}
+
+const program = program_overviews.find(o => program_name_to_uri(o.name) === Astro.params.program)!;
+
+if (!program.tables?.length && !program.items?.length) {
+  throw new Error(`Program "${program.name}" does not have tables or items defined.`);
+}
+---
+<PageLayout
+  metadata={{
+    title: `${program.name} Program`,
+    description: `The detailed program of the ${program.name}`
+  }}>
+  <WidgetWrapper bg>
+    {(program.location || program.date) && (
+      <Headline
+        subtitle={program.location && `📍 ${program.location}`}
+        tagline={program.date && `📅 ${program.date}`} />
+    )}
+    {program.tables
+      ? program.tables.map(t => <Table {...t} />)
+      : <ItemList items={program.items} />}
+  </WidgetWrapper>
+</PageLayout>
