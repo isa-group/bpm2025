@@ -137,7 +137,7 @@ import {
 import { close, download, add } from 'ionicons/icons';
 import axios from 'axios';
 import { onMounted, type Ref, ref, watch } from 'vue';
-import { debounce } from 'lodash';
+import { useDebounceFn } from '@vueuse/core'
 import { onBeforeRouteUpdate, useRoute } from 'vue-router';
 import backend from '../../../backend.config';
 import router from '@/router';
@@ -260,7 +260,7 @@ const fetchGalleryMetadata = async () => {
   }
 };
 
-const debouncedFetchAttendees = debounce(fetchGalleryMetadata, 300); // 300ms delay
+const debouncedFetchAttendees = useDebounceFn(fetchGalleryMetadata, 300);
 
 watch(
   () => filterAndSearch.value.searchInput,

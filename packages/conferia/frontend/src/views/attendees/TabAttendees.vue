@@ -43,7 +43,7 @@
 <script setup>
 import { IonPage, IonContent, IonList, IonItem, IonAvatar, IonLabel, IonSearchbar, IonInfiniteScroll, IonInfiniteScrollContent } from '@ionic/vue';
 import { watch, reactive, onMounted } from 'vue';
-import { debounce } from 'lodash';
+import { useDebounceFn } from '@vueuse/core'
 import axios from 'axios';
 import HeaderBar from '@/components/HeaderBar.vue';
 import backend from '/backend.config.ts';
@@ -86,7 +86,7 @@ const fetchAttendees = async () => {
   }
 };
 
-const debouncedFetchAttendees = debounce(fetchAttendees, 300); // 300ms delay
+const debouncedFetchAttendees = useDebounceFn(fetchAttendees, 300);
 
 watch(() => state.searchQuery, async (newQuery, oldQuery) => {
   if (newQuery !== oldQuery) {
