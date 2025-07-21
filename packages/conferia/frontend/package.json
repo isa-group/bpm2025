@@ -21,7 +21,7 @@
     "@ionic/pwa-elements": "3.2.2",
     "@ionic/vue": "7.0.0",
     "@ionic/vue-router": "7.0.0",
-    "axios": "1.6.7",
+    "axios": "1.8.2",
     "dayjs": "1.11.13",
     "ionicons": "7.0.0",
     "lodash": "4.17.21",
