@@ -8,8 +8,9 @@
     ".": {
       "types": "./index.d.ts"
     },
-    "./validation": "./validation/index.ts",
-    "./validation/data": "./validation/data.ts"
+    "./validation": "./src/universal/validation/index.ts",
+    "./validation/data": "./src/universal/validation/data.ts",
+    "./node/*": "./src/node/*.ts"
   },
   "scripts": {
     "check": "npm run check:types",

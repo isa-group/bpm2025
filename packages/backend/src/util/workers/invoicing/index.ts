@@ -20,7 +20,7 @@ export async function registerInvoicing(target_path: string, seed_folder: string
      * Find possible invoice header images and import them
      */
     const files = await readdir(seed_folder);
-    const possible_file = files.filter(name => !name.endsWith('.json') || !name.endsWith('.md'))[0];
+    const possible_file = files.find(name => !name.endsWith('.json') || !name.endsWith('.md'))!;
     const dimensions = imageSize(await readFile(join(seed_folder, possible_file)));
 
     worker = new Worker(join(import.meta.dirname, 'worker.ts'), {

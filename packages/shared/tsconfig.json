@@ -7,7 +7,7 @@
     "baseUrl": "."
   },
   "include": [
-    "validation/**/*.ts",
+    "src/**/*.ts",
     "*.ts"
   ]
 }

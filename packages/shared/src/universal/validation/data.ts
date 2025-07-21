@@ -1,4 +1,4 @@
-import type { OrderPayload, RedsysResponse, SignupPayload } from '..';
+import type { OrderPayload, RedsysResponse, SignupPayload } from '@bpm2025-website/shared';
 import { isObj, isStr, isNumber } from '.';
 
 /**

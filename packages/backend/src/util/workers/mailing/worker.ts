@@ -26,12 +26,10 @@ const transporter = createTransport({
   pool: true
 });
 
-transporter.verify((err, success) => {
+transporter.verify((err) => {
   if (err) {
     console.error('SMTP connection could not be verified. Please check your configuration\n\n', err);
-  }
-
-  if (success) {
+  } else {
     console.log('Mailing module started up successfully!');
   }
 });
@@ -43,7 +41,7 @@ const MAIL_CONTENT = process.env.MAIL_CONTENT;
 const MAIL_CC = process.env.MAIL_CC;
 const MAIL_BCC = process.env.MAIL_BCC;
 
-parentPort?.on('message', async (inputs: Inputs) => {
+const fn = async (inputs: Inputs) => {
   try {
     await transporter.sendMail({
       from: inputs.mail.from ?? MAIL_FROM,
@@ -79,4 +77,8 @@ parentPort?.on('message', async (inputs: Inputs) => {
       error: e
     });
   }
+};
+
+parentPort?.on('message', (inputs: Inputs) => {
+  void fn(inputs);
 });
