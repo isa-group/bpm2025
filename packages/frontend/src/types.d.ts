@@ -1,6 +1,6 @@
 import type { HTMLAttributes, ComponentProps } from 'astro/types';
 import type { Props as AstroSeoProps } from '@astrolib/seo';
-import { Image as ImageComponent } from 'astro:assets';
+import type { Image as ImageComponent } from 'astro:assets';
 import type { ImageMetadata, MarkdownInstance } from 'astro';
 
 export type IconElement = `i-${string}:${string}`;
@@ -151,7 +151,7 @@ export interface Timeline {
 }
 
 export interface Pricing extends BetterOmit<Headline, 'classes'>, Widget {
-  prices?: Array<Price>;
+  prices?: Price[];
 }
 
 export interface Testimonials extends BetterOmit<Headline, 'classes'>, Widget {
@@ -212,12 +212,12 @@ export interface MenuLink extends Link {
   links?: MenuLink[];
 }
 
-export type BareCall = {
+export interface BareCall {
   layout: string;
   title: string;
   order: int;
   showHeading: boolean;
   importantDates: Record<string, string>;
-};
+}
 
 export type CallForPapers = MarkdownInstance<BareCall>;

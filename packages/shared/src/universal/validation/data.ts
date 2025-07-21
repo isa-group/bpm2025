@@ -43,7 +43,7 @@ export function validateOrderBody(
   return result;
 }
 
-/***
+/**
  * Ensures the response from Redsys TPV follows our expected format
  */
 export function validateRedsysResponse(

@@ -3,6 +3,9 @@ import config from '../../astro.config';
 const trailingSlash = config.trailingSlash === 'always';
 const BASE_PATHNAME = config.base ?? '/';
 
+/**
+ * Sanitizes the URL by trimming leading and trailing characters.
+ */
 function trim(str = '', ch?: string) {
   let start = 0,
     end = str.length || 0;
@@ -24,7 +27,7 @@ const createPath = (...params: string[]) => {
  * Generates a canonical URL based on the provided path.
  * A canonical URL is the preferred URL for a web page, used to avoid duplicate content issues.
  *
- * @param - The relative path to generate the canonical URL.
+ * @param - - The relative path to generate the canonical URL.
  * @returns - The complete canonical URL as a string or URL object.
  */
 export const getCanonical = (path = ''): string => {

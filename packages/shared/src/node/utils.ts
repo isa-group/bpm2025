@@ -3,12 +3,10 @@ import type { LiteralUnion } from 'type-fest';
 
 const encoding = 'utf8';
 
-// eslint-disable-next-line sonarjs/no-os-command-from-path
 const monorepoRoot = execSync('npm prefix', {
   encoding
 }).trim();
 const packagePaths = (() => {
-  // eslint-disable-next-line sonarjs/no-os-command-from-path
   const listing = JSON.parse(execSync('npm query .workspace', {
     encoding,
     cwd: monorepoRoot

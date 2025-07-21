@@ -24,12 +24,19 @@ interface FooterData {
   socialLinks: FooterProps['socialLinks'];
 }
 
+/**
+ * Checks if the current URL is within the registration pages
+ */
 export function isInRegistrationPage(currentUrl: URL): boolean {
   const sanitized = trimSlash(currentUrl.pathname);
 
   return sanitized.includes('registration') && !sanitized.includes('terms');
 }
 
+/**
+ * Generates the object that programatically creates the navigation
+ * header data
+ */
 export function getHeaderData(currentUrl: URL): HeaderData {
   const initialData: HeaderData = {
     links: [

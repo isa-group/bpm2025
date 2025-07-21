@@ -1,5 +1,6 @@
 import { getPackagePath } from '@bpm2025-website/shared/node/utils';
 import { defineConfig } from 'eslint/config';
+import eslintImportX from 'eslint-plugin-import-x';
 import globals from 'globals';
 
 /**
@@ -15,6 +16,10 @@ export function getNodeFiles(packageName: string, files = ['*.config.*', 'script
         ...globals.node,
         ...globals.nodeBuiltin
       }
+    },
+    plugins: {
+      // @ts-expect-error - Missing types from package
+      'import-x': eslintImportX
     },
     rules: {
       'import-x/no-extraneous-dependencies': [

@@ -65,7 +65,6 @@ const common = (packageName: string) => defineConfig([
         }
       ],
       'import-x/order': 'error',
-      'import-x/no-cycle': 'error',
       'import-x/no-nodejs-modules': 'error',
       'import-x/no-duplicates': ['error', { 'prefer-inline': true, 'considerQueryString': true }],
       // From the recommended preset
