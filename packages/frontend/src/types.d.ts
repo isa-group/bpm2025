@@ -1,8 +1,9 @@
 import type { HTMLAttributes, ComponentProps } from 'astro/types';
 import type { Props as AstroSeoProps } from '@astrolib/seo';
 import type { ImageMetadata, MarkdownInstance } from 'astro';
+import type { Image } from 'astro:assets';
 
-export type AstroComponent = typeof import('astro:assets')['Image'];
+export type AstroComponent = typeof Image;
 export type IconElement = `i-${string}:${string}`;
 // These are some hacks to get this type working properly:
 // https://github.com/withastro/astro/issues/10912
@@ -53,6 +54,7 @@ export interface Table {
    * Every item in the array represents a row: values are the column names, and
    * the values are the corresponding data.
    */
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
   rows: Map<string | AstroComponent, string | AstroComponent>[] | Record<string, string | AstroComponent>[];
   /**
    * The cell that is located at the position [0, 0] is displayed with a border
