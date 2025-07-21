@@ -9,8 +9,8 @@
 }
 
 .btn-primary {
-  --at-apply: font-semibold bg-primary text-white border-primary hover:bg-secondary hover:border-secondary
-  hover:text-white dark:text-white dark:bg-primary dark:border-primary dark:hover:border-secondary dark:hover:bg-secondary;
+  --at-apply: font-semibold '!bg-primary' text-white border-primary '!hover:bg-secondary' hover:border-secondary
+  hover:text-white dark:text-white '!dark:bg-primary' dark:border-primary dark:hover:border-secondary '!dark:hover:bg-secondary';
 }
 
 .btn-tertiary {
