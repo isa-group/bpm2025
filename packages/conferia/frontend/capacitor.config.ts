@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'icpm-navigator',
+  appId: 'org.bpm.2025seville',
+  appName: 'BPM 2025 Conference',
   webDir: 'dist',
   server: {
     androidScheme: 'https'
