@@ -1,14 +1,12 @@
+import type { ComponentProps } from 'astro/types';
 import type { Item } from '#/types';
+import type Table from '#/components/ui/Table.astro';
 
 export interface ProgramOverview {
   name: string;
   date?: string;
   location?: string;
-  tables?: {
-    title?: string;
-    showRowIndex?: boolean;
-    rows: Record<string, string>[];
-  }[];
+  tables?: ComponentProps<typeof Table>[];
   items?: Item[];
 }
 
