@@ -1,15 +1,20 @@
 <template>
-  <ion-modal :is-open="isOpen" @ionModalDidClose="closeModal">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Privacy Note</ion-title>
-        <ion-buttons slot="end">
-          <ion-button @click="closeModal">Close</ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-
+  <IonModal
+    :is-open="isOpen"
+    @ion-modal-did-close="closeModal">
+    <IonHeader>
+      <IonToolbar>
+        <IonTitle>Privacy Note</IonTitle>
+        <template #end>
+          <IonButtons>
+            <IonButton @click="closeModal">
+              Close
+            </IonButton>
+          </IonButtons>
+        </template>
+      </IonToolbar>
+    </IonHeader>
+    <IonContent class="ion-padding">
       <h4>How we process your personal data</h4>
       <p>DTU, who is the organizer of ICPM 2024, as data controller, collects and processes information about you in connection with your registration and the partecipation to the conference.</p>
       <p>We process your information on the basis of Article 6(1)(b) and (e) of the Regulation and, in some cases, on the basis of your consent in accordance with Article 6(1)(a) of the Regulation.</p>
@@ -43,23 +48,23 @@
       <h4>Legal entity responsible for the data processing</h4>
 
       <p>
-      Danmarks Tekniske Universitet<br>
-      DTU Compute<br>
-      Richard Petersens Plads<br>
-      Building 324<br>
-      DK-2800 Kgs. Lyngby<br>
-      E-mail: compute@compute.dtu.dk
+        Danmarks Tekniske Universitet<br>
+        DTU Compute<br>
+        Richard Petersens Plads<br>
+        Building 324<br>
+        DK-2800 Kgs. Lyngby<br>
+        E-mail: compute@compute.dtu.dk
       </p>
 
       <h4>Contact details of DTU's Data Protection Officer</h4>
       <p>DTU's DPO: dpo@dtu.dk</p>
-    </ion-content>
-  </ion-modal>
- </template>
+    </IonContent>
+  </IonModal>
+</template>
 
 <script setup lang="ts">
-import {IonButtons, IonButton, IonContent, IonHeader, IonModal, IonTitle, IonToolbar} from "@ionic/vue";
-import {ref, toRefs} from "vue";
+import { IonButtons, IonButton, IonContent, IonHeader, IonModal, IonTitle, IonToolbar } from '@ionic/vue';
+import { ref, toRefs } from 'vue';
 
 const props = defineProps({
   isOpen: Boolean

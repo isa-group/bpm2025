@@ -1,47 +1,64 @@
 <template>
-  <ion-page>
+  <IonPage>
     <HeaderBar name="Calendar" />
 
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-button @click="() => {
-          trackButtonClick('Previous Month Calendar', 'Agenda', 'Feature')
-          changeMonth(-1)
-        }">Prev</ion-button>
-      </ion-buttons>
-      <ion-title class="ion-text-center">{{ currentMonthName }} {{ state.currentYear }}</ion-title>
-      <ion-buttons slot="end">
-        <ion-button @click="() => {
-          trackButtonClick('Next Month Calendar', 'Agenda', 'Feature')
-          changeMonth(1)
-        }">Next</ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-
-
-    <ion-content>
-      <div class="calendar">
-        <div class="day" v-for="day in state.weekDays" :key="day">{{ day }}</div>
-        <div
-            class="date-box"
-            v-for="day in state.daysOfMonth"
-            :key="day.dateString"
-            :class="{ 'not-current': !day.isCurrentMonth }"
+    <IonToolbar>
+      <template #start>
+        <IonButtons>
+          <IonButton
             @click="() => {
-              trackButtonClick('Calendar Date', 'Agenda', 'Feature')
-              day.hasSession ? dateClicked(day): null
-            }"
-        >
-          <div class="date-text">{{ day.date }}</div>
-          <ion-icon :icon="star" v-if="day.hasSession" class="session-dot"></ion-icon>
+              trackButtonClick('Previous Month Calendar', 'Agenda', 'Feature')
+              changeMonth(-1)
+            }">
+            Prev
+          </IonButton>
+        </IonButtons>
+      </template>
+      <IonTitle class="ion-text-center">
+        {{ currentMonthName }} {{ state.currentYear }}
+      </IonTitle>
+      <template #end>
+        <IonButtons>
+          <IonButton
+            @click="() => {
+              trackButtonClick('Next Month Calendar', 'Agenda', 'Feature')
+              changeMonth(1)
+            }">
+            Next
+          </IonButton>
+        </IonButtons>
+      </template>
+    </IonToolbar>
+
+    <IonContent>
+      <div class="calendar">
+        <div
+          v-for="day in state.weekDays"
+          :key="day"
+          class="day">
+          {{ day }}
+        </div>
+        <div
+          v-for="day in state.daysOfMonth"
+          :key="day.dateString"
+          class="date-box"
+          :class="{ 'not-current': !day.isCurrentMonth }"
+          @click="() => {
+            trackButtonClick('Calendar Date', 'Agenda', 'Feature')
+            day.hasSession ? dateClicked(day): null
+          }">
+          <div class="date-text">
+            {{ day.date }}
+          </div>
+          <IonIcon
+            v-if="day.hasSession"
+            :icon="star"
+            class="session-dot" />
         </div>
       </div>
-    </ion-content>
-
-  </ion-page>
+    </IonContent>
+  </IonPage>
 </template>
-
-
 
 <script setup>
 import { reactive, onMounted, computed, nextTick } from 'vue';
@@ -52,21 +69,20 @@ import {
   IonButton,
   IonIcon,
   IonTitle,
-  IonButtons,
+  IonButtons
 } from '@ionic/vue';
-import HeaderBar from "@/components/HeaderBar.vue";
 import axios from 'axios';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { star } from 'ionicons/icons';
-import { useRoute } from 'vue-router';
-import backend from "/backend.config.ts";
-import {googleanalytics} from "@/composables/googleanalytics.ts";
+import HeaderBar from '@/components/HeaderBar.vue';
+import backend from '/backend.config.ts';
+import { googleanalytics } from '@/composables/googleanalytics.ts';
 
-const{trackButtonClick} = googleanalytics()
+const { trackButtonClick } = googleanalytics();
 
 const route = useRoute();
 const router = useRouter();
-const token = localStorage.getItem("accessToken");
+const token = localStorage.getItem('accessToken');
 
 const today = new Date();
 const state = reactive({
@@ -85,6 +101,9 @@ const currentMonthName = computed(() => {
   return date.toLocaleString('default', { month: 'long' });
 });
 
+/**
+ *
+ */
 function getDaysOfMonth(year, month) {
   const firstDayOfMonth = new Date(year, month, 1).getDay();
   const numDays = new Date(year, month + 1, 0).getDate();
@@ -109,8 +128,9 @@ function getDaysOfMonth(year, month) {
   return days;
 }
 
-
-
+/**
+ *
+ */
 function changeMonth(change) {
   const newDate = new Date(state.currentYear, state.currentMonth + change);
   state.currentMonth = newDate.getMonth();
@@ -123,8 +143,9 @@ function changeMonth(change) {
   markDaysWithSessions(); // Ensure days are re-marked according to the new month
 }
 
-
-
+/**
+ *
+ */
 async function fetchSessions() {
   try {
     const { id, type } = route.query;
@@ -132,19 +153,19 @@ async function fetchSessions() {
 
     if (id) {
       response = await axios.get(backend.construct(`agenda/session/likedlist/${id}`), {
-        headers: { 'Authorization': `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` }
       });
     } else if (type === 'personal') {
       const currentUserIdResponse = await axios.get(backend.construct('account/id'), {
-        headers: { 'Authorization': `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` }
       });
       const currentUserId = currentUserIdResponse.data.id;
       response = await axios.get(backend.construct(`agenda/session/likedlist/${currentUserId}`), {
-        headers: { 'Authorization': `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` }
       });
     } else {
       response = await axios.get(backend.construct('agenda/sessions'), {
-        headers: { 'Authorization': `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` }
       });
     }
 
@@ -155,17 +176,18 @@ async function fetchSessions() {
   }
 }
 
-
-
+/**
+ *
+ */
 function markDaysWithSessions() {
-  state.daysOfMonth.forEach(day => {
+  state.daysOfMonth.forEach((day) => {
     // Check if the day is part of the current month
     if (!day.isCurrentMonth) return;
 
     // Look for sessions on this day
-    const hasSession = state.sessions.some(session => {
+    const hasSession = state.sessions.some((session) => {
       // Adjust to use the correct property name
-      const startTime = session.startTime?.split('T')[0] ?? "";
+      const startTime = session.startTime?.split('T')[0] ?? '';
       return day.dateString === startTime;
     });
 
@@ -174,8 +196,9 @@ function markDaysWithSessions() {
   });
 }
 
-
-
+/**
+ *
+ */
 function dateClicked(day) {
   if (!day.isCurrentMonth || day.date == null) return;
 
@@ -204,30 +227,22 @@ function dateClicked(day) {
   }
 }
 
-
-
-
-
-
-
 const applyTheme = () => {
   const theme = localStorage.getItem('theme'); // Get the theme from localStorage
   const rootStyle = document.documentElement.style;
 
   if (theme === 'dark') {
     rootStyle.setProperty('--text-color', '#ffffff'); // Dark background color
-    rootStyle.setProperty('--secondary-text-color', '#686868');       // Light text color
-    rootStyle.setProperty('--calendar-background-color', '#2a2a2a')
-    rootStyle.setProperty('--icon-color', '#098BFF')
-
+    rootStyle.setProperty('--secondary-text-color', '#686868'); // Light text color
+    rootStyle.setProperty('--calendar-background-color', '#2a2a2a');
+    rootStyle.setProperty('--icon-color', '#098BFF');
   } else {
     rootStyle.setProperty('--calendar-background-color', '#E6E6FA'); // Light background color
     rootStyle.setProperty('--text-color', '#000000');
-    rootStyle.setProperty('--icon-color', '#000000')// Dark text color
+    rootStyle.setProperty('--icon-color', '#000000');// Dark text color
     // Set other light theme colors as needed
   }
 };
-
 
 onMounted(() => {
   fetchSessions();
@@ -235,8 +250,6 @@ onMounted(() => {
 });
 
 </script>
-
-
 
 <style>
 
@@ -284,6 +297,5 @@ onMounted(() => {
   background-color: var(--calendar-background-color); /* Color of the dot */
   border-radius: 50%; /* Makes the dot circular */
 }
-
 
 </style>

@@ -1,3 +1,5 @@
+import { spawnSync } from 'node:child_process';
+import { basename, join } from 'node:path';
 import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 import js from '@eslint/js';
@@ -7,8 +9,6 @@ import gitignore from 'eslint-config-flat-gitignore';
 // @ts-expect-error - Missing types from package
 import eslintPluginImportAlias from '@dword-design/eslint-plugin-import-alias';
 import { findUpSync } from 'find-up-simple';
-import { spawnSync } from 'node:child_process';
-import { basename, join } from 'node:path';
 
 const CI_environment = !!process.env.CI;
 

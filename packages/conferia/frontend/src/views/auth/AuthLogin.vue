@@ -1,98 +1,139 @@
 <template>
-  <ion-page>
-    <ion-content class="ion-padding">
+  <IonPage>
+    <IonContent class="ion-padding">
       <div class="login-container">
         <div class="login-header">
-          <img :src="logo" alt="BPM Logo" class="logo"/>
-          <ion-segment v-model="selectedSegment" value="login">
-            <ion-segment-button value="login" @click="trackButtonClick('Login Segment', 'Auth', 'Navigation')">
-            <ion-label>Log in</ion-label>
-            </ion-segment-button>
-            <ion-segment-button value="register" @click="trackButtonClick('Register Segment', 'Auth', 'Navigation')">
-            <ion-label>Register</ion-label>
-            </ion-segment-button>
-          </ion-segment>
+          <img
+            :src="logo"
+            alt="BPM Logo"
+            class="logo">
+          <IonSegment
+            v-model="selectedSegment"
+            value="login">
+            <IonSegmentButton
+              value="login"
+              @click="trackButtonClick('Login Segment', 'Auth', 'Navigation')">
+              <IonLabel>Log in</IonLabel>
+            </IonSegmentButton>
+            <IonSegmentButton
+              value="register"
+              @click="trackButtonClick('Register Segment', 'Auth', 'Navigation')">
+              <IonLabel>Register</IonLabel>
+            </IonSegmentButton>
+          </IonSegment>
         </div>
-        <form @submit.prevent="login" v-if="selectedSegment=='login'">
-          <ion-item>
-            <ion-input
-                id="emailInput"
-                label="Your email"
-                label-placement="stacked"
-                v-model="loginUser.email"
-                placeholder="email@email.com"
-                required
-            ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input
-                id="passwordInput"
-                placeholder="password"
-                type="password"
-                v-model="loginUser.password"
-                label="Password"
-                label-placement="stacked"
-                required>
-            </ion-input>
-          </ion-item>
+        <form
+          v-if="selectedSegment=='login'"
+          @submit.prevent="login">
+          <IonItem>
+            <IonInput
+              id="emailInput"
+              v-model="loginUser.email"
+              label="Your email"
+              label-placement="stacked"
+              placeholder="email@email.com"
+              required />
+          </IonItem>
+          <IonItem>
+            <IonInput
+              id="passwordInput"
+              v-model="loginUser.password"
+              placeholder="password"
+              type="password"
+              label="Password"
+              label-placement="stacked"
+              required />
+          </IonItem>
           <p class="ion-text-right">
-            <router-link to="/auth/login/resetpassword" class="forgot-password" @click="trackButtonClick('Forgot Password Link', 'Auth', 'Navigation')">Forgot password?</router-link>
+            <RouterLink
+              to="/auth/login/resetpassword"
+              class="forgot-password"
+              @click="trackButtonClick('Forgot Password Link', 'Auth', 'Navigation')">
+              Forgot password?
+            </RouterLink>
           </p>
           <p class="ion-text-center">
-            <ion-button type="submit" expand="block" class="login-button" @click="trackButtonClick('Sign in Button', 'Auth', 'Feature')">Sign in</ion-button>
+            <IonButton
+              type="submit"
+              expand="block"
+              class="login-button"
+              @click="trackButtonClick('Sign in Button', 'Auth', 'Feature')">
+              Sign in
+            </IonButton>
           </p>
           <!-- Display error message if login fails -->
-          <p v-if="loginError" class="error-message">{{ loginError }}</p>
+          <p
+            v-if="loginError"
+            class="error-message">
+            {{ loginError }}
+          </p>
         </form>
-        <form @submit.prevent="sendConfirmationEmail" v-else>
+        <form
+          v-else
+          @submit.prevent="sendConfirmationEmail">
           <p>You must use the same email address you used to register at the conference.</p>
           <p>Please allow up to 12 hours for emails to be synchronized between the conference registration system and this app.</p>
-          <ion-item class="ion-padding-vertical">
-            <ion-input
-                id="emailInput"
-                placeholder="email@email.com"
-                type="email"
-                v-model="registerUser.receiver"
-                label="Your email"
-                label-placement="stacked"
-                required>
-            </ion-input>
-          </ion-item>
-          <ion-button type="submit" expand="block" class="ion-margin-top" @click="trackButtonClick('Send Confirmation Email Button', 'Auth', 'Feature')">
+          <IonItem class="ion-padding-vertical">
+            <IonInput
+              id="emailInput"
+              v-model="registerUser.receiver"
+              placeholder="email@email.com"
+              type="email"
+              label="Your email"
+              label-placement="stacked"
+              required />
+          </IonItem>
+          <IonButton
+            type="submit"
+            expand="block"
+            class="ion-margin-top"
+            @click="trackButtonClick('Send Confirmation Email Button', 'Auth', 'Feature')">
             Send Confirmation Email
-          </ion-button>
-          <p v-if="registerError" class="error-message">{{ registerError }}</p>
-          <p v-if="registerSuccess" class="success-message">{{ registerSuccess }}</p>
+          </IonButton>
+          <p
+            v-if="registerError"
+            class="error-message">
+            {{ registerError }}
+          </p>
+          <p
+            v-if="registerSuccess"
+            class="success-message">
+            {{ registerSuccess }}
+          </p>
 
           <p class="ion-text-right">
-            <ion-button fill="clear" @click="() => { trackButtonClick('Privacy Note Link', 'Auth', 'Feature'); openPrivacy(); }">Privacy note</ion-button>
+            <IonButton
+              fill="clear"
+              @click="() => { trackButtonClick('Privacy Note Link', 'Auth', 'Feature'); openPrivacy(); }">
+              Privacy note
+            </IonButton>
           </p>
-          <PrivacyNote :isOpen="isPrivacyOpen" @update:isOpen="isPrivacyOpen = $event" />
+          <PrivacyNote
+            :is-open="isPrivacyOpen"
+            @update:is-open="isPrivacyOpen = $event" />
         </form>
       </div>
-    </ion-content>
-  </ion-page>
+    </IonContent>
+  </IonPage>
 </template>
 
-
-
 <script setup lang="js">
-import {IonPage, IonContent, IonButton, IonInput, IonLabel, IonSegment, IonSegmentButton, IonItem} from "@ionic/vue";
+import { IonPage, IonContent, IonButton, IonInput, IonLabel, IonSegment, IonSegmentButton, IonItem } from '@ionic/vue';
 import { ref, computed } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 import logoLight from '@/assets/images/logo-1.svg';
 // import logoDark from '@/assets/images/logo-2.svg';
-import backend from "/backend.config.ts";
-import PrivacyNote from "@/components/PrivacyNote.vue";
-import {googleanalytics} from "@/composables/googleanalytics.ts";
+import backend from '/backend.config.ts';
+import PrivacyNote from '@/components/PrivacyNote.vue';
+import { googleanalytics } from '@/composables/googleanalytics.ts';
 
 const { trackButtonClick } = googleanalytics();
 
 const logo = computed(() => {
   return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? logoLight//logoDark
-      : logoLight;
+    ? logoLight// logoDark
+    : logoLight;
 });
 
 const router = useRouter();
@@ -107,10 +148,10 @@ const selectedSegment = ref('login');
 const loginUser = ref({
   email: '',
   password: ''
-})
-const registerUser = ref( {
+});
+const registerUser = ref({
   receiver: ''
-})
+});
 
 const toggleActive = () => {
   isActiveLogin.value = !isActiveLogin.value;
@@ -118,7 +159,7 @@ const toggleActive = () => {
 };
 const login = async () => {
   try {
-    const response = await axios.post(backend.construct("auth/signin"), loginUser.value);
+    const response = await axios.post(backend.construct('auth/signin'), loginUser.value);
     localStorage.setItem('accessToken', response.data.accessToken);
     localStorage.setItem('refreshToken', response.data.refreshToken);
     localStorage.setItem('userId', response.data.userId);
@@ -126,10 +167,8 @@ const login = async () => {
     loginError.value = '';
     loginUser.value.email = '';
     loginUser.value.password = '';
-
-
   } catch (error) {
-    console.error("Login error:", error.response ? error.response.data : error.message);
+    console.error('Login error:', error.response ? error.response.data : error.message);
     loginError.value = 'Incorrect password or email';
   }
 };
@@ -137,15 +176,13 @@ const login = async () => {
 const sendConfirmationEmail = async () => {
   try {
     localStorage.setItem('accessToken', '');
-    await axios.post(backend.construct("auth/signup"), registerUser.value);
+    await axios.post(backend.construct('auth/signup'), registerUser.value);
     registerUser.value.receiver = '';
     await router.push('/auth/login');
-    registerSuccess.value = 'E-mail sent successfully'
-
-
+    registerSuccess.value = 'E-mail sent successfully';
   } catch (error) {
     // Handle error, e.g., display an error message
-    console.error("Register error:", error.response ? error.response.data : error.message);
+    console.error('Register error:', error.response ? error.response.data : error.message);
     registerError.value = 'If you registered for the conference, you will receive an e-mail soon';
   }
 };
@@ -154,7 +191,6 @@ const isPrivacyOpen = ref(false);
 const openPrivacy = () => {
   isPrivacyOpen.value = true;
 };
-
 
 </script>
 

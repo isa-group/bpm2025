@@ -1,7 +1,7 @@
 import { defineEventHandler, readBody } from 'h3';
+import { validateUserBody } from '@bpm2025-website/shared/validation/data';
 import { router } from '../app.ts';
 import { db } from '../util/db.ts';
-import { validateUserBody } from '@bpm2025-website/shared/validation/data';
 import { logger } from '../util/logger.ts';
 
 /**

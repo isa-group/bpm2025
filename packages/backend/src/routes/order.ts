@@ -1,15 +1,15 @@
+import { createReadStream } from 'node:fs';
+import { stat } from 'node:fs/promises';
 import { defineEventHandler, readBody } from 'h3';
-import { db } from '../util/db.ts';
 import { validateOrderBody } from '@bpm2025-website/shared/validation/data';
+import type { TPVOperation } from '@bpm2025-website/shared';
+import type { full_order_details } from '@prisma/client';
+import { db } from '../util/db.ts';
 import { logger } from '../util/logger.ts';
 import { invoices_folder, router } from '../app.ts';
 import { generateOrderId, getBaseMerchantParameters, getTPVOperationData } from '../redsys.ts';
-import type { TPVOperation } from '@bpm2025-website/shared';
 import { generateTableMarkup } from '../util/listing.ts';
-import { createReadStream } from 'node:fs';
-import { stat } from 'node:fs/promises';
 import { getInvoicePath } from '../util';
-import type { full_order_details } from '@prisma/client';
 import { createOrderAndDiscounts } from '../util/hooks/pre.ts';
 import { postPaymentConfirm } from '../util/hooks/post.ts';
 
@@ -119,6 +119,9 @@ router.post(
   })
 );
 
+/**
+ *
+ */
 function createOrderPage(
   orders: full_order_details[],
   name: string,
@@ -334,6 +337,9 @@ router.get(
   })
 );
 
+/**
+ *
+ */
 async function isFile(path: string): Promise<boolean> {
   try {
     const stats = await stat(path);

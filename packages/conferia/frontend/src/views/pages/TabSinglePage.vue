@@ -1,36 +1,50 @@
 <template>
-  <ion-page>
-    <HeaderBar :name="pageData.title" :showReload="true" @reloadPage="reload" />
+  <IonPage>
+    <HeaderBar
+      :name="pageData.title"
+      :show-reload="true"
+      @reload-page="reload" />
 
-    <ion-content id="main-content" :fullscreen="true">
-      <div v-if = "pageData.layoutId === 1" class="ion-padding" v-html="pageData.content"></div>
+    <IonContent
+      id="main-content"
+      :fullscreen="true">
+      <div
+        v-if="pageData.layoutId === 1"
+        class="ion-padding"
+        v-html="pageData.content" />
 
-      <ion-list v-else-if = "pageData.layoutId === 2">
-        <ion-item v-for = "message in pageData.messages" :key="message.id">
-          <ion-label>{{ message.content }}</ion-label>
-        </ion-item>
-      </ion-list>
+      <IonList v-else-if="pageData.layoutId === 2">
+        <IonItem
+          v-for="message in pageData.messages"
+          :key="message.id">
+          <IonLabel>{{ message.content }}</IonLabel>
+        </IonItem>
+      </IonList>
 
-      <iframe v-else-if = "pageData.layoutId === 3" class="full-page" ref="iframeRef" :src="pageData.content" />
-    </ion-content>
-  </ion-page>
+      <iframe
+        v-else-if="pageData.layoutId === 3"
+        ref="iframeRef"
+        class="full-page"
+        :src="pageData.content" />
+    </IonContent>
+  </IonPage>
 </template>
 
 <script setup lang="js">
-import {IonPage, IonContent, IonList, IonItem, IonLabel} from '@ionic/vue';
-import HeaderBar from "@/components/HeaderBar.vue";
+import { IonPage, IonContent, IonList, IonItem, IonLabel } from '@ionic/vue';
 import { useRoute } from 'vue-router';
-import {onMounted, reactive, ref} from 'vue';
+import { onMounted, reactive, ref } from 'vue';
 import axios from 'axios';
-import backend from "/backend.config.ts";
+import HeaderBar from '@/components/HeaderBar.vue';
+import backend from '/backend.config.ts';
 
 const route = useRoute();
-const pageData = reactive({title: '', content: '', layoutId: null });
-const token = localStorage.getItem("accessToken")
+const pageData = reactive({ title: '', content: '', layoutId: null });
+const token = localStorage.getItem('accessToken');
 
 onMounted(async () => {
   try {
-    const response = await axios.get(backend.construct(`pages/${route.params.id}`),{ headers: { Authorization: `Bearer ${token}` } });
+    const response = await axios.get(backend.construct(`pages/${route.params.id}`), { headers: { Authorization: `Bearer ${token}` } });
     Object.assign(pageData, response.data);
   } catch (error) {
     console.error('Failed to fetch page data', error);
@@ -45,7 +59,7 @@ const reload = () => {
   setTimeout(() => {
     iframeRef.value.src = iframeSrc; // Reassign the original URL after a short delay
   }, 0);
-}
+};
 </script>
 
 <style scoped>

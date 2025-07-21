@@ -1,6 +1,6 @@
+import { parentPort, workerData } from 'node:worker_threads';
 import type { Prisma } from '@prisma/client';
 // @ts-expect-error - workerData is redeclared for types only, but TS doesn't know
-import { parentPort, workerData } from 'node:worker_threads';
 // @ts-expect-error - The module doesn't have types
 import MicroInvoice from 'microinvoice';
 import { getInvoicePath } from '../../../util/index.ts';

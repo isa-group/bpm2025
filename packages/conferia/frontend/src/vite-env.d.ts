@@ -1,9 +1,9 @@
 /// <reference types="vite/client" />
 import 'vue';
-import {Ref} from "vue";
+import type { Ref } from 'vue';
 
 declare module '@vue/runtime-core' {
-    interface ComponentCustomProperties {
-        $fetchFailed: Ref<boolean>;
-    }
+  interface ComponentCustomProperties {
+    $fetchFailed: Ref<boolean>;
+  }
 }

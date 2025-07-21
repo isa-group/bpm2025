@@ -1,7 +1,7 @@
-import legacy from '@vitejs/plugin-legacy'
-import vue from '@vitejs/plugin-vue'
-import path from 'path'
-import { defineConfig } from 'vite'
+import path from 'path';
+import legacy from '@vitejs/plugin-legacy';
+import vue from '@vitejs/plugin-vue';
+import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [
@@ -10,16 +10,16 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
+      '@': path.resolve(__dirname, './src')
+    }
   },
   server: {
     host: '0.0.0.0'
   },
-  base: "/",
+  base: '/',
   publicDir: 'public',
   build: {
     cssCodeSplit: true,
-    minify: 'terser',
+    minify: 'terser'
   }
-})
+});

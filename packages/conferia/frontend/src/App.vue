@@ -1,9 +1,9 @@
 <template>
-  <ion-app class="app-container">
+  <IonApp class="app-container">
     <DesktopNotification />
     <OfflinePopup />
-    <ion-router-outlet />
-  </ion-app>
+    <IonRouterOutlet />
+  </IonApp>
 </template>
 
 <script setup lang="ts">

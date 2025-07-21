@@ -1,10 +1,13 @@
+import { readFile } from 'node:fs/promises';
 import { PrismaClient } from '@prisma/client';
 import { destr } from 'destr';
 import { logger } from './logger';
-import { readFile } from 'node:fs/promises';
 
 export const db = new PrismaClient();
 
+/**
+ *
+ */
 export async function seedDb(itemsPath: string) {
   const promises = [];
   const items = destr<Record<string, string>>((await readFile(itemsPath)).toString());
@@ -55,6 +58,9 @@ export async function seedDb(itemsPath: string) {
   await db.$transaction(promises);
 }
 
+/**
+ *
+ */
 function onExit() {
   db.$executeRawUnsafe('PRAGMA optimize;');
   db.$disconnect();

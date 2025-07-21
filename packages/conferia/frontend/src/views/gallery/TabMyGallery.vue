@@ -1,45 +1,66 @@
 <template>
-  <ion-page>
-    <HeaderBar name="My Gallery" @openActionSheet="openActionSheet" @reloadPage="() => {
-      trackButtonClick('Reload Gallery', 'My Gallery', 'Feature');
-      reloadPage();
-    }"></HeaderBar>
+  <IonPage>
+    <HeaderBar
+      name="My Gallery"
+      @open-action-sheet="openActionSheet"
+      @reload-page="() => {
+        trackButtonClick('Reload Gallery', 'My Gallery', 'Feature');
+        reloadPage();
+      }" />
 
-    <ion-content :fullscreen="true" ref="content">
-      <ion-grid>
-        <ion-row>
-          <ion-col size="4" v-for="(image, index) in imagesListMyGallery" :key="index">
-            <ion-img :src="getImageWebP(image)" class="gallery-image" :class="{ 'selected-image': imagesSelectedList.includes(image) }"
-                     @click="() => {
-              trackButtonClick(selectMultiple ? 'Select Image' : 'Open Image', 'My Gallery', 'Feature');
-              selectMultiple ? selectImage(image) : goToImage(image);
-            }"></ion-img>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+    <IonContent
+      ref="content"
+      :fullscreen="true">
+      <IonGrid>
+        <IonRow>
+          <IonCol
+            v-for="(image, index) in imagesListMyGallery"
+            :key="index"
+            size="4">
+            <IonImg
+              :src="getImageWebP(image)"
+              class="gallery-image"
+              :class="{ 'selected-image': imagesSelectedList.includes(image) }"
+              @click="() => {
+                trackButtonClick(selectMultiple ? 'Select Image' : 'Open Image', 'My Gallery', 'Feature');
+                selectMultiple ? selectImage(image) : goToImage(image);
+              }" />
+          </IonCol>
+        </IonRow>
+      </IonGrid>
 
-      <ion-fab v-if="selectMultiple" vertical="bottom" horizontal="center" slot="fixed" class="custom-fab">
-        <ion-fab-button @click="() => {
-          trackButtonClick('Deselect Images', 'My Gallery', 'Feature');
-          untoggleSelectImage();
-        }">
-          <ion-icon :icon="close"></ion-icon>
-        </ion-fab-button>
-        <ion-fab-button color="danger" @click="() => {
-          trackButtonClick('Delete Selected Images', 'My Gallery', 'Feature');
-          deleteGalleryImage();
-        }">
-          <ion-icon :icon="trashOutline"></ion-icon>
-        </ion-fab-button>
-        <ion-fab-button @click="() => {
-          trackButtonClick('Download Selected Images', 'My Gallery', 'Feature');
-          downloadImages();
-        }">
-          <ion-icon :icon="download"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-    </ion-content>
-  </ion-page>
+      <template #fixed>
+        <IonFab
+          v-if="selectMultiple"
+          vertical="bottom"
+          horizontal="center"
+          class="custom-fab">
+          <IonFabButton
+            @click="() => {
+              trackButtonClick('Deselect Images', 'My Gallery', 'Feature');
+              untoggleSelectImage();
+            }">
+            <IonIcon :icon="close" />
+          </IonFabButton>
+          <IonFabButton
+            color="danger"
+            @click="() => {
+              trackButtonClick('Delete Selected Images', 'My Gallery', 'Feature');
+              deleteGalleryImage();
+            }">
+            <IonIcon :icon="trashOutline" />
+          </IonFabButton>
+          <IonFabButton
+            @click="() => {
+              trackButtonClick('Download Selected Images', 'My Gallery', 'Feature');
+              downloadImages();
+            }">
+            <IonIcon :icon="download" />
+          </IonFabButton>
+        </IonFab>
+      </template>
+    </IonContent>
+  </IonPage>
 </template>
 
 <script setup lang="ts">
@@ -55,26 +76,26 @@ import {
   IonImg,
   actionSheetController
 } from '@ionic/vue';
-import { close, download, trashOutline} from "ionicons/icons";
-import axios from "axios";
-import {usePhotoGallery} from "@/composables/usePhotoGallery";
-import {onMounted, ref} from "vue";
-import HeaderBar from "@/components/HeaderBar.vue";
-import router from "@/router";
-import {onBeforeRouteLeave, onBeforeRouteUpdate} from "vue-router";
-import backend from "../../../backend.config";
-import {googleanalytics} from "@/composables/googleanalytics";
+import { close, download, trashOutline } from 'ionicons/icons';
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
+import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router';
+import backend from '../../../backend.config';
+import { usePhotoGallery } from '@/composables/usePhotoGallery';
+import HeaderBar from '@/components/HeaderBar.vue';
+import router from '@/router';
+import { googleanalytics } from '@/composables/googleanalytics';
 
 const { trackButtonClick } = googleanalytics();
 const { takePhotoGallery } = usePhotoGallery();
-const token = ref(localStorage.getItem("accessToken"))
+const token = ref(localStorage.getItem('accessToken'));
 
 const imagesListMyGallery = ref<string[]>([]);
 const selectMultiple = ref(false);
 const imagesSelectedList = ref<string[]>([]);
 
 onMounted(async () => {
-  await fetchMyGalleryMetadata()
+  await fetchMyGalleryMetadata();
 });
 
 onBeforeRouteUpdate((to, from, next) => {
@@ -121,11 +142,11 @@ const openActionSheet = async () => {
 const reloadPage = async () => {
   imagesListMyGallery.value = [];
   await fetchMyGalleryMetadata();
-}
+};
 
 const fetchMyGalleryMetadata = async () => {
   try {
-    const response = await axios.get(backend.construct(`gallery/myImages`), {headers: {Authorization: `Bearer ${token.value}`}});
+    const response = await axios.get(backend.construct('gallery/myImages'), { headers: { Authorization: `Bearer ${token.value}` } });
     if (response.data.imagePaths.length > 0) {
       imagesListMyGallery.value = [...imagesListMyGallery.value, ...response.data.imagePaths];
     }
@@ -144,9 +165,9 @@ const uploadGalleryImage = async () => {
     formData.append('file', photoBlob as Blob);
 
     // Make the POST request with the form data and proper headers
-    const uploadResponse = await axios.post(backend.construct("gallery/images"), formData, {
+    const uploadResponse = await axios.post(backend.construct('gallery/images'), formData, {
       headers: {
-        Authorization: `Bearer ${token.value}`,
+        'Authorization': `Bearer ${token.value}`,
         'Content-Type': 'multipart/form-data' // This might be optional as axios sets it automatically with the correct boundary
       }
     });
@@ -156,16 +177,16 @@ const uploadGalleryImage = async () => {
   } catch (error) {
     console.error('Error uploading image:', error);
   }
-}
+};
 const deleteGalleryImage = async () => {
   if (imagesSelectedList.value.length === 0) {
-    console.log("Zero elements selected")
+    console.log('Zero elements selected');
     return;
   }
   try {
-    await axios.delete(backend.construct("gallery/images"), {
+    await axios.delete(backend.construct('gallery/images'), {
       headers: {
-        Authorization: `Bearer ${token.value}`,
+        'Authorization': `Bearer ${token.value}`,
         'Content-Type': 'application/json'
       },
       data: {
@@ -179,58 +200,57 @@ const deleteGalleryImage = async () => {
   }
 };
 
-const downloadImage = (filePath:string) => {
+const downloadImage = (filePath: string) => {
   const image = getImageJPG(filePath);
   fetch(image)
-      .then(res => res.blob())
-      .then(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = filePath;
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        self.postMessage('Download complete');
-      })
-      .catch(() => self.postMessage('Download failed'));
-}
+    .then(res => res.blob())
+    .then((blob) => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filePath;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      self.postMessage('Download complete');
+    })
+    .catch(() => self.postMessage('Download failed'));
+};
 
 const downloadImages = () => {
   if (imagesSelectedList.value.length === 0) {
-    console.log("Zero elements selected")
+    console.log('Zero elements selected');
     return;
   }
   for (const image of imagesSelectedList.value) {
-    downloadImage(image)
+    downloadImage(image);
   }
   imagesSelectedList.value = [];
-}
-
-const getImageWebP = (filepath:string) => {
-  return backend.construct(`gallery/images/${filepath}`, {format: 'webp'});
-};
-const getImageJPG = (filepath:string) => {
-  return backend.construct(`gallery/images/${filepath}`, {format: 'jpg'});
 };
 
-const goToImage = (imageId:string) => {
+const getImageWebP = (filepath: string) => {
+  return backend.construct(`gallery/images/${filepath}`, { format: 'webp' });
+};
+const getImageJPG = (filepath: string) => {
+  return backend.construct(`gallery/images/${filepath}`, { format: 'jpg' });
+};
+
+const goToImage = (imageId: string) => {
   router.push(`/tabs/singleimage/${imageId}`);
-}
+};
 
-const selectImage = (imageId:string) => {
+const selectImage = (imageId: string) => {
   if (imagesSelectedList.value.includes(imageId)) {
     imagesSelectedList.value = imagesSelectedList.value.filter(image => image !== imageId);
     return;
   }
   imagesSelectedList.value.push(imageId);
-}
+};
 
 const untoggleSelectImage = () => {
   selectMultiple.value = false;
   imagesSelectedList.value = [];
-}
-
+};
 
 </script>
 

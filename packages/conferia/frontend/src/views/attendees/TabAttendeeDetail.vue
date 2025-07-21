@@ -1,45 +1,56 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Attendee Details</ion-title>
-        <ion-buttons slot="start">
-          <ion-back-button defaultHref="/tabs/home"></ion-back-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
+  <IonPage>
+    <IonHeader>
+      <IonToolbar>
+        <IonTitle>Attendee Details</IonTitle>
+        <template #start>
+          <IonButtons>
+            <IonBackButton default-href="/tabs/home" />
+          </IonButtons>
+        </template>
+      </IonToolbar>
+    </IonHeader>
+    <IonContent class="ion-padding">
       <!-- Avatar and Name -->
       <div class="profile-picture-container">
-        <ion-avatar>
-          <img :src="attendee.imageURL || 'https://ionicframework.com/docs/img/demos/avatar.svg'" alt="Profile picture" />
-        </ion-avatar>
+        <IonAvatar>
+          <img
+            :src="attendee.imageURL || 'https://ionicframework.com/docs/img/demos/avatar.svg'"
+            alt="Profile picture">
+        </IonAvatar>
       </div>
 
       <!-- Personal Details -->
       <div class="personal-details">
         <h2>{{ attendee.firstname }} {{ attendee.lastname }}</h2>
         <p>
-          <span v-if="attendee.company">{{ attendee.company }}</span><br />
+          <span v-if="attendee.company">{{ attendee.company }}</span><br>
           <span v-if="attendee.country">{{ attendee.country }}</span>
         </p>
-        <p v-if="attendee.email"><a :href="`mailto:${attendee.email}`">{{ attendee.email }}</a></p>
+        <p v-if="attendee.email">
+          <a :href="`mailto:${attendee.email}`">{{ attendee.email }}</a>
+        </p>
       </div>
 
-      <ion-button expand="block" @click="() => {
-        trackButtonClick('Access Personal Agenda', 'Attendee List', 'Feature')
-        router.push(`/tabs/calendar/${attendeeId}`)
-      }">
-        <ion-icon aria-hidden="true" :icon="calendar" class="ion-margin-end" />
+      <IonButton
+        expand="block"
+        @click="() => {
+          trackButtonClick('Access Personal Agenda', 'Attendee List', 'Feature')
+          router.push(`/tabs/calendar/${attendeeId}`)
+        }">
+        <IonIcon
+          aria-hidden="true"
+          :icon="calendar"
+          class="ion-margin-end" />
         See Personalized Agenda
-      </ion-button>
-    </ion-content>
-  </ion-page>
+      </IonButton>
+    </IonContent>
+  </IonPage>
 </template>
 
 <script setup>
-import { reactive, onMounted} from 'vue';
-import { useRouter, useRoute} from 'vue-router';
+import { reactive, onMounted } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 import axios from 'axios';
 import {
   IonPage,
@@ -53,16 +64,16 @@ import {
   IonAvatar,
   IonIcon
 } from '@ionic/vue';
-import backend from "/backend.config.ts";
-import {calendar} from "ionicons/icons";
-import {googleanalytics} from "@/composables/googleanalytics.ts";
+import backend from '/backend.config.ts';
+import { calendar } from 'ionicons/icons';
+import { googleanalytics } from '@/composables/googleanalytics.ts';
 
-const{trackButtonClick} = googleanalytics()
+const { trackButtonClick } = googleanalytics();
 
 const router = useRouter();
 const route = useRoute();
 const attendeeId = route.params.id;
-const token = localStorage.getItem("accessToken");
+const token = localStorage.getItem('accessToken');
 
 const attendee = reactive({
   firstname: '',
@@ -73,24 +84,30 @@ const attendee = reactive({
   imageURL: ''
 });
 
+/**
+ *
+ */
 async function fetchAttendeeDetails() {
   try {
     const response = await axios.get(backend.construct(`attendees/${attendeeId}`), {
-      headers: {'Authorization': `Bearer ${token}`}
+      headers: { Authorization: `Bearer ${token}` }
     });
     Object.assign(attendee, response.data);
     if (attendee.avatar_path) {
       attendee.imageURL = await getImage(attendee);
     }
   } catch (error) {
-    console.error("Failed to fetch attendee details:", error);
+    console.error('Failed to fetch attendee details:', error);
   }
 }
 
+/**
+ *
+ */
 async function getImage(person) {
   try {
     const response = await axios.get(backend.construct(`account/getProfilePicture/${person.id}`), {
-      headers: {'Authorization': `Bearer ${token}`},
+      headers: { Authorization: `Bearer ${token}` },
       params: {
         format: 'webp'
       },
@@ -98,16 +115,21 @@ async function getImage(person) {
     });
     return URL.createObjectURL(response.data);
   } catch (error) {
-    console.error("Error fetching image:", error);
+    console.error('Error fetching image:', error);
     return 'https://ionicframework.com/docs/img/demos/avatar.svg';
   }
 }
 
+/**
+ *
+ */
 function goToPersonalizedAgenda() {
   router.push({ path: `/tabs/calendar/${attendeeId}` });
 }
 
-
+/**
+ *
+ */
 function goToPersonalGallery() {
   router.push({ path: `/tabs/images/${attendeeId}` });
 }

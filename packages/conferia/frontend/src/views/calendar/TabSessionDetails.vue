@@ -1,57 +1,71 @@
 <template>
-  <ion-modal :is-open="isOpen" @willPresent="loading = true" @didPresent="openModal()">
+  <IonModal
+    :is-open="isOpen"
+    @will-present="loading = true"
+    @did-present="openModal()">
+    <IonHeader>
+      <IonToolbar>
+        <template #start>
+          <IonButtons>
+            <IonBackButton
+              default-href="/tabs/calendar"
+              @click="() => {
+                trackButtonClick('Close Session Detail', 'Agenda', 'Feature')
+                closeModal()
+              }" />
+          </IonButtons>
+        </template>
+        <IonTitle>Session Detail</IonTitle>
+      </IonToolbar>
+    </IonHeader>
 
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button defaultHref="/tabs/calendar" @click="() => {
-            trackButtonClick('Close Session Detail', 'Agenda', 'Feature')
-            closeModal()
-          }"></ion-back-button>
-        </ion-buttons>
-        <ion-title>Session Detail</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content id="main-content" :fullscreen="true">
+    <IonContent
+      id="main-content"
+      :fullscreen="true">
       <div v-if="loading">
-        <p class="ion-text-center" style="margin-top: 50%; opacity: 0.5"><em>Loading...</em></p>
+        <p
+          class="ion-text-center"
+          style="margin-top: 50%; opacity: 0.5">
+          <em>Loading...</em>
+        </p>
       </div>
-      <div v-else class="ion-padding">
+      <div
+        v-else
+        class="ion-padding">
         <h1>{{ pageData.name }}</h1>
         <p><strong>Session chair:</strong> {{ pageData.host }}</p>
         <p>
           <strong>Time:</strong> {{ dayjs(pageData.startTime).format('D MMMM, HH:mm') }}-{{ dayjs(pageData.endTime).format('HH:mm') }}<br>
           <strong>Location:</strong> {{ pageData.location }}
         </p>
-        <div v-html="pageData.content"></div>
+        <div v-html="pageData.content" />
       </div>
-    </ion-content>
-  </ion-modal>
+    </IonContent>
+  </IonModal>
 </template>
 
-
-
 <script setup>
-import { IonContent, IonModal, IonTitle, IonButtons, IonToolbar, IonHeader, IonBackButton, IonLoading} from '@ionic/vue';
-import { reactive, ref} from 'vue';
+import { IonContent, IonModal, IonTitle, IonButtons, IonToolbar, IonHeader, IonBackButton, IonLoading } from '@ionic/vue';
+import { reactive, ref } from 'vue';
 import axios from 'axios';
-import dayjs from "dayjs";
-import backend from "/backend.config.ts";
-import {googleanalytics} from "@/composables/googleanalytics.ts";
-
-const{trackButtonClick} = googleanalytics()
+import dayjs from 'dayjs';
+import backend from '/backend.config.ts';
+import { googleanalytics } from '@/composables/googleanalytics.ts';
 
 const props = defineProps({
   isOpen: {
     type: Boolean,
-    required: true,
+    required: true
   },
   id: {
     type: String,
-    required: true,
+    required: true
   }
 });
+
+const emit = defineEmits(['close']);
+
+const { trackButtonClick } = googleanalytics();
 
 const loading = ref(true);
 
@@ -64,28 +78,23 @@ const pageData = reactive({
   endTime: '',
   content: '' // Session content
 });
-const token = localStorage.getItem("accessToken")
-const emit = defineEmits(['close']);
-
+const token = localStorage.getItem('accessToken');
 const closeModal = () => {
   emit('close');
-}
+};
 
 const openModal = async () => {
   try {
-    if(props.id != "") {
+    if (props.id != '') {
       loading.value = true;
       const response = await axios.get(backend.construct(`agenda/session/${props.id}`),
-          {headers: {Authorization: `Bearer ${token}`}}).then(response => {
+        { headers: { Authorization: `Bearer ${token}` } }).then((response) => {
         Object.assign(pageData, response.data);
         loading.value = false;
       });
-
-
     }
   } catch (error) {
     console.error('Failed to fetch session data', error);
   }
-}
+};
 </script>
-

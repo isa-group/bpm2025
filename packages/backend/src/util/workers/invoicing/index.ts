@@ -1,8 +1,8 @@
 import { join } from 'node:path';
 import { Worker } from 'node:worker_threads';
 import { readdir, readFile } from 'node:fs/promises';
-import type { Inputs, WorkerData } from './worker';
 import imageSize from 'image-size';
+import type { Inputs, WorkerData } from './worker';
 
 let worker: Worker;
 let is_registered = false;

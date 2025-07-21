@@ -1,62 +1,113 @@
 <template>
-  <ion-page>
-    <HeaderBar name="Gallery" @openActionSheet="openActionSheet" @reloadPage="reloadPage" @openFilter="openFilter" ></HeaderBar>
-    <ion-popover :is-open="showFilterOptions" @ionPopoverDidDismiss="showFilterOptions = false" class="filterPopover" :event="popoverEvent">
-      <ion-list>
-        <ion-item>
-          <ion-select v-model="filterAndSearch.filterChoice" label="Order by:" interface="popover">
-            <ion-select-option value="uploadTime">Date</ion-select-option>
-            <ion-select-option value="likes">Likes</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-select v-model="filterAndSearch.orderValue" label="Direction:" interface="popover">
-            <ion-select-option value="true">Ascending</ion-select-option>
-            <ion-select-option value="false">Descending</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-list>
+  <IonPage>
+    <HeaderBar
+      name="Gallery"
+      @open-action-sheet="openActionSheet"
+      @reload-page="reloadPage"
+      @open-filter="openFilter" />
+    <IonPopover
+      :is-open="showFilterOptions"
+      class="filterPopover"
+      :event="popoverEvent"
+      @ion-popover-did-dismiss="showFilterOptions = false">
+      <IonList>
+        <IonItem>
+          <IonSelect
+            v-model="filterAndSearch.filterChoice"
+            label="Order by:"
+            interface="popover">
+            <IonSelectOption value="uploadTime">
+              Date
+            </IonSelectOption>
+            <IonSelectOption value="likes">
+              Likes
+            </IonSelectOption>
+          </IonSelect>
+        </IonItem>
+        <IonItem>
+          <IonSelect
+            v-model="filterAndSearch.orderValue"
+            label="Direction:"
+            interface="popover">
+            <IonSelectOption value="true">
+              Ascending
+            </IonSelectOption>
+            <IonSelectOption value="false">
+              Descending
+            </IonSelectOption>
+          </IonSelect>
+        </IonItem>
+      </IonList>
       <div class="applyFilterButton">
-        <ion-button expand="block" @click="() => { trackButtonClick('Apply Filter Button', 'Gallery', 'Feature'); applyFilter(); }" class="applyButtonText">Apply</ion-button>
+        <IonButton
+          expand="block"
+          class="applyButtonText"
+          @click="() => { trackButtonClick('Apply Filter Button', 'Gallery', 'Feature'); applyFilter(); }">
+          Apply
+        </IonButton>
       </div>
-    </ion-popover>
-    <ion-content :fullscreen="true" ref="content">
+    </IonPopover>
+    <IonContent
+      ref="content"
+      :fullscreen="true">
+      <IonRefresher
+        slot="fixed"
+        @ion-refresh="reloadPage">
+        <IonRefresherContent />
+      </IonRefresher>
 
-      <ion-refresher slot="fixed" @ionRefresh="reloadPage">
-        <ion-refresher-content></ion-refresher-content>
-      </ion-refresher>
-
-      <ion-searchbar v-model="filterAndSearch.searchInput" @ionChange="fetchGalleryMetadata" placeholder="Search authors..."></ion-searchbar>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="4" v-for="(image, index) in images" :key="index">
-            <ion-img :src="getImageUrl(image)" class="gallery-image" :class="{ 'selected-image': imagesSelectedList.includes(image) }" @click="() => { trackButtonClick('Gallery Image Click', 'Gallery', 'Feature'); selectMultiple ? selectImage(image) : goToImage(image); }"></ion-img>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+      <IonSearchbar
+        v-model="filterAndSearch.searchInput"
+        placeholder="Search authors..."
+        @ion-change="fetchGalleryMetadata" />
+      <IonGrid>
+        <IonRow>
+          <IonCol
+            v-for="(image, index) in images"
+            :key="index"
+            size="4">
+            <IonImg
+              :src="getImageUrl(image)"
+              class="gallery-image"
+              :class="{ 'selected-image': imagesSelectedList.includes(image) }"
+              @click="() => { trackButtonClick('Gallery Image Click', 'Gallery', 'Feature'); selectMultiple ? selectImage(image) : goToImage(image); }" />
+          </IonCol>
+        </IonRow>
+      </IonGrid>
       <!-- Infinite Scroll -->
-      <ion-infinite-scroll @ionInfinite="loadMore" threshold="10%">
-        <ion-infinite-scroll-content
-            loading-spinner="bubbles"
-            loading-text="Loading more photos...">
-        </ion-infinite-scroll-content>
-      </ion-infinite-scroll>
+      <IonInfiniteScroll
+        threshold="10%"
+        @ion-infinite="loadMore">
+        <IonInfiniteScrollContent
+          loading-spinner="bubbles"
+          loading-text="Loading more photos..." />
+      </IonInfiniteScroll>
 
-      <ion-fab v-if="selectMultiple" vertical="bottom" horizontal="center" slot="fixed" class="custom-fab">
-        <ion-fab-button  @click="untoggleSelectImage">
-          <ion-icon :icon="close"></ion-icon>
-        </ion-fab-button>
-        <ion-fab-button @click="() => { trackButtonClick('Download Images Button', 'Gallery', 'Feature'); downloadImages(); }">
-          <ion-icon :icon="download"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-      <ion-fab  v-if="!selectMultiple" vertical="bottom" horizontal="end" slot="fixed" class="custom-fab">
-        <ion-fab-button @click="() => { trackButtonClick('Upload Gallery Image Button', 'Gallery', 'Feature'); uploadGalleryImage(); }">
-          <ion-icon :icon="add"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-    </ion-content>
-  </ion-page>
+      <IonFab
+        v-if="selectMultiple"
+        slot="fixed"
+        vertical="bottom"
+        horizontal="center"
+        class="custom-fab">
+        <IonFabButton @click="untoggleSelectImage">
+          <IonIcon :icon="close" />
+        </IonFabButton>
+        <IonFabButton @click="() => { trackButtonClick('Download Images Button', 'Gallery', 'Feature'); downloadImages(); }">
+          <IonIcon :icon="download" />
+        </IonFabButton>
+      </IonFab>
+      <IonFab
+        v-if="!selectMultiple"
+        slot="fixed"
+        vertical="bottom"
+        horizontal="end"
+        class="custom-fab">
+        <IonFabButton @click="() => { trackButtonClick('Upload Gallery Image Button', 'Gallery', 'Feature'); uploadGalleryImage(); }">
+          <IonIcon :icon="add" />
+        </IonFabButton>
+      </IonFab>
+    </IonContent>
+  </IonPage>
 </template>
 
 <script setup lang="ts">
@@ -73,7 +124,7 @@ import {
   IonList,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
-  InfiniteScrollCustomEvent,
+  type InfiniteScrollCustomEvent,
   actionSheetController,
   IonSearchbar,
   IonSelectOption,
@@ -83,26 +134,26 @@ import {
   IonItem,
   IonRefresher, IonRefresherContent, toastController
 } from '@ionic/vue';
-import {close, download, add} from 'ionicons/icons';
-import { usePhotoGallery } from '@/composables/usePhotoGallery';
-import HeaderBar from "@/components/HeaderBar.vue";
-import axios from "axios";
-import {onMounted, Ref, ref, watch} from "vue";
-import router from "@/router";
+import { close, download, add } from 'ionicons/icons';
+import axios from 'axios';
+import { onMounted, type Ref, ref, watch } from 'vue';
 import { debounce } from 'lodash';
-import {onBeforeRouteUpdate, useRoute} from 'vue-router'
-import backend from "../../../backend.config";
-import {googleanalytics} from "@/composables/googleanalytics";
+import { onBeforeRouteUpdate, useRoute } from 'vue-router';
+import backend from '../../../backend.config';
+import router from '@/router';
+import HeaderBar from '@/components/HeaderBar.vue';
+import { usePhotoGallery } from '@/composables/usePhotoGallery';
+import { googleanalytics } from '@/composables/googleanalytics';
 
 const { trackButtonClick } = googleanalytics();
 const { takePhotoGallery } = usePhotoGallery();
 
-const token = ref(localStorage.getItem("accessToken"))
+const token = ref(localStorage.getItem('accessToken'));
 const route = useRoute();
 
 const images = ref<string[]>([]);
 const hasMore = ref(true);
-const pageNr =ref(0);
+const pageNr = ref(0);
 const pageSize = 100;
 
 const showFilterOptions = ref(false);
@@ -125,16 +176,16 @@ onMounted(async () => {
         headers: {
           Authorization: `Bearer ${token.value}`
         }
-      })
-      filterAndSearch.value.searchInput = response.data.firstname + ' ' + response.data.lastname
+      });
+      filterAndSearch.value.searchInput = response.data.firstname + ' ' + response.data.lastname;
     } catch (e) {
-      console.log("No user with this id")
+      console.log('No user with this id');
     }
   }
-  await fetchGalleryMetadata()
+  await fetchGalleryMetadata();
 });
 
-const openFilter = (event:MouseEvent) => {
+const openFilter = (event: MouseEvent) => {
   popoverEvent.value = event;
   showFilterOptions.value = true;
 };
@@ -144,7 +195,7 @@ const applyFilter = () => {
   hasMore.value = true;
   pageNr.value = 0;
   showFilterOptions.value = false; // Close the popover
-  fetchGalleryMetadata()
+  fetchGalleryMetadata();
 };
 
 const actionSheet = ref<HTMLIonActionSheetElement | null>(null);
@@ -155,7 +206,7 @@ const openActionSheet = async () => {
       text: 'Go to My Gallery',
       handler: () => {
         router.push('/tabs/images/myGallery');
-        trackButtonClick('My Gallery','Gallery','Navigation')
+        trackButtonClick('My Gallery', 'Gallery', 'Navigation');
       }
     }, {
       text: 'Select Images',
@@ -181,12 +232,12 @@ const reloadPage = async (event) => {
   if (event) {
     event.target.complete();
   }
-}
+};
 
 const fetchGalleryMetadata = async () => {
   if (!hasMore.value) return;
   try {
-    const response = await axios.get(backend.construct(`gallery/images`), {
+    const response = await axios.get(backend.construct('gallery/images'), {
       params: {
         pageNr: pageNr.value,
         pageSize: pageSize,
@@ -207,30 +258,30 @@ const fetchGalleryMetadata = async () => {
   } catch (error) {
     console.error('Error fetching gallery images:', error);
   }
-}
+};
 
-const debouncedFetchAttendees = debounce(fetchGalleryMetadata, 300);  // 300ms delay
+const debouncedFetchAttendees = debounce(fetchGalleryMetadata, 300); // 300ms delay
 
 watch(
-    () => filterAndSearch.value.searchInput,
-    async (newQuery, oldQuery) => {
-      if (newQuery !== oldQuery) {
-        images.value = [];
-        hasMore.value = true;
-        pageNr.value = 0;
-        debouncedFetchAttendees();
-      }
-    }, { immediate: false });
+  () => filterAndSearch.value.searchInput,
+  async (newQuery, oldQuery) => {
+    if (newQuery !== oldQuery) {
+      images.value = [];
+      hasMore.value = true;
+      pageNr.value = 0;
+      debouncedFetchAttendees();
+    }
+  }, { immediate: false });
 
-const getImageUrl = (filepath:string) => {
+const getImageUrl = (filepath: string) => {
   return backend.construct(`gallery/images/${filepath}?format=webp`);
 };
 
-const getImageJPG = (filepath:string) => {
+const getImageJPG = (filepath: string) => {
   return backend.construct(`gallery/images/${filepath}?format=jpg`);
 };
 
-const loadMore = async (event?:InfiniteScrollCustomEvent) => {
+const loadMore = async (event?: InfiniteScrollCustomEvent) => {
   await fetchGalleryMetadata();
   if (event) {
     await event.target.complete();
@@ -253,9 +304,9 @@ const uploadGalleryImage = async () => {
     await toast.present();
 
     // Make the POST request with the form data and proper headers
-    const uploadResponse = await axios.post(backend.construct("gallery/images"), formData, {
+    const uploadResponse = await axios.post(backend.construct('gallery/images'), formData, {
       headers: {
-        Authorization: `Bearer ${token.value}`,
+        'Authorization': `Bearer ${token.value}`,
         'Content-Type': 'multipart/form-data' // This might be optional as axios sets it automatically with the correct boundary
       }
     });
@@ -272,52 +323,52 @@ const uploadGalleryImage = async () => {
   } catch (error) {
     console.error('Error uploading image:', error);
   }
-}
+};
 
-const downloadImage = (filePath:string) => {
+const downloadImage = (filePath: string) => {
   const image = getImageJPG(filePath);
   fetch(image)
-      .then(res => res.blob())
-      .then(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = filePath;
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        self.postMessage('Download complete');
-      })
-      .catch(() => self.postMessage('Download failed'));
-}
+    .then(res => res.blob())
+    .then((blob) => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filePath;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      self.postMessage('Download complete');
+    })
+    .catch(() => self.postMessage('Download failed'));
+};
 
 const downloadImages = () => {
   if (imagesSelectedList.value.length === 0) {
-    console.log("Zero elements selected")
+    console.log('Zero elements selected');
     return;
   }
   for (const image of imagesSelectedList.value) {
-    downloadImage(image)
+    downloadImage(image);
   }
   imagesSelectedList.value = [];
-}
+};
 
-const selectImage = (imageId:string) => {
+const selectImage = (imageId: string) => {
   if (imagesSelectedList.value.includes(imageId)) {
     imagesSelectedList.value = imagesSelectedList.value.filter(image => image !== imageId);
     return;
   }
   imagesSelectedList.value.push(imageId);
-}
+};
 
 const untoggleSelectImage = () => {
   selectMultiple.value = false;
   imagesSelectedList.value = [];
-}
+};
 
-const goToImage = (imageId:string) => {
+const goToImage = (imageId: string) => {
   router.push(`/tabs/singleimage/${imageId}`);
-}
+};
 </script>
 
 <style scoped>

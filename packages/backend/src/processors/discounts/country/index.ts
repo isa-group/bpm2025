@@ -1,9 +1,12 @@
 import { createReadStream } from 'node:fs';
-import { createInterface, Interface } from 'node:readline/promises';
+import { createInterface, type Interface } from 'node:readline/promises';
 import { join } from 'node:path';
-import type { Awaitable, ProcessorSignature } from '#/types';
 import type { OrderPayload } from '@bpm2025-website/shared';
+import type { Awaitable, ProcessorSignature } from '#/types';
 
+/**
+ * Converts the every line to a set, to skip duplicates and empty lines.
+ */
 async function linesToSet(rl: Interface) {
   const res = new Set<string>();
 
@@ -17,7 +20,11 @@ async function linesToSet(rl: Interface) {
   return res;
 }
 
-async function parseFile<T>(fileName: string, callback: (rl: Interface) => Awaitable<T>) {
+/**
+ * Parses a file and executes the provided callback for
+ * each line.
+ */
+async function parseFile<T>(fileName: string, fn: (rl: Interface) => Awaitable<T>) {
   const fsStream = createReadStream(join(import.meta.dirname, fileName));
   const rl = createInterface({
     input: fsStream,
@@ -25,7 +32,7 @@ async function parseFile<T>(fileName: string, callback: (rl: Interface) => Await
   });
 
   try {
-    return await callback(rl);
+    return await fn(rl);
   } finally {
     rl.close();
     fsStream.close();

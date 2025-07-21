@@ -1,35 +1,50 @@
 <template>
-  <ion-page>
-    <ion-content class="ion-padding">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button defaultHref="/auth/login"></ion-back-button>
-        </ion-buttons>
-      </ion-toolbar>
+  <IonPage>
+    <IonContent class="ion-padding">
+      <IonToolbar>
+        <template #start>
+          <IonButtons>
+            <IonBackButton default-href="/auth/login" />
+          </IonButtons>
+        </template>
+      </IonToolbar>
       <div class="reset-container">
         <div class="reset-header">
           <h1>Reset password</h1>
         </div>
         <form @submit.prevent="sendResetEmail">
           <p>Please enter your email address to receive a reset link.</p>
-          <ion-item>
-            <ion-input
-                id="email"
-                placeholder="email@email.com"
-                type="email"
-                v-model="resetUser.receiver"
-                label="Your email"
-                label-placement="stacked"
-                required>
-            </ion-input>
-          </ion-item>
-          <ion-button type="submit" expand="block" shape="round" @click="trackButtonClick('Send Reset Email Button', 'Auth', 'Feature')">Send reset email</ion-button>
-          <p v-if="resetEmailError" class="error-message">{{ resetEmailError }}</p>
-          <p v-if="resetEmailSuccess" class="success-message">{{ resetEmailSuccess }}</p>
+          <IonItem>
+            <IonInput
+              id="email"
+              v-model="resetUser.receiver"
+              placeholder="email@email.com"
+              type="email"
+              label="Your email"
+              label-placement="stacked"
+              required />
+          </IonItem>
+          <IonButton
+            type="submit"
+            expand="block"
+            shape="round"
+            @click="trackButtonClick('Send Reset Email Button', 'Auth', 'Feature')">
+            Send reset email
+          </IonButton>
+          <p
+            v-if="resetEmailError"
+            class="error-message">
+            {{ resetEmailError }}
+          </p>
+          <p
+            v-if="resetEmailSuccess"
+            class="success-message">
+            {{ resetEmailSuccess }}
+          </p>
         </form>
       </div>
-    </ion-content>
-  </ion-page>
+    </IonContent>
+  </IonPage>
 </template>
 
 <script setup lang="ts">
@@ -43,28 +58,27 @@ import {
   IonBackButton,
   IonHeader,
   IonToolbar, IonItem
-} from "@ionic/vue";
-import {ref} from "vue";
-import axios from "axios";
-import backend from "../../../backend.config";
-import {googleanalytics} from "@/composables/googleanalytics";
+} from '@ionic/vue';
+import { ref } from 'vue';
+import axios from 'axios';
+import backend from '../../../backend.config';
+import { googleanalytics } from '@/composables/googleanalytics';
 
 const { trackButtonClick } = googleanalytics();
 
 const resetEmailError = ref('');
 const resetEmailSuccess = ref('');
 
-const resetUser = ref( {
+const resetUser = ref({
   receiver: ''
 });
 
 const sendResetEmail = async () => {
   try {
     localStorage.setItem('accessToken', '');
-    await axios.post(backend.construct("auth/resetPassword"), resetUser.value);
+    await axios.post(backend.construct('auth/resetPassword'), resetUser.value);
     resetUser.value.receiver = '';
-    resetEmailSuccess.value = 'Email send successfully'
-
+    resetEmailSuccess.value = 'Email send successfully';
   } catch (error) {
     // Handle error, e.g., display an error message
     resetEmailError.value = 'User with email not found';

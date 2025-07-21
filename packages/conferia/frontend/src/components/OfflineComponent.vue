@@ -1,13 +1,12 @@
 <template>
-  <ion-toast
-      :is-open="isOffline"
-      color="danger"
-      message="You are offline. Please check your internet connection."
-      :duration="8000"
-      position="top"
-      :buttons="toastButtons"
-      @did-dismiss="handleDismiss">
-  </ion-toast>
+  <IonToast
+    :is-open="isOffline"
+    color="danger"
+    message="You are offline. Please check your internet connection."
+    :duration="8000"
+    position="top"
+    :buttons="toastButtons"
+    @did-dismiss="handleDismiss" />
 </template>
 
 <script setup>
@@ -23,11 +22,10 @@ const handleDismiss = () => {
 const toastButtons = [
   {
     text: 'Dismiss',
-    handler: handleDismiss,
-  },
+    handler: handleDismiss
+  }
 ];
 </script>
-
 
 <style>
 

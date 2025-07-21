@@ -1,5 +1,5 @@
-import type { ProcessorSignature } from '#/types';
 import type { OrderPayload } from '@bpm2025-website/shared';
+import type { ProcessorSignature } from '#/types';
 
 export default (): ProcessorSignature => {
   const res: ProcessorSignature = {};

@@ -2,10 +2,10 @@ import { isNil } from '@bpm2025-website/shared/validation';
 
 /**
  * Creates an HTML markup, useful for displaying tables
- * @param {Object} options - Options for the table.
- * @param {string} [options.name='Table'] - The title of the table.
- * @param {Record<string, unknown>[]} options.rows - Array of objects representing table rows. Each object key is a column.
- * @param {Record<number, string>} options.colors - Optional. An object mapping row indices to background color values.
+ * @param options - Options for the table.
+ * @param [options.name='Table'] - The title of the table.
+ * @param options.rows - Array of objects representing table rows. Each object key is a column.
+ * @param options.colors - Optional. An object mapping row indices to background color values.
  */
 export function generateTableMarkup(
   { name = 'Table', description, rows = [], colors = {} }:

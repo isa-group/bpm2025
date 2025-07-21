@@ -1,10 +1,10 @@
 import { createRouter, createWebHashHistory } from '@ionic/vue-router';
-import { RouteRecordRaw } from 'vue-router';
-import TabsPage from '../components/TabsPage.vue'
-import AuthPage from "@/views/auth/AuthPage.vue";
-import ProfilePage from "@/views/auth/ProfilePage.vue";
+import type { RouteRecordRaw } from 'vue-router';
+import TabsPage from '../components/TabsPage.vue';
+import AuthPage from '@/views/auth/AuthPage.vue';
+import ProfilePage from '@/views/auth/ProfilePage.vue';
 
-const routes: Array<RouteRecordRaw> = [
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
     redirect: '/tabs/home'
@@ -26,7 +26,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'calendar/:id?',
         name: 'agenda',
-        component: () => import('@/views/calendar/TabAgenda.vue'),
+        component: () => import('@/views/calendar/TabAgenda.vue')
       },
       {
         path: '/calendar-view',
@@ -35,7 +35,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'attendees',
-        component: () => import('@/views/attendees/TabAttendees.vue'),
+        component: () => import('@/views/attendees/TabAttendees.vue')
       },
       {
         path: '/attendee/:id',
@@ -101,33 +101,32 @@ const routes: Array<RouteRecordRaw> = [
     component: ProfilePage,
     children: [
       {
-        path:'',
+        path: '',
         redirect: '/profile/settings'
       },
       {
-        path:'settings',
+        path: 'settings',
         component: () => import('@/views/auth/ProfileSettings.vue')
       }
     ]
   }
-]
+];
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes
-})
+});
 
 router.beforeEach(async (to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    //Authentication check
+    // Authentication check
     const token = localStorage.getItem('accessToken');
     if (token) {
-      return next();
+      next(); return;
     }
-    return next('/auth/login');
+    next('/auth/login'); return;
   }
   next();
-})
+});
 
-
-export default router
+export default router;

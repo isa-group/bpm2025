@@ -1,108 +1,131 @@
 <template>
-  <ion-page>
+  <IonPage>
     <HeaderBar name="Agenda" />
 
     <!-- ICPM/Personal Segment Bar -->
-    <ion-toolbar class="agenda-type-bar">
-      <ion-segment color="dark" :value="agendaSegmentValue" class="full-width-segment">
-        <ion-segment-button value="all" @click="() => {
-          trackButtonClick('ICPM Agenda Toggle', 'Agenda', 'Feature')
-          navigateToAgendaType('all')
-        }" class="half-width-segment-button">
-          <ion-label class="segment-label">
+    <IonToolbar class="agenda-type-bar">
+      <IonSegment
+        color="dark"
+        :value="agendaSegmentValue"
+        class="full-width-segment">
+        <IonSegmentButton
+          value="all"
+          class="half-width-segment-button"
+          @click="() => {
+            trackButtonClick('ICPM Agenda Toggle', 'Agenda', 'Feature')
+            navigateToAgendaType('all')
+          }">
+          <IonLabel class="segment-label">
             <span>Full Agenda</span>
-          </ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="personal" @click="() =>{
-          trackButtonClick('Personal Agenda Toggle', 'Agenda', 'Feature')
-          navigateToAgendaType('personal')
-        }" class="half-width-segment-button">
-          <ion-label class="segment-label">
+          </IonLabel>
+        </IonSegmentButton>
+        <IonSegmentButton
+          value="personal"
+          class="half-width-segment-button"
+          @click="() =>{
+            trackButtonClick('Personal Agenda Toggle', 'Agenda', 'Feature')
+            navigateToAgendaType('personal')
+          }">
+          <IonLabel class="segment-label">
             <span>Personalized Agenda</span>
-          </ion-label>
-        </ion-segment-button>
-      </ion-segment>
-    </ion-toolbar>
-    <ion-toolbar :style="`--days-count: ${state.uniqueDays.length}`">
-      <ion-segment value="all" v-model="state.selectedDay" scrollable>
-        <ion-segment-button
-            v-for="day in state.uniqueDays"
-            :value="day.value"
-            :key="day.value"
-            :class="{'day-without-session': !day.hasSession, 'day-with-session': day.hasSession}"
-            @click="() => {
-              trackButtonClick('Day Selection', 'Agenda', 'Feature')
-              day.hasSession ? selectDay(day.value) : null
-            }"
-        >
-          <ion-label>
+          </IonLabel>
+        </IonSegmentButton>
+      </IonSegment>
+    </IonToolbar>
+    <IonToolbar :style="`--days-count: ${state.uniqueDays.length}`">
+      <IonSegment
+        v-model="state.selectedDay"
+        value="all"
+        scrollable>
+        <IonSegmentButton
+          v-for="day in state.uniqueDays"
+          :key="day.value"
+          :value="day.value"
+          :class="{'day-without-session': !day.hasSession, 'day-with-session': day.hasSession}"
+          @click="() => {
+            trackButtonClick('Day Selection', 'Agenda', 'Feature')
+            day.hasSession ? selectDay(day.value) : null
+          }">
+          <IonLabel>
             <span class="day-name">{{ day.label.split(', ')[0] }}</span>
             <span class="day-date">{{ day.label.split(', ')[1] }}</span>
-          </ion-label>
-        </ion-segment-button>
-      </ion-segment>
-      <ion-buttons slot="end">
-        <ion-button @click="() =>{
-          trackButtonClick('Monthly Calendar Access', 'Agenda', 'Feature')
-          goToCalendar
-        }">
-          <ion-icon :icon="calendarIcon" class="larger-icon" />
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
+          </IonLabel>
+        </IonSegmentButton>
+      </IonSegment>
+      <template #end>
+        <IonButtons>
+          <IonButton
+            @click="() =>{
+              trackButtonClick('Monthly Calendar Access', 'Agenda', 'Feature')
+              goToCalendar
+            }">
+            <IonIcon
+              :icon="calendarIcon"
+              class="larger-icon" />
+          </IonButton>
+        </IonButtons>
+      </template>
+    </IonToolbar>
 
+    <TabSessionDetails
+      :id="sessionIdDetail"
+      :is-open="sessionModalOpen"
+      @did-dismiss="sessionModalOpen = false"
+      @close="sessionModalOpen = false" />
 
-    <TabSessionDetails :id="sessionIdDetail" :is-open="sessionModalOpen" @didDismiss="sessionModalOpen = false" @close="sessionModalOpen = false" />
-
-    <ion-content id="main-content">
+    <IonContent id="main-content">
       <div v-if="state.selectedDay">
-        <div v-for="(group, timeSlot) in groupedSessionsByTimeSlot" :key="timeSlot">
-          <ion-item-divider color="light">
-            <ion-label>
+        <div
+          v-for="(group, timeSlot) in groupedSessionsByTimeSlot"
+          :key="timeSlot">
+          <IonItemDivider color="light">
+            <IonLabel>
               <h2>{{ timeSlot }}</h2>
-            </ion-label>
-          </ion-item-divider>
-          <ion-item
-              button
-              v-for="session in group"
-              :key="session.id"
-              @click="() => {
-                trackButtonClick('Access Single Session', 'Agenda', 'Feature')
-                showSession(session.id)
-              }">
-            <ion-note slot="end" class="ion-text-right">
-              <ion-icon
+            </IonLabel>
+          </IonItemDivider>
+          <IonItem
+            v-for="session in group"
+            :key="session.id"
+            button
+            @click="() => {
+              trackButtonClick('Access Single Session', 'Agenda', 'Feature')
+              showSession(session.id)
+            }">
+            <template #end>
+              <IonNote class="ion-text-right">
+                <IonIcon
                   :icon="session.isLiked ? heart : heartOutline"
                   :color="session.isLiked ? 'danger' : 'medium'"
+                  style="font-size: 2.5em"
                   @click.stop="() => {
                     trackButtonClick('Session Like', 'Agenda', 'Feature')
                     toggleLike(session)
-                  }"
-                  style="font-size: 2.5em"
-              ></ion-icon><br>
-              <span v-if="session.likes > 0">
-                {{ session.likes + ' like' + (session.likes > 1 ? 's' : '') }}
-              </span>
-              <span v-else>&nbsp;</span>
-            </ion-note>
-            <ion-label>
+                  }" /><br>
+                <span v-if="session.likes > 0">
+                  {{ session.likes + ' like' + (session.likes > 1 ? 's' : '') }}
+                </span>
+                <span v-else>&nbsp;</span>
+              </IonNote>
+            </template>
+            <IonLabel>
               <h3>{{ session.session_name }}</h3>
               <p>{{ session.session_host }}</p>
               <p>{{ session.session_location }}</p>
-            </ion-label>
-          </ion-item>
+            </IonLabel>
+          </IonItem>
         </div>
       </div>
       <div v-else>
-        <p class="ion-padding select-day">Select a day from the top to see the agenda.</p>
+        <p class="ion-padding select-day">
+          Select a day from the top to see the agenda.
+        </p>
       </div>
-    </ion-content>
-  </ion-page>
+    </IonContent>
+  </IonPage>
 </template>
 
-
 <script setup>
-import {reactive, onMounted, computed, watch, ref} from 'vue';
+import { reactive, onMounted, computed, watch, ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import axios from 'axios';
 import {
@@ -120,18 +143,18 @@ import {
 } from '@ionic/vue';
 import { heart, heartOutline, calendarNumber } from 'ionicons/icons';
 import HeaderBar from '@/components/HeaderBar.vue';
-import TabSessionDetails from "@/views/calendar/TabSessionDetails.vue";
-import backend from "/backend.config.ts";
-import {googleanalytics} from "@/composables/googleanalytics.ts";
+import TabSessionDetails from '@/views/calendar/TabSessionDetails.vue';
+import backend from '/backend.config.ts';
+import { googleanalytics } from '@/composables/googleanalytics.ts';
 
-const{trackButtonClick} = googleanalytics()
+const { trackButtonClick } = googleanalytics();
 const router = useRouter();
 const route = useRoute();
 
 const calendarIcon = calendarNumber;
 const token = localStorage.getItem('accessToken');
 
-const sessionIdDetail = ref("");
+const sessionIdDetail = ref('');
 const sessionModalOpen = ref(false);
 
 const state = reactive({
@@ -150,6 +173,9 @@ const agendaSegmentValue = computed(() => {
   return state.passedUserId ? null : state.agendaType;
 });
 
+/**
+ *
+ */
 async function fetchSessions() {
   try {
     if (state.passedUserId) {
@@ -170,16 +196,19 @@ async function fetchSessions() {
   }
 }
 
+/**
+ *
+ */
 async function fetchICPMAgenda() {
   try {
     await fetchLikedSessions();
     const response = await axios.get(backend.construct('agenda/sessions'), {
-      headers: { 'Authorization': `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` }
     });
     const sessionsData = response.data;
     const processedSessions = await processSessions(sessionsData);
     const { weekStart, weekEnd } = determineWeekRangeFromSessions(processedSessions);
-    state.sessions = processedSessions.filter(session => {
+    state.sessions = processedSessions.filter((session) => {
       const sessionDate = new Date(session.start_time);
       return sessionDate >= weekStart && sessionDate <= weekEnd;
     });
@@ -188,18 +217,21 @@ async function fetchICPMAgenda() {
   }
 }
 
+/**
+ *
+ */
 async function fetchPersonalAgenda(userId) {
   try {
     await fetchLikedSessions();
     console.log('Fetching personal agenda for user ID:', userId);
     const response = await axios.get(backend.construct(`agenda/session/likedlist/${userId}`), {
-      headers: { 'Authorization': `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` }
     });
     const sessionsData = response.data;
     console.log('Fetched personal agenda sessions:', sessionsData);
     const processedSessions = await processSessions(sessionsData);
     const { weekStart, weekEnd } = determineWeekRangeFromSessions(processedSessions);
-    state.sessions = processedSessions.filter(session => {
+    state.sessions = processedSessions.filter((session) => {
       const sessionDate = new Date(session.start_time);
       return sessionDate >= weekStart && sessionDate <= weekEnd;
     });
@@ -208,10 +240,13 @@ async function fetchPersonalAgenda(userId) {
   }
 }
 
+/**
+ *
+ */
 async function fetchCurrentUserId() {
   try {
     const response = await axios.get(backend.construct('account/id'), {
-      headers: { 'Authorization': `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` }
     });
     state.currentUserId = response.data.id;
     console.log('Fetched current user ID:', state.currentUserId);
@@ -221,10 +256,13 @@ async function fetchCurrentUserId() {
   }
 }
 
+/**
+ *
+ */
 async function fetchLikedSessions() {
   try {
     const response = await axios.get(backend.construct('agenda/session/hearts'), {
-      headers: { 'Authorization': `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` }
     });
     state.likedSessionIds = new Set(response.data.map(id => id.toString()));
   } catch (error) {
@@ -233,19 +271,22 @@ async function fetchLikedSessions() {
   }
 }
 
+/**
+ *
+ */
 async function toggleLike(session) {
   const previouslyLiked = session.isLiked;
   session.isLiked = !session.isLiked;
   try {
     await axios.post(
-        backend.construct('agenda/session/like'),
-        {
-          likes: session.isLiked,
-          id: session.id
-        },
-        {
-          headers: { 'Authorization': `Bearer ${token}` }
-        }
+      backend.construct('agenda/session/like'),
+      {
+        likes: session.isLiked,
+        id: session.id
+      },
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      }
     );
     if (session.isLiked) {
       state.likedSessionIds.add(session.id);
@@ -260,8 +301,11 @@ async function toggleLike(session) {
   }
 }
 
+/**
+ *
+ */
 async function processSessions(sessionsData) {
-  return sessionsData.map(session => {
+  return sessionsData.map((session) => {
     const sessionIdAsString = session.id.toString();
     const isLikedCheck = state.likedSessionIds.has(sessionIdAsString);
     return {
@@ -278,6 +322,9 @@ async function processSessions(sessionsData) {
   });
 }
 
+/**
+ *
+ */
 function determineWeekRangeFromSessions(processedSessions) {
   let weekStart, weekEnd;
   if (route.query.date) {
@@ -304,6 +351,9 @@ function determineWeekRangeFromSessions(processedSessions) {
   return { weekStart, weekEnd };
 }
 
+/**
+ *
+ */
 function determineWeek(date) {
   const startOfWeek = new Date(date);
   startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay() + (startOfWeek.getDay() === 0 ? -6 : 1));
@@ -312,11 +362,14 @@ function determineWeek(date) {
   return { startOfWeek, endOfWeek };
 }
 
+/**
+ *
+ */
 function uniqueDays() {
   state.uniqueDays = [];
   let earliestDate = null;
   let latestDate = null;
-  state.sessions.forEach(session => {
+  state.sessions.forEach((session) => {
     const sessionDate = new Date(session.start_time.split(' ')[0]);
     if (!earliestDate || sessionDate < earliestDate) {
       earliestDate = sessionDate;
@@ -341,10 +394,16 @@ function uniqueDays() {
   }
 }
 
+/**
+ *
+ */
 function selectDay(value) {
   state.selectedDay = value;
 }
 
+/**
+ *
+ */
 function navigateToAgendaType(type) {
   const query = { ...route.query }; // Get current query parameters
 
@@ -360,7 +419,9 @@ function navigateToAgendaType(type) {
   state.agendaType = type;
 }
 
-
+/**
+ *
+ */
 function goToCalendar() {
   const query = { date: state.selectedDay };
   if (state.passedUserId) {
@@ -370,7 +431,6 @@ function goToCalendar() {
   }
   router.push({ name: 'CalendarView', query });
 }
-
 
 onMounted(async () => {
   await fetchCurrentUserId();
@@ -383,7 +443,6 @@ onMounted(async () => {
   await fetchSessions();
 });
 
-
 watch(() => state.agendaType, async () => {
   console.log('Agenda type changed to:', state.agendaType);
   await fetchSessions();
@@ -391,8 +450,8 @@ watch(() => state.agendaType, async () => {
 
 const filteredSessions = computed(() => {
   return state.sessions
-      .filter(session => session.start_time.startsWith(state.selectedDay))
-      .sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
+    .filter(session => session.start_time.startsWith(state.selectedDay))
+    .sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
 });
 
 const groupedSessionsByTimeSlot = computed(() => {
@@ -410,17 +469,14 @@ const groupedSessionsByTimeSlot = computed(() => {
 const showSession = (id) => {
   sessionIdDetail.value = id;
   sessionModalOpen.value = true;
-}
+};
 </script>
-
-
 
 <style scoped>
 
 ion-segment {
   padding-bottom: 0.3em; /* Adjust as needed */
 }
-
 
 ion-segment-button ion-label {
   align-items: center;

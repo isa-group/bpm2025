@@ -1,17 +1,16 @@
 <template>
-  <ion-toast
-      v-if="isDesktop"
-      :is-open="true"
-      color="danger"
-      message="This application is designed to be used on a smartphone."
-      position="top"
-      :buttons="toastButtons"
-      @didDismiss="handleDismiss">
-  </ion-toast>
+  <IonToast
+    v-if="isDesktop"
+    :is-open="true"
+    color="danger"
+    message="This application is designed to be used on a smartphone."
+    position="top"
+    :buttons="toastButtons"
+    @did-dismiss="handleDismiss" />
 </template>
 
 <script setup>
-import {IonButton, IonToast} from "@ionic/vue";
+import { IonButton, IonToast } from '@ionic/vue';
 
 let isDesktop = window.innerWidth > 1024;
 
@@ -22,8 +21,8 @@ const handleDismiss = () => {
 const toastButtons = [
   {
     text: 'Dismiss',
-    handler: handleDismiss,
-  },
+    handler: handleDismiss
+  }
 ];
 </script>
 

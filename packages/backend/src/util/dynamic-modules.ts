@@ -1,7 +1,7 @@
-import type { OrderPayload } from '@bpm2025-website/shared';
-import { isFunc } from '@bpm2025-website/shared/validation';
 import { glob } from 'node:fs/promises';
 import { join } from 'node:path';
+import type { OrderPayload } from '@bpm2025-website/shared';
+import { isFunc } from '@bpm2025-website/shared/validation';
 import type { Awaitable } from '#/types';
 
 /**
