@@ -1,7 +1,7 @@
+import { program_name_to_uri, program_overviews } from './program/overviews';
 import type { CallForPapers, CallToAction, MenuLink } from '#/types';
 import type { Props as FooterProps } from '#/components/widgets/Footer.astro';
 import { getAsset, getPermalink, trimSlash } from '#/utils/permalinks';
-import { program_name_to_uri, program_overviews } from './program/overviews';
 
 const matches = import.meta.glob('../pages/calls/*.mdx', { eager: true });
 const posts = Object.values(matches) as CallForPapers[];

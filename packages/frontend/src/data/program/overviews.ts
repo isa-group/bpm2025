@@ -14,6 +14,9 @@ export interface ProgramOverview {
   items?: Item[];
 }
 
+/**
+ * Converts the program name to the URI portrayed in the URL
+ */
 export function program_name_to_uri(n: string) {
   return n.replaceAll(' ', '-').toLowerCase();
 }
