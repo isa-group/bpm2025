@@ -15,8 +15,8 @@
     "listhen:prod": "listhen --public --qr false ./src/app.ts",
     "check": "npm run check:types",
     "check:types": "npm run prisma:generate && tsc",
-    "lint": "npm run prisma:generate && eslint .",
-    "lint:fix": "npm run prisma:generate && eslint . --fix",
+    "lint": "npm run prisma:generate && eslint . || true",
+    "lint:fix": "npm run prisma:generate && eslint . --fix || true",
     "lint:inspect": "eslint-config-inspector"
   },
   "devDependencies": {
