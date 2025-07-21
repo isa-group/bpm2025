@@ -38,8 +38,8 @@ export async function postPaymentConfirm(order_id: string, email = true) {
       email: full_order.user.email,
       firstname: firstName,
       lastname: lastName,
-      company: company,
-      country: country
+      company: company ?? 'Unknown',
+      country: country ?? 'Unknown'
     });
   } catch (error) {
     console.error('Failed to register user with CONFERIA:', error);
