@@ -1,9 +1,9 @@
-import { 
+import {
   getBaseConfig,
   getImportAliasConfig,
-   getNodeFiles,
-   getTSVueConfig,
-   tsFiles
+  getNodeFiles,
+  getTSVueConfig,
+  tsFiles
 } from './lint';
 import pkg from './package.json' with { type: 'json' };
 

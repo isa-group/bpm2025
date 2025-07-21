@@ -1,23 +1,26 @@
 {
+  "extends": "@bpm2025-website/configs/typescript",
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "strict": true,
-    "jsx": "preserve",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "lib": ["ESNext", "DOM"],
-    "skipLibCheck": true,
-    "noEmit": true,
-	"noImplicitAny": false,
-    "paths": {
-      "@/*": ["./src/*"]
-    },
-    "allowJs": true
+    "baseUrl": ".",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "types": [
+      "axios",
+      "vite/client",
+      "vue"
+    ]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "exclude": [
+    "dist",
+    "node_modules",
+    "coverage"
+  ],
+  "include": [
+    "**/*.ts",
+    "**/*.vue",
+    "**/*d.ts",
+    "**/*.json"
+  ]
 }

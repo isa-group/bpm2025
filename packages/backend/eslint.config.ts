@@ -1,4 +1,4 @@
-import { 
+import {
   getBaseConfig,
   getImportAliasConfig,
   getNodeFiles,
