@@ -7,9 +7,7 @@ export interface ProgramOverview {
   tables?: {
     title?: string;
     showRowIndex?: boolean;
-    rows: {
-      [key: string]: string;
-    }[];
+    rows: Record<string, string>[];
   }[];
   items?: Item[];
 }
@@ -161,6 +159,7 @@ export const program_overviews: ProgramOverview[] = [
         title: 'Second session (14:00 - 15:30)',
         rows: [
           {
+            Hour: '-',
             Topic: 'Focus Groups: Grand Challenges and Opportunities in the adoption of BPM in industry and the public sector'
           },
           {
