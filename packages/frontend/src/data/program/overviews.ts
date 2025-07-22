@@ -581,6 +581,12 @@ export const program_overviews: ProgramOverview[] = [
             Title: 'Layouting Object-Centric Directly Follows Graphs',
             Authors: 'Deoksang Lee, Minseok Song and Wil M.P. van der Aalst',
             Track: 'Track II: Engineering'
+          },
+          {
+            Hour: '12:15-12:30',
+            Title: '',
+            Authors: '',
+            Track: ''
           }
         ]
       }
