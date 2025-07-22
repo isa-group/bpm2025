@@ -41,7 +41,7 @@ const { src } = bg ? await getImage({ src: bg } as UnresolvedImageTransform) : {
             <Fragment set:html={content} />
           </div>
         )}
-        <div class={subtitle && 'text-shadow'}>
+        <div class={subtitle && 'text-bg-shadow'}>
           {
             tagline && (
               <p
@@ -101,18 +101,18 @@ const { src } = bg ? await getImage({ src: bg } as UnresolvedImageTransform) : {
 </section>
 
 <style>
-.text-shadow {
+.text-bg-shadow {
   background:
     radial-gradient(
       ellipse closest-side,
-      rgb(var(--aw-color-bg-page) / 0.8) 0%,
-      rgb(var(--aw-color-bg-page) / 0.75) 30%,
-      rgb(var(--aw-color-bg-page) / 0.65) 50%,
-      rgb(var(--aw-color-bg-page) / 0.4) 85%,
-      rgb(var(--aw-color-bg-page) / 0.3) 92%,
-      rgb(var(--aw-color-bg-page) / 0.15) 95%,
-      rgb(var(--aw-color-bg-page) / 0.08) 97%,
-      rgb(var(--aw-color-bg-page) / 0) 100%
+      color-mix(in srgb, var(--colors-page) 80%, transparent) 0%,
+      color-mix(in srgb, var(--colors-page) 75%, transparent) 30%,
+      color-mix(in srgb, var(--colors-page) 65%, transparent) 50%,
+      color-mix(in srgb, var(--colors-page) 40%, transparent) 85%,
+      color-mix(in srgb, var(--colors-page) 30%, transparent) 92%,
+      color-mix(in srgb, var(--colors-page) 15%, transparent) 95%,
+      color-mix(in srgb, var(--colors-page) 8%, transparent) 97%,
+      color-mix(in srgb, var(--colors-page) 0%, transparent) 100%
     );
 }
 </style>

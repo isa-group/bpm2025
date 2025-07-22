@@ -1,7 +1,7 @@
 @import url('@fontsource-variable/inter');
 
 .btn {
-  --at-apply: text-page inline-flex items-center justify-center rounded-full
+  --at-apply: inline-flex items-center justify-center rounded-full
   border-gray-400 border bg-transparent font-medium text-center text-base leading-snug transition py-3.5 px-6
   md:px-8 ease-in duration-200 focus:ring-blue-500 focus:ring-offset-blue-200 focus:ring-2 focus:ring-offset-2
   hover:bg-gray-100 hover:border-gray-600 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800
@@ -9,8 +9,8 @@
 }
 
 .btn-primary {
-  --at-apply: font-semibold '!bg-primary' text-white border-primary '!hover:bg-secondary' hover:border-secondary
-  hover:text-white dark:text-white '!dark:bg-primary' dark:border-primary dark:hover:border-secondary '!dark:hover:bg-secondary';
+  --at-apply: font-semibold bg-primary text-white border-primary hover:bg-secondary hover:border-secondary
+  hover:text-white dark:text-white dark:bg-primary dark:border-primary dark:hover:border-secondary dark:hover:bg-secondary;
 }
 
 .btn-tertiary {
@@ -30,17 +30,17 @@
 }
 
 :root {
-  --aw-font-sans: 'InterVariable';
-  --aw-font-serif: 'InterVariable';
-  --aw-font-heading: 'InterVariable';
-  --aw-color-bg-page-dark: 3 6 32;
-  --aw-color-primary: 1 97 239;
-  --aw-color-secondary: 1 84 207;
-  --aw-color-accent: 109 40 217;
-  --aw-color-text-heading: 0 0 0;
-  --aw-color-text-default: 16 16 16;
-  --aw-color-text-muted: 16 16 16 / 66%;
-  --aw-color-bg-page: 255 255 255;
+  /* --aw-font-sans: 'InterVariable'; */
+  /* --aw-font-serif: 'InterVariable'; */
+  /* --aw-font-heading: 'InterVariable'; */
+  /* --aw-color-bg-page-dark: 3 6 32; */
+  /* --aw-color-primary: 1 97 239; */
+  /* --aw-color-secondary: 1 84 207; */
+  /* --aw-color-accent: 109 40 217; */
+  /* --aw-color-text-heading: 0 0 0; */
+  /* --aw-color-text-default: 16 16 16; */
+  /* --aw-color-text-muted: 16 16 16 / 66%; */
+  /* --aw-color-bg-page: 255 255 255; */
 
   ::selection {
     background-color: lavender;
@@ -48,10 +48,14 @@
 }
 
 .dark {
-  --aw-color-text-heading: 247 248 248;
-  --aw-color-text-default: 229 236 246;
-  --aw-color-text-muted: 229 236 246 / 66%;
-  --aw-color-bg-page: var(--aw-color-bg-page-dark);
+  /* --aw-color-text-heading: 247 248 248; */
+  /* --aw-color-text-default: 229 236 246; */
+  /* --aw-color-text-muted: 229 236 246 / 66%; */
+  /* --aw-color-bg-page: var(--aw-color-bg-page-dark); */  
+
+  --colors-page: var(--colors-dark) !important;
+  --colors-muted: #e5ecf6a8 !important;
+  --colors-default: #e5ecf6 !important;
 
   ::selection {
     background-color: black;
