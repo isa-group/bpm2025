@@ -324,5 +324,506 @@ export const program_overviews: ProgramOverview[] = [
         `
       }
     ]
-  }
+  },
+  {
+    name: 'Educators Forum',
+    location: 'N/A',
+    date: 'Tuesday, Sept 2nd, 2025',
+    tables: [
+      {
+        title: 'First session (10:30 - 12:10)',
+        showRowIndex: false,
+        rows: [
+          {
+            Hour: '10:30-10:40',
+            Title: '<i>Opening</i>',
+            Authors: 'Chairs'
+          },
+          {
+            Hour: '10:40-10:55',
+            Title: 'Educating for Next-Generation BPM: A PBL-Process Mapping Blueprint Anchored in the Drifts of the Digital Era',
+            Authors: 'Silvia Dallavalle, Luiz Ricardo Brito Ribeiro and Sérgio Adriany Santos Moreira'
+          },
+          {
+            Hour: '10:55-11:10',
+            Title: 'Project-Based Learning in BPM for interdisciplinary groups -- Teachers\' Experience',
+            Authors: 'Katarzyna Gdowska, Edyta Brzychczy and Krzysztof Kluza'
+          },
+          {
+            Hour: '11:10-11:25',
+            Title: 'Teaching Process Redesign with a Competition',
+            Authors: 'Felix Schumann, Matthias Ehrendorfer, Michel Kunkler and Remco Dijkman'
+          },
+          {
+            Hour: '11:25-11:40',
+            Title: 'Generative AI\'s aid in (Business) Process Modeling Instructional Design: case study',
+            Authors: 'Ilia Maslov, Stephan Poelmans, Yves Wautelet and Kristina Rosenthal'
+          },
+          {
+            Hour: '11:40-11:55',
+            Title: 'Revisiting BPMN Assignments with AI in Mind: Insights from Experiments with Large Language Models in Process Modeling Education',
+            Authors: 'Krzysztof Kluza, Marzena Grzesiak, Piotr Śliz and Leszek Szala'
+          },
+          {
+            Hour: '11:55-12:10',
+            Title: 'Comparing the Design Space of Explorative BPM: MBAs versus genAI',
+            Authors: 'Michael Rosemann and Philipp Joebges'
+          }
+        ]
+      },
+      {
+        title: 'Second session (14:00 - 15:30)',
+        showRowIndex: false,
+        rows: [
+          {
+            Hour: '14:00-15:00',
+            Title: 'Keynote by Deniz Iren: AI Tutors in Practice: Lessons from the Field',
+            Authors: 'Deniz Iren'
+          },
+          {
+            Hour: '15:00-15:15',
+            Title: 'Improving the practice of acquiring knowledge in the field of BPM – a pedagogical framework',
+            Authors: 'Patrycja Hoffa-Dąbrowska and Katarzyna Grzybowska'
+          },
+          {
+            Hour: '15:15-15:30',
+            Title: 'Building BPM Talent in Emerging Markets: A 10-Year Curriculum',
+            Authors: 'Tolusha Dahanayake Yapa, S.W.S.B. Dassanayaka, H.A.D.R. Gunarathne, Prasanna Illankoon, Harishani Liyanage, I.R. Malawige, K.M.S. Senevirathne, Methsiri Suwandaarachchi, Vathsala Wickramasinghe and Amali Wijekoon'
+          }
+        ]
+      },
+      {
+        title: 'Third session (16:00 - 17:30)',
+        showRowIndex: false,
+        rows: [
+          {
+            Hour: '16:00-16:15',
+            Title: 'Process Mining for Predicting Failure To Rescue: a Case Study',
+            Authors: 'Reyes Grangel, Noelia Palomares, María Sánchez-Galán, David Luna-Aleixos and Irene Llagostera-Reverter'
+          },
+          {
+            Hour: '16:15-16:30',
+            Title: 'Education as an affordance actualization driver - Investigating learning data from a Process Mining Ecosystem',
+            Authors: 'Adrian Joas'
+          },
+          {
+            Hour: '16:30-16:45',
+            Title: 'Bridging the BPM Education Gap: Reflections on Affordances of BPM Techniques and a Call for Collaboration',
+            Authors: 'Mahendrawathi Er and Avisha Nathania'
+          },
+          {
+            Hour: '16:45-17:00',
+            Title: 'The Envisioned Global Process Institute: Transforming BPM Education through EaaS and Process Learners in a B2P Model',
+            Authors: 'Andrea Magdaleno and Michael Rosemann'
+          },
+          {
+            Hour: '17:00-17:30',
+            Title: '<i>Closing & Wrap-up</i>'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    name: 'BPM Forum',
+    location: 'N/A',
+    tables: [
+      {
+        title: 'Session 1 - Tuesday, Sept 2nd, 2025 (10:30 - 12:30)',
+        showRowIndex: false,
+        rows: [
+          {
+            Hour: '10:30-10:45',
+            Title: 'High-Level Requirements-Driven Business Process Compliance',
+            Authors: 'Juanita Caballero-Villalobos, Andrea Burattin and Hugo A. López',
+            Track: 'Track I: Foundations'
+          },
+          {
+            Hour: '10:45-11:00',
+            Title: 'Leveraging the Diamond pattern for Scalable and Upgradeable Blockchain-Based Business Process Execution',
+            Authors: 'Victor Lemaire, Tiphaine Henry, Alvaro García, Walid Gaaloul and Sara Tucci Piergiovanni',
+            Track: 'Track II: Engineering'
+          },
+          {
+            Hour: '11:00-11:15',
+            Title: 'Balancing Confidentiality and Transparency for Blockchain-based Process-Aware Information Systems',
+            Authors: 'Alessandro Marcelletti, Edoardo Marangone, Michele Kryston and Claudio Di Ciccio',
+            Track: 'Track II: Engineering'
+          },
+          {
+            Hour: '11:15-11:30',
+            Title: 'Discovering Comprehensive Branched Declarative Process Constraints',
+            Authors: 'Christos Balaktsis, Ioannis Mavroedopoulos, Marco Comuzzi, Anastasios Gounaris and Fabrizio Maria Maggi',
+            Track: 'Track II: Engineering'
+          },
+          {
+            Hour: '11:30-11:45',
+            Title: 'A Case for Public Process Documentation: Robodebt an Automated Decision Making System',
+            Authors: 'Adam Banham, Azumah Mamudu and Rehan Syed',
+            Track: 'Track III: Management'
+          },
+          {
+            Hour: '11:45-12:00',
+            Title: 'Affective Business Process Management',
+            Authors: 'Thomas Grisold and Michael Rosemann',
+            Track: 'Track III: Management'
+          },
+          {
+            Hour: '12:00-12:15',
+            Title: 'FairPM: A Taxonomy of Bias and Interventions in Process Mining',
+            Authors: 'Kate Revoredo, Saimir Bala and Flavia Santoro',
+            Track: 'Track III: Management'
+          },
+          {
+            Hour: '12:15-12:30',
+            Title: 'Automation to Agitation: Unveiling RPA-induced Technostress',
+            Authors: 'Ishadi Upeksha Meekotuwa Mirispelakotuwa, Rehan Syed and Moe Wynn',
+            Track: 'Track III: Management'
+          }
+        ]
+      },
+      {
+        title: 'Session 2 - Wednesday, Sept 3rd, 2025 (10:30 - 12:30)',
+        showRowIndex: false,
+        rows: [
+          {
+            Hour: '10:30-10:45',
+            Title: 'Instance Configuration and Scheduling based on the Resource-Augmented Process Structure Tree',
+            Authors: 'Felix Schumann, Wessel van der Heijden and Stefanie Rinderle-Ma',
+            Track: 'Track I: Foundations'
+          },
+          {
+            Hour: '10:45-11:00',
+            Title: 'Progression: A Lightweight BPMN Engine Simplifying the Execution and Monitoring of Process Models',
+            Authors: 'Thomas M. Prinz, Yongsun Choi and Anja Vetterlein',
+            Track: 'Track II: Engineering'
+          },
+          {
+            Hour: '11:00-11:15',
+            Title: 'Enhancing Predictive Process Monitoring on Small-Scale Event Logs Using LLMs',
+            Authors: 'Alessandro Padella, Paolo Frazzetto, Nicolò Navarin and Massimiliano de Leoni',
+            Track: 'Track II: Engineering'
+          },
+          {
+            Hour: '11:15-11:30',
+            Title: 'SimBank: from Simulation to Solution in Prescriptive Process Monitoring',
+            Authors: 'Jakob De Moor, Hans Weytjens, Johannes De Smedt and Jochen De Weerdt',
+            Track: 'Track II: Engineering'
+          },
+          {
+            Hour: '11:30-11:45',
+            Title: 'A Rollout-Based Algorithm and Reward Function for Resource Allocation in Business Processes',
+            Authors: 'Jeroen Middelhuis, Zaharah Bukhsh, Ivo Adan and Remco Dijkman',
+            Track: 'Track II: Engineering'
+          },
+          {
+            Hour: '11:45-12:00',
+            Title: 'Predicting Newcomer Capabilities and Performance in Process Execution',
+            Authors: 'Jing Yang, Chun Ouyang and Remco Dijkman',
+            Track: 'Track II: Engineering'
+          },
+          {
+            Hour: '12:00-12:15',
+            Title: 'Detecting Undesired Process Behavior by Means of Retrieval Augmented Generation',
+            Authors: 'Michael Grohs, Adrian Rebmann and Jana-Rebecca Rehse',
+            Track: 'Track II: Engineering'
+          },
+          {
+            Hour: '12:15-12:30',
+            Title: 'Process Autonomization: Rethinking Business Process Management',
+            Authors: 'Christian Janiesch, Marek Kowalkiewicz and Michael Rosemann',
+            Track: 'Track III: Management'
+          }
+        ]
+      },
+      {
+        title: 'Session 3 - Thursday, Sept 4th, 2025 (10:30 - 12:30)',
+        showRowIndex: false,
+        rows: [
+          {
+            Hour: '10:30-10:45',
+            Title: 'The WHY in Business Processes: Unification of Causal Process Models',
+            Authors: 'Yuval David, Fabiana Fournier, Lior Limonad and Inna Skarbovsky',
+            Track: 'Track I: Foundations'
+          },
+          {
+            Hour: '10:45-11:00',
+            Title: 'From Sound Workflow Nets to LTL Declarative Specifications by Casting Three Spells',
+            Authors: 'Luca Barbaro, Giovanni Varricchione, Marco Montali and Claudio Di Ciccio',
+            Track: 'Track I: Foundations'
+          },
+          {
+            Hour: '11:00-11:15',
+            Title: 'A Self-Orchestration Model for Business Collaborations with Verifiable Process History Credentials',
+            Authors: 'Martin Farkas, Bertalan Zoltán Péter and Imre Kocsis',
+            Track: 'Track I: Foundations'
+          },
+          {
+            Hour: '11:15-11:30',
+            Title: 'Comparing Apples with Oranges: An Assessment Framework for Model-System Similarity',
+            Authors: 'Martin Kabierski, Jana-Rebecca Rehse and Jan Martin van der Werf',
+            Track: 'Track I: Foundations'
+          },
+          {
+            Hour: '11:30-11:45',
+            Title: 'Stochastic BPMN and Their Conformance',
+            Authors: 'Aleksandar Kuzmanoski, Jan Niklas van Detten and Sander J. J. Leemans',
+            Track: 'Track I: Foundations'
+          },
+          {
+            Hour: '11:45-12:00',
+            Title: 'Rethinking Business Process Simulation: A Utility-Based Evaluation Framework',
+            Authors: 'Konrad Özdemir, Lukas Kirchdorfer, Keyvan Amiri Elyasi, Han van der Aa and Heiner Stuckenschmidt',
+            Track: 'Track I: Foundations'
+          },
+          {
+            Hour: '12:00-12:15',
+            Title: 'Layouting Object-Centric Directly Follows Graphs',
+            Authors: 'Deoksang Lee, Minseok Song and Wil M.P. van der Aalst',
+            Track: 'Track II: Engineering'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    name: 'Main Track',
+    location: 'N/A',
+    tables: [
+      {
+        title: 'Session 1 - Tuesday, Sept 2nd, 2025 (10:30 - 12:30)',
+        showRowIndex: false,
+        rows: [
+          {
+            Hour: '10:30-10:45',
+            Topic: 'A Simple and Calibrated Approach for Uncertainty-Aware Remaining Time Prediction'
+          },
+          {
+            Hour: '10:45-11:00',
+            Topic: 'A Human-In-The-Loop Approach for Improving Fairness in Predictive Business Process Monitoring'
+          },
+          {
+            Hour: '11:00-11:15',
+            Topic: 'BEST: Bilaterally Expanding Subtrace Tree for Event Sequence Prediction'
+          },
+          {
+            Hour: '11:15-11:30',
+            Topic: 'Leveraging Temporal Graphs for Enhancing Transformer-based Predictive Process Monitoring'
+          },
+          {
+            Hour: '11:30-11:45',
+            Topic: 'Global Predictive Monitoring of Object-Centric Processes'
+          },
+          {
+            Hour: '11:45-12:00',
+            Topic: ''
+          },
+          {
+            Hour: '12:00-12:15',
+            Topic: ''
+          },
+          {
+            Hour: '12:15-12:30',
+            Topic: ''
+          }
+        ]
+      },
+      {
+        title: 'Session 2 - Tuesday, Sept 2nd, 2025 (14:00 - 15:30)',
+        showRowIndex: false,
+        rows: [
+          {
+            Hour: '14:00-14:15',
+            Topic: 'Multi-Objective Metaheuristics for Effective and Efficient Process Discovery'
+          },
+          {
+            Hour: '14:15-14:30',
+            Topic: 'OC-DECLARE: Discovering Object-Centric Declarative Patterns with Synchronization'
+          },
+          {
+            Hour: '14:30-14:45',
+            Topic: 'Unlocking Non-Block-Structured Decisions: Inductive Mining with Choice Graphs'
+          },
+          {
+            Hour: '14:45-15:00',
+            Topic: 'Modeling, Formalizing, and Animating Environment-Aware BPMN Collaborations'
+          },
+          {
+            Hour: '15:00-15:15',
+            Topic: ''
+          },
+          {
+            Hour: '15:15-15:30',
+            Topic: ''
+          }
+        ]
+      },
+      {
+        title: 'Session 3 - Tuesday, Sept 2nd, 2025 (16:00 - 17:30)',
+        showRowIndex: false,
+        rows: [
+          {
+            Hour: '16:00-16:15',
+            Topic: 'Efficient Conformance Checking of Rich Data-Aware Declare Specifications'
+          },
+          {
+            Hour: '16:15-16:30',
+            Topic: 'A Full Picture in Conformance Checking: Efficiently Summarizing All Optimal Alignments'
+          },
+          {
+            Hour: '16:30-16:45',
+            Topic: 'Aligning Metric Temporal Constraints and Event Logs via Numeric Planning'
+          },
+          {
+            Hour: '16:45-17:00',
+            Topic: 'Stochastic Alignments: Matching an Observed Trace to Stochastic Process Models'
+          },
+          {
+            Hour: '17:00-17:15',
+            Topic: ''
+          },
+          {
+            Hour: '17:15-17:30',
+            Topic: ''
+          }
+        ]
+      },
+      {
+        title: 'Session 4 - Wednesday, Sept 3rd, 2025 (10:30 - 12:30)',
+        showRowIndex: false,
+        rows: [
+          {
+            Hour: '10:30-10:45',
+            Topic: 'Identifying Negative Contingencies Within Process Mining Initiatives'
+          },
+          {
+            Hour: '10:45-11:00',
+            Topic: 'Mental Maps in Process Mining: Does Stabilizing DFGs Improve Process Analysis Performance?'
+          },
+          {
+            Hour: '11:00-11:15',
+            Topic: 'From Temporary Fixes to Informed Decisions—Design Echelons for Evaluating Workarounds'
+          },
+          {
+            Hour: '11:15-11:30',
+            Topic: 'Beyond Profit: The Role of Benevolent Business Processes in Building Long-Term Firm Success'
+          },
+          {
+            Hour: '11:30-11:45',
+            Topic: 'Light and Dark Presence of Technostress in RPA: Systematic Review of Qualitative Data'
+          },
+          {
+            Hour: '11:45-12:00',
+            Topic: ''
+          },
+          {
+            Hour: '12:00-12:15',
+            Topic: ''
+          },
+          {
+            Hour: '12:15-12:30',
+            Topic: ''
+          }
+        ]
+      },
+      {
+        title: 'Session 5 - Wednesday, Sept 3rd, 2025 (14:00 - 15:30)',
+        showRowIndex: false,
+        rows: [
+          {
+            Hour: '14:00-14:15',
+            Topic: 'Process Area Extraction by Multilevel Resource Detection for Object-Centric Process Mining'
+          },
+          {
+            Hour: '14:15-14:30',
+            Topic: 'Online Discovery of Simulation Models for Evolving Business Processes'
+          },
+          {
+            Hour: '14:30-14:45',
+            Topic: 'A Divide-and-Conquer Approach for Modeling Arrival Times in Business Process Simulation'
+          },
+          {
+            Hour: '14:45-15:00',
+            Topic: 'Optimization of Activity Batching Policies in Business Processes'
+          },
+          {
+            Hour: '15:00-15:15',
+            Topic: ''
+          },
+          {
+            Hour: '15:15-15:30',
+            Topic: ''
+          }
+        ]
+      },
+      {
+        title: 'Session 6 - Thursday, Sept 4th, 2025 (10:30 - 12:30)',
+        showRowIndex: false,
+        rows: [
+          {
+            Hour: '10:30-10:45',
+            Topic: 'MANTA: Materializing Views on Event Data for Context Exploration in Process Analysis'
+          },
+          {
+            Hour: '10:45-11:00',
+            Topic: 'Generation and Analysis of Temporal Event Log using Stochastic Concurrent Context-Free Grammar'
+          },
+          {
+            Hour: '11:00-11:15',
+            Topic: 'Multi-task trained Graph Neural Network for Business Process Anomaly Detection with a Limited Number of Labeled Anomalies'
+          },
+          {
+            Hour: '11:15-11:30',
+            Topic: 'Secrecy Preservation for Online Process Monitoring with Trusted Execution Environment'
+          },
+          {
+            Hour: '11:30-11:45',
+            Topic: ''
+          },
+          {
+            Hour: '11:45-12:00',
+            Topic: ''
+          },
+          {
+            Hour: '12:00-12:15',
+            Topic: ''
+          },
+          {
+            Hour: '12:15-12:30',
+            Topic: ''
+          }
+        ]
+      },
+      {
+        title: 'Session 7 - Thursday, Sept 4th, 2025 (14:00 - 15:30)',
+        showRowIndex: false,
+        rows: [
+          {
+            Hour: '14:00-14:15',
+            Topic: 'A Step Towards Cognitive Automation: Integrating LLM Agents with Process Rules'
+          },
+          {
+            Hour: '14:15-14:30',
+            Topic: 'Discovering Multivariate Conditional Rules through Automatic Reasoning-Enhanced Feature Generation for Process Outcome Explanation'
+          },
+          {
+            Hour: '14:30-14:45',
+            Topic: 'A Procedural Framework for Assessing the Desirability of Process Deviations'
+          },
+          {
+            Hour: '14:45-15:00',
+            Topic: 'Ambiguity Identification in Business Process Descriptions: An Evidence and An Automated Approach'
+          },
+          {
+            Hour: '15:00-15:15',
+            Topic: ''
+          },
+          {
+            Hour: '15:15-15:30',
+            Topic: ''
+          }
+        ]
+      }
+    ]
+  },
 ];
