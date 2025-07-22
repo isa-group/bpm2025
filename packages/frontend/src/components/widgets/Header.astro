@@ -6,7 +6,7 @@ import Button from '#/components/ui/Button/Button.astro';
 
 import { getHomePermalink } from '#/utils/permalinks';
 import { getHeaderData } from '#/data/navigation';
-import { trimSlash, getAsset } from '#/utils/permalinks';
+import { getAsset } from '#/utils/permalinks';
 import type { CallToAction, MenuLink } from '#/types';
 
 export interface Props {
@@ -34,8 +34,6 @@ const {
   showRssFeed = false,
   position = 'center'
 } = Astro.props;
-
-const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 ---
 
 <header
