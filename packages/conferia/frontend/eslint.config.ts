@@ -5,6 +5,6 @@ import pkg from './package.json' with { type: 'json' };
 export default defineConfig([
   ...getBaseConfig(pkg.name),
   ...getTSVueConfig(pkg.name, true, import.meta.dirname),
-  //...unocss,
+  // ...unocss,
   ...getNodeFiles(pkg.name)
 ]);

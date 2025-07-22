@@ -89,8 +89,9 @@
                     closeMessage();
                   }">
                   <IonAvatar>
-                    <img :src="activeMessage.avatar || 'https://ionicframework.com/docs/img/demos/avatar.svg'"
-alt="Profile picture" >
+                    <img
+                      :src="activeMessage.avatar || 'https://ionicframework.com/docs/img/demos/avatar.svg'"
+                      alt="Profile picture">
                   </IonAvatar>
                   <IonLabel>{{ activeMessage.author }}</IonLabel>
                 </IonChip>

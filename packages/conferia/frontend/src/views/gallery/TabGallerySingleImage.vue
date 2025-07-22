@@ -43,29 +43,31 @@
                 <IonIcon
                   v-if="imageData.imageIsLiked"
                   :icon="thumbsUp"
-class="like-icon" @click="() => {
+                  class="like-icon"
+                  @click="() => {
                     trackButtonClick('Unlike Image', 'Image Detail', 'Feature');
                     changeLikeStatus();
                   }" />
                 <IonIcon
                   v-else
                   :icon="thumbsUpOutline"
-class="like-icon" @click="() => {
+                  class="like-icon"
+                  @click="() => {
                     trackButtonClick('Like Image', 'Image Detail', 'Feature');
                     changeLikeStatus();
                   }" />
               </IonCol>
               <IonCol>
                 <p
-v-if="Number(userId) == imageData.authorId"
-                   class="ion-text-right">
+                  v-if="Number(userId) == imageData.authorId"
+                  class="ion-text-right">
                   <IonButton
                     color="danger"
                     @click="() => {
                       trackButtonClick('Delete Image', 'Image Detail', 'Feature');
                       deletePicture();
                     }">
-                    <IonIcon :icon="trashOutline"/> Delete
+                    <IonIcon :icon="trashOutline" /> Delete
                   </IonButton>
                 </p>
               </IonCol>
