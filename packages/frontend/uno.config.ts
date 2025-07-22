@@ -21,13 +21,6 @@ export default defineConfig({
       ]
     }
   },
-  rules: [
-    ['bg-page', { 'background-color': 'rgb(var(--aw-color-bg-page));' }],
-    ['bg-dark', { 'background-color': 'rgb(var(--aw-color-bg-page-dark));' }],
-    ['bg-light', { 'background-color': 'rgb(var(--aw-color-bg-page));' }],
-    ['text-page', { color: 'rgb(var(--aw-color-text-page));' }],
-    ['text-muted', { color: 'rgb(var(--aw-color-text-muted));' }]
-  ],
   presets: [
     defaultPreset,
     presetTypography(),
@@ -43,16 +36,18 @@ export default defineConfig({
   ],
   theme: {
     colors: {
-      primary: 'var(--aw-color-primary)',
-      secondary: 'var(--aw-color-secondary)',
-      accent: 'var(--aw-color-accent)',
-      default: 'var(--aw-color-text-default)',
-      muted: 'var(--aw-color-text-muted)'
+      page: '#ffffff',
+      dark: '#030620',
+      primary: '#0161ef',
+      secondary: '#0154cf',
+      //accent: '#6d28d9',
+      default: '#101010',
+      muted: '#101010a8'
     },
     font: {
-      sans: ['var(--aw-font-sans, ui-sans-serif)', defaultPreset.theme!.font!.sans].join(','),
-      serif: ['var(--aw-font-serif, ui-serif)', defaultPreset.theme!.font!.serif].join(','),
-      heading: ['var(--aw-font-heading, ui-sans-serif)', defaultPreset.theme!.font!.sans].join(',')
+      sans: ['InterVariable', defaultPreset.theme!.font!.sans].join(','),
+      serif: ['InterVariable', defaultPreset.theme!.font!.serif].join(','),
+      heading: ['InterVariable', defaultPreset.theme!.font!.sans].join(',')
     }
   }
 });
