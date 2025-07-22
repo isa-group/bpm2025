@@ -1,9 +1,12 @@
 ---
-import type { ScheduleEvent } from '#/data/program/schedule';
+import type { ScheduleEvent as DailyScheduleEvent } from '#/data/program/daily/day';
+
+type ScheduleEvent = DailyScheduleEvent;
 
 interface Props {
   event: ScheduleEvent;
   locale?: Intl.UnicodeBCP47LocaleIdentifier;
+  isFullWidth?: boolean;
 }
 
 const {
@@ -23,7 +26,18 @@ const categoryColors = {
   lunch: '#f39c12',
   social: '#2ecc71',
   workshop: '#e67e22',
-  consortium: '#457b9d'
+  consortium: '#457b9d',
+  ai4bpm: '#B8E1CD',
+  objects: '#F0B8AC',
+  automate: '#FCE49C',
+  fmbpm: '#47BCC6',
+  vipra: '#6ACCFD',
+  nlp4bpm: '#BFBDFF',
+  bpmeetiot: '#FFC103',
+  innov8bpm: '#6C9EEB',
+  prody: '#8ED7DC',
+  dlt4bpm: '#D7D9DF',
+  plc: '#00B050'
 };
 
 function formatTime(time: Date): string {
@@ -51,14 +65,18 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
 ---
 
 {(() => {
+  const isFullEvent = event.full
+  
   const body = (
     <div
       class:list={[
         'parent/event',
         { 'event-item': !event.href },
+        { 'full-event': isFullEvent },
+        { 'short-event': durationInMinutes <= 30 },
         'relative z-2 h[var(--duration)] w-full overflow-hidden break-words rounded-md bg-white px-3 py-2 hyphens-auto',
         'transition-all duration-200',
-        'hover:absolute hover:z-3 hover:h-auto hover:min-h-[var(--duration)] hover:transform-scale-115 hover:transform hover:shadow-lg hover:-translate-y-0.5',
+        'hover:absolute hover:z-3 hover:h-auto hover:min-h-[var(--duration)] hover:transform-scale-100 hover:transform hover:shadow-lg hover:-translate-y-0.5',
         'hover:cursor-zoom-in group-hover/link:cursor-pointer select-none',
         'md:px-1.5 md:py-1',
         /* Creates the background using the pseudoelement */
@@ -72,14 +90,33 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
       }}>
       <div class="min-h-full min-w-full inset-0 bottom-auto absolute parent-hover/event:relative">
         <div class="p-1">
-          <div class="text-[0.7rem] text-gray-700 font-semibold mb-1 opacity-80 hyphens-auto lg:text-[0.6rem] md:text-[0.6rem]">
-            {formatTime(event.start)} - {formatTime(endTime)}
-          </div>
-          <div class="text-[0.8rem] text-gray-800 leading-tight font-semibold mb-1 hyphens-auto lg:text-xs md:text-[0.7rem]">
-            {event.title}
-          </div>
-          {event.location
-            && <div class="text-[0.7rem] text-gray-600 mb-1 flex gap-0.5 items-center hyphens-auto lg:text-[0.6rem] md:text-[0.7rem]" set:html={`📍 ${event.location}`} />}
+          {/* For 30-minute events, show more compact layout */}
+          {durationInMinutes <= 30 ? (
+            <div>
+              <div class="text-[0.6rem] text-gray-700 font-semibold hyphens-auto opacity-80 lg:text-[0.5rem] md:text-[0.45rem]">
+                {formatTime(event.start)} - {formatTime(endTime)}
+              </div>
+              <div class="text-[0.7rem] text-gray-800 font-semibold leading-tight hyphens-auto lg:text-[0.6rem] md:text-[0.55rem] line-clamp-1">
+                {event.title}
+              </div>
+            </div>
+          ) : (
+            <>
+              <div class="mb-1 text-[0.7rem] text-gray-700 font-semibold hyphens-auto opacity-80 lg:text-[0.6rem] md:text-[0.6rem]">
+                {formatTime(event.start)} - {formatTime(endTime)}
+              </div>
+              <div class="mb-1 text-[0.8rem] text-gray-800 font-semibold leading-tight hyphens-auto lg:text-xs md:text-[0.7rem]">
+                {event.title}
+              </div>
+            </>
+          )}
+            {event.location && (
+            <div class="mb-1 flex items-center gap-0.5 text-[0.7rem] text-gray-600 hyphens-auto lg:text-[0.6rem] md:text-[0.7rem]">
+              📍 {event.location.url
+              ? <a href={event.location.url} target="_blank" rel="noopener noreferrer" class="underline">{event.location.name}</a>
+              : event.location.name}
+            </div>
+            )}
           {event.description
             && <div class="text-[0.7rem] text-gray-600 leading-tight hyphens-auto lg:text-[0.6rem] md:text-[0.7rem]" set:html={event.description} />}
         </div>
@@ -103,5 +140,21 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
 
 :global(td:last-child) .event-item:hover {
   --un-translate-x: -1rem;
+}
+
+/* Make "full" events cover the whole container by default (not just on hover) */
+.full-event {
+  width: 1000%;
+  max-width: none;
+  transform-origin: left;
+  z-index: 2;
+  position: absolute !important; /* Ensure it's positioned absolutely even with hover */
+}
+
+/* Special handling for the last column to prevent overflow */
+:global(td:last-child) .event-item, 
+:global(td:last-child) .parent\/event,
+:global(td:last-child) .full-event {
+  width: 100%;
 }
 </style>

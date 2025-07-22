@@ -1,0 +1,175 @@
+---
+import { type AstroComponent } from '#/types';
+import type { ScheduleEvent as TScheduleEvent } from '#/data/program/daily/day';
+import EventItem from './EventItem.astro';
+import Table from '#/components/ui/Table.astro';
+
+interface Props {
+  events: TScheduleEvent[];
+  date: Date;
+  locale?: Intl.UnicodeBCP47LocaleIdentifier;
+}
+
+const {
+  events = [],
+  date,
+  locale = 'en-EN'
+} = Astro.props;
+
+/**
+ * Creates a localized title showing the specific date in the format appropriate for the locale.
+ * Example: "Sunday, September 7, 2025"
+ */
+function formatDayTitle(date: Date): string {
+  const formatter = new Intl.DateTimeFormat(locale, {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+  
+  return formatter.format(date);
+}
+
+/**
+ * For formatting in the time column, we use a 24-hour format without AM/PM.
+ */
+function formatHour(hour: number): string {
+  const date = new Date();
+  date.setHours(hour, 0, 0, 0);
+
+  const formatter = new Intl.DateTimeFormat(locale, {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: false
+  });
+
+  return formatter.format(date);
+}
+
+/**
+ * Calculate the dynamic hour range based on all events in the day.
+ * Returns an array of hours from the earliest event start to the latest event end (ceiling).
+ */
+const hours = (() => {
+  if (events.length === 0) {
+    // Default range if no events
+    return Array.from({ length: 13 }, (_, i) => i + 8); // 8 AM to 8 PM
+  }
+
+  let minHour = 23;
+  let maxHour = 0;
+
+  for (const event of events) {
+    const endTime = event.end ?? new Date(event.start.getTime() + 60 * 60 * 1000);
+
+    minHour = Math.min(minHour, event.start.getHours());
+    maxHour = Math.max(maxHour, endTime.getHours());
+  }
+
+  // Generate array of hours from minHour to maxHour (inclusive)
+  const hourCount = maxHour - minHour + 1;
+  return Array.from({ length: hourCount }, (_, i) => minHour + i);
+})();
+
+type MapType = Map<AstroComponent | string, AstroComponent | string>;
+
+// Filter events for the specified date
+const dayEvents = events.filter(event => 
+  event.start.getFullYear() === date.getFullYear() &&
+  event.start.getMonth() === date.getMonth() &&
+  event.start.getDate() === date.getDate()
+);
+
+// Separate full-width events from location-specific events
+const fullWidthEvents = dayEvents.filter(event => event.full === true);
+const regularEvents = dayEvents.filter(event => event.full !== true);
+
+// Group regular events by location
+const eventsByLocation = Object.groupBy(regularEvents, event => 
+  event.location?.name ?? 'No Location'
+);
+
+// Get unique locations from regular events only
+let locations = Object.keys(eventsByLocation);
+
+// Move 'No Location' to the end if present
+const noLocationIndex = locations.indexOf('No Location');
+if (noLocationIndex !== -1) {
+  locations = [
+    ...locations.slice(0, noLocationIndex),
+    ...locations.slice(noLocationIndex + 1),
+    'No Location'
+  ];
+}
+
+// Helper to get location URL from eventsByLocation
+function getLocationUrl(location: string): string | undefined {
+  const events = eventsByLocation[location];
+  if (!events || events.length === 0) return undefined;
+  return events[0].location?.url;
+}
+---
+
+{(() => {
+  const columns = locations.map((location) => () => {
+    const url = getLocationUrl(location);
+    return (
+      <div class="h-full flex flex-col items-center justify-center">
+        {url ? (
+          <a href={url} class="text-lg text-gray-800 lg:text-base md:text-sm font-semibold underline hover:text-blue-600" target="_blank" rel="noopener noreferrer">
+            {location}
+          </a>
+        ) : (
+          <div class="text-lg text-gray-800 lg:text-base md:text-sm font-semibold">{location}</div>
+        )}
+      </div>
+    );
+  });
+
+  const rows = hours.map((hour) => {
+    const m = new Map() as MapType;
+
+    m.set('', formatHour(hour));
+    
+    // Find full-width events for this hour - these will only be shown in the first column
+    const hourFullWidthEvents = fullWidthEvents.filter(e => e.start.getHours() === hour);
+    
+    // For each location column
+    locations.forEach((location, index) => {
+      const locationEvents = eventsByLocation[location] || [];
+      const hourLocationEvents = locationEvents.filter(e => e.start.getHours() === hour);
+      
+      m.set(columns[index]!, () => (
+        <div class="group/cell h-full w-full flex">
+          {hourLocationEvents.map(event => (
+            <EventItem
+              event={event}
+              locale={locale}
+            />
+          ))}
+          {/* Only render full-width events in the first column, regardless of their location */}
+          {index === 0 && hourFullWidthEvents.map(event => (
+            <EventItem
+              event={event}
+              locale={locale}
+              isFullWidth={true}
+            />
+          ))}
+        </div>
+      ));
+    });
+
+    return m;
+  });
+
+  return (
+    <Table
+      title={formatDayTitle(date)}
+      highlightFirstColumn
+      mergeFirstCell
+      classes={{ firstColumn: '!items-start' }}
+      rows={rows}
+    />
+  );
+})()}
