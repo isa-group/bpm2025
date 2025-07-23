@@ -29,14 +29,14 @@
   },
   "dependencies": {
     "@bpm2025-website/assets": "*",
-    "@ionic/vue": "8.7.1",
-    "@ionic/vue-router": "8.7.1",
+    "@ionic/core": "8.7.3",
+    "@ionic/vue": "8.7.3",
+    "@primevue/themes": "^4.0.0",
     "@vueuse/core": "13.6.0",
     "axios": "1.11.0",
     "dayjs": "1.11.13",
-    "ionicons": "8.0.13",
+    "primevue": "^4.0.0",
     "vue": "3.5.18",
-    "vue-ionicons": "3.0.5",
     "vue-router": "4.5.1"
   },
   "devDependencies": {

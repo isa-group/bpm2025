@@ -1,58 +1,113 @@
 <template>
   <IonPage>
-    <IonContent class="ion-padding">
-      <div class="signup-container">
-        <div class="signup-header">
-          <h1>Sign up</h1>
+    <IonContent class="bg-gray-50 dark:bg-gray-900">
+      <div class="min-h-screen flex items-center justify-center p-4">
+        <div class="w-full max-w-md space-y-8">
+          <!-- Apple-style Header -->
+          <div class="text-center space-y-2">
+            <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Join BPM 2025</h1>
+            <p class="text-gray-600 dark:text-gray-300">Create your account to get started</p>
+          </div>
+
+          <!-- Registration Form -->
+          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-8">
+            <form id="form" @submit.prevent="sendUserInformation" class="space-y-6">
+              <div class="grid grid-cols-2 gap-4">
+                <div class="space-y-2">
+                  <label for="Firstname" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    First name
+                  </label>
+                  <IonInput
+                    id="Firstname"
+                    v-model="userInformation.firstname"
+                    placeholder="Enter your first name"
+                    class="h-12 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl"
+                    required
+                  />
+                </div>
+                <div class="space-y-2">
+                  <label for="Surname" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Last name
+                  </label>
+                  <IonInput
+                    id="Surname"
+                    v-model="userInformation.lastname"
+                    placeholder="Enter your last name"
+                    class="h-12 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <label for="emailInput" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Email address
+                </label>
+                <IonInput
+                  id="emailInput"
+                  v-model="userInformation.email"
+                  type="email"
+                  placeholder="Enter your email"
+                  class="h-12 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl"
+                  required
+                />
+              </div>
+
+              <div class="space-y-2">
+                <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Password
+                </label>
+                <IonInput
+                  id="password"
+                  v-model="userInformation.password"
+                  type="password"
+                  placeholder="Create a password"
+                  class="h-12 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl"
+                  required
+                />
+              </div>
+
+              <div class="space-y-2">
+                <label for="ConfPassword" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Confirm password
+                </label>
+                <IonInput
+                  id="ConfPassword"
+                  v-model="userInformation.confirmPassword"
+                  type="password"
+                  placeholder="Confirm your password"
+                  class="h-12 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl"
+                  required
+                />
+              </div>
+
+              <!-- Privacy Toggle -->
+              <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-xl p-4">
+                <div class="flex items-start space-x-3">
+                  <IonToggle
+                    v-model="userInformation.sharingChoice"
+                    :checked="true"
+                    class="mt-1"
+                  />
+                  <div>
+                    <h4 class="font-medium text-gray-900 dark:text-white">Share Profile</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                      Allow other attendees to see your profile information for networking
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <IonButton
+                type="submit"
+                expand="block"
+                class="h-12 rounded-xl font-semibold"
+              >
+                Create Account
+              </IonButton>
+            </form>
+          </div>
         </div>
-        <form
-          id="form"
-          @submit.prevent="sendUserInformation">
-          <IonInput
-            id="Firstname"
-            v-model="userInformation.firstname"
-            label="First name"
-            label-placement="stacked"
-            required />
-          <IonInput
-            id="Surname"
-            v-model="userInformation.lastname"
-            label="Surname"
-            label-placement="stacked"
-            required />
-          <IonInput
-            id="emailInput"
-            v-model="userInformation.email"
-            label="Email"
-            label-placement="stacked"
-            type="email"
-            required />
-          <IonInput
-            id="password"
-            v-model="userInformation.password"
-            label="Password"
-            label-placement="stacked"
-            type="password"
-            required />
-          <IonInput
-            id="ConfPassword"
-            v-model="userInformation.confirmPassword"
-            label="Confirm password"
-            label-placement="stacked"
-            type="password"
-            required />
-          <IonToggle
-            v-model="userInformation.sharingChoice"
-            :checked="true"
-            label-placement="end">
-            Share user information with other attendees
-          </IonToggle><br><br>
-          <IonButton
-            type="submit"
-            expand="block">
-            Sign up
-          </IonButton>
-        </form>
       </div>
     </IonContent>
   </IonPage>

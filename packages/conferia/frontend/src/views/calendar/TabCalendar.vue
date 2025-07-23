@@ -1,77 +1,87 @@
 <template>
-  <IonPage>
-    <HeaderBar name="Calendar" />
-
-    <IonToolbar>
-      <template #start>
-        <IonButtons>
-          <IonButton
-            @click="() => {
-              changeMonth(-1)
-            }">
-            Prev
-          </IonButton>
-        </IonButtons>
-      </template>
-      <IonTitle class="ion-text-center">
-        {{ currentMonthName }} {{ state.currentYear }}
-      </IonTitle>
-      <template #end>
-        <IonButtons>
-          <IonButton
-            @click="() => {
-              changeMonth(1)
-            }">
-            Next
-          </IonButton>
-        </IonButtons>
-      </template>
-    </IonToolbar>
-
-    <IonContent>
-      <div class="calendar">
-        <div
-          v-for="day in state.weekDays"
-          :key="day"
-          class="day">
-          {{ day }}
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <!-- Apple-style Header -->
+    <div class="sticky top-16 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+      <div class="flex items-center justify-between px-4 py-4">
+        <button
+          @click="changeMonth(-1)"
+          class="flex items-center space-x-2 px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+        >
+          <i class="i-carbon-chevron-left text-lg"></i>
+          <span class="font-medium">Prev</span>
+        </button>
+        
+        <div class="flex-1 text-center">
+          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+            {{ currentMonthName }} {{ state.currentYear }}
+          </h1>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+            Conference Calendar
+          </p>
         </div>
-        <div
-          v-for="day in state.daysOfMonth"
-          :key="day.dateString"
-          class="date-box"
-          :class="{ 'not-current': !day.isCurrentMonth }"
-          @click="() => {
-            day.hasSession ? dateClicked(day): null
-          }">
-          <div class="date-text">
-            {{ day.date }}
+
+        <button
+          @click="changeMonth(1)"
+          class="flex items-center space-x-2 px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+        >
+          <span class="font-medium">Next</span>
+          <i class="i-carbon-chevron-right text-lg"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Calendar Content -->
+    <div class="px-4 py-6 pb-20">
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <!-- Calendar Grid -->
+        <div class="grid grid-cols-7 gap-0">
+          <!-- Day Headers -->
+          <div
+            v-for="day in state.weekDays"
+            :key="day"
+            class="p-4 text-center bg-gray-50 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600"
+          >
+            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">{{ day }}</span>
           </div>
-          <IonIcon
-            v-if="day.hasSession"
-            :icon="star"
-            class="session-dot" />
+          
+          <!-- Date Cells -->
+          <div
+            v-for="day in state.daysOfMonth"
+            :key="day.dateString"
+            class="relative aspect-square p-2 border-b border-r border-gray-200 dark:border-gray-600 transition-colors cursor-pointer"
+            :class="[
+              day.hasSession ? 'hover:bg-blue-50 dark:hover:bg-blue-900/20' : 'hover:bg-gray-50 dark:hover:bg-gray-700',
+              !day.isCurrentMonth ? 'opacity-40' : '',
+              !day.hasSession ? 'cursor-default' : ''
+            ]"
+            @click="day.hasSession ? dateClicked(day) : null"
+          >
+            <div class="flex flex-col h-full">
+              <span 
+                class="text-sm font-medium"
+                :class="[
+                  day.isCurrentMonth ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-gray-500'
+                ]"
+              >
+                {{ day.date }}
+              </span>
+              
+              <!-- Session Indicator -->
+              <div v-if="day.hasSession" class="flex-1 flex items-center justify-center">
+                <div class="w-2 h-2 bg-blue-500 dark:bg-blue-400 rounded-full animate-pulse"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </IonContent>
-  </IonPage>
+    </div>
+  </div>
 </template>
 
 <script setup>
 import { reactive, onMounted, computed, nextTick } from 'vue';
-import {
-  IonPage,
-  IonToolbar,
-  IonContent,
-  IonButton,
-  IonIcon,
-  IonTitle,
-  IonButtons
-} from '@ionic/vue';
 import axios from 'axios';
 import { useRouter, useRoute } from 'vue-router';
-import { star } from 'ionicons/icons';
-import HeaderBar from '#/components/HeaderBar.vue';
 import backend from '#/plugins/backend.config';
 
 const route = useRoute();
@@ -222,20 +232,8 @@ function dateClicked(day) {
 }
 
 const applyTheme = () => {
-  const theme = localStorage.getItem('theme'); // Get the theme from localStorage
-  const rootStyle = document.documentElement.style;
-
-  if (theme === 'dark') {
-    rootStyle.setProperty('--text-color', '#ffffff'); // Dark background color
-    rootStyle.setProperty('--secondary-text-color', '#686868'); // Light text color
-    rootStyle.setProperty('--calendar-background-color', '#2a2a2a');
-    rootStyle.setProperty('--icon-color', '#098BFF');
-  } else {
-    rootStyle.setProperty('--calendar-background-color', '#E6E6FA'); // Light background color
-    rootStyle.setProperty('--text-color', '#000000');
-    rootStyle.setProperty('--icon-color', '#000000');// Dark text color
-    // Set other light theme colors as needed
-  }
+  // Theme is now handled by Tailwind CSS dark mode classes
+  // No need for custom CSS variables
 };
 
 onMounted(() => {
@@ -245,51 +243,18 @@ onMounted(() => {
 
 </script>
 
-<style>
-
-.calendar {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr); /* 7 columns for 7 days of the week */
-  gap: 1%; /* Space between each "day" box, adjusted to be responsive */
+<style scoped>
+/* All styling is now handled by Tailwind CSS classes */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-.day, .date-box {
-  aspect-ratio: 1; /* Makes the box square */
-  display: flex;
-  position: relative;
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
 }
-
-.day {
-  justify-content: center;
-  align-items: center;
-  background-color: transparent; /* No background for day names */
-  color: var(--text-color); /* White color for the day names */
-}
-
-.calendar .date-box {
-  justify-content: flex-end; /* Positions the date in the bottom-right */
-  align-items: flex-end;
-  padding: 5%; /* Responsive padding */
-  cursor: pointer; /* Indicates the item is clickable */
-  background-color: var(--calendar-background-color); /* Slight background color for date boxes */
-  border-radius: 5%; /* Responsive border radius */
-}
-
-.date-text {
-  font-size: 1.2em; /* Slightly larger and responsive font size */
-  color: var(--text-color); /* White color for the numbers */
-}
-
-.session-dot {
-  position: absolute;
-  top: 15%; /* Centers the dot vertically */
-  left: 15%; /* Centers the dot horizontally */
-  transform: translate(-50%, -50%); /* Ensures the dot is perfectly centered */
-  width: 20%; /* Size of the dot in em for responsiveness */
-  height: 20%;
-  color : #098BFF;
-  background-color: var(--calendar-background-color); /* Color of the dot */
-  border-radius: 50%; /* Makes the dot circular */
-}
-
 </style>

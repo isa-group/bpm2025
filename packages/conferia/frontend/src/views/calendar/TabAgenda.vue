@@ -1,153 +1,188 @@
 <template>
-  <IonPage>
-    <HeaderBar name="Agenda" />
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <!-- Apple-style Header -->
+    <div class="sticky top-16 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+      <div class="flex items-center justify-between px-4 py-4">
+        <div class="flex-1">
+          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+            {{ state.passedUserId ? 'Personal Agenda' : 'Agenda' }}
+          </h1>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+            {{ state.passedUserId ? 'Your personalized conference schedule' : 'Full conference program' }}
+          </p>
+        </div>
+        <button
+          @click="goToCalendar"
+          class="flex items-center space-x-2 px-3 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
+        >
+          <i class="i-carbon-calendar text-lg"></i>
+          <span class="font-medium">Calendar</span>
+        </button>
+      </div>
+    </div>
 
-    <!-- ICPM/Personal Segment Bar -->
-    <IonToolbar class="agenda-type-bar">
-      <IonSegment
-        color="dark"
-        :value="agendaSegmentValue"
-        class="full-width-segment">
-        <IonSegmentButton
-          value="all"
-          class="half-width-segment-button"
-          @click="() => {
-            navigateToAgendaType('all')
-          }">
-          <IonLabel class="segment-label">
-            <span>Full Agenda</span>
-          </IonLabel>
-        </IonSegmentButton>
-        <IonSegmentButton
-          value="personal"
-          class="half-width-segment-button"
-          @click="() =>{
-            navigateToAgendaType('personal')
-          }">
-          <IonLabel class="segment-label">
-            <span>Personalized Agenda</span>
-          </IonLabel>
-        </IonSegmentButton>
-      </IonSegment>
-    </IonToolbar>
-    <IonToolbar :style="`--days-count: ${state.uniqueDays.length}`">
-      <IonSegment
-        v-model="state.selectedDay"
-        value="all"
-        scrollable>
-        <IonSegmentButton
+    <!-- ICMP/Personal Segment Bar -->
+    <div class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-3">
+      <div class="flex bg-gray-100 dark:bg-gray-700 rounded-xl p-1">
+        <button
+          :class="[
+            'flex-1 px-4 py-2 rounded-lg font-medium transition-all duration-200',
+            agendaSegmentValue === 'all'
+              ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
+              : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+          ]"
+          @click="navigateToAgendaType('all')"
+        >
+          Full Agenda
+        </button>
+        <button
+          :class="[
+            'flex-1 px-4 py-2 rounded-lg font-medium transition-all duration-200',
+            agendaSegmentValue === 'personal'
+              ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
+              : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+          ]"
+          @click="navigateToAgendaType('personal')"
+        >
+          Personal Agenda
+        </button>
+      </div>
+    </div>
+
+    <!-- Days Segment Bar -->
+    <div class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-3">
+      <div class="flex space-x-2 overflow-x-auto scrollbar-hide">
+        <button
           v-for="day in state.uniqueDays"
           :key="day.value"
-          :value="day.value"
-          :class="{'day-without-session': !day.hasSession, 'day-with-session': day.hasSession}"
-          @click="() => {
-            day.hasSession ? selectDay(day.value) : null
-          }">
-          <IonLabel>
-            <span class="day-name">{{ day.label.split(', ')[0] }}</span>
-            <span class="day-date">{{ day.label.split(', ')[1] }}</span>
-          </IonLabel>
-        </IonSegmentButton>
-      </IonSegment>
-      <template #end>
-        <IonButtons>
-          <IonButton
-            @click="() =>{
-              goToCalendar
-            }">
-            <IonIcon
-              :icon="calendarIcon"
-              class="larger-icon" />
-          </IonButton>
-        </IonButtons>
-      </template>
-    </IonToolbar>
+          :class="[
+            'px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-all duration-200',
+            state.selectedDay === day.value
+              ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+              : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700',
+            !day.hasSession ? 'opacity-50 cursor-not-allowed' : ''
+          ]"
+          @click="day.hasSession ? selectDay(day.value) : null"
+        >
+          <div class="text-center">
+            <div class="text-xs font-bold">{{ day.label.split(', ')[0] }}</div>
+            <div class="text-xs mt-0.5">{{ day.label.split(', ')[1] }}</div>
+          </div>
+        </button>
+      </div>
+    </div>
 
+    <!-- Content -->
+    <div class="px-4 py-6 pb-20">
+      <!-- Session List -->
+      <div v-if="state.selectedDay && groupedSessionsByTimeSlot && Object.keys(groupedSessionsByTimeSlot).length > 0" class="space-y-6">
+        <div 
+          v-for="(group, timeSlot) in groupedSessionsByTimeSlot"
+          :key="timeSlot"
+          class="space-y-3"
+        >
+          <!-- Time Slot Header -->
+          <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-3 border border-blue-100 dark:border-blue-800">
+            <h2 class="font-bold text-lg text-blue-900 dark:text-blue-100">{{ timeSlot }}</h2>
+          </div>
+          
+          <!-- Sessions in this time slot -->
+          <div class="space-y-3">
+            <div 
+              v-for="session in group"
+              :key="session.id"
+              class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-all duration-200 cursor-pointer"
+              @click="showSession(session.id)"
+            >
+              <div class="p-4">
+                <div class="flex items-start justify-between mb-3">
+                  <div class="flex-1">
+                    <h3 class="font-semibold text-gray-900 dark:text-white text-lg mb-1">
+                      {{ session.session_name }}
+                    </h3>
+                    <p v-if="session.session_host" class="text-gray-600 dark:text-gray-300 text-sm mb-1">
+                      Host: {{ session.session_host }}
+                    </p>
+                    <p v-if="session.session_location" class="text-gray-500 dark:text-gray-400 text-sm">
+                      📍 {{ session.session_location }}
+                    </p>
+                  </div>
+                  
+                  <!-- Like Button -->
+                  <div class="flex flex-col items-center space-y-1">
+                    <button
+                      @click.stop="toggleLike(session)"
+                      class="p-2 rounded-full transition-colors"
+                      :class="session.isLiked 
+                        ? 'bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400' 
+                        : 'bg-gray-50 dark:bg-gray-700 text-gray-400 hover:text-red-500'"
+                    >
+                      <i 
+                        :class="session.isLiked ? 'i-carbon-favorite-filled' : 'i-carbon-favorite'"
+                        class="text-xl"
+                      ></i>
+                    </button>
+                    <span v-if="session.likes > 0" class="text-xs text-gray-500 dark:text-gray-400">
+                      {{ session.likes }} {{ session.likes === 1 ? 'like' : 'likes' }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div v-else class="text-center py-12">
+        <div class="mb-4">
+          <i class="i-carbon-calendar text-6xl text-gray-400"></i>
+        </div>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          {{ state.selectedDay ? 'No sessions available' : 'Select a day' }}
+        </h3>
+        <p class="text-gray-600 dark:text-gray-300">
+          {{ state.selectedDay 
+            ? 'No sessions scheduled for this day' 
+            : 'Choose a day from above to view the agenda' 
+          }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Session Detail Modal -->
     <TabSessionDetails
       :id="sessionIdDetail"
       :is-open="sessionModalOpen"
       @did-dismiss="sessionModalOpen = false"
-      @close="sessionModalOpen = false" />
-
-    <IonContent id="main-content">
-      <div v-if="state.selectedDay">
-        <div
-          v-for="(group, timeSlot) in groupedSessionsByTimeSlot"
-          :key="timeSlot">
-          <IonItemDivider color="light">
-            <IonLabel>
-              <h2>{{ timeSlot }}</h2>
-            </IonLabel>
-          </IonItemDivider>
-          <IonItem
-            v-for="session in group"
-            :key="session.id"
-            button
-            @click="() => {
-              showSession(session.id)
-            }">
-            <template #end>
-              <IonNote class="ion-text-right">
-                <IonIcon
-                  :icon="session.isLiked ? heart : heartOutline"
-                  :color="session.isLiked ? 'danger' : 'medium'"
-                  style="font-size: 2.5em"
-                  @click.stop="() => {
-                    toggleLike(session)
-                  }" /><br>
-                <span v-if="session.likes > 0">
-                  {{ session.likes + ' like' + (session.likes > 1 ? 's' : '') }}
-                </span>
-                <span v-else>&nbsp;</span>
-              </IonNote>
-            </template>
-            <IonLabel>
-              <h3>{{ session.session_name }}</h3>
-              <p>{{ session.session_host }}</p>
-              <p>{{ session.session_location }}</p>
-            </IonLabel>
-          </IonItem>
-        </div>
-      </div>
-      <div v-else>
-        <p class="ion-padding select-day">
-          Select a day from the top to see the agenda.
-        </p>
-      </div>
-    </IonContent>
-  </IonPage>
+    />
+  </div>
 </template>
 
 <script setup>
 import { reactive, onMounted, computed, watch, ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import axios from 'axios';
-import {
-  IonPage,
-  IonToolbar,
-  IonContent,
-  IonButton,
-  IonIcon,
-  IonItem,
-  IonButtons,
-  IonItemDivider,
-  IonSegment,
-  IonSegmentButton,
-  IonLabel, IonNote
-} from '@ionic/vue';
-import { heart, heartOutline, calendarNumber } from 'ionicons/icons';
-import HeaderBar from '#/components/HeaderBar.vue';
 import TabSessionDetails from '#/views/calendar/TabSessionDetails.vue';
 import backend from '#/plugins/backend.config';
 
 const router = useRouter();
 const route = useRoute();
 
-const calendarIcon = calendarNumber;
 const token = localStorage.getItem('accessToken');
 
 const sessionIdDetail = ref('');
 const sessionModalOpen = ref(false);
+
+// Helper function to format day buttons
+const formatDayButton = (day) => {
+  const dayObj = state.uniqueDays.find(d => d.value === day);
+  if (dayObj) {
+    const parts = dayObj.label.split(', ');
+    return parts.length > 1 ? `${parts[0]}, ${parts[1]}` : dayObj.label;
+  }
+  return day;
+};
 
 const state = reactive({
   sessions: [],
@@ -513,6 +548,15 @@ ion-segment-button .day-date {
   line-height: 1.2;
   white-space: normal; /* Allow text wrapping */
   display: flex;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
 }
 
 </style>

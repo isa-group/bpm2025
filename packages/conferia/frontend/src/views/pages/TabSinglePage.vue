@@ -1,41 +1,56 @@
 <template>
   <IonPage>
-    <HeaderBar
-      :name="pageData.title"
-      :show-reload="true"
-      @reload-page="reload" />
-
+    <IonHeader>
+      <IonToolbar class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md">
+        <template #start>
+          <IonButtons>
+            <IonBackButton />
+          </IonButtons>
+        </template>
+        <IonTitle class="text-lg font-semibold">{{ pageData.title || 'Page' }}</IonTitle>
+      </IonToolbar>
+    </IonHeader>
     <IonContent
       id="main-content"
-      :fullscreen="true">
+      :fullscreen="true"
+      class="bg-gray-50 dark:bg-gray-900"
+    >
+      <!-- HTML Content -->
       <div
         v-if="pageData.layoutId === 1"
-        class="ion-padding"
-        v-html="pageData.content" />
+        class="p-4"
+        v-html="pageData.content"
+      />
 
-      <IonList v-else-if="pageData.layoutId === 2">
-        <IonItem
-          v-for="message in pageData.messages"
-          :key="message.id">
-          <IonLabel>{{ message.content }}</IonLabel>
-        </IonItem>
-      </IonList>
+      <!-- List Layout -->
+      <div v-else-if="pageData.layoutId === 2" class="p-4">
+        <div class="space-y-2">
+          <div
+            v-for="message in pageData.messages"
+            :key="message.id"
+            class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700"
+          >
+            <p class="text-gray-900 dark:text-white">{{ message.content }}</p>
+          </div>
+        </div>
+      </div>
 
+      <!-- Iframe Content -->
       <iframe
         v-else-if="pageData.layoutId === 3"
         ref="iframeRef"
-        class="full-page"
-        :src="pageData.content" />
+        class="w-full h-full border-none"
+        :src="pageData.content"
+      />
     </IonContent>
   </IonPage>
 </template>
 
 <script setup lang="js">
-import { IonPage, IonContent, IonList, IonItem, IonLabel } from '@ionic/vue';
+import { IonPage, IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonBackButton } from '@ionic/vue';
 import { useRoute } from 'vue-router';
 import { onMounted, reactive, ref } from 'vue';
 import axios from 'axios';
-import HeaderBar from '#/components/HeaderBar.vue';
 import backend from '#/plugins/backend.config';
 
 const route = useRoute();
@@ -63,11 +78,5 @@ const reload = () => {
 </script>
 
 <style scoped>
-.full-page {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-}
-
+/* Styles are handled by Tailwind CSS classes */
 </style>

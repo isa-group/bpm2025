@@ -1,226 +1,205 @@
 <template>
-  <IonPage>
-    <HeaderBar
-      name="Messages"
-      @reload-page="reloadPage" />
-    <IonContent
-      id="main-content"
-      :fullscreen="true">
-      <IonRefresher
-        slot="fixed"
-        @ion-refresh="reloadPage">
-        <IonRefresherContent />
-      </IonRefresher>
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <!-- Sticky Header (matching agenda style) -->
+    <div class="sticky top-16 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+      <div class="flex items-center justify-between px-4 py-4">
+        <div class="flex-1">
+          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+            Messages
+          </h1>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+            Stay updated with conference announcements
+          </p>
+        </div>
+        <button
+          @click="openPostMessage"
+          class="flex items-center space-x-2 px-3 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 32 32" fill="currentColor">
+            <path d="M16 2C8.3 2 2 8.3 2 16s6.3 14 14 14 14-6.3 14-14S23.7 2 16 2zm7 15h-6v6h-2v-6H9v-2h6V9h2v6h6v2z"/>
+          </svg>
+          <span class="font-medium">Post</span>
+        </button>
+      </div>
+    </div>
 
-      <IonList lines="full">
-        <IonItem
-          v-for="message in messages"
-          :key="message.id"
-          button
-          @click="() => {
-            setVisibleMessage(message.id);
-          }">
-          <IonLabel>
-            <h2 :class="{bold :!message.read}">
-              <IonIcon
-                v-if="!message.read"
-                slot="start"
-                :icon="bookmark"
-                color="danger" />
-              {{ message.title }}
-            </h2>
-          </IonLabel>
-          <template #end>
-            <IonNote class="ion-text-right">
-              {{ dayjs(message.date).fromNow() }}<br>
-              By {{ message.author }}
-            </IonNote>
-          </template>
-        </IonItem>
-      </IonList>
+    <div class="px-4 py-6 pb-20 space-y-6">
+      <!-- Messages section -->
+      <div>
+        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-3 border border-blue-100 dark:border-blue-800 mb-4">
+          <h3 class="font-bold text-lg text-blue-900 dark:text-blue-100">Conference Messages</h3>
+        </div>
 
-      <IonFab
-        slot="fixed"
-        vertical="bottom"
-        horizontal="end"
-        class="custom-fab">
-        <IonFabButton
-          @click="() => {
-            openPostMessage();
-          }">
-          <IonIcon :icon="add" />
-        </IonFabButton>
-      </IonFab>
-
-      <IonModal
-        :is-open="isOpen"
-        @did-dismiss="closeMessage()">
-        <IonHeader>
-          <IonToolbar>
-            <template #start>
-              <IonButtons>
-                <IonBackButton
-                  default-href="/tabs/messages"
-                  @click="() => {
-                    closeMessage();
-                  }" />
-              </IonButtons>
-            </template>
-            <IonTitle>Message</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent>
-          <IonGrid>
-            <IonRow>
-              <IonCol>
-                <p style="font-size: .8em">
-                  Posted {{ dayjs(activeMessage.date).fromNow() }}<br>
-                  {{ dayjs(activeMessage.date).format('D MMMM, HH:mm') }}
-                </p>
-              </IonCol>
-              <IonCol class="ion-text-right">
-                <IonChip
-                  :router-link="`/attendee/${activeMessage.authorId}`"
-                  @click="() => {
-                    closeMessage();
-                  }">
-                  <IonAvatar>
-                    <img
-                      :src="activeMessage.avatar || 'https://ionicframework.com/docs/img/demos/avatar.svg'"
-                      alt="Profile picture">
-                  </IonAvatar>
-                  <IonLabel>{{ activeMessage.author }}</IonLabel>
-                </IonChip>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
-          <div class="ion-padding-horizontal">
-            <h1>{{ activeMessage.title }}</h1>
-            <p style="white-space: pre-wrap">
-              {{ activeMessage.message }}
-            </p>
-            <p
-              v-if="userId == activeMessage.authorId"
-              class="ion-text-right">
-              <IonButton
-                color="danger"
-                @click="() => {
-                  deleteMessage();
-                }">
-                <IonIcon :icon="trashOutline" /> Delete
-              </IonButton>
-            </p>
+        <!-- Messages list -->
+        <div class="space-y-3">
+          <div
+            v-for="message in messages"
+            :key="message.id"
+            class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-all duration-200 cursor-pointer"
+            @click="setVisibleMessage(message.id)">
+            <div class="p-4">
+              <div class="flex items-start justify-between mb-3">
+                <div class="flex-1">
+                  <div class="flex items-center space-x-2 mb-1">
+                    <div
+                      v-if="!message.read"
+                      class="w-2 h-2 bg-red-500 rounded-full flex-shrink-0"></div>
+                    <h3 class="font-semibold text-gray-900 dark:text-white text-lg">
+                      {{ message.title }}
+                    </h3>
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-300 text-sm line-clamp-2">
+                    {{ message.message.substring(0, 150) }}{{ message.message.length > 150 ? '...' : '' }}
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+                <span>By {{ message.author }}</span>
+                <span>{{ dayjs(message.date).fromNow() }}</span>
+              </div>
+            </div>
           </div>
-        </IonContent>
-      </IonModal>
-      <IonModal
-        :is-open="isOpenPost"
-        @did-dismiss="closePostMessage()">
-        <IonHeader>
-          <IonToolbar>
-            <template #start>
-              <IonButtons>
-                <IonBackButton
-                  default-href="/tabs/messages"
-                  @click="() => {
-                    closePostMessage();
-                  }" />
-              </IonButtons>
-            </template>
-            <IonTitle>Post new message</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent class="ion-padding">
-          <form
-            @submit.prevent="() => {
-              submitForm();
-            }">
-            <IonInput
+        </div>
+      </div>
+    </div>
+
+    <!-- Message detail modal -->
+    <Dialog
+      :visible="isOpen"
+      modal
+      header="Message"
+      class="w-full max-w-2xl mx-4"
+      :style="{ maxHeight: '90vh' }"
+      @update:visible="closeMessage">
+      <div class="space-y-4">
+        <!-- Message header -->
+        <div class="flex items-start justify-between pb-4 border-b border-surface-200 dark:border-surface-700">
+          <div class="text-sm text-surface-500 dark:text-surface-400">
+            <div>Posted {{ dayjs(activeMessage.date).fromNow() }}</div>
+            <div>{{ dayjs(activeMessage.date).format('D MMMM, HH:mm') }}</div>
+          </div>
+          <div class="flex items-center space-x-2 cursor-pointer" @click="navigateToAuthor">
+            <Avatar
+              :image="activeMessage.avatar || 'https://ionicframework.com/docs/img/demos/avatar.svg'"
+              shape="circle"
+              size="normal" />
+            <span class="font-medium text-surface-900 dark:text-surface-100">{{ activeMessage.author }}</span>
+          </div>
+        </div>
+
+        <!-- Message content -->
+        <div>
+          <h2 class="text-xl font-bold text-surface-900 dark:text-surface-100 mb-4">{{ activeMessage.title }}</h2>
+          <p class="text-surface-700 dark:text-surface-300 whitespace-pre-wrap leading-relaxed">
+            {{ activeMessage.message }}
+          </p>
+        </div>
+      </div>
+    </Dialog>
+                <!-- Post message modal -->
+    <Dialog
+      :visible="isOpenPost"
+      modal
+      header="Post new message"
+      class="w-full max-w-lg mx-4"
+      @update:visible="closePostMessage">
+      <form class="space-y-4" @submit.prevent="submitForm">
+        <div>
+          <FloatLabel>
+            <InputText
+              id="titleInput"
               v-model="formData.title"
               type="text"
-              required
-              label="Title"
-              placeholder="Message title"
-              label-placement="stacked" />
-            <IonTextarea
+              class="w-full"
+              required />
+            <label for="titleInput">Title</label>
+          </FloatLabel>
+        </div>
+        
+        <div>
+          <FloatLabel>
+            <Textarea
+              id="messageInput"
               v-model="formData.message"
-              required
-              label="Message"
-              placeholder="Write here the text of your message..."
-              label-placement="stacked"
-              rows="20" />
-            <p
-              v-if="postError"
-              class="error-message">
-              {{ postError }}
-            </p>
-            <IonButton
-              expand="full"
-              type="submit"
-              class="ion-margin-top">
-              Post Message
-            </IonButton>
-          </form>
-        </IonContent>
-      </IonModal>
-    </IonContent>
-  </IonPage>
+              rows="10"
+              class="w-full"
+              required />
+            <label for="messageInput">Message</label>
+          </FloatLabel>
+        </div>
+
+        <Message
+          v-if="postError"
+          severity="error"
+          :closable="false">
+          {{ postError }}
+        </Message>
+
+        <Button
+          type="submit"
+          label="Post Message"
+          class="w-full"
+          :loading="isSubmitting" />
+      </form>
+    </Dialog>
+  </div>
 </template>
 
-<script setup lang="js">
-import {
-  IonPage,
-  IonContent,
-  IonButton,
-  IonToolbar,
-  IonHeader,
-  IonTitle,
-  IonButtons,
-  IonCol,
-  IonRow,
-  IonGrid,
-  IonList,
-  IonItem,
-  IonLabel,
-  IonNote,
-  IonModal,
-  IonFab,
-  IonIcon,
-  IonFabButton,
-  IonTextarea,
-  IonInput,
-  IonAvatar,
-  IonRefresher,
-  IonRefresherContent,
-  IonChip,
-  IonBackButton,
-  toastController,
-  alertController
-} from '@ionic/vue';
-import { bookmark, bookmarkOutline, mail, starOutline, starSharp, trashOutline, add } from 'ionicons/icons';
-import { ref, onMounted, reactive } from 'vue';
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import HeaderBar from '#/components/HeaderBar.vue';
+import { useRouter } from 'vue-router';
+import Card from 'primevue/card';
+import Button from 'primevue/button';
+import Dialog from 'primevue/dialog';
+import InputText from 'primevue/inputtext';
+import Textarea from 'primevue/textarea';
+import FloatLabel from 'primevue/floatlabel';
+import Avatar from 'primevue/avatar';
+import Message from 'primevue/message';
+import { useToast } from 'primevue/usetoast';
 import backend from '#/plugins/backend.config';
+
+interface MessageType {
+  id: number;
+  title: string;
+  message: string;
+  date: string;
+  author: string;
+  authorId: number;
+  avatar?: string;
+  read: boolean;
+}
 
 dayjs.extend(relativeTime);
 
-const messages = ref([]);
+const router = useRouter();
+const toast = useToast();
+
+const messages = ref<MessageType[]>([]);
 const isOpen = ref(false);
 const isOpenPost = ref(false);
 const postError = ref('');
-const activeMessage = ref({});
+const activeMessage = ref<MessageType>({} as MessageType);
+const isSubmitting = ref(false);
 
 const formData = ref({
   title: '',
   message: ''
 });
 const token = ref(localStorage.getItem('accessToken'));
-const userId = ref(localStorage.getItem('userId'));
+
+const navigateToAuthor = () => {
+  if (activeMessage.value.authorId) {
+    router.push(`/attendee/${activeMessage.value.authorId}`);
+    closeMessage();
+  }
+};
 
 const submitForm = async () => {
+  isSubmitting.value = true;
   try {
     const response = await axios.post(backend.construct('message'),
       {
@@ -236,29 +215,27 @@ const submitForm = async () => {
       localStorage.setItem('refreshToken', response.data.refreshToken);
       token.value = response.data.accessToken;
     }
-  } catch (error) {
+    
+    closePostMessage();
+    toast.add({ severity: 'success', summary: 'Success', detail: 'Your message has been posted.', life: 5000 });
+    await fetchMessages();
+  } catch (error: any) {
     postError.value = 'Failed to post the message!';
-    console.error('Failed to fetch user details:', error);
+    console.error('Failed to post message:', error);
+  } finally {
+    isSubmitting.value = false;
   }
-
-  closePostMessage();
-
-  const toast = await toastController.create({
-    message: 'Your message has been posted.',
-    duration: 5000,
-    positionAnchor: 'footer'
-  });
-  await toast.present();
-
-  await fetchMessages();
 };
 
-const setVisibleMessage = async (id) => {
-  activeMessage.value = messages.value.find(message => message.id === id);
-  isOpen.value = true;
-  await axios.get(
-    backend.construct(`message/read/${activeMessage.value.id}`),
-    { headers: { Authorization: `Bearer ${token.value}` } });
+const setVisibleMessage = async (id: number) => {
+  const message = messages.value.find(message => message.id === id);
+  if (message) {
+    activeMessage.value = message;
+    isOpen.value = true;
+    await axios.get(
+      backend.construct(`message/read/${id}`),
+      { headers: { Authorization: `Bearer ${token.value}` } });
+  }
 };
 
 const openPostMessage = () => {
@@ -276,69 +253,38 @@ const closePostMessage = () => {
   postError.value = '';
 };
 
-const deleteMessage = async () => {
-  const alert = await alertController.create({
-    header: 'Confirm!',
-    message: 'Are you sure you want to delete this message?',
-    buttons: [
-      { text: 'Cancel', role: 'cancel' },
-      { text: 'Delete',
-        handler: async () => {
-          await axios.delete(backend.construct(`message/${activeMessage.value.id}`), {
-            headers: { Authorization: `Bearer ${token.value}` } });
-
-          closeMessage();
-          await fetchMessages();
-
-          return;
-        }
-      }
-    ]
-  });
-  await alert.present();
-};
-
-const reloadPage = async (event) => {
-  await fetchMessages();
-  if (event) {
-    event.target.complete();
-  }
-};
-
 const fetchMessages = async () => {
   try {
     const response = await axios.get(backend.construct('message'), { headers: { Authorization: `Bearer ${token.value}` } });
     const tmp_messages = response.data;
-    const lastDownloadMessages = localStorage.getItem('lastDownloadMessages');
-    await Promise.all(tmp_messages.map(async (msg) => {
+    await Promise.all(tmp_messages.map(async (msg: any) => {
       if (msg.avatar) {
         msg.avatar = await getAvatarImage(msg.avatar);
       }
     }));
     messages.value = tmp_messages;
   } catch (error) {
-    console.error('Failed to fetch pages', error);
+    console.error('Failed to fetch messages', error);
   }
 };
 
-const getAvatarImage = async (id) => {
+const getAvatarImage = async (id: string) => {
   try {
     const response = await axios.get(backend.construct(`account/getProfilePicture/${id}`), {
       headers: { Authorization: `Bearer ${token.value}` },
       params: {
         format: 'webp'
       },
-      responseType: 'blob' // This tells axios to expect a binary response instead of JSON
+      responseType: 'blob'
     });
-    return URL.createObjectURL(response.data); // Convert the blob to a URL and return it
+    return URL.createObjectURL(response.data);
   } catch (error) {
     console.error('Error fetching image:', error);
-    return ''; // Return an empty string or a default image path in case of error
+    return '';
   }
 };
 
 onMounted(fetchMessages);
-
 </script>
 
 <style scoped>

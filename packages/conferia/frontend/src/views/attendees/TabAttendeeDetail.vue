@@ -1,77 +1,126 @@
 <template>
-  <IonPage>
-    <IonHeader>
-      <IonToolbar>
-        <IonTitle>Attendee Details</IonTitle>
-        <template #start>
-          <IonButtons>
-            <IonBackButton default-href="/tabs/home" />
-          </IonButtons>
-        </template>
-      </IonToolbar>
-    </IonHeader>
-    <IonContent class="ion-padding">
-      <!-- Avatar and Name -->
-      <div class="profile-picture-container">
-        <IonAvatar>
-          <img
-            :src="attendee.imageURL || 'https://ionicframework.com/docs/img/demos/avatar.svg'"
-            alt="Profile picture">
-        </IonAvatar>
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <!-- Apple-style page header -->
+    <div class="sticky top-16 z-40 bg-gray-50/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+      <div class="p-4 flex items-center space-x-4">
+        <Button 
+          icon="i-carbon-arrow-left"
+          severity="secondary"
+          text
+          @click="$router.back()" />
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+            {{ attendee.firstname }} {{ attendee.lastname }}
+          </h1>
+        </div>
       </div>
-
-      <!-- Personal Details -->
-      <div class="personal-details">
-        <h2>{{ attendee.firstname }} {{ attendee.lastname }}</h2>
-        <p>
-          <span v-if="attendee.company">{{ attendee.company }}</span><br>
-          <span v-if="attendee.country">{{ attendee.country }}</span>
-        </p>
-        <p v-if="attendee.email">
-          <a :href="`mailto:${attendee.email}`">{{ attendee.email }}</a>
-        </p>
+    </div>
+    
+    <div class="px-4 py-6 pb-20">
+      <!-- Profile Section -->
+      <div class="flex flex-col items-center mb-8">
+        <div class="mb-6">
+          <Avatar 
+            :image="attendee.imageURL || 'https://ionicframework.com/docs/img/demos/avatar.svg'" 
+            size="xlarge" 
+            shape="circle"
+            class="w-32 h-32 shadow-lg border-4 border-white dark:border-gray-700"
+          />
+        </div>
+        
+        <div class="text-center">          
+          <div class="space-y-2 text-gray-600 dark:text-gray-300">
+            <div v-if="attendee.company" class="flex items-center justify-center gap-2">
+              <i class="i-carbon-building text-lg"></i>
+              <span>{{ attendee.company }}</span>
+            </div>
+            
+            <div v-if="attendee.country" class="flex items-center justify-center gap-2">
+              <i class="i-carbon-location text-lg"></i>
+              <span>{{ attendee.country }}</span>
+            </div>
+            
+            <div v-if="attendee.email" class="flex items-center justify-center gap-2">
+              <i class="i-carbon-email text-lg"></i>
+              <a :href="`mailto:${attendee.email}`" class="text-blue-600 dark:text-blue-400 hover:underline">
+                {{ attendee.email }}
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <IonButton
-        expand="block"
-        @click="() => {
-          router.push(`/tabs/calendar/${attendeeId}`)
-        }">
-        <IonIcon
-          aria-hidden="true"
-          :icon="calendar"
-          class="ion-margin-end" />
-        See Personalized Agenda
-      </IonButton>
-    </IonContent>
-  </IonPage>
+      
+      <!-- Action Cards -->
+      <div class="space-y-4">
+        <Card 
+          class="cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-102 transform-gpu"
+          @click="goToPersonalizedAgenda"
+        >
+          <template #content>
+            <div class="p-6 text-center">
+              <div class="mb-4">
+                <i class="i-carbon-calendar text-4xl text-purple-500"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                See Personalized Agenda
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                Ver sesiones personalizadas
+              </p>
+            </div>
+          </template>
+        </Card>
+        
+        <Card 
+          class="cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-102 transform-gpu"
+          @click="goToPersonalGallery"
+        >
+          <template #content>
+            <div class="p-6 text-center">
+              <div class="mb-4">
+                <i class="i-carbon-image text-4xl text-green-500"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                Mi Galería
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                Imágenes personales del evento
+              </p>
+            </div>
+          </template>
+        </Card>
+      </div>
+    </div>
+  </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { reactive, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import axios from 'axios';
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonButton,
-  IonBackButton,
-  IonTitle,
-  IonContent,
-  IonAvatar,
-  IonIcon
-} from '@ionic/vue';
-import { calendar } from 'ionicons/icons';
+import Card from 'primevue/card';
+import Avatar from 'primevue/avatar';
+import Button from 'primevue/button';
 import backend from '#/plugins/backend.config';
+
+// Interfaces
+interface AttendeeDetail {
+  id?: string;
+  firstname: string;
+  lastname: string;
+  company: string;
+  country: string;
+  email: string;
+  avatar_path?: string;
+  imageURL: string;
+}
 
 const router = useRouter();
 const route = useRoute();
 const attendeeId = route.params.id;
 const token = localStorage.getItem('accessToken');
 
-const attendee = reactive({
+const attendee: AttendeeDetail = reactive({
   firstname: '',
   lastname: '',
   company: '',
@@ -81,9 +130,9 @@ const attendee = reactive({
 });
 
 /**
- *
+ * Fetch attendee details from API
  */
-async function fetchAttendeeDetails() {
+async function fetchAttendeeDetails(): Promise<void> {
   try {
     const response = await axios.get(backend.construct(`attendees/${attendeeId}`), {
       headers: { Authorization: `Bearer ${token}` }
@@ -98,9 +147,9 @@ async function fetchAttendeeDetails() {
 }
 
 /**
- *
+ * Get profile image from backend
  */
-async function getImage(person) {
+async function getImage(person: AttendeeDetail): Promise<string> {
   try {
     const response = await axios.get(backend.construct(`account/getProfilePicture/${person.id}`), {
       headers: { Authorization: `Bearer ${token}` },
@@ -117,16 +166,16 @@ async function getImage(person) {
 }
 
 /**
- *
+ * Navigate to personalized agenda
  */
-function goToPersonalizedAgenda() {
+function goToPersonalizedAgenda(): void {
   router.push({ path: `/tabs/calendar/${attendeeId}` });
 }
 
 /**
- *
+ * Navigate to personal gallery
  */
-function goToPersonalGallery() {
+function goToPersonalGallery(): void {
   router.push({ path: `/tabs/images/${attendeeId}` });
 }
 
@@ -134,49 +183,8 @@ onMounted(fetchAttendeeDetails);
 </script>
 
 <style scoped>
-.profile-picture-container {
-  margin-left: auto;
-  margin-right: auto;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-  width: 150px;
-  height: 150px;
+/* Estilos modernos con transiciones */
+.transform-gpu {
+  transform: translateZ(0);
 }
-
-.profile-picture-container ion-avatar {
-  width: 100%;
-  height: 100%;
-}
-
-.profile-picture-container ion-avatar img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-}
-
-/*.personal-details {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.personal-details h2 {
-  margin: 10px 0;
-}
-
-.work-country {
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
-  padding: 0 20px;
-}
-
-ion-card {
-  cursor: pointer;
-}
-
-ion-card-header {
-  text-align: center;
-}*/
 </style>
