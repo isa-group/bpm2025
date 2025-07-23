@@ -31,8 +31,7 @@
           </IonItem>
           <IonButton
             type="submit"
-            expand="block"
-            @click="trackButtonClick('Reset Password Button', 'Auth', 'Feature')">
+            expand="block">
             Reset password
           </IonButton>
 
@@ -53,9 +52,6 @@ import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import axios from 'axios';
 import backend from '../../../backend.config';
-import { googleanalytics } from '#/composables/googleanalytics';
-
-const { trackButtonClick } = googleanalytics();
 
 const route = useRoute();
 const router = useRouter();

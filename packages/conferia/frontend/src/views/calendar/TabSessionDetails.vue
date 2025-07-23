@@ -10,7 +10,6 @@
             <IonBackButton
               default-href="/tabs/calendar"
               @click="() => {
-                trackButtonClick('Close Session Detail', 'Agenda', 'Feature')
                 closeModal()
               }" />
           </IonButtons>
@@ -50,7 +49,6 @@ import { reactive, ref } from 'vue';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import backend from '/backend.config.ts';
-import { googleanalytics } from '#/composables/googleanalytics.ts';
 
 const props = defineProps({
   isOpen: {
@@ -64,8 +62,6 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['close']);
-
-const { trackButtonClick } = googleanalytics();
 
 const loading = ref(true);
 

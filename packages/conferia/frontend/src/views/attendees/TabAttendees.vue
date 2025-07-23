@@ -5,15 +5,13 @@
       <IonSearchbar
         v-model="state.searchQuery"
         placeholder="Search attendees..."
-        @ion-change="fetchAttendees"
-        @ionblur="() => trackButtonClick('Search Bar', 'Attendee List', 'Feature')" />
+        @ion-change="fetchAttendees" />
       <IonList lines="full">
         <IonItem
           v-for="person in state.persons"
           :key="person.id"
           :router-link="`/attendee/${person.id}`"
-          button
-          @click="() => trackButtonClick('Specific Attendee', 'Attendee List', 'Feature')">
+          button>
           <template #start>
             <IonAvatar>
               <img
@@ -47,9 +45,6 @@ import { useDebounceFn } from '@vueuse/core';
 import axios from 'axios';
 import HeaderBar from '#/components/HeaderBar.vue';
 import backend from '/backend.config.ts';
-import { googleanalytics } from '#/composables/googleanalytics.ts';
-
-const { trackButtonClick } = googleanalytics();
 
 const state = reactive({
   persons: [],

@@ -7,7 +7,6 @@
         <IonButtons>
           <IonButton
             @click="() => {
-              trackButtonClick('Previous Month Calendar', 'Agenda', 'Feature')
               changeMonth(-1)
             }">
             Prev
@@ -21,7 +20,6 @@
         <IonButtons>
           <IonButton
             @click="() => {
-              trackButtonClick('Next Month Calendar', 'Agenda', 'Feature')
               changeMonth(1)
             }">
             Next
@@ -44,7 +42,6 @@
           class="date-box"
           :class="{ 'not-current': !day.isCurrentMonth }"
           @click="() => {
-            trackButtonClick('Calendar Date', 'Agenda', 'Feature')
             day.hasSession ? dateClicked(day): null
           }">
           <div class="date-text">
@@ -76,9 +73,6 @@ import { useRouter, useRoute } from 'vue-router';
 import { star } from 'ionicons/icons';
 import HeaderBar from '#/components/HeaderBar.vue';
 import backend from '/backend.config.ts';
-import { googleanalytics } from '#/composables/googleanalytics.ts';
-
-const { trackButtonClick } = googleanalytics();
 
 const route = useRoute();
 const router = useRouter();

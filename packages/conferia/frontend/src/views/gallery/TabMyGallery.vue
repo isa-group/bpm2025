@@ -4,7 +4,6 @@
       name="My Gallery"
       @open-action-sheet="openActionSheet"
       @reload-page="() => {
-        trackButtonClick('Reload Gallery', 'My Gallery', 'Feature');
         reloadPage();
       }" />
 
@@ -22,7 +21,6 @@
               class="gallery-image"
               :class="{ 'selected-image': imagesSelectedList.includes(image) }"
               @click="() => {
-                trackButtonClick(selectMultiple ? 'Select Image' : 'Open Image', 'My Gallery', 'Feature');
                 selectMultiple ? selectImage(image) : goToImage(image);
               }" />
           </IonCol>
@@ -37,7 +35,6 @@
           class="custom-fab">
           <IonFabButton
             @click="() => {
-              trackButtonClick('Deselect Images', 'My Gallery', 'Feature');
               untoggleSelectImage();
             }">
             <IonIcon :icon="close" />
@@ -45,14 +42,12 @@
           <IonFabButton
             color="danger"
             @click="() => {
-              trackButtonClick('Delete Selected Images', 'My Gallery', 'Feature');
               deleteGalleryImage();
             }">
             <IonIcon :icon="trashOutline" />
           </IonFabButton>
           <IonFabButton
             @click="() => {
-              trackButtonClick('Download Selected Images', 'My Gallery', 'Feature');
               downloadImages();
             }">
             <IonIcon :icon="download" />
@@ -84,9 +79,7 @@ import backend from '../../../backend.config';
 import { usePhotoGallery } from '#/composables/usePhotoGallery';
 import HeaderBar from '#/components/HeaderBar.vue';
 import router from '#/router';
-import { googleanalytics } from '#/composables/googleanalytics';
 
-const { trackButtonClick } = googleanalytics();
 const { takePhotoGallery } = usePhotoGallery();
 const token = ref(localStorage.getItem('accessToken'));
 

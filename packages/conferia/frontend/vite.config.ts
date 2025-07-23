@@ -1,20 +1,22 @@
-import vue from '@vitejs/plugin-vue';
+import Vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 import browserslist from 'browserslist';
+import UnoCSS from 'unocss/vite';
 import { browserslistToTargets } from 'lightningcss';
 
 export default defineConfig({
   appType: 'spa',
   base: './',
   plugins: [
-    vue()
+    Vue(),
+    UnoCSS()
   ],
   server: {
     host: '0.0.0.0'
   },
   build: {
     target: 'esnext',
-    cssCodeSplit: true,
+    cssCodeSplit: false,
     cssMinify: 'lightningcss',
     modulePreload: {
       polyfill: false

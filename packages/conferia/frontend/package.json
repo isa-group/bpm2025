@@ -20,6 +20,7 @@
     "lint:inspect": "eslint-config-inspector"
   },
   "dependencies": {
+    "@bpm2025-website/assets": "*",
     "@capacitor/app": "7.0.1",
     "@capacitor/camera": "7.0.1",
     "@capacitor/core": "7.4.2",
@@ -36,7 +37,6 @@
     "dayjs": "1.11.13",
     "ionicons": "8.0.13",
     "vue": "3.5.18",
-    "vue-gtag": "3.5.2",
     "vue-ionicons": "3.0.5",
     "vue-router": "4.5.1"
   },

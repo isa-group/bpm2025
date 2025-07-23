@@ -42,7 +42,7 @@
         <IonButton
           expand="block"
           class="applyButtonText"
-          @click="() => { trackButtonClick('Apply Filter Button', 'Gallery', 'Feature'); applyFilter(); }">
+          @click="() => { applyFilter(); }">
           Apply
         </IonButton>
       </div>
@@ -70,7 +70,7 @@
               :src="getImageUrl(image)"
               class="gallery-image"
               :class="{ 'selected-image': imagesSelectedList.includes(image) }"
-              @click="() => { trackButtonClick('Gallery Image Click', 'Gallery', 'Feature'); selectMultiple ? selectImage(image) : goToImage(image); }" />
+              @click="() => { selectMultiple ? selectImage(image) : goToImage(image); }" />
           </IonCol>
         </IonRow>
       </IonGrid>
@@ -92,7 +92,7 @@
         <IonFabButton @click="untoggleSelectImage">
           <IonIcon :icon="close" />
         </IonFabButton>
-        <IonFabButton @click="() => { trackButtonClick('Download Images Button', 'Gallery', 'Feature'); downloadImages(); }">
+        <IonFabButton @click="() => { downloadImages(); }">
           <IonIcon :icon="download" />
         </IonFabButton>
       </IonFab>
@@ -102,7 +102,7 @@
         vertical="bottom"
         horizontal="end"
         class="custom-fab">
-        <IonFabButton @click="() => { trackButtonClick('Upload Gallery Image Button', 'Gallery', 'Feature'); uploadGalleryImage(); }">
+        <IonFabButton @click="() => { uploadGalleryImage(); }">
           <IonIcon :icon="add" />
         </IonFabButton>
       </IonFab>
@@ -143,9 +143,7 @@ import backend from '../../../backend.config';
 import router from '#/router';
 import HeaderBar from '#/components/HeaderBar.vue';
 import { usePhotoGallery } from '#/composables/usePhotoGallery';
-import { googleanalytics } from '#/composables/googleanalytics';
 
-const { trackButtonClick } = googleanalytics();
 const { takePhotoGallery } = usePhotoGallery();
 
 const token = ref(localStorage.getItem('accessToken'));
@@ -206,7 +204,6 @@ const openActionSheet = async () => {
       text: 'Go to My Gallery',
       handler: () => {
         router.push('/tabs/images/myGallery');
-        trackButtonClick('My Gallery', 'Gallery', 'Navigation');
       }
     }, {
       text: 'Select Images',

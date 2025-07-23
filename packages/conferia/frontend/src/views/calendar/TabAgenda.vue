@@ -12,7 +12,6 @@
           value="all"
           class="half-width-segment-button"
           @click="() => {
-            trackButtonClick('ICPM Agenda Toggle', 'Agenda', 'Feature')
             navigateToAgendaType('all')
           }">
           <IonLabel class="segment-label">
@@ -23,7 +22,6 @@
           value="personal"
           class="half-width-segment-button"
           @click="() =>{
-            trackButtonClick('Personal Agenda Toggle', 'Agenda', 'Feature')
             navigateToAgendaType('personal')
           }">
           <IonLabel class="segment-label">
@@ -43,7 +41,6 @@
           :value="day.value"
           :class="{'day-without-session': !day.hasSession, 'day-with-session': day.hasSession}"
           @click="() => {
-            trackButtonClick('Day Selection', 'Agenda', 'Feature')
             day.hasSession ? selectDay(day.value) : null
           }">
           <IonLabel>
@@ -56,7 +53,6 @@
         <IonButtons>
           <IonButton
             @click="() =>{
-              trackButtonClick('Monthly Calendar Access', 'Agenda', 'Feature')
               goToCalendar
             }">
             <IonIcon
@@ -88,7 +84,6 @@
             :key="session.id"
             button
             @click="() => {
-              trackButtonClick('Access Single Session', 'Agenda', 'Feature')
               showSession(session.id)
             }">
             <template #end>
@@ -98,7 +93,6 @@
                   :color="session.isLiked ? 'danger' : 'medium'"
                   style="font-size: 2.5em"
                   @click.stop="() => {
-                    trackButtonClick('Session Like', 'Agenda', 'Feature')
                     toggleLike(session)
                   }" /><br>
                 <span v-if="session.likes > 0">
@@ -145,9 +139,7 @@ import { heart, heartOutline, calendarNumber } from 'ionicons/icons';
 import HeaderBar from '#/components/HeaderBar.vue';
 import TabSessionDetails from '#/views/calendar/TabSessionDetails.vue';
 import backend from '/backend.config.ts';
-import { googleanalytics } from '#/composables/googleanalytics.ts';
 
-const { trackButtonClick } = googleanalytics();
 const router = useRouter();
 const route = useRoute();
 

@@ -17,8 +17,7 @@
       <IonList lines="full">
         <IonItem
           button
-          :router-link="'/profile/settings/'"
-          @click="trackButtonClick('Profile page', 'Home', 'Navigation')">
+          :router-link="'/profile/settings/'">
           <IonLabel>
             <template #start>
               <IonIcon :icon="settingsOutline" />
@@ -28,8 +27,7 @@
         </IonItem>
         <IonItem
           button
-          :router-link="'/tabs/about/'"
-          @click="trackButtonClick('About page', 'Home', 'Navigation')">
+          :router-link="'/tabs/about/'">
           <IonLabel>
             <template #start>
               <IonIcon :icon="informationCircleOutline" />
@@ -39,7 +37,7 @@
         </IonItem>
         <IonItem
           button
-          @click="() => { trackButtonClick('Logout Button', 'Home', 'Feature'); logout(); }">
+          @click="() => { logout(); }">
           <IonLabel>
             <template #start>
               <IonIcon :icon="logOutOutline" />
@@ -59,9 +57,6 @@ import { useRouter } from 'vue-router';
 import { onMounted, reactive } from 'vue';
 import axios from 'axios';
 import backend from '../../backend.config';
-import { googleanalytics } from '#/composables/googleanalytics';
-
-const { trackButtonClick } = googleanalytics();
 
 const router = useRouter();
 const name = reactive({

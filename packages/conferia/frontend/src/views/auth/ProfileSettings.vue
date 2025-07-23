@@ -80,8 +80,7 @@
             <IonButton
               type="submit"
               expand="block"
-              class="ion-margin-vertical"
-              @click="trackButtonClick('Update Information Button', 'Auth', 'Feature')">
+              class="ion-margin-vertical">
               Update information
             </IonButton>
             <p
@@ -131,7 +130,7 @@
             expand="block"
             shape="round"
             class="button"
-            @click="() => { trackButtonClick('Update Password Button', 'Auth', 'Feature'); updatePassword(); }">
+            @click="() => { updatePassword(); }">
             Update password
           </IonButton>
           <p
@@ -157,7 +156,7 @@
             <div class="toggle-theme">
               <IonToggle
                 :checked="isDarkMode"
-                @ion-change="() => { trackButtonClick('Dark Mode Toggle', 'Auth', 'Feature'); toggleTheme(); }" />
+                @ion-change="() => { toggleTheme(); }" />
               <span class="toggle-label">Dark mode </span>
             </div>
           </IonItem>
@@ -194,9 +193,6 @@ import axios from 'axios';
 import { camera, pencilOutline } from 'ionicons/icons';
 import backend from '../../../backend.config';
 import { usePhotoGallery } from '#/composables/usePhotoGallery';
-import { googleanalytics } from '#/composables/googleanalytics';
-
-const { trackButtonClick } = googleanalytics();
 
 onMounted(() => {
   fetchUserSettings();
@@ -368,7 +364,6 @@ const actionSheetButtons = [
 
         if (uploadResponse.status === 200) {
           console.log('Upload successful');
-          trackButtonClick('Change profile picture', 'Profile', 'Feature');
           await fetchUserSettings();
         }
       } catch (error) {

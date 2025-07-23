@@ -49,8 +49,7 @@
           </IonToggle><br><br>
           <IonButton
             type="submit"
-            expand="block"
-            @click="trackButtonClick('Sign up Button', 'Auth', 'Feature')">
+            expand="block">
             Sign up
           </IonButton>
         </form>
@@ -65,9 +64,6 @@ import { computed, onMounted, ref } from 'vue';
 import axios from 'axios';
 import { useRouter, useRoute } from 'vue-router';
 import backend from '../../../backend.config';
-import { googleanalytics } from '#/composables/googleanalytics';
-
-const { trackButtonClick } = googleanalytics();
 
 const router = useRouter();
 const route = useRoute();
@@ -158,7 +154,7 @@ const sendUserInformation = async () => {
 ion-input {
   --padding-start: 5px;
   --placeholder-color: rgba(255, 255, 255, 0.6);
-  //--color: #fff;
+  /* --color: #fff; */
   border: 1px solid #fff;
   border-radius: 4px;
   margin-bottom: 2rem;

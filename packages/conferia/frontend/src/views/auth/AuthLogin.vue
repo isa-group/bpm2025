@@ -10,14 +10,10 @@
           <IonSegment
             v-model="selectedSegment"
             value="login">
-            <IonSegmentButton
-              value="login"
-              @click="trackButtonClick('Login Segment', 'Auth', 'Navigation')">
+            <IonSegmentButton value="login">
               <IonLabel>Log in</IonLabel>
             </IonSegmentButton>
-            <IonSegmentButton
-              value="register"
-              @click="trackButtonClick('Register Segment', 'Auth', 'Navigation')">
+            <IonSegmentButton value="register">
               <IonLabel>Register</IonLabel>
             </IonSegmentButton>
           </IonSegment>
@@ -47,8 +43,7 @@
           <p class="ion-text-right">
             <RouterLink
               to="/auth/login/resetpassword"
-              class="forgot-password"
-              @click="trackButtonClick('Forgot Password Link', 'Auth', 'Navigation')">
+              class="forgot-password">
               Forgot password?
             </RouterLink>
           </p>
@@ -56,8 +51,7 @@
             <IonButton
               type="submit"
               expand="block"
-              class="login-button"
-              @click="trackButtonClick('Sign in Button', 'Auth', 'Feature')">
+              class="login-button">
               Sign in
             </IonButton>
           </p>
@@ -86,8 +80,7 @@
           <IonButton
             type="submit"
             expand="block"
-            class="ion-margin-top"
-            @click="trackButtonClick('Send Confirmation Email Button', 'Auth', 'Feature')">
+            class="ion-margin-top">
             Send Confirmation Email
           </IonButton>
           <p
@@ -104,7 +97,7 @@
           <p class="ion-text-right">
             <IonButton
               fill="clear"
-              @click="() => { trackButtonClick('Privacy Note Link', 'Auth', 'Feature'); openPrivacy(); }">
+              @click="openPrivacy">
               Privacy note
             </IonButton>
           </p>
@@ -122,13 +115,10 @@ import { IonPage, IonContent, IonButton, IonInput, IonLabel, IonSegment, IonSegm
 import { ref, computed } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
-import logoLight from '#/assets/images/logo-1.svg';
+import logoLight from '@bpm2025-website/assets/icon';
 // import logoDark from '#/assets/images/logo-2.svg';
 import backend from '/backend.config.ts';
 import PrivacyNote from '#/components/PrivacyNote.vue';
-import { googleanalytics } from '#/composables/googleanalytics.ts';
-
-const { trackButtonClick } = googleanalytics();
 
 const logo = computed(() => {
   return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches

@@ -16,10 +16,7 @@
         <p class="ion-text-right">
           <IonButton
             fill="clear"
-            @click="() => {
-              trackButtonClick('Open Privacy Police', 'About Page', 'Feature')
-              openPrivacy
-            }">
+            @click="openPrivacy">
             Privacy note
           </IonButton>
         </p>
@@ -36,9 +33,6 @@ import { IonPage, IonContent, IonButton } from '@ionic/vue';
 import { ref } from 'vue';
 import HeaderBar from '#/components/HeaderBar.vue';
 import PrivacyNote from '#/components/PrivacyNote.vue';
-import { googleanalytics } from '#/composables/googleanalytics.ts';
-
-const { trackButtonClick } = googleanalytics();
 
 const isPrivacyOpen = ref(false);
 const openPrivacy = () => {

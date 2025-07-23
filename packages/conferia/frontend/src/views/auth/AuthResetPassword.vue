@@ -27,8 +27,7 @@
           <IonButton
             type="submit"
             expand="block"
-            shape="round"
-            @click="trackButtonClick('Send Reset Email Button', 'Auth', 'Feature')">
+            shape="round">
             Send reset email
           </IonButton>
           <p
@@ -62,9 +61,6 @@ import {
 import { ref } from 'vue';
 import axios from 'axios';
 import backend from '../../../backend.config';
-import { googleanalytics } from '#/composables/googleanalytics';
-
-const { trackButtonClick } = googleanalytics();
 
 const resetEmailError = ref('');
 const resetEmailSuccess = ref('');
@@ -106,15 +102,15 @@ form {
   margin-top: 2rem;
 }
 
-ion-input {
-  //--padding-start: 5px;
-  //--placeholder-color: rgba(255, 255, 255, 0.6);
-  //--color: #fff;
-  //background: #000;
-  //border: 1px solid #fff;
-  //border-radius: 4px;
-  //margin-bottom: 2rem;
-}
+/* ion-input {
+  --padding-start: 5px;
+  --placeholder-color: rgba(255, 255, 255, 0.6);
+  --color: #fff;
+  background: #000;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+} */
 
 ion-button {
   --color: white;

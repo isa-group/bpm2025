@@ -29,8 +29,7 @@
           v-for="page in pages"
           :key="page.id"
           button
-          :router-link="`/tabs/page/${page.id}`"
-          @click="() => trackButtonClick('Navigate to Page', 'Home Page', 'Feature')">
+          :router-link="`/tabs/page/${page.id}`">
           <IonLabel>{{ page.name }}</IonLabel>
           <IonBadge
             v-if="page.label"
@@ -63,9 +62,6 @@ import axios from 'axios';
 import { onBeforeRouteLeave } from 'vue-router';
 import HeaderBar from '#/components/HeaderBar.vue';
 import backend from '/backend.config.ts';
-import { googleanalytics } from '#/composables/googleanalytics.ts';
-
-const { trackButtonClick } = googleanalytics();
 
 const pages = reactive([]);
 const token = localStorage.getItem('accessToken');

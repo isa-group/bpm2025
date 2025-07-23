@@ -17,10 +17,7 @@
           <p class="Published-text">
             Published by:
             <IonChip
-              :router-link="`/attendee/${imageData.authorId}`"
-              @click="() => {
-                trackButtonClick('View Author Profile', 'Image Detail', 'Navigation');
-              }">
+              :router-link="`/attendee/${imageData.authorId}`">
               <IonAvatar>
                 <img
                   :src="imageData.imageAuthorAvatar || 'https://ionicframework.com/docs/img/demos/avatar.svg'"
@@ -45,7 +42,6 @@
                   :icon="thumbsUp"
                   class="like-icon"
                   @click="() => {
-                    trackButtonClick('Unlike Image', 'Image Detail', 'Feature');
                     changeLikeStatus();
                   }" />
                 <IonIcon
@@ -53,7 +49,6 @@
                   :icon="thumbsUpOutline"
                   class="like-icon"
                   @click="() => {
-                    trackButtonClick('Like Image', 'Image Detail', 'Feature');
                     changeLikeStatus();
                   }" />
               </IonCol>
@@ -64,7 +59,6 @@
                   <IonButton
                     color="danger"
                     @click="() => {
-                      trackButtonClick('Delete Image', 'Image Detail', 'Feature');
                       deletePicture();
                     }">
                     <IonIcon :icon="trashOutline" /> Delete
@@ -100,9 +94,6 @@ import { thumbsUpOutline, thumbsUp, trashOutline } from 'ionicons/icons';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import backend from '../../../backend.config';
-import { googleanalytics } from '#/composables/googleanalytics';
-
-const { trackButtonClick } = googleanalytics();
 
 dayjs.extend(relativeTime);
 

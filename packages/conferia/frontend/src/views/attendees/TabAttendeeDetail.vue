@@ -35,7 +35,6 @@
       <IonButton
         expand="block"
         @click="() => {
-          trackButtonClick('Access Personal Agenda', 'Attendee List', 'Feature')
           router.push(`/tabs/calendar/${attendeeId}`)
         }">
         <IonIcon
@@ -66,9 +65,6 @@ import {
 } from '@ionic/vue';
 import backend from '/backend.config.ts';
 import { calendar } from 'ionicons/icons';
-import { googleanalytics } from '#/composables/googleanalytics.ts';
-
-const { trackButtonClick } = googleanalytics();
 
 const router = useRouter();
 const route = useRoute();

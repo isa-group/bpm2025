@@ -6,8 +6,7 @@
         <IonTabBar id="footer">
           <IonTabButton
             tab="home"
-            href="/tabs/home"
-            @click="trackButtonClick('home','Main Feature','Navigation')">
+            href="/tabs/home">
             <IonIcon
               aria-hidden="true"
               :icon="home" />
@@ -16,8 +15,7 @@
 
           <IonTabButton
             tab="calendar"
-            href="/tabs/calendar"
-            @click="trackButtonClick('calendar', 'Main Feature','Navigation')">
+            href="/tabs/calendar">
             <IonIcon
               aria-hidden="true"
               :icon="calendar" />
@@ -26,8 +24,7 @@
 
           <IonTabButton
             tab="attendees"
-            href="/tabs/attendees"
-            @click="trackButtonClick('attendees','Main Feature','Navigation')">
+            href="/tabs/attendees">
             <IonIcon
               aria-hidden="true"
               :icon="people" />
@@ -36,8 +33,7 @@
 
           <IonTabButton
             tab="messages"
-            href="/tabs/messages"
-            @click="trackButtonClick('messages','Main Feature','Navigation')">
+            href="/tabs/messages">
             <IonBadge
               v-if="updates.numberOfMessages > 0"
               color="danger">
@@ -51,8 +47,7 @@
 
           <IonTabButton
             tab="images"
-            href="/tabs/images"
-            @click="trackButtonClick('images','Main Feature','Navigation')">
+            href="/tabs/images">
             <IonBadge
               v-if="updates.numberOfPictures > 0"
               color="danger">
@@ -75,9 +70,6 @@ import { home, calendar, people, images, mail } from 'ionicons/icons';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import axios from 'axios';
 import backend from '../../backend.config';
-import { googleanalytics } from '#/composables/googleanalytics';
-
-const { trackButtonClick } = googleanalytics();
 
 const updates = ref({ numberOfMessages: 0, numberOfPictures: 0 });
 const intervalId = ref(0);

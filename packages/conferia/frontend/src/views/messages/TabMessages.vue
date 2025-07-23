@@ -18,7 +18,6 @@
           :key="message.id"
           button
           @click="() => {
-            trackButtonClick('Open Message', 'Messages Page', 'Feature');
             setVisibleMessage(message.id);
           }">
           <IonLabel>
@@ -47,7 +46,6 @@
         class="custom-fab">
         <IonFabButton
           @click="() => {
-            trackButtonClick('Post New Message', 'Messages Page', 'Feature');
             openPostMessage();
           }">
           <IonIcon :icon="add" />
@@ -64,7 +62,6 @@
                 <IonBackButton
                   default-href="/tabs/messages"
                   @click="() => {
-                    trackButtonClick('Close Message', 'Messages Page', 'Feature');
                     closeMessage();
                   }" />
               </IonButtons>
@@ -85,7 +82,6 @@
                 <IonChip
                   :router-link="`/attendee/${activeMessage.authorId}`"
                   @click="() => {
-                    trackButtonClick('Open Author Profile', 'Messages Page', 'Feature');
                     closeMessage();
                   }">
                   <IonAvatar>
@@ -109,7 +105,6 @@
               <IonButton
                 color="danger"
                 @click="() => {
-                  trackButtonClick('Delete Message', 'Messages Page', 'Feature');
                   deleteMessage();
                 }">
                 <IonIcon :icon="trashOutline" /> Delete
@@ -128,7 +123,6 @@
                 <IonBackButton
                   default-href="/tabs/messages"
                   @click="() => {
-                    trackButtonClick('Close Post New Message', 'Messages Page', 'Feature');
                     closePostMessage();
                   }" />
               </IonButtons>
@@ -139,7 +133,6 @@
         <IonContent class="ion-padding">
           <form
             @submit.prevent="() => {
-              trackButtonClick('Submit New Message', 'Messages Page', 'Feature');
               submitForm();
             }">
             <IonInput
@@ -211,9 +204,6 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import HeaderBar from '#/components/HeaderBar.vue';
 import backend from '/backend.config.ts';
-import { googleanalytics } from '#/composables/googleanalytics.ts';
-
-const { trackButtonClick } = googleanalytics();
 
 dayjs.extend(relativeTime);
 
