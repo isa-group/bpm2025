@@ -10,7 +10,6 @@
     </IonHeader>
     <IonContent>
       <div class="ion-padding">
-        <!--        <img src="#/assets/images/icpm-logo-1.png" />-->
         <div id="logo-large" />
         <p>Welcome {{ name.firstname }} {{ name.lastname }}</p>
       </div>
@@ -93,13 +92,7 @@ const logout = () => {
   width: 100%;
   margin-bottom: 10px;
 }
-/* Light Mode */
-body:not(.dark) #logo-large {
-  background-image: url('#/assets/images/logo-1.svg');
-}
-
-/* Dark Mode */
-body.dark #logo-large {
-  background-image: url('#/assets/images/logo-2.svg');
+#logo-large {
+  background-image: url('@bpm2025-website/assets/icon');
 }
 </style>

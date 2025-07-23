@@ -97,13 +97,8 @@ onMounted(async () => {
   width: 100%;
   margin-bottom: 10px;
 }
-/* Light Mode */
-body:not(.dark) #logo-large {
-  background-image: url('#/assets/images/logo-1.svg');
-}
 
-/* Dark Mode */
-body.dark #logo-large {
-  background-image: url('#/assets/images/logo-1.svg');
+#logo-large {
+  background-image: url('@bpm2025-website/assets/icon');
 }
 </style>

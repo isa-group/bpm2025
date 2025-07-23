@@ -103,14 +103,10 @@ const emits = defineEmits(['openActionSheet', 'reloadPage', 'openFilter']);
   margin-top: 4px;
 }
 /* Light Mode */
-body:not(.dark) #logo {
-  background-image: url('#/assets/images/logo-1.svg');
+#logo {
+  background-image: url('@bpm2025-website/assets/icon');
 }
 
-/* Dark Mode */
-body.dark #logo {
-  background-image: url('#/assets/images/logo-2.svg');
-}
 .gallery-dropdown {
   margin-right: 15px;
   color: #3880ff
