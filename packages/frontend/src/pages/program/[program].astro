@@ -4,8 +4,11 @@ import Table from '#/components/ui/Table.astro';
 import ItemList from '#/components/ui/ItemList.astro';
 import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
 import PageLayout from '#/layouts/PageLayout.astro';
+import { Image } from 'astro:assets';
 
 import { program_overviews, program_name_to_uri } from '#/data/program/overviews';
+import badgeImg from '#/assets/images/program/badge/bpm2025-badge.png';
+import { isStr } from '@bpm2025-website/shared/validation';
 
 /**
  * Dynamic route generator
@@ -32,7 +35,37 @@ if (!program.tables?.length && !program.items?.length) {
         tagline={program.date && `📅 ${program.date}`} />
     )}
     {program.tables
-      ? program.tables.map(t => <Table {...t} />)
+      ? program.tables.map((t) => {
+        // @ts-expect-error - TypeScript can't see that we are safely checking for instance of Map when replacing
+          t.rows = t.rows.map((row) => {
+            if ('Artifact' in row && isStr(row.Artifact)) {
+              const component = (
+                <a
+                  href={row.Artifact}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="contents">
+                  {/* @ts-expect-error - Astro bug */}
+                  <Image
+                    src={badgeImg}
+                    alt="Artifact Badge"
+                    class="cursor-pointer"
+                    inferSize />
+                </a>
+              );
+
+              if (row instanceof Map) {
+                row.set('Artifact', component);
+              } else {
+                row.Artifact = component;
+              }
+            }
+
+            return row;
+          });
+
+          return <Table {...t} />;
+        })
       : <ItemList items={program.items} />}
   </WidgetWrapper>
 </PageLayout>
