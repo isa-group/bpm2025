@@ -18,7 +18,6 @@
     "check": "npm run check -ws --include-workspace-root=false"
   },
   "devDependencies": {
-    "@bpm2025-website/shared": "*",
     "@eslint/config-inspector": "1.1.0",
     "@types/node": "24.1.0",
     "eslint": "9.31.0",
