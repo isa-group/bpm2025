@@ -101,7 +101,7 @@ export const mondayEvents: ScheduleEvent[] = [
         location: locations['prado']
     },
     {
-        title: 'NLP4BPM I',
+        title: 'NLP4BPM II',
         start: new Date(2025, 8, 1, 16, 0),
         end: new Date(2025, 8, 1, 17, 30),
         category: 'nlp4bpm',
