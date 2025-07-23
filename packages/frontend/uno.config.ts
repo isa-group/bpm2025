@@ -21,6 +21,7 @@ export default defineConfig({
       ]
     }
   },
+  safelist: ['i-svg-spinners:ring-resize'],
   presets: [
     defaultPreset,
     presetTypography(),
