@@ -1,74 +1,95 @@
 <template>
   <IonPage>
     <IonHeader>
-      <IonToolbar>
+      <IonToolbar class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md">
         <template #start>
           <IonButtons>
             <IonBackButton default-href="/tabs/images" />
           </IonButtons>
         </template>
-        <IonTitle>{{ imagePath }}</IonTitle>
+        <IonTitle class="text-lg font-semibold">Photo Details</IonTitle>
       </IonToolbar>
     </IonHeader>
-    <IonContent>
-      <IonCard>
-        <img :src="image">
-        <IonCardContent>
-          <p class="Published-text">
-            Published by:
-            <IonChip
-              :router-link="`/attendee/${imageData.authorId}`">
-              <IonAvatar>
+    <IonContent class="bg-gray-50 dark:bg-gray-900">
+      <!-- Image Container -->
+      <div class="relative bg-black">
+        <img 
+          :src="image" 
+          :alt="imagePath"
+          class="w-full h-auto max-h-96 object-contain"
+        />
+      </div>
+
+      <!-- Content Card -->
+      <div class="p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <!-- Author Info -->
+          <div class="p-4 border-b border-gray-100 dark:border-gray-700">
+            <div class="flex items-center space-x-3">
+              <IonAvatar class="w-12 h-12">
                 <img
                   :src="imageData.imageAuthorAvatar || 'https://ionicframework.com/docs/img/demos/avatar.svg'"
-                  alt="Profile picture">
+                  alt="Profile picture"
+                  class="rounded-full"
+                />
               </IonAvatar>
-              <IonLabel>{{ imageData.imageAuthor }}</IonLabel>
-            </IonChip>
-          </p>
-          <p v-if="imageData.uploadTime">
-            Picture uploaded {{ dayjs(imageData.uploadTime).fromNow() }} ({{ dayjs(imageData.uploadTime).format('D MMM, HH:mm') }})
-          </p>
-          <p v-if="imageData.imageLikes > 0">
-            Likes: {{ imageData.imageLikes }}
-          </p>
-        </IonCardContent>
-        <IonCardContent>
-          <IonGrid>
-            <IonRow>
-              <IonCol>
-                <IonIcon
-                  v-if="imageData.imageIsLiked"
-                  :icon="thumbsUp"
-                  class="like-icon"
-                  @click="() => {
-                    changeLikeStatus();
-                  }" />
-                <IonIcon
-                  v-else
-                  :icon="thumbsUpOutline"
-                  class="like-icon"
-                  @click="() => {
-                    changeLikeStatus();
-                  }" />
-              </IonCol>
-              <IonCol>
-                <p
-                  v-if="Number(userId) == imageData.authorId"
-                  class="ion-text-right">
-                  <IonButton
-                    color="danger"
-                    @click="() => {
-                      deletePicture();
-                    }">
-                    <IonIcon :icon="trashOutline" /> Delete
-                  </IonButton>
+              <div class="flex-1">
+                <IonChip
+                  :router-link="`/attendee/${imageData.authorId}`"
+                  class="bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full"
+                >
+                  <IonLabel class="font-medium">{{ imageData.imageAuthor }}</IonLabel>
+                </IonChip>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  Published by this attendee
                 </p>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
-        </IonCardContent>
-      </IonCard>
+              </div>
+            </div>
+          </div>
+
+          <!-- Image Details -->
+          <div class="p-4 space-y-3">
+            <div v-if="imageData.uploadTime" class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+              <i class="i-carbon-time text-lg"></i>
+              <span>{{ dayjs(imageData.uploadTime).fromNow() }} ({{ dayjs(imageData.uploadTime).format('D MMM, HH:mm') }})</span>
+            </div>
+            
+            <div v-if="imageData.imageLikes > 0" class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+              <i class="i-carbon-thumbs-up text-lg"></i>
+              <span>{{ imageData.imageLikes }} {{ imageData.imageLikes === 1 ? 'like' : 'likes' }}</span>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="p-4 bg-gray-50 dark:bg-gray-700/50 flex items-center justify-between">
+            <button
+              @click="changeLikeStatus"
+              class="flex items-center space-x-2 px-4 py-2 rounded-full transition-colors"
+              :class="imageData.imageIsLiked 
+                ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300' 
+                : 'bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-500'"
+            >
+              <IonIcon
+                :icon="imageData.imageIsLiked ? thumbsUp : thumbsUpOutline"
+                class="text-lg"
+              />
+              <span class="font-medium">{{ imageData.imageIsLiked ? 'Liked' : 'Like' }}</span>
+            </button>
+            
+            <IonButton
+              v-if="Number(userId) == imageData.authorId"
+              color="danger"
+              fill="outline"
+              size="small"
+              @click="deletePicture"
+              class="rounded-full"
+            >
+              <IonIcon :icon="trashOutline" class="mr-2" />
+              Delete
+            </IonButton>
+          </div>
+        </div>
+      </div>
     </IonContent>
   </IonPage>
 </template>

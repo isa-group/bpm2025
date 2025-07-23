@@ -1,5 +1,8 @@
-import { createRouter, createWebHashHistory } from '@ionic/vue-router';
-import type { RouteRecordRaw } from 'vue-router';
+import {
+  createRouter,
+  createWebHashHistory,
+  createMemoryHistory, type RouteRecordRaw
+} from 'vue-router';
 import TabsPage from '../components/TabsPage.vue';
 import AuthPage from '#/views/auth/AuthPage.vue';
 import ProfilePage from '#/views/auth/ProfilePage.vue';
@@ -113,7 +116,10 @@ const routes: RouteRecordRaw[] = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  // This is needed for bundling the frontend with Astro. At runtime, the WebHashHistory will be used
+  history: import.meta.env.SSR
+    ? createMemoryHistory()
+    : createWebHashHistory(import.meta.env.BASE_URL),
   routes
 });
 

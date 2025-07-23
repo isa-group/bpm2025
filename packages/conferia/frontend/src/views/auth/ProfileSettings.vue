@@ -1,196 +1,287 @@
 <template>
-  <IonPage>
-    <IonHeader>
-      <IonToolbar>
-        <template #start>
-          <IonButtons>
-            <IonBackButton default-href="/tabs/home" />
-          </IonButtons>
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div class="px-4 pt-4 pb-20">
+      <!-- Profile Picture Section -->
+      <Card class="shadow-sm mb-6">
+        <template #header>
+          <div class="bg-blue-50 dark:bg-blue-900/20 p-6 border-b border-blue-100 dark:border-blue-800">
+            <h2 class="text-xl font-bold text-blue-900 dark:text-blue-100">Profile Picture</h2>
+          </div>
         </template>
-        <IonTitle>User Profile</IonTitle>
-      </IonToolbar>
-    </IonHeader>
-    <IonContent class="ion-padding">
-      <!-- Avatar -->
-      <div class="profile-picture-container">
-        <IonAvatar id="open-action-sheet">
-          <img
-            :src="user.profilePicture || 'https://ionicframework.com/docs/img/demos/avatar.svg'"
-            alt="Profile picture">
-        </IonAvatar>
-        <IonIcon
-          :icon="pencilOutline"
-          class="edit-icon" />
-      </div>
-      <IonActionSheet
-        trigger="open-action-sheet"
-        header="Upload profile picture"
-        :buttons="actionSheetButtons" />
+        <template #content>
+          <div class="flex flex-col items-center space-y-4 p-6">
+            <div class="relative cursor-pointer" @click="showUploadDialog = true">
+              <Avatar 
+                v-if="user.profilePicture"
+                :image="user.profilePicture"
+                shape="circle"
+                size="xlarge"
+                class="w-24 h-24"
+              />
+              <div 
+                v-else
+                class="w-24 h-24 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white text-2xl font-bold"
+              >
+                {{ getInitials(user.firstname, user.lastname) }}
+              </div>
+              <div class="absolute -bottom-1 -right-1 bg-blue-500 rounded-full p-2">
+                <svg class="w-4 h-4 text-white" viewBox="0 0 32 32" fill="currentColor">
+                  <path d="M2 26h28v2H2zM25.4 9c.8-.8.8-2 0-2.8l-3.6-3.6c-.8-.8-2-.8-2.8 0l-15 15V24h6.4l15-15zm-5-5L24 7.6l-3 3L17.4 7l3-3zM6 22v-3.6l10-10l3.6 3.6l-10 10H6z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="text-center">
+              <h3 class="font-semibold text-gray-900 dark:text-white">Upload Photo</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Tap to change your profile photo</p>
+            </div>
+          </div>
+        </template>
+      </Card>
 
-      <!-- User information -->
-      <IonCard>
-        <IonCardHeader @click="getUserInformation">
-          <IonCardTitle>User Information</IonCardTitle>
-        </IonCardHeader>
-        <IonCardContent v-if="showUserInformation">
-          <form @submit.prevent="updateUserInformation">
-            <IonItem>
-              <IonInput
-                v-model="user.firstname"
-                label="First name"
-                label-placement="stacked"
-                required />
-            </IonItem>
-            <IonItem>
-              <IonInput
-                v-model="user.lastname"
-                label="Second name"
-                label-placement="stacked"
-                required />
-            </IonItem>
-            <IonItem>
-              <!---type="email"--->
-              <IonInput
-                v-model="user.email"
-                label="Email"
-                label-placement="stacked"
-                required />
-            </IonItem>
-            <IonItem>
-              <IonInput
-                v-model="user.company"
-                label="Company"
-                label-placement="stacked" />
-            </IonItem>
-            <IonItem>
-              <IonInput
-                v-model="user.country"
-                label="Country"
-                label-placement="stacked" />
-            </IonItem>
-            <IonItem>
-              <template #start>
-                <IonToggle
-                  :checked="user.sharingChoice"
-                  @ion-change="toggleSharingChoice" />
-              </template>
-              <span class="toggle-text">Share user information with other attendees*</span>
-            </IonItem>
+      <!-- Upload Dialog -->
+      <Dialog 
+        v-model:visible="showUploadDialog" 
+        modal 
+        header="Upload Profile Picture" 
+        :style="{ width: '25rem' }"
+      >
+        <div class="flex flex-col gap-4">
+          <Button 
+            label="Take Photo" 
+            icon="pi pi-camera"
+            @click="uploadPhoto"
+            class="w-full"
+          />
+          <Button 
+            label="Choose from Gallery" 
+            icon="pi pi-image"
+            severity="secondary"
+            @click="uploadPhoto"
+            class="w-full"
+          />
+        </div>
+      </Dialog>
 
-            <IonButton
-              type="submit"
-              expand="block"
-              class="ion-margin-vertical">
-              Update information
-            </IonButton>
-            <p
-              v-if="updateError"
-              class="error-message">
-              {{ updateError }}
-            </p>
-            <p
-              v-if="updateSuccess"
-              class="error-message">
-              {{ updateSuccess }}
-            </p>
-            <p>* name is always shared with other attendees</p>
-          </form>
-        </IonCardContent>
-      </IonCard>
+      <!-- Personal Information Section -->
+      <Card class="shadow-sm mb-6">
+        <template #header>
+          <div class="bg-blue-50 dark:bg-blue-900/20 p-6 border-b border-blue-100 dark:border-blue-800">
+            <button
+              @click="getUserInformation"
+              class="flex items-center justify-between w-full text-left"
+            >
+              <h2 class="text-xl font-bold text-blue-900 dark:text-blue-100">Personal Information</h2>
+              <i :class="showUserInformation ? 'pi pi-chevron-up' : 'pi pi-chevron-down'" 
+                 class="text-blue-600 dark:text-blue-400"/>
+            </button>
+          </div>
+        </template>
+        
+        <template #content>
+          <div v-if="showUserInformation" class="p-6">
+            <form @submit.prevent="updateUserInformation" class="space-y-4">
+              <div class="grid grid-cols-2 gap-4">
+                <div class="space-y-2">
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">First name</label>
+                  <InputText
+                    v-model="user.firstname"
+                    placeholder="Enter first name"
+                    class="w-full"
+                    required
+                  />
+                </div>
+                <div class="space-y-2">
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Last name</label>
+                  <InputText
+                    v-model="user.lastname"
+                    placeholder="Enter last name"
+                    class="w-full"
+                    required
+                  />
+                </div>
+              </div>
+              
+              <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+                <InputText
+                  v-model="user.email"
+                  type="email"
+                  placeholder="Enter email"
+                  class="w-full"
+                  required
+                />
+              </div>
+              
+              <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Company</label>
+                <InputText
+                  v-model="user.company"
+                  placeholder="Enter company"
+                  class="w-full"
+                />
+              </div>
+              
+              <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Country</label>
+                <InputText
+                  v-model="user.country"
+                  placeholder="Enter country"
+                  class="w-full"
+                />
+              </div>
 
-      <!-- Navigate to 'changePassword' -->
-      <IonCard>
-        <IonCardHeader @click="getChangePassword">
-          <IonCardTitle>Change Password</IonCardTitle>
-        </IonCardHeader>
-        <IonCardContent v-if="showChangePassword">
-          <IonItem>
-            <IonInput
-              v-model="passwordChange.oldpassword"
-              label="Old Password"
-              label-placement="stacked"
-              type="password" />
-          </IonItem>
-          <IonItem>
-            <IonInput
-              v-model="passwordChange.newpassword"
-              label="New Password"
-              label-placement="stacked"
-              type="password" />
-          </IonItem>
-          <IonItem>
-            <IonInput
-              v-model="passwordChange.confirmpassword"
-              label="Confirm New Password"
-              label-placement="stacked"
-              type="password" />
-          </IonItem>
-          <IonButton
-            type="submit"
-            expand="block"
-            shape="round"
-            class="button"
-            @click="() => { updatePassword(); }">
-            Update password
-          </IonButton>
-          <p
-            v-if="changePasswordSuccess"
-            class="error-message">
-            {{ changePasswordSuccess }}
-          </p>
-          <p
-            v-if="changePasswordError"
-            class="success-message">
-            {{ changePasswordError }}
-          </p>
-        </IonCardContent>
-      </IonCard>
+              <!-- Privacy Setting -->
+              <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
+                <div class="flex items-start space-x-3">
+                  <Checkbox
+                    v-model="user.sharingChoice"
+                    class="mt-1"
+                    inputId="sharingChoice"
+                    :binary="true"
+                  />
+                  <div>
+                    <label for="sharingChoice" class="font-medium text-gray-900 dark:text-white cursor-pointer">Share Information</label>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                      Share user information with other attendees*
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <Button
+                type="submit"
+                label="Update Information"
+                class="w-full mt-6"
+              />
+              
+              <div v-if="updateError" class="text-red-600 dark:text-red-400 text-sm mt-2">
+                {{ updateError }}
+              </div>
+              <div v-if="updateSuccess" class="text-green-600 dark:text-green-400 text-sm mt-2">
+                {{ updateSuccess }}
+              </div>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                * Name is always shared with other attendees
+              </p>
+            </form>
+          </div>
+        </template>
+      </Card>
+
+      <!-- Password Change Section -->
+      <Card class="shadow-sm mb-6">
+        <template #header>
+          <div class="bg-blue-50 dark:bg-blue-900/20 p-6 border-b border-blue-100 dark:border-blue-800">
+            <button
+              @click="getChangePassword"
+              class="flex items-center justify-between w-full text-left"
+            >
+              <h2 class="text-xl font-bold text-blue-900 dark:text-blue-100">Change Password</h2>
+              <i :class="showChangePassword ? 'pi pi-chevron-up' : 'pi pi-chevron-down'" 
+                 class="text-blue-600 dark:text-blue-400"/>
+            </button>
+          </div>
+        </template>
+        
+        <template #content>
+          <div v-if="showChangePassword" class="p-6">
+            <div class="space-y-4">
+              <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Current Password</label>
+                <Password
+                  v-model="passwordChange.oldpassword"
+                  placeholder="Enter current password"
+                  class="w-full"
+                  toggleMask
+                  :feedback="false"
+                />
+              </div>
+              
+              <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">New Password</label>
+                <Password
+                  v-model="passwordChange.newpassword"
+                  placeholder="Enter new password"
+                  class="w-full"
+                  toggleMask
+                  :feedback="false"
+                />
+              </div>
+              
+              <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Confirm New Password</label>
+                <Password
+                  v-model="passwordChange.confirmpassword"
+                  placeholder="Confirm new password"
+                  class="w-full"
+                  toggleMask
+                  :feedback="false"
+                />
+              </div>
+
+              <Button
+                @click="updatePassword"
+                label="Update Password"
+                class="w-full mt-6"
+              />
+              
+              <div v-if="changePasswordSuccess" class="text-green-600 dark:text-green-400 text-sm mt-2">
+                {{ changePasswordSuccess }}
+              </div>
+              <div v-if="changePasswordError" class="text-red-600 dark:text-red-400 text-sm mt-2">
+                {{ changePasswordError }}
+              </div>
+            </div>
+          </div>
+        </template>
+      </Card>
 
       <!-- Theme Settings Section -->
-      <IonCard>
-        <IonCardHeader @click="getThemeSettings">
-          <IonCardTitle>Theme Settings</IonCardTitle>
-        </IonCardHeader>
-        <IonCardContent v-if="showThemeInformation">
-          <IonItem>
-            <div class="toggle-theme">
-              <IonToggle
-                :checked="isDarkMode"
-                @ion-change="() => { toggleTheme(); }" />
-              <span class="toggle-label">Dark mode </span>
+      <Card class="shadow-sm">
+        <template #header>
+          <div class="bg-blue-50 dark:bg-blue-900/20 p-6 border-b border-blue-100 dark:border-blue-800">
+            <button
+              @click="getThemeSettings"
+              class="flex items-center justify-between w-full text-left"
+            >
+              <h2 class="text-xl font-bold text-blue-900 dark:text-blue-100">Theme Settings</h2>
+              <i :class="showThemeInformation ? 'pi pi-chevron-up' : 'pi pi-chevron-down'" 
+                 class="text-blue-600 dark:text-blue-400"/>
+            </button>
+          </div>
+        </template>
+        
+        <template #content>
+          <div v-if="showThemeInformation" class="p-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="font-medium text-gray-900 dark:text-white">Dark Mode</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Switch between light and dark themes</p>
+              </div>
+              <InputSwitch
+                v-model="isDarkMode"
+                @change="toggleTheme"
+              />
             </div>
-          </IonItem>
-        </IonCardContent>
-      </IonCard>
-    </IonContent>
-  </IonPage>
+          </div>
+        </template>
+      </Card>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import {
-  IonActionSheet,
-  IonAvatar,
-  IonBackButton,
-  IonButton,
-  IonButtons,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardTitle,
-  IonContent,
-  IonHeader,
-  IonIcon,
-  IonInput,
-  IonItem,
-  IonPage,
-  IonTitle,
-  IonToggle,
-  IonToolbar
-} from '@ionic/vue';
+import Button from 'primevue/button';
+import Card from 'primevue/card';
+import Dialog from 'primevue/dialog';
+import InputText from 'primevue/inputtext';
+import InputSwitch from 'primevue/inputswitch';
+import Checkbox from 'primevue/checkbox';
+import Password from 'primevue/password';
+import Avatar from 'primevue/avatar';
 
 import axios from 'axios';
-import { camera, pencilOutline } from 'ionicons/icons';
 import backend from '#/plugins/backend.config';
 import { usePhotoGallery } from '#/composables/usePhotoGallery';
 
@@ -205,6 +296,7 @@ const showUserInformation = ref(true);
 const showChangePassword = ref(false);
 const showNotificationsInformation = ref(false);
 const showThemeInformation = ref(false);
+const showUploadDialog = ref(false);
 
 const changePasswordError = ref('');
 const changePasswordSuccess = ref('');
@@ -231,6 +323,40 @@ const notifications = ref({
   articles: '',
   events: ''
 });
+
+// Navigation function
+const goBack = () => {
+  window.history.back();
+};
+
+// Add uploadPhoto function
+const uploadPhoto = async () => {
+  try {
+    const photoBlob = await takePhotoProfile();
+    
+    // Create an instance of FormData
+    const formData = new FormData();
+    
+    // Append the photo blob to the form data
+    formData.append('file', photoBlob as unknown as Blob);
+    
+    // Make the POST request with the form data and proper headers
+    const uploadResponse = await axios.post(backend.construct('account/uploadProfilePicture'), formData, {
+      headers: {
+        'Authorization': `Bearer ${token.value}`,
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    
+    if (uploadResponse.status === 200) {
+      console.log('Upload successful');
+      await fetchUserSettings();
+      showUploadDialog.value = false;
+    }
+  } catch (error) {
+    console.error('Error uploading photo:', error);
+  }
+};
 
 const fetchUserSettings = async () => {
   try {
@@ -312,14 +438,11 @@ const getUserInformation = async () => {
 const getChangePassword = async () => {
   showChangePassword.value = !showChangePassword.value;
 };
-const getNotifikationsSettings = async () => {
+const getNotificationsSettings = async () => {
   showNotificationsInformation.value = !showNotificationsInformation.value;
 };
 const getThemeSettings = async () => {
   showThemeInformation.value = !showThemeInformation.value;
-};
-const toggleSharingChoice = async () => {
-  user.value.sharingChoice = !user.value.sharingChoice;
 };
 
 const getInitialTheme = () => {
@@ -338,92 +461,13 @@ const toggleTheme = () => {
 
   document.body.classList.toggle('dark', !isCurrentlyDark);
   localStorage.setItem('theme', newTheme);
+  isDarkMode.value = !isCurrentlyDark;
 };
 
-const actionSheetButtons = [
-  {
-    text: 'Edit profile picture',
-    icon: camera,
-    handler: async () => {
-      try {
-        const photoBlob = await takePhotoProfile();
-
-        // Create an instance of FormData
-        const formData = new FormData();
-
-        // Append the photo blob to the form data, the 'file' key should match the name expected in the backend
-        formData.append('file', photoBlob as Blob);
-
-        // Make the POST request with the form data and proper headers
-        const uploadResponse = await axios.post(backend.construct('account/uploadProfilePicture'), formData, {
-          headers: {
-            'Authorization': `Bearer ${token.value}`,
-            'Content-Type': 'multipart/form-data' // This might be optional as axios sets it automatically with the correct boundary
-          }
-        });
-
-        if (uploadResponse.status === 200) {
-          console.log('Upload successful');
-          await fetchUserSettings();
-        }
-      } catch (error) {
-        console.error('Error fetching signed URL:', error);
-      }
-    }
-  }
-];
+// Helper function to get user initials for placeholder
+const getInitials = (firstname: string, lastname: string) => {
+  const first = firstname?.charAt(0)?.toUpperCase() || '';
+  const last = lastname?.charAt(0)?.toUpperCase() || '';
+  return first + last || 'U';
+};
 </script>
-
-<style scoped>
-.profile-picture-container {
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-  width: 150px; /* Avatar size */
-  height: 150px;
-}
-
-.profile-picture-container ion-avatar {
-  width: 100%; /* Set the desired size */
-  height: 100%; /* Set the desired size */
-  z-index: 1;
-}
-
-.profile-picture-container ion-avatar img {
-  width: 100%; /* Ensure the image fills the avatar */
-  height: 100%; /* Maintain aspect ratio */
-
-}
-
-.edit-icon {
-  position: absolute;
-  top: 10%;
-  right: 0;
-  font-size: 30px; /* Adjust icon size as needed */
-  z-index: 10;
-}
-
-ion-item {
-  --background: transparent;
-}
-
-.toggle-text {
-  font-size: 14px;
-  white-space: normal;
-  overflow: hidden; /* Prevents text overflow */
-  margin-left: 3px;
-}
-.toggle-label {
-  font-size: 20px;
-  margin-left: 60%;
-}
-.toggle-theme {
-  display: flex;
-  white-space: nowrap;
-}
-
-</style>

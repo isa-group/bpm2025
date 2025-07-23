@@ -25,7 +25,7 @@ const { metadata, heroProps = {}, heroImage } = Astro.props;
     {/* !isInRegistrationPage(url) && <Announcement /> */}
   </slot>
   <slot name="header">
-    <Header {...getHeaderData(url)} isSticky showToggleTheme />
+    <Header {...getHeaderData()} isSticky showToggleTheme />
   </slot>
   <slot name="hero">
     <Hero

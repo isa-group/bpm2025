@@ -1,62 +1,71 @@
 <template>
-  <IonMenu
-    side="end"
-    content-id="main-content"
-    menu-id="settings-menu">
-    <IonHeader>
-      <IonToolbar>
-        <IonTitle>Account</IonTitle>
-      </IonToolbar>
-    </IonHeader>
-    <IonContent>
-      <div class="ion-padding">
-        <!--        <img src="#/assets/images/icpm-logo-1.png" />-->
-        <div id="logo-large" />
-        <p>Welcome {{ name.firstname }} {{ name.lastname }}</p>
+  <Dialog
+    :visible="visible"
+    modal
+    position="topright"
+    class="w-80"
+    @update:visible="$emit('hide')">
+    <template #header>
+      <div class="flex items-center space-x-3">
+        <h3 class="text-lg font-semibold">Account</h3>
       </div>
-      <IonList lines="full">
-        <IonItem
-          button
-          :router-link="'/profile/settings/'">
-          <IonLabel>
-            <template #start>
-              <IonIcon :icon="settingsOutline" />
-            </template>
-            Settings
-          </IonLabel>
-        </IonItem>
-        <IonItem
-          button
-          :router-link="'/tabs/about/'">
-          <IonLabel>
-            <template #start>
-              <IonIcon :icon="informationCircleOutline" />
-            </template>
-            About the app
-          </IonLabel>
-        </IonItem>
-        <IonItem
-          button
-          @click="() => { logout(); }">
-          <IonLabel>
-            <template #start>
-              <IonIcon :icon="logOutOutline" />
-            </template>
-            Logout
-          </IonLabel>
-        </IonItem>
-      </IonList>
-    </IonContent>
-  </IonMenu>
+    </template>
+
+    <div class="space-y-4">
+      <!-- User info section -->
+      <div class="text-center p-4 bg-surface-50 dark:bg-surface-800 rounded-lg">
+        <div class="logo-large mb-3"></div>
+        <p class="text-surface-700 dark:text-surface-300">
+          Welcome {{ name.firstname }} {{ name.lastname }}
+        </p>
+      </div>
+
+      <!-- Menu items -->
+      <div class="space-y-2">
+        <Button
+          label="Profile Settings"
+          icon="pi pi-user"
+          severity="secondary"
+          text
+          class="w-full justify-start"
+          @click="navigateAndClose('/profile/settings/')" />
+
+        <Button
+          label="About the app"
+          icon="pi pi-info-circle"
+          severity="secondary"
+          text
+          class="w-full justify-start"
+          @click="navigateAndClose('/tabs/about/')" />
+
+        <Button
+          label="Logout"
+          icon="pi pi-sign-out"
+          severity="secondary"
+          text
+          class="w-full justify-start text-red-600 hover:text-red-700"
+          @click="logout" />
+      </div>
+    </div>
+  </Dialog>
 </template>
 
 <script setup lang="ts">
-import { informationCircleOutline, logOutOutline, settingsOutline } from 'ionicons/icons';
-import { IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonTitle, IonToolbar } from '@ionic/vue';
 import { useRouter } from 'vue-router';
 import { onMounted, reactive } from 'vue';
 import axios from 'axios';
+import Dialog from 'primevue/dialog';
+import Button from 'primevue/button';
 import backend from '#/plugins/backend.config';
+
+defineProps({
+  visible: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emits = defineEmits(['hide']);
 
 const router = useRouter();
 const name = reactive({
@@ -71,7 +80,7 @@ onMounted(async () => {
     name.firstname = response.data.firstname;
     name.lastname = response.data.lastname;
   } catch (error) {
-    console.error('Failed to fetch pages', error);
+    console.error('Failed to fetch user name', error);
   }
 });
 
@@ -80,26 +89,22 @@ const logout = () => {
   localStorage.removeItem('refreshToken');
   localStorage.removeItem('userId');
   router.push('/auth/login');
+  emits('hide');
 };
 
+const navigateAndClose = (path: string) => {
+  router.push(path);
+  emits('hide');
+};
 </script>
 
 <style scoped>
-#logo-large {
+.logo-large {
+  background-image: url('@bpm2025-website/assets/icon');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   height: 100px;
   width: 100%;
-  margin-bottom: 10px;
-}
-/* Light Mode */
-body:not(.dark) #logo-large {
-  background-image: url('#/assets/images/logo-1.svg');
-}
-
-/* Dark Mode */
-body.dark #logo-large {
-  background-image: url('#/assets/images/logo-2.svg');
 }
 </style>

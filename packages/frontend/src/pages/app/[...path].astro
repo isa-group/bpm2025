@@ -1,0 +1,19 @@
+---
+import Layout from '#/layouts/Layout.astro';
+import { MainView as App } from '@bpm2025-website/conferia-frontend';
+import Header from '#/components/widgets/Header.astro';
+import { getHeaderData } from '#/data/navigation';
+
+export function getStaticPaths() {
+  return [
+    { params: { path: undefined } }
+  ];
+}
+---
+<Layout metadata={{
+  title: 'App - BPM2025',
+  ignoreTitleTemplate: true
+}}>
+  <Header actions={getHeaderData().actions} isSticky showToggleTheme />
+  <App client:only="vue" />
+</Layout>
