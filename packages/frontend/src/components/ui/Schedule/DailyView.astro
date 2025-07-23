@@ -27,7 +27,7 @@ function formatDayTitle(date: Date): string {
     month: 'long',
     day: 'numeric'
   });
-  
+
   return formatter.format(date);
 }
 
@@ -75,10 +75,10 @@ const hours = (() => {
 type MapType = Map<AstroComponent | string, AstroComponent | string>;
 
 // Filter events for the specified date
-const dayEvents = events.filter(event => 
-  event.start.getFullYear() === date.getFullYear() &&
-  event.start.getMonth() === date.getMonth() &&
-  event.start.getDate() === date.getDate()
+const dayEvents = events.filter(event =>
+  event.start.getFullYear() === date.getFullYear()
+  && event.start.getMonth() === date.getMonth()
+  && event.start.getDate() === date.getDate()
 );
 
 // Separate full-width events from location-specific events
@@ -86,7 +86,7 @@ const fullWidthEvents = dayEvents.filter(event => event.full === true);
 const regularEvents = dayEvents.filter(event => event.full !== true);
 
 // Group regular events by location
-const eventsByLocation = Object.groupBy(regularEvents, event => 
+const eventsByLocation = Object.groupBy(regularEvents, event =>
   event.location?.name ?? 'No Location'
 );
 
@@ -112,17 +112,19 @@ function getLocationUrl(location: string): string | undefined {
 ---
 
 {(() => {
-  const columns = locations.map((location) => () => {
+  const columns = locations.map(location => () => {
     const url = getLocationUrl(location);
     return (
       <div class="h-full flex flex-col items-center justify-center">
-        {url ? (
-          <a href={url} class="text-lg text-gray-800 lg:text-base md:text-sm font-semibold underline hover:text-blue-600" target="_blank" rel="noopener noreferrer">
-            {location}
-          </a>
-        ) : (
-          <div class="text-lg text-gray-800 lg:text-base md:text-sm font-semibold">{location}</div>
-        )}
+        {url
+          ? (
+              <a href={url} class="text-lg text-gray-800 font-semibold underline lg:text-base md:text-sm hover:text-blue-600" target="_blank" rel="noopener noreferrer">
+                {location}
+              </a>
+            )
+          : (
+              <div class="text-lg text-gray-800 font-semibold lg:text-base md:text-sm">{location}</div>
+            )}
       </div>
     );
   });
@@ -131,15 +133,15 @@ function getLocationUrl(location: string): string | undefined {
     const m = new Map() as MapType;
 
     m.set('', formatHour(hour));
-    
+
     // Find full-width events for this hour - these will only be shown in the first column
     const hourFullWidthEvents = fullWidthEvents.filter(e => e.start.getHours() === hour);
-    
+
     // For each location column
     locations.forEach((location, index) => {
       const locationEvents = eventsByLocation[location] || [];
       const hourLocationEvents = locationEvents.filter(e => e.start.getHours() === hour);
-      
+
       m.set(columns[index]!, () => (
         <div class="group/cell h-full w-full flex">
           {hourLocationEvents.map(event => (

@@ -1,4 +1,5 @@
 import type { ComponentProps } from 'astro/types';
+import type { ImageMetadata } from 'astro';
 import type { Item } from '#/types';
 import type Table from '#/components/ui/Table.astro';
 

@@ -65,8 +65,8 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
 ---
 
 {(() => {
-  const isFullEvent = event.full
-  
+  const isFullEvent = event.full;
+
   const body = (
     <div
       class:list={[
@@ -91,32 +91,34 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
       <div class="min-h-full min-w-full inset-0 bottom-auto absolute parent-hover/event:relative">
         <div class="p-1">
           {/* For 30-minute events, show more compact layout */}
-          {durationInMinutes <= 30 ? (
-            <div>
-              <div class="text-[0.6rem] text-gray-700 font-semibold hyphens-auto opacity-80 lg:text-[0.5rem] md:text-[0.45rem]">
-                {formatTime(event.start)} - {formatTime(endTime)}
-              </div>
-              <div class="text-[0.7rem] text-gray-800 font-semibold leading-tight hyphens-auto lg:text-[0.6rem] md:text-[0.55rem] line-clamp-1">
-                {event.title}
-              </div>
-            </div>
-          ) : (
-            <>
-              <div class="mb-1 text-[0.7rem] text-gray-700 font-semibold hyphens-auto opacity-80 lg:text-[0.6rem] md:text-[0.6rem]">
-                {formatTime(event.start)} - {formatTime(endTime)}
-              </div>
-              <div class="mb-1 text-[0.8rem] text-gray-800 font-semibold leading-tight hyphens-auto lg:text-xs md:text-[0.7rem]">
-                {event.title}
-              </div>
-            </>
-          )}
-            {event.location && (
+          {durationInMinutes <= 30
+            ? (
+                <div>
+                  <div class="text-[0.6rem] text-gray-700 font-semibold hyphens-auto opacity-80 lg:text-[0.5rem] md:text-[0.45rem]">
+                    {formatTime(event.start)} - {formatTime(endTime)}
+                  </div>
+                  <div class="line-clamp-1 text-[0.7rem] text-gray-800 font-semibold leading-tight hyphens-auto lg:text-[0.6rem] md:text-[0.55rem]">
+                    {event.title}
+                  </div>
+                </div>
+              )
+            : (
+                <>
+                  <div class="mb-1 text-[0.7rem] text-gray-700 font-semibold hyphens-auto opacity-80 lg:text-[0.6rem] md:text-[0.6rem]">
+                    {formatTime(event.start)} - {formatTime(endTime)}
+                  </div>
+                  <div class="mb-1 text-[0.8rem] text-gray-800 font-semibold leading-tight hyphens-auto lg:text-xs md:text-[0.7rem]">
+                    {event.title}
+                  </div>
+                </>
+              )}
+          {event.location && (
             <div class="mb-1 flex items-center gap-0.5 text-[0.7rem] text-gray-600 hyphens-auto lg:text-[0.6rem] md:text-[0.7rem]">
               📍 {event.location.url
-              ? <a href={event.location.url} target="_blank" rel="noopener noreferrer" class="underline">{event.location.name}</a>
-              : event.location.name}
+                ? <a href={event.location.url} target="_blank" rel="noopener noreferrer" class="underline">{event.location.name}</a>
+                : event.location.name}
             </div>
-            )}
+          )}
           {event.description
             && <div class="text-[0.7rem] text-gray-600 leading-tight hyphens-auto lg:text-[0.6rem] md:text-[0.7rem]" set:html={event.description} />}
         </div>
@@ -152,7 +154,7 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
 }
 
 /* Special handling for the last column to prevent overflow */
-:global(td:last-child) .event-item, 
+:global(td:last-child) .event-item,
 :global(td:last-child) .parent\/event,
 :global(td:last-child) .full-event {
   width: 100%;
