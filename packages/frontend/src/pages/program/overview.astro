@@ -5,6 +5,10 @@ import { sundayEvents } from '#/data/program/daily/sunday';
 import Headline from '#/components/ui/Headline.astro';
 import DailyView from '#/components/ui/Schedule/DailyView.astro';
 import { mondayEvents } from '#/data/program/daily/monday';
+import { tuesdayEvents } from '#/data/program/daily/tuesday';
+import { wednesdayEvents } from '#/data/program/daily/wednesday';
+import { thursdayEvents } from '#/data/program/daily/thursday';
+import { fridayEvents } from '#/data/program/daily/friday';
 
 ---
 
@@ -27,9 +31,25 @@ import { mondayEvents } from '#/data/program/daily/monday';
     </div>
     <div class="mb-10">
       <Headline title="Conference Days"/>
+      <DailyView 
+        events={tuesdayEvents}
+        date={new Date(2025, 8, 2)}
+      />
+      <DailyView 
+        events={wednesdayEvents}
+        date={new Date(2025, 8, 3)}
+      />
+      <DailyView 
+        events={thursdayEvents}
+        date={new Date(2025, 8, 4)}
+      />
     </div>
     <div class="mb-10">
       <Headline title="Post-conference Day"/>
+      <DailyView 
+        events={fridayEvents}
+        date={new Date(2025, 8, 5)}
+      />
     </div>
     <div class="mt-6 overflow-hidden rounded-xl bg-white shadow-md">
       <div class="p-6 text-center">

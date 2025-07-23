@@ -50,9 +50,24 @@ export const locations: Record<string, EventLocation> = {
         address: '303 Consortium Pl, City, Country',
         url: 'https://example.com/consortium-hall'
     },
+    'nervion': {
+        name: '"Nervión" Hall',
+        address: '303 Consortium Pl, City, Country',
+        url: 'https://example.com/consortium-hall'
+    },
     'tobbaco': {
         name: 'Royal Tobacco Factory',
         address: 'C. San Fernando, 4, Casco Antiguo, 41004 Seville, Spain',
         url: 'https://maps.app.goo.gl/jGLHMfYmiFGA6Z8S9'
+    },
+    'reales-alcazares': {
+        name: 'Reales Alcázares',
+        address: 'Real Alcázar de Sevilla, Casco Antiguo, 41004 Seville, Spain',
+        url: 'https://maps.app.goo.gl/xuKU7oeD8XhW5baY8'
+    },
+    'abades': {
+        name: 'Abades Triana',
+        address: 'Calle Betis, 69, 41010 Sevilla, Spain',
+        url: 'https://maps.app.goo.gl/yuqcQRDw3mX9gLiL9'
     }
 };
