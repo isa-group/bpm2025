@@ -1,40 +1,9 @@
-import {
-  defineConfig,
-  presetWind4,
-  transformerVariantGroup,
-  presetTypography,
-  presetIcons,
-  transformerDirectives
-} from 'unocss';
-
-const defaultPreset = presetWind4({
-  preflights: {
-    reset: true
-  }
-});
+import { defineConfig } from 'unocss';
+import config, { defaultPreset } from '@bpm2025-website/configs/uno';
 
 export default defineConfig({
-  content: {
-    pipeline: {
-      include: [
-        /\.(astro|html|js|jsx|json|md|mdx|svelte|ts|tsx|vue)($|\?)/
-      ]
-    }
-  },
+  ...config,
   safelist: ['i-svg-spinners:ring-resize'],
-  presets: [
-    defaultPreset,
-    presetTypography(),
-    presetIcons({
-      warn: true,
-      unit: '%',
-      scale: 100
-    })
-  ],
-  transformers: [
-    transformerVariantGroup(),
-    transformerDirectives()
-  ],
   theme: {
     colors: {
       page: '#ffffff',

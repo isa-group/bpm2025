@@ -1,10 +1,10 @@
 {
-  "extends": "./typescript/base.json",
+  "extends": "@bpm2025-website/configs/typescript",
   "compilerOptions": {
     "lib": ["ESNext"]
   },
   "include": [
-    "lint/**/*.ts",
+    "src/lint/**/*.ts",
     "*.ts"
   ]
 }

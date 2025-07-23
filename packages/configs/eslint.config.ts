@@ -1,11 +1,11 @@
+import pkg from './package.json' with { type: 'json' };
 import {
   getBaseConfig,
   getImportAliasConfig,
   getNodeFiles,
   getTSVueConfig,
   tsFiles
-} from './lint';
-import pkg from './package.json' with { type: 'json' };
+} from '@bpm2025-website/configs/lint';
 
 export default [
   ...getBaseConfig(pkg.name),
