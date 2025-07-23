@@ -194,7 +194,7 @@ export const mondayEvents: ScheduleEvent[] = [
     {
         title: 'Welcome Reception',
         start: new Date(2025, 8, 1, 19, 0),
-        end: new Date(2025, 8, 1, 21, 0),
+        end: new Date(2025, 8, 1, 22, 0),
         category: 'social',
         full: true,
         location: locations['tobbaco'],
