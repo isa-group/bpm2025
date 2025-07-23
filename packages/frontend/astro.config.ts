@@ -30,15 +30,17 @@ export default defineConfig({
     UnoCSS(),
     sitemap(),
     mdx(),
-    AstroVue(),
-    compress({
-      CSS: true,
-      HTML: true,
-      Image: true,
-      JavaScript: true,
-      SVG: true,
-      Logger: 1
-    })
+    AstroVue({
+      appEntrypoint: '@bpm2025-website/conferia-frontend/instance',
+    }),
+    // compress({
+    //   CSS: true,
+    //   HTML: true,
+    //   Image: true,
+    //   JavaScript: true,
+    //   SVG: true,
+    //   Logger: 1
+    // })
   ],
   prefetch: {
     defaultStrategy: 'viewport',
@@ -54,6 +56,17 @@ export default defineConfig({
     build: {
       cssCodeSplit: false,
       reportCompressedSize: false
+    },
+    resolve: {
+      alias: {
+        '@ionic/core/components': '@ionic/core/components'
+      }
+    },
+    ssr: {
+      noExternal: ['@ionic/vue', '@ionic/core']
+    },
+    optimizeDeps: {
+      include: ['@ionic/vue', '@ionic/core']
     }
   }
 });
