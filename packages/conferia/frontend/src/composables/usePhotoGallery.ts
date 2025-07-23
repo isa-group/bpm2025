@@ -120,9 +120,9 @@ export const usePhotoGallery = () => {
   // };
 
   return {
-    takePhotoGallery: () => {},
-    takePhotoProfile: () => {},
-    choosePhotoFromPhone: () => {}
+    takePhotoGallery: () => Promise.resolve(new Blob()),
+    takePhotoProfile: () => Promise.resolve(new Blob()),
+    choosePhotoFromPhone: () => Promise.resolve(new Blob())
   };
 };
 

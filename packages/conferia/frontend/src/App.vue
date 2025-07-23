@@ -1,17 +1,14 @@
 <template>
-  <IonApp class="app-container">
-    <IonRouterOutlet />
-  </IonApp>
+  <div class="app-container min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-50 pt-16">
+    <RouterView />
+    <Toast />
+  </div>
 </template>
 
 <script setup lang="ts">
-/* Core CSS required for Ionic components to work properly */
-import '@ionic/vue/css/core.css';
-/* Theme variables */
-import '#/theme/variables.css';
-import { IonApp, IonRouterOutlet } from '@ionic/vue';
 import { useLocalStorage, usePreferredDark } from '@vueuse/core';
 import { watchEffect } from 'vue';
+import Toast from 'primevue/toast';
 
 const theme = useLocalStorage('theme', undefined);
 const isDark = usePreferredDark();
@@ -26,25 +23,10 @@ watchEffect(() => {
 });
 </script>
 
-<style scoped>
+<style>
 /* Set a max width and center the container */
 .app-container {
-  max-width: 1024px; /* Set the max width */
-  margin: 0 auto;    /* Center horizontally */
-}
-
-/* Center the content inside the content-wrapper */
-.content-wrapper {
-  display: flex;
-  justify-content: center; /* Horizontally center */
-  align-items: center;     /* Vertically center */
-  height: 100%;            /* Full height to allow vertical centering */
-  padding: 16px;           /* Optional padding */
-}
-
-/* Ensure ion-content fills the available space */
-ion-content {
-  --padding-start: 0px; /* Remove default padding */
-  --padding-end: 0px;
+  max-width: 1024px;
+  margin: 0 auto;
 }
 </style>

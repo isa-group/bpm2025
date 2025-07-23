@@ -1,129 +1,180 @@
 <template>
-  <IonPage>
-    <IonContent class="ion-padding">
-      <div class="login-container">
-        <div class="login-header">
-          <img
-            :src="logo"
-            alt="BPM Logo"
-            class="logo">
-          <IonSegment
-            v-model="selectedSegment"
-            value="login">
-            <IonSegmentButton value="login">
-              <IonLabel>Log in</IonLabel>
-            </IonSegmentButton>
-            <IonSegmentButton value="register">
-              <IonLabel>Register</IonLabel>
-            </IonSegmentButton>
-          </IonSegment>
-        </div>
-        <form
-          v-if="selectedSegment=='login'"
-          @submit.prevent="login">
-          <IonItem>
-            <IonInput
-              id="emailInput"
-              v-model="loginUser.email"
-              label="Your email"
-              label-placement="stacked"
-              placeholder="email@email.com"
-              required />
-          </IonItem>
-          <IonItem>
-            <IonInput
-              id="passwordInput"
-              v-model="loginUser.password"
-              placeholder="password"
-              type="password"
-              label="Password"
-              label-placement="stacked"
-              required />
-          </IonItem>
-          <p class="ion-text-right">
-            <RouterLink
-              to="/auth/login/resetpassword"
-              class="forgot-password">
-              Forgot password?
-            </RouterLink>
-          </p>
-          <p class="ion-text-center">
-            <IonButton
-              type="submit"
-              expand="block"
-              class="login-button">
-              Sign in
-            </IonButton>
-          </p>
-          <!-- Display error message if login fails -->
-          <p
-            v-if="loginError"
-            class="error-message">
-            {{ loginError }}
-          </p>
-        </form>
-        <form
-          v-else
-          @submit.prevent="sendConfirmationEmail">
-          <p>You must use the same email address you used to register at the conference.</p>
-          <p>Please allow up to 12 hours for emails to be synchronized between the conference registration system and this app.</p>
-          <IonItem class="ion-padding-vertical">
-            <IonInput
-              id="emailInput"
-              v-model="registerUser.receiver"
-              placeholder="email@email.com"
-              type="email"
-              label="Your email"
-              label-placement="stacked"
-              required />
-          </IonItem>
-          <IonButton
-            type="submit"
-            expand="block"
-            class="ion-margin-top">
-            Send Confirmation Email
-          </IonButton>
-          <p
-            v-if="registerError"
-            class="error-message">
-            {{ registerError }}
-          </p>
-          <p
-            v-if="registerSuccess"
-            class="success-message">
-            {{ registerSuccess }}
-          </p>
+  <div class="min-h-screen flex items-center justify-center bg-surface-50 dark:bg-surface-950 p-4">
+    <Card class="w-full max-w-md shadow-lg">
+      <template #content>
+        <div class="space-y-8">
+          <!-- Logo and header with Apple-style title -->
+          <div class="text-center">
+            <img
+              :src="logo"
+              alt="BPM Logo"
+              class="h-20 w-20 mx-auto mb-6">
+            
+            <!-- Apple-style page title -->
+            <h1 class="text-3xl font-bold text-surface-900 dark:text-surface-50 mb-2">
+              Welcome to BPM 2025
+            </h1>
+            <p class="text-surface-600 dark:text-surface-400 mb-6">
+              Sign in to access your conference experience
+            </p>
+            
+            <!-- Toggle buttons with improved spacing -->
+            <div class="flex border border-surface-300 dark:border-surface-600 rounded-lg overflow-hidden mb-2">
+              <button
+                :class="[
+                  'flex-1 py-3 px-4 font-medium transition-colors',
+                  selectedSegment === 'login' 
+                    ? 'bg-primary-500 text-white' 
+                    : 'bg-surface-100 dark:bg-surface-800 text-surface-700 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-700'
+                ]"
+                @click="selectedSegment = 'login'">
+                Log in
+              </button>
+              <button
+                :class="[
+                  'flex-1 py-3 px-4 font-medium transition-colors',
+                  selectedSegment === 'register' 
+                    ? 'bg-primary-500 text-white' 
+                    : 'bg-surface-100 dark:bg-surface-800 text-surface-700 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-700'
+                ]"
+                @click="selectedSegment = 'register'">
+                Register
+              </button>
+            </div>
+          </div>
 
-          <p class="ion-text-right">
-            <IonButton
-              fill="clear"
-              @click="openPrivacy">
-              Privacy note
-            </IonButton>
-          </p>
-          <PrivacyNote
-            :is-open="isPrivacyOpen"
-            @update:is-open="isPrivacyOpen = $event" />
-        </form>
-      </div>
-    </IonContent>
-  </IonPage>
+          <!-- Login form with improved spacing and styling -->
+          <form
+            v-if="selectedSegment === 'login'"
+            class="space-y-6"
+            @submit.prevent="login">
+            <div class="space-y-1">
+              <label for="emailInput" class="block text-sm font-medium text-surface-700 dark:text-surface-300 mb-2">
+                Email Address
+              </label>
+              <InputText
+                id="emailInput"
+                v-model="loginUser.email"
+                type="email"
+                class="w-full h-12"
+                placeholder="Enter your email"
+                required />
+            </div>
+            
+            <div class="space-y-1">
+              <label for="passwordInput" class="block text-sm font-medium text-surface-700 dark:text-surface-300 mb-2">
+                Password
+              </label>
+              <Password
+                id="passwordInput"
+                v-model="loginUser.password"
+                :feedback="false"
+                toggle-mask
+                class="w-full"
+                input-class="w-full h-12"
+                placeholder="Enter your password"
+                required />
+            </div>
+
+            <div class="text-right mt-4">
+              <RouterLink
+                to="/auth/login/resetpassword"
+                class="text-primary-500 hover:text-primary-600 text-sm font-medium">
+                Forgot password?
+              </RouterLink>
+            </div>
+
+            <Button
+              type="submit"
+              label="Sign In"
+              class="w-full h-12 mt-6"
+              :loading="isLoading" />
+
+            <!-- Error message -->
+            <Message
+              v-if="loginError"
+              severity="error"
+              :closable="false"
+              class="mt-4">
+              {{ loginError }}
+            </Message>
+          </form>
+
+          <!-- Register form with improved spacing -->
+          <form
+            v-else
+            class="space-y-6"
+            @submit.prevent="sendConfirmationEmail">
+            <div class="space-y-4 text-sm text-surface-600 dark:text-surface-400 bg-surface-100 dark:bg-surface-800 p-4 rounded-lg">
+              <p class="font-medium text-surface-700 dark:text-surface-300">Important:</p>
+              <p>You must use the same email address you used to register at the conference.</p>
+              <p>Please allow up to 12 hours for emails to be synchronized between the conference registration system and this app.</p>
+            </div>
+
+            <div class="space-y-1">
+              <label for="registerEmailInput" class="block text-sm font-medium text-surface-700 dark:text-surface-300 mb-2">
+                Email Address
+              </label>
+              <InputText
+                id="registerEmailInput"
+                v-model="registerUser.receiver"
+                type="email"
+                class="w-full h-12"
+                placeholder="Enter your conference registration email"
+                required />
+            </div>
+
+            <Button
+              type="submit"
+              label="Send Confirmation Email"
+              class="w-full h-12 mt-6"
+              :loading="isLoading" />
+
+            <!-- Error message -->
+            <Message
+              v-if="registerError"
+              severity="error"
+              :closable="false"
+              class="mt-4">
+              {{ registerError }}
+            </Message>
+
+            <!-- Success message -->
+            <Message
+              v-if="registerSuccess"
+              severity="success"
+              :closable="false"
+              class="mt-4">
+              {{ registerSuccess }}
+            </Message>
+
+            <div class="text-center mt-6 pt-4 border-t border-surface-200 dark:border-surface-700">
+              <Button
+                label="Privacy Policy"
+                link
+                class="text-sm"
+                @click="openPrivacy" />
+            </div>
+          </form>
+        </div>
+      </template>
+    </Card>
+
+    <PrivacyNote
+      :is-open="isPrivacyOpen"
+      @update:is-open="isPrivacyOpen = $event" />
+  </div>
 </template>
 
-<script setup lang="js">
-import {
-  IonPage,
-  IonContent,
-  IonButton,
-  IonInput,
-  IonLabel,
-  IonSegment,
-  IonSegmentButton,
-  IonItem
-} from '@ionic/vue';
+<script setup lang="ts">
 import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+import Card from 'primevue/card';
+import Button from 'primevue/button';
+import InputText from 'primevue/inputtext';
+import Password from 'primevue/password';
+import Message from 'primevue/message';
 import logo from '@bpm2025-website/assets/icon?url';
 import backend from '#/plugins/backend.config';
 import PrivacyNote from '#/components/PrivacyNote.vue';
@@ -133,9 +184,9 @@ const router = useRouter();
 const loginError = ref('');
 const registerError = ref('');
 const registerSuccess = ref('');
-const isActiveLogin = ref(true);
-
+const isLoading = ref(false);
 const selectedSegment = ref('login');
+const isPrivacyOpen = ref(false);
 
 const loginUser = ref({
   email: '',
@@ -145,11 +196,12 @@ const registerUser = ref({
   receiver: ''
 });
 
-const toggleActive = () => {
-  isActiveLogin.value = !isActiveLogin.value;
-  registerSuccess.value = '';
+const openPrivacy = () => {
+  isPrivacyOpen.value = true;
 };
+
 const login = async () => {
+  isLoading.value = true;
   try {
     const response = await axios.post(backend.construct('auth/signin'), loginUser.value);
     localStorage.setItem('accessToken', response.data.accessToken);
@@ -159,98 +211,40 @@ const login = async () => {
     loginError.value = '';
     loginUser.value.email = '';
     loginUser.value.password = '';
-  } catch (error) {
-    console.error('Login error:', error.response ? error.response.data : error.message);
-    loginError.value = 'Incorrect password or email';
+  } catch (error: any) {
+    console.error('Login failed', error);
+    if (error.response && error.response.status === 401) {
+      loginError.value = 'Invalid email or password. Please try again.';
+    } else {
+      loginError.value = 'Login failed. Please try again later.';
+    }
+  } finally {
+    isLoading.value = false;
   }
 };
 
 const sendConfirmationEmail = async () => {
+  isLoading.value = true;
   try {
-    localStorage.setItem('accessToken', '');
     await axios.post(backend.construct('auth/signup'), registerUser.value);
-    registerUser.value.receiver = '';
-    await router.push('/auth/login');
-    registerSuccess.value = 'E-mail sent successfully';
-  } catch (error) {
-    // Handle error, e.g., display an error message
-    console.error('Register error:', error.response ? error.response.data : error.message);
-    registerError.value = 'If you registered for the conference, you will receive an e-mail soon';
+    registerSuccess.value = 'Confirmation email sent! Check your inbox.';
+    registerError.value = '';
+  } catch (error: any) {
+    console.error('Registration failed', error);
+    if (error.response) {
+      if (error.response.status === 409) {
+        registerError.value = 'Email already exists or registration link already sent.';
+      } else if (error.response.status === 404) {
+        registerError.value = 'Email not found in registration system. Please check your email or contact support.';
+      } else {
+        registerError.value = 'Registration failed. Please try again later.';
+      }
+    } else {
+      registerError.value = 'Network error. Please check your connection.';
+    }
+    registerSuccess.value = '';
+  } finally {
+    isLoading.value = false;
   }
 };
-
-const isPrivacyOpen = ref(false);
-const openPrivacy = () => {
-  isPrivacyOpen.value = true;
-};
-
 </script>
-
-<style scoped>
-.login-container {
-  display: flex;
-  flex-direction: column;
-  max-width: 500px;
-  margin: auto;
-  text-align: center;
-}
-
-.login-header h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.login-toggle {
-  background: #383a3e; /* Dark background for the inactive state */
-  /*border: 1px solid #ffff; #428cff; Blue border */
-  display: flex; /* Align buttons horizontally */
-  align-items: center; /* Center the buttons vertically */
-  border-radius: 4px; /* Rounded corners for the container */
-  max-width: 20rem;
-  max-height: 60px;
-  margin: auto; /* Center the container */
-  overflow: hidden; /* Prevents children from overflowing rounded corners */
-  margin-top: 2.5rem;
-}
-
-.toggle-button {
-  padding:0 2px;
-  --background: 0; /* Dark background for the inactive state */
-  --border-radius: 4px; /* Rounded corners for the container */
-  color: white;
-  font-size: 0.8rem;
-  flex: 1; /* Optional: make buttons share the space equally */
-}
-
-.toggle-button.active {
-  --background: #428cff; /* Blue background for the active state */
-  color: white; /* Ensure text is visible on the blue background */
-}
-
-form {
-  text-align: left;
-  margin-top: 2rem;
-}
-
-.error-message {
-  color: red;
-  margin-top: 1rem;
-}
-
-.success-message {
-  color: #428cff;
-  margin-top: 1rem;
-}
-
-.logo {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 150px;
-  width: 150px;
-  margin-right: 10px;
-  margin-top: 20%;
-  margin-bottom: 15px;
-}
-
-</style>
