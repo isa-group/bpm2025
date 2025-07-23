@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from '@ionic/vue-router';
 import type { RouteRecordRaw } from 'vue-router';
-import TabsPage from '../components/TabsPage.vue';
+import TabsPage from '#/components/TabsPage.vue';
 import AuthPage from '#/views/auth/AuthPage.vue';
 import ProfilePage from '#/views/auth/ProfilePage.vue';
 
@@ -113,7 +113,7 @@ const routes: RouteRecordRaw[] = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(),
   routes
 });
 

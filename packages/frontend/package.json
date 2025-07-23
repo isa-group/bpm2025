@@ -4,6 +4,9 @@
   "imports": {
     "#/*": "./src/*"
   },
+  "browserslist": [
+    "last 2 versions"
+  ],
   "scripts": {
     "start": "astro dev",
     "build": "astro build",
@@ -18,6 +21,7 @@
   },
   "dependencies": {
     "@bpm2025-website/assets": "*",
+    "@bpm2025-website/conferia-frontend": "*",
     "@fontsource-variable/inter": "5.2.6",
     "world-countries": "5.1.0"
   },
@@ -27,12 +31,15 @@
     "@astrojs/markdown-remark": "6.3.3",
     "@astrojs/mdx": "4.3.1",
     "@astrojs/sitemap": "3.4.1",
+    "@astrojs/vue": "5.1.0",
     "@astrolib/seo": "1.0.0-beta.8",
     "@bpm2025-website/configs": "*",
     "@bpm2025-website/shared": "*",
     "@iconify/json": "2.2.362",
     "@playform/compress": "0.2.0",
     "astro": "5.12.3",
+    "browserslist": "4.25.1",
+    "lightningcss": "1.30.1",
     "linkedom": "0.18.11",
     "marked": "16.1.1",
     "tailwind-merge": "3.3.1",

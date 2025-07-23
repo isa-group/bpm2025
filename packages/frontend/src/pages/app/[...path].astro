@@ -1,0 +1,27 @@
+---
+import CommonMeta from '#/components/utils/CommonMeta.astro';
+import Favicons from '#/components/utils/Favicons.astro';
+import { i18n } from '#/config.json';
+import { ClientRouter } from 'astro:transitions';
+import App from '../../../../conferia/frontend/src/App.vue';
+
+const { language, textDirection } = i18n;
+
+export function getStaticPaths() {
+  return [
+    { params: { path: undefined } }
+  ];
+}
+---
+<!doctype html>
+<html lang={language} dir={textDirection} class="2xl:text-[20px] motion-safe:scroll-smooth">
+  <head>
+    <CommonMeta />
+    <Favicons />
+    <ClientRouter fallback="animate" />
+  </head>
+
+  <body class="overscroll-none">
+    <App client:only="vue" />
+  </body>
+</html>

@@ -8,8 +8,19 @@
 
 <script setup lang="ts">
 import { IonApp, IonRouterOutlet } from '@ionic/vue';
-import OfflinePopup from './components/OfflineComponent.vue';
-import DesktopNotification from './components/DesktopNotification.vue';
+import OfflinePopup from '#/components/OfflineComponent.vue';
+import DesktopNotification from '#/components/DesktopNotification.vue';
+import { useLocalStorage } from '@vueuse/core';
+
+const theme = useLocalStorage('theme');
+
+if (theme.value) {
+    document.body.classList.toggle('dark', theme.value === 'dark');
+  } else {
+    // If no saved theme, use the system preference
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.body.classList.toggle('dark', prefersDark);
+  }
 </script>
 
 <style scoped>

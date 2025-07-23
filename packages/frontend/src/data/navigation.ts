@@ -146,15 +146,13 @@ export function getHeaderData(currentUrl: URL): HeaderData {
     ]
   };
 
-  if (!isInRegistrationPage(currentUrl)) {
-    initialData.actions = [
-      {
-        text: 'Registration info',
-        href: getPermalink('/registration'),
-        variant: 'primary'
-      }
-    ];
-  }
+  initialData.actions ??= [];
+
+  initialData.actions.push({
+    text: 'App',
+    href: getPermalink('/app'),
+    variant: 'primary'
+  });
 
   return initialData;
 };

@@ -9,6 +9,11 @@
   "imports": {
     "#/*": "./src/*"
   },
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
