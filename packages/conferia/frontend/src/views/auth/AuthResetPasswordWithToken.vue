@@ -53,7 +53,7 @@ import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import axios from 'axios';
 import backend from '../../../backend.config';
-import { googleanalytics } from '@/composables/googleanalytics';
+import { googleanalytics } from '#/composables/googleanalytics';
 
 const { trackButtonClick } = googleanalytics();
 

@@ -75,7 +75,7 @@ import { home, calendar, people, images, mail } from 'ionicons/icons';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import axios from 'axios';
 import backend from '../../backend.config';
-import { googleanalytics } from '@/composables/googleanalytics';
+import { googleanalytics } from '#/composables/googleanalytics';
 
 const { trackButtonClick } = googleanalytics();
 

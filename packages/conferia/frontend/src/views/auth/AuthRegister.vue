@@ -65,7 +65,7 @@ import { computed, onMounted, ref } from 'vue';
 import axios from 'axios';
 import { useRouter, useRoute } from 'vue-router';
 import backend from '../../../backend.config';
-import { googleanalytics } from '@/composables/googleanalytics';
+import { googleanalytics } from '#/composables/googleanalytics';
 
 const { trackButtonClick } = googleanalytics();
 

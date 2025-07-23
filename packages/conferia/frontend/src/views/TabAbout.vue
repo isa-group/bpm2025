@@ -34,9 +34,9 @@
 <script setup lang="js">
 import { IonPage, IonContent, IonButton } from '@ionic/vue';
 import { ref } from 'vue';
-import HeaderBar from '@/components/HeaderBar.vue';
-import PrivacyNote from '@/components/PrivacyNote.vue';
-import { googleanalytics } from '@/composables/googleanalytics.ts';
+import HeaderBar from '#/components/HeaderBar.vue';
+import PrivacyNote from '#/components/PrivacyNote.vue';
+import { googleanalytics } from '#/composables/googleanalytics.ts';
 
 const { trackButtonClick } = googleanalytics();
 

@@ -81,10 +81,10 @@ import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router';
 import backend from '../../../backend.config';
-import { usePhotoGallery } from '@/composables/usePhotoGallery';
-import HeaderBar from '@/components/HeaderBar.vue';
-import router from '@/router';
-import { googleanalytics } from '@/composables/googleanalytics';
+import { usePhotoGallery } from '#/composables/usePhotoGallery';
+import HeaderBar from '#/components/HeaderBar.vue';
+import router from '#/router';
+import { googleanalytics } from '#/composables/googleanalytics';
 
 const { trackButtonClick } = googleanalytics();
 const { takePhotoGallery } = usePhotoGallery();

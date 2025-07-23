@@ -35,7 +35,7 @@ import { IonPage, IonContent, IonList, IonItem, IonLabel } from '@ionic/vue';
 import { useRoute } from 'vue-router';
 import { onMounted, reactive, ref } from 'vue';
 import axios from 'axios';
-import HeaderBar from '@/components/HeaderBar.vue';
+import HeaderBar from '#/components/HeaderBar.vue';
 import backend from '/backend.config.ts';
 
 const route = useRoute();

@@ -74,9 +74,9 @@ import {
 import axios from 'axios';
 import { useRouter, useRoute } from 'vue-router';
 import { star } from 'ionicons/icons';
-import HeaderBar from '@/components/HeaderBar.vue';
+import HeaderBar from '#/components/HeaderBar.vue';
 import backend from '/backend.config.ts';
-import { googleanalytics } from '@/composables/googleanalytics.ts';
+import { googleanalytics } from '#/composables/googleanalytics.ts';
 
 const { trackButtonClick } = googleanalytics();
 

@@ -1,23 +1,35 @@
-import path from 'path';
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
+import browserslist from 'browserslist';
+import { browserslistToTargets } from 'lightningcss';
 
 export default defineConfig({
+  appType: 'spa',
+  base: './',
   plugins: [
     vue()
   ],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src')
-    }
-  },
   server: {
     host: '0.0.0.0'
   },
-  base: '/',
-  publicDir: 'public',
   build: {
+    target: 'esnext',
     cssCodeSplit: true,
-    minify: 'terser'
+    cssMinify: 'lightningcss',
+    modulePreload: {
+      polyfill: false
+    },
+    reportCompressedSize: false
+  },
+  css: {
+    lightningcss: {
+      nonStandard: {
+        deepSelectorCombinator: true
+      },
+      targets: browserslistToTargets(browserslist())
+    }
+  },
+  worker: {
+    format: 'es'
   }
 });

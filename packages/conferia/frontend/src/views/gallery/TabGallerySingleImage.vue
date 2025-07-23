@@ -100,7 +100,7 @@ import { thumbsUpOutline, thumbsUp, trashOutline } from 'ionicons/icons';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import backend from '../../../backend.config';
-import { googleanalytics } from '@/composables/googleanalytics';
+import { googleanalytics } from '#/composables/googleanalytics';
 
 const { trackButtonClick } = googleanalytics();
 

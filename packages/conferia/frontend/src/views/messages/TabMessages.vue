@@ -209,9 +209,9 @@ import { ref, onMounted, reactive } from 'vue';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import HeaderBar from '@/components/HeaderBar.vue';
+import HeaderBar from '#/components/HeaderBar.vue';
 import backend from '/backend.config.ts';
-import { googleanalytics } from '@/composables/googleanalytics.ts';
+import { googleanalytics } from '#/composables/googleanalytics.ts';
 
 const { trackButtonClick } = googleanalytics();
 

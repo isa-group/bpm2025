@@ -142,10 +142,10 @@ import {
   IonLabel, IonNote
 } from '@ionic/vue';
 import { heart, heartOutline, calendarNumber } from 'ionicons/icons';
-import HeaderBar from '@/components/HeaderBar.vue';
-import TabSessionDetails from '@/views/calendar/TabSessionDetails.vue';
+import HeaderBar from '#/components/HeaderBar.vue';
+import TabSessionDetails from '#/views/calendar/TabSessionDetails.vue';
 import backend from '/backend.config.ts';
-import { googleanalytics } from '@/composables/googleanalytics.ts';
+import { googleanalytics } from '#/composables/googleanalytics.ts';
 
 const { trackButtonClick } = googleanalytics();
 const router = useRouter();

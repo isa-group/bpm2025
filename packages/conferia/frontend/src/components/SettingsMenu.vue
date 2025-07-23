@@ -10,7 +10,7 @@
     </IonHeader>
     <IonContent>
       <div class="ion-padding">
-        <!--        <img src="@/assets/images/icpm-logo-1.png" />-->
+        <!--        <img src="#/assets/images/icpm-logo-1.png" />-->
         <div id="logo-large" />
         <p>Welcome {{ name.firstname }} {{ name.lastname }}</p>
       </div>
@@ -59,7 +59,7 @@ import { useRouter } from 'vue-router';
 import { onMounted, reactive } from 'vue';
 import axios from 'axios';
 import backend from '../../backend.config';
-import { googleanalytics } from '@/composables/googleanalytics';
+import { googleanalytics } from '#/composables/googleanalytics';
 
 const { trackButtonClick } = googleanalytics();
 
@@ -100,11 +100,11 @@ const logout = () => {
 }
 /* Light Mode */
 body:not(.dark) #logo-large {
-  background-image: url('@/assets/images/logo-1.svg');
+  background-image: url('#/assets/images/logo-1.svg');
 }
 
 /* Dark Mode */
 body.dark #logo-large {
-  background-image: url('@/assets/images/logo-2.svg');
+  background-image: url('#/assets/images/logo-2.svg');
 }
 </style>

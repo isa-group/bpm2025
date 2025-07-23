@@ -50,7 +50,7 @@ import { reactive, ref } from 'vue';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import backend from '/backend.config.ts';
-import { googleanalytics } from '@/composables/googleanalytics.ts';
+import { googleanalytics } from '#/composables/googleanalytics.ts';
 
 const props = defineProps({
   isOpen: {

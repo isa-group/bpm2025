@@ -193,8 +193,8 @@ import {
 import axios from 'axios';
 import { camera, pencilOutline } from 'ionicons/icons';
 import backend from '../../../backend.config';
-import { usePhotoGallery } from '@/composables/usePhotoGallery';
-import { googleanalytics } from '@/composables/googleanalytics';
+import { usePhotoGallery } from '#/composables/usePhotoGallery';
+import { googleanalytics } from '#/composables/googleanalytics';
 
 const { trackButtonClick } = googleanalytics();
 

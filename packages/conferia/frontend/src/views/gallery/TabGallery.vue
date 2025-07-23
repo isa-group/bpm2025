@@ -140,10 +140,10 @@ import { onMounted, type Ref, ref, watch } from 'vue';
 import { useDebounceFn } from '@vueuse/core';
 import { onBeforeRouteUpdate, useRoute } from 'vue-router';
 import backend from '../../../backend.config';
-import router from '@/router';
-import HeaderBar from '@/components/HeaderBar.vue';
-import { usePhotoGallery } from '@/composables/usePhotoGallery';
-import { googleanalytics } from '@/composables/googleanalytics';
+import router from '#/router';
+import HeaderBar from '#/components/HeaderBar.vue';
+import { usePhotoGallery } from '#/composables/usePhotoGallery';
+import { googleanalytics } from '#/composables/googleanalytics';
 
 const { trackButtonClick } = googleanalytics();
 const { takePhotoGallery } = usePhotoGallery();

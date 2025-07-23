@@ -81,7 +81,7 @@ import {
   IonIcon
 } from '@ionic/vue';
 import { ellipsisVertical, reload, options } from 'ionicons/icons';
-import SettingsMenu from '@/components/SettingsMenu.vue';
+import SettingsMenu from '#/components/SettingsMenu.vue';
 
 defineProps({
   name: String,
@@ -104,12 +104,12 @@ const emits = defineEmits(['openActionSheet', 'reloadPage', 'openFilter']);
 }
 /* Light Mode */
 body:not(.dark) #logo {
-  background-image: url('@/assets/images/logo-1.svg');
+  background-image: url('#/assets/images/logo-1.svg');
 }
 
 /* Dark Mode */
 body.dark #logo {
-  background-image: url('@/assets/images/logo-2.svg');
+  background-image: url('#/assets/images/logo-2.svg');
 }
 .gallery-dropdown {
   margin-right: 15px;

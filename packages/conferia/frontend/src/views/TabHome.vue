@@ -61,9 +61,9 @@ import {
 import { onMounted, reactive } from 'vue';
 import axios from 'axios';
 import { onBeforeRouteLeave } from 'vue-router';
-import HeaderBar from '@/components/HeaderBar.vue';
+import HeaderBar from '#/components/HeaderBar.vue';
 import backend from '/backend.config.ts';
-import { googleanalytics } from '@/composables/googleanalytics.ts';
+import { googleanalytics } from '#/composables/googleanalytics.ts';
 
 const { trackButtonClick } = googleanalytics();
 
@@ -103,11 +103,11 @@ onMounted(async () => {
 }
 /* Light Mode */
 body:not(.dark) #logo-large {
-  background-image: url('@/assets/images/logo-1.svg');
+  background-image: url('#/assets/images/logo-1.svg');
 }
 
 /* Dark Mode */
 body.dark #logo-large {
-  background-image: url('@/assets/images/logo-1.svg');
+  background-image: url('#/assets/images/logo-1.svg');
 }
 </style>

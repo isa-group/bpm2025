@@ -1,8 +1,8 @@
 import { createRouter, createWebHashHistory } from '@ionic/vue-router';
 import type { RouteRecordRaw } from 'vue-router';
 import TabsPage from '../components/TabsPage.vue';
-import AuthPage from '@/views/auth/AuthPage.vue';
-import ProfilePage from '@/views/auth/ProfilePage.vue';
+import AuthPage from '#/views/auth/AuthPage.vue';
+import ProfilePage from '#/views/auth/ProfilePage.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -21,50 +21,50 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: 'home',
-        component: () => import('@/views/TabHome.vue')
+        component: () => import('#/views/TabHome.vue')
       },
       {
         path: 'calendar/:id?',
         name: 'agenda',
-        component: () => import('@/views/calendar/TabAgenda.vue')
+        component: () => import('#/views/calendar/TabAgenda.vue')
       },
       {
         path: '/calendar-view',
         name: 'CalendarView',
-        component: () => import('@/views/calendar/TabCalendar.vue')
+        component: () => import('#/views/calendar/TabCalendar.vue')
       },
       {
         path: 'attendees',
-        component: () => import('@/views/attendees/TabAttendees.vue')
+        component: () => import('#/views/attendees/TabAttendees.vue')
       },
       {
         path: '/attendee/:id',
         name: 'AttendeeDetail',
-        component: () => import('@/views/attendees/TabAttendeeDetail.vue')
+        component: () => import('#/views/attendees/TabAttendeeDetail.vue')
       },
       {
         path: 'images/:forceReload?',
-        component: () => import('@/views/gallery/TabGallery.vue')
+        component: () => import('#/views/gallery/TabGallery.vue')
       },
       {
         path: 'images/myGallery',
-        component: () => import('@/views/gallery/TabMyGallery.vue')
+        component: () => import('#/views/gallery/TabMyGallery.vue')
       },
       {
         path: 'singleimage/:imageId',
-        component: () => import('@/views/gallery/TabGallerySingleImage.vue')
+        component: () => import('#/views/gallery/TabGallerySingleImage.vue')
       },
       {
         path: 'messages',
-        component: () => import('@/views/messages/TabMessages.vue')
+        component: () => import('#/views/messages/TabMessages.vue')
       },
       {
         path: 'page/:id',
-        component: () => import('@/views/pages/TabSinglePage.vue')
+        component: () => import('#/views/pages/TabSinglePage.vue')
       },
       {
         path: 'about',
-        component: () => import('@/views/TabAbout.vue')
+        component: () => import('#/views/TabAbout.vue')
       }
     ]
   },
@@ -78,20 +78,20 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: 'login',
-        component: () => import('@/views/auth/AuthLogin.vue')
+        component: () => import('#/views/auth/AuthLogin.vue')
       },
       {
         path: 'register/:token',
-        component: () => import('@/views/auth/AuthRegister.vue'),
+        component: () => import('#/views/auth/AuthRegister.vue'),
         props: true // Pass route.params to the component as props
       },
       {
         path: 'login/resetpassword',
-        component: () => import('@/views/auth/AuthResetPassword.vue')
+        component: () => import('#/views/auth/AuthResetPassword.vue')
       },
       {
         path: 'login/resetpassword/:token',
-        component: () => import('@/views/auth/AuthResetPasswordWithToken.vue'),
+        component: () => import('#/views/auth/AuthResetPasswordWithToken.vue'),
         props: true // Pass route.params to the component as props
       }
     ]
@@ -106,7 +106,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: 'settings',
-        component: () => import('@/views/auth/ProfileSettings.vue')
+        component: () => import('#/views/auth/ProfileSettings.vue')
       }
     ]
   }

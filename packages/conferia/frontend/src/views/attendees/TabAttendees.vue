@@ -45,9 +45,9 @@ import { IonPage, IonContent, IonList, IonItem, IonAvatar, IonLabel, IonSearchba
 import { watch, reactive, onMounted } from 'vue';
 import { useDebounceFn } from '@vueuse/core';
 import axios from 'axios';
-import HeaderBar from '@/components/HeaderBar.vue';
+import HeaderBar from '#/components/HeaderBar.vue';
 import backend from '/backend.config.ts';
-import { googleanalytics } from '@/composables/googleanalytics.ts';
+import { googleanalytics } from '#/composables/googleanalytics.ts';
 
 const { trackButtonClick } = googleanalytics();
 

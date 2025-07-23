@@ -66,7 +66,7 @@ import {
 } from '@ionic/vue';
 import backend from '/backend.config.ts';
 import { calendar } from 'ionicons/icons';
-import { googleanalytics } from '@/composables/googleanalytics.ts';
+import { googleanalytics } from '#/composables/googleanalytics.ts';
 
 const { trackButtonClick } = googleanalytics();
 
