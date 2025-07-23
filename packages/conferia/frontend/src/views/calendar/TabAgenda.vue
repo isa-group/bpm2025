@@ -138,7 +138,7 @@ import {
 import { heart, heartOutline, calendarNumber } from 'ionicons/icons';
 import HeaderBar from '#/components/HeaderBar.vue';
 import TabSessionDetails from '#/views/calendar/TabSessionDetails.vue';
-import backend from '/backend.config.ts';
+import backend from '#/backend.config';
 
 const router = useRouter();
 const route = useRoute();

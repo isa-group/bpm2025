@@ -9,7 +9,7 @@ import { defineCustomElements } from '@ionic/pwa-elements/loader';
 
 /* Theme variables */
 import './theme/variables.css';
-import backend from '../backend.config';
+import backend from '#/backend.config';
 import router from './router';
 
 /**

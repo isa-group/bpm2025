@@ -72,7 +72,7 @@ import axios from 'axios';
 import { useRouter, useRoute } from 'vue-router';
 import { star } from 'ionicons/icons';
 import HeaderBar from '#/components/HeaderBar.vue';
-import backend from '/backend.config.ts';
+import backend from '#/backend.config';
 
 const route = useRoute();
 const router = useRouter();

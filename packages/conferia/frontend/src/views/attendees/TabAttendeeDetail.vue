@@ -63,7 +63,7 @@ import {
   IonAvatar,
   IonIcon
 } from '@ionic/vue';
-import backend from '/backend.config.ts';
+import backend from '#/backend.config';
 import { calendar } from 'ionicons/icons';
 
 const router = useRouter();

@@ -51,7 +51,7 @@ import { IonPage, IonContent, IonButton, IonInput, IonItem } from '@ionic/vue';
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import axios from 'axios';
-import backend from '../../../backend.config';
+import backend from '#/backend.config';
 
 const route = useRoute();
 const router = useRouter();

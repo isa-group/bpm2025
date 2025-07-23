@@ -44,7 +44,7 @@ import { watch, reactive, onMounted } from 'vue';
 import { useDebounceFn } from '@vueuse/core';
 import axios from 'axios';
 import HeaderBar from '#/components/HeaderBar.vue';
-import backend from '/backend.config.ts';
+import backend from '#/backend.config';
 
 const state = reactive({
   persons: [],

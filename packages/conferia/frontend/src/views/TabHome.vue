@@ -61,7 +61,7 @@ import { onMounted, reactive } from 'vue';
 import axios from 'axios';
 import { onBeforeRouteLeave } from 'vue-router';
 import HeaderBar from '#/components/HeaderBar.vue';
-import backend from '/backend.config.ts';
+import backend from '#/backend.config';
 
 const pages = reactive([]);
 const token = localStorage.getItem('accessToken');

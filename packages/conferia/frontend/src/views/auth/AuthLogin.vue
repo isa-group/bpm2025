@@ -117,7 +117,7 @@ import axios from 'axios';
 import { useRouter } from 'vue-router';
 import logoLight from '@bpm2025-website/assets/icon';
 // import logoDark from '#/assets/images/logo-2.svg';
-import backend from '/backend.config.ts';
+import backend from '#/backend.config';
 import PrivacyNote from '#/components/PrivacyNote.vue';
 
 const logo = computed(() => {

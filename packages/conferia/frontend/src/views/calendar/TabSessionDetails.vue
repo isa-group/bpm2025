@@ -48,7 +48,7 @@ import { IonContent, IonModal, IonTitle, IonButtons, IonToolbar, IonHeader, IonB
 import { reactive, ref } from 'vue';
 import axios from 'axios';
 import dayjs from 'dayjs';
-import backend from '/backend.config.ts';
+import backend from '#/backend.config';
 
 const props = defineProps({
   isOpen: {
