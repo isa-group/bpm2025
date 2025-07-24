@@ -27,6 +27,6 @@
     "typescript": "5.8.3"
   },
   "overrides": {
-    "stylus": "github:stylus/stylus#0.64.0"
+    "stylus": "0.64.0"
   }
 }
