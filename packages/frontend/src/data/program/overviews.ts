@@ -187,7 +187,8 @@ export const program_overviews: ProgramOverview[] = [
         rows: [
           {
             Hour: '11:00',
-            Title: '<b>INVITED SPEAKERS (To Be Confirmed)</b>'
+            Title: 'Keynote',
+            Authors: 'Jan Mendling'
           },
           {
             Hour: '11:40',
@@ -250,7 +251,7 @@ export const program_overviews: ProgramOverview[] = [
             Authors: 'Leo Poss, Christopher Julian Kern, Christoph Stoiber, Julia Kroenung and Stefan Schönig'
           },
           {
-            Hour: '12:45',
+            Hour: '15:45',
             Title: '<i>Forum Wrap Up</i>'
           }
         ]
