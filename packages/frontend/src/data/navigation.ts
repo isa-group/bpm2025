@@ -80,6 +80,10 @@ export function getHeaderData(currentUrl: URL): HeaderData {
           {
             text: 'Social events',
             href: getPermalink('/program/social-events')
+          },
+          {
+            text: 'Jornada BPM Administración Pública',
+            href: getPermalink('/program/bpm-admin')
           }
         ]
       },
