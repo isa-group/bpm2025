@@ -1,14 +1,11 @@
 ---
-import type { ScheduleEvent } from '#/data/program/schedule';
-
-interface Props {
-  event: ScheduleEvent;
-  locale?: Intl.UnicodeBCP47LocaleIdentifier;
-}
+import type { EventItem as Props } from '#/types';
+import { isObj } from '@bpm2025-website/shared/validation';
 
 const {
   event,
-  locale = 'en-EN'
+  locale = 'en-EN',
+  columns = 1
 } = Astro.props;
 
 const categoryColors = {
@@ -51,15 +48,21 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
 ---
 
 {(() => {
+  const location = isObj(event.location)
+    ? event.location.name
+    : event.location;
+
   const body = (
     <div
       class:list={[
-        'parent/event',
+        'group/event-item',
         { 'event-item': !event.href },
         'relative z-2 h[var(--duration)] w-full overflow-hidden break-words rounded-md bg-white px-3 py-2 hyphens-auto',
         'transition-all duration-200',
-        'hover:absolute hover:z-3 hover:h-auto hover:min-h-[var(--duration)] hover:transform-scale-115 hover:transform hover:shadow-lg hover:-translate-y-0.5',
-        'hover:cursor-zoom-in group-hover/link:cursor-pointer select-none',
+        'hover:absolute hover:z-3 hover:h-auto hover:min-h-[var(--duration)] hover:transform hover:shadow-lg hover:-translate-y-0.5',
+        { 'hover:transform-scale-115': columns === 1 },
+        { 'hover:transform-scale-105 hover:-translate-x-6': columns > 1 },
+        'hover:cursor-zoom-in parent-hover/event-link:cursor-pointer select-none',
         'md:px-1.5 md:py-1',
         /* Creates the background using the pseudoelement */
         "before:absolute before:inset-0 before:bg-[var(--bg-color)] before:content-['']"
@@ -68,18 +71,33 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
         'top': `${startMinute}%`,
         'borderLeft': `4px solid ${bgColor}`,
         '--duration': `${duration}%`,
-        '--bg-color': `${bgColor}15`
+        '--bg-color': `${bgColor}15`,
+        ...(columns > 1 ? { 'min-width': `${columns * 100}%` } : {})
       }}>
-      <div class="min-h-full min-w-full inset-0 bottom-auto absolute parent-hover/event:relative">
+      <div class="min-h-full min-w-full inset-0 bottom-auto absolute group-hover/event-item:relative">
         <div class="p-1">
-          <div class="text-[0.7rem] text-gray-700 font-semibold mb-1 opacity-80 hyphens-auto lg:text-[0.6rem] md:text-[0.6rem]">
+          <div class:list={[
+            'text-gray-700 font-semibold mb-1 opacity-80 hyphens-auto transition-[font-size]',
+            durationInMinutes <= 30
+              ? [
+                  'text-[0.6rem] lg:text-[0.5rem] md:text-[0.45rem]',
+                  'group-hover/event-item:text-[0.7rem] group-hover/event-item:lg:text-[0.6rem] group-hover/event-item:md:text-[0.6rem]'
+                ]
+              : 'text-[0.7rem] lg:text-[0.6rem] md:text-[0.6rem]']}>
             {formatTime(event.start)} - {formatTime(endTime)}
           </div>
-          <div class="text-[0.8rem] text-gray-800 leading-tight font-semibold mb-1 hyphens-auto lg:text-xs md:text-[0.7rem]">
+          <div class:list={[
+            'text-gray-800 leading-tight font-semibold mb-1 hyphens-auto transition-[font-size]',
+            durationInMinutes <= 30
+              ? [
+                  'text-[0.7rem] lg:text-[0.6rem] md:text-[0.55rem]',
+                  'group-hover/event-item:text-[0.8rem] group-hover/event-item:lg:text-xs group-hover/event-item:md:text-[0.7rem]'
+                ]
+              : 'text-[0.8rem] lg:text-xs md:text-[0.7rem]']}>
             {event.title}
           </div>
-          {event.location
-            && <div class="text-[0.7rem] text-gray-600 mb-1 flex gap-0.5 items-center hyphens-auto lg:text-[0.6rem] md:text-[0.7rem]" set:html={`📍 ${event.location}`} />}
+          {location
+            && <div class="text-[0.7rem] text-gray-600 mb-1 flex gap-0.5 items-center hyphens-auto lg:text-[0.6rem] md:text-[0.7rem]" set:html={`📍 ${location}`} />}
           {event.description
             && <div class="text-[0.7rem] text-gray-600 leading-tight hyphens-auto lg:text-[0.6rem] md:text-[0.7rem]" set:html={event.description} />}
         </div>
@@ -89,7 +107,7 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
 
   return event.href
     ? (
-        <a href={event.href} class="event-item group/link contents">
+        <a href={event.href} class="event-item parent/event-link contents">
           {body}
         </a>
       )
@@ -102,6 +120,6 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
 }
 
 :global(td:last-child) .event-item:hover {
-  --un-translate-x: -1rem;
+  --un-translate-x: -2rem;
 }
 </style>

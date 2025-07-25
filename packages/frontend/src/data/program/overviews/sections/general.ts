@@ -1,19 +1,10 @@
 import { getPermalink } from '#/utils/permalinks';
-import { program_overviews, program_name_to_uri } from '#/data/program/overviews';
+import { program_overviews, program_name_to_uri } from '#/data/program';
+import type { ScheduleEvent } from '#/types';
+import { locations } from '#/data/program/locations';
 
-export interface ScheduleEvent {
-  title: string;
-  start: Date;
-  end?: Date;
-  description?: string;
-  location?: string;
-  category: 'forum_1' | 'forum_2' | 'forum_3' | 'keynote'
-    | 'conference_1' | 'conference_2' | 'workshop' | 'social'
-    | 'lunch' | 'demos' | 'consortium';
-  href?: string;
-}
-
-export const events: ScheduleEvent[] = [
+export const conferenceDescription = 'Research track, BPM Forum, Journal First Track, Educators Forum, Tutorials and Process Technology Forum';
+export const general_events: ScheduleEvent[] = [
   // 31 de Agosto
   {
     title: 'Doctoral Consortium',
@@ -92,35 +83,39 @@ export const events: ScheduleEvent[] = [
     title: 'Reception cocktail',
     start: new Date(2025, 8, 1, 19, 0),
     end: new Date(2025, 8, 1, 22, 0),
-    location: 'Royal Tobacco Factory',
-    category: 'social'
+    location: locations.tobbaco,
+    category: 'social',
+    href: getPermalink('/program/social-events/#welcome-reception')
   },
 
   // 2 de Septiembre
   {
-    title: 'Keynote',
+    title: 'Opening Ceremony',
     start: new Date(2025, 8, 2, 9, 0),
-    end: new Date(2025, 8, 2, 10, 0),
-    category: 'keynote'
+    end: new Date(2025, 8, 2, 9, 30),
+    category: 'conference_2',
+    locations: locations.giralda,
+  },
+  {
+    title: 'Keynote: Shazia Sadiq',
+    start: new Date(2025, 8, 2, 9, 30),
+    end: new Date(2025, 8, 2, 10, 30),
+    location: locations.giralda,
+    category: 'keynote',
+    href: getPermalink('/program/keynotes/#shazia')
+  },
+  {
+    title: 'Coffee Break',
+    start: new Date(2025, 8, 2, 10, 30),
+    end: new Date(2025, 8, 2, 11, 0),
+    category: 'lunch'
   },
   {
     title: 'Conference',
-    start: new Date(2025, 8, 2, 10, 30),
-    end: new Date(2025, 8, 2, 12, 30),
-    category: 'conference_1'
-  },
-  {
-    title: 'Educators Forum',
-    start: new Date(2025, 8, 2, 10, 30),
-    end: new Date(2025, 8, 2, 12, 30),
-    category: 'forum_1'
-  },
-  {
-    title: 'Process Technology Forum',
-    location: '"Nervión" Hall',
-    start: new Date(2025, 8, 2, 10, 30),
-    end: new Date(2025, 8, 2, 12, 30),
-    category: 'forum_2'
+    start: new Date(2025, 8, 2, 11, 0),
+    end: new Date(2025, 8, 2, 13, 0),
+    category: 'conference_1',
+    description: conferenceDescription
   },
   {
     title: 'Lunch',
@@ -132,59 +127,45 @@ export const events: ScheduleEvent[] = [
     title: 'Conference',
     start: new Date(2025, 8, 2, 14, 0),
     end: new Date(2025, 8, 2, 15, 30),
-    category: 'conference_1'
-  },
-  {
-    title: 'Educators Forum',
-    start: new Date(2025, 8, 2, 14, 0),
-    end: new Date(2025, 8, 2, 15, 30),
-    category: 'forum_1'
-  },
-  {
-    title: 'Process Technology Forum',
-    location: '"Nervión" Hall',
-    start: new Date(2025, 8, 2, 14, 0),
-    end: new Date(2025, 8, 2, 15, 30),
-    category: 'forum_2'
+    category: 'conference_1',
+    description: conferenceDescription
   },
   {
     title: 'Conference',
     start: new Date(2025, 8, 2, 16, 0),
     end: new Date(2025, 8, 2, 17, 30),
-    category: 'conference_1'
-  },
-  {
-    title: 'Educators Forum',
-    start: new Date(2025, 8, 2, 16, 0),
-    end: new Date(2025, 8, 2, 17, 30),
-    category: 'forum_1'
+    category: 'conference_1',
+    description: conferenceDescription
   },
   {
     title: 'Guided tour',
     start: new Date(2025, 8, 2, 20, 0),
     end: new Date(2025, 8, 2, 21, 30),
-    location: 'Reales Alcázares',
-    category: 'social'
+    location: locations['reales-alcazares'],
+    category: 'social',
+    href: getPermalink('/program/social-events/#guided-tour')
   },
   // 3 de Septiembre
   {
-    title: 'Keynote',
-    start: new Date(2025, 8, 3, 9, 0),
-    end: new Date(2025, 8, 3, 10, 0),
-    category: 'keynote'
+    title: 'Keynote: Josep Carmona',
+    start: new Date(2025, 8, 3, 9, 30),
+    end: new Date(2025, 8, 3, 10, 30),
+    location: locations.giralda,
+    category: 'keynote',
+    href: getPermalink('/program/keynotes/#josep')
+  },
+    {
+    title: 'Coffee Break',
+    start: new Date(2025, 8, 3, 10, 30),
+    end: new Date(2025, 8, 3, 11, 0),
+    category: 'lunch'
   },
   {
     title: 'Conference',
-    start: new Date(2025, 8, 3, 10, 30),
-    end: new Date(2025, 8, 3, 12, 30),
-    category: 'conference_1'
-  },
-  {
-    title: 'Industry & Society Forum',
-    location: '"Nervión" Hall',
-    start: new Date(2025, 8, 3, 10, 30),
-    end: new Date(2025, 8, 3, 12, 30),
-    category: 'forum_2'
+    start: new Date(2025, 8, 3, 11, 0),
+    end: new Date(2025, 8, 3, 13, 0),
+    category: 'conference_1',
+    description: conferenceDescription
   },
   {
     title: 'Lunch',
@@ -196,14 +177,8 @@ export const events: ScheduleEvent[] = [
     title: 'Conference',
     start: new Date(2025, 8, 3, 14, 0),
     end: new Date(2025, 8, 3, 15, 30),
-    category: 'conference_1'
-  },
-  {
-    title: 'Industry & Society Forum',
-    location: '"Nervión" Hall',
-    start: new Date(2025, 8, 3, 14, 0),
-    end: new Date(2025, 8, 3, 15, 30),
-    category: 'forum_2'
+    category: 'conference_1',
+    description: conferenceDescription
   },
   {
     title: 'Demos',
@@ -215,29 +190,32 @@ export const events: ScheduleEvent[] = [
     title: 'Conference dinner',
     start: new Date(2025, 8, 3, 20, 0),
     end: new Date(2025, 8, 3, 23, 0),
-    location: 'Abades Triana',
-    category: 'social'
+    location: locations.abades,
+    category: 'social',
+    href: getPermalink('/program/social-events/#conference-dinner')
   },
 
   // 4 de Septiembre
   {
-    title: 'Keynote',
-    start: new Date(2025, 8, 4, 9, 0),
-    end: new Date(2025, 8, 4, 10, 0),
-    category: 'keynote'
+    title: 'Keynote: Pernille Bjørn',
+    start: new Date(2025, 8, 4, 9, 30),
+    end: new Date(2025, 8, 4, 10, 30),
+    location: locations.giralda,
+    category: 'keynote',
+    href: getPermalink('/program/keynotes/#pernille')
+  },
+    {
+    title: 'Coffee Break',
+    start: new Date(2025, 8, 4, 10, 30),
+    end: new Date(2025, 8, 4, 11, 0),
+    category: 'lunch'
   },
   {
     title: 'Conference',
-    start: new Date(2025, 8, 4, 10, 30),
-    end: new Date(2025, 8, 4, 12, 30),
-    category: 'conference_1'
-  },
-  {
-    title: 'Responsible BPM Forum',
-    location: '"Nervión" Hall',
-    start: new Date(2025, 8, 4, 10, 30),
-    end: new Date(2025, 8, 4, 12, 30),
-    category: 'forum_3'
+    start: new Date(2025, 8, 4, 11, 0),
+    end: new Date(2025, 8, 4, 13, 0),
+    category: 'conference_1',
+    description: conferenceDescription
   },
   {
     title: 'Lunch',
@@ -249,14 +227,8 @@ export const events: ScheduleEvent[] = [
     title: 'Conference',
     start: new Date(2025, 8, 4, 14, 0),
     end: new Date(2025, 8, 4, 15, 30),
-    category: 'conference_1'
-  },
-  {
-    title: 'Responsible BPM Forum',
-    location: '"Nervión" Hall',
-    start: new Date(2025, 8, 4, 14, 0),
-    end: new Date(2025, 8, 4, 15, 30),
-    category: 'forum_3'
+    category: 'conference_1',
+    description: conferenceDescription
   },
   {
     title: 'Panel',
@@ -271,10 +243,12 @@ export const events: ScheduleEvent[] = [
     category: 'conference_1'
   },
   {
-    title: 'Farewell',
+    title: 'Farewell Party',
     start: new Date(2025, 8, 4, 19, 30),
     end: new Date(2025, 8, 4, 21, 0),
-    category: 'social'
+    category: 'social',
+    location: locations.raza,
+    href: getPermalink('/program/social-events/#farewell-party')
   },
 
   // 31 de Agosto
@@ -296,6 +270,18 @@ export const events: ScheduleEvent[] = [
   if (overview) {
     Object.assign(event, {
       href: getPermalink(`/program/${program_name_to_uri(overview.name)}`)
+    });
+  }
+
+  if (event.category === 'workshop') {
+    Object.assign(event, {
+      href: getPermalink('#workshops')
+    });
+  }
+
+  if (event.title === 'Conference') {
+    Object.assign(event, {
+      href: getPermalink('#conference')
     });
   }
 

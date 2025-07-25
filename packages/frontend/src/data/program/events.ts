@@ -1,3 +1,4 @@
+import { locations } from './locations';
 import Rectorate from '#/assets/images/program/events/rectorate.jpg';
 import Alcazar from '#/assets/images/program/events/alcazar.jpg';
 import Abades from '#/assets/images/program/events/abades.jpg';
@@ -7,7 +8,7 @@ export const events = [
   {
     name: 'Welcome Reception',
     date: 'Monday, Sept 1st, 2025',
-    location: '<a href="https://maps.app.goo.gl/zPfQMFLF2J9hASJ18">Royal Tobacco Factory</a>',
+    location: locations.tobbaco,
     image: Rectorate,
     description: `
       <p>
@@ -21,7 +22,7 @@ export const events = [
   {
     name: 'Guided tour',
     date: 'Tuesday, Sept 2nd, 2025',
-    location: '<a href="https://maps.app.goo.gl/CvNYrTSQT8pg422L6">Reales Alcázares</a>',
+    location: locations['reales-alcazares'],
     imageClass: 'aspect-ratio-[16/14] object-[0_90%] lg:aspect-ratio-[1/1]',
     image: Alcazar,
     description: `
@@ -38,7 +39,7 @@ export const events = [
   {
     name: 'Conference Dinner',
     date: 'Wednesday, Sept 3rd, 2025',
-    location: '<a href="https://maps.app.goo.gl/U7eUfztafMcwWH2HA">Abades Triana</a>',
+    location: locations.abades,
     image: Abades,
     imageClass: 'aspect-ratio-[16/14] object-top lg:aspect-ratio-[1/1]',
     description: `
@@ -53,7 +54,7 @@ export const events = [
   {
     name: 'Farewell Party',
     date: 'Thursday, Sept 4th, 2025',
-    location: '<a href="https://maps.app.goo.gl/h5mwg9q3L65h9mSD8">La Raza Puerto</a>',
+    location: locations.raza,
     image: Raza,
     description: `
       <p>
