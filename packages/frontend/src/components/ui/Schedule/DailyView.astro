@@ -152,6 +152,7 @@ function getLocationUrl(location: string): string | undefined {
             <EventItem
               event={event}
               locale={locale}
+              columnCount={locations.length}
             />
           ))}
           {/* Only render full-width events in the first column, regardless of their location */}
@@ -160,6 +161,7 @@ function getLocationUrl(location: string): string | undefined {
               event={event}
               locale={locale}
               isFullWidth={true}
+              columnCount={locations.length}
             />
           ))}
         </div>

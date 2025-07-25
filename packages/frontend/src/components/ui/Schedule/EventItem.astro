@@ -7,11 +7,13 @@ interface Props {
   event: ScheduleEvent;
   locale?: Intl.UnicodeBCP47LocaleIdentifier;
   isFullWidth?: boolean;
+  columnCount?: number; // Number of columns to scale width with
 }
 
 const {
   event,
-  locale = 'en-EN'
+  locale = 'en-EN',
+  columnCount = 5 // Default to 5 columns
 } = Astro.props;
 
 const categoryColors = {
@@ -64,6 +66,9 @@ const duration = (durationInMinutes / 60) * 100;
  */
 const startMinuteRaw = event.start.getMinutes();
 const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
+
+// Calculate width percentage based on number of columns
+const fullEventWidth = columnCount > 1 ? `${100 * columnCount}%` : '100%';
 ---
 
 {(() => {
@@ -88,7 +93,8 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
         'top': `${startMinute}%`,
         'borderLeft': `4px solid ${bgColor}`,
         '--duration': `${duration}%`,
-        '--bg-color': `${bgColor}15`
+        '--bg-color': `${bgColor}15`,
+        '--full-event-width': isFullEvent ? fullEventWidth : '100%'
       }}>
       <div class="min-h-full min-w-full inset-0 bottom-auto absolute parent-hover/event:relative">
         <div class="p-1">
@@ -148,7 +154,7 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
 
 /* Make "full" events cover the whole container by default (not just on hover) */
 .full-event {
-  width: 1000%;
+  width: var(--full-event-width, 100%);
   max-width: none;
   transform-origin: left;
   z-index: 2;
