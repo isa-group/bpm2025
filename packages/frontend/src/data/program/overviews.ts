@@ -24,7 +24,7 @@ export const program_overviews: ProgramOverview[] = [
     date: 'Tuesday, Sept 2nd, 2025',
     tables: [
       {
-        title: 'Session 1: Mathias Weske, Remco Dijkman',
+        title: '1st Session (11:00 - 13:00): Mathias Weske, Remco Dijkman',
         rows: [
           {
             Hour: '11:00',
@@ -63,7 +63,7 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: 'Session 2: Dimka Karastoyanova',
+        title: '2nd Session (14:30 - 16:00): Dimka Karastoyanova',
         rows: [
           {
             Hour: '14:30',
@@ -109,67 +109,67 @@ export const program_overviews: ProgramOverview[] = [
     date: 'Wednesday, Sept 3rd, 2025',
     tables: [
       {
-        title: 'First session (10:30 - 12:30)',
+        title: '1st Session (11:00 - 13:00)',
         rows: [
           {
-            Hour: '10:00',
+            Hour: '11:00',
             Title: '<i>Opening</i>',
             Authors: 'Chairs'
           },
           {
-            Hour: '10:05',
+            Hour: '11:05',
             Title: 'Impact of Process Redesign: A Case Study from Indonesian Higher Education Data Reporting',
             Authors: 'Indri Sudanawati Rozas, Sugianto Halim, Mahendrawathi Er and Arif Wibisono'
           },
           {
-            Hour: '10:20',
+            Hour: '11:20',
             Title: 'Compliance Checking in Action for INGKA Group Inventory Management',
             Authors: 'Alessio Galassi, Barbara Re, Stefan Reimann and Lorenzo Rossi'
           },
           {
-            Hour: '10:35',
+            Hour: '11:35',
             Title: 'CreaDev - A Structured Framework for Embedding Creativity in Business Process Management',
             Authors: 'Jasmin Fattah-Weil, Jako Roder, Lydia Schäfer, Doris Fay and Norbert Gronau'
           },
           {
-            Hour: '10:50',
+            Hour: '11:50',
             Title: 'The process orientation in the Agencia Digital de Andalucia',
             Authors: 'Juan Sebastián Ojeda Pérez, Elena Sauci Sánchez and Juan Francisco Fernández Ramos'
           },
           {
-            Hour: '11:05',
+            Hour: '12:05',
             Title: 'Automating Financial Reconciliation: Leveraging RPA for Efficiency and Accuracy in Banking Operations',
             Authors: 'Elheme Azemi and Saimir Bala'
           },
           {
-            Hour: '11:20',
+            Hour: '12:20',
             Title: 'From Silos to Synergy: Embedding BPM at Sri Lanka Telecom to Drive Strategic Alignment',
             Authors: 'Dinusha Rajapaksha, Wasana Bandara, Naleen Jayasuriya, Bandula Wimalasuriya, Rehan Syed and Ishadi Mirispelakotuwa'
           },
           {
-            Hour: '11:35',
+            Hour: '12:35',
             Title: 'Round table: retrospectives and common trends on how BPM is changing the industry',
             Authors: 'All authors + audience'
           }
         ]
       },
       {
-        title: 'Second session (14:00 - 15:30)',
+        title: '2nd Session (14:30 - 16:00)',
         rows: [
           {
             Hour: '-',
             Title: 'Focus Groups: Grand Challenges and Opportunities in the adoption of BPM in industry and the public sector'
           },
           {
-            Hour: '14:00',
+            Hour: '14:30',
             Title: 'Introduction of the dynamics by the chairs'
           },
           {
-            Hour: '14:05',
+            Hour: '14:35',
             Title: 'Focused Discussion and appointment of speaker'
           },
           {
-            Hour: '15:10',
+            Hour: '15:40',
             Title: 'Selected speakers gives a retrospective of the discussion'
           }
         ]
@@ -182,8 +182,7 @@ export const program_overviews: ProgramOverview[] = [
     date: 'Thursday, Sept 4th, 2025',
     tables: [
       {
-        title: 'First session (11:00 - 13:00)',
-        showRowIndex: true,
+        title: '1st Session (11:00 - 13:00)',
         rows: [
           {
             Hour: '11:00',
@@ -222,7 +221,7 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: 'Second session (14:30 - 16:00)',
+        title: '2nd Session (14:30 - 16:00)',
         showRowIndex: true,
         rows: [
           {
