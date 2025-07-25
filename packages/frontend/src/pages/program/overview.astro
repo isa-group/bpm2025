@@ -1,9 +1,15 @@
 ---
 import PageLayout from '#/layouts/PageLayout.astro';
 import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
-import WeekView from '#/components/ui/Schedule/WeekView.astro';
-import { events } from '#/data/program/schedule';
+import { sundayEvents } from '#/data/program/daily/sunday';
 import Headline from '#/components/ui/Headline.astro';
+import DailyView from '#/components/ui/Schedule/DailyView.astro';
+import { mondayEvents } from '#/data/program/daily/monday';
+import { tuesdayEvents } from '#/data/program/daily/tuesday';
+import { wednesdayEvents } from '#/data/program/daily/wednesday';
+import { thursdayEvents } from '#/data/program/daily/thursday';
+import { fridayEvents } from '#/data/program/daily/friday';
+
 ---
 
 <PageLayout
@@ -12,8 +18,39 @@ import Headline from '#/components/ui/Headline.astro';
     description: 'Tentative schedule of the conference'
   }}>
   <WidgetWrapper bg>
-    <Headline subtitle="Hover over the events to see the description & the location<br />Click on them to see the full program" />
-    <WeekView events={events} />
+    <div class="mb-10">
+      <Headline title="Pre-conference Days" />
+      <DailyView
+        events={sundayEvents}
+        date={new Date(2025, 7, 31)}
+      />
+      <DailyView
+        events={mondayEvents}
+        date={new Date(2025, 8, 1)}
+      />
+    </div>
+    <div class="mb-10">
+      <Headline title="Conference Days" />
+      <DailyView
+        events={tuesdayEvents}
+        date={new Date(2025, 8, 2)}
+      />
+      <DailyView
+        events={wednesdayEvents}
+        date={new Date(2025, 8, 3)}
+      />
+      <DailyView
+        events={thursdayEvents}
+        date={new Date(2025, 8, 4)}
+      />
+    </div>
+    <div class="mb-10">
+      <Headline title="Post-conference Day" />
+      <DailyView
+        events={fridayEvents}
+        date={new Date(2025, 8, 5)}
+      />
+    </div>
     <div class="mt-6 rounded-xl bg-white shadow-md overflow-hidden">
       <div class="p-6 text-center">
         <p class="text-base text-gray-700 leading-relaxed font-medium">Conference includes: Research track, BPM Forum, Journal First Track, and Tutorials</p>

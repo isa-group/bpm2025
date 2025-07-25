@@ -48,8 +48,9 @@ const columns = (() => {
       <table class="min-w-fit w-full table-fixed" role="grid">
         <colgroup>
           {(showRowIndex || highlightFirstColumn) && <col class="w-20" />}
-          {columns.slice(highlightFirstColumn ? 1 : 0).map(() => (
-            <col class="min-w-[180px]" />
+          {columns.slice(highlightFirstColumn ? 1 : 0).map(c => (
+            /* Hacer la columna Track y Hour más estrechas */
+            <col class={c === 'Track' || c === 'Hour' ? 'w-28' : 'min-w-[180px]'} />
           ))}
         </colgroup>
         <thead class="top-0 sticky z-1">
@@ -115,7 +116,8 @@ const columns = (() => {
                         <div class="p-2 flex h-full w-full items-center justify-center">
                           <span
                             class="text-sm text-gray-700"
-                            set:html={row.get(columnName) ?? '-'}>
+                            set:html={row.get(columnName) ?? '-'}
+                          >
                           </span>
                         </div>
                       )}
