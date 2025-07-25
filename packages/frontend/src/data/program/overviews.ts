@@ -425,58 +425,59 @@ export const program_overviews: ProgramOverview[] = [
   },
   {
     name: 'BPM Forum',
-    location: 'N/A',
+    location: '"Arenal" Hall',
+    date: 'Tuesday, Sept 2nd - Thursday, Sept 4th, 2025',
     tables: [
       {
-        title: 'Session 1 - Tuesday, Sept 2nd, 2025 (10:30 - 12:30)',
+        title: '1st Session - Tuesday, Sept 2nd, 2025 (11:00 - 13:00): Socio-Technical Perspectives in BPM',
         showRowIndex: false,
         rows: [
           {
-            Hour: '10:30-10:45',
+            Hour: '11:00-11:15',
             Title: 'High-Level Requirements-Driven Business Process Compliance',
             Authors: 'Juanita Caballero-Villalobos, Andrea Burattin and Hugo A. López',
             Track: ' Foundations'
           },
           {
-            Hour: '10:45-11:00',
+            Hour: '11:15-11:30',
             Title: 'Leveraging the Diamond pattern for Scalable and Upgradeable Blockchain-Based Business Process Execution',
             Authors: 'Victor Lemaire, Tiphaine Henry, Alvaro García, Walid Gaaloul and Sara Tucci Piergiovanni',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.5281/zenodo.15490989'
           },
           {
-            Hour: '11:00-11:15',
+            Hour: '11:30-11:45',
             Title: 'Balancing Confidentiality and Transparency for Blockchain-based Process-Aware Information Systems',
             Authors: 'Alessandro Marcelletti, Edoardo Marangone, Michele Kryston and Claudio Di Ciccio',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.5281/zenodo.15482587'
           },
           {
-            Hour: '11:15-11:30',
+            Hour: '11:45-12:00',
             Title: 'Discovering Comprehensive Branched Declarative Process Constraints',
             Authors: 'Christos Balaktsis, Ioannis Mavroedopoulos, Marco Comuzzi, Anastasios Gounaris and Fabrizio Maria Maggi',
             Track: ' Engineering'
           },
           {
-            Hour: '11:30-11:45',
+            Hour: '12:00-12:15',
             Title: 'A Case for Public Process Documentation: Robodebt an Automated Decision Making System',
             Authors: 'Adam Banham, Azumah Mamudu and Rehan Syed',
             Track: ' Management'
           },
           {
-            Hour: '11:45-12:00',
+            Hour: '12:15-12:30',
             Title: 'Affective Business Process Management',
             Authors: 'Thomas Grisold and Michael Rosemann',
             Track: ' Management'
           },
           {
-            Hour: '12:00-12:15',
+            Hour: '12:30-12:45',
             Title: 'FairPM: A Taxonomy of Bias and Interventions in Process Mining',
             Authors: 'Kate Revoredo, Saimir Bala and Flavia Santoro',
             Track: ' Management'
           },
           {
-            Hour: '12:15-12:30',
+            Hour: '12:45-13:00',
             Title: 'Automation to Agitation: Unveiling RPA-induced Technostress',
             Authors: 'Ishadi Upeksha Meekotuwa Mirispelakotuwa, Rehan Syed and Moe Wynn',
             Track: ' Management'
@@ -484,56 +485,56 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: 'Session 2 - Wednesday, Sept 3rd, 2025 (10:30 - 12:30)',
+        title: '2nd Session - Wednesday, Sept 3rd, 2025 (11:00 - 13:00): Intelligent Automation and Optimization in BPM',
         showRowIndex: false,
         rows: [
           {
-            Hour: '10:30-10:45',
+            Hour: '11:00-11:15',
             Title: 'Instance Configuration and Scheduling based on the Resource-Augmented Process Structure Tree',
             Authors: 'Felix Schumann, Wessel van der Heijden and Stefanie Rinderle-Ma',
             Track: 'Foundations'
           },
           {
-            Hour: '10:45-11:00',
+            Hour: '11:15-11:30',
             Title: 'Progression: A Lightweight BPMN Engine Simplifying the Execution and Monitoring of Process Models',
             Authors: 'Thomas M. Prinz, Yongsun Choi and Anja Vetterlein',
             Track: ' Engineering'
           },
           {
-            Hour: '11:00-11:15',
+            Hour: '11:30-11:45',
             Title: 'Enhancing Predictive Process Monitoring on Small-Scale Event Logs Using LLMs',
             Authors: 'Alessandro Padella, Paolo Frazzetto, Nicolò Navarin and Massimiliano de Leoni',
             Track: ' Engineering'
           },
           {
-            Hour: '11:15-11:30',
+            Hour: '11:45-12:00',
             Title: 'SimBank: from Simulation to Solution in Prescriptive Process Monitoring',
             Authors: 'Jakob De Moor, Hans Weytjens, Johannes De Smedt and Jochen De Weerdt',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.5281/zenodo.15574272'
           },
           {
-            Hour: '11:30-11:45',
+            Hour: '12:00-12:15',
             Title: 'A Rollout-Based Algorithm and Reward Function for Resource Allocation in Business Processes',
             Authors: 'Jeroen Middelhuis, Zaharah Bukhsh, Ivo Adan and Remco Dijkman',
             Track: ' Engineering'
           },
           {
-            Hour: '11:45-12:00',
+            Hour: '12:15-12:30',
             Title: 'Predicting Newcomer Capabilities and Performance in Process Execution',
             Authors: 'Jing Yang, Chun Ouyang and Remco Dijkman',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.5281/zenodo.15048773'
           },
           {
-            Hour: '12:00-12:15',
+            Hour: '12:30-12:45',
             Title: 'Detecting Undesired Process Behavior by Means of Retrieval Augmented Generation',
             Authors: 'Michael Grohs, Adrian Rebmann and Jana-Rebecca Rehse',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.6084/m9.figshare.29125898'
           },
           {
-            Hour: '12:15-12:30',
+            Hour: '12:45-13:00',
             Title: 'Process Autonomization: Rethinking Business Process Management',
             Authors: 'Christian Janiesch, Marek Kowalkiewicz and Michael Rosemann',
             Track: ' Management'
@@ -541,50 +542,50 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: 'Session 3 - Thursday, Sept 4th, 2025 (10:30 - 12:30)',
+        title: '3rd Session - Thursday, Sept 4th, 2025 (11:00 - 13:00): Process Modeling, Simulation, and Verification',
         showRowIndex: false,
         rows: [
           {
-            Hour: '10:30-10:45',
+            Hour: '11:00-11:15',
             Title: 'The WHY in Business Processes: Unification of Causal Process Models',
             Authors: 'Yuval David, Fabiana Fournier, Lior Limonad and Inna Skarbovsky',
             Track: ' Foundations'
           },
           {
-            Hour: '10:45-11:00',
+            Hour: '11:15-11:30',
             Title: 'From Sound Workflow Nets to LTL Declarative Specifications by Casting Three Spells',
             Authors: 'Luca Barbaro, Giovanni Varricchione, Marco Montali and Claudio Di Ciccio',
             Track: ' Foundations',
             Artifact: 'https://zenodo.org/records/15528893'
           },
           {
-            Hour: '11:00-11:15',
+            Hour: '11:30-11:45',
             Title: 'A Self-Orchestration Model for Business Collaborations with Verifiable Process History Credentials',
             Authors: 'Martin Farkas, Bertalan Zoltán Péter and Imre Kocsis',
             Track: ' Foundations'
           },
           {
-            Hour: '11:15-11:30',
+            Hour: '11:45-12:00',
             Title: 'Comparing Apples with Oranges: An Assessment Framework for Model-System Similarity',
             Authors: 'Martin Kabierski, Jana-Rebecca Rehse and Jan Martin van der Werf',
             Track: ' Foundations',
             Artifact: 'https://doi.org/10.5281/zenodo.15652385'
           },
           {
-            Hour: '11:30-11:45',
+            Hour: '12:00-12:15',
             Title: 'Stochastic BPMN and Their Conformance',
             Authors: 'Aleksandar Kuzmanoski, Jan Niklas van Detten and Sander J. J. Leemans',
             Track: ' Foundations'
           },
           {
-            Hour: '11:45-12:00',
+            Hour: '12:15-12:30',
             Title: 'Rethinking Business Process Simulation: A Utility-Based Evaluation Framework',
             Authors: 'Konrad Özdemir, Lukas Kirchdorfer, Keyvan Amiri Elyasi, Han van der Aa and Heiner Stuckenschmidt',
             Track: ' Foundations',
             Artifact: 'https://doi.org/10.5281/zenodo.15489551'
           },
           {
-            Hour: '12:00-12:15',
+            Hour: '12:30-12:45',
             Title: 'Layouting Object-Centric Directly Follows Graphs',
             Authors: 'Deoksang Lee, Minseok Song and Wil M.P. van der Aalst',
             Track: ' Engineering'
