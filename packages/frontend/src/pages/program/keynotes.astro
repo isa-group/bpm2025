@@ -19,7 +19,8 @@ const description = 'In the tradition of our conference series, BPM 2025 feature
     return (
       <WidgetWrapper
         containerClass="lg:mx-0 flex flex-col min-w-full"
-        bg={isPar}>
+        bg={isPar}
+        id={k.name.split(' ')[0]?.toLowerCase()}>
         <Headline
           title={k.name}
           subtitle={k.subtitle}

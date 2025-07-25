@@ -5,6 +5,7 @@ import Headline from '#/components/ui/Headline.astro';
 import GradientContent from '#/components/ui/GradientContent.astro';
 
 import { events } from '#/data/program/events';
+import { isObj } from '@bpm2025-website/shared/validation';
 ---
 <PageLayout
   metadata={{
@@ -16,11 +17,21 @@ import { events } from '#/data/program/events';
     return (
       <WidgetWrapper
         containerClass="lg:mx-0 flex flex-col min-w-full"
-        bg={isPar}>
+        bg={isPar}
+        id={k.name.replaceAll(' ', '-').toLowerCase()}>
         <Headline
           title={k.name}
           tagline={`📅 ${k.date}`}
-          subtitle={`📍 ${k.location}`}
+          subtitle={(() => {
+            let result;
+            if (isObj(k.location)) {
+              result = k.location.address
+                ? `<a href="${k.location.address}" target="_blank" rel="noopener noreferrer" alt="${k.location.address}" class="hover:underline">${k.location.name}</a>`
+                : k.location.name;
+            }
+
+            return `📍 ${result ?? k.location}`;
+          })()}
           classes={{
             container: 'max-w-xl sm:mx-auto lg:max-w-2xl',
             title: 'text-4xl md:text-5xl font-bold tracking-tighter mb-4 font-heading',

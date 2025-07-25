@@ -1,4 +1,4 @@
-import { program_name_to_uri, program_overviews } from './program/overviews';
+import { program_name_to_uri, program_overviews } from '#/data/program';
 import type { CallForPapers, CallToAction, MenuLink } from '#/types';
 import type { Props as FooterProps } from '#/components/widgets/Footer.astro';
 import { getAsset, getPermalink, trimSlash } from '#/utils/permalinks';

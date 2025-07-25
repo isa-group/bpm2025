@@ -1,8 +1,8 @@
 ---
-import { type AstroComponent } from '#/types';
-import type { ScheduleEvent as TScheduleEvent } from '#/data/program/schedule';
+import { type ScheduleEvent as TScheduleEvent } from '#/types';
 import EventItem from './EventItem.astro';
 import Table from '#/components/ui/Table.astro';
+import { formatHour, getHours, type ColumnMapType } from './shared';
 
 interface Props {
   events: TScheduleEvent[];
@@ -82,22 +82,6 @@ function formatWeekTitle(startDate: Date, endDate: Date): string {
   return `${startFormatted} - ${endFormatted}`;
 }
 
-/**
- * For formatting in the time column, we use a 24-hour format without AM/PM.
- */
-function formatHour(hour: number): string {
-  const date = new Date();
-  date.setHours(hour, 0, 0, 0);
-
-  const formatter = new Intl.DateTimeFormat(locale, {
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: false
-  });
-
-  return formatter.format(date);
-}
-
 function getDaysInRange(startDate: Date, endDate: Date): Date[] {
   const days = [];
   const currentDate = new Date(startDate);
@@ -125,32 +109,7 @@ const eventsByDay = weekDays.map((day) => {
   };
 });
 
-/**
- * Calculate the dynamic hour range based on all events in the week.
- * Returns an array of hours from the earliest event start to the latest event end (ceiling).
- */
-const hours = (() => {
-  if (events.length === 0) {
-    // Default range if no events
-    return Array.from({ length: 13 }, (_, i) => i + 8); // 8 AM to 8 PM
-  }
-
-  let minHour = 23;
-  let maxHour = 0;
-
-  for (const event of events) {
-    const endTime = event.end ?? new Date(event.start.getTime() + 60 * 60 * 1000);
-
-    minHour = Math.min(minHour, event.start.getHours());
-    maxHour = Math.max(maxHour, endTime.getHours());
-  }
-
-  // Generate array of hours from minHour to maxHour (inclusive)
-  const hourCount = maxHour - minHour + 1;
-  return Array.from({ length: hourCount }, (_, i) => minHour + i);
-})();
-
-type MapType = Map<AstroComponent | string, AstroComponent | string>;
+const hours = getHours(events);
 ---
 {(() => {
   const columns = eventsByDay.map(({ date }) => () => (
@@ -163,9 +122,9 @@ type MapType = Map<AstroComponent | string, AstroComponent | string>;
   ));
 
   const rows = hours.map((hour) => {
-    const m = new Map() as MapType;
+    const m = new Map() as ColumnMapType;
 
-    m.set('', formatHour(hour));
+    m.set('', formatHour(hour, locale));
     eventsByDay.forEach(({ events }, index) => {
       m.set(columns[index]!, () => (
         <div class="group/cell flex h-full w-full">

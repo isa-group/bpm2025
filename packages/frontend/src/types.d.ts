@@ -2,6 +2,7 @@ import type { HTMLAttributes, ComponentProps } from 'astro/types';
 import type { Props as AstroSeoProps } from '@astrolib/seo';
 import type { ImageMetadata, MarkdownInstance } from 'astro';
 import type { Image } from 'astro:assets';
+import type { locations } from '#/data/program/locations';
 
 export type AstroComponent = typeof Image;
 export type IconElement = `i-${string}:${string}`;
@@ -62,6 +63,28 @@ export interface Table {
    */
   mergeFirstCell?: boolean;
   classes?: Partial<Classes & { firstColumn?: string }>;
+}
+
+export interface ScheduleEvent {
+  title: string;
+  start: Date;
+  end?: Date;
+  description?: string;
+  location?: typeof locations[keyof typeof locations] | string;
+  category: 'forum_1' | 'forum_2' | 'forum_3' | 'keynote'
+    | 'conference_1' | 'conference_2' | 'workshop' | 'social'
+    | 'lunch' | 'demos' | 'consortium';
+  href?: string;
+}
+
+export interface EventItem {
+  event: ScheduleEvent;
+  locale?: Intl.UnicodeBCP47LocaleIdentifier;
+  /**
+   * How many columns may the event cover from the parent table.
+   * @default 1
+   */
+  columns?: number;
 }
 
 export interface Widget {

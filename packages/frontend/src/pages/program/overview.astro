@@ -2,23 +2,29 @@
 import PageLayout from '#/layouts/PageLayout.astro';
 import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
 import WeekView from '#/components/ui/Schedule/WeekView.astro';
-import { events } from '#/data/program/schedule';
+import { sections } from '#/data/program/overviews';
 import Headline from '#/components/ui/Headline.astro';
+import LocationView from '#/components/ui/Schedule/LocationView.astro';
 ---
 
 <PageLayout
   metadata={{
     title: 'Program Overview',
     description: 'Tentative schedule of the conference'
+  }}
+  heroProps={{
+    subtitle: 'Hover over the events to see the description & the location<br />Click on them to see the full program'
   }}>
-  <WidgetWrapper bg>
-    <Headline subtitle="Hover over the events to see the description & the location<br />Click on them to see the full program" />
-    <WeekView events={events} />
-    <div class="mt-6 rounded-xl bg-white shadow-md overflow-hidden">
-      <div class="p-6 text-center">
-        <p class="text-base text-gray-700 leading-relaxed font-medium">Conference includes: Research track, BPM Forum, Journal First Track, and Tutorials</p>
-        <p class="text-sm text-gray-500 mt-4 opacity-75">* This is a tentative schedule. The definitive hours will be published soon.</p>
-      </div>
-    </div>
-  </WidgetWrapper>
+  {sections.map((s, index) => {
+    const days = new Set(s.events.map(e => e.start.getDate()));
+
+    return (
+      <WidgetWrapper bg={index % 2 === 0} id={s.title?.split(' ')[0]?.toLowerCase()}>
+        <Headline {...s} />
+        {days.size === 1
+          ? <LocationView events={s.events} />
+          : <WeekView events={s.events} />}
+      </WidgetWrapper>
+    );
+  })}
 </PageLayout>

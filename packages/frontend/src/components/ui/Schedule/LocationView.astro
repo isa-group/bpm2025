@@ -1,0 +1,83 @@
+---
+/**
+ * This component shows a day view of the schedule, showing as the header the locations
+ * of the events
+ */
+import { type ScheduleEvent as TScheduleEvent } from '#/types';
+import EventItem from './EventItem.astro';
+import Table from '#/components/ui/Table.astro';
+import { isNil, isObj } from '@bpm2025-website/shared/validation';
+import { formatHour, getHours, type ColumnMapType } from './shared.ts';
+
+interface Props {
+  events: TScheduleEvent[];
+  locale?: Intl.UnicodeBCP47LocaleIdentifier;
+  title?: string;
+}
+
+const {
+  events = [],
+  locale = 'en-EN',
+  title
+} = Astro.props;
+
+const getLocation = (location: TScheduleEvent['location']) => isObj(location)
+  ? location.name
+  : location as string;
+
+// Group events by day
+const eventsByLocation = Object.groupBy(events, event => isNil(event.location)
+  ? 'undefined'
+  : getLocation(event.location)
+);
+
+const hours = getHours(events);
+---
+{(() => {
+  const locations = Object.keys(eventsByLocation).filter(loc => loc !== 'undefined');
+  const firstRealLocation = locations[0];
+
+  const rows = hours.map((hour) => {
+    const m = new Map() as ColumnMapType;
+    m.set('', formatHour(hour, locale));
+
+    for (const location of locations) {
+      const locationEvents = eventsByLocation[location]?.filter(e => e.start.getHours() === hour) ?? [];
+
+      /**
+       * Include events without a defined location only for the first real location.
+       */
+      const undefinedEvents = location === firstRealLocation
+        ? (eventsByLocation['undefined']?.filter(e => e.start.getHours() === hour) ?? [])
+        : [];
+
+      const allEvents = [...undefinedEvents, ...locationEvents];
+
+      m.set(`📍 ${getLocation(location)}`, () => (
+        <div class="group/cell flex h-full w-full">
+          {allEvents.map(event => (
+            <EventItem
+              event={{ ...event, location: undefined }}
+              locale={locale}
+              columns={isNil(event.location)
+                ? locations.length
+                : undefined}
+            />
+          ))}
+        </div>
+      ));
+    }
+
+    return m;
+  });
+
+  return (
+    <Table
+      title={title}
+      highlightFirstColumn
+      mergeFirstCell
+      classes={{ firstColumn: '!items-start' }}
+      rows={rows}
+    />
+  );
+})()}
