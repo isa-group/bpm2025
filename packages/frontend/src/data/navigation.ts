@@ -84,6 +84,10 @@ export function getHeaderData(currentUrl: URL): HeaderData {
           {
             text: 'Jornada BPM Administración Pública',
             href: getPermalink('/program/bpm-admin')
+          },
+          {
+            text: 'Mentoring Lunch for Junior BPM Researchers',
+            href: getPermalink('/program/mentoring-lunch')
           }
         ]
       },
