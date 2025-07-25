@@ -330,93 +330,93 @@ export const program_overviews: ProgramOverview[] = [
     date: 'Tuesday, Sept 2nd, 2025',
     tables: [
       {
-        title: 'First session (10:30 - 12:10)',
+        title: '1st Session (11:00 - 13:00): Technology Enhanced Learning',
         showRowIndex: false,
         rows: [
           {
-            Hour: '10:30-10:40',
+            Hour: '11:00-11:15',
             Title: '<i>Opening</i>',
             Authors: 'Chairs'
           },
           {
-            Hour: '10:40-10:55',
+            Hour: '11:15-11:30',
             Title: 'Educating for Next-Generation BPM: A PBL-Process Mapping Blueprint Anchored in the Drifts of the Digital Era',
             Authors: 'Silvia Dallavalle, Luiz Ricardo Brito Ribeiro and Sérgio Adriany Santos Moreira'
           },
           {
-            Hour: '10:55-11:10',
+            Hour: '11:30-11:45',
             Title: 'Project-Based Learning in BPM for interdisciplinary groups -- Teachers\' Experience',
             Authors: 'Katarzyna Gdowska, Edyta Brzychczy and Krzysztof Kluza'
           },
           {
-            Hour: '11:10-11:25',
+            Hour: '11:45-12:00',
             Title: 'Teaching Process Redesign with a Competition',
             Authors: 'Felix Schumann, Matthias Ehrendorfer, Michel Kunkler and Remco Dijkman'
           },
           {
-            Hour: '11:25-11:40',
+            Hour: '12:00-12:15',
             Title: 'Generative AI\'s aid in (Business) Process Modeling Instructional Design: case study',
             Authors: 'Ilia Maslov, Stephan Poelmans, Yves Wautelet and Kristina Rosenthal'
           },
           {
-            Hour: '11:40-11:55',
+            Hour: '12:15-12:30',
             Title: 'Revisiting BPMN Assignments with AI in Mind: Insights from Experiments with Large Language Models in Process Modeling Education',
             Authors: 'Krzysztof Kluza, Marzena Grzesiak, Piotr Śliz and Leszek Szala'
           },
           {
-            Hour: '11:55-12:10',
+            Hour: '12:30-12:45',
             Title: 'Comparing the Design Space of Explorative BPM: MBAs versus genAI',
             Authors: 'Michael Rosemann and Philipp Joebges'
           }
         ]
       },
       {
-        title: 'Second session (14:00 - 15:30)',
+        title: '2nd Session (14:30 - 16:00): Curriculum Innovation',
         showRowIndex: false,
         rows: [
           {
-            Hour: '14:00-15:00',
+            Hour: '14:30-15:30',
             Title: 'Keynote by Deniz Iren: AI Tutors in Practice: Lessons from the Field',
             Authors: 'Deniz Iren'
           },
           {
-            Hour: '15:00-15:15',
+            Hour: '15:30-15:45',
             Title: 'Improving the practice of acquiring knowledge in the field of BPM – a pedagogical framework',
             Authors: 'Patrycja Hoffa-Dąbrowska and Katarzyna Grzybowska'
           },
           {
-            Hour: '15:15-15:30',
+            Hour: '15:45-16:00',
             Title: 'Building BPM Talent in Emerging Markets: A 10-Year Curriculum',
             Authors: 'Tolusha Dahanayake Yapa, S.W.S.B. Dassanayaka, H.A.D.R. Gunarathne, Prasanna Illankoon, Harishani Liyanage, I.R. Malawige, K.M.S. Senevirathne, Methsiri Suwandaarachchi, Vathsala Wickramasinghe and Amali Wijekoon'
           }
         ]
       },
       {
-        title: 'Third session (16:00 - 17:30)',
+        title: '3rd Session (16:30 - 18:00): Bridging Academia & Industry',
         showRowIndex: false,
         rows: [
           {
-            Hour: '16:00-16:15',
+            Hour: '16:30-16:45',
             Title: 'Process Mining for Predicting Failure To Rescue: a Case Study',
             Authors: 'Reyes Grangel, Noelia Palomares, María Sánchez-Galán, David Luna-Aleixos and Irene Llagostera-Reverter'
           },
           {
-            Hour: '16:15-16:30',
+            Hour: '16:45-17:00',
             Title: 'Education as an affordance actualization driver - Investigating learning data from a Process Mining Ecosystem',
             Authors: 'Adrian Joas'
           },
           {
-            Hour: '16:30-16:45',
+            Hour: '17:00-17:15',
             Title: 'Bridging the BPM Education Gap: Reflections on Affordances of BPM Techniques and a Call for Collaboration',
             Authors: 'Mahendrawathi Er and Avisha Nathania'
           },
           {
-            Hour: '16:45-17:00',
+            Hour: '17:15-17:30',
             Title: 'The Envisioned Global Process Institute: Transforming BPM Education through EaaS and Process Learners in a B2P Model',
             Authors: 'Andrea Magdaleno and Michael Rosemann'
           },
           {
-            Hour: '17:00-17:30',
+            Hour: '17:30-18:00',
             Title: '<i>Closing & Wrap-up</i>'
           }
         ]
