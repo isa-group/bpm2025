@@ -119,7 +119,7 @@ function getLocationUrl(location: string): string | undefined {
     }
 
     return (
-      <div class="h-full flex flex-col items-center justify-center">
+      <div class="flex flex-col h-full items-center justify-center">
         {url
           ? (
               <a href={url} class="text-lg text-gray-800 font-semibold underline lg:text-base md:text-sm hover:text-blue-600" target="_blank" rel="noopener noreferrer">
@@ -147,7 +147,7 @@ function getLocationUrl(location: string): string | undefined {
       const hourLocationEvents = locationEvents.filter(e => e.start.getHours() === hour);
 
       m.set(columns[index]!, () => (
-        <div class="group/cell h-full w-full flex">
+        <div class="group/cell flex h-full w-full">
           {hourLocationEvents.map(event => (
             <EventItem
               event={event}

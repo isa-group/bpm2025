@@ -1,5 +1,4 @@
 import type { ComponentProps } from 'astro/types';
-import type { ImageMetadata } from 'astro';
 import type { Item } from '#/types';
 import type Table from '#/components/ui/Table.astro';
 
@@ -39,23 +38,28 @@ export const program_overviews: ProgramOverview[] = [
           },
           {
             Hour: '12:00',
-            Title: 'KRAFT – A Knowledge-Graph-Based Resource Allocation Framework',
+            Title:
+              'KRAFT – A Knowledge-Graph-Based Resource Allocation Framework',
             Authors: 'Leon Bein, Niels Martin and Luise Pufahl'
           },
           {
             Hour: '12:15',
-            Title: 'An RPA-BPMS Integration Framework Leveraging RPA as a Resource',
+            Title:
+              'An RPA-BPMS Integration Framework Leveraging RPA as a Resource',
             Authors: 'Lingtong Zhang, Jing Yang, Chun Ouyang and Yang Yu'
           },
           {
             Hour: '12:30',
-            Title: 'Towards Automated Handling of Object State Exceptions in Smart Contracts',
+            Title:
+              'Towards Automated Handling of Object State Exceptions in Smart Contracts',
             Authors: 'Julius Köpke, Giovanni Meroni and Mattia Salnitri'
           },
           {
             Hour: '12:45',
-            Title: 'HiProX: Highly Efficient Process Execution on IoT and Edge Devices',
-            Authors: 'Dominik Voigt, Lisa Podszun, Juergen Mangler and Stefanie Rinderle-Ma'
+            Title:
+              'HiProX: Highly Efficient Process Execution on IoT and Edge Devices',
+            Authors:
+              'Dominik Voigt, Lisa Podszun, Juergen Mangler and Stefanie Rinderle-Ma'
           },
           {
             Hour: '13:00',
@@ -68,13 +72,17 @@ export const program_overviews: ProgramOverview[] = [
         rows: [
           {
             Hour: '14:30',
-            Title: 'Leveraging Counterfactuals for Prescriptive Process Analytics',
-            Authors: 'Ngoc-Diem Le, Alessandro Padella, Francesco Vinci and Massimiliano de Leoni'
+            Title:
+              'Leveraging Counterfactuals for Prescriptive Process Analytics',
+            Authors:
+              'Ngoc-Diem Le, Alessandro Padella, Francesco Vinci and Massimiliano de Leoni'
           },
           {
             Hour: '14:45',
-            Title: 'Privacy and Confidentiality Requirements Engineering for Process Data',
-            Authors: 'Fabian Haertel, Juergen Mangler, Nataliia Klievtsova, Eugen Rigger, Celine Mader and Stefanie Rinderle-Ma'
+            Title:
+              'Privacy and Confidentiality Requirements Engineering for Process Data',
+            Authors:
+              'Fabian Haertel, Juergen Mangler, Nataliia Klievtsova, Eugen Rigger, Celine Mader and Stefanie Rinderle-Ma'
           },
           {
             Hour: '15:00',
@@ -88,12 +96,15 @@ export const program_overviews: ProgramOverview[] = [
           },
           {
             Hour: '15:30',
-            Title: 'Multimodal Zero-Shot Activity Recognition for Process Mining of Robotic Systems',
-            Authors: 'Flavio Corradini, Sara Pettinari, Barbara Re, Lorenzo Rossi and Massimiliano Sampaolo'
+            Title:
+              'Multimodal Zero-Shot Activity Recognition for Process Mining of Robotic Systems',
+            Authors:
+              'Flavio Corradini, Sara Pettinari, Barbara Re, Lorenzo Rossi and Massimiliano Sampaolo'
           },
           {
             Hour: '15:45',
-            Title: 'Time Series-based Segmentation of Noisy User Interaction Logs for Robotic Process Automation',
+            Title:
+              'Time Series-based Segmentation of Noisy User Interaction Logs for Robotic Process Automation',
             Authors: 'Tom Hohenadl'
           },
           {
@@ -119,37 +130,49 @@ export const program_overviews: ProgramOverview[] = [
           },
           {
             Hour: '10:05',
-            Title: 'Impact of Process Redesign: A Case Study from Indonesian Higher Education Data Reporting',
-            Authors: 'Indri Sudanawati Rozas, Sugianto Halim, Mahendrawathi Er and Arif Wibisono'
+            Title:
+              'Impact of Process Redesign: A Case Study from Indonesian Higher Education Data Reporting',
+            Authors:
+              'Indri Sudanawati Rozas, Sugianto Halim, Mahendrawathi Er and Arif Wibisono'
           },
           {
             Hour: '10:20',
-            Title: 'Compliance Checking in Action for INGKA Group Inventory Management',
-            Authors: 'Alessio Galassi, Barbara Re, Stefan Reimann and Lorenzo Rossi'
+            Title:
+              'Compliance Checking in Action for INGKA Group Inventory Management',
+            Authors:
+              'Alessio Galassi, Barbara Re, Stefan Reimann and Lorenzo Rossi'
           },
           {
             Hour: '10:35',
-            Title: 'CreaDev - A Structured Framework for Embedding Creativity in Business Process Management',
-            Authors: 'Jasmin Fattah-Weil, Jako Roder, Lydia Schäfer, Doris Fay and Norbert Gronau'
+            Title:
+              'CreaDev - A Structured Framework for Embedding Creativity in Business Process Management',
+            Authors:
+              'Jasmin Fattah-Weil, Jako Roder, Lydia Schäfer, Doris Fay and Norbert Gronau'
           },
           {
             Hour: '10:50',
-            Title: 'The process orientation in the Agencia Digital de Andalucia',
-            Authors: 'Juan Sebastián Ojeda Pérez, Elena Sauci Sánchez and Juan Francisco Fernández Ramos'
+            Title:
+              'The process orientation in the Agencia Digital de Andalucia',
+            Authors:
+              'Juan Sebastián Ojeda Pérez, Elena Sauci Sánchez and Juan Francisco Fernández Ramos'
           },
           {
             Hour: '11:05',
-            Title: 'Automating Financial Reconciliation: Leveraging RPA for Efficiency and Accuracy in Banking Operations',
+            Title:
+              'Automating Financial Reconciliation: Leveraging RPA for Efficiency and Accuracy in Banking Operations',
             Authors: 'Elheme Azemi and Saimir Bala'
           },
           {
             Hour: '11:20',
-            Title: 'From Silos to Synergy: Embedding BPM at Sri Lanka Telecom to Drive Strategic Alignment',
-            Authors: 'Dinusha Rajapaksha, Wasana Bandara, Naleen Jayasuriya, Bandula Wimalasuriya, Rehan Syed and Ishadi Mirispelakotuwa'
+            Title:
+              'From Silos to Synergy: Embedding BPM at Sri Lanka Telecom to Drive Strategic Alignment',
+            Authors:
+              'Dinusha Rajapaksha, Wasana Bandara, Naleen Jayasuriya, Bandula Wimalasuriya, Rehan Syed and Ishadi Mirispelakotuwa'
           },
           {
             Hour: '11:35',
-            Title: 'Round table: retrospectives and common trends on how BPM is changing the industry',
+            Title:
+              'Round table: retrospectives and common trends on how BPM is changing the industry',
             Authors: 'All authors + audience'
           }
         ]
@@ -159,7 +182,8 @@ export const program_overviews: ProgramOverview[] = [
         rows: [
           {
             Hour: '-',
-            Title: 'Focus Groups: Grand Challenges and Opportunities in the adoption of BPM in industry and the public sector'
+            Title:
+              'Focus Groups: Grand Challenges and Opportunities in the adoption of BPM in industry and the public sector'
           },
           {
             Hour: '14:00',
@@ -193,8 +217,10 @@ export const program_overviews: ProgramOverview[] = [
           },
           {
             Hour: '11:40',
-            Title: 'The Impact of Event Data Partitioning on Privacy-aware Process Discovery',
-            Authors: 'Jungeun Lim, Stephan Fahrenkrog-Petersen, Xixi Lu, Jan Mendling and Minseok Song'
+            Title:
+              'The Impact of Event Data Partitioning on Privacy-aware Process Discovery',
+            Authors:
+              'Jungeun Lim, Stephan Fahrenkrog-Petersen, Xixi Lu, Jan Mendling and Minseok Song'
           },
           {
             Hour: '11:55',
@@ -203,18 +229,23 @@ export const program_overviews: ProgramOverview[] = [
           },
           {
             Hour: '12:10',
-            Title: "Agentic Business Process Management: Practitioner's Perspectives on Agent Governance in Business Processes",
-            Authors: 'Hoang Vu, Nataliia Klievtsova, Henrik Leopold, Stefanie Rinderle-Ma and Timotheus Kampik'
+            Title:
+              "Agentic Business Process Management: Practitioner's Perspectives on Agent Governance in Business Processes",
+            Authors:
+              'Hoang Vu, Nataliia Klievtsova, Henrik Leopold, Stefanie Rinderle-Ma and Timotheus Kampik'
           },
           {
             Hour: '12:25',
-            Title: 'Motivational Process Mining: A Conceptualization By Adding Self-Determination Theory',
+            Title:
+              'Motivational Process Mining: A Conceptualization By Adding Self-Determination Theory',
             Authors: 'Amy Van Looy and Peter Vlerick'
           },
           {
             Hour: '12:40',
-            Title: 'Anchoring ESG Goals in Business Processes: Engagement Patterns in Polish Organizations',
-            Authors: 'Natalia R Potoczek, Adriana Paliwoda-Matiolańska, Katarzyna B Homoncik and Mariusz Łapczyński'
+            Title:
+              'Anchoring ESG Goals in Business Processes: Engagement Patterns in Polish Organizations',
+            Authors:
+              'Natalia R Potoczek, Adriana Paliwoda-Matiolańska, Katarzyna B Homoncik and Mariusz Łapczyński'
           },
           {
             Hour: '12:55',
@@ -228,28 +259,36 @@ export const program_overviews: ProgramOverview[] = [
         rows: [
           {
             Hour: '14:30',
-            Title: 'Bridging BPM and Sustainability Journeys in Navigating Sustainability Paradoxical Tensions',
+            Title:
+              'Bridging BPM and Sustainability Journeys in Navigating Sustainability Paradoxical Tensions',
             Authors: 'Ika Nurkasanah and Amy Van Looy'
           },
           {
             Hour: '14:45',
-            Title: 'Operationalizing Responsible BPM: A Method for Value-based Process Redesign',
+            Title:
+              'Operationalizing Responsible BPM: A Method for Value-based Process Redesign',
             Authors: 'Djordje Djurica, Sandro Franzoi and Sarah Spiekermann'
           },
           {
             Hour: '15:00',
-            Title: 'Designing Business Processes for Good: A Canvas-Based Framework for Routinized Benevolence',
-            Authors: 'Thamali Chandrasiri, Wasana Bandara, Michael Rosemann, Nadine Ostern and Marleen Voss'
+            Title:
+              'Designing Business Processes for Good: A Canvas-Based Framework for Routinized Benevolence',
+            Authors:
+              'Thamali Chandrasiri, Wasana Bandara, Michael Rosemann, Nadine Ostern and Marleen Voss'
           },
           {
             Hour: '15:15',
-            Title: 'ReDPT-CT: Designing Responsible Digital Process Twins for Clinical Trials',
-            Authors: 'Luiz Ricardo Brito Ribeiro, Silvia Inês Dallavalle de Pádua, Gerald Kremer and Rainer Stark'
+            Title:
+              'ReDPT-CT: Designing Responsible Digital Process Twins for Clinical Trials',
+            Authors:
+              'Luiz Ricardo Brito Ribeiro, Silvia Inês Dallavalle de Pádua, Gerald Kremer and Rainer Stark'
           },
           {
             Hour: '15:30',
-            Title: 'Measuring Moral Performance: A Framework for Ethical Business Process Management',
-            Authors: 'Leo Poss, Christopher Julian Kern, Christoph Stoiber, Julia Kroenung and Stefan Schönig'
+            Title:
+              'Measuring Moral Performance: A Framework for Ethical Business Process Management',
+            Authors:
+              'Leo Poss, Christopher Julian Kern, Christoph Stoiber, Julia Kroenung and Stefan Schönig'
           },
           {
             Hour: '15:45',
@@ -287,7 +326,8 @@ export const program_overviews: ProgramOverview[] = [
         `
       },
       {
-        title: 'Tutorial 2: <u>Constraint-based reasoning and analysis for BPM: CSP to the rescue</u>',
+        title:
+          'Tutorial 2: <u>Constraint-based reasoning and analysis for BPM: CSP to the rescue</u>',
         description: `
           <i>Alessandro Gianola, Andrey Rivkin and Mateusz Slazynski</i>
           <br /><br />
@@ -304,7 +344,7 @@ export const program_overviews: ProgramOverview[] = [
           can be used to solve BPM analysis problems via suitable encodings. Such encodings will be demonstrated
           during hands-on sessions with the help of state-of-the-art CSP tools. As a key learning outcome,
           participants will gain a deeper understanding of CSP-based formal methods and their integration into
-          process analysis. 
+          process analysis.
         `
       },
       {
@@ -321,7 +361,7 @@ export const program_overviews: ProgramOverview[] = [
           This tutorial introduces key BPO problem types and solution approaches,
           illustrating specific problem-solution pairs that were already explored.
           While not exhaustive, the classification aims to provide a structured overview and spark future
-          research in this emerging area. 
+          research in this emerging area.
         `
       }
     ]
@@ -342,32 +382,41 @@ export const program_overviews: ProgramOverview[] = [
           },
           {
             Hour: '10:40-10:55',
-            Title: 'Educating for Next-Generation BPM: A PBL-Process Mapping Blueprint Anchored in the Drifts of the Digital Era',
-            Authors: 'Silvia Dallavalle, Luiz Ricardo Brito Ribeiro and Sérgio Adriany Santos Moreira'
+            Title:
+              'Educating for Next-Generation BPM: A PBL-Process Mapping Blueprint Anchored in the Drifts of the Digital Era',
+            Authors:
+              'Silvia Dallavalle, Luiz Ricardo Brito Ribeiro and Sérgio Adriany Santos Moreira'
           },
           {
             Hour: '10:55-11:10',
-            Title: 'Project-Based Learning in BPM for interdisciplinary groups -- Teachers\' Experience',
+            Title:
+              "Project-Based Learning in BPM for interdisciplinary groups -- Teachers' Experience",
             Authors: 'Katarzyna Gdowska, Edyta Brzychczy and Krzysztof Kluza'
           },
           {
             Hour: '11:10-11:25',
             Title: 'Teaching Process Redesign with a Competition',
-            Authors: 'Felix Schumann, Matthias Ehrendorfer, Michel Kunkler and Remco Dijkman'
+            Authors:
+              'Felix Schumann, Matthias Ehrendorfer, Michel Kunkler and Remco Dijkman'
           },
           {
             Hour: '11:25-11:40',
-            Title: 'Generative AI\'s aid in (Business) Process Modeling Instructional Design: case study',
-            Authors: 'Ilia Maslov, Stephan Poelmans, Yves Wautelet and Kristina Rosenthal'
+            Title:
+              "Generative AI's aid in (Business) Process Modeling Instructional Design: case study",
+            Authors:
+              'Ilia Maslov, Stephan Poelmans, Yves Wautelet and Kristina Rosenthal'
           },
           {
             Hour: '11:40-11:55',
-            Title: 'Revisiting BPMN Assignments with AI in Mind: Insights from Experiments with Large Language Models in Process Modeling Education',
-            Authors: 'Krzysztof Kluza, Marzena Grzesiak, Piotr Śliz and Leszek Szala'
+            Title:
+              'Revisiting BPMN Assignments with AI in Mind: Insights from Experiments with Large Language Models in Process Modeling Education',
+            Authors:
+              'Krzysztof Kluza, Marzena Grzesiak, Piotr Śliz and Leszek Szala'
           },
           {
             Hour: '11:55-12:10',
-            Title: 'Comparing the Design Space of Explorative BPM: MBAs versus genAI',
+            Title:
+              'Comparing the Design Space of Explorative BPM: MBAs versus genAI',
             Authors: 'Michael Rosemann and Philipp Joebges'
           }
         ]
@@ -378,18 +427,22 @@ export const program_overviews: ProgramOverview[] = [
         rows: [
           {
             Hour: '14:00-15:00',
-            Title: 'Keynote by Deniz Iren: AI Tutors in Practice: Lessons from the Field',
+            Title:
+              'Keynote by Deniz Iren: AI Tutors in Practice: Lessons from the Field',
             Authors: 'Deniz Iren'
           },
           {
             Hour: '15:00-15:15',
-            Title: 'Improving the practice of acquiring knowledge in the field of BPM – a pedagogical framework',
+            Title:
+              'Improving the practice of acquiring knowledge in the field of BPM – a pedagogical framework',
             Authors: 'Patrycja Hoffa-Dąbrowska and Katarzyna Grzybowska'
           },
           {
             Hour: '15:15-15:30',
-            Title: 'Building BPM Talent in Emerging Markets: A 10-Year Curriculum',
-            Authors: 'Tolusha Dahanayake Yapa, S.W.S.B. Dassanayaka, H.A.D.R. Gunarathne, Prasanna Illankoon, Harishani Liyanage, I.R. Malawige, K.M.S. Senevirathne, Methsiri Suwandaarachchi, Vathsala Wickramasinghe and Amali Wijekoon'
+            Title:
+              'Building BPM Talent in Emerging Markets: A 10-Year Curriculum',
+            Authors:
+              'Tolusha Dahanayake Yapa, S.W.S.B. Dassanayaka, H.A.D.R. Gunarathne, Prasanna Illankoon, Harishani Liyanage, I.R. Malawige, K.M.S. Senevirathne, Methsiri Suwandaarachchi, Vathsala Wickramasinghe and Amali Wijekoon'
           }
         ]
       },
@@ -399,22 +452,27 @@ export const program_overviews: ProgramOverview[] = [
         rows: [
           {
             Hour: '16:00-16:15',
-            Title: 'Process Mining for Predicting Failure To Rescue: a Case Study',
-            Authors: 'Reyes Grangel, Noelia Palomares, María Sánchez-Galán, David Luna-Aleixos and Irene Llagostera-Reverter'
+            Title:
+              'Process Mining for Predicting Failure To Rescue: a Case Study',
+            Authors:
+              'Reyes Grangel, Noelia Palomares, María Sánchez-Galán, David Luna-Aleixos and Irene Llagostera-Reverter'
           },
           {
             Hour: '16:15-16:30',
-            Title: 'Education as an affordance actualization driver - Investigating learning data from a Process Mining Ecosystem',
+            Title:
+              'Education as an affordance actualization driver - Investigating learning data from a Process Mining Ecosystem',
             Authors: 'Adrian Joas'
           },
           {
             Hour: '16:30-16:45',
-            Title: 'Bridging the BPM Education Gap: Reflections on Affordances of BPM Techniques and a Call for Collaboration',
+            Title:
+              'Bridging the BPM Education Gap: Reflections on Affordances of BPM Techniques and a Call for Collaboration',
             Authors: 'Mahendrawathi Er and Avisha Nathania'
           },
           {
             Hour: '16:45-17:00',
-            Title: 'The Envisioned Global Process Institute: Transforming BPM Education through EaaS and Process Learners in a B2P Model',
+            Title:
+              'The Envisioned Global Process Institute: Transforming BPM Education through EaaS and Process Learners in a B2P Model',
             Authors: 'Andrea Magdaleno and Michael Rosemann'
           },
           {
@@ -436,32 +494,40 @@ export const program_overviews: ProgramOverview[] = [
           {
             Hour: '10:30-10:45',
             Title: 'High-Level Requirements-Driven Business Process Compliance',
-            Authors: 'Juanita Caballero-Villalobos, Andrea Burattin and Hugo A. López',
+            Authors:
+              'Juanita Caballero-Villalobos, Andrea Burattin and Hugo A. López',
             Track: ' Foundations'
           },
           {
             Hour: '10:45-11:00',
-            Title: 'Leveraging the Diamond pattern for Scalable and Upgradeable Blockchain-Based Business Process Execution',
-            Authors: 'Victor Lemaire, Tiphaine Henry, Alvaro García, Walid Gaaloul and Sara Tucci Piergiovanni',
+            Title:
+              'Leveraging the Diamond pattern for Scalable and Upgradeable Blockchain-Based Business Process Execution',
+            Authors:
+              'Victor Lemaire, Tiphaine Henry, Alvaro García, Walid Gaaloul and Sara Tucci Piergiovanni',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.5281/zenodo.15490989'
           },
           {
             Hour: '11:00-11:15',
-            Title: 'Balancing Confidentiality and Transparency for Blockchain-based Process-Aware Information Systems',
-            Authors: 'Alessandro Marcelletti, Edoardo Marangone, Michele Kryston and Claudio Di Ciccio',
+            Title:
+              'Balancing Confidentiality and Transparency for Blockchain-based Process-Aware Information Systems',
+            Authors:
+              'Alessandro Marcelletti, Edoardo Marangone, Michele Kryston and Claudio Di Ciccio',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.5281/zenodo.15482587'
           },
           {
             Hour: '11:15-11:30',
-            Title: 'Discovering Comprehensive Branched Declarative Process Constraints',
-            Authors: 'Christos Balaktsis, Ioannis Mavroedopoulos, Marco Comuzzi, Anastasios Gounaris and Fabrizio Maria Maggi',
+            Title:
+              'Discovering Comprehensive Branched Declarative Process Constraints',
+            Authors:
+              'Christos Balaktsis, Ioannis Mavroedopoulos, Marco Comuzzi, Anastasios Gounaris and Fabrizio Maria Maggi',
             Track: ' Engineering'
           },
           {
             Hour: '11:30-11:45',
-            Title: 'A Case for Public Process Documentation: Robodebt an Automated Decision Making System',
+            Title:
+              'A Case for Public Process Documentation: Robodebt an Automated Decision Making System',
             Authors: 'Adam Banham, Azumah Mamudu and Rehan Syed',
             Track: ' Management'
           },
@@ -473,14 +539,17 @@ export const program_overviews: ProgramOverview[] = [
           },
           {
             Hour: '12:00-12:15',
-            Title: 'FairPM: A Taxonomy of Bias and Interventions in Process Mining',
+            Title:
+              'FairPM: A Taxonomy of Bias and Interventions in Process Mining',
             Authors: 'Kate Revoredo, Saimir Bala and Flavia Santoro',
             Track: ' Management'
           },
           {
             Hour: '12:15-12:30',
-            Title: 'Automation to Agitation: Unveiling RPA-induced Technostress',
-            Authors: 'Ishadi Upeksha Meekotuwa Mirispelakotuwa, Rehan Syed and Moe Wynn',
+            Title:
+              'Automation to Agitation: Unveiling RPA-induced Technostress',
+            Authors:
+              'Ishadi Upeksha Meekotuwa Mirispelakotuwa, Rehan Syed and Moe Wynn',
             Track: ' Management'
           }
         ]
@@ -491,53 +560,66 @@ export const program_overviews: ProgramOverview[] = [
         rows: [
           {
             Hour: '10:30-10:45',
-            Title: 'Instance Configuration and Scheduling based on the Resource-Augmented Process Structure Tree',
-            Authors: 'Felix Schumann, Wessel van der Heijden and Stefanie Rinderle-Ma',
+            Title:
+              'Instance Configuration and Scheduling based on the Resource-Augmented Process Structure Tree',
+            Authors:
+              'Felix Schumann, Wessel van der Heijden and Stefanie Rinderle-Ma',
             Track: 'Foundations'
           },
           {
             Hour: '10:45-11:00',
-            Title: 'Progression: A Lightweight BPMN Engine Simplifying the Execution and Monitoring of Process Models',
+            Title:
+              'Progression: A Lightweight BPMN Engine Simplifying the Execution and Monitoring of Process Models',
             Authors: 'Thomas M. Prinz, Yongsun Choi and Anja Vetterlein',
             Track: ' Engineering'
           },
           {
             Hour: '11:00-11:15',
-            Title: 'Enhancing Predictive Process Monitoring on Small-Scale Event Logs Using LLMs',
-            Authors: 'Alessandro Padella, Paolo Frazzetto, Nicolò Navarin and Massimiliano de Leoni',
+            Title:
+              'Enhancing Predictive Process Monitoring on Small-Scale Event Logs Using LLMs',
+            Authors:
+              'Alessandro Padella, Paolo Frazzetto, Nicolò Navarin and Massimiliano de Leoni',
             Track: ' Engineering'
           },
           {
             Hour: '11:15-11:30',
-            Title: 'SimBank: from Simulation to Solution in Prescriptive Process Monitoring',
-            Authors: 'Jakob De Moor, Hans Weytjens, Johannes De Smedt and Jochen De Weerdt',
+            Title:
+              'SimBank: from Simulation to Solution in Prescriptive Process Monitoring',
+            Authors:
+              'Jakob De Moor, Hans Weytjens, Johannes De Smedt and Jochen De Weerdt',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.5281/zenodo.15574272'
           },
           {
             Hour: '11:30-11:45',
-            Title: 'A Rollout-Based Algorithm and Reward Function for Resource Allocation in Business Processes',
-            Authors: 'Jeroen Middelhuis, Zaharah Bukhsh, Ivo Adan and Remco Dijkman',
+            Title:
+              'A Rollout-Based Algorithm and Reward Function for Resource Allocation in Business Processes',
+            Authors:
+              'Jeroen Middelhuis, Zaharah Bukhsh, Ivo Adan and Remco Dijkman',
             Track: ' Engineering'
           },
           {
             Hour: '11:45-12:00',
-            Title: 'Predicting Newcomer Capabilities and Performance in Process Execution',
+            Title:
+              'Predicting Newcomer Capabilities and Performance in Process Execution',
             Authors: 'Jing Yang, Chun Ouyang and Remco Dijkman',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.5281/zenodo.15048773'
           },
           {
             Hour: '12:00-12:15',
-            Title: 'Detecting Undesired Process Behavior by Means of Retrieval Augmented Generation',
+            Title:
+              'Detecting Undesired Process Behavior by Means of Retrieval Augmented Generation',
             Authors: 'Michael Grohs, Adrian Rebmann and Jana-Rebecca Rehse',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.6084/m9.figshare.29125898'
           },
           {
             Hour: '12:15-12:30',
-            Title: 'Process Autonomization: Rethinking Business Process Management',
-            Authors: 'Christian Janiesch, Marek Kowalkiewicz and Michael Rosemann',
+            Title:
+              'Process Autonomization: Rethinking Business Process Management',
+            Authors:
+              'Christian Janiesch, Marek Kowalkiewicz and Michael Rosemann',
             Track: ' Management'
           }
         ]
@@ -548,40 +630,50 @@ export const program_overviews: ProgramOverview[] = [
         rows: [
           {
             Hour: '10:30-10:45',
-            Title: 'The WHY in Business Processes: Unification of Causal Process Models',
-            Authors: 'Yuval David, Fabiana Fournier, Lior Limonad and Inna Skarbovsky',
+            Title:
+              'The WHY in Business Processes: Unification of Causal Process Models',
+            Authors:
+              'Yuval David, Fabiana Fournier, Lior Limonad and Inna Skarbovsky',
             Track: ' Foundations'
           },
           {
             Hour: '10:45-11:00',
-            Title: 'From Sound Workflow Nets to LTL Declarative Specifications by Casting Three Spells',
-            Authors: 'Luca Barbaro, Giovanni Varricchione, Marco Montali and Claudio Di Ciccio',
+            Title:
+              'From Sound Workflow Nets to LTL Declarative Specifications by Casting Three Spells',
+            Authors:
+              'Luca Barbaro, Giovanni Varricchione, Marco Montali and Claudio Di Ciccio',
             Track: ' Foundations',
             Artifact: 'https://zenodo.org/records/15528893'
           },
           {
             Hour: '11:00-11:15',
-            Title: 'A Self-Orchestration Model for Business Collaborations with Verifiable Process History Credentials',
+            Title:
+              'A Self-Orchestration Model for Business Collaborations with Verifiable Process History Credentials',
             Authors: 'Martin Farkas, Bertalan Zoltán Péter and Imre Kocsis',
             Track: ' Foundations'
           },
           {
             Hour: '11:15-11:30',
-            Title: 'Comparing Apples with Oranges: An Assessment Framework for Model-System Similarity',
-            Authors: 'Martin Kabierski, Jana-Rebecca Rehse and Jan Martin van der Werf',
+            Title:
+              'Comparing Apples with Oranges: An Assessment Framework for Model-System Similarity',
+            Authors:
+              'Martin Kabierski, Jana-Rebecca Rehse and Jan Martin van der Werf',
             Track: ' Foundations',
             Artifact: 'https://doi.org/10.5281/zenodo.15652385'
           },
           {
             Hour: '11:30-11:45',
             Title: 'Stochastic BPMN and Their Conformance',
-            Authors: 'Aleksandar Kuzmanoski, Jan Niklas van Detten and Sander J. J. Leemans',
+            Authors:
+              'Aleksandar Kuzmanoski, Jan Niklas van Detten and Sander J. J. Leemans',
             Track: ' Foundations'
           },
           {
             Hour: '11:45-12:00',
-            Title: 'Rethinking Business Process Simulation: A Utility-Based Evaluation Framework',
-            Authors: 'Konrad Özdemir, Lukas Kirchdorfer, Keyvan Amiri Elyasi, Han van der Aa and Heiner Stuckenschmidt',
+            Title:
+              'Rethinking Business Process Simulation: A Utility-Based Evaluation Framework',
+            Authors:
+              'Konrad Özdemir, Lukas Kirchdorfer, Keyvan Amiri Elyasi, Han van der Aa and Heiner Stuckenschmidt',
             Track: ' Foundations',
             Artifact: 'https://doi.org/10.5281/zenodo.15489551'
           },
@@ -604,25 +696,32 @@ export const program_overviews: ProgramOverview[] = [
         showRowIndex: false,
         rows: [
           {
-            Title: 'A Simple and Calibrated Approach for Uncertainty-Aware Remaining Time Prediction',
-            Authors: 'Keyvan Amiri Elyasi, Han van der Aa and Heiner Stuckenschmidt',
+            Title:
+              'A Simple and Calibrated Approach for Uncertainty-Aware Remaining Time Prediction',
+            Authors:
+              'Keyvan Amiri Elyasi, Han van der Aa and Heiner Stuckenschmidt',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.5281/zenodo.15538249'
           },
           {
-            Title: 'A Human-In-The-Loop Approach for Improving Fairness in Predictive Business Process Monitoring',
-            Authors: 'Martin Käppel, Julian Neuberger, Felix Möhrlen, Sven Weinzierl, Martin Matzner and Stefan Jablonski',
+            Title:
+              'A Human-In-The-Loop Approach for Improving Fairness in Predictive Business Process Monitoring',
+            Authors:
+              'Martin Käppel, Julian Neuberger, Felix Möhrlen, Sven Weinzierl, Martin Matzner and Stefan Jablonski',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.5281/zenodo.15387576'
           },
           {
-            Title: 'BEST: Bilaterally Expanding Subtrace Tree for Event Sequence Prediction',
-            Authors: 'Simon Rauch, Christian Frey, Andrea Maldonado and Thomas Seidl',
+            Title:
+              'BEST: Bilaterally Expanding Subtrace Tree for Event Sequence Prediction',
+            Authors:
+              'Simon Rauch, Christian Frey, Andrea Maldonado and Thomas Seidl',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.5281/zenodo.15547095'
           },
           {
-            Title: 'Leveraging Temporal Graphs for Enhancing Transformer-based Predictive Process Monitoring',
+            Title:
+              'Leveraging Temporal Graphs for Enhancing Transformer-based Predictive Process Monitoring',
             Authors: 'Marc C. Hennig and Rainer Schmidt',
             Track: ' Engineering'
           },
@@ -638,25 +737,30 @@ export const program_overviews: ProgramOverview[] = [
         showRowIndex: false,
         rows: [
           {
-            Title: 'Multi-Objective Metaheuristics for Effective and Efficient Process Discovery',
+            Title:
+              'Multi-Objective Metaheuristics for Effective and Efficient Process Discovery',
             Authors: 'Haonan Zhan, Rajkumar Buyya and Artem Polyvyanyy',
             Track: ' Engineering'
           },
           {
-            Title: 'OC-DECLARE: Discovering Object-Centric Declarative Patterns with Synchronization',
+            Title:
+              'OC-DECLARE: Discovering Object-Centric Declarative Patterns with Synchronization',
             Authors: 'Aaron Kürsters and Wil van der Aalst',
             Track: ' Foundations',
             Artifact: 'https://doi.org/10.5281/zenodo.15554279'
           },
           {
-            Title: 'Unlocking Non-Block-Structured Decisions: Inductive Mining with Choice Graphs',
+            Title:
+              'Unlocking Non-Block-Structured Decisions: Inductive Mining with Choice Graphs',
             Authors: 'Humam Kourani, Gyunam Park and Wil van der Aalst',
             Track: ' Foundations',
             Artifact: 'https://doi.org/10.5281/zenodo.15050973'
           },
           {
-            Title: 'Modeling, Formalizing, and Animating Environment-Aware BPMN Collaborations',
-            Authors: 'Flavio Corradini, Luca Mazzanti, Jessica Piccinni, Barbara Re, Lorenzo Rossi and Francesco Tiezzi',
+            Title:
+              'Modeling, Formalizing, and Animating Environment-Aware BPMN Collaborations',
+            Authors:
+              'Flavio Corradini, Luca Mazzanti, Jessica Piccinni, Barbara Re, Lorenzo Rossi and Francesco Tiezzi',
             Track: ' Foundations',
             Artifact: 'https://doi.org/10.5281/zenodo.15545804'
           }
@@ -667,17 +771,21 @@ export const program_overviews: ProgramOverview[] = [
         showRowIndex: false,
         rows: [
           {
-            Title: 'MANTA: Materializing Views on Event Data for Context Exploration in Process Analysis',
-            Authors: 'Maike Baumer, Hannes Keck, Dirk Fahland and Matthias Weidlich',
+            Title:
+              'MANTA: Materializing Views on Event Data for Context Exploration in Process Analysis',
+            Authors:
+              'Maike Baumer, Hannes Keck, Dirk Fahland and Matthias Weidlich',
             Track: ' Foundations'
           },
           {
-            Title: 'Multi-task trained Graph Neural Network for Business Process Anomaly Detection with a Limited Number of Labeled Anomalies',
+            Title:
+              'Multi-task trained Graph Neural Network for Business Process Anomaly Detection with a Limited Number of Labeled Anomalies',
             Authors: 'Yonguo Lei, Dohoe Kim, Dongkwan Kim and Hyelim Bae',
             Track: ' Engineering'
           },
           {
-            Title: 'Secrecy Preservation for Online Process Monitoring with Trusted Execution Environment',
+            Title:
+              'Secrecy Preservation for Online Process Monitoring with Trusted Execution Environment',
             Authors: 'Davide Basile and Claudio Di Ciccio',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.5281/zenodo.15545154'
@@ -689,28 +797,36 @@ export const program_overviews: ProgramOverview[] = [
         showRowIndex: false,
         rows: [
           {
-            Title: 'Identifying Negative Contingencies Within Process Mining Initiatives',
+            Title:
+              'Identifying Negative Contingencies Within Process Mining Initiatives',
             Authors: 'Axuria Hijirani and Marco Comuzzi',
             Track: ' Management'
           },
           {
-            Title: 'Mental Maps in Process Mining: Does Stabilizing DFGs Improve Process Analysis Performance?',
+            Title:
+              'Mental Maps in Process Mining: Does Stabilizing DFGs Improve Process Analysis Performance?',
             Authors: 'Marie-Christin Hage and Jana-Rebecca Rehse',
             Track: ' Management'
           },
           {
-            Title: 'From Temporary Fixes to Informed Decisions—Design Echelons for Evaluating Workarounds',
-            Authors: 'Marie Gensich, Astrid Jähr, Klaus Schmeck, Christina Bertelheimer and Daniel Beverungen',
+            Title:
+              'From Temporary Fixes to Informed Decisions—Design Echelons for Evaluating Workarounds',
+            Authors:
+              'Marie Gensich, Astrid Jähr, Klaus Schmeck, Christina Bertelheimer and Daniel Beverungen',
             Track: ' Management'
           },
           {
-            Title: 'Beyond Profit: The Role of Benevolent Business Processes in Building Long-Term Firm Success',
-            Authors: 'Thamali Chandrasiri, Wasana Bandara, Oktay Turetken, Nadine Ostern, Michael Rosemann and Marleen Voss',
+            Title:
+              'Beyond Profit: The Role of Benevolent Business Processes in Building Long-Term Firm Success',
+            Authors:
+              'Thamali Chandrasiri, Wasana Bandara, Oktay Turetken, Nadine Ostern, Michael Rosemann and Marleen Voss',
             Track: ' Management'
           },
           {
-            Title: 'Light and Dark Presence of Technostress in RPA: Systematic Review of Qualitative Data',
-            Authors: 'Kamilla Wells, Rehan Syed, Wasana Bandara and Ignatius Chukwudi',
+            Title:
+              'Light and Dark Presence of Technostress in RPA: Systematic Review of Qualitative Data',
+            Authors:
+              'Kamilla Wells, Rehan Syed, Wasana Bandara and Ignatius Chukwudi',
             Track: ' Management'
           }
         ]
@@ -720,24 +836,29 @@ export const program_overviews: ProgramOverview[] = [
         showRowIndex: false,
         rows: [
           {
-            Title: 'Process Area Extraction by Multilevel Resource Detection for Object-Centric Process Mining',
+            Title:
+              'Process Area Extraction by Multilevel Resource Detection for Object-Centric Process Mining',
             Authors: 'Lukas Ill and Wil van der Aalst',
             Track: ' Foundations',
             Artifact: 'https://doi.org/10.5281/zenodo.15554409'
           },
           {
-            Title: 'Online Discovery of Simulation Models for Evolving Business Processes',
+            Title:
+              'Online Discovery of Simulation Models for Evolving Business Processes',
             Authors: 'Francesco Vietti, Gyunam Park and Wil van der Aalst',
             Track: ' Engineering'
           },
           {
-            Title: 'A Divide-and-Conquer Approach for Modeling Arrival Times in Business Process Simulation',
-            Authors: 'Jan Kernbach, Yorck Zisgen, Stjepan Kuselić, Han van der Aa and Heiner Stuckenschmidt',
+            Title:
+              'A Divide-and-Conquer Approach for Modeling Arrival Times in Business Process Simulation',
+            Authors:
+              'Jan Kernbach, Yorck Zisgen, Stjepan Kuselić, Han van der Aa and Heiner Stuckenschmidt',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.5281/zenodo.15489114'
           },
           {
-            Title: 'Optimization of Activity Batching Policies in Business Processes',
+            Title:
+              'Optimization of Activity Batching Policies in Business Processes',
             Authors: 'Orlenys López-Pintado, Janik Barenbaum and Marlon Dumas',
             Track: ' Engineering'
           }
@@ -748,31 +869,38 @@ export const program_overviews: ProgramOverview[] = [
         showRowIndex: false,
         rows: [
           {
-            Title: 'FoldA: Computing Partial-Order Alignments Using Directed Net Unfoldings',
+            Title:
+              'FoldA: Computing Partial-Order Alignments Using Directed Net Unfoldings',
             Authors: 'Douwe Geurjens and Xixi Lu',
             Track: ' Foundations',
             Artifact: 'https://doi.org/10.5281/zenodo.15552463'
           },
           {
-            Title: 'Efficient Conformance Checking of Rich Data-Aware Declare Specifications',
-            Authors: 'Mechti Sadouki, Seyed Iman Mirrezaei, Alessandro Gianola, Marco Montali, Manuel Gall and Wil van der Aalst',
+            Title:
+              'Efficient Conformance Checking of Rich Data-Aware Declare Specifications',
+            Authors:
+              'Mechti Sadouki, Seyed Iman Mirrezaei, Alessandro Gianola, Marco Montali, Manuel Gall and Wil van der Aalst',
             Track: ' Foundations',
             Artifact: 'https://doi.org/10.5281/zenodo.15470076'
           },
           {
-            Title: 'A Full Picture in Conformance Checking: Efficiently Summarizing All Optimal Alignments',
+            Title:
+              'A Full Picture in Conformance Checking: Efficiently Summarizing All Optimal Alignments',
             Authors: 'Philipp Bär, Moe Wynn and Sander J. J. Leemans',
             Track: ' Foundations',
             Artifact: 'https://doi.org/10.5281/zenodo.15464520'
           },
           {
-            Title: 'Aligning Metric Temporal Constraints and Event Logs via Numeric Planning',
-            Authors: 'Giacomo Achelli, Elia De Bellis, Fabrizio Maria Maggi, Andrea Marrella and Fabio Patrizi',
+            Title:
+              'Aligning Metric Temporal Constraints and Event Logs via Numeric Planning',
+            Authors:
+              'Giacomo Achelli, Elia De Bellis, Fabrizio Maria Maggi, Andrea Marrella and Fabio Patrizi',
             Track: ' Foundations',
             Artifact: 'https://doi.org/10.5281/zenodo.15561164'
           },
           {
-            Title: 'Stochastic Alignments: Matching an Observed Trace to Stochastic Process Models',
+            Title:
+              'Stochastic Alignments: Matching an Observed Trace to Stochastic Process Models',
             Authors: 'Tian Li, Artem Polyvyanyy and Sander J. J. Leemans',
             Track: ' Foundations'
           }
@@ -783,25 +911,31 @@ export const program_overviews: ProgramOverview[] = [
         showRowIndex: false,
         rows: [
           {
-            Title: 'A Step Towards Cognitive Automation: Integrating LLM Agents with Process Rules',
-            Authors: 'Sascha Kallenbach, Alexander Skoik, Oliver Müller and Daniel Beverungen',
+            Title:
+              'A Step Towards Cognitive Automation: Integrating LLM Agents with Process Rules',
+            Authors:
+              'Sascha Kallenbach, Alexander Skoik, Oliver Müller and Daniel Beverungen',
             Track: ' Engineering'
           },
           {
-            Title: 'Discovering Multivariate Conditional Rules through Automatic Reasoning-Enhanced Feature Generation for Process Outcome Explanation',
+            Title:
+              'Discovering Multivariate Conditional Rules through Automatic Reasoning-Enhanced Feature Generation for Process Outcome Explanation',
             Authors: 'Catherine Sai and Stefanie Rinderle-Ma',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.5281/zenodo.15472253'
           },
           {
-            Title: 'A Procedural Framework for Assessing the Desirability of Process Deviations',
+            Title:
+              'A Procedural Framework for Assessing the Desirability of Process Deviations',
             Authors: 'Michael Grohs, Nadine Cordes and Jana-Rebecca Rehse',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.6084/m9.figshare.28546982'
           },
           {
-            Title: 'Ambiguity Detection in Business Process Descriptions: An Evidence and An Automated Approach',
-            Authors: 'Hugo A. López, Birgitta Ferg, Jonas Lindner, Marco Franceschetti and Amine Abbad-Andaloussi',
+            Title:
+              'Ambiguity Detection in Business Process Descriptions: An Evidence and An Automated Approach',
+            Authors:
+              'Hugo A. López, Birgitta Ferg, Jonas Lindner, Marco Franceschetti and Amine Abbad-Andaloussi',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.5281/zenodo.15583105'
           }
