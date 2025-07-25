@@ -454,7 +454,7 @@ export const program_overviews: ProgramOverview[] = [
           {
             Hour: '11:45-12:00',
             Title: 'Discovering Comprehensive Branched Declarative Process Constraints',
-            Authors: 'Christos Balaktsis, Ioannis Mavroedopoulos, Marco Comuzzi, Anastasios Gounaris and Fabrizio Maria Maggi',
+            Authors: 'Christos Balaktsis, Ioannis Mavroudopoulos, Marco Comuzzi, Anastasios Gounaris and Fabrizio Maria Maggi',
             Track: ' Engineering'
           },
           {
@@ -566,7 +566,7 @@ export const program_overviews: ProgramOverview[] = [
           {
             Hour: '11:45-12:00',
             Title: 'Comparing Apples with Oranges: An Assessment Framework for Model-System Similarity',
-            Authors: 'Martin Kabierski, Jana-Rebecca Rehse and Jan Martin van der Werf',
+            Authors: 'Martin Kabierski, Jana-Rebecca Rehse and Jan Martijn van der Werf',
             Track: ' Foundations',
             Artifact: 'https://doi.org/10.5281/zenodo.15652385'
           },
@@ -704,7 +704,7 @@ export const program_overviews: ProgramOverview[] = [
           },
           {
             Title: 'Beyond Profit: The Role of Benevolent Business Processes in Building Long-Term Firm Success',
-            Authors: 'Thamali Chandrasiri, Wasana Bandara, Oktay Turetken, Nadine Ostern, Michael Rosemann and Marleen Voss',
+            Authors: 'Thamali Chandrasiri, Nicole Croes, Wasana Bandara, Oktay Turetken, Nadine Ostern, Michael Rosemann and Marleen Voss',
             Track: ' Management'
           },
           {
