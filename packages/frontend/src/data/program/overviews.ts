@@ -610,7 +610,7 @@ export const program_overviews: ProgramOverview[] = [
           },
           {
             Title: 'A Human-In-The-Loop Approach for Improving Fairness in Predictive Business Process Monitoring',
-            Authors: 'Martin Käppel, Julian Neuberger, Felix Möhrlen, Sven Weinzierl, Martin Matzner and Stefan Jablonski',
+            Authors: 'Martin Käppel, Julian Neuberger, Felix Möhrlein, Sven Weinzierl, Martin Matzner and Stefan Jablonski',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.5281/zenodo.15387576'
           },
@@ -627,7 +627,7 @@ export const program_overviews: ProgramOverview[] = [
           },
           {
             Title: 'Global Predictive Monitoring of Object-Centric Processes',
-            Authors: 'Massimiliano de Leoni and Reina Camacho Saavedra',
+            Authors: 'Massimiliano De Leoni and Pietro Volpato',
             Track: ' Engineering'
           }
         ]
@@ -638,12 +638,12 @@ export const program_overviews: ProgramOverview[] = [
         rows: [
           {
             Title: 'Multi-Objective Metaheuristics for Effective and Efficient Process Discovery',
-            Authors: 'Haonan Zhan, Rajkumar Buyya and Artem Polyvyanyy',
+            Authors: 'Hootan Zhian, Rajkumar Buyya and Artem Polyvyanyy',
             Track: ' Engineering'
           },
           {
             Title: 'OC-DECLARE: Discovering Object-Centric Declarative Patterns with Synchronization',
-            Authors: 'Aaron Kürsters and Wil van der Aalst',
+            Authors: 'Aaron Küsters and Wil van der Aalst',
             Track: ' Foundations',
             Artifact: 'https://doi.org/10.5281/zenodo.15554279'
           },
@@ -655,7 +655,7 @@ export const program_overviews: ProgramOverview[] = [
           },
           {
             Title: 'Modeling, Formalizing, and Animating Environment-Aware BPMN Collaborations',
-            Authors: 'Flavio Corradini, Luca Mazzanti, Jessica Piccinni, Barbara Re, Lorenzo Rossi and Francesco Tiezzi',
+            Authors: 'Flavio Corradini, Luca Mozzoni, Jessica Piccioni, Barbara Re, Lorenzo Rossi and Francesco Tiezzi',
             Track: ' Foundations',
             Artifact: 'https://doi.org/10.5281/zenodo.15545804'
           }
@@ -667,12 +667,12 @@ export const program_overviews: ProgramOverview[] = [
         rows: [
           {
             Title: 'MANTA: Materializing Views on Event Data for Context Exploration in Process Analysis',
-            Authors: 'Maike Baumer, Hannes Keck, Dirk Fahland and Matthias Weidlich',
+            Authors: 'Maike Basmer, Hannes Ueck, Dirk Fahland and Matthias Weidlich',
             Track: ' Foundations'
           },
           {
             Title: 'Multi-task trained Graph Neural Network for Business Process Anomaly Detection with a Limited Number of Labeled Anomalies',
-            Authors: 'Yonguo Lei, Dohoe Kim, Dongkwan Kim and Hyelim Bae',
+            Authors: 'Yongjae Lee, Dohee Kim, Donghwan Kim and Hyerim Bae',
             Track: ' Engineering'
           },
           {
@@ -689,17 +689,17 @@ export const program_overviews: ProgramOverview[] = [
         rows: [
           {
             Title: 'Identifying Negative Contingencies Within Process Mining Initiatives',
-            Authors: 'Axuria Hijirani and Marco Comuzzi',
+            Authors: 'Astria Hijriani and Marco Comuzzi',
             Track: ' Management'
           },
           {
             Title: 'Mental Maps in Process Mining: Does Stabilizing DFGs Improve Process Analysis Performance?',
-            Authors: 'Marie-Christin Hage and Jana-Rebecca Rehse',
+            Authors: 'Marie-Christin Häge and Jana-Rebecca Rehse',
             Track: ' Management'
           },
           {
             Title: 'From Temporary Fixes to Informed Decisions—Design Echelons for Evaluating Workarounds',
-            Authors: 'Marie Gensich, Astrid Jähr, Klaus Schmeck, Christina Bertelheimer and Daniel Beverungen',
+            Authors: 'Malte Reineke, Bernd Löhr, Agnes Aßbrock, Christian Bartelheimer and Daniel Beverungen',
             Track: ' Management'
           },
           {
@@ -720,24 +720,24 @@ export const program_overviews: ProgramOverview[] = [
         rows: [
           {
             Title: 'Process Area Extraction by Multilevel Resource Detection for Object-Centric Process Mining',
-            Authors: 'Lukas Ill and Wil van der Aalst',
+            Authors: 'Lukas Liß and Wil van der Aalst',
             Track: ' Foundations',
             Artifact: 'https://doi.org/10.5281/zenodo.15554409'
           },
           {
             Title: 'Online Discovery of Simulation Models for Evolving Business Processes',
-            Authors: 'Francesco Vietti, Gyunam Park and Wil van der Aalst',
+            Authors: 'Francesco Vinci, Gyunam Park, Wil van der Aalst and Massimiliano de Leoni',
             Track: ' Engineering'
           },
           {
             Title: 'A Divide-and-Conquer Approach for Modeling Arrival Times in Business Process Simulation',
-            Authors: 'Jan Kernbach, Yorck Zisgen, Stjepan Kuselić, Han van der Aa and Heiner Stuckenschmidt',
+            Authors: 'Lukas Kirchdorfer, Konrad Özdemir, Stjepan Kusenic, Han van der Aa and Heiner Stuckenschmidt',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.5281/zenodo.15489114'
           },
           {
             Title: 'Optimization of Activity Batching Policies in Business Processes',
-            Authors: 'Orlenys López-Pintado, Janik Barenbaum and Marlon Dumas',
+            Authors: 'Orlenys López-Pintado, Jannis Rosenbaum and Marlon Dumas',
             Track: ' Engineering'
           }
         ]
@@ -748,13 +748,13 @@ export const program_overviews: ProgramOverview[] = [
         rows: [
           {
             Title: 'FoldA: Computing Partial-Order Alignments Using Directed Net Unfoldings',
-            Authors: 'Douwe Geurjens and Xixi Lu',
+            Authors: 'Douwe Geurtjens and Xixi Lu',
             Track: ' Foundations',
             Artifact: 'https://doi.org/10.5281/zenodo.15552463'
           },
           {
             Title: 'Efficient Conformance Checking of Rich Data-Aware Declare Specifications',
-            Authors: 'Mechti Sadouki, Seyed Iman Mirrezaei, Alessandro Gianola, Marco Montali, Manuel Gall and Wil van der Aalst',
+            Authors: 'Jacobo Casas-Ramos, Sarah Winkler, Alessandro Gianola, Marco Montali, Manuel Mucientes and Manuel Lama',
             Track: ' Foundations',
             Artifact: 'https://doi.org/10.5281/zenodo.15470076'
           },
@@ -766,7 +766,7 @@ export const program_overviews: ProgramOverview[] = [
           },
           {
             Title: 'Aligning Metric Temporal Constraints and Event Logs via Numeric Planning',
-            Authors: 'Giacomo Achelli, Elia De Bellis, Fabrizio Maria Maggi, Andrea Marrella and Fabio Patrizi',
+            Authors: 'Giacomo Acitelli, Elisa De Bellis, Fabrizio Maria Maggi, Andrea Marrella and Fabio Patrizi',
             Track: ' Foundations',
             Artifact: 'https://doi.org/10.5281/zenodo.15561164'
           },
@@ -783,7 +783,7 @@ export const program_overviews: ProgramOverview[] = [
         rows: [
           {
             Title: 'A Step Towards Cognitive Automation: Integrating LLM Agents with Process Rules',
-            Authors: 'Sascha Kallenbach, Alexander Skoik, Oliver Müller and Daniel Beverungen',
+            Authors: 'Sascha Kaltenpoth, Alexander Skolik, Oliver Müller and Daniel Beverungen',
             Track: ' Engineering'
           },
           {
@@ -800,7 +800,7 @@ export const program_overviews: ProgramOverview[] = [
           },
           {
             Title: 'Ambiguity Detection in Business Process Descriptions: An Evidence and An Automated Approach',
-            Authors: 'Hugo A. López, Birgitta Ferg, Jonas Lindner, Marco Franceschetti and Amine Abbad-Andaloussi',
+            Authors: 'Hugo A. López, Bingkun Feng, Jonas Lindner, Marco Franceschetti and Amine Abbad-Andaloussi',
             Track: ' Engineering',
             Artifact: 'https://doi.org/10.5281/zenodo.15583105'
           }
