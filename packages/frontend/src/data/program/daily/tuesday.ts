@@ -3,73 +3,144 @@ import { type ScheduleEvent, locations } from './day';
 export const tuesdayEvents: ScheduleEvent[] = [
   {
     title: 'Lunch Break',
-    start: new Date(2025, 8, 2, 12, 30),
-    end: new Date(2025, 8, 2, 14, 0),
+    start: new Date(2025, 8, 2, 13, 0),
+    end: new Date(2025, 8, 2, 14, 30),
     category: 'lunch',
     full: true
   },
   {
-    title: 'Keynote',
+    title: 'Coffee Break',
+    start: new Date(2025, 8, 2, 10, 30),
+    end: new Date(2025, 8, 2, 11, 0),
+    category: 'lunch',
+    full: true
+  },
+  {
+    title: 'Coffee Break',
+    start: new Date(2025, 8, 2, 16, 0),
+    end: new Date(2025, 8, 2, 16, 30),
+    category: 'lunch',
+    full: true
+  },
+  {
+    title: 'Opening Ceremony',
     start: new Date(2025, 8, 2, 9, 0),
-    end: new Date(2025, 8, 2, 10, 0),
+    end: new Date(2025, 8, 2, 9, 30),
     category: 'keynote',
-    location: locations.estepa
+    location: locations.giralda
   },
   {
-    title: 'Conference',
-    start: new Date(2025, 8, 2, 10, 30),
-    end: new Date(2025, 8, 2, 12, 30),
+    title: 'Keynote: Shazia Sadiq',
+    start: new Date(2025, 8, 2, 9, 30),
+    end: new Date(2025, 8, 2, 10, 30),
+    category: 'keynote',
+    location: locations.giralda,
+    href: '/program/keynotes'
+  },
+  {
+    title: 'Main Track 1',
+    start: new Date(2025, 8, 2, 11, 0),
+    end: new Date(2025, 8, 2, 13, 0),
     category: 'conference_1',
-    location: locations.estepa
+    location: locations.giralda
   },
   {
-    title: 'Conference',
-    start: new Date(2025, 8, 2, 14, 0),
-    end: new Date(2025, 8, 2, 15, 30),
+    title: 'Main Track 2',
+    start: new Date(2025, 8, 2, 14, 30),
+    end: new Date(2025, 8, 2, 16, 0),
     category: 'conference_1',
-    location: locations.estepa
+    location: locations.giralda
   },
   {
-    title: 'Conference',
-    start: new Date(2025, 8, 2, 16, 0),
-    end: new Date(2025, 8, 2, 17, 30),
+    title: 'Main Track 3',
+    start: new Date(2025, 8, 2, 16, 30),
+    end: new Date(2025, 8, 2, 18, 0),
     category: 'conference_1',
-    location: locations.estepa
+    location: locations.giralda
   },
   {
-    title: 'Educators Forum',
-    start: new Date(2025, 8, 2, 10, 30),
-    end: new Date(2025, 8, 2, 12, 30),
+    title: 'BPM Forum 1',
+    start: new Date(2025, 8, 2, 11, 0),
+    end: new Date(2025, 8, 2, 13, 0),
+    category: 'bpm_forum',
+    location: locations.arenal
+  },
+  {
+    title: 'Educators Forum 2',
+    start: new Date(2025, 8, 2, 14, 30),
+    end: new Date(2025, 8, 2, 16, 0),
     category: 'forum_1',
-    location: locations.triana
+    location: locations.arenal
   },
   {
-    title: 'Educators Forum',
-    start: new Date(2025, 8, 2, 14, 0),
-    end: new Date(2025, 8, 2, 15, 30),
+    title: 'Educators Forum 3',
+    start: new Date(2025, 8, 2, 16, 30),
+    end: new Date(2025, 8, 2, 18, 0),
     category: 'forum_1',
-    location: locations.triana
+    location: locations.arenal
   },
   {
-    title: 'Educators Forum',
-    start: new Date(2025, 8, 2, 16, 0),
-    end: new Date(2025, 8, 2, 17, 30),
-    category: 'forum_1',
-    location: locations.triana
-  },
-  {
-    title: 'Process Technology Forum',
-    start: new Date(2025, 8, 2, 10, 30),
-    end: new Date(2025, 8, 2, 12, 30),
-    category: 'forum_2',
+    title: 'Process Technology 1',
+    start: new Date(2025, 8, 2, 11, 0),
+    end: new Date(2025, 8, 2, 13, 0),
+    category: 'objects',
     location: locations.nervion
   },
   {
-    title: 'Process Technology Forum',
-    start: new Date(2025, 8, 2, 14, 0),
-    end: new Date(2025, 8, 2, 15, 30),
-    category: 'forum_2',
+    title: 'Process Technology 2',
+    start: new Date(2025, 8, 2, 14, 30),
+    end: new Date(2025, 8, 2, 16, 0),
+    category: 'objects',
     location: locations.nervion
+  },
+  {
+    title: 'Tutorials 1',
+    start: new Date(2025, 8, 2, 16, 30),
+    end: new Date(2025, 8, 2, 18, 0),
+    category: 'workshop',
+    location: locations.nervion
+  },
+  {
+    title: 'Educators Forum 1',
+    start: new Date(2025, 8, 2, 11, 0),
+    end: new Date(2025, 8, 2, 13, 0),
+    category: 'forum_1',
+    location: locations.triana
+  },
+  {
+    title: 'Journal First 2',
+    start: new Date(2025, 8, 2, 14, 30),
+    end: new Date(2025, 8, 2, 16, 0),
+    category: 'journal_first',
+    location: locations.triana
+  },
+  {
+    title: 'Journal First 3',
+    start: new Date(2025, 8, 2, 16, 30),
+    end: new Date(2025, 8, 2, 18, 0),
+    category: 'journal_first',
+    location: locations.triana
+  },
+  {
+    title: 'Journal First 1',
+    start: new Date(2025, 8, 2, 11, 0),
+    end: new Date(2025, 8, 2, 13, 0),
+    category: 'journal_first',
+    location: locations.estepa
+  },
+  {
+    title: 'SC Meeting',
+    start: new Date(2025, 8, 2, 14, 30),
+    end: new Date(2025, 8, 2, 16, 0),
+    category: 'consortium',
+    location: locations.estepa
+  },
+  {
+    title: 'SC Meeting',
+    start: new Date(2025, 8, 2, 16, 30),
+    end: new Date(2025, 8, 2, 18, 0),
+    category: 'consortium',
+    location: locations.estepa
   },
   {
     title: 'Guided Tour of Reales Alcázares',

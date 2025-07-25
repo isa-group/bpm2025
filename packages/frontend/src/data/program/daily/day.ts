@@ -6,7 +6,7 @@ export interface ScheduleEvent {
   location?: EventLocation;
   category: 'forum_1' | 'forum_2' | 'forum_3' | 'keynote'
     | 'conference_1' | 'conference_2' | 'workshop' | 'social'
-    | 'lunch' | 'demos' | 'consortium'
+    | 'lunch' | 'demos' | 'consortium' | 'journal_first' | 'bpm_forum'
     | 'ai4bpm' | 'objects' | 'automate' | 'fmbpm' | 'vipra'
     | 'nlp4bpm' | 'bpmeetiot' | 'innov8bpm' | 'prody' | 'dlt4bpm' | 'plc';
   href?: string;
@@ -21,39 +21,39 @@ export interface EventLocation {
 
 export const locations: Record<string, EventLocation> = {
   'estepa': {
-    name: '"Estepa" Hall',
-    address: '123 Main St, City, Country',
-    url: 'https://example.com/main-auditorium'
+    name: '"Estepa" Hall'
   },
   'ecija': {
-    name: '"Ecija" Hall',
-    address: '456 Conference Rd, City, Country',
-    url: 'https://example.com/conference-room-a'
+    name: '"Ecija" Hall'
   },
   'prado': {
-    name: '"Prado" Hall',
-    address: '789 Workshop Ave, City, Country',
-    url: 'https://example.com/workshop-hall-b'
+    name: '"Prado" Hall'
   },
   'lebrija': {
-    name: '"Lebrija" Hall',
-    address: '101 Social St, City, Country',
-    url: 'https://example.com/social-hall'
+    name: '"Lebrija" Hall'
   },
   'utrera': {
-    name: '"Utrera" Hall',
-    address: '202 Demo Blvd, City, Country',
-    url: 'https://example.com/demo-hall'
+    name: '"Utrera" Hall'
   },
   'triana': {
-    name: '"Triana" Hall',
-    address: '303 Consortium Pl, City, Country',
-    url: 'https://example.com/consortium-hall'
+    name: '"Triana" Hall'
   },
   'nervion': {
-    name: '"Nervión" Hall',
-    address: '303 Consortium Pl, City, Country',
-    url: 'https://example.com/consortium-hall'
+    name: '"Nervión" Hall'
+  },
+  'giralda': {
+    name: '"Giralda" Hall'
+  },
+  'arenal': {
+    name: '"Arenal" Hall'
+  },
+  'sta_cruz': {
+    name: '"Santa Cruz" Hall'
+  },
+  'raza': {
+    name: 'La Raza Puerto',
+    address: 'Muelle de las Delicias, s/n. Módulo Norte, 41012 Seville, Spain',
+    url: 'https://maps.app.goo.gl/1qHp5r5Qn3CZeaFDA'
   },
   'tobbaco': {
     name: 'Royal Tobacco Factory',

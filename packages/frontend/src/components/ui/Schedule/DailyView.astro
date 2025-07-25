@@ -114,6 +114,10 @@ function getLocationUrl(location: string): string | undefined {
 {(() => {
   const columns = locations.map(location => () => {
     const url = getLocationUrl(location);
+    if (locations.length === 1) {
+      return null;
+    }
+
     return (
       <div class="h-full flex flex-col items-center justify-center">
         {url
