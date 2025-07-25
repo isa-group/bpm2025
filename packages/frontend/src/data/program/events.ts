@@ -64,5 +64,5 @@ export const events = [
         venues.
       </p>
     `
-  },
+  }
 ];
