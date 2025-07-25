@@ -24,7 +24,7 @@ export const program_overviews: ProgramOverview[] = [
     date: 'Tuesday, Sept 2nd, 2025',
     tables: [
       {
-        title: '1st Session (11:00 - 13:00): Mathias Weske, Remco Dijkman',
+        title: 'Session 1 (11:00 - 13:00): Mathias Weske, Remco Dijkman',
         rows: [
           {
             Hour: '11:00',
@@ -63,7 +63,7 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: '2nd Session (14:30 - 16:00): Dimka Karastoyanova',
+        title: 'Session 2 (14:30 - 16:00): Dimka Karastoyanova',
         rows: [
           {
             Hour: '14:30',
@@ -109,7 +109,7 @@ export const program_overviews: ProgramOverview[] = [
     date: 'Wednesday, Sept 3rd, 2025',
     tables: [
       {
-        title: '1st Session (11:00 - 13:00)',
+        title: 'Session 1 (11:00 - 13:00)',
         rows: [
           {
             Hour: '11:00',
@@ -154,7 +154,7 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: '2nd Session (14:30 - 16:00)',
+        title: 'Session 2 (14:30 - 16:00)',
         rows: [
           {
             Hour: '-',
@@ -182,7 +182,7 @@ export const program_overviews: ProgramOverview[] = [
     date: 'Thursday, Sept 4th, 2025',
     tables: [
       {
-        title: '1st Session (11:00 - 13:00)',
+        title: 'Session 1 (11:00 - 13:00)',
         rows: [
           {
             Hour: '11:00',
@@ -221,7 +221,7 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: '2nd Session (14:30 - 16:00)',
+        title: 'Session 2 (14:30 - 16:00)',
         showRowIndex: true,
         rows: [
           {
@@ -329,7 +329,7 @@ export const program_overviews: ProgramOverview[] = [
     date: 'Tuesday, Sept 2nd, 2025',
     tables: [
       {
-        title: '1st Session (11:00 - 13:00): Technology Enhanced Learning',
+        title: 'Session 1 (11:00 - 13:00)',
         showRowIndex: false,
         rows: [
           {
@@ -370,7 +370,7 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: '2nd Session (14:30 - 16:00): Curriculum Innovation',
+        title: 'Session 2 (14:30 - 16:00)',
         showRowIndex: false,
         rows: [
           {
@@ -391,7 +391,7 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: '3rd Session (16:30 - 18:00): Bridging Academia & Industry',
+        title: 'Session 3 (16:30 - 18:00)',
         showRowIndex: false,
         rows: [
           {
@@ -428,7 +428,7 @@ export const program_overviews: ProgramOverview[] = [
     date: 'Tuesday, Sept 2nd - Thursday, Sept 4th, 2025',
     tables: [
       {
-        title: '1st Session - Tuesday, Sept 2nd, 2025 (11:00 - 13:00): Socio-Technical Perspectives in BPM',
+        title: 'Session 1 - Tuesday, Sept 2nd, 2025 (11:00 - 13:00): Socio-Technical Perspectives in BPM',
         showRowIndex: false,
         rows: [
           {
@@ -484,7 +484,7 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: '2nd Session - Wednesday, Sept 3rd, 2025 (11:00 - 13:00): Intelligent Automation and Optimization in BPM',
+        title: 'Session 2 - Wednesday, Sept 3rd, 2025 (11:00 - 13:00): Intelligent Automation and Optimization in BPM',
         showRowIndex: false,
         rows: [
           {
@@ -541,7 +541,7 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: '3rd Session - Thursday, Sept 4th, 2025 (11:00 - 13:00): Process Modeling, Simulation, and Verification',
+        title: 'Session 3 - Thursday, Sept 4th, 2025 (11:00 - 13:00): Process Modeling, Simulation, and Verification',
         showRowIndex: false,
         rows: [
           {
@@ -599,7 +599,7 @@ export const program_overviews: ProgramOverview[] = [
     location: '"Giralda" Hall',
     tables: [
       {
-        title: '1st Session - Tuesday, Sept 2nd, 2025 (11:00 - 13:00): Predictive Process Monitoring',
+        title: 'Session 1 - Tuesday, Sept 2nd, 2025 (11:00 - 13:00): Predictive Process Monitoring',
         showRowIndex: false,
         rows: [
           {
@@ -633,7 +633,7 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: '2nd Session - Tuesday, Sept 2nd, 2025 (14:30 - 16:00): Process Discovery and Analysis',
+        title: 'Session 2 - Tuesday, Sept 2nd, 2025 (14:30 - 16:00): Process Discovery and Analysis',
         showRowIndex: false,
         rows: [
           {
@@ -662,7 +662,7 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: '3rd Session - Tuesday, Sept 2nd, 2025 (16:30 - 18:00): Contextual and Secure Methods in Process Intelligence',
+        title: 'Session 3 - Tuesday, Sept 2nd, 2025 (16:30 - 18:00): Contextual and Secure Methods in Process Intelligence',
         showRowIndex: false,
         rows: [
           {
@@ -684,7 +684,7 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: '4th Session - Wednesday, Sept 3rd, 2025 (11:00 - 13:00): Cognitive and Organizational Dimensions',
+        title: 'Session 4 - Wednesday, Sept 3rd, 2025 (11:00 - 13:00): Cognitive and Organizational Dimensions',
         showRowIndex: false,
         rows: [
           {
@@ -715,7 +715,7 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: '5th Session - Wednesday, Sept 3rd, 2025 (14:30 - 16:00): Simulation, Resource Detection and Optimization',
+        title: 'Session 5 - Wednesday, Sept 3rd, 2025 (14:30 - 16:00): Simulation, Resource Detection and Optimization',
         showRowIndex: false,
         rows: [
           {
@@ -743,7 +743,7 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: '6th Session - Thursday, Sept 4th, 2025 (11:00 - 13:00): Conformance Checking and Temporal Constraints',
+        title: 'Session 6 - Thursday, Sept 4th, 2025 (11:00 - 13:00): Conformance Checking and Temporal Constraints',
         showRowIndex: false,
         rows: [
           {
@@ -778,7 +778,7 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: '7th Session - Thursday, Sept 4th, 2025 (14:30 - 16:00): Detecting Rules and Descriptions',
+        title: 'Session 7 - Thursday, Sept 4th, 2025 (14:30 - 16:00): Detecting Rules and Descriptions',
         showRowIndex: false,
         rows: [
           {
