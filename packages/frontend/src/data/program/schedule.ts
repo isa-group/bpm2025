@@ -50,7 +50,28 @@ export const events: ScheduleEvent[] = [
     title: 'Workshops',
     start: new Date(2025, 8, 1, 9, 0),
     end: new Date(2025, 8, 1, 10, 30),
-    category: 'workshop'
+    category: 'workshop',
+    description: `
+      <i>Session 1</i>
+      <br />
+      ·📍"Estepa" Hall: <b>AI4BPM I</b>
+      <br />
+      ·📍"Écija" Hall: <b>AUTOMATE I</b>
+      <br />
+      ·📍"Prado" Hall: <b>VIPRA I</b>
+      <br />
+      ·📍"Lebrija" Hall: <b>BP-Meet-IoT I</b>
+      <br />
+      ·📍"Utrera" Hall: <b>ProDy I</b>
+      <br />
+      ·📍"Triana" Hall: <b>OBJECTS I</b>
+    `
+  },
+  {
+    title: 'Coffee break',
+    start: new Date(2025, 8, 1, 10, 30),
+    end: new Date(2025, 8, 1, 11, 0),
+    category: 'lunch'
   },
   {
     title: 'Coffee break',
@@ -62,7 +83,22 @@ export const events: ScheduleEvent[] = [
     title: 'Workshops',
     start: new Date(2025, 8, 1, 11, 0),
     end: new Date(2025, 8, 1, 12, 30),
-    category: 'workshop'
+    category: 'workshop',
+    description: `
+      <i>Session 2</i>
+      <br />
+      ·📍"Estepa" Hall: <b>AI4BPM II</b>
+      <br />
+      ·📍"Écija" Hall: <b>AUTOMATE II</b>
+      <br />
+      ·📍"Prado" Hall: <b>VIPRA II</b>
+      <br />
+      ·📍"Lebrija" Hall: <b>BP-Meet-IoT II</b>
+      <br />
+      ·📍"Utrera" Hall: <b>ProDy II</b>
+      <br />
+      ·📍"Triana" Hall: <b>OBJECTS II</b>
+    `
   },
   {
     title: 'Lunch',
@@ -74,7 +110,28 @@ export const events: ScheduleEvent[] = [
     title: 'Workshops',
     start: new Date(2025, 8, 1, 14, 0),
     end: new Date(2025, 8, 1, 15, 30),
-    category: 'workshop'
+    category: 'workshop',
+    description: `
+      <i>Session 3</i>
+      <br />
+      ·📍"Estepa" Hall: <b>AI4BPM III</b>
+      <br />
+      ·📍"Écija" Hall: <b>AUTOMATE III</b>
+      <br />
+      ·📍"Prado" Hall: <b>NLP4BPM I</b>
+      <br />
+      ·📍"Lebrija" Hall: <b>Innov8BPM I</b>
+      <br />
+      ·📍"Utrera" Hall: <b>DLT4BPM I</b>
+      <br />
+      ·📍"Triana" Hall: <b>PLC I</b>
+    `
+  },
+  {
+    title: 'Coffee break',
+    start: new Date(2025, 8, 1, 15, 30),
+    end: new Date(2025, 8, 1, 16, 0),
+    category: 'lunch'
   },
   {
     title: 'Coffee break',
@@ -86,7 +143,22 @@ export const events: ScheduleEvent[] = [
     title: 'Workshops',
     start: new Date(2025, 8, 1, 16, 0),
     end: new Date(2025, 8, 1, 17, 30),
-    category: 'workshop'
+    category: 'workshop',
+    description: `
+      <i>Session 4</i>
+      <br />
+      ·📍"Estepa" Hall: <b>OBJECTS III Review Session (invitation only)</b>
+      <br />
+      ·📍"Écija" Hall: <b>FM-BPM</b>
+      <br />
+      ·📍"Prado" Hall: <b>NLP4BPM II</b>
+      <br />
+      ·📍"Lebrija" Hall: <b>Innov8BPM II</b>
+      <br />
+      ·📍"Utrera" Hall: <b>DLT4BPM II</b>
+      <br />
+      ·📍"Triana" Hall: <b>PLC II</b>
+    `
   },
   {
     title: 'Reception cocktail',
