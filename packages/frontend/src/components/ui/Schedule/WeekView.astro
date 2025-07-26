@@ -126,12 +126,15 @@ const hours = getHours(events);
 
     m.set('', formatHour(hour, locale));
     eventsByDay.forEach(({ events }, index) => {
+      const eventsForThisHour = events.filter(e => e.start.getHours() === hour);
+
       m.set(columns[index]!, () => (
         <div class="group/cell flex h-full w-full">
-          {events.filter(e => e.start.getHours() === hour).map(event => (
+          {eventsForThisHour.map(event => (
             <EventItem
               event={event}
               locale={locale}
+              cellEvents={eventsForThisHour}
             />
           ))}
         </div>

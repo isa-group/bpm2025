@@ -1,11 +1,12 @@
 ---
-import type { EventItem as Props } from '#/types';
+import type { EventItem as Props, ScheduleEvent } from '#/types';
 import { isObj } from '@bpm2025-website/shared/validation';
 
 const {
   event,
   locale = 'en-EN',
-  columns = 1
+  columns = 1,
+  cellEvents = []
 } = Astro.props;
 
 const categoryColors = {
@@ -31,6 +32,56 @@ function formatTime(time: Date): string {
   });
 }
 
+/**
+ * Check if two events have temporal overlap
+ */
+function hasTemporalOverlap(event1: ScheduleEvent, event2: ScheduleEvent): boolean {
+  const end1 = event1.end ?? new Date(event1.start.getTime() + 60 * 60 * 1000);
+  const end2 = event2.end ?? new Date(event2.start.getTime() + 60 * 60 * 1000);
+
+  // Events overlap if one starts before the other ends
+  return event1.start < end2 && event2.start < end1;
+}
+
+/**
+ * Detect if this event has temporal overlaps with other events in the same cell
+ */
+function hasOverlaps(): boolean {
+  return cellEvents.some((otherEvent: ScheduleEvent) =>
+    otherEvent !== event && hasTemporalOverlap(event, otherEvent)
+  );
+}
+
+/**
+ * Calculate the column index for overlapping events
+ */
+function getColumnIndex(): number {
+  const overlappingEvents = cellEvents.filter(otherEvent =>
+    hasTemporalOverlap(event, otherEvent)
+  );
+
+  if (overlappingEvents.length <= 1) return 0;
+
+  // Sort overlapping events by start time, then by title for consistency
+  const sortedEvents = overlappingEvents.sort((a, b) => {
+    const timeDiff = a.start.getTime() - b.start.getTime();
+    return timeDiff !== 0 ? timeDiff : a.title.localeCompare(b.title);
+  });
+
+  return sortedEvents.findIndex(e => e === event);
+}
+
+/**
+ * Get the total number of overlapping events (including this one)
+ */
+function getOverlapCount(): number {
+  const overlappingEvents = cellEvents.filter(otherEvent =>
+    hasTemporalOverlap(event, otherEvent)
+  );
+
+  return Math.max(1, overlappingEvents.length);
+}
+
 const endTime = event.end ?? new Date(event.start.getTime() + 60 * 60 * 1000);
 const bgColor = categoryColors[event.category] || categoryColors.default;
 
@@ -45,6 +96,12 @@ const duration = (durationInMinutes / 60) * 100;
  */
 const startMinuteRaw = event.start.getMinutes();
 const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
+
+const hasRealOverlaps = hasOverlaps();
+const columnIndex = getColumnIndex();
+const overlapCount = getOverlapCount();
+const columnWidth = overlapCount > 1 ? `${100 / overlapCount}%` : '100%';
+const columnOffset = overlapCount > 1 ? `${(columnIndex * 100) / overlapCount}%` : '0%';
 ---
 
 {(() => {
@@ -57,7 +114,10 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
       class:list={[
         'group/event-item',
         { 'event-item': !event.href },
-        'relative z-2 h[var(--duration)] w-full overflow-hidden break-words rounded-md bg-white px-3 py-2 hyphens-auto',
+        { 'overlapped left-[var(--left-offset)] w-[var(--width-offset)]': hasRealOverlaps },
+        { 'hover:left-0 hover:w-full': hasRealOverlaps },
+        { 'w-full': !hasRealOverlaps },
+        'absolute z-2 h[var(--duration)] overflow-hidden break-words rounded-md bg-white px-3 py-2 hyphens-auto',
         'transition-all duration-200',
         'hover:absolute hover:z-3 hover:h-auto hover:min-h-[var(--duration)] hover:transform hover:shadow-lg hover:-translate-y-0.5',
         { 'hover:transform-scale-115': columns === 1 },
@@ -72,7 +132,13 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
         'borderLeft': `4px solid ${bgColor}`,
         '--duration': `${duration}%`,
         '--bg-color': `${bgColor}15`,
-        ...(columns > 1 ? { 'min-width': `${columns * 100}%` } : {})
+        /* Apply horizontal positioning for overlapping events */
+        ...(hasRealOverlaps
+          ? {
+              '--left-offset': columnOffset,
+              '--width-offset': columnWidth
+            }
+          : {})
       }}>
       <div class="min-h-full min-w-full inset-0 bottom-auto absolute group-hover/event-item:relative">
         <div class="p-1">
@@ -115,7 +181,7 @@ const startMinute = startMinuteRaw > 0 ? (startMinuteRaw / 60) * 100 : 0;
 })()}
 
 <style>
-:global(:has(> .event-item:hover)) > .event-item:not(:hover) {
+:global(:has(> .event-item.overlapped:hover)) > .event-item.overlapped:not(:hover) {
   display: none;
 }
 

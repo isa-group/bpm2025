@@ -1,5 +1,5 @@
-import type { ScheduleEvent } from "#/types";
-import { locations } from "#/data/program/locations";
+import type { ScheduleEvent } from '#/types';
+import { locations } from '#/data/program/locations';
 
 export const conference: ScheduleEvent[] = [
   {

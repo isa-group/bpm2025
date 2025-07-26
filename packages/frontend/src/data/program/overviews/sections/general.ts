@@ -94,7 +94,7 @@ export const general_events: ScheduleEvent[] = [
     start: new Date(2025, 8, 2, 9, 0),
     end: new Date(2025, 8, 2, 9, 30),
     category: 'conference_2',
-    locations: locations.giralda,
+    locations: locations.giralda
   },
   {
     title: 'Keynote: Shazia Sadiq',
@@ -154,7 +154,7 @@ export const general_events: ScheduleEvent[] = [
     category: 'keynote',
     href: getPermalink('/program/keynotes/#josep')
   },
-    {
+  {
     title: 'Coffee Break',
     start: new Date(2025, 8, 3, 10, 30),
     end: new Date(2025, 8, 3, 11, 0),
@@ -204,7 +204,7 @@ export const general_events: ScheduleEvent[] = [
     category: 'keynote',
     href: getPermalink('/program/keynotes/#pernille')
   },
-    {
+  {
     title: 'Coffee Break',
     start: new Date(2025, 8, 4, 10, 30),
     end: new Date(2025, 8, 4, 11, 0),
