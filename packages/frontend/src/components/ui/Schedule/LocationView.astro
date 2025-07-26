@@ -62,6 +62,7 @@ const hours = getHours(events);
               columns={isNil(event.location)
                 ? locations.length
                 : undefined}
+              cellEvents={allEvents}
             />
           ))}
         </div>
