@@ -30,7 +30,7 @@
     "@astrolib/seo": "1.0.0-beta.8",
     "@bpm2025-website/configs": "*",
     "@bpm2025-website/shared": "*",
-    "@iconify/json": "2.2.362",
+    "@iconify/json": "2.2.363",
     "@playform/compress": "0.2.0",
     "astro": "5.12.3",
     "linkedom": "0.18.11",
