@@ -4,6 +4,7 @@ import type { ScheduleEvent } from '#/types';
 import { locations } from '#/data/program/locations';
 
 export const conferenceDescription = 'Research track, BPM Forum, Journal First Track, Educators Forum, Tutorials and Process Technology Forum';
+export const postConferenceDescription = 'In Spanish';
 export const general_events: ScheduleEvent[] = [
   // 31 de Agosto
   {
@@ -11,6 +12,12 @@ export const general_events: ScheduleEvent[] = [
     start: new Date(2025, 7, 31, 9, 0),
     end: new Date(2025, 7, 31, 10, 30),
     category: 'consortium'
+  },
+  {
+    title: 'Coffee break',
+    start: new Date(2025, 7, 31, 10, 30),
+    end: new Date(2025, 7, 31, 11, 0),
+    category: 'lunch'
   },
   {
     title: 'Doctoral Consortium',
@@ -29,6 +36,12 @@ export const general_events: ScheduleEvent[] = [
     start: new Date(2025, 7, 31, 14, 0),
     end: new Date(2025, 7, 31, 15, 30),
     category: 'consortium'
+  },
+  {
+    title: 'Coffee break',
+    start: new Date(2025, 7, 31, 15, 30),
+    end: new Date(2025, 7, 31, 16, 0),
+    category: 'lunch'
   },
   {
     title: 'Doctoral Consortium',
@@ -119,21 +132,27 @@ export const general_events: ScheduleEvent[] = [
   },
   {
     title: 'Lunch',
-    start: new Date(2025, 8, 2, 12, 30),
-    end: new Date(2025, 8, 2, 14, 0),
+    start: new Date(2025, 8, 2, 13, 0),
+    end: new Date(2025, 8, 2, 14, 30),
     category: 'lunch'
   },
   {
     title: 'Conference',
-    start: new Date(2025, 8, 2, 14, 0),
-    end: new Date(2025, 8, 2, 15, 30),
+    start: new Date(2025, 8, 2, 14, 30),
+    end: new Date(2025, 8, 2, 16, 0),
     category: 'conference_1',
     description: conferenceDescription
   },
   {
-    title: 'Conference',
+    title: 'Coffee Break',
     start: new Date(2025, 8, 2, 16, 0),
-    end: new Date(2025, 8, 2, 17, 30),
+    end: new Date(2025, 8, 2, 16, 30),
+    category: 'lunch'
+  },
+  {
+    title: 'Conference',
+    start: new Date(2025, 8, 2, 16, 30),
+    end: new Date(2025, 8, 2, 18, 0),
     category: 'conference_1',
     description: conferenceDescription
   },
@@ -169,21 +188,27 @@ export const general_events: ScheduleEvent[] = [
   },
   {
     title: 'Lunch',
-    start: new Date(2025, 8, 3, 12, 30),
-    end: new Date(2025, 8, 3, 14, 0),
+    start: new Date(2025, 8, 3, 13, 0),
+    end: new Date(2025, 8, 3, 14, 30),
     category: 'lunch'
   },
   {
     title: 'Conference',
-    start: new Date(2025, 8, 3, 14, 0),
-    end: new Date(2025, 8, 3, 15, 30),
+    start: new Date(2025, 8, 3, 14, 30),
+    end: new Date(2025, 8, 3, 16, 0),
     category: 'conference_1',
     description: conferenceDescription
   },
   {
-    title: 'Demos',
+    title: 'Coffee Break',
     start: new Date(2025, 8, 3, 16, 0),
-    end: new Date(2025, 8, 3, 17, 30),
+    end: new Date(2025, 8, 3, 16, 30),
+    category: 'lunch'
+  },
+  {
+    title: 'Demos',
+    start: new Date(2025, 8, 3, 16, 30),
+    end: new Date(2025, 8, 3, 18, 0),
     category: 'demos'
   },
   {
@@ -219,20 +244,26 @@ export const general_events: ScheduleEvent[] = [
   },
   {
     title: 'Lunch',
-    start: new Date(2025, 8, 4, 12, 30),
-    end: new Date(2025, 8, 4, 14, 0),
+    start: new Date(2025, 8, 4, 13, 0),
+    end: new Date(2025, 8, 4, 14, 30),
     category: 'lunch'
   },
   {
     title: 'Conference',
-    start: new Date(2025, 8, 4, 14, 0),
-    end: new Date(2025, 8, 4, 15, 30),
+    start: new Date(2025, 8, 4, 14, 30),
+    end: new Date(2025, 8, 4, 16, 0),
     category: 'conference_1',
     description: conferenceDescription
   },
   {
-    title: 'Panel',
+    title: 'Coffee Break',
     start: new Date(2025, 8, 4, 16, 0),
+    end: new Date(2025, 8, 4, 16, 30),
+    category: 'lunch'
+  },
+  {
+    title: 'Panel',
+    start: new Date(2025, 8, 4, 16, 30),
     end: new Date(2025, 8, 4, 17, 30),
     category: 'demos'
   },
@@ -253,14 +284,42 @@ export const general_events: ScheduleEvent[] = [
 
   // 31 de Agosto
   {
-    title: 'BPM in Public Administration (Spanish)',
-    start: new Date(2025, 8, 5, 9, 0),
-    end: new Date(2025, 8, 5, 13, 0),
-    category: 'conference_2'
+    title: 'Invited Talk – ADA Representative',
+    start: new Date(2025, 8, 5, 9, 15),
+    end: new Date(2025, 8, 5, 10, 15),
+    category: 'conference_2',
+    description: postConferenceDescription
   },
   {
-    title: 'Cocktail',
-    start: new Date(2025, 8, 5, 13, 0),
+    title: 'Coffee Break',
+    start: new Date(2025, 8, 5, 10, 15),
+    end: new Date(2025, 8, 5, 10, 45),
+    category: 'lunch'
+  },
+  {
+    title: 'Real Cases of Process Automation and Improvement',
+    start: new Date(2025, 8, 5, 10, 45),
+    end: new Date(2025, 8, 5, 12, 15),
+    category: 'conference_2',
+    description: postConferenceDescription
+  },
+  {
+    title: 'Process Mining in the Public Administration',
+    start: new Date(2025, 8, 5, 12, 15),
+    end: new Date(2025, 8, 5, 12, 45),
+    category: 'conference_2',
+    description: postConferenceDescription
+  },
+  {
+    title: 'Round Table: AI, RPA, and Automation in Action',
+    start: new Date(2025, 8, 5, 12, 45),
+    end: new Date(2025, 8, 5, 13, 30),
+    category: 'conference_2',
+    description: postConferenceDescription
+  },
+  {
+    title: 'Cocktail & Networking',
+    start: new Date(2025, 8, 5, 13, 30),
     end: new Date(2025, 8, 5, 14, 0),
     category: 'lunch'
   }

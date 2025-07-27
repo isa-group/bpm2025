@@ -73,7 +73,9 @@ export interface ScheduleEvent {
   location?: typeof locations[keyof typeof locations] | string;
   category: 'forum_1' | 'forum_2' | 'forum_3' | 'keynote'
     | 'conference_1' | 'conference_2' | 'workshop' | 'social'
-    | 'lunch' | 'demos' | 'consortium';
+    | 'lunch' | 'demos' | 'consortium' | 'bpm_forum' | 'journal_first'
+    | 'ai4bpm' | 'objects' | 'automate' | 'fmbpm' | 'vipra'
+    | 'nlp4bpm' | 'bpmeetiot' | 'innov8bpm' | 'prody' | 'dlt4bpm' | 'plc';
   href?: string;
 }
 
