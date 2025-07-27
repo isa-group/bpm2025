@@ -72,13 +72,6 @@ export const conference: ScheduleEvent[] = [
     location: locations.triana
   },
   {
-    title: 'SC Meeting',
-    start: new Date(2025, 8, 2, 14, 30),
-    end: new Date(2025, 8, 2, 16, 0),
-    category: 'consortium',
-    location: locations.estepa
-  },
-  {
     title: 'Coffee Break',
     start: new Date(2025, 8, 2, 16, 0),
     end: new Date(2025, 8, 2, 16, 30),
@@ -111,13 +104,6 @@ export const conference: ScheduleEvent[] = [
     end: new Date(2025, 8, 2, 18, 0),
     category: 'journal_first',
     location: locations.triana
-  },
-  {
-    title: 'SC Meeting',
-    start: new Date(2025, 8, 2, 16, 30),
-    end: new Date(2025, 8, 2, 18, 0),
-    category: 'consortium',
-    location: locations.estepa
   },
   {
     title: 'Main Track 4',
@@ -181,6 +167,13 @@ export const conference: ScheduleEvent[] = [
     location: locations.nervion
   },
   {
+    title: 'Demos',
+    start: new Date(2025, 8, 3, 16, 30),
+    end: new Date(2025, 8, 3, 18, 0),
+    category: 'demos',
+    location: locations.sta_cruz
+  },
+  {
     title: 'Main Track 6',
     start: new Date(2025, 8, 4, 11, 0),
     end: new Date(2025, 8, 4, 13, 0),
@@ -233,5 +226,12 @@ export const conference: ScheduleEvent[] = [
     start: new Date(2025, 8, 4, 16, 0),
     end: new Date(2025, 8, 4, 16, 30),
     category: 'lunch'
+  },
+  {
+    title: 'Panel',
+    start: new Date(2025, 8, 4, 16, 30),
+    end: new Date(2025, 8, 4, 17, 30),
+    category: 'demos',
+    location: locations.giralda
   }
 ];

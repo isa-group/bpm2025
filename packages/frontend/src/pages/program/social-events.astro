@@ -27,7 +27,7 @@ import { isObj } from '@bpm2025-website/shared/validation';
             if (isObj(k.location)) {
               result = k.location.address
                 ? `<a href="${k.location.address}" target="_blank" rel="noopener noreferrer" alt="${k.location.address}" class="hover:underline">${k.location.name}</a>`
-                : k.location.name;
+                : k.location;
             }
 
             return `📍 ${result ?? k.location}`;

@@ -21,7 +21,20 @@ const categoryColors = {
   lunch: '#f39c12',
   social: '#2ecc71',
   workshop: '#e67e22',
-  consortium: '#457b9d'
+  consortium: '#457b9d',
+  ai4bpm: '#B8E1CD',
+  objects: '#F0B8AC',
+  automate: '#FCE49C',
+  fmbpm: '#47BCC6',
+  vipra: '#6ACCFD',
+  nlp4bpm: '#BFBDFF',
+  bpmeetiot: '#FFC103',
+  innov8bpm: '#6C9EEB',
+  prody: '#8ED7DC',
+  dlt4bpm: '#D7D9DF',
+  plc: '#00B050',
+  bpm_forum: '#D7D9DF',
+  journal_first: '#757bc8'
 };
 
 function formatTime(time: Date): string {
@@ -62,8 +75,13 @@ function getColumnIndex(): number {
 
   if (overlappingEvents.length <= 1) return 0;
 
-  // Sort overlapping events by start time, then by title for consistency
+  // Sort overlapping events with main track first, then by start time, then by title
   const sortedEvents = overlappingEvents.sort((a, b) => {
+    // Prioritize main track events
+    if (a.category === 'conference_1' && b.category !== 'conference_1') return -1;
+    if (a.category !== 'conference_1' && b.category === 'conference_1') return 1;
+
+    // If both or neither are main track, sort by start time
     const timeDiff = a.start.getTime() - b.start.getTime();
     return timeDiff !== 0 ? timeDiff : a.title.localeCompare(b.title);
   });
