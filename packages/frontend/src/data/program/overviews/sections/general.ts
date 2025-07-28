@@ -3,7 +3,7 @@ import { program_overviews, program_name_to_uri } from '#/data/program';
 import type { ScheduleEvent } from '#/types';
 import { locations } from '#/data/program/locations';
 
-export const conferenceDescription = 'Research track, BPM Forum, Journal First Track, Educators Forum, Tutorials and Process Technology Forum';
+export const conferenceDescription = 'Research track, BPM Forum, Journal First Track, Educators Forum, Tutorials, Process Technology Forum, Demos and Panels';
 export const postConferenceDescription = 'In Spanish';
 export const general_events: ScheduleEvent[] = [
   // 31 de Agosto
@@ -206,10 +206,11 @@ export const general_events: ScheduleEvent[] = [
     category: 'lunch'
   },
   {
-    title: 'Demos',
+    title: 'Conference',
     start: new Date(2025, 8, 3, 16, 30),
     end: new Date(2025, 8, 3, 18, 0),
-    category: 'demos'
+    category: 'conference_1',
+    description: conferenceDescription
   },
   {
     title: 'Conference dinner',
@@ -262,10 +263,11 @@ export const general_events: ScheduleEvent[] = [
     category: 'lunch'
   },
   {
-    title: 'Panel',
+    title: 'Conference',
     start: new Date(2025, 8, 4, 16, 30),
     end: new Date(2025, 8, 4, 17, 30),
-    category: 'demos'
+    category: 'conference_1',
+    description: conferenceDescription
   },
   {
     title: 'Closing',
