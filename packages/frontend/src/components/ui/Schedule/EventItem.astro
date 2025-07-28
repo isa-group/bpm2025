@@ -73,20 +73,14 @@ function getColumnIndex(): number {
     hasTemporalOverlap(event, otherEvent)
   );
 
-  if (overlappingEvents.length <= 1) return 0;
+  if (overlappingEvents.length <= 1) {
+    return 0;
+  }
 
-  // Sort overlapping events with main track first, then by start time, then by title
-  const sortedEvents = overlappingEvents.sort((a, b) => {
-    // Prioritize main track events
-    if (a.category === 'conference_1' && b.category !== 'conference_1') return -1;
-    if (a.category !== 'conference_1' && b.category === 'conference_1') return 1;
-
-    // If both or neither are main track, sort by start time
-    const timeDiff = a.start.getTime() - b.start.getTime();
-    return timeDiff !== 0 ? timeDiff : a.title.localeCompare(b.title);
-  });
-
-  return sortedEvents.findIndex(e => e === event);
+  return overlappingEvents
+    // Sort overlapping events by start time
+    .sort((a, b) => a.start.getTime() - b.start.getTime())
+    .findIndex(e => e === event);
 }
 
 /**

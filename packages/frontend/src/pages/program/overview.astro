@@ -17,13 +17,19 @@ import LocationView from '#/components/ui/Schedule/LocationView.astro';
   }}>
   {sections.map((s, index) => {
     const days = new Set(s.events.map(e => e.start.getDate()));
+    const sorted_events = s.events.sort((a, b) => {
+      // Prioritize main track events
+      if (a.category === 'conference_1' && b.category !== 'conference_1') return -1;
+      if (a.category !== 'conference_1' && b.category === 'conference_1') return 1;
+      return 0;
+    });
 
     return (
       <WidgetWrapper bg={index % 2 === 0} id={s.title?.split(' ')[0]?.toLowerCase()}>
         <Headline {...s} />
         {days.size === 1
-          ? <LocationView events={s.events} />
-          : <WeekView events={s.events} />}
+          ? <LocationView events={sorted_events} />
+          : <WeekView events={sorted_events} />}
       </WidgetWrapper>
     );
   })}
