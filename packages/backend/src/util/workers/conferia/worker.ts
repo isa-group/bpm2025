@@ -76,8 +76,12 @@ async function registerUserWithConferia(data: Inputs): Promise<{ success: boolea
   }
 }
 
-// Listen for messages from the parent process
-parentPort?.on('message', async (data: Inputs) => {
-  const result = await registerUserWithConferia(data);
-  parentPort?.postMessage(result);
-});
+(() => {
+  const handler = async (data: Inputs) => {
+    const result = await registerUserWithConferia(data);
+    parentPort?.postMessage(result);
+  };
+
+  // Listen for messages from the parent process
+  parentPort?.on('message', (data: Inputs) => void handler(data));
+})();

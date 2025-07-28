@@ -25,9 +25,9 @@ if (!process.env.REDSYS_MERCHANT_CODE
   }
 }
 
-const REDSYS_MERCHANT_KEY = process.env.REDSYS_MERCHANT_KEY || 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
-const DS_MERCHANT_MERCHANTCODE = process.env.REDSYS_MERCHANT_CODE || '999008881';
-const DS_MERCHANT_TERMINAL = process.env.REDSYS_MERCHANT_TERMINAL || '049';
+const REDSYS_MERCHANT_KEY = process.env.REDSYS_MERCHANT_KEY ?? 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
+const DS_MERCHANT_MERCHANTCODE = process.env.REDSYS_MERCHANT_CODE ?? '999008881';
+const DS_MERCHANT_TERMINAL = process.env.REDSYS_MERCHANT_TERMINAL ?? '049';
 
 /**
  * Pads a buffer with zeros to reach a multiple of blocksize

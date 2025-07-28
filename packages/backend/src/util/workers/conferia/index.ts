@@ -23,13 +23,13 @@ export async function registerUserWithConferia(inputs: Inputs): Promise<void> {
     return;
   }
 
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     worker!.postMessage(inputs);
     worker!.once('message', (result) => {
       if (result.success) {
         resolve();
       } else {
-        reject(result.error);
+        throw result.error;
       }
     });
   });

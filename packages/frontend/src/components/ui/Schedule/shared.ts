@@ -1,5 +1,6 @@
 import type { AstroComponent, ScheduleEvent } from '#/types';
 
+/* eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents */
 export type ColumnMapType = Map<AstroComponent | string, AstroComponent | string>;
 
 /**

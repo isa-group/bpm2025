@@ -20,8 +20,10 @@ export async function registerInvoicing(target_path: string, seed_folder: string
      * Find possible invoice header images and import them
      */
     const files = await readdir(seed_folder);
-    const possible_file = files.find(name => !name.endsWith('.json') || !name.endsWith('.md'))!;
-    const dimensions = imageSize(await readFile(join(seed_folder, possible_file)));
+    const possible_file = files.find(name => !name.endsWith('.json') || !name.endsWith('.md'));
+    const dimensions = possible_file
+      ? imageSize(await readFile(join(seed_folder, possible_file)))
+      : undefined;
 
     worker = new Worker(join(import.meta.dirname, 'worker.ts'), {
       workerData: {
@@ -32,14 +34,16 @@ export async function registerInvoicing(target_path: string, seed_folder: string
          * We are not responsible for the user throwing other garbage
          * to the seed folde and not reading the docs.
          */
-        header_image: {
-          path: join(seed_folder, possible_file),
-          /**
-           * There are some blurrinnes, so we scale them down a little
-           */
-          width: Math.ceil((dimensions.width ?? 100) / 1.5),
-          height: Math.ceil((dimensions.height ?? 100) / 1.5)
-        },
+        header_image: possible_file
+          ? {
+              path: join(seed_folder, possible_file),
+              /**
+               * There is some blurrinness, so we scale the image down a little bit
+               */
+              width: Math.ceil((dimensions?.width ?? 100) / 1.5),
+              height: Math.ceil((dimensions?.height ?? 100) / 1.5)
+            }
+          : undefined,
         billing_details: process.env.BILLING_DETAILS?.split(':') ?? [],
         billing_vat_number: process.env.BILLING_VAT_NUMBER,
         invoice_name: process.env.BILLING_INVOICE_NAME

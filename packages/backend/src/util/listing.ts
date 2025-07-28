@@ -53,6 +53,8 @@ export function generateTableMarkup(
             <tr ${index in colors ? `style="background-color: ${colors[index]};"` : ''}>  
                 ${columns.map(key => `<td>${key in row && !isNil(row[key])
                   ? (() => {
+                      // TODO: Report false positive
+                      // eslint-disable-next-line @typescript-eslint/no-base-to-string
                       const text = String(row[key]).replaceAll('\n', '<br />');
 
                       if (text.length > 100) {

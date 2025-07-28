@@ -120,7 +120,8 @@ router.post(
 );
 
 /**
- *
+ * Creates a basic HTML page with a table of all the order details. The columns shown
+ * have the same properties that Prisma's generated objects have.
  */
 function createOrderPage(
   orders: full_order_details[],
@@ -338,7 +339,7 @@ router.get(
 );
 
 /**
- *
+ * Checks if a file exists at the given path and is a file.
  */
 async function isFile(path: string): Promise<boolean> {
   try {

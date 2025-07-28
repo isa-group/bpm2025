@@ -10,7 +10,7 @@ const is_available = Boolean(process.env.SMTP_HOST)
   && Boolean(process.env.SMTP_USER)
   && Boolean(process.env.SMTP_PASSWORD)
   && Boolean(process.env.MAIL_FROM);
-let worker: Worker;
+let worker: Worker | undefined;
 let is_registered = false;
 
 if (!is_available) {
@@ -49,8 +49,8 @@ export async function sendConfirmationEmail(inputs: Inputs): Promise<void> {
   }
 
   return new Promise((resolve) => {
-    worker.postMessage(inputs);
-    worker.once('message', (result) => {
+    worker!.postMessage(inputs);
+    worker!.once('message', (result) => {
       const belongs_to_order = result.order_id === inputs.order_id;
 
       if (belongs_to_order) {

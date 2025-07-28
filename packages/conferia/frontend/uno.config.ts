@@ -1,1 +1,1 @@
-export { defaultConfig as default } from '@bpm2025-website/configs/uno';
+export { default } from '@bpm2025-website/configs/uno';

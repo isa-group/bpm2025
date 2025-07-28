@@ -131,7 +131,7 @@ function getTotalPaid(order: OrderWithRelations) {
   return percentOfNumber(percentageDiscounts, priceAfterFixedDiscounts).number;
 }
 
-parentPort?.on('message', async (inputs: Inputs) => {
+const handler = async (inputs: Inputs) => {
   try {
     const now = new Date();
     const day = String(now.getDate()).padStart(2, '0');
@@ -266,4 +266,6 @@ parentPort?.on('message', async (inputs: Inputs) => {
       error: e
     });
   }
-});
+};
+
+parentPort?.on('message', (inputs: Inputs) => void handler(inputs));

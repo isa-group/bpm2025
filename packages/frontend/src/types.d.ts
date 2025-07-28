@@ -89,7 +89,6 @@ export interface EventItem {
   columns?: number;
   /**
    * Array of all events in this cell for overlap detection.
-   * @default []
    */
   cellEvents?: ScheduleEvent[];
 }

@@ -6,11 +6,11 @@ import { logger } from './logger';
 export const db = new PrismaClient();
 
 /**
- *
+ * Seeds the DB with the initial data from the seed JSON file
  */
 export async function seedDb(itemsPath: string) {
   const promises = [];
-  const items = destr<Record<string, string>>((await readFile(itemsPath)).toString());
+  const items = destr<Record<string, Record<string, string>>>((await readFile(itemsPath)).toString());
   const currentProductIds = new Set((await db.product.findMany({
     select: { id: true }
   })).map(({ id }) => id));
@@ -18,7 +18,6 @@ export async function seedDb(itemsPath: string) {
     select: { id: true }
   })).map(({ id }) => id));
 
-  // @ts-expect-error - The JSON is not typed and validations should throw rightaway regardless
   for (const key in items.products) {
     // @ts-expect-error - The JSON is not typed
     if (!currentProductIds.has(items.products[key].id)) {
@@ -35,7 +34,6 @@ export async function seedDb(itemsPath: string) {
     }
   }
 
-  // @ts-expect-error - The JSON is not typed and validations should throw rightaway regardless
   for (const key in items.discounts) {
     // @ts-expect-error - The JSON is not typed
     if (!currentDiscountIds.has(items.discounts[key].id)) {
@@ -59,23 +57,24 @@ export async function seedDb(itemsPath: string) {
 }
 
 /**
- *
+ * Runs closing database operations before finishing the application
+ * process.
  */
-function onExit() {
-  db.$executeRawUnsafe('PRAGMA optimize;');
-  db.$disconnect();
+async function onExit() {
+  await db.$executeRawUnsafe('PRAGMA optimize;');
+  await db.$disconnect();
 }
 
-process.on('SIGTERM', onExit);
-process.on('SIGINT', onExit);
-process.on('exit', onExit);
-process.on('unhandledRejection', onExit);
-process.on('uncaughtException', onExit);
+process.on('SIGTERM', () => void onExit());
+process.on('SIGINT', () => void onExit());
+process.on('exit', () => void onExit());
+process.on('unhandledRejection', () => void onExit());
+process.on('uncaughtException', () => void onExit());
 
 // Source: https://sqlite.org/lang_analyze.html
-db.$executeRawUnsafe('PRAGMA optimize=0x10002;');
-db.$executeRawUnsafe('VACUUM;');
+await db.$executeRawUnsafe('PRAGMA optimize=0x10002;');
+await db.$executeRawUnsafe('VACUUM;');
 
 setInterval(() => {
-  db.$executeRawUnsafe('PRAGMA optimize;');
+  void db.$executeRawUnsafe('PRAGMA optimize;');
 }, 864e5); // 24 hours
