@@ -2,13 +2,13 @@ import type { ScheduleEvent } from '#/types';
 import { locations } from '#/data/program/locations';
 import { getPermalink } from '#/utils/permalinks';
 
-const mainTrackUrl = getPermalink('/program/main-track')
+const mainTrackUrl = getPermalink('/program/main-track');
 const bpmForumUrl = getPermalink('/program/bpm-forum');
-const processTechUrl = getPermalink('/program/process-technology-forum')
-const educatorsUrl = getPermalink('/program/educators-forum')
-const industryForumUrl = getPermalink('/program/industry-forum')
-const tutorialsUrl = getPermalink('/program/tutorials')
-const responsibleUrl = getPermalink('/program/responsible-bpm-forum')
+const processTechUrl = getPermalink('/program/process-technology-forum');
+const educatorsUrl = getPermalink('/program/educators-forum');
+const industryForumUrl = getPermalink('/program/industry-forum');
+const tutorialsUrl = getPermalink('/program/tutorials');
+const responsibleUrl = getPermalink('/program/responsible-bpm-forum');
 
 export const conference: ScheduleEvent[] = [
   {
