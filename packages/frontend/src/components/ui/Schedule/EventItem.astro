@@ -197,7 +197,8 @@ const columnOffset = overlapCount > 1 ? `${(columnIndex * 100) / overlapCount}%`
   display: none;
 }
 
-:global(td:last-child) .event-item:hover {
-  --un-translate-x: -2rem;
+:global(td:last-child) a.event-item:hover > :first-child,
+:global(td:last-child) div.event-item:hover {
+  --un-translate-x: clamp(-2rem, -4cqh, -8cqw);
 }
 </style>
