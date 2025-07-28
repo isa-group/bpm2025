@@ -14,12 +14,12 @@ export const sections: Sections[] = [
   },
   {
     title: 'Workshops',
-    tagline: 'Monday, 1st Sepetmber 2025',
+    tagline: 'Monday, 1st September 2025',
     events: workshops
   },
   {
     title: 'Conference',
-    tagline: 'Tuesday, 2nd - Thursday, 4th September 2025',
+    tagline: 'Tuesday, 2nd - Thursday, 4th<br />September 2025',
     subtitle: conferenceDescription,
     events: conference
   }
