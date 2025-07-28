@@ -3,8 +3,7 @@ import Layout from '#/layouts/Layout.astro';
 import Header from '#/components/widgets/Header.astro';
 import Footer from '#/components/widgets/Footer.astro';
 import Hero from '#/components/widgets/Hero.astro';
-import Announcement from '#/components/widgets/Announcement.astro';
-import { getHeaderData, getFooterData, isInRegistrationPage } from '#/data/navigation';
+import { getHeaderData, getFooterData } from '#/data/navigation';
 import type { MetaData, Hero as HeroProps } from '#/types';
 import type { ImageMetadata } from 'astro';
 
@@ -23,7 +22,7 @@ const { metadata, heroProps = {}, heroImage } = Astro.props;
 
 <Layout metadata={metadata}>
   <slot name="announcement">
-    {!isInRegistrationPage(url) && <Announcement />}
+    {/* !isInRegistrationPage(url) && <Announcement /> */}
   </slot>
   <slot name="header">
     <Header {...getHeaderData(url)} isSticky showToggleTheme />

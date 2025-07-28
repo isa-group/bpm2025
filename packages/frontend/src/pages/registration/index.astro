@@ -14,19 +14,27 @@ import tickets from '#/data/tickets';
     title: 'Registration info',
     description: 'These are the different registration packages for this edition of the conference'
   }}>
-  <Pricing
-    title="Prices"
-    subtitle="The last day to register will be the 8th of August 2025"
-    prices={tickets.map((t, index) => ({
-      ...t,
-      callToAction: {
-        text: 'Register now',
-        variant: 'primary',
-        href: getPermalink(`/registration/${index + 1}`),
-        icon: 'i-tabler:chevron-right'
-      }
-    }))}
-  />
+  <div class="relative">
+    <Pricing
+      title="Prices"
+      subtitle="The last day to register will be the 8th of August 2025"
+      prices={tickets.map((t, index) => ({
+        ...t,
+        callToAction: {
+          text: 'Register now',
+          variant: 'primary',
+          href: getPermalink(`/registration/${index + 1}`),
+          icon: 'i-tabler:chevron-right'
+        }
+      }))}
+    />
+    <div class="bg-page/80 flex items-center inset-0 justify-center absolute z-10 backdrop-blur-xs">
+      <CallToAction
+        classes={{ container: 'backdrop-blur-none' }}
+        title="Registrations are now closed"
+        subtitle="Thank you for your interest in BPM 2025" />
+    </div>
+  </div>
   <WidgetWrapper bg>
     <Headline title="Additional information" />
     <ItemList items={[
