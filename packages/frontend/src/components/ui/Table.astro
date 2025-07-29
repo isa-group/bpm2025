@@ -128,7 +128,6 @@ const columns = (() => {
     </div>
   </div>
   <style>
-  /* Estos estilos solo se aplicarán si el elemento tiene la clase .ios */
   .table-container.ios {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -148,7 +147,6 @@ const columns = (() => {
     const isIOS = /iPad|iPhone/.test(navigator.userAgent) && !(typeof window !== 'undefined' && 'MSStream' in window);
     
     if (isIOS) {
-      // Agregar una clase para iOS en lugar de manipular estilos directamente
       document.querySelectorAll('.table-container').forEach(el => {
         el.classList.add('ios');
       });
