@@ -44,8 +44,8 @@ const columns = (() => {
       </div>
     )}
 
-    <div class="flex-1 overflow-auto">
-      <table class="min-w-fit w-full table-fixed" role="grid">
+    <div class="flex-1 overflow-auto table-container" style="min-height: 0;">
+      <table class="min-w-fit w-full table-fixed table-element" role="grid">
         <colgroup>
           {(showRowIndex || highlightFirstColumn) && <col class="w-20" />}
           {columns.slice(highlightFirstColumn ? 1 : 0).map(() => (
@@ -127,4 +127,36 @@ const columns = (() => {
       </table>
     </div>
   </div>
+  <style>
+  /* Estos estilos solo se aplicarán si el elemento tiene la clase .ios */
+  .table-container.ios {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .table-element.ios {
+    min-width: 600px;
+  }
+  
+  .table-element.ios col {
+    min-width: 300px;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const isIOS = /iPad|iPhone/.test(navigator.userAgent) && !(typeof window !== 'undefined' && 'MSStream' in window);
+    
+    if (isIOS) {
+      // Agregar una clase para iOS en lugar de manipular estilos directamente
+      document.querySelectorAll('.table-container').forEach(el => {
+        el.classList.add('ios');
+      });
+      
+      document.querySelectorAll('.table-element').forEach(el => {
+        el.classList.add('ios');
+      });
+    }
+  });
+</script>
 </div>
