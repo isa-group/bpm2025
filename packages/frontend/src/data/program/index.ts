@@ -602,8 +602,8 @@ export const program_overviews: ProgramOverview[] = [
           },
           {
             Hour: '11:05',
-            Title: 'Impact of Process Redesign: A Case Study from Indonesian Higher Education Data Reporting',
-            Authors: 'Indri Sudanawati Rozas, Sugianto Halim, Mahendrawathi Er and Arif Wibisono'
+            Title: 'From Silos to Synergy: Embedding BPM at Sri Lanka Telecom to Drive Strategic Alignment',
+            Authors: 'Dinusha Rajapaksha, Wasana Bandara, Naleen Jayasuriya, Bandula Wimalasuriya, Rehan Syed and Ishadi Mirispelakotuwa'
           },
           {
             Hour: '11:20',
@@ -627,8 +627,8 @@ export const program_overviews: ProgramOverview[] = [
           },
           {
             Hour: '12:20',
-            Title: 'From Silos to Synergy: Embedding BPM at Sri Lanka Telecom to Drive Strategic Alignment',
-            Authors: 'Dinusha Rajapaksha, Wasana Bandara, Naleen Jayasuriya, Bandula Wimalasuriya, Rehan Syed and Ishadi Mirispelakotuwa'
+            Title: 'Impact of Process Redesign: A Case Study from Indonesian Higher Education Data Reporting',
+            Authors: 'Indri Sudanawati Rozas, Sugianto Halim, Mahendrawathi Er and Arif Wibisono',
           },
           {
             Hour: '12:35',
