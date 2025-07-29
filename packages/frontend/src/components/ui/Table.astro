@@ -44,12 +44,12 @@ const columns = (() => {
       </div>
     )}
 
-    <div class="flex-1 overflow-auto">
-      <table class="min-w-fit w-full table-fixed" role="grid">
+    <div class="flex-1 overflow-auto touch-pan-x overscroll-none">
+      <table class="w-full border-collapse table-auto" role="grid">
         <colgroup>
-          {(showRowIndex || highlightFirstColumn) && <col class="w-20" />}
+          {(showRowIndex || highlightFirstColumn) && <col class="max-sm:min-w-30" />}
           {columns.slice(highlightFirstColumn ? 1 : 0).map(() => (
-            <col class="min-w-[180px]" />
+            <col class="max-sm:min-w-30" />
           ))}
         </colgroup>
         <thead class="top-0 sticky z-1">
@@ -73,14 +73,14 @@ const columns = (() => {
             )}
             {columns.slice(highlightFirstColumn ? 1 : 0).map(c => (
               <th
-                class="font-semibold border-b border-r border-gray-200 bg-gray-50 h-20 md:px-1 last:border-r-0 lg:h-20 md:h-16"
+                class="font-semibold border-b border-r border-gray-200 bg-gray-50 h-20 px-2 last:border-r-0 lg:h-20 md:h-16 break-words max-sm:min-w-30"
                 scope="col">
                 {isFunc(c)
                   ? c
                   : (
                       <div class="flex flex-col h-full items-center justify-center">
                         <div
-                          class="text-lg text-gray-800 lg:text-base md:text-sm"
+                          class="text-lg text-gray-800 lg:text-base md:text-sm text-center px-1 leading-tight break-words hyphens-auto"
                           set:html={c} />
                       </div>
                     )}
@@ -92,7 +92,7 @@ const columns = (() => {
           {rows.map((row, rowIndex) => (
             <tr>
               {(highlightFirstColumn || showRowIndex) && (
-                <th class="border-b border-r border-gray-100 border-gray-200 bg-gray-50 h-24 xl:h-16" scope="row">
+                <th class="border-b border-r border-gray-100 border-gray-200 bg-gray-50 h-24 xl:h-16 max-sm:min-w-30 break-words" scope="row">
                   {highlightFirstColumn && isFunc(row.get(columns[0]!))
                     ? row.get(columns[0]!)
                     : (
@@ -101,20 +101,20 @@ const columns = (() => {
                           classes.firstColumn
                         ]}>
                           <span
-                            class="text-sm text-gray-500 font-medium lg:text-xs md:text-xs"
+                            class="text-sm text-gray-500 font-medium lg:text-xs md:text-xs px-1 text-center leading-tight break-words hyphens-auto"
                             set:html={showRowIndex ? (rowIndex + 1) : row.get(columns[0]!)} />
                         </div>
                       )}
                 </th>
               )}
               {columns.slice(highlightFirstColumn ? 1 : 0).map(columnName => (
-                <td class="p-0 border-b border-r border-gray-100 border-gray-200 h-24 relative last:border-r-0 xl:h-16" role="gridcell">
+                <td class="p-0 border-b border-r border-gray-100 border-gray-200 h-24 relative last:border-r-0 xl:h-16 break-words" role="gridcell">
                   {isFunc(row.get(columnName))
                     ? row.get(columnName)
                     : (
                         <div class="p-2 flex h-full w-full items-center justify-center">
                           <span
-                            class="text-sm text-gray-700"
+                            class="text-sm text-gray-700 w-full text-center leading-tight break-words hyphens-auto"
                             set:html={row.get(columnName) ?? '-'}>
                           </span>
                         </div>
