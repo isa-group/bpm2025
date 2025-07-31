@@ -60,7 +60,7 @@ model user {
 }
 
 view full_order_details {
-  order_ID                    String          @id @map("Order ID")
+  order_ID                    String          @map("Order ID")
   user_ID                     Int             @map("User ID")
   user_name                   String          @map("User name")
   user_email                  String          @map("User email")
@@ -75,7 +75,7 @@ view full_order_details {
 }
 
 view unique_full_order_details {
-  order_ID                    String          @id @map("Order ID")
+  order_ID                    String          @map("Order ID")
   user_ID                     Int             @map("User ID")
   user_name                   String          @map("User name")
   user_email                  String          @map("User email")
