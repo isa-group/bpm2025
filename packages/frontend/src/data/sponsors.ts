@@ -1,14 +1,14 @@
 import type { SponsorInfo } from '#/types';
 import CEURLogo from '#/assets/images/sponsors/CEUR-WS-logo.png';
-import CelonisLogo from '#/assets/images/sponsors/celonis.jpg';
-import SCORELogo from '#/assets/images/sponsors/score.png';
+import CelonisLogo from '#/assets/images/sponsors/celonis.svg';
+import SCORELogo from '#/assets/images/sponsors/score.svg';
 import SpringerLogo from '#/assets/images/sponsors/springer.svg';
-import USLogo from '#/assets/images/sponsors/us.png';
-import ProcessScience from '#/assets/images/sponsors/process-science.png';
-import GBTEC from '#/assets/images/sponsors/GBTEC.png';
-import Iterem from '#/assets/images/sponsors/iterem.png';
+import USLogo from '#/assets/images/sponsors/us.svg';
+import ProcessScience from '#/assets/images/sponsors/process-science.svg';
+import GBTEC from '#/assets/images/sponsors/GBTEC.svg';
+import Iterem from '#/assets/images/sponsors/iterem.svg';
 import InteractSolutions from '#/assets/images/sponsors/interact.svg';
-import SAPSignavio from '#/assets/images/sponsors/SAP_Signavio.png';
+import SAPSignavio from '#/assets/images/sponsors/SAP_Signavio.svg';
 import DCRSolutions from '#/assets/images/sponsors/dcr-solutions.webp';
 
 export const sponsors: SponsorInfo[] = [
