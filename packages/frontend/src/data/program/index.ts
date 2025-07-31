@@ -628,7 +628,7 @@ export const program_overviews: ProgramOverview[] = [
           {
             Hour: '12:20',
             Title: 'Impact of Process Redesign: A Case Study from Indonesian Higher Education Data Reporting',
-            Authors: 'Indri Sudanawati Rozas, Sugianto Halim, Mahendrawathi Er and Arif Wibisono',
+            Authors: 'Indri Sudanawati Rozas, Sugianto Halim, Mahendrawathi Er and Arif Wibisono'
           },
           {
             Hour: '12:35',
