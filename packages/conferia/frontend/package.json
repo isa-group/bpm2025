@@ -21,8 +21,8 @@
   },
   "dependencies": {
     "@bpm2025-website/assets": "*",
-    "@ionic/vue": "8.7.0",
-    "@ionic/vue-router": "8.7.0",
+    "@ionic/vue": "8.7.1",
+    "@ionic/vue-router": "8.7.1",
     "@vueuse/core": "13.6.0",
     "axios": "1.11.0",
     "dayjs": "1.11.13",
