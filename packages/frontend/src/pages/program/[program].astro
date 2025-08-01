@@ -4,7 +4,7 @@ import Table from '#/components/ui/Table.astro';
 import ItemList from '#/components/ui/ItemList.astro';
 import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
 import PageLayout from '#/layouts/PageLayout.astro';
-import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
 
 import { program_overviews, program_name_to_uri } from '#/data/program';
 import badgeImg from '#/assets/images/program/badge/bpm2025-badge.png';
@@ -22,6 +22,13 @@ const program = program_overviews.find(o => program_name_to_uri(o.name) === Astr
 if (!program.tables?.length && !program.items?.length) {
   throw new Error(`Program "${program.name}" does not have tables or items defined.`);
 }
+
+const { src: badgeSrc, attributes } = await getImage({ src: badgeImg });
+
+for (const key of ['width', 'height', 'href', 'description']) {
+  delete attributes[key];
+}
+
 ---
 <PageLayout
   metadata={{
@@ -44,13 +51,13 @@ if (!program.tables?.length && !program.items?.length) {
                   href={row.Artifact}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="flex justify-center">
+                  class="flex h-full w-full justify-center">
                   {/* @ts-expect-error - Astro bug */}
-                  <Image
-                    src={badgeImg}
+                  <img
+                    src={badgeSrc}
+                    {...attributes}
                     alt="Artifact Badge"
-                    class="cursor-pointer"
-                    inferSize />
+                    class="w-[60%] cursor-pointer" />
                 </a>
               );
 

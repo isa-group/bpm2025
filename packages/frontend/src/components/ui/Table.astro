@@ -44,87 +44,94 @@ const columns = (() => {
       </div>
     )}
 
-    <div class="overscroll-none flex-1 overflow-auto touch-pan-x">
-      <table class="w-full border-collapse table-auto" role="grid">
-        <colgroup>
-          {(showRowIndex || highlightFirstColumn) && <col class="max-sm:min-w-30" />}
-          {columns.slice(highlightFirstColumn ? 1 : 0).map(() => (
-            <col class="max-sm:min-w-30" />
+    <div class="flex-1 overflow-auto">
+      <div class="flex flex-col min-w-fit w-full" role="grid">
+        <div class="flex w-full top-0 sticky z-1">
+          {(showRowIndex || highlightFirstColumn) && (
+            <div
+              class:list={[
+                'w-20 h-20 border-r border-gray-200 bg-gray-50 lg:h-20 md:h-16 flex items-center justify-center shrink-0',
+                { 'border-b': !mergeFirstCell }
+              ]}
+              role="columnheader">
+              {showRowIndex
+                ? <span class="text-lg text-gray-800 lg:text-base md:text-sm">No.</span>
+                : isFunc(columns[0])
+                  ? columns[0]
+                  : <span class="text-lg text-gray-800 lg:text-base md:text-sm" set:html={isStr(columns[0]) ? columns[0] : undefined}></span>}
+            </div>
+          )}
+
+          {columns.slice(highlightFirstColumn ? 1 : 0).map((c, index, array) => (
+            <div
+              class:list={[
+                'min-w-[180px] font-semibold border-b border-r border-gray-200 bg-gray-50 h-20 md:px-1 lg:h-20 md:h-16 flex-1 flex items-center justify-center',
+                { 'border-r-0': index === array.length - 1 }
+              ]}
+              role="columnheader">
+              {isFunc(c)
+                ? c
+                : (
+                    <div class="flex flex-col h-full items-center justify-center">
+                      <div
+                        class="text-lg text-gray-800 lg:text-base md:text-sm"
+                        set:html={c} />
+                    </div>
+                  )}
+            </div>
           ))}
-        </colgroup>
-        <thead class="top-0 sticky z-1">
-          <tr>
-            {(showRowIndex || highlightFirstColumn) && (
-              <>
-                {/* eslint-disable astro/no-conflict-set-directives */}
-                <th
-                  class:list={[
-                    'h-20 border-r border-gray-200 bg-gray-50 lg:h-20 md:h-16',
-                    { 'border-b': !mergeFirstCell }
-                  ]}
-                  scope="col"
-                  set:html={!showRowIndex && isStr(columns[0]) ? columns[0] : undefined}>
-                  {showRowIndex
-                    ? 'No.'
-                    : isFunc(columns[0]) && columns[0]}
-                </th>
-                {/* eslint-enable astro/no-conflict-set-directives */}
-              </>
-            )}
-            {columns.slice(highlightFirstColumn ? 1 : 0).map(c => (
-              <th
-                class="font-semibold px-2 border-b border-r border-gray-200 bg-gray-50 h-20 break-words last:border-r-0 lg:h-20 max-sm:min-w-30 md:h-16"
-                scope="col">
-                {isFunc(c)
-                  ? c
+        </div>
+        {rows.map((row, rowIndex) => (
+          <div class="flex w-full" role="row">
+            {(highlightFirstColumn || showRowIndex) && (
+              <div
+                class="border-b border-r border-gray-100 border-gray-200 bg-gray-50 flex shrink-0 h-24 w-20 items-center justify-center xl:h-16"
+                role="rowheader">
+                {highlightFirstColumn && isFunc(row.get(columns[0]!))
+                  ? (
+                      <div class="p-2 flex h-full w-full items-center justify-center overflow-hidden">
+                        {row.get(columns[0]!)}
+                      </div>
+                    )
                   : (
-                      <div class="flex flex-col h-full items-center justify-center">
-                        <div
-                          class="text-lg text-gray-800 leading-tight px-1 text-center break-words hyphens-auto lg:text-base md:text-sm"
-                          set:html={c} />
+                      <div class:list={[
+                        'h-full w-full flex items-center justify-center pt-2',
+                        classes.firstColumn
+                      ]}>
+                        <span
+                          class="text-sm text-gray-500 font-medium lg:text-xs md:text-xs"
+                          set:html={showRowIndex ? (rowIndex + 1) : row.get(columns[0]!)} />
                       </div>
                     )}
-              </th>
+              </div>
+            )}
+
+            {columns.slice(highlightFirstColumn ? 1 : 0).map((columnName, index, array) => (
+              <div
+                class:list={[
+                  'min-w-[180px] flex-1 p-0 border-b border-r border-gray-100 border-gray-200 h-24 relative xl:h-16',
+                  { 'border-r-0': index === array.length - 1 }
+                ]}
+                role="gridcell">
+                {isFunc(row.get(columnName))
+                  ? (
+                      <div class="p-2 flex h-full w-full items-center justify-center overflow-hidden">
+                        {row.get(columnName)}
+                      </div>
+                    )
+                  : (
+                      <div class="p-2 flex h-full w-full items-center justify-center">
+                        <span
+                          class="text-sm text-gray-700"
+                          set:html={row.get(columnName) ?? '-'}>
+                        </span>
+                      </div>
+                    )}
+              </div>
             ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, rowIndex) => (
-            <tr>
-              {(highlightFirstColumn || showRowIndex) && (
-                <th class="border-b border-r border-gray-100 border-gray-200 bg-gray-50 h-24 break-words max-sm:min-w-30 xl:h-16" scope="row">
-                  {highlightFirstColumn && isFunc(row.get(columns[0]!))
-                    ? row.get(columns[0]!)
-                    : (
-                        <div class:list={[
-                          'h-full flex items-center justify-center pt-2',
-                          classes.firstColumn
-                        ]}>
-                          <span
-                            class="text-sm text-gray-500 leading-tight font-medium px-1 text-center break-words hyphens-auto lg:text-xs md:text-xs"
-                            set:html={showRowIndex ? (rowIndex + 1) : row.get(columns[0]!)} />
-                        </div>
-                      )}
-                </th>
-              )}
-              {columns.slice(highlightFirstColumn ? 1 : 0).map(columnName => (
-                <td class="p-0 border-b border-r border-gray-100 border-gray-200 h-24 break-words relative last:border-r-0 xl:h-16" role="gridcell">
-                  {isFunc(row.get(columnName))
-                    ? row.get(columnName)
-                    : (
-                        <div class="p-2 flex h-full w-full items-center justify-center">
-                          <span
-                            class="text-sm text-gray-700 leading-tight text-center w-full break-words hyphens-auto"
-                            set:html={row.get(columnName) ?? '-'}>
-                          </span>
-                        </div>
-                      )}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </div>
