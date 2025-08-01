@@ -1,5 +1,5 @@
 import type { SponsorInfo } from '#/types';
-import CEURLogo from '#/assets/images/sponsors/CEUR-WS-logo.png';
+// import CEURLogo from '#/assets/images/sponsors/CEUR-WS-logo.png';
 import CelonisLogo from '#/assets/images/sponsors/celonis.svg';
 import SCORELogo from '#/assets/images/sponsors/score.svg';
 import SpringerLogo from '#/assets/images/sponsors/springer.svg';
@@ -205,11 +205,11 @@ export const sponsors: SponsorInfo[] = [
         alt: 'SCORE',
         href: 'https://score.us.es/'
       },
-      {
-        src: CEURLogo,
-        alt: 'CEUR-WS',
-        href: 'https://ceur-ws.org/'
-      },
+      // {
+      //   src: CEURLogo,
+      //   alt: 'CEUR-WS',
+      //   href: 'https://ceur-ws.org/'
+      // },
       {
         src: SpringerLogo,
         alt: 'Springer',
