@@ -9,6 +9,7 @@ import { getImage } from 'astro:assets';
 import { program_overviews, program_name_to_uri } from '#/data/program';
 import badgeImg from '#/assets/images/program/badge/bpm2025-badge.png';
 import { isStr } from '@bpm2025-website/shared/validation';
+import { parse } from 'marked';
 
 /**
  * Dynamic route generator
@@ -70,7 +71,16 @@ for (const key of ['width', 'height', 'href', 'description']) {
             return row;
           });
 
-          return <Table {...t} />;
+          return (
+            <>
+              <Table {...t} />
+              {t.description && 
+                <WidgetWrapper>
+                  <Fragment set:html={parse(t.description, { async: false })} />
+                </WidgetWrapper>
+              }
+            </>
+          );
         })
       : <ItemList items={program.items} />}
   </WidgetWrapper>

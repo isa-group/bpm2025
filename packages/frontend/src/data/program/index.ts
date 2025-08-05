@@ -6,7 +6,8 @@ export interface ProgramOverview {
   name: string;
   date?: string;
   location?: string;
-  tables?: ComponentProps<typeof Table>[];
+  /* eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents */
+  tables?: (ComponentProps<typeof Table> & { description?: string })[];
   items?: Item[];
 }
 
@@ -409,7 +410,7 @@ export const program_overviews: ProgramOverview[] = [
     date: 'Tuesday, Sept 2nd, 2025',
     tables: [
       {
-        title: 'Session 1 (11:00 - 13:00)',
+        title: 'Session 1 (11:00 - 13:00) - Technology Enhanced Learning',
         showRowIndex: false,
         rows: [
           {
@@ -450,8 +451,31 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: 'Session 2 (14:30 - 16:00)',
+        title: 'Session 2 (14:30 - 16:00) - Curriculum Innovation',
         showRowIndex: false,
+        description: `
+**Keynote Summary – AI Tutors in Practice: Lessons from the Field**
+          
+In this keynote, Deniz Iren will present the Augmented Reality Tutor (ART),
+which is a virtual AI tutor currently used by over a thousand students and
+piloted in seven universities across four countries.
+He will explain the core technology and the pedagogy-first, teacher-centric
+approach behind ART, share insights from its deployment in real educational
+settings, and reflect on how AI is reshaping learning environments.
+The session will conclude with a hands-on demo of ART and an interactive
+discussion on the future of education in the AI age.
+<br />
+<br />
+**Deniz Iren** is an Associate Professor at the Open Universiteit in the
+Netherlands. His work focuses on affective computing, AI regulation, and
+the application of AI in education. He is the creator of the
+Augmented Reality Tutor (ART), an award-winning AI tutor designed to deliver
+personalized, safe, and scalable learning support. His educational
+innovation efforts have earned him a Comenius Teaching Fellowship (2023) and
+the Education Product of the Year Award (2024).
+Outside of academia, Deniz is a passionate adventure race athlete and
+ultramarathon runner.
+        `.trim(),
         rows: [
           {
             Hour: '14:30-15:30',
@@ -471,7 +495,7 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: 'Session 3 (16:30 - 18:00)',
+        title: 'Session 3 (16:30 - 18:00) - Bridging Academia & Industry',
         showRowIndex: false,
         rows: [
           {
