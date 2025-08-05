@@ -7,6 +7,7 @@ import UnoCSS from 'unocss/astro';
 import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
 import compress from '@playform/compress';
+import AstroVue from '@astrojs/vue';
 
 export default defineConfig({
   /* @unocss-ignore */
@@ -29,6 +30,7 @@ export default defineConfig({
     UnoCSS(),
     sitemap(),
     mdx(),
+    AstroVue(),
     compress({
       CSS: true,
       HTML: true,
@@ -48,6 +50,10 @@ export default defineConfig({
     inlineStylesheets: 'never'
   },
   vite: {
-    cacheDir: resolve(import.meta.dirname, './node_modules/.vite')
+    cacheDir: resolve(import.meta.dirname, './node_modules/.vite'),
+    build: {
+      cssCodeSplit: false,
+      reportCompressedSize: false
+    }
   }
 });
