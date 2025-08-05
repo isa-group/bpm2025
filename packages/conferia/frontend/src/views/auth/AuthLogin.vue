@@ -111,20 +111,22 @@
 </template>
 
 <script setup lang="js">
-import { IonPage, IonContent, IonButton, IonInput, IonLabel, IonSegment, IonSegmentButton, IonItem } from '@ionic/vue';
-import { ref, computed } from 'vue';
+import {
+  IonPage,
+  IonContent,
+  IonButton,
+  IonInput,
+  IonLabel,
+  IonSegment,
+  IonSegmentButton,
+  IonItem
+} from '@ionic/vue';
+import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
-import logoLight from '@bpm2025-website/assets/icon';
-// import logoDark from '#/assets/images/logo-2.svg';
-import backend from '#/backend.config';
+import logo from '@bpm2025-website/assets/icon';
+import backend from '#/plugins/backend.config';
 import PrivacyNote from '#/components/PrivacyNote.vue';
-
-const logo = computed(() => {
-  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? logoLight// logoDark
-    : logoLight;
-});
 
 const router = useRouter();
 
@@ -239,6 +241,7 @@ form {
   color: #428cff;
   margin-top: 1rem;
 }
+
 .logo {
   background-size: contain;
   background-repeat: no-repeat;

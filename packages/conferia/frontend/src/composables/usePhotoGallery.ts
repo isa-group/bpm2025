@@ -123,7 +123,7 @@ export const usePhotoGallery = () => {
     takePhotoGallery: () => {},
     takePhotoProfile: () => {},
     choosePhotoFromPhone: () => {}
-  }
+  };
 };
 
 export interface UserPhoto {

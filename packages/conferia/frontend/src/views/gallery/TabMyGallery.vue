@@ -75,10 +75,10 @@ import { close, download, trashOutline } from 'ionicons/icons';
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router';
-import backend from '#/backend.config';
+import backend from '#/plugins/backend.config';
 import { usePhotoGallery } from '#/composables/usePhotoGallery';
 import HeaderBar from '#/components/HeaderBar.vue';
-import router from '#/router';
+import router from '#/plugins/router';
 
 const { takePhotoGallery } = usePhotoGallery();
 const token = ref(localStorage.getItem('accessToken'));

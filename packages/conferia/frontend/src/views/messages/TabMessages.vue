@@ -203,7 +203,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import HeaderBar from '#/components/HeaderBar.vue';
-import backend from '#/backend.config';
+import backend from '#/plugins/backend.config';
 
 dayjs.extend(relativeTime);
 

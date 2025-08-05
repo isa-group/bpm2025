@@ -138,9 +138,9 @@ import { close, download, add } from 'ionicons/icons';
 import axios from 'axios';
 import { onMounted, type Ref, ref, watch } from 'vue';
 import { useDebounceFn } from '@vueuse/core';
-import { onBeforeRouteUpdate, useRoute } from 'vue-router';
-import backend from '#/backend.config';
-import router from '#/router';
+import { useRoute } from 'vue-router';
+import backend from '#/plugins/backend.config';
+import router from '#/plugins/router';
 import HeaderBar from '#/components/HeaderBar.vue';
 import { usePhotoGallery } from '#/composables/usePhotoGallery';
 

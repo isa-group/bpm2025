@@ -56,7 +56,7 @@ import { IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonMenu, Io
 import { useRouter } from 'vue-router';
 import { onMounted, reactive } from 'vue';
 import axios from 'axios';
-import backend from '#/backend.config';
+import backend from '#/plugins/backend.config';
 
 const router = useRouter();
 const name = reactive({

@@ -93,7 +93,7 @@ import axios from 'axios';
 import { thumbsUpOutline, thumbsUp, trashOutline } from 'ionicons/icons';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import backend from '#/backend.config';
+import backend from '#/plugins/backend.config';
 
 dayjs.extend(relativeTime);
 

@@ -36,7 +36,7 @@ import { useRoute } from 'vue-router';
 import { onMounted, reactive, ref } from 'vue';
 import axios from 'axios';
 import HeaderBar from '#/components/HeaderBar.vue';
-import backend from '#/backend.config';
+import backend from '#/plugins/backend.config';
 
 const route = useRoute();
 const pageData = reactive({ title: '', content: '', layoutId: null });

@@ -191,7 +191,7 @@ import {
 
 import axios from 'axios';
 import { camera, pencilOutline } from 'ionicons/icons';
-import backend from '#/backend.config';
+import backend from '#/plugins/backend.config';
 import { usePhotoGallery } from '#/composables/usePhotoGallery';
 
 onMounted(() => {

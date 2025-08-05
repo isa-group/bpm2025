@@ -60,7 +60,7 @@ import {
 } from '@ionic/vue';
 import { ref } from 'vue';
 import axios from 'axios';
-import backend from '#/backend.config';
+import backend from '#/plugins/backend.config';
 
 const resetEmailError = ref('');
 const resetEmailSuccess = ref('');

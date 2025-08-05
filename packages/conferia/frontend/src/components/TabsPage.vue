@@ -69,7 +69,7 @@ import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouter
 import { home, calendar, people, images, mail } from 'ionicons/icons';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import axios from 'axios';
-import backend from '#/backend.config';
+import backend from '#/plugins/backend.config';
 
 const updates = ref({ numberOfMessages: 0, numberOfPictures: 0 });
 const intervalId = ref(0);

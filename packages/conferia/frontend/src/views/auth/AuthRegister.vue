@@ -63,7 +63,7 @@ import { IonPage, IonContent, IonInput, IonButton, IonToggle } from '@ionic/vue'
 import { computed, onMounted, ref } from 'vue';
 import axios from 'axios';
 import { useRouter, useRoute } from 'vue-router';
-import backend from '#/backend.config';
+import backend from '#/plugins/backend.config';
 
 const router = useRouter();
 const route = useRoute();
