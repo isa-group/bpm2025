@@ -50,7 +50,7 @@ const columns = (() => {
           {(showRowIndex || highlightFirstColumn) && (
             <div
               class:list={[
-                'w-20 h-20 border-r border-gray-200 bg-gray-50 lg:h-20 md:h-16 flex items-center justify-center shrink-0',
+                'w-20 h-auto min-h-20 border-r border-gray-200 bg-gray-50 lg:min-h-20 md:min-h-16 flex items-center justify-center shrink-0',
                 { 'border-b': !mergeFirstCell }
               ]}
               role="columnheader">
@@ -65,7 +65,7 @@ const columns = (() => {
           {columns.slice(highlightFirstColumn ? 1 : 0).map((c, index, array) => (
             <div
               class:list={[
-                'min-w-[180px] font-semibold border-b border-r border-gray-200 bg-gray-50 h-20 md:px-1 lg:h-20 md:h-16 flex-1 flex items-center justify-center',
+                'font-semibold border-b border-r border-gray-200 bg-gray-50 h-auto min-h-20 md:px-1 lg:min-h-20 md:min-h-16 flex-1 flex items-center justify-center',
                 { 'border-r-0': index === array.length - 1 }
               ]}
               role="columnheader">
@@ -85,11 +85,11 @@ const columns = (() => {
           <div class="flex w-full" role="row">
             {(highlightFirstColumn || showRowIndex) && (
               <div
-                class="border-b border-r border-gray-100 border-gray-200 bg-gray-50 flex shrink-0 h-24 w-20 items-center justify-center xl:h-16"
+                class="border-b border-r border-gray-100 border-gray-200 bg-gray-50 flex shrink-0 h-auto min-h-24 w-20 items-center justify-center xl:min-h-16"
                 role="rowheader">
                 {highlightFirstColumn && isFunc(row.get(columns[0]!))
                   ? (
-                      <div class="p-2 flex h-full w-full items-center justify-center overflow-hidden">
+                      <div class="flex h-full w-full items-center justify-center">
                         {row.get(columns[0]!)}
                       </div>
                     )
@@ -99,7 +99,7 @@ const columns = (() => {
                         classes.firstColumn
                       ]}>
                         <span
-                          class="text-sm text-gray-500 font-medium lg:text-xs md:text-xs"
+                          class="text-sm text-gray-500 font-medium lg:text-xs md:text-xs text-center break-words"
                           set:html={showRowIndex ? (rowIndex + 1) : row.get(columns[0]!)} />
                       </div>
                     )}
@@ -109,20 +109,20 @@ const columns = (() => {
             {columns.slice(highlightFirstColumn ? 1 : 0).map((columnName, index, array) => (
               <div
                 class:list={[
-                  'min-w-[180px] flex-1 p-0 border-b border-r border-gray-100 border-gray-200 h-24 relative xl:h-16',
+                  'flex-1 p-0 border-b border-r border-gray-100 border-gray-200 h-auto min-h-24 relative xl:min-h-16',
                   { 'border-r-0': index === array.length - 1 }
                 ]}
                 role="gridcell">
                 {isFunc(row.get(columnName))
                   ? (
-                      <div class="p-2 flex h-full w-full items-center justify-center overflow-hidden">
+                      <div class="flex h-full w-full items-center justify-center">
                         {row.get(columnName)}
                       </div>
                     )
                   : (
-                      <div class="p-2 flex h-full w-full items-center justify-center">
+                      <div class="flex h-full w-full items-center justify-center">
                         <span
-                          class="text-sm text-gray-700"
+                          class="text-sm text-gray-700 text-center break-words"
                           set:html={row.get(columnName) ?? '-'}>
                         </span>
                       </div>
