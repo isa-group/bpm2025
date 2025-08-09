@@ -8,6 +8,6 @@
     }
   },
   "devDependencies": {
-    "astro": "5.12.6"
+    "astro": "5.12.8"
   }
 }
