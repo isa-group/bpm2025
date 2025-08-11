@@ -410,7 +410,7 @@ export const program_overviews: ProgramOverview[] = [
     date: 'Tuesday, Sept 2nd, 2025',
     tables: [
       {
-        title: 'Session 1 (11:00 - 13:00) - Technology Enhanced Learning',
+        title: 'Session 1 (11:00 - 13:00): Technology Enhanced Learning',
         showRowIndex: false,
         rows: [
           {
@@ -451,7 +451,7 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: 'Session 2 (14:30 - 16:00) - Curriculum Innovation',
+        title: 'Session 2 (14:30 - 16:00): Curriculum Innovation',
         showRowIndex: false,
         description: `
 **Keynote Summary – AI Tutors in Practice: Lessons from the Field**
@@ -495,7 +495,7 @@ ultramarathon runner.
         ]
       },
       {
-        title: 'Session 3 (16:30 - 18:00) - Bridging Academia & Industry',
+        title: 'Session 3 (16:30 - 18:00): Bridging Academia & Industry',
         showRowIndex: false,
         rows: [
           {
@@ -533,6 +533,32 @@ ultramarathon runner.
     tables: [
       {
         title: 'Session 1 (11:00 - 13:00): Mathias Weske, Remco Dijkman',
+        description: `
+**Keynote Summary – Process Systems in the Era of Artificial Intelligence**
+          
+The talk begins by showcasing a variety of compelling
+real-world applications of process systems, for example, within the
+manufacturing sector. These examples highlight what can be achieved
+through process systems, i.e., process automation, contextual data
+acquisition, and the seamless integration of Business Process Management
+and the Internet of Things. Then, we will explore how recent
+breakthroughs in Artificial Intelligence (AI) can be harnessed to
+accelerate the development of process systems by keeping the human in
+the loop. Conversely, we outline how process systems themselves can
+shape and steer AI-driven solutions by providing framed autonomy through
+agentic process orchestration.
+<br />
+<br />
+**Stefanie Rinderle-Ma** is a full professor at the Technical
+University of Munich, Germany, and holds the Chair of Information
+Systems and Business Process Management. Her research interests focus on
+process-oriented information systems, flexible and distributed process
+technologies, compliance management, as well as production and process
+intelligence. The overarching goal of her research is to enable and
+accelerate digitalization and automation through processes and at the
+same time keep the human in the loop. Application areas comprise
+manufacturing and health care.
+        `.trim(),
         rows: [
           {
             Hour: '11:00',
@@ -541,7 +567,7 @@ ultramarathon runner.
           },
           {
             Hour: '11:10',
-            Title: 'Keynote',
+            Title: 'Keynote: Process Systems in the Era of Artificial Intelligence',
             Authors: 'Stefanie Rinderle-Ma'
           },
           {
@@ -563,10 +589,6 @@ ultramarathon runner.
             Hour: '12:45',
             Title: 'HiProX: Highly Efficient Process Execution on IoT and Edge Devices',
             Authors: 'Dominik Voigt, Lisa Podszun, Juergen Mangler and Stefanie Rinderle-Ma'
-          },
-          {
-            Hour: '13:00',
-            Title: '<i>Lunch Break</i>'
           }
         ]
       },
@@ -662,12 +684,8 @@ ultramarathon runner.
         ]
       },
       {
-        title: 'Session 2 (14:30 - 16:00)',
+        title: 'Session 2 (14:30 - 16:00): Focus Groups: Grand Challenges and Opportunities in the adoption of BPM in industry and the public sector',
         rows: [
-          {
-            Hour: '-',
-            Title: 'Focus Groups: Grand Challenges and Opportunities in the adoption of BPM in industry and the public sector'
-          },
           {
             Hour: '14:30',
             Title: 'Introduction of the dynamics by the chairs'
@@ -730,7 +748,7 @@ ultramarathon runner.
       },
       {
         title: 'Session 2 (14:30 - 16:00)',
-        showRowIndex: true,
+        showRowIndex: false,
         rows: [
           {
             Hour: '14:30',

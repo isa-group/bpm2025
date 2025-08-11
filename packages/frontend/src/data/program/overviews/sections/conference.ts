@@ -15,6 +15,7 @@ export const conference: ScheduleEvent[] = [
     title: 'Main Track 1',
     start: new Date(2025, 8, 2, 11, 0),
     end: new Date(2025, 8, 2, 13, 0),
+    description: 'Predictive Process Monitoring',
     category: 'conference_1',
     location: locations.giralda,
     href: mainTrackUrl
@@ -23,6 +24,7 @@ export const conference: ScheduleEvent[] = [
     title: 'BPM Forum 1',
     start: new Date(2025, 8, 2, 11, 0),
     end: new Date(2025, 8, 2, 13, 0),
+    description: 'Socio-Technical Perspectives in BPM',
     category: 'bpm_forum',
     location: locations.arenal,
     href: bpmForumUrl
@@ -39,16 +41,10 @@ export const conference: ScheduleEvent[] = [
     title: 'Educators Forum 1',
     start: new Date(2025, 8, 2, 11, 0),
     end: new Date(2025, 8, 2, 13, 0),
+    description: 'Technology Enhanced Learning',
     category: 'forum_1',
     location: locations.triana,
     href: educatorsUrl
-  },
-  {
-    title: 'Journal First 1',
-    start: new Date(2025, 8, 2, 11, 0),
-    end: new Date(2025, 8, 2, 13, 0),
-    category: 'journal_first',
-    location: locations.estepa
   },
   {
     title: 'Lunch Break',
@@ -60,6 +56,7 @@ export const conference: ScheduleEvent[] = [
     title: 'Main Track 2',
     start: new Date(2025, 8, 2, 14, 30),
     end: new Date(2025, 8, 2, 16, 0),
+    description: 'Process Discovery and Analysis',
     category: 'conference_1',
     location: locations.giralda,
     href: mainTrackUrl
@@ -68,6 +65,7 @@ export const conference: ScheduleEvent[] = [
     title: 'Educators Forum 2',
     start: new Date(2025, 8, 2, 14, 30),
     end: new Date(2025, 8, 2, 16, 0),
+    description: 'Curriculum Innovation',
     category: 'forum_1',
     location: locations.arenal,
     href: educatorsUrl
@@ -81,7 +79,7 @@ export const conference: ScheduleEvent[] = [
     href: processTechUrl
   },
   {
-    title: 'Journal First 2',
+    title: 'Journal First 1',
     start: new Date(2025, 8, 2, 14, 30),
     end: new Date(2025, 8, 2, 16, 0),
     category: 'journal_first',
@@ -97,6 +95,7 @@ export const conference: ScheduleEvent[] = [
     title: 'Main Track 3',
     start: new Date(2025, 8, 2, 16, 30),
     end: new Date(2025, 8, 2, 18, 0),
+    description: 'Contextual and Secure Methods in Process Intelligence',
     category: 'conference_1',
     location: locations.giralda,
     href: mainTrackUrl
@@ -105,12 +104,14 @@ export const conference: ScheduleEvent[] = [
     title: 'Educators Forum 3',
     start: new Date(2025, 8, 2, 16, 30),
     end: new Date(2025, 8, 2, 18, 0),
+    description: 'Bridging Academia & Industry',
     category: 'forum_1',
     location: locations.arenal,
     href: educatorsUrl
   },
   {
     title: 'Tutorials 1',
+    description: 'AI-Assisted Business Process Monitoring',
     start: new Date(2025, 8, 2, 16, 30),
     end: new Date(2025, 8, 2, 18, 0),
     category: 'workshop',
@@ -118,7 +119,7 @@ export const conference: ScheduleEvent[] = [
     href: tutorialsUrl
   },
   {
-    title: 'Journal First 3',
+    title: 'Journal First 2',
     start: new Date(2025, 8, 2, 16, 30),
     end: new Date(2025, 8, 2, 18, 0),
     category: 'journal_first',
@@ -128,6 +129,7 @@ export const conference: ScheduleEvent[] = [
     title: 'Main Track 4',
     start: new Date(2025, 8, 3, 11, 0),
     end: new Date(2025, 8, 3, 13, 0),
+    description: 'Cognitive and Organizational Dimensions',
     category: 'conference_1',
     location: locations.giralda,
     href: mainTrackUrl
@@ -137,6 +139,7 @@ export const conference: ScheduleEvent[] = [
     start: new Date(2025, 8, 3, 11, 0),
     end: new Date(2025, 8, 3, 13, 0),
     category: 'bpm_forum',
+    description: 'Intelligent Automation and Optimization in BPM',
     location: locations.arenal,
     href: bpmForumUrl
   },
@@ -158,6 +161,7 @@ export const conference: ScheduleEvent[] = [
     title: 'Main Track 5',
     start: new Date(2025, 8, 3, 14, 30),
     end: new Date(2025, 8, 3, 16, 0),
+    description: 'Simulation, Resource Detection and Optimization',
     category: 'conference_1',
     location: locations.giralda,
     href: mainTrackUrl
@@ -166,6 +170,7 @@ export const conference: ScheduleEvent[] = [
     title: 'Tutorials 2',
     start: new Date(2025, 8, 3, 14, 30),
     end: new Date(2025, 8, 3, 16, 0),
+    description: 'Constraint-based reasoning and analysis for BPM: CSP to the rescue',
     category: 'workshop',
     location: locations.arenal,
     href: tutorialsUrl
@@ -174,6 +179,7 @@ export const conference: ScheduleEvent[] = [
     title: 'Industry Forum 2',
     start: new Date(2025, 8, 3, 14, 30),
     end: new Date(2025, 8, 3, 16, 0),
+    description: 'Focus Groups: Grand Challenges and Opportunities in the adoption of BPM in industry and the public sector',
     category: 'forum_2',
     location: locations.nervion,
     href: industryForumUrl
@@ -185,14 +191,6 @@ export const conference: ScheduleEvent[] = [
     category: 'lunch'
   },
   {
-    title: 'Celonis Tutorial',
-    start: new Date(2025, 8, 3, 16, 30),
-    end: new Date(2025, 8, 3, 18, 0),
-    category: 'forum_1',
-    location: locations.nervion,
-    href: tutorialsUrl
-  },
-  {
     title: 'Demos',
     start: new Date(2025, 8, 3, 16, 30),
     end: new Date(2025, 8, 3, 18, 0),
@@ -200,9 +198,25 @@ export const conference: ScheduleEvent[] = [
     location: locations.sta_cruz
   },
   {
+    title: 'Celonis Tutorial',
+    start: new Date(2025, 8, 3, 16, 30),
+    end: new Date(2025, 8, 3, 18, 0),
+    category: 'workshop',
+    location: locations.nervion,
+    href: tutorialsUrl
+  },
+  {
+    title: 'Journal First 3',
+    start: new Date(2025, 8, 3, 16, 30),
+    end: new Date(2025, 8, 3, 18, 0),
+    category: 'journal_first',
+    location: locations.arenal
+  },
+  {
     title: 'Main Track 6',
     start: new Date(2025, 8, 4, 11, 0),
     end: new Date(2025, 8, 4, 13, 0),
+    description: 'Conformance Checking and Temporal Constraints',
     category: 'conference_1',
     location: locations.giralda,
     href: mainTrackUrl
@@ -211,6 +225,7 @@ export const conference: ScheduleEvent[] = [
     title: 'BPM Forum 3',
     start: new Date(2025, 8, 4, 11, 0),
     end: new Date(2025, 8, 4, 13, 0),
+    description: 'Process Modeling, Simulation, and Verification',
     category: 'bpm_forum',
     location: locations.arenal,
     href: bpmForumUrl
@@ -233,6 +248,7 @@ export const conference: ScheduleEvent[] = [
     title: 'Main Track 7',
     start: new Date(2025, 8, 4, 14, 30),
     end: new Date(2025, 8, 4, 16, 0),
+    description: 'Detecting Rules and Descriptions',
     category: 'conference_1',
     location: locations.giralda,
     href: mainTrackUrl
@@ -241,6 +257,7 @@ export const conference: ScheduleEvent[] = [
     title: 'Tutorials 3',
     start: new Date(2025, 8, 4, 14, 30),
     end: new Date(2025, 8, 4, 16, 0),
+    description: 'Business Process Optimization',
     category: 'workshop',
     location: locations.arenal,
     href: tutorialsUrl
