@@ -74,11 +74,12 @@ for (const key of ['width', 'height', 'href', 'description']) {
           return (
             <>
               <Table {...t} />
-              {t.description && 
-                <WidgetWrapper>
-                  <Fragment set:html={parse(t.description, { async: false })} />
-                </WidgetWrapper>
-              }
+              {t.description
+                && (
+                  <WidgetWrapper>
+                    <Fragment set:html={parse(t.description, { async: false })} />
+                  </WidgetWrapper>
+                )}
             </>
           );
         })
