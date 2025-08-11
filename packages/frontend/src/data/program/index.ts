@@ -748,7 +748,6 @@ manufacturing and health care.
       },
       {
         title: 'Session 2 (14:30 - 16:00)',
-        showRowIndex: false,
         rows: [
           {
             Hour: '14:30',
@@ -847,6 +846,120 @@ manufacturing and health care.
           While not exhaustive, the classification aims to provide a structured overview and spark future
           research in this emerging area. 
         `
+      }
+    ]
+  },
+  {
+    name: 'Journal First Track',
+    location: '"Triana" Hall on Tuesday and "Arenal" Hall on Wednesday',
+    date: 'Tuesday & Wednesday, Sept 2nd–3rd, 2025',
+    tables: [
+      {
+        title: 'Session 1 (Tuesday 14:30 - 16:00)',
+        rows: [
+          {
+            Title: 'SOPA: a framework for sustainability-oriented process analysis and re-design in business process management',
+            Authors: 'Finn Klessascheck, Ingo Weber and Luise Pufahl'
+          },
+          {
+            Title: 'Challenges in AI-supported Process Analysis in the Italian Judicial System: what After Digitalization?',
+            Authors: 'Devis Bianchini, Carlo Bono, Alessandro Campi, Cinzia Cappiello, Stefano Ceri, Francesca De Luzi, Massimo Mecella, Barbara Pernici and Pierluigi Plebani'
+          },
+          {
+            Title: 'Unlocking the promise of process mining: shaping perceptions and impact in the public sector',
+            Authors: 'Serena Racis and Alessandro Spano'
+          },
+          {
+            Title: 'Timeline-based process discovery',
+            Authors: 'Christoffer Rubensson, Harleen Kaur, Timotheus Kampik and Jan Mendling'
+          },
+          {
+            Title: 'Efficient Online Computation of Business Process State From Trace Prefixes via N-Gram Indexing',
+            Authors: 'David Chapela-Campa and Marlon Dumas'
+          },
+          {
+            Title: 'Stochastic Conformance Checking based on Variable-length Markov Chains',
+            Authors: 'Emilio Incerto, Andrea Vandin and Sima Sarv Ahrabi'
+          },
+          {
+            Title: 'Soundness unknotted: An efficient soundness checking algorithm for arbitrary cyclic process models by loosening loops',
+            Authors: 'Thomas M. Prinz, Yongsun Choi and N. Long Ha'
+          },
+          {
+            Title: 'On Process Discovery Experimentation: Addressing the Need for Research Methodology in Process Discovery',
+            Authors: 'Jana-Rebecca Rehse, Sander J.J. Leemans, Peter Fettke and Jan Martijn van der Werf'
+          }
+        ]
+      },
+      {
+        title: 'Session 2 (Tuesday 16:30 - 18:00)',
+        rows: [
+          {
+            Title: 'Analyzing Healthcare Processes with Incremental Process Discovery: Practical Insights from a Real-World Application',
+            Authors: 'Daniel Schuster, Elisabetta Benevento, Davide Aloini and Wil van der Aalst'
+          },
+          {
+            Title: 'Predicting radiology service times for enhancing emergency department management',
+            Authors: 'Davide Aloini, Elisabetta Benevento, Marco Berdini and Alessandro Stefanini'
+          },
+          {
+            Title: 'Human Behavior Mining: A Framework for Theorizing About mHealth Behavior Using Digital Trace Data',
+            Authors: 'Fallon Monica, Jana-Rebecca Rehse and Armin Heinzl'
+          },
+          {
+            Title: 'The WHY in Business Processes: Discovery of Causal Execution Dependencies',
+            Authors: 'Fabiana Fournier, Lior Limonad, Inna Skarbovsky and Yuval David'
+          },
+          {
+            Title: 'Intervention strategies for improving business process outcomes: A causal rule mining approach',
+            Authors: 'Rik Eshuis and Laura Genga'
+          },
+          {
+            Title: 'Approaches for IoT-enhanced predictive process monitoring',
+            Authors: 'Yannis Bertrand, Alexander Stevens, Boje Deforce, Johannes De Smedt, Jochen De Weerdt and Estefanía Serral'
+          },
+          {
+            Title: 'Supporting business confidentiality in coopetitive scenarios: The B-CONFIDENT approach in blockchain-based supply chains',
+            Authors: 'Simone Agostinelli, Ala Arman, Francesca De Luzi, Flavia Monti, Michele Manglaviti and Massimo Mecella'
+          },
+          {
+            Title: 'Effective presentation of ontological overlap of multiple conceptual models',
+            Authors: 'Djordje Djurica, Araz Jabbari, Jan Mendling and Jan Recker'
+          }
+        ]
+      },
+      {
+        title: 'Session 3 (Wednesday 16:30 - 18:00)',
+        rows: [
+          {
+            Title: 'How do digital Startups Manage Their Activities? Insights and Opportunities for Business Process Management',
+            Authors: 'Mahendrawathi Er, Natasha Ratna Puspita Mulyono, Ivan Althirafi Rentio and Ika Nurkasanah'
+          },
+          {
+            Title: 'How do Process Mining Users Act, Think, and Feel? An Explorative Study of Process Mining Use Patterns',
+            Authors: 'Jana Ammann, Laura Lohoff, Bastian Wurm and Thomas Hess'
+          },
+          {
+            Title: 'How well can a large language model explain business processes as perceived by users?',
+            Authors: 'Dirk Fahland, Fabiana Fournier, Lior Limonad, Inna Skarbovsky and Ava Swevels'
+          },
+          {
+            Title: 'Workarounds as a Cause of Mismatches in Business Processes—Insights from a Multiple Case Study',
+            Authors: 'Christian Bartelheimer, Bernd Löhr, Malte Reineke, Agnes Assbrock and Daniel Beverungen'
+          },
+          {
+            Title: 'On the application of process management and process mining to Industry 4.0',
+            Authors: 'Flavia Monti, Jerin George Mathew, Francesco Leotta, Agnes Koschmider and Massimo Mecella'
+          },
+          {
+            Title: 'Orchestration of Services in Smart Manufacturing Through Automated Synthesis',
+            Authors: 'Flavia Monti, Luciana Silo, Marco Favorito, Giuseppe De Giacomo, Francesco Leotta and Massimo Mecella'
+          },
+          {
+            Title: 'An Interactive Error-correcting Approach for IoT-sourced Event Logs',
+            Authors: 'Mohsen Shirali, Zahra Ahmadi, Carlos Fernández-Llatas, José Luis Bayo Montón and Gemma Di Federico'
+          }
+        ]
       }
     ]
   }
