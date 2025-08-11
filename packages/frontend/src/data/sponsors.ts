@@ -10,6 +10,7 @@ import Iterem from '#/assets/images/sponsors/iterem.svg';
 import InteractSolutions from '#/assets/images/sponsors/interact.svg';
 import SAPSignavio from '#/assets/images/sponsors/SAP_Signavio.svg';
 import DCRSolutions from '#/assets/images/sponsors/dcr-solutions.webp';
+import AuraQuantic from '#/assets/images/sponsors/AuraQuantic.svg';
 
 export const sponsors: SponsorInfo[] = [
   {
@@ -63,6 +64,19 @@ export const sponsors: SponsorInfo[] = [
       description: `
           Sharpen your competitive edge by making transformation a core capability. With SAP Signavio solutions,
           focus on process excellence in business transformations and help bring your company vision to life.
+        `
+    },
+    {
+      src: AuraQuantic,
+      alt: 'AuraQuantic',
+      href: 'https://www.auraquantic.com',
+      description: `
+          AuraQuantic is a No-Code digital platform designed to help business users easily and rapidly build 
+          unlimited processes and applications for automating end-to-end operations. This innovative solution 
+          enables organizations to reduce costs and optimize productivity by streamlining workflows and 
+          enhancing operational efficiency. With AuraQuantic, users can create tailored applications without 
+          the need for extensive programming knowledge, making it accessible to a wide range of professionals 
+          across various industries.
         `
     }
     ]
