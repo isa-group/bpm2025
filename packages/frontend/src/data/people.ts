@@ -355,7 +355,8 @@ export const steeringCommittee = (): Record<string, ConferenceMemberData> => ({
 export const conferenceChairs = (): Record<string, ConferenceMemberData> => ({
   'General chairs': {
     'Adela del Río Ortega': sharedPeopleData['Adela del Río Ortega'],
-    'Manuel Resinas': sharedPeopleData['Manuel Resinas']
+    'Manuel Resinas': sharedPeopleData['Manuel Resinas'],
+    'Hajo Reijers': sharedPeopleData['Hajo Reijers']
   },
   'Program Committee': {
     'Arik Senderovich': {
