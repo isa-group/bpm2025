@@ -1,11 +1,12 @@
 import type { ComponentProps } from 'astro/types';
 import type { Item } from '#/types';
 import type Table from '#/components/ui/Table.astro';
+import { locations } from '#/data/program/locations';
 
 export interface ProgramOverview {
   name: string;
   date?: string;
-  location?: string;
+  location?: typeof locations[keyof typeof locations];
   /* eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents */
   tables?: (ComponentProps<typeof Table> & { description?: string })[];
   items?: Item[];
@@ -22,7 +23,7 @@ export const program_overviews: ProgramOverview[] = [
   {
     name: 'Main Track',
     date: 'Tuesday, Sept 2nd, 2025 - Thursday, Sept 4th, 2025',
-    location: '"Giralda" Hall',
+    location: locations.giralda,
     tables: [
       {
         title: 'Session 1 - Tuesday, Sept 2nd, 2025 (11:00 - 13:00): Predictive Process Monitoring',
@@ -236,7 +237,7 @@ export const program_overviews: ProgramOverview[] = [
   },
   {
     name: 'BPM Forum',
-    location: '"Arenal" Hall',
+    location: locations.arenal,
     date: 'Tuesday, Sept 2nd - Thursday, Sept 4th, 2025',
     tables: [
       {
@@ -528,7 +529,7 @@ ultramarathon runner.
   },
   {
     name: 'Process Technology Forum',
-    location: '"Nervión" Hall',
+    location: locations.nervion,
     date: 'Tuesday, Sept 2nd, 2025',
     tables: [
       {
@@ -635,7 +636,7 @@ manufacturing and health care.
   },
   {
     name: 'Industry Forum',
-    location: '"Nervión" Hall',
+    location: locations.nervion,
     date: 'Wednesday, Sept 3rd, 2025',
     tables: [
       {
@@ -704,7 +705,7 @@ manufacturing and health care.
   },
   {
     name: 'Responsible BPM Forum',
-    location: '"Nervión" Hall',
+    location: locations.nervion,
     date: 'Thursday, Sept 4th, 2025',
     tables: [
       {
@@ -851,7 +852,7 @@ manufacturing and health care.
   },
   {
     name: 'Journal First Track',
-    location: '"Triana" Hall on Tuesday and "Arenal" Hall on Wednesday',
+    location: [locations.triana, locations.arenal],
     date: 'Tuesday & Wednesday, Sept 2nd–3rd, 2025',
     tables: [
       {
