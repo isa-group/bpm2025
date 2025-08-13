@@ -65,6 +65,7 @@ jobs:
             tags: bpm2025/payment-processing
           - name: conferia-backend
             dockerfile: packages/conferia/backend/Dockerfile
+            context: packages/conferia/backend
             tags: bpm2025/conferia
 
     steps:
