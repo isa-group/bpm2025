@@ -1,6 +1,5 @@
 package icpmapp.controller;
 
-import com.mysql.cj.result.LocalDateTimeValueFactory;
 import icpmapp.dto.SessionHeaderDTO;
 import icpmapp.dto.responses.UpdateResponse;
 import icpmapp.entities.User;

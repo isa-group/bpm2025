@@ -76,7 +76,7 @@ router.post(
       );
       logger.info(`Order created: ${order_id}`);
 
-      const final_order = await db.full_order_details.findUniqueOrThrow({
+      const final_order = await db.full_order_details.findFirstOrThrow({
         where: { order_ID: order_id },
         select: {
           price_paid_with_discounts: true,

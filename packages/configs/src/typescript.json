@@ -24,7 +24,7 @@
     "tsBuildInfoFile": "../../../node_modules/.cache/tsconfig.tsbuildinfo",
     "paths": {
       "#/*": ["./src/*"]
-    },
+    }
   },
   "exclude": [
     "node_modules",

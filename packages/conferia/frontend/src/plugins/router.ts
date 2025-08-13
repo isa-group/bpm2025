@@ -117,14 +117,16 @@ const router = createRouter({
   routes
 });
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach((to, _from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // Authentication check
     const token = localStorage.getItem('accessToken');
     if (token) {
-      next(); return;
+      next();
+      return;
     }
-    next('/auth/login'); return;
+    next('/auth/login');
+    return;
   }
   next();
 });

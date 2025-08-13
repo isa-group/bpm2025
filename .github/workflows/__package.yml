@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout ⬇️
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v5.0.0
         with:
           show-progress: false
           ref: ${{ inputs.commit || github.sha }}
@@ -52,12 +52,25 @@ jobs:
           path: packages/frontend/dist
 
   build_docker:
-    name: Build backend 🐳
+    name: Build Docker image (${{ matrix.name }}) 🐳
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: payment-backend
+            dockerfile: packages/backend/Dockerfile
+            context: .
+            tags: bpm2025/payment-processing
+          - name: conferia-backend
+            dockerfile: packages/conferia/backend/Dockerfile
+            context: packages/conferia/backend
+            tags: bpm2025/conferia
 
     steps:
       - name: Checkout ⬇️
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v5.0.0
         with:
           show-progress: false
           ref: ${{ inputs.commit || github.sha }}
@@ -69,15 +82,15 @@ jobs:
         uses: docker/build-push-action@v6.18.0
         id: image
         with:
-          context: .
-          file: packages/backend/Dockerfile
+          context: ${{ matrix.context }}
+          file: ${{ matrix.dockerfile }}
           platforms: linux/amd64
-          outputs: type=docker,dest=docker_image.tar
-          tags: bpm2025/payment-processing
+          outputs: type=docker,dest=${{ matrix.name }}-docker_image.tar
+          tags: ${{ matrix.tags }}
 
       - name: Upload Docker image as artifact ⬆️📦
         uses: actions/upload-artifact@v4.6.2
         with:
           compression-level: 0
-          name: backend-docker_image
-          path: docker_image.tar
+          name: ${{ matrix.name }}-docker_image
+          path: ${{ matrix.name }}-docker_image.tar
