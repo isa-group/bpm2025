@@ -788,7 +788,7 @@ manufacturing and health care.
     name: 'Tutorials',
     items: [
       {
-        title: 'Tutorial 1: <u>AI-Assisted Business Process Monitoring</u>',
+        title: 'Tutorial 1 - Tuesday, Sept 2nd, 2025 (16:30 - 18:00): <u>AI-Assisted Business Process Monitoring</u>',
         description: `
           <i>Andreas Metzger</i>
           <br /><br />
@@ -812,7 +812,7 @@ manufacturing and health care.
         `
       },
       {
-        title: 'Tutorial 2: <u>Constraint-based reasoning and analysis for BPM: CSP to the rescue</u>',
+        title: 'Tutorial 2 - Wednesday, Sept 3rd, 2025 (14:30 - 16:00): <u>Constraint-based reasoning and analysis for BPM: CSP to the rescue</u>',
         description: `
           <i>Alessandro Gianola, Andrey Rivkin and Mateusz Slazynski</i>
           <br /><br />
@@ -833,7 +833,7 @@ manufacturing and health care.
         `
       },
       {
-        title: 'Tutorial 3: <u>Business Process Optimization</u>',
+        title: 'Tutorial 3 - Thursday, Sept 4th, 2025 (14:30 - 16:00): <u>Business Process Optimization</u>',
         description: `
           <i>Remco Dijkman and Arik Senderovich</i>
           <br /><br />
