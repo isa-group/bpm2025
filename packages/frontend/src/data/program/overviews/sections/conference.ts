@@ -9,6 +9,8 @@ const educatorsUrl = getPermalink('/program/educators-forum');
 const industryForumUrl = getPermalink('/program/industry-forum');
 const tutorialsUrl = getPermalink('/program/tutorials');
 const responsibleUrl = getPermalink('/program/responsible-bpm-forum');
+const demosUrl = getPermalink('/program/demos-&-resources/');
+const journalFirstUrl = getPermalink('/program/journal-first-track');
 
 export const conference: ScheduleEvent[] = [
   {
@@ -83,7 +85,8 @@ export const conference: ScheduleEvent[] = [
     start: new Date(2025, 8, 2, 14, 30),
     end: new Date(2025, 8, 2, 16, 0),
     category: 'journal_first',
-    location: locations.triana
+    location: locations.triana,
+    href: journalFirstUrl
   },
   {
     title: 'Coffee Break',
@@ -123,7 +126,8 @@ export const conference: ScheduleEvent[] = [
     start: new Date(2025, 8, 2, 16, 30),
     end: new Date(2025, 8, 2, 18, 0),
     category: 'journal_first',
-    location: locations.triana
+    location: locations.triana,
+    href: journalFirstUrl
   },
   {
     title: 'Main Track 4',
@@ -195,7 +199,8 @@ export const conference: ScheduleEvent[] = [
     start: new Date(2025, 8, 3, 16, 30),
     end: new Date(2025, 8, 3, 18, 0),
     category: 'demos',
-    location: locations.sta_cruz
+    location: locations.sta_cruz,
+    href: demosUrl
   },
   {
     title: 'Celonis Tutorial',
@@ -210,7 +215,8 @@ export const conference: ScheduleEvent[] = [
     start: new Date(2025, 8, 3, 16, 30),
     end: new Date(2025, 8, 3, 18, 0),
     category: 'journal_first',
-    location: locations.arenal
+    location: locations.arenal,
+    href: journalFirstUrl
   },
   {
     title: 'Main Track 6',
