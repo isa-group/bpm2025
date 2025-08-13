@@ -6,7 +6,7 @@ import { locations } from '#/data/program/locations';
 export interface ProgramOverview {
   name: string;
   date?: string;
-  location?: typeof locations[keyof typeof locations];
+  location?: typeof locations[keyof typeof locations] | Array<typeof locations[keyof typeof locations]>;
   /* eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents */
   tables?: (ComponentProps<typeof Table> & { description?: string })[];
   items?: Item[];
