@@ -788,7 +788,7 @@ manufacturing and health care.
     name: 'Tutorials',
     items: [
       {
-        title: 'Tutorial 1: <u>AI-Assisted Business Process Monitoring</u>',
+        title: 'Tutorial 1 - Tuesday, Sept 2nd, 2025 (16:30 - 18:00): <u>AI-Assisted Business Process Monitoring</u>',
         description: `
           <i>Andreas Metzger</i>
           <br /><br />
@@ -812,7 +812,7 @@ manufacturing and health care.
         `
       },
       {
-        title: 'Tutorial 2: <u>Constraint-based reasoning and analysis for BPM: CSP to the rescue</u>',
+        title: 'Tutorial 2 - Wednesday, Sept 3rd, 2025 (14:30 - 16:00): <u>Constraint-based reasoning and analysis for BPM: CSP to the rescue</u>',
         description: `
           <i>Alessandro Gianola, Andrey Rivkin and Mateusz Slazynski</i>
           <br /><br />
@@ -833,7 +833,7 @@ manufacturing and health care.
         `
       },
       {
-        title: 'Tutorial 3: <u>Business Process Optimization</u>',
+        title: 'Tutorial 3 - Thursday, Sept 4th, 2025 (14:30 - 16:00): <u>Business Process Optimization</u>',
         description: `
           <i>Remco Dijkman and Arik Senderovich</i>
           <br /><br />
@@ -848,6 +848,105 @@ manufacturing and health care.
           While not exhaustive, the classification aims to provide a structured overview and spark future
           research in this emerging area. 
         `
+      }
+    ]
+  },
+  {
+    name: 'Demos & Resources',
+    location: locations.sta_cruz,
+    date: 'Wednesday, Sept 3rd, 2025',
+    tables: [
+      {
+        title: 'Session (16:30 - 18:00)',
+        description: `
+There is a demos & resources teaser session after the keynote that day: from 10:15 to 10:30.
+        `.trim(),
+        rows: [
+          {
+            Title: 'BPMNinvest: Feedback on Change in Process Models',
+            Authors: 'Thomas M. Prinz and Yongsun Choi'
+          },
+          {
+            Title: 'Capturing Environmental Impacts of Business Processes with Camunda and the SOPA Framework',
+            Authors: 'Finn Klessascheck, Yannic Seibert and Luise Pufahl'
+          },
+          {
+            Title: 'Easy and Efficient Object-Centric Process Querying with the OCPQ Tool',
+            Authors: 'Aaron Küsters and Wil van der Aalst'
+          },
+          {
+            Title: 'FrAIm: A What-If Analysis Tool Enabling Framed Autonomy via Automated Planning',
+            Authors: 'Paul Wittlinger, Giacomo Acitelli, Anti Alman, Fabrizio Maria Maggi and Andrea Marrella'
+          },
+          {
+            Title: 'BEAR 2.0: enhancing the environment model for animating environment-aware BPMN collaborations',
+            Authors: 'Flavio Corradini, Luca Mozzoni, Jessica Piccioni, Barbara Re, Lorenzo Rossi and Francesco Tiezzi'
+          },
+          {
+            Title: "PyStack't: Real-Life Data for Object-Centric Process Mining",
+            Authors: 'Lien Bosmans, Jari Peeperkorn and Johannes De Smedt'
+          },
+          {
+            Title: 'Kogui: A tool for assessing High-Level Business Process Compliance',
+            Authors: 'Juanita Caballero Villalobos and Hugo A. López'
+          },
+          {
+            Title: 'Process Copilots: Scaling Process Mining Through Conversational Interfaces',
+            Authors: 'Carolin Ullrich, Teodora Lata and Alexander Seeliger'
+          },
+          {
+            Title: 'A Business Process Simulation Tool Bridging Control-Flow and Resource-Centric Paradigms',
+            Authors: 'Jack Edh, Tuva Falk, Filip Kanon, Erik Simonsson, Hugo Sjödin, Jonatan Wincent, Elisabeth Barar, Robert Blümel and Lukas Kirchdorfer'
+          },
+          {
+            Title: 'GymPN: a Python Library for Automated Decision-Making in Process Management Systems',
+            Authors: 'Riccardo Lo Bianco, Willem van Jaarsveld and Remco Dijkman'
+          },
+          {
+            Title: 'BROOM: Toolbox for IoT-Enhanced Process Mining',
+            Authors: 'Christian Imenkamp, Yannis Bertrand, Joscha Grüger, Lukas Malburg, Marco Franceschetti, Matthias Ehrendorfer and Agnes Koschmider'
+          },
+          {
+            Title: 'DCR-JS: An Online Environment for Declarative Process Mining',
+            Authors: 'Axel K.F. Christfort and Hugo A. López'
+          },
+          {
+            Title: 'A Visual Analytics Tool for Multi-Dimensional Resource Insights in Process Mining',
+            Authors: 'Alana Hoogmoed, Maximilian Schoditsch and Djordje Djurica'
+          },
+          {
+            Title: 'FairLoop: Software Support for Human-Centric Fairness in Predictive Business Process Monitoring',
+            Authors: 'Felix Möhrlein, Martin Käppel, Julian Neuberger, Sven Weinzierl, Lars Ackermann, Martin Matzner and Stefan Jablonski'
+          },
+          {
+            Title: 'A training framework for BPM Modeling interviews based on LLM assistants',
+            Authors: 'Bedilia Estrada-Torres, José Antonio Parejo, Armando Fox and Pablo Fernández'
+          },
+          {
+            Title: 'A Collection of Publicly Available Event Logs',
+            Authors: 'Ana Costa, Selin Y. Eroglu, Kerstin Andree and Luise Pufahl'
+          },
+          {
+            Title: 'BPMN-Chatbot++: LLM-Based Modeling of Collaboration Diagrams with Data',
+            Authors: 'Aya Safan and Julius Köpke'
+          },
+          {
+            Title: 'AutoBPMN.AI: Conversational Process Modeling and Automation',
+            Authors: 'Nataliia Klievtsova, Matthias Ehrendorfer, Juergen Mangler and Stefanie Rinderle-Ma'
+          },
+          {
+            Title: 'Sequen-C Explorer for Process Mining',
+            Authors: 'Luis Montana and Maria-Cruz Villa-Uriol'
+          },
+          {
+            Title: 'A Library for Detecting Inconsistencies in Declarative Process Models',
+            Authors: 'Sabine Nagel and Patrick Delfmann'
+          },
+          {
+            Title: 'Declarative Process Mining with MINERful, Reloaded',
+            Authors: 'Cecilia Iacometta and Claudio Di Ciccio'
+          }
+        ]
       }
     ]
   },

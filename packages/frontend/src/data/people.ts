@@ -295,7 +295,7 @@ export const steeringCommittee = (): Record<string, ConferenceMemberData> => ({
       location: 'Ulm, Germany',
       email: 'manfred.reichert@uni-ulm.de'
     },
-    'Hajo Reijers': sharedPeopleData['Hajo Reijers'],
+    'Hajo Reijers': { ...sharedPeopleData['Hajo Reijers'], job: '' },
     'Stefanie Rinderle-Ma': {
       treatment,
       job: 'Vice-Chair',
@@ -749,6 +749,9 @@ export const conferenceChairs = (): Record<string, ConferenceMemberData> => ({
         as reviewer and PC member for conferences like BPM, ICPM and CoopIS.
       `
     }
+  },
+  'Best Dissertation Award': {
+    'Hajo Reijers': { ...sharedPeopleData['Hajo Reijers'], job: '' }
   },
   'Publicity': {
     'Daniel Calegari': {
