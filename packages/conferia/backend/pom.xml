@@ -108,6 +108,12 @@
             <artifactId>webp-imageio</artifactId>
             <version>0.1.6</version>
         </dependency>
+        <!-- Add Springdoc OpenAPI starter for Swagger UI -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.3.0</version>
+        </dependency>
     </dependencies>
 
     <build>
