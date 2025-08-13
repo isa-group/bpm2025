@@ -1,3 +1,14 @@
+# stage 1: build the app
+FROM openjdk:17-slim AS builder
+
+WORKDIR /app
+
+COPY . .
+
+RUN chmod +x mvnw
+
+RUN ./mvnw clean package -DskipTest
+
 # Use an official OpenJDK runtime as a parent image
 FROM openjdk:17-slim
 
@@ -5,7 +16,7 @@ FROM openjdk:17-slim
 WORKDIR /app
 
 # Copy the project’s jar file into the container
-COPY target/Springsecurity-1.0-SNAPSHOT.jar app.jar
+COPY --from=builder /app/target/Springsecurity-1.0-SNAPSHOT.jar app.jar
 
 # Expose port 8080
 EXPOSE 8080
