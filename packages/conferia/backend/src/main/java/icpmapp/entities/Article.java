@@ -21,17 +21,18 @@ public class Article {
   @Lob
   @Column(name = "abstract", columnDefinition = "TEXT")
   private String abstractText;
-  
+
   private String doi;
-  
+
   private String url;
-  
 
   @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @OrderBy("authorOrder ASC")
+  @OrderColumn(name = "author_order")
   private List<ArticleAuthor> articleAuthors;
 
-  public Article() {}
+  public Article() {
+  }
 
   public Article(String title, String abstractText, String doi, String url) {
     this.title = title;
