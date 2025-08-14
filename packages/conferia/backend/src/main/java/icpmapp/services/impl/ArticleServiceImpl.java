@@ -61,7 +61,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Transactional
     public ArticleResponse update(Integer id, ArticleRequest request) {
         Article article = articleRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Article not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Article not found with id: " + id));
         article.setTitle(request.getTitle());
         article.setAbstractText(request.getAbstractText());
         article.setDoi(request.getDoi());
