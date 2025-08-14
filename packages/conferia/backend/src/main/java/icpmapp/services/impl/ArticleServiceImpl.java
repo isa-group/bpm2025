@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -130,17 +131,21 @@ public class ArticleServiceImpl implements ArticleService {
         dto.setDoi(article.getDoi());
         dto.setUrl(article.getUrl());
         if (article.getArticleAuthors() != null) {
-            List<ArticleResponse.ArticleAuthorDTO> authors = article.getArticleAuthors().stream().map(aa -> {
-                ArticleResponse.ArticleAuthorDTO a = new ArticleResponse.ArticleAuthorDTO();
-                a.setAuthorId(aa.getAuthor().getId());
-                a.setFirstName(aa.getAuthor().getFirstName());
-                a.setLastName(aa.getAuthor().getLastName());
-                a.setFullName(aa.getAuthor().getFullName());
-                a.setAuthorOrder(aa.getAuthorOrder());
-                a.setCorresponding(Boolean.TRUE.equals(aa.getIsCorresponding()));
-                a.setPresenting(Boolean.TRUE.equals(aa.getIsPresenting()));
-                return a;
-            }).sorted((a1, a2) -> Integer.compare(a1.getAuthorOrder(), a2.getAuthorOrder()))
+            List<ArticleResponse.ArticleAuthorDTO> authors = article.getArticleAuthors().stream()
+                    .filter(Objects::nonNull)
+                    .filter(aa -> aa.getAuthor() != null)
+                    .map(aa -> {
+                        ArticleResponse.ArticleAuthorDTO a = new ArticleResponse.ArticleAuthorDTO();
+                        a.setAuthorId(aa.getAuthor().getId());
+                        a.setFirstName(aa.getAuthor().getFirstName());
+                        a.setLastName(aa.getAuthor().getLastName());
+                        a.setFullName(aa.getAuthor().getFullName());
+                        a.setAuthorOrder(aa.getAuthorOrder());
+                        a.setCorresponding(Boolean.TRUE.equals(aa.getIsCorresponding()));
+                        a.setPresenting(Boolean.TRUE.equals(aa.getIsPresenting()));
+                        return a;
+                    })
+                    .sorted((a1, a2) -> Integer.compare(a1.getAuthorOrder(), a2.getAuthorOrder()))
                     .collect(Collectors.toList());
             dto.setAuthors(authors);
         }

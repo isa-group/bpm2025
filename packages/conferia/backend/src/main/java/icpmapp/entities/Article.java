@@ -28,7 +28,6 @@ public class Article {
 
   @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @OrderBy("authorOrder ASC")
-  @OrderColumn(name = "author_order")
   private List<ArticleAuthor> articleAuthors;
 
   public Article() {

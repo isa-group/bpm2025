@@ -7,12 +7,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import io.swagger.v3.oas.models.ExternalDocumentation;
+
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.info.License;
 import org.springframework.context.annotation.Bean;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -185,17 +185,18 @@ public class ICPMApp implements CommandLineRunner {
         }
     }
 
+    private SecurityScheme createAPIKeyScheme() {
+        return new SecurityScheme().type(SecurityScheme.Type.HTTP)
+                .bearerFormat("JWT")
+                .scheme("bearer");
+    }
+
     @Bean
     public OpenAPI conferenceOpenAPI() {
         return new OpenAPI()
+                .components(new Components().addSecuritySchemes("Bearer Authentication", createAPIKeyScheme()))
                 .info(new Info().title("Conference Platform API")
                         .description("REST API documentation for Conferia backend")
-                        .version("v1.0")
-                        .contact(new Contact().name("Conferia Team").email("support@example.org"))
-                        .license(new License().name("Apache 2.0")
-                                .url("https://www.apache.org/licenses/LICENSE-2.0.html")))
-                .externalDocs(new ExternalDocumentation()
-                        .description("Project Repository")
-                        .url("https://example.org/repo"));
+                        .version("v1.0"));
     }
 }
