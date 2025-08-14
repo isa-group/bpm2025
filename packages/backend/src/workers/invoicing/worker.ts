@@ -1,9 +1,9 @@
 // @ts-expect-error - workerData is redeclared for types only, but TS doesn't know
 import { parentPort, workerData } from 'node:worker_threads';
-import type { Prisma } from '@prisma/client';
 // @ts-expect-error - The module doesn't have types
 import MicroInvoice from 'microinvoice';
-import { getInvoicePath } from '../../../util/index.ts';
+import { getInvoicePath } from '../../util/index.ts';
+import type { OrderWithRelations } from '#/types';
 
 export interface WorkerData {
   target_path: string;
@@ -18,18 +18,6 @@ export interface WorkerData {
 }
 
 declare const workerData: WorkerData;
-
-type OrderWithRelations = Prisma.orderGetPayload<{
-  include: {
-    user: true;
-    product: true;
-    discount_order: {
-      include: {
-        discount: true;
-      };
-    };
-  };
-}>;
 
 export interface Inputs {
   order: OrderWithRelations;

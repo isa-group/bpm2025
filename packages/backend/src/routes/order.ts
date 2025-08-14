@@ -1,17 +1,14 @@
 import { createReadStream } from 'node:fs';
-import { stat } from 'node:fs/promises';
+import type { TPVOperation } from '@bpm2025-website/shared';
 import { defineEventHandler, readBody } from 'h3';
 import { validateOrderBody } from '@bpm2025-website/shared/validation/data';
-import type { TPVOperation } from '@bpm2025-website/shared';
-import type { full_order_details } from '@prisma/client';
 import { db } from '../util/db.ts';
 import { logger } from '../util/logger.ts';
-import { invoices_folder, router } from '../app.ts';
+import { invoices_folder, router, preHooks, postHooks } from '../app.ts';
 import { generateOrderId, getBaseMerchantParameters, getTPVOperationData } from '../redsys.ts';
-import { generateTableMarkup } from '../util/listing.ts';
 import { getInvoicePath } from '../util';
-import { createOrderAndDiscounts } from '../util/hooks/pre.ts';
-import { postPaymentConfirm } from '../util/hooks/post.ts';
+import { isFile, createOrderAndDiscounts, createOrderPage, getFullOrder } from '../util/order_helpers.ts';
+import type { OrderCreatePayload } from '#/types';
 
 /**
  * Gets a form data object from the event body for creating an
@@ -64,16 +61,17 @@ router.post(
       }
 
       const order_id = generateOrderId();
+      const order = {
+        id: order_id,
+        user_id: user.id,
+        product_id: body.product_id
+      } satisfies OrderCreatePayload;
 
-      await createOrderAndDiscounts(
-        {
-          id: order_id,
-          user_id: user.id,
-          product_id: body.product_id,
-          notes: body.country ? `COUNTRY: ${body.country}${body.notes ? `\n\n${body.notes}` : ''}` : body.notes
-        },
-        body
-      );
+      for (const fun of preHooks) {
+        await fun(order, body);
+      }
+
+      await createOrderAndDiscounts(order, body);
       logger.info(`Order created: ${order_id}`);
 
       const final_order = await db.full_order_details.findFirstOrThrow({
@@ -106,7 +104,11 @@ router.post(
          * We use void so we return rightaway, but the promise is queued
          * to run in the next tick of the JS event loop.
          */
-        void postPaymentConfirm(order_id);
+        const final_order = await getFullOrder(order_id);
+
+        for (const fn of postHooks) {
+          void fn(final_order);
+        }
       }
 
       return {
@@ -118,64 +120,6 @@ router.post(
     }
   })
 );
-
-/**
- * Creates a basic HTML page with a table of all the order details. The columns shown
- * have the same properties that Prisma's generated objects have.
- */
-function createOrderPage(
-  orders: full_order_details[],
-  name: string,
-  description?: string
-) {
-  const colors: Record<number, string> = {};
-  const rows: Record<string, unknown>[] = [];
-
-  for (let i = 0; i < orders.length; i++) {
-    const order = orders[i];
-    const email = encodeURIComponent(order.user_email);
-    const order_id = encodeURIComponent(order.order_ID);
-
-    switch (order.paid) {
-      case 'REDSYS':
-        colors[i] = 'aquamarine';
-        break;
-      case 'FREE':
-        colors[i] = 'antiquewhite';
-        break;
-      case 'TRANSFER':
-        colors[i] = 'dodgerblue';
-        break;
-    }
-
-    rows.push({
-      ...order,
-      'Recibo': order.paid ? `<a href="/order/show/download/${email}/${order_id}">Descargar</a>` : undefined,
-      'Marcar como pagado':
-          !order.paid
-            ? `
-              <form action="/payment/manual/${order_id}" onsubmit="event.preventDefault(); fetch(this.action, { method: 'POST' }).then(() => location.reload());">
-                <button type="submit">Marcar</button>
-              </form>
-            `
-            : undefined
-    });
-  }
-
-  return new Response(
-    generateTableMarkup({
-      name,
-      description,
-      rows,
-      colors
-    }),
-    {
-      headers: {
-        'Content-Type': 'text/html'
-      }
-    }
-  );
-}
 
 /**
  * Lists all the orders that have been made as a basic HTML page
@@ -337,18 +281,6 @@ router.get(
     );
   })
 );
-
-/**
- * Checks if a file exists at the given path and is a file.
- */
-async function isFile(path: string): Promise<boolean> {
-  try {
-    const stats = await stat(path);
-    return stats.isFile();
-  } catch {
-    return false;
-  }
-}
 
 router.get(
   '/order/show/download/:email/:order_id',

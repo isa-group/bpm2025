@@ -1,3 +1,6 @@
+import type { Prisma } from '@prisma/client';
+import type { db } from './util/db';
+
 export interface RedsysMerchantParameters {
   DS_MERCHANT_AMOUNT: string;
   DS_MERCHANT_CURRENCY: string;
@@ -12,7 +15,18 @@ export interface RedsysMerchantParameters {
   DS_MERCHANT_TITULAR: string;
 };
 
-export type Awaitable<T> = T | Promise<T>;
+export type OrderCreatePayload = Parameters<typeof db.order.create>[0]['data'];
+export type OrderWithRelations = Prisma.orderGetPayload<{
+  include: {
+    user: true;
+    product: true;
+    discount_order: {
+      include: {
+        discount: true;
+      };
+    };
+  };
+}>;
 export type ProcessorSignature = Record<number, (req_body: OrderPayload) => Awaitable<boolean>>;
 
 /**
