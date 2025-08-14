@@ -41,7 +41,7 @@ for (const key of ['width', 'height', 'href', 'description']) {
       <Headline
         subtitle={
           Array.isArray(program.location)
-            ? `📍 ${program.location.map(loc => loc.name).slice(0, -1).join(', ')}${program.location.length > 1 ? ' and ' : ''}${program.location[program.location.length - 1].name}`
+            ? `📍 ${program.location.map(loc => loc.name).slice(0, -1).join(', ')}${program.location.length > 1 ? ' and ' : ''}${program.location[program.location.length - 1]!.name}`
             : program.location && `📍 ${program.location.name}`
         }
         tagline={program.date && `📅 ${program.date}`} />
