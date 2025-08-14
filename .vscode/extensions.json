@@ -4,7 +4,8 @@
     "antfu.unocss",
     "antfu.iconify",
     "dbaeumer.vscode-eslint",
-    "unifiedjs.vscode-mdx"
+    "unifiedjs.vscode-mdx",
+    "eamodio.gitlens"
   ],
   "unwantedRecommendations": []
 }
