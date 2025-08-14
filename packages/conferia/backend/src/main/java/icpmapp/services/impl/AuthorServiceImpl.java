@@ -40,7 +40,7 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public AuthorResponse update(Integer id, AuthorRequest request) {
         Author author = authorRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Author not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Author not found with id: " + id));
         author.setFirstName(request.getFirstName());
         author.setLastName(request.getLastName());
         author.setEmail(request.getEmail());
