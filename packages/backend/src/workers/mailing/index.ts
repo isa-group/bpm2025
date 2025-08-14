@@ -1,7 +1,7 @@
 import { join } from 'node:path';
 import { Worker } from 'node:worker_threads';
 import { isNil } from '@bpm2025-website/shared/validation';
-import { isDev } from '../../logger';
+import { isDev } from '../../util/logger';
 import type { Inputs } from './worker';
 
 const is_available = Boolean(process.env.SMTP_HOST)
@@ -17,7 +17,7 @@ if (!is_available) {
   const msg = 'Mailing configuration not set in the environment variables';
 
   if (isDev) {
-    console.warn(`${msg}.\nContinuing without mailing capabilities, but make sure to set those in production`);
+    console.warn(`${msg}.\nContinuing without mailing capabilities, but set those in production`);
   } else {
     console.error(`${msg}.\nPlease set those in the environment variables.\n\nHalting...`);
     process.exit(1);

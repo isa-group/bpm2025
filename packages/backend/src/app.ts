@@ -5,9 +5,7 @@ import { destr } from 'destr';
 import { seedDb } from './util/db.ts';
 import { isDev } from './util/logger.ts';
 import { registerDynamicModules } from './util/dynamic-modules.ts';
-import { registerInvoicing } from './util/workers/invoicing';
-import { registerMailing } from './util/workers/mailing';
-import { registerConferiaIntegration } from './util/workers/conferia';
+import registerWorkers from './workers/index.ts';
 
 if (isDev) {
   await import('dotenv/config');
@@ -30,9 +28,9 @@ await mkdir(invoices_folder, { recursive: true });
  */
 const seed_folder = join(import.meta.dirname, '..', 'seeds');
 await seedDb(join(seed_folder, 'items.json'));
-await registerInvoicing(invoices_folder, seed_folder);
-registerMailing();
-registerConferiaIntegration();
+await registerWorkers({
+  invoicing: [invoices_folder, seed_folder]
+});
 
 /**
  * export is needed for listhen to work
@@ -53,6 +51,10 @@ export const app = createApp({
 export const router = createRouter({
   preemptive: true
 });
-export const processors = await registerDynamicModules(import.meta.dirname);
+export const {
+  processors,
+  preHooks,
+  postHooks
+} = await registerDynamicModules(import.meta.dirname);
 
 app.use(router);

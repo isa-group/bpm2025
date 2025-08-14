@@ -1,9 +1,9 @@
 import { defineEventHandler, readBody } from 'h3';
 import { validateRedsysResponse } from '@bpm2025-website/shared/validation/data';
-import { router } from '../app.ts';
+import { postHooks, router } from '../app.ts';
 import { validateTransactionResponse } from '../redsys.ts';
-import { postPaymentConfirm } from '../util/hooks/post.ts';
 import { db } from '../util/db.ts';
+import { getFullOrder } from '../util/order_helpers.ts';
 
 /**
  * Gets the payment result from Redsys and updates the order status
@@ -35,7 +35,11 @@ router.post('/payment', defineEventHandler(async (event) => {
        * We use void so we return rightaway, but the promise is queued
        * to run in the next tick of the JS event loop.
        */
-      void postPaymentConfirm(validation.orderId);
+      const final_order = await getFullOrder(validation.orderId);
+
+      for (const fn of postHooks) {
+        void fn(final_order);
+      }
 
       return new Response(null, { status: 200 });
     }
@@ -74,7 +78,14 @@ router.post('/payment/manual/:order_id', defineEventHandler(async (event) => {
        * We use void so we return rightaway, but the promise is queued
        * to run in the next tick of the JS event loop.
        */
-      void postPaymentConfirm(order_id, false);
+      const final_order = await getFullOrder(order_id);
+
+      /**
+       * We need to pass custom parameters to the mailing post hook,
+       * so we don't use the handling defined in the non-manual handler.
+       */
+      await (await import('../hooks/post/send_mail.ts')).default(final_order, false);
+      await (await import('../hooks/post/conferia.ts')).default(final_order);
 
       return new Response(null, { status: 200 });
     } catch {

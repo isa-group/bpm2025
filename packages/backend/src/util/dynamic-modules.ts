@@ -2,7 +2,8 @@ import { glob } from 'node:fs/promises';
 import { join } from 'node:path';
 import type { OrderPayload } from '@bpm2025-website/shared';
 import { isFunc } from '@bpm2025-website/shared/validation';
-import type { Awaitable } from '#/types';
+import type { Promisable } from 'type-fest';
+import type { OrderCreatePayload, OrderWithRelations } from '#/types';
 
 /**
  * Imports ESM safely, ignoring any potential errors
@@ -22,7 +23,9 @@ async function safeImport(modulePath: string) {
  */
 export async function registerDynamicModules(startPath: string) {
   const promises = [];
-  const processors = new Map<number, (req_body: OrderPayload) => Awaitable<boolean>>();
+  const processors = new Map<number, (req_body: OrderPayload) => Promisable<boolean>>();
+  const preHooks: ((order: OrderCreatePayload, body: OrderPayload) => Promisable<void>)[] = [];
+  const postHooks: ((full_order: OrderWithRelations) => Promisable<void>)[] = [];
 
   for await (const module of glob(join(startPath, './routes/**/*.{ts,js}'))) {
     promises.push(safeImport(module));
@@ -39,7 +42,35 @@ export async function registerDynamicModules(startPath: string) {
     })());
   }
 
+  /**
+   * Register pre-hooks
+   */
+  for await (const module of glob(join(startPath, './hooks/pre/**/*.{ts,js}'))) {
+    promises.push((async () => {
+      const hook = await safeImport(module);
+      const fun = isFunc(hook.default) ? hook.default() : (order: OrderCreatePayload) => order;
+
+      preHooks.push(fun);
+    })());
+  }
+
+  /**
+   * Register post-hooks
+   */
+  for await (const module of glob(join(startPath, './hooks/post/**/*.{ts,js}'))) {
+    promises.push((async () => {
+      const hook = await safeImport(module);
+      const fun = isFunc(hook.default) ? hook.default() : (order: OrderCreatePayload) => order;
+
+      postHooks.push(fun);
+    })());
+  }
+
   await Promise.all(promises);
 
-  return processors;
+  return {
+    processors,
+    preHooks,
+    postHooks
+  };
 }
