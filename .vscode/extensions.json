@@ -5,7 +5,10 @@
     "antfu.iconify",
     "dbaeumer.vscode-eslint",
     "unifiedjs.vscode-mdx",
-    "eamodio.gitlens"
+    "eamodio.gitlens",
+    "vue.volar",
+    "aaron-bond.better-comments",
+    "yoavbls.pretty-ts-errors"
   ],
   "unwantedRecommendations": []
 }
