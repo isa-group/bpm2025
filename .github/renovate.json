@@ -21,6 +21,39 @@
     },
     {
       "matchManagers": [
+        "maven"
+      ],
+      "matchDepTypes": [
+        "compile"
+      ],
+      "groupName": "maven (runtime)"
+    },
+    {
+      "matchManagers": [
+        "maven"
+      ],
+      "matchDepTypes": [
+        "test"
+      ],
+      "groupName": "maven (test)"
+    },
+    {
+      "matchManagers": [
+        "maven"
+      ],
+      "matchDepTypes": [
+        "provided"
+      ],
+      "groupName": "maven (provided)"
+    },
+    {
+      "matchManagers": [
+        "maven-wrapper"
+      ],
+      "groupName": "maven wrapper"
+    },
+    {
+      "matchManagers": [
         "github-actions"
       ],
       "separateMajorMinor": false,
@@ -52,6 +85,8 @@
   ],
   "enabledManagers": [
     "npm",
+    "maven",
+    "maven-wrapper",
     "github-actions"
   ],
   "labels": [
@@ -68,5 +103,6 @@
   },
   "extends": [
     "mergeConfidence:age-confidence-badges"
-  ]
+  ],
+  "forkProcessing": "enabled"
 }
