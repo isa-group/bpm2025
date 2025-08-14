@@ -44,7 +44,7 @@ public class AuthorController {
     @GetMapping("/{id}")
     public ResponseEntity<AuthorResponse> get(@PathVariable Integer id) {
         return ResponseEntity
-                .ok(authorService.findById(id).orElseThrow(() -> new IllegalArgumentException("Author not found")));
+                .ok(authorService.findById(id).orElseThrow(() -> new IllegalArgumentException("Author not found with id: " + id)));
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
