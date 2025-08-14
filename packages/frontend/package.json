@@ -33,7 +33,7 @@
     "@bpm2025-website/shared": "*",
     "@iconify/json": "2.2.364",
     "@playform/compress": "0.2.0",
-    "astro": "5.12.6",
+    "astro": "5.12.8",
     "linkedom": "0.18.11",
     "marked": "16.1.1",
     "tailwind-merge": "3.3.1",
