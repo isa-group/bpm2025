@@ -1,5 +1,5 @@
 # stage 1: build the app
-FROM openjdk:17-slim AS builder
+FROM openjdk:21-slim AS builder
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTest
 
 # Use an official OpenJDK runtime as a parent image
-FROM openjdk:17-slim
+FROM openjdk:21-slim
 
 # Set the working directory in the container
 WORKDIR /app
