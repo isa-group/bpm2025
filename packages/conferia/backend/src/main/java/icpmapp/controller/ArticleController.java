@@ -46,7 +46,7 @@ public class ArticleController {
     @GetMapping("/{id}")
     public ResponseEntity<ArticleResponse> get(@PathVariable Integer id) {
         return ResponseEntity
-                .ok(articleService.findById(id).orElseThrow(() -> new IllegalArgumentException("Article not found")));
+                .ok(articleService.findById(id).orElseThrow(() -> new IllegalArgumentException("Article not found with id: " + id)));
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
