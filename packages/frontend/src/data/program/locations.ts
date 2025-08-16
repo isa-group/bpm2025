@@ -29,6 +29,12 @@ export const locations = {
   'sta_cruz': {
     name: '"Santa Cruz" Hall'
   },
+  'flexy': {
+    name: '"Flexy" Hall'
+  },
+  'tech': {
+    name: '"Tech" Hall'
+  },
   'raza': {
     name: 'La Raza Puerto',
     address: 'Muelle de las Delicias, s/n. Módulo Norte, 41012 Seville, Spain',

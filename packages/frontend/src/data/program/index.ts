@@ -786,9 +786,11 @@ manufacturing and health care.
   },
   {
     name: 'Tutorials',
+    location: [locations.triana, locations.arenal],
+    date: 'Tuesday,  Wednesday & Thursday, Sept 2nd–4rd, 2025',
     items: [
       {
-        title: 'Tutorial 1 - Tuesday, Sept 2nd, 2025 (16:30 - 18:00): <u>AI-Assisted Business Process Monitoring</u>',
+        title: 'Tutorial 1: <u>AI-Assisted Business Process Monitoring</u> - Tuesday, Sept 2nd, 2025 (16:30 - 18:00) - Arenal Hall',
         description: `
           <i>Andreas Metzger</i>
           <br /><br />
@@ -812,7 +814,7 @@ manufacturing and health care.
         `
       },
       {
-        title: 'Tutorial 2 - Wednesday, Sept 3rd, 2025 (14:30 - 16:00): <u>Constraint-based reasoning and analysis for BPM: CSP to the rescue</u>',
+        title: 'Tutorial 2: <u>Constraint-based reasoning and analysis for BPM: CSP to the rescue</u> - Wednesday, Sept 3rd, 2025 (14:30 - 16:00) - Nervion Hall',
         description: `
           <i>Alessandro Gianola, Andrey Rivkin and Mateusz Slazynski</i>
           <br /><br />
@@ -833,7 +835,7 @@ manufacturing and health care.
         `
       },
       {
-        title: 'Tutorial 3 - Thursday, Sept 4th, 2025 (14:30 - 16:00): <u>Business Process Optimization</u>',
+        title: 'Tutorial 3: <u>Business Process Optimization</u> - Thursday, Sept 4th, 2025 (14:30 - 16:00) - Nervion Hall',
         description: `
           <i>Remco Dijkman and Arik Senderovich</i>
           <br /><br />
@@ -1060,6 +1062,171 @@ There is a demos & resources teaser session after the keynote that day: from 10:
             Title: 'An Interactive Error-correcting Approach for IoT-sourced Event Logs',
             Authors: 'Mohsen Shirali, Zahra Ahmadi, Carlos Fernández-Llatas, José Luis Bayo Montón and Gemma Di Federico'
           }
+        ]
+      }
+    ]
+  },
+  {
+    name: 'Doctoral Consortium',
+    location: [locations.estepa, locations.flexy, locations.tech],
+    date: 'Sunday, Aug 31st, 2025',
+    tables: [
+      {
+        title: 'Opening (9:00 - 9:15) - Estepa Hall',
+        short: 'Opening',
+        rows: [
+          { Time: '09:00', Title: 'Opening (all)' }
+        ]
+      },
+
+      // Morning parallel block — 1.1 / 2.1 / 3.1
+      {
+        title: 'Session 1.1: Predictive Process Monitoring (9:15 - 10:45) - Estepa Hall',
+        short: 'Session 1.1',
+        rows: [
+          {
+            Time: '09:15',
+            Title: 'Exploiting and Predicting System-Wide Behaviors for Predictive Process Monitoring',
+            Authors: 'Xiaomeng He'
+          },
+          {
+            Time: '10:00',
+            Title: 'A Framework for Multidimensional Business Process Forecasting',
+            Authors: 'Aurélie Leribaux'
+          }
+        ]
+      },
+      {
+        title: 'Session 1.2: Process Engineering (09:15 - 10:45) - Flexy Hall',
+        rows: [
+          {
+            Time: '09:15',
+            Title: 'Observability and Explainability in Data-Driven Process Simulation',
+            Authors: 'Robert Blümel'
+          },
+          {
+            Time: '10:00',
+            Title: 'Cyber Security for Business Processes: Automating Security Enhancement Along Process Lifecycle',
+            Authors: 'Moshe Hadad'
+          }
+        ]
+      },
+      {
+        title: 'Session 1.3: Practical Aspects (09:15 - 10:45) - Tech Hall',
+        rows: [
+          {
+            Time: '09:15',
+            Title: 'Green BPM Solutions for Sustainable Business Processes',
+            Authors: 'Finn Klessascheck'
+          },
+          {
+            Time: '10:00',
+            Title: 'Visual Process Mining over Time and Space',
+            Authors: 'Christoffer Rubensson'
+          }
+        ]
+      },
+
+      // Late-morning parallel block — 1.2 / 2.2 / 3.2
+      {
+        title: 'Session 2.1: Process Mining Paradigms (11:15 - 12:45) - Estepa Hall',
+        short: 'Session 2.1',
+        rows: [
+          {
+            Time: '11:15',
+            Title: 'Compliance Checking: from Object-Centric Process Mining to Blockchain',
+            Authors: 'Alessio Galassi'
+          },
+          {
+            Time: '12:00',
+            Title: 'Stochastic Process Mining',
+            Authors: 'Tian Li'
+          }
+        ]
+      },
+      {
+        title: 'Session 2.2: Process Automation (11:15 - 12:45) - Flexy Hall',
+        rows: [
+          {
+            Time: '11:15',
+            Title: 'Knowledge Graph Reasoning for Intelligent and Explainable Business Process Technologies',
+            Authors: 'Leon Bein'
+          },
+          {
+            Time: '12:00',
+            Title: 'Explainable Fully Automated Business Process Redesign',
+            Authors: 'Maximilian Harl'
+          }
+        ]
+      },
+      {
+        title: 'Session 2.3: Process Analysis (11:15 - 12:45) - Tech Hall',
+        rows: [
+          {
+            Time: '11:15',
+            Title: 'Cognitive Elements in Exploratory Process Analysis: From Novice to Expert',
+            Authors: 'Gythe Stans'
+          },
+          {
+            Time: '12:00',
+            Title: 'Impact of Process Mining Tools on Process Analysis',
+            Authors: 'Dries Jarijch'
+          }
+        ]
+      },
+
+      // Afternoon parallel block — 1.3 / 2.3 / 3.3
+      {
+        title: 'Session 3.1: BPM in Context (14:15 - 15:45) - Estepa Hall',
+        short: 'Session 3.1',
+        rows: [
+          {
+            Time: '14:15',
+            Title: 'A BPM-based approach to executing contextualized actions in multidomain IoT systems',
+            Authors: 'Adrián Bazan-Muñoz'
+          },
+          {
+            Time: '15:00',
+            Title: 'Modeling and verifying environment-aware BPMN collaborations',
+            Authors: 'Jessica Piccioni'
+          }
+        ]
+      },
+      {
+        title: 'Session 3.2: Process mining in healthcare (14:15 - 15:45) - Flexy Hall',
+        rows: [
+          {
+            Time: '14:15',
+            Title: 'Using Process Mining to connect Process Orientation and Data-driven Decision Making in healthcare: a qualitative assessment and integration of new data sources',
+            Authors: 'Maxim Riebus'
+          },
+          {
+            Time: '15:00',
+            Title: 'Unlocking Nursing Work Organization Insights through Integrated HIS and RTLS Data: Novel Methods and Applications',
+            Authors: 'Haroon Tharwat'
+          }
+        ]
+      },
+      {
+        title: 'Session 3.3: Processes & People (14:15 - 15:45) - Tech Hall',
+        rows: [
+          {
+            Time: '14:15',
+            Title: 'Embedding Benevolence into Business Processes - AI-Enabled Routinized Benevolence',
+            Authors: 'Thamali Chandrasiri'
+          },
+          {
+            Time: '15:00',
+            Title: 'Unveiling Dynamics Between Robotic Process Automation and Process Knowledge Loss',
+            Authors: 'Ishadi Upeksha Meekotuwa Mirispelakotuwa'
+          }
+        ]
+      },
+      {
+        title: 'Panel (16:15 - 17:15) - Estepa Hall',
+        short: 'Panel',
+        rows: [
+          { Time: '16:15', Title: 'Panel (all)' }
         ]
       }
     ]
