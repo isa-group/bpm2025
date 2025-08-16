@@ -8,46 +8,59 @@ export const postConferenceDescription = 'In Spanish';
 export const general_events: ScheduleEvent[] = [
   // 31 de Agosto
   {
-    title: 'Doctoral Consortium',
+    title: 'Doctoral Consortium - Opening',
     start: new Date(2025, 7, 31, 9, 0),
-    end: new Date(2025, 7, 31, 10, 30),
-    category: 'consortium'
+    end: new Date(2025, 7, 31, 9, 15),
+    category: 'consortium',
+    href: getPermalink('/program/doctoral-consortium/#opening')
+  },
+  {
+    title: 'Doctoral Consortium - Session 1.x',
+    start: new Date(2025, 7, 31, 9, 15),
+    end: new Date(2025, 7, 31, 10, 45),
+    category: 'consortium',
+    href: getPermalink('/program/doctoral-consortium/#session-11')
   },
   {
     title: 'Coffee break',
-    start: new Date(2025, 7, 31, 10, 30),
-    end: new Date(2025, 7, 31, 11, 0),
+    start: new Date(2025, 7, 31, 10, 45),
+    end: new Date(2025, 7, 31, 11, 15),
     category: 'lunch'
   },
   {
-    title: 'Doctoral Consortium',
-    start: new Date(2025, 7, 31, 11, 0),
-    end: new Date(2025, 7, 31, 12, 30),
-    category: 'consortium'
+    title: 'Doctoral Consortium - Session 2.x',
+    start: new Date(2025, 7, 31, 11, 15),
+    end: new Date(2025, 7, 31, 12, 45),
+    category: 'consortium',
+    href: getPermalink('/program/doctoral-consortium/#session-21')
   },
   {
     title: 'Lunch',
-    start: new Date(2025, 7, 31, 12, 30),
-    end: new Date(2025, 7, 31, 14, 0),
+    start: new Date(2025, 7, 31, 12, 45),
+    end: new Date(2025, 7, 31, 14, 15),
     category: 'lunch'
   },
   {
-    title: 'Doctoral Consortium',
-    start: new Date(2025, 7, 31, 14, 0),
-    end: new Date(2025, 7, 31, 15, 30),
-    category: 'consortium'
+    title: 'Doctoral Consortium - Session 3.x',
+    start: new Date(2025, 7, 31, 14, 15),
+    end: new Date(2025, 7, 31, 15, 45),
+    category: 'consortium',
+    href: getPermalink('/program/doctoral-consortium/#session-31')
+
   },
   {
     title: 'Coffee break',
-    start: new Date(2025, 7, 31, 15, 30),
-    end: new Date(2025, 7, 31, 16, 0),
+    start: new Date(2025, 7, 31, 15, 45),
+    end: new Date(2025, 7, 31, 16, 15),
     category: 'lunch'
   },
   {
-    title: 'Doctoral Consortium',
-    start: new Date(2025, 7, 31, 16, 0),
-    end: new Date(2025, 7, 31, 17, 30),
-    category: 'consortium'
+    title: 'Doctoral Consortium - Panel',
+    start: new Date(2025, 7, 31, 16, 15),
+    end: new Date(2025, 7, 31, 17, 15),
+    category: 'consortium',
+    href: getPermalink('/program/doctoral-consortium/#panel')
+
   },
   // 1 de Septiembre
   {

@@ -5,11 +5,25 @@ import { isFunc, isStr } from '@bpm2025-website/shared/validation';
 const {
   classes = {},
   title,
+  short,
   highlightFirstColumn,
   showRowIndex,
   mergeFirstCell = false,
   rows: _rows = []
 } = Astro.props;
+
+function toId(str: string | undefined) {
+  if (!str)
+    return null;
+  return str
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s_-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
+}
+
+const tableId = short ? toId(short) : toId(title);
 
 if (!_rows.length) {
   throw new TypeError('[Table.astro] At least one row must be provided');
@@ -34,7 +48,7 @@ const columns = (() => {
   return c;
 })();
 ---
-<div class:list={['mt-4 h-full w-full', classes.container]}>
+<div {...(tableId ? { id: tableId } : {})} class:list={['mt-4 h-full w-full', classes.container]}>
   <div class="rounded-xl bg-white flex flex-col h-full shadow-md overflow-hidden">
     {title && (
       <div class="px-6 py-5 border-b border-gray-200 bg-gray-50">
