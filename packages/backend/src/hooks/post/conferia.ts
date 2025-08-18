@@ -83,8 +83,8 @@ export default async (full_order: OrderWithRelations) => {
 
   try {
     const nameParts = full_order.user.name.split(' ');
-    const firstName = nameParts[0] || '';
-    const lastName = nameParts.slice(1).join(' ') || '';
+    const firstName = nameParts[0] ?? '';
+    const lastName = nameParts.slice(1).join(' ');
     const company = full_order.user.institution;
     const country = full_order.notes?.match(/COUNTRY: ([^\n]+)/)?.[1];
 

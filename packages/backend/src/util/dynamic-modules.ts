@@ -48,7 +48,7 @@ export async function registerDynamicModules(startPath: string) {
   for await (const module of glob(join(startPath, './hooks/pre/**/*.{ts,js}'))) {
     promises.push((async () => {
       const hook = await safeImport(module);
-      const fun = isFunc(hook.default) ? hook.default() : (order: OrderCreatePayload) => order;
+      const fun = isFunc(hook.default) ? hook.default : (order: OrderCreatePayload) => order;
 
       preHooks.push(fun);
     })());
@@ -60,7 +60,7 @@ export async function registerDynamicModules(startPath: string) {
   for await (const module of glob(join(startPath, './hooks/post/**/*.{ts,js}'))) {
     promises.push((async () => {
       const hook = await safeImport(module);
-      const fun = isFunc(hook.default) ? hook.default() : (order: OrderCreatePayload) => order;
+      const fun = isFunc(hook.default) ? hook.default : (order: OrderCreatePayload) => order;
 
       postHooks.push(fun);
     })());
