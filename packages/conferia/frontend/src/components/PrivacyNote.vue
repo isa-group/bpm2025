@@ -1,20 +1,11 @@
 <template>
-  <IonModal
-    :is-open="isOpen"
-    @ion-modal-did-close="closeModal">
-    <IonHeader>
-      <IonToolbar>
-        <IonTitle>Privacy Note</IonTitle>
-        <template #end>
-          <IonButtons>
-            <IonButton @click="closeModal">
-              Close
-            </IonButton>
-          </IonButtons>
-        </template>
-      </IonToolbar>
-    </IonHeader>
-    <IonContent class="ion-padding">
+  <div v-if="isOpen" class="fixed inset-0 z-50 grid place-items-center bg-black/40 p-4" @click.self="closeModal">
+    <div class="w-full max-w-2xl rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60">
+      <div class="flex items-center h-12 px-4 border-b border-neutral-200/60 dark:border-neutral-800/60">
+        <h3 class="font-600">Privacy Note</h3>
+        <button class="ml-auto i-ph-x-bold text-5" @click="closeModal" aria-label="Close" />
+      </div>
+      <div class="p-4 space-y-3 text-sm leading-relaxed">
       <h4>How we process your personal data</h4>
       <p>DTU, who is the organizer of ICPM 2024, as data controller, collects and processes information about you in connection with your registration and the partecipation to the conference.</p>
       <p>We process your information on the basis of Article 6(1)(b) and (e) of the Regulation and, in some cases, on the basis of your consent in accordance with Article 6(1)(a) of the Regulation.</p>
@@ -58,13 +49,13 @@
 
       <h4>Contact details of DTU's Data Protection Officer</h4>
       <p>DTU's DPO: dpo@dtu.dk</p>
-    </IonContent>
-  </IonModal>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { IonButtons, IonButton, IonContent, IonHeader, IonModal, IonTitle, IonToolbar } from '@ionic/vue';
-import { ref, toRefs } from 'vue';
+import { toRefs } from 'vue';
 
 const props = defineProps({
   isOpen: Boolean
@@ -72,5 +63,5 @@ const props = defineProps({
 const emit = defineEmits(['update:isOpen']);
 
 const { isOpen } = toRefs(props);
-const closeModal = (open: boolean) => (emit('update:isOpen', false));
+const closeModal = () => emit('update:isOpen', false);
 </script>

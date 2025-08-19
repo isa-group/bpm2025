@@ -1,10 +1,5 @@
 <template>
   <IonPage>
-    <HeaderBar
-      :name="pageData.title"
-      :show-reload="true"
-      @reload-page="reload" />
-
     <IonContent
       id="main-content"
       :fullscreen="true">
@@ -35,7 +30,6 @@ import { IonPage, IonContent, IonList, IonItem, IonLabel } from '@ionic/vue';
 import { useRoute } from 'vue-router';
 import { onMounted, reactive, ref } from 'vue';
 import axios from 'axios';
-import HeaderBar from '#/components/HeaderBar.vue';
 import backend from '#/plugins/backend.config';
 
 const route = useRoute();

@@ -1,86 +1,26 @@
 <template>
-  <IonHeader>
-    <IonToolbar>
-      <IonTitle>{{ name }}</IonTitle>
-      <template #start>
-        <div
-          v-if="name != 'Home'"
-
-          id="logo" />
-      </template>
-
-      <IonButtons
-        v-if="name == 'Home'"
-        slot="end">
-        <IonMenuButton />
-      </IonButtons>
-      <IonButtons
-        v-if="name == 'Gallery'"
-        id="click-trigger"
-        slot="end"
-        class="gallery-dropdown">
-        <IonIcon
-          :icon="reload"
-          style="font-size: 26px;margin-right: 14px;"
-          @click="$emit('reloadPage')" />
-        <IonIcon
-          :icon="options"
-          style="font-size: 26px;margin-right: 10px;"
-          @click="$emit('openFilter',$event)" />
-        <IonIcon
-          :icon="ellipsisVertical"
-          style="font-size: 26px;"
-          @click="$emit('openActionSheet')" />
-      </IonButtons>
-      <IonButtons
-        v-if="name == 'My Gallery'"
-        id="click-trigger"
-        slot="end"
-        class="gallery-dropdown">
-        <IonIcon
-          :icon="reload"
-          style="font-size: 26px;margin-right: 10px;"
-          @click="$emit('reloadPage')" />
-        <IonIcon
-          :icon="ellipsisVertical"
-          style="font-size: 26px;"
-          @click="$emit('openActionSheet')" />
-      </IonButtons>
-      <IonButtons
-        v-if="name == 'Messages'"
-        id="click-trigger"
-        slot="end"
-        class="gallery-dropdown">
-        <IonIcon
-          :icon="reload"
-          style="font-size: 26px;margin-right: 14px;"
-          @click="$emit('reloadPage')" />
-      </IonButtons>
-      <IonButtons
-        v-if="showReload"
-        id="click-trigger"
-        slot="end"
-        class="gallery-dropdown">
-        <IonIcon
-          :icon="reload"
-          style="font-size: 26px;margin-right: 14px;"
-          @click="$emit('reloadPage')" />
-      </IonButtons>
-    </IonToolbar>
-  </IonHeader>
-  <SettingsMenu v-if="name == 'Home'" />
+  <header class="sticky top-0 z-40 bg-white/80 dark:bg-neutral-900/80 backdrop-blur border-b border-neutral-200/60 dark:border-neutral-800/60">
+    <div class="mx-auto max-w-[1024px] h-14 flex items-center px-3 gap-2">
+      <div v-if="name !== 'Home'" id="logo" class="h-8 w-8 bg-center bg-no-repeat bg-contain" />
+      <h1 class="text-base font-600 truncate">{{ name }}</h1>
+      <div class="ml-auto flex items-center gap-3 text-primary-600" v-if="name === 'Gallery'">
+        <button class="i-ph-arrow-clockwise-duotone text-6" @click="$emit('reloadPage')" aria-label="Reload" />
+        <button class="i-ph-funnel-simple-duotone text-6" @click="$emit('openFilter', $event)" aria-label="Filter" />
+        <button class="i-ph-dots-three-outline-vertical-duotone text-6" @click="$emit('openActionSheet')" aria-label="Menu" />
+      </div>
+      <div class="ml-auto flex items-center gap-3 text-primary-600" v-else-if="name === 'My Gallery'">
+        <button class="i-ph-arrow-clockwise-duotone text-6" @click="$emit('reloadPage')" aria-label="Reload" />
+        <button class="i-ph-dots-three-outline-vertical-duotone text-6" @click="$emit('openActionSheet')" aria-label="Menu" />
+      </div>
+      <div class="ml-auto flex items-center gap-3 text-primary-600" v-else-if="name === 'Messages' || showReload">
+        <button class="i-ph-arrow-clockwise-duotone text-6" @click="$emit('reloadPage')" aria-label="Reload" />
+      </div>
+    </div>
+  </header>
+  <SettingsMenu v-if="name === 'Home'" />
 </template>
 
 <script setup lang="ts">
-import {
-  IonButtons,
-  IonHeader,
-  IonMenuButton,
-  IonTitle,
-  IonToolbar,
-  IonIcon
-} from '@ionic/vue';
-import { ellipsisVertical, reload, options } from 'ionicons/icons';
 import SettingsMenu from '#/components/SettingsMenu.vue';
 
 defineProps({
@@ -88,28 +28,11 @@ defineProps({
   showReload: Boolean
 });
 
-const emits = defineEmits(['openActionSheet', 'reloadPage', 'openFilter']);
-
+defineEmits(['openActionSheet', 'reloadPage', 'openFilter']);
 </script>
 
 <style scoped>
 #logo {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 40px;
-  width: 40px;
-  margin-left: 8px;
-  margin-top: 4px;
-}
-/* Light Mode */
-#logo {
   background-image: url('@bpm2025-website/assets/icon');
 }
-
-.gallery-dropdown {
-  margin-right: 15px;
-  color: #3880ff
-}
-
 </style>

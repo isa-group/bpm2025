@@ -5,4 +5,4 @@ import registerPlugins from '#/app';
 const app = createApp(App);
 
 registerPlugins(app);
-app.mount(document.body);
+app.mount('#app');

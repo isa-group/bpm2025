@@ -1,7 +1,5 @@
 <template>
   <IonPage>
-    <HeaderBar name="Agenda" />
-
     <!-- ICPM/Personal Segment Bar -->
     <IonToolbar class="agenda-type-bar">
       <IonSegment
@@ -136,7 +134,6 @@ import {
   IonLabel, IonNote
 } from '@ionic/vue';
 import { heart, heartOutline, calendarNumber } from 'ionicons/icons';
-import HeaderBar from '#/components/HeaderBar.vue';
 import TabSessionDetails from '#/views/calendar/TabSessionDetails.vue';
 import backend from '#/plugins/backend.config';
 

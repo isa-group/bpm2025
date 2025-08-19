@@ -1,203 +1,87 @@
 <template>
-  <IonPage>
-    <HeaderBar
-      name="Messages"
-      @reload-page="reloadPage" />
-    <IonContent
-      id="main-content"
-      :fullscreen="true">
-      <IonRefresher
-        slot="fixed"
-        @ion-refresh="reloadPage">
-        <IonRefresherContent />
-      </IonRefresher>
+  <div class="flex flex-col min-h-dvh">
+    <HeaderBar name="Messages" @reload-page="reloadPage" />
+    <main id="main-content" class="flex-1">
+      <div class="p-4">
+        <button class="px-3 py-1.5 text-sm rounded border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800" @click="reloadPage()">Refresh</button>
+      </div>
 
-      <IonList lines="full">
-        <IonItem
-          v-for="message in messages"
-          :key="message.id"
-          button
-          @click="() => {
-            setVisibleMessage(message.id);
-          }">
-          <IonLabel>
-            <h2 :class="{bold :!message.read}">
-              <IonIcon
-                v-if="!message.read"
-                slot="start"
-                :icon="bookmark"
-                color="danger" />
+      <ul class="divide-y divide-neutral-200/60 dark:divide-neutral-800/60">
+        <li v-for="message in messages" :key="message.id">
+          <button class="w-full text-left px-4 py-3" @click="setVisibleMessage(message.id)">
+            <h2 :class="{ 'font-700': !message.read }" class="flex items-center gap-2">
+              <span v-if="!message.read" class="i-ph-bookmark-duotone text-red-500" />
               {{ message.title }}
             </h2>
-          </IonLabel>
-          <template #end>
-            <IonNote class="ion-text-right">
-              {{ dayjs(message.date).fromNow() }}<br>
-              By {{ message.author }}
-            </IonNote>
-          </template>
-        </IonItem>
-      </IonList>
+            <div class="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
+              {{ dayjs(message.date).fromNow() }} · By {{ message.author }}
+            </div>
+          </button>
+        </li>
+      </ul>
 
-      <IonFab
-        slot="fixed"
-        vertical="bottom"
-        horizontal="end"
-        class="custom-fab">
-        <IonFabButton
-          @click="() => {
-            openPostMessage();
-          }">
-          <IonIcon :icon="add" />
-        </IonFabButton>
-      </IonFab>
+      <!-- FAB -->
+      <button class="fixed bottom-18 right-4 h-14 w-14 rounded-full bg-primary-600 text-white shadow-lg grid place-items-center hover:bg-primary-500" @click="openPostMessage">
+        <span class="i-ph-plus-bold text-7" />
+      </button>
 
-      <IonModal
-        :is-open="isOpen"
-        @did-dismiss="closeMessage()">
-        <IonHeader>
-          <IonToolbar>
-            <template #start>
-              <IonButtons>
-                <IonBackButton
-                  default-href="/tabs/messages"
-                  @click="() => {
-                    closeMessage();
-                  }" />
-              </IonButtons>
-            </template>
-            <IonTitle>Message</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent>
-          <IonGrid>
-            <IonRow>
-              <IonCol>
-                <p style="font-size: .8em">
-                  Posted {{ dayjs(activeMessage.date).fromNow() }}<br>
-                  {{ dayjs(activeMessage.date).format('D MMMM, HH:mm') }}
-                </p>
-              </IonCol>
-              <IonCol class="ion-text-right">
-                <IonChip
-                  :router-link="`/attendee/${activeMessage.authorId}`"
-                  @click="() => {
-                    closeMessage();
-                  }">
-                  <IonAvatar>
-                    <img
-                      :src="activeMessage.avatar || 'https://ionicframework.com/docs/img/demos/avatar.svg'"
-                      alt="Profile picture">
-                  </IonAvatar>
-                  <IonLabel>{{ activeMessage.author }}</IonLabel>
-                </IonChip>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
-          <div class="ion-padding-horizontal">
-            <h1>{{ activeMessage.title }}</h1>
-            <p style="white-space: pre-wrap">
-              {{ activeMessage.message }}
-            </p>
-            <p
-              v-if="userId == activeMessage.authorId"
-              class="ion-text-right">
-              <IonButton
-                color="danger"
-                @click="() => {
-                  deleteMessage();
-                }">
-                <IonIcon :icon="trashOutline" /> Delete
-              </IonButton>
-            </p>
+      <!-- View Message Modal -->
+      <div v-if="isOpen" class="fixed inset-0 z-50 grid place-items-center bg-black/40 p-4" @click.self="closeMessage">
+        <div class="w-full max-w-xl rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60">
+          <div class="flex items-center h-12 px-4 border-b border-neutral-200/60 dark:border-neutral-800/60">
+            <h3 class="font-600">Message</h3>
+            <button class="ml-auto i-ph-x-bold text-5" @click="closeMessage" aria-label="Close" />
           </div>
-        </IonContent>
-      </IonModal>
-      <IonModal
-        :is-open="isOpenPost"
-        @did-dismiss="closePostMessage()">
-        <IonHeader>
-          <IonToolbar>
-            <template #start>
-              <IonButtons>
-                <IonBackButton
-                  default-href="/tabs/messages"
-                  @click="() => {
-                    closePostMessage();
-                  }" />
-              </IonButtons>
-            </template>
-            <IonTitle>Post new message</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent class="ion-padding">
-          <form
-            @submit.prevent="() => {
-              submitForm();
-            }">
-            <IonInput
-              v-model="formData.title"
-              type="text"
-              required
-              label="Title"
-              placeholder="Message title"
-              label-placement="stacked" />
-            <IonTextarea
-              v-model="formData.message"
-              required
-              label="Message"
-              placeholder="Write here the text of your message..."
-              label-placement="stacked"
-              rows="20" />
-            <p
-              v-if="postError"
-              class="error-message">
-              {{ postError }}
-            </p>
-            <IonButton
-              expand="full"
-              type="submit"
-              class="ion-margin-top">
-              Post Message
-            </IonButton>
+          <div class="p-4 space-y-4">
+            <div class="flex items-start justify-between gap-3">
+              <p class="text-xs text-neutral-600 dark:text-neutral-400">
+                Posted {{ dayjs(activeMessage.date).fromNow() }}<br>
+                {{ dayjs(activeMessage.date).format('D MMMM, HH:mm') }}
+              </p>
+              <RouterLink :to="`/attendee/${activeMessage.authorId}`" @click="closeMessage" class="inline-flex items-center gap-2 px-2 py-1 rounded-full border border-neutral-200/60 dark:border-neutral-800/60">
+                <img :src="activeMessage.avatar || 'https://ionicframework.com/docs/img/demos/avatar.svg'" alt="Profile picture" class="h-6 w-6 rounded-full object-cover">
+                <span class="text-sm">{{ activeMessage.author }}</span>
+              </RouterLink>
+            </div>
+            <h1 class="text-xl font-700">{{ activeMessage.title }}</h1>
+            <p class="whitespace-pre-wrap">{{ activeMessage.message }}</p>
+            <div v-if="userId == activeMessage.authorId" class="text-right">
+              <button class="inline-flex items-center gap-2 px-3 py-1.5 rounded border border-red-500 text-red-600 hover:bg-red-50" @click="deleteMessage">
+                <span class="i-ph-trash-duotone" /> Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Post Modal -->
+      <div v-if="isOpenPost" class="fixed inset-0 z-50 grid place-items-center bg-black/40 p-4" @click.self="closePostMessage">
+        <div class="w-full max-w-xl rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60">
+          <div class="flex items-center h-12 px-4 border-b border-neutral-200/60 dark:border-neutral-800/60">
+            <h3 class="font-600">Post new message</h3>
+            <button class="ml-auto i-ph-x-bold text-5" @click="closePostMessage" aria-label="Close" />
+          </div>
+          <form class="p-4 space-y-3" @submit.prevent="submitForm">
+            <label class="block text-sm font-600">Title</label>
+            <input v-model="formData.title" type="text" required placeholder="Message title" class="w-full rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2 outline-none focus:(ring-2 ring-primary-500 border-primary-500)" />
+            <label class="block text-sm font-600">Message</label>
+            <textarea v-model="formData.message" rows="10" required placeholder="Write here the text of your message..." class="w-full rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2 outline-none focus:(ring-2 ring-primary-500 border-primary-500)"></textarea>
+            <p v-if="postError" class="text-red-600 text-sm">{{ postError }}</p>
+            <div class="pt-2">
+              <button type="submit" class="w-full px-4 py-2 rounded-lg bg-primary-600 text-white hover:bg-primary-500">Post Message</button>
+            </div>
           </form>
-        </IonContent>
-      </IonModal>
-    </IonContent>
-  </IonPage>
+        </div>
+      </div>
+    </main>
+  <!-- Toast -->
+    <div v-if="toast" class="fixed bottom-4 inset-x-0 z-50 grid place-items-center">
+      <div class="px-4 py-2 rounded bg-neutral-900 text-white shadow">{{ toast }}</div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="js">
-import {
-  IonPage,
-  IonContent,
-  IonButton,
-  IonToolbar,
-  IonHeader,
-  IonTitle,
-  IonButtons,
-  IonCol,
-  IonRow,
-  IonGrid,
-  IonList,
-  IonItem,
-  IonLabel,
-  IonNote,
-  IonModal,
-  IonFab,
-  IonIcon,
-  IonFabButton,
-  IonTextarea,
-  IonInput,
-  IonAvatar,
-  IonRefresher,
-  IonRefresherContent,
-  IonChip,
-  IonBackButton,
-  toastController,
-  alertController
-} from '@ionic/vue';
-import { bookmark, bookmarkOutline, mail, starOutline, starSharp, trashOutline, add } from 'ionicons/icons';
 import { ref, onMounted, reactive } from 'vue';
 import axios from 'axios';
 import dayjs from 'dayjs';
@@ -243,12 +127,8 @@ const submitForm = async () => {
 
   closePostMessage();
 
-  const toast = await toastController.create({
-    message: 'Your message has been posted.',
-    duration: 5000,
-    positionAnchor: 'footer'
-  });
-  await toast.present();
+  // simple toast replacement
+  showToast('Your message has been posted.');
 
   await fetchMessages();
 };
@@ -277,25 +157,13 @@ const closePostMessage = () => {
 };
 
 const deleteMessage = async () => {
-  const alert = await alertController.create({
-    header: 'Confirm!',
-    message: 'Are you sure you want to delete this message?',
-    buttons: [
-      { text: 'Cancel', role: 'cancel' },
-      { text: 'Delete',
-        handler: async () => {
-          await axios.delete(backend.construct(`message/${activeMessage.value.id}`), {
-            headers: { Authorization: `Bearer ${token.value}` } });
-
-          closeMessage();
-          await fetchMessages();
-
-          return;
-        }
-      }
-    ]
+  const ok = window.confirm('Are you sure you want to delete this message?');
+  if (!ok) return;
+  await axios.delete(backend.construct(`message/${activeMessage.value.id}`), {
+    headers: { Authorization: `Bearer ${token.value}` }
   });
-  await alert.present();
+  closeMessage();
+  await fetchMessages();
 };
 
 const reloadPage = async (event) => {
@@ -339,10 +207,10 @@ const getAvatarImage = async (id) => {
 
 onMounted(fetchMessages);
 
+// toast helpers
+const toast = ref(null);
+const showToast = (msg) => {
+  toast.value = msg;
+  setTimeout(() => (toast.value = null), 3000);
+};
 </script>
-
-<style scoped>
-.bold {
-  font-weight: bold;
-}
-</style>

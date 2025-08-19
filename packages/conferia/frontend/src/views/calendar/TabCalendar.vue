@@ -1,7 +1,5 @@
 <template>
   <IonPage>
-    <HeaderBar name="Calendar" />
-
     <IonToolbar>
       <template #start>
         <IonButtons>
@@ -71,7 +69,6 @@ import {
 import axios from 'axios';
 import { useRouter, useRoute } from 'vue-router';
 import { star } from 'ionicons/icons';
-import HeaderBar from '#/components/HeaderBar.vue';
 import backend from '#/plugins/backend.config';
 
 const route = useRoute();

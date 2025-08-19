@@ -2,7 +2,7 @@ import {
   createRouter,
   createWebHashHistory,
   createMemoryHistory
-} from '@ionic/vue-router';
+} from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
 import TabsPage from '../components/TabsPage.vue';
 import AuthPage from '#/views/auth/AuthPage.vue';

@@ -1,12 +1,13 @@
 import type { App } from 'vue';
-import { IonicVue } from '@ionic/vue';
+import PrimeVue from 'primevue/config';
 import router from '#/plugins/router';
 import { createPlugin as createAxiosPlugin } from '#/plugins/axios';
 
 export default (app: App) => {
   const axiosPlugin = createAxiosPlugin();
 
-  app.use(IonicVue)
+  app
+    .use(PrimeVue, { ripple: true, theme: { options: { darkModeSelector: '.dark' }} })
     .use(router)
     .use(axiosPlugin);
 };

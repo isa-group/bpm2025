@@ -1,57 +1,38 @@
 <template>
-  <IonMenu
-    side="end"
-    content-id="main-content"
-    menu-id="settings-menu">
-    <IonHeader>
-      <IonToolbar>
-        <IonTitle>Account</IonTitle>
-      </IonToolbar>
-    </IonHeader>
-    <IonContent>
-      <div class="ion-padding">
-        <div id="logo-large" />
-        <p>Welcome {{ name.firstname }} {{ name.lastname }}</p>
+  <aside class="px-4 py-3 border-b border-neutral-200/60 dark:border-neutral-800/60">
+    <div class="flex items-center gap-3">
+      <div id="logo-large" class="h-12 w-12 bg-center bg-no-repeat bg-contain" />
+      <div>
+        <p class="text-sm text-neutral-600 dark:text-neutral-300">Welcome</p>
+        <p class="text-base font-600">{{ name.firstname }} {{ name.lastname }}</p>
       </div>
-      <IonList lines="full">
-        <IonItem
-          button
-          :router-link="'/profile/settings/'">
-          <IonLabel>
-            <template #start>
-              <IonIcon :icon="settingsOutline" />
-            </template>
-            Settings
-          </IonLabel>
-        </IonItem>
-        <IonItem
-          button
-          :router-link="'/tabs/about/'">
-          <IonLabel>
-            <template #start>
-              <IonIcon :icon="informationCircleOutline" />
-            </template>
-            About the app
-          </IonLabel>
-        </IonItem>
-        <IonItem
-          button
-          @click="() => { logout(); }">
-          <IonLabel>
-            <template #start>
-              <IonIcon :icon="logOutOutline" />
-            </template>
-            Logout
-          </IonLabel>
-        </IonItem>
-      </IonList>
-    </IonContent>
-  </IonMenu>
+    </div>
+    <nav class="mt-3">
+      <ul class="flex flex-col divide-y divide-neutral-200/60 dark:divide-neutral-800/60">
+        <li>
+          <RouterLink to="/profile/settings/" class="flex items-center gap-3 py-3">
+            <span class="i-ph-gear-six-duotone text-5 text-primary-600" />
+            <span>Settings</span>
+          </RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/tabs/about/" class="flex items-center gap-3 py-3">
+            <span class="i-ph-info-duotone text-5 text-primary-600" />
+            <span>About the app</span>
+          </RouterLink>
+        </li>
+        <li>
+          <button class="flex items-center gap-3 py-3 w-full text-left" @click="logout">
+            <span class="i-ph-sign-out-duotone text-5 text-primary-600" />
+            <span>Logout</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </aside>
 </template>
 
 <script setup lang="ts">
-import { informationCircleOutline, logOutOutline, settingsOutline } from 'ionicons/icons';
-import { IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonTitle, IonToolbar } from '@ionic/vue';
 import { useRouter } from 'vue-router';
 import { onMounted, reactive } from 'vue';
 import axios from 'axios';
@@ -80,19 +61,8 @@ const logout = () => {
   localStorage.removeItem('userId');
   router.push('/auth/login');
 };
-
 </script>
 
 <style scoped>
-#logo-large {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 100px;
-  width: 100%;
-  margin-bottom: 10px;
-}
-#logo-large {
-  background-image: url('@bpm2025-website/assets/icon');
-}
+#logo-large { background-image: url('@bpm2025-website/assets/icon'); }
 </style>
