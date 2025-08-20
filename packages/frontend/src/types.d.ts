@@ -44,6 +44,7 @@ export interface MetaData {
 export interface Table {
   title?: string;
   short?: string;
+  header?: string;
   /**
    * showRowIndex and highlightFirstColumn are used to display the first column
    * with the same style as the header.

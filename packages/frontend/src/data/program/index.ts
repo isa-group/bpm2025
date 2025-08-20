@@ -13,6 +13,18 @@ export interface ProgramOverview {
   items?: Item[];
 }
 
+const ai4bpmUrl = 'https://sites.google.com/unitn.it/ai4bpm-2025';
+const automateUrl = 'https://sites.google.com/diag.uniroma1.it/automate-2025';
+const bpMeetIotUrl = 'https://bp-meet-iot.webs.upv.es/';
+const prodyUrl = 'https://prody.ai.wu.ac.at/';
+const dlt4bpmUrl = 'https://dlt4bpm.github.io/';
+const fmbpmUrl = 'https://fm-bpm2025.github.io/';
+const innov8bpmUrl = 'https://sites.google.com/view/innov8bpm';
+const nlp4bpmUrl = 'https://sites.google.com/view/nlp4bpm2025/';
+const objectsUrl = 'https://sites.google.com/view/objects-workshop';
+const plcUrl = 'https://plc.di.unito.it/';
+const vipraUrl = 'https://vipra-workshop.github.io/homepage/';
+
 /**
  * Converts the program name to the URI portrayed in the URL
  */
@@ -859,69 +871,74 @@ manufacturing and health care.
     date: 'Wednesday, Sept 3rd, 2025',
     tables: [
       {
-        title: 'Session (16:30 - 18:00)',
-        description: `
-There is a demos & resources teaser session after the keynote that day: from 10:15 to 10:30.
-        `.trim(),
+        title: 'Teaser Session (10:15 - 10:30) - Giralda Hall',
         rows: [
           {
-            Title: 'BPMNinvest: Feedback on Change in Process Models',
+            Title: 'Demos & Resources teaser session'
+          }
+        ]
+      },
+      {
+        title: 'Session (16:30 - 18:00)',
+        rows: [
+          {
+            Title: 'BPMNinvest: Feedback on Change in Process Models (<a href="https://www.youtube.com/watch?v=fHmVLcOeMZI" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Thomas M. Prinz and Yongsun Choi'
           },
           {
-            Title: 'Capturing Environmental Impacts of Business Processes with Camunda and the SOPA Framework',
+            Title: 'Capturing Environmental Impacts of Business Processes with Camunda and the SOPA Framework (<a href="https://figshare.com/s/0a7c2e558c935ca8d5c8?file=55758965" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Finn Klessascheck, Yannic Seibert and Luise Pufahl'
           },
           {
-            Title: 'Easy and Efficient Object-Centric Process Querying with the OCPQ Tool',
+            Title: 'Easy and Efficient Object-Centric Process Querying with the OCPQ Tool (<a href="https://github.com/aarkue/ocpq-demo" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Aaron Küsters and Wil van der Aalst'
           },
           {
-            Title: 'FrAIm: A What-If Analysis Tool Enabling Framed Autonomy via Automated Planning',
+            Title: 'FrAIm: A What-If Analysis Tool Enabling Framed Autonomy via Automated Planning (<a href="https://www.youtube.com/watch?v=Ty2JsRhHewM" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Paul Wittlinger, Giacomo Acitelli, Anti Alman, Fabrizio Maria Maggi and Andrea Marrella'
           },
           {
-            Title: 'BEAR 2.0: enhancing the environment model for animating environment-aware BPMN collaborations',
+            Title: 'BEAR 2.0: enhancing the environment model for animating environment-aware BPMN collaborations (<a href="https://www.youtube.com/watch?v=zpFFFm9GWgk" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Flavio Corradini, Luca Mozzoni, Jessica Piccioni, Barbara Re, Lorenzo Rossi and Francesco Tiezzi'
           },
           {
-            Title: "PyStack't: Real-Life Data for Object-Centric Process Mining",
+            Title: 'PyStack\'t: Real-Life Data for Object-Centric Process Mining (<a href="https://www.youtube.com/watch?v=AS8wI90wRM8" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Lien Bosmans, Jari Peeperkorn and Johannes De Smedt'
           },
           {
-            Title: 'Kogui: A tool for assessing High-Level Business Process Compliance',
+            Title: 'Kogui: A tool for assessing High-Level Business Process Compliance (<a href="https://www.youtube.com/watch?v=apvBapize3w&list=PLyDC1uU6L39NIE6LoAkiOQom_dJ16QUbB&index=1" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Juanita Caballero Villalobos and Hugo A. López'
           },
           {
-            Title: 'Process Copilots: Scaling Process Mining Through Conversational Interfaces',
+            Title: 'Process Copilots: Scaling Process Mining Through Conversational Interfaces (<a href="https://videos.celonis.com/watch/A2pknwmiMLgbWS8C5ZoWqq" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Carolin Ullrich, Teodora Lata and Alexander Seeliger'
           },
           {
-            Title: 'A Business Process Simulation Tool Bridging Control-Flow and Resource-Centric Paradigms',
+            Title: 'A Business Process Simulation Tool Bridging Control-Flow and Resource-Centric Paradigms (<a href="https://www.youtube.com/watch?v=RF_lYoKAo8E" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Jack Edh, Tuva Falk, Filip Kanon, Erik Simonsson, Hugo Sjödin, Jonatan Wincent, Elisabeth Barar, Robert Blümel and Lukas Kirchdorfer'
           },
           {
-            Title: 'GymPN: a Python Library for Automated Decision-Making in Process Management Systems',
+            Title: 'GymPN: a Python Library for Automated Decision-Making in Process Management Systems (<a href="https://www.youtube.com/watch?v=2N7DW67NxqI" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Riccardo Lo Bianco, Willem van Jaarsveld and Remco Dijkman'
           },
           {
-            Title: 'BROOM: Toolbox for IoT-Enhanced Process Mining',
+            Title: 'BROOM: Toolbox for IoT-Enhanced Process Mining (<a href="https://github.com/chimenkamp/IOT-PM-Suite/blob/main/docs/showcase.mp4" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Christian Imenkamp, Yannis Bertrand, Joscha Grüger, Lukas Malburg, Marco Franceschetti, Matthias Ehrendorfer and Agnes Koschmider'
           },
           {
-            Title: 'DCR-JS: An Online Environment for Declarative Process Mining',
+            Title: 'DCR-JS: An Online Environment for Declarative Process Mining (<a href="https://www.youtube.com/watch?v=WxWiyLVU9Sc&list=PLkd-k9LKS0bfkfSGP65a594Z3u92cvLVx&index=1" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Axel K.F. Christfort and Hugo A. López'
           },
           {
-            Title: 'A Visual Analytics Tool for Multi-Dimensional Resource Insights in Process Mining',
+            Title: 'A Visual Analytics Tool for Multi-Dimensional Resource Insights in Process Mining (<a href="https://drive.google.com/file/d/12s7jzVY2FMWdXkrhPkifNXaaJ7JoE2ZX/view" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Alana Hoogmoed, Maximilian Schoditsch and Djordje Djurica'
           },
           {
-            Title: 'FairLoop: Software Support for Human-Centric Fairness in Predictive Business Process Monitoring',
+            Title: 'FairLoop: Software Support for Human-Centric Fairness in Predictive Business Process Monitoring (<a href="https://drive.google.com/file/d/1FIfNShThyInZSrNh7WEriRrUCZ_O7JII/view" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Felix Möhrlein, Martin Käppel, Julian Neuberger, Sven Weinzierl, Lars Ackermann, Martin Matzner and Stefan Jablonski'
           },
           {
-            Title: 'A training framework for BPM Modeling interviews based on LLM assistants',
+            Title: 'A training framework for BPM Modeling interviews based on LLM assistants (<a href="https://www.youtube.com/watch?v=ivUeytuOr1c" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Bedilia Estrada-Torres, José Antonio Parejo, Armando Fox and Pablo Fernández'
           },
           {
@@ -929,23 +946,23 @@ There is a demos & resources teaser session after the keynote that day: from 10:
             Authors: 'Ana Costa, Selin Y. Eroglu, Kerstin Andree and Luise Pufahl'
           },
           {
-            Title: 'BPMN-Chatbot++: LLM-Based Modeling of Collaboration Diagrams with Data',
+            Title: 'BPMN-Chatbot++: LLM-Based Modeling of Collaboration Diagrams with Data (<a href="https://www.youtube.com/watch?v=c--1AdTAS-4" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Aya Safan and Julius Köpke'
           },
           {
-            Title: 'AutoBPMN.AI: Conversational Process Modeling and Automation',
+            Title: 'AutoBPMN.AI: Conversational Process Modeling and Automation (<a href="https://autobpmn.ai/autobpmn.mp4" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Nataliia Klievtsova, Matthias Ehrendorfer, Juergen Mangler and Stefanie Rinderle-Ma'
           },
           {
-            Title: 'Sequen-C Explorer for Process Mining',
+            Title: 'Sequen-C Explorer for Process Mining (<a href="https://staffwww.dcs.shef.ac.uk/people/M.Villa-Uriol/SequenC-PM/Sequen-C-PM-demo.mp4" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Luis Montana and Maria-Cruz Villa-Uriol'
           },
           {
-            Title: 'A Library for Detecting Inconsistencies in Declarative Process Models',
+            Title: 'A Library for Detecting Inconsistencies in Declarative Process Models (<a href="https://videoakademie.ko-ld.de/Panopto/Pages/Viewer.aspx?id=67ee53ba-8e4b-46ed-ac14-b30c00fc69cb" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Sabine Nagel and Patrick Delfmann'
           },
           {
-            Title: 'Declarative Process Mining with MINERful, Reloaded',
+            Title: 'Declarative Process Mining with MINERful, Reloaded (<a href="https://www.youtube.com/watch?v=a6jEWdgS_yY" target="_blank" rel="noopener noreferrer">🎥</a>)',
             Authors: 'Cecilia Iacometta and Claudio Di Ciccio'
           }
         ]
@@ -1227,6 +1244,468 @@ There is a demos & resources teaser session after the keynote that day: from 10:
         short: 'Panel',
         rows: [
           { Time: '16:15', Title: 'Panel (all)' }
+        ]
+      }
+    ]
+  },
+  {
+    name: 'Workshops',
+    location: [locations.estepa, locations.ecija, locations.lebrija, locations.prado, locations.utrera, locations.triana],
+    date: 'Monday, Sept 1st, 2025',
+    tables: [
+      // AI4BPM — 9th International Workshop on Artificial Intelligence for Business Process Management (ESTEPA HALL)
+      {
+        header: `[AI4BPM - 9th International Workshop on Artificial Intelligence for Business Process Management](${ai4bpmUrl})`,
+        title: 'AI4BPM — Session 1 (ESTEPA HALL)',
+        short: 'ai4bpm-s1',
+        rows: [
+          { Time: '09:00 - 09:10', Title: 'Welcome' },
+          {
+            Time: '09:10 - 10:00',
+            Title: 'Keynote: AI-Augmented Business Process Management Systems',
+            Authors: 'Marlon Dumas'
+          },
+          {
+            Time: '10:00 - 10:30',
+            Title: 'Revealing Trace Variant Shift via Multi-Dimensional Profiling and Community-Aware Graph Modeling',
+            Authors: 'Iuliana Malina Grigore, Gabriel Marques Tavares, Vincenzo Pasquadibisceglie and Sylvio Barbon Junior'
+          }
+        ]
+      },
+      {
+        title: 'AI4BPM — Session 2 (ESTEPA HALL)',
+        short: 'ai4bpm-s2',
+        rows: [
+          {
+            Time: '11:00 - 11:30',
+            Title: 'Inter-Case Informed Business Process Suffix Prediction Integrating Trace and Log Information',
+            Authors: 'Xiaomeng He, Johannes De Smedt, Seppe Vanden Broucke and Jochen De Weerdt'
+          },
+          {
+            Time: '11:30 - 12:00',
+            Title: 'Predicting File Completion Using Time Series Models: Embracing the Life-Cycle Nature of Software Development',
+            Authors: 'Nastasja Stephanie Parschew and Saimir Bala'
+          },
+          {
+            Time: '12:00 - 12:30',
+            Title: 'Leveraging Duration Pseudo-Embeddings in Multilevel LSTM and GCN Hypermodels for Outcome-Oriented PBPM',
+            Authors: 'Fang Wang, Paolo Ceravolo and Ernesto Damiani'
+          }
+        ]
+      },
+      {
+        title: 'AI4BPM — Session 3 (ESTEPA HALL)',
+        short: 'ai4bpm-s3',
+        rows: [
+          {
+            Time: '14:00 - 14:30',
+            Title: 'Discovering Coordinated Processes From Social Online Networks',
+            Authors: 'Anna Kalenkova, Lewis Mitchell and Ethan Johnson'
+          },
+          {
+            Time: '14:30 - 15:00',
+            Title: 'What is the Best Process Model Representation? A Comparative Analysis for Process Modeling with Large Language Models',
+            Authors: 'Alexis Brissard, Frédéric Cuppens and Amal Zouaq'
+          },
+          {
+            Time: '15:00 - 15:30',
+            Title: 'Exploring Decision Mining Research: A Systematic Review Report and Knowledge Graph',
+            Authors: 'Erfan Elhami, William Van Woensel and Daniel Amyot'
+          }
+        ]
+      },
+
+      // AUTOMATE — 1st International Workshop on Implementation and Management of Intelligent Process Automation Solutions (ECIJA HALL)
+      {
+        header: `[AUTOMATE - 1st International Workshop on Implementation and Management of Intelligent Process Automation Solutions](${automateUrl})`,
+        title: 'AUTOMATE — Session 1 (ECIJA HALL)',
+        short: 'automate-s1',
+        rows: [
+          { Time: '09:00 - 09:10', Title: 'Welcome' },
+          {
+            Time: '09:10 - 09:35',
+            Title: 'Levels of Automation Revisited: Standardizing Human-Machine Interaction with Process Patterns',
+            Authors: 'Christian Janiesch and Seyyid A. Ciftci'
+          },
+          {
+            Time: '09:35 - 10:00',
+            Title: 'Structured evaluation of Robotic Process Automation (RPA) tools',
+            Authors: 'Romina Giaccio, Emilio Gerolami, Daniel Calegari and Andrea Delgado'
+          },
+          {
+            Time: '10:00 - 10:25',
+            Title: 'Runtime-Recovery Agent: Solving UI-related exceptions in RPA Systems with GUI agents',
+            Authors: 'Antonio Rodríguez Ruiz, José González Enríquez and Andrés Jiménez Ramírez'
+          }
+        ]
+      },
+      {
+        title: 'AUTOMATE — Session 2 (ECIJA HALL)',
+        short: 'automate-s2',
+        rows: [
+          {
+            Time: '11:00 - 11:25',
+            Title: 'From Chaos to Automation: Enabling the Use of Unstructured Data for Robotic Process Automation',
+            Authors: 'Kelly Kurowski, Xixi Lu and Hajo A. Reijers'
+          },
+          {
+            Time: '11:25 - 11:50',
+            Title: 'Process Automation and Skills in the Context of Knowledge Work (Short Paper)',
+            Authors: 'Dries Jarijch, Mieke Jans and Jan Mendling'
+          },
+          {
+            Time: '11:50 - 12:10',
+            Title: 'Towards an Actionable Development Method for Robotic Process Automation using Process Mining',
+            Authors: 'Alexander Skolik'
+          },
+          {
+            Time: '12:10 - 12:15',
+            Title: 'Enabling Sustainable Low-Code Development Through Structured Reuse: Designing a Low-Code Reuse Model',
+            Authors: 'Marlon Kampmann, Peter A. François and André Coners'
+          },
+          {
+            Time: '12:15 - 12:20',
+            Title: 'Is LLM Agent the New RPA? A Comparative Study with RPA Across Enterprise Workflows',
+            Authors: 'Petr Průcha, Michaela Matoušková and Jan Strnad'
+          }
+        ]
+      },
+      {
+        title: 'AUTOMATE — Session 3 (ECIJA HALL)',
+        short: 'automate-s3',
+        rows: [
+          { Time: '14:00 - 15:30', Title: 'Collaboratively develop a manifesto' }
+        ]
+      },
+
+      // BP-Meet-IoT — 9th International Workshop on Business Processes Meet the Internet-of-Things (LEBRIJA HALL)
+      {
+        header: `[BP-Meet-IoT - 9th International Workshop on Business Processes Meet the Internet-of-Things](${bpMeetIotUrl})`,
+        short: 'bpmeetiot-s1',
+        title: 'BP-Meet-IoT — Session 1 (LEBRIJA HALL)',
+        rows: [
+          { Time: '09:30', Title: 'Welcome' },
+          {
+            Time: '09:30 - 10:30',
+            Title: 'Keynote: BP-Meet-IoT — a look back at the past and into the future',
+            Authors: 'Workshop Chairs'
+          }
+        ]
+      },
+      {
+        title: 'BP-Meet-IoT — Session 2 (LEBRIJA HALL)',
+        short: 'bpmeetiot-s2',
+        rows: [
+          {
+            Time: '11:00 - 11:30',
+            Title: 'The PM-EdgeMap: Towards Real-Time Process Mining on the Edge-Cloud Continuum',
+            Authors: 'Hendrik Reiter, Christian Imenkamp, Wilhelm Hasselbring, Andrea Maldonado, Olaf Landsiedel and Patrick Rathje'
+          },
+          {
+            Time: '11:30 - 12:00',
+            Title: 'IoT Miner – Intelligent Extraction of Event Logs from Sensor Data for Process Mining',
+            Authors: 'Edyta Brzychczy, Urszula Jessen, Krzysztof Kluza, Sridhar Sriram and Manuel Vargas Nettelnstroth'
+          },
+          {
+            Time: '12:00 - 12:30',
+            Title: 'Incorporating IoT Contexts into Business Processes: A Contextual Classification',
+            Authors: 'Jia Wei, Chun Ouyang and Yannis Bertrand'
+          }
+        ]
+      },
+
+      // ProDy — 5th Workshop on Change, Drift, and Dynamics of Organizational Processes (UTRERA HALL)
+      {
+        header: `[ProDy — 5th Workshop on Change, Drift, and Dynamics of Organizational Processes](${prodyUrl})`,
+        title: 'ProDy — Session 1 (UTRERA HALL)',
+        short: 'prody-s1',
+        rows: [
+          {
+            Time: '09:00 - 09:30',
+            Title: 'A General Framework for Neuro-Symbolic Predictive Process Monitoring',
+            Authors: 'Jamila Oukharijane, Ivan Donadello and Fabrizio Maria Maggi'
+          },
+          {
+            Time: '09:30 - 10:00',
+            Title: 'Understanding the Dynamics of a Process Mining Project — Analyzing Log Data of a Process Mining Platform',
+            Authors: 'Alexander Skolik and Bernd Löhr'
+          },
+          {
+            Time: '10:00 - 10:30',
+            Title: 'Linking Actor Behavior to Process Performance Over Time',
+            Authors: 'Aurélie Leribaux, Rafael Oyamada, Johannes De Smedt, Zahra Dasht Bozorgi, Artem Polyvyanyy and Jochen De Weerdt'
+          }
+        ]
+      },
+      {
+        title: 'ProDy — Session 2 (UTRERA HALL)',
+        short: 'prody-s2',
+        rows: [
+          {
+            Time: '11:00 - 11:30',
+            Title: 'Resource-Oriented Workaround Analysis: A Case Study',
+            Authors: 'Wouter van der Waal and Hajo A. Reijers'
+          },
+          { Time: '11:30 - 12:30', Title: 'Panel discussion' }
+        ]
+      },
+
+      // DLT4BPM — 1st Workshop on Distributed Ledger Technologies in BPM (UTRERA HALL)
+      {
+        header: `[DLT4BPM — 1st Workshop on Distributed Ledger Technologies in BPM](${dlt4bpmUrl})`,
+        title: 'DLT4BPM — Session 1 (UTRERA HALL)',
+        short: 'dlt4bpm-s1',
+        rows: [
+          {
+            Time: '14:00 - 15:00',
+            Title: 'Keynote: Beyond the Hype — Blockchain meets BPM — Challenges on the Plains',
+            Authors: 'Julius Köpke (University of Klagenfurt, Austria)'
+          },
+          {
+            Time: '15:00 - 15:30',
+            Title: 'Paper Presentation: On LLM-Assisted Generation of Smart Contracts from Business Processes',
+            Authors: 'Fabian Stiehle, Hans Weytjens and Ingo Weber'
+          }
+        ]
+      },
+      {
+        title: 'DLT4BPM — Session 2 (UTRERA HALL)',
+        short: 'dlt4bpm-s2',
+        rows: [
+          {
+            Time: '16:00 - 16:30',
+            Title: 'Paper Presentation: Gas Management Patterns in Blockchain-enabled Process Execution',
+            Authors: 'Hassan Atwi and Cesare Pautasso'
+          },
+          {
+            Time: '16:30 - 16:45',
+            Title: 'Lightning Talk: A Methodology for Extracting and Decoding Smart Contracts Data',
+            Authors: 'Flavio Corradini, Alessandro Marcelletti, Andrea Morichetta and Barbara Re'
+          },
+          {
+            Time: '16:45 - 17:00',
+            Title: 'Lightning Talk: Compliance Checking For Decentralized Applications',
+            Authors: 'Flavio Corradini, Alessio Galassi, Alessandro Marcelletti and Barbara Re'
+          }
+        ]
+      },
+      // FM-BPM — 3rd International Workshop on Formal Methods for BPM (ECIJA HALL)
+      {
+        header: `[FM-BPM — 3rd International Workshop on Formal Methods for BPM](${fmbpmUrl})`,
+        title: 'FM-BPM — Plenary (ECIJA HALL)',
+        short: 'fmbpm-s1',
+        rows: [
+          { Time: '16:00 - 16:10', Title: 'Opening and introduction to discussion topics' },
+          { Time: '16:10 - 16:40', Title: 'Discussions in the base groups' },
+          { Time: '16:40 - 17:10', Title: 'Presentations of the key findings per topic (panels)' },
+          { Time: '17:10 - 17:30', Title: 'Final discussion and closing' }
+        ]
+      },
+      // Innov8BPM — 2nd International Workshop on Managing Process Innovation in the Era of Digital Transformation (LEBRIJA HALL)
+      {
+        header: `[Innov8BPM — 2nd International Workshop on Managing Process Innovation in the Era of Digital Transformation](${innov8bpmUrl})`,
+        title: 'Innov8BPM — Session 1 (LEBRIJA HALL)',
+        short: 'innov8bpm-s1',
+        rows: [
+          { Time: '14:00 - 14:10', Title: 'Opening by workshop chairs' },
+          {
+            Time: '14:10 - 15:10',
+            Title: 'Keynote: The BPM Sandwich Model — Balancing Emergence and Control in Times of Continuous Change',
+            Authors: 'Jan vom Brocke'
+          },
+          {
+            Time: '15:10 - 15:30',
+            Title: 'The Increasing Importance of Knowledge with the Growth of BPM Maturity',
+            Authors: 'Szelągowski et al.'
+          }
+        ]
+      },
+      {
+        title: 'Innov8BPM — Session 2 (LEBRIJA HALL)',
+        short: 'innov8bpm-s2',
+        rows: [
+          {
+            Time: '16:00 - 16:20',
+            Title: 'Factors and Impacts of Gender Imbalance in Digital Transformation Projects: A Systematic Literature Review',
+            Authors: 'Syahputra et al.'
+          },
+          {
+            Time: '16:20 - 16:40',
+            Title: 'Modeling business processes: from a BPMN structured process flow to a declarative rule-based ACM method',
+            Authors: 'Fernandes et al.'
+          },
+          {
+            Time: '16:40 - 17:00',
+            Title: 'Connecting the Digital Dots — Can Customer Journeys be Analyzed Purely from Event Logs?',
+            Authors: 'Brekke et al.'
+          },
+          { Time: '17:00 - 17:30', Title: 'Wrap up and interactive session' }
+        ]
+      },
+      // NLP4BPM — 4th Workshop on Natural Language Processing for BPM (PRADO HALL)
+      {
+        header: `[NLP4BPM — 4th Workshop on Natural Language Processing for BPM](${nlp4bpmUrl})`,
+        title: 'NLP4BPM — Session 1 (PRADO HALL, Chair: Jana Rehse)',
+        short: 'nlp4bpm-s1',
+        rows: [
+          {
+            Time: '14:00 - 14:40',
+            Title: 'Keynote: LLMs for BPM — From First-Wave Features to Process Understanding and Lasting Impact',
+            Authors: 'Adrian Rebmann (SAP Signavio)'
+          },
+          {
+            Time: '14:40 - 15:05',
+            Title: 'Natural Language Processing for BPMN Model Generation with LLMs — A Systematic Literature Review',
+            Authors: 'Alena Wimmer, Ana Costa and Luise Pufahl'
+          },
+          {
+            Time: '15:05 - 15:30',
+            Title: 'An LLM Pipeline for Automatic Extraction and Evaluation of Care Pathways from Clinical Guidelines',
+            Authors: 'Alireza Houshidari, William Van Woensel, Daniel Amyot and El Mostafa Bouattane'
+          }
+        ]
+      },
+      {
+        title: 'NLP4BPM — Session 2 (PRADO HALL, Chair: Henrik Leopold)',
+        short: 'nlp4bpm-s2',
+        rows: [
+          {
+            Time: '16:00 - 16:25',
+            Title: 'Large Language Models for Business Process Management — A Practice Overview',
+            Authors: 'Cielo Gonzalez Moyano, Rachmadita Andre Swari, Kristina Sahling, Jennifer Haase, Kate Revoredo and Jan Mendling'
+          },
+          {
+            Time: '16:25 - 16:50',
+            Title: 'Configuring Large Reasoning Models using Process Mining — A Benchmark and a Case Study',
+            Authors: 'Alessandro Berti, Humam Kourani, Gyunam Park and Wil M.P. van der Aalst'
+          },
+          {
+            Time: '16:50 - 17:30',
+            Title: 'Roundtable Discussion: Envisioning the Next Frontier for NLP in BPM',
+            Authors: 'Participants: Adrian Rebmann, Alessandro Berti; Participation open to all'
+          }
+        ]
+      },
+      // OBJECTS — 3rd Workshop on Object-centric processes from A to Z (TRIANA HALL & ESTEPA HALL)
+      {
+        header: `[OBJECTS — 3rd Workshop on Object-centric processes from A to Z](${objectsUrl})`,
+        title: 'OBJECTS — Session 1: Paper presentations (TRIANA HALL)',
+        short: 'objects-s1',
+        rows: [
+          {
+            Time: '09:00 - 09:30',
+            Title: 'Transforming Football Data into Object-centric Event Logs with Spatial Context Information',
+            Authors: 'Man Tuen Chan, Lennart Ebert, Paul-Julius Hillmann, Christoffer Rubensson, Stephan Fahrenkrog-Petersen and Jan Mendling'
+          },
+          {
+            Time: '09:30 - 10:00',
+            Title: 'An Object-Centric Approach to Inferring and Analyzing Queues',
+            Authors: 'Sander van Gansewinkel, Vadim Denisov and Dirk Fahland'
+          },
+          {
+            Time: '10:00 - 10:30',
+            Title: 'Object-based Process Model Generation',
+            Authors: 'Selina Schueler and Sascha Alpers'
+          }
+        ]
+      },
+      {
+        title: 'OBJECTS — Session 2: Public review session (TRIANA HALL)',
+        short: 'objects-s2',
+        rows: [
+          {
+            Time: '11:00 - 11:30',
+            Title: 'Public review session: Object-centric framework for addressing the challenges in OC-BPM and OCPM',
+            Authors: 'Anjo Seidel (HPI)'
+          },
+          {
+            Time: '11:30 - 12:00',
+            Title: 'Presentation of the challenges identified at BuzzOs 2024'
+          },
+          { Time: '12:00 - 12:30', Title: 'Panel discussion' }
+        ]
+      },
+      {
+        title: 'OBJECTS — Session 3: BuzzOs working group (ESTEPA HALL, by invitation only)',
+        short: 'objects-s3',
+        rows: [
+          { Time: '16:00 - 17:30', Title: 'BuzzOs working group session (by invitation only)' }
+        ]
+      },
+      // PLC — 2nd International Workshop on Processes, Laws, and Compliance (TRIANA HALL)
+      {
+        header: `[PLC — 2nd International Workshop on Processes, Laws, and Compliance](${plcUrl})`,
+        title: 'PLC — Session 1 (TRIANA HALL, Chair: Laura Genga)',
+        short: 'plc-s1',
+        rows: [
+          { Time: '14:00', Title: 'Opening' },
+          {
+            Time: '14:15 - 15:00',
+            Title: 'Keynote: [Title to be defined]',
+            Authors: 'Karolin Winter (Eindhoven University of Technology)'
+          },
+          { Time: '15:00 - 15:30', Title: 'Question & Answers' }
+        ]
+      },
+      {
+        title: 'PLC — Session 2 (TRIANA HALL, Chair: Roberto Nai)',
+        short: 'plc-s2',
+        rows: [
+          {
+            Time: '16:00 - 16:20',
+            Title: 'From Text to Process: Leveraging LLMs to Unveil Italian Lawmaking',
+            Authors: 'Matilde Contestabile, Chiara Ferrara, Alberto Giovannetti, Giovanni Parrillo and Andrea Vandin'
+          },
+          {
+            Time: '16:20 - 16:40',
+            Title: 'Understanding Feature Contributions to Remaining Time Prediction in Judicial Processes',
+            Authors: 'Musa Salamov, Marlon Dumas and Barbara Pernici'
+          },
+          { Time: '16:45 - 17:30', Title: 'Interactive Session — White Paper on Processes, Law and Compliance' }
+        ]
+      },
+      // VIPRA — 2nd Workshop on Visual Process Analytics (PRADO HALL)
+      {
+        header: `[VIPRA — 2nd Workshop on Visual Process Analytics](${vipraUrl})`,
+        title: 'VIPRA — Session 1 (PRADO HALL)',
+        short: 'vipra-s1',
+        rows: [
+          {
+            Time: '09:00 - 09:40',
+            Title: 'Keynote: What BPM Researchers Should Know About Visual Analytics',
+            Authors: 'Maria-Cruz Villa Uriol (University of Sheffield)'
+          },
+          {
+            Time: '09:40 - 10:05',
+            Title: 'Milana — Bridging process mining and visual analytics through task classification',
+            Authors: 'Lisa Zimmermann, Katerina Vrotsou, Pnina Soffer, Philipp Koytek, Barbara Weber and Shazia Sadiq'
+          },
+          {
+            Time: '10:05 - 10:30',
+            Title: 'VESPA — Visual Event-Stream Progressive Analytics',
+            Authors: 'Andrea Burattin, Silvia Miksch, Shazia Sadiq, Hans-Jörg Schulz and Katerina Vrotsou'
+          }
+        ]
+      },
+      {
+        title: 'VIPRA — Session 2 (PRADO HALL)',
+        short: 'vipra-s2',
+        rows: [
+          {
+            Time: '11:00 - 11:25',
+            Title: 'Addressing Directly-Follows Graphs limitations with visualization of event sequences',
+            Authors: 'Luis Montana, Manuel Resinas and Maria-Cruz Villa-Uriol'
+          },
+          {
+            Time: '11:25 - 11:50',
+            Title: 'Visualizing Object-Centric Petri Nets',
+            Authors: 'Tobias Brachmann, István Koren, Lukas Liß and Wil M. P. van der Aalst'
+          },
+          {
+            Time: '11:50 - 12:30',
+            Title: 'Panel Discussion: The Present and Future of VA & BPM',
+            Authors: 'Participants: Presenters; Audience participation welcome'
+          }
         ]
       }
     ]

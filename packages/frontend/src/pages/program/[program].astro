@@ -77,6 +77,10 @@ for (const key of ['width', 'height', 'href', 'description']) {
 
           return (
             <>
+              {t.header
+                && (
+                  <h2 class="text-2xl font-bold mt-6"><Fragment set:html={parse(t.header, { async: false })} /></h2>
+                )}
               <Table {...t} />
               {t.description
                 && (
