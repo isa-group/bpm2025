@@ -23,8 +23,8 @@ export const locations = {
   'giralda': {
     name: '"Giralda" Hall'
   },
-  'arenal': {
-    name: '"Arenal" Hall'
+  'magnolia': {
+    name: '"Magnolia" Hall'
   },
   'sta_cruz': {
     name: '"Santa Cruz" Hall'
