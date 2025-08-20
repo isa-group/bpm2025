@@ -1,66 +1,79 @@
+import { getPermalink } from '#/utils/permalinks';
 import type { ScheduleEvent } from '#/types';
 import { locations } from '#/data/program/locations';
 
-const ai4bpmUrl = 'https://sites.google.com/unitn.it/ai4bpm-2025';
-const automateUrl = 'https://sites.google.com/diag.uniroma1.it/automate-2025';
-const bpMeetIotUrl = 'https://bp-meet-iot.webs.upv.es/';
-const prodyUrl = 'https://prody.ai.wu.ac.at/';
-const dlt4bpmUrl = 'https://dlt4bpm.github.io/';
-const fmbpmUrl = 'https://fm-bpm2025.github.io/';
-const innov8bpmUrl = 'https://sites.google.com/view/innov8bpm';
-const nlp4bpmUrl = 'https://sites.google.com/view/nlp4bpm2025/';
-const objectsUrl = 'https://sites.google.com/view/objects-workshop';
-const plcUrl = 'https://plc.di.unito.it/';
-const vipraUrl = 'https://vipra-workshop.github.io/homepage/';
+// --- Category constants ---
+export const CATEGORIES = {
+  AI4BPM: 'ai4bpm',
+  AUTOMATE: 'automate',
+  VIPRA: 'vipra',
+  BPMEETIOT: 'bpmeetiot',
+  PRODY: 'prody',
+  OBJECTS: 'objects',
+  NLP4BPM: 'nlp4bpm',
+  INNOV8BPM: 'innov8bpm',
+  DLT4BPM: 'dlt4bpm',
+  PLC: 'plc',
+  FMBPM: 'fmbpm'
+} as const;
+
+export type Category = typeof CATEGORIES[keyof typeof CATEGORIES];
+
+/**
+ * Converts workshop and session in permalink
+ */
+function getWorkshopHref(category: Category, sessionIndex: number) {
+  return getPermalink(`/program/workshops/#${category}-s${sessionIndex}`);
+}
 
 export const workshops: ScheduleEvent[] = [
   {
     title: 'AI4BPM I',
     start: new Date(2025, 8, 1, 9, 0),
     end: new Date(2025, 8, 1, 10, 30),
-    category: 'ai4bpm',
+    category: CATEGORIES.AI4BPM,
     location: locations.estepa,
-    href: ai4bpmUrl
+    href: getWorkshopHref(CATEGORIES.AI4BPM, 1)
   },
   {
     title: 'AUTOMATE I',
     start: new Date(2025, 8, 1, 9, 0),
     end: new Date(2025, 8, 1, 10, 30),
-    category: 'automate',
+    category: CATEGORIES.AUTOMATE,
     location: locations.ecija,
-    href: automateUrl
+    href: getWorkshopHref(CATEGORIES.AUTOMATE, 1)
   },
   {
     title: 'VIPRA I',
     start: new Date(2025, 8, 1, 9, 0),
     end: new Date(2025, 8, 1, 10, 30),
-    category: 'vipra',
+    category: CATEGORIES.VIPRA,
     location: locations.prado,
-    href: vipraUrl
+    href: getWorkshopHref(CATEGORIES.VIPRA, 1)
   },
   {
     title: 'BP-Meet-IoT I',
     start: new Date(2025, 8, 1, 9, 0),
     end: new Date(2025, 8, 1, 10, 30),
-    category: 'bpmeetiot',
+    category: CATEGORIES.BPMEETIOT,
     location: locations.lebrija,
-    href: bpMeetIotUrl
+    href: getWorkshopHref(CATEGORIES.BPMEETIOT, 1)
   },
   {
     title: 'Prody I',
     start: new Date(2025, 8, 1, 9, 0),
     end: new Date(2025, 8, 1, 10, 30),
-    category: 'prody',
+    category: CATEGORIES.PRODY,
     location: locations.utrera,
-    href: prodyUrl
+    href: getWorkshopHref(CATEGORIES.PRODY, 1)
   },
   {
     title: 'OBJECTS I',
     start: new Date(2025, 8, 1, 9, 0),
     end: new Date(2025, 8, 1, 10, 30),
-    category: 'objects',
+    category: CATEGORIES.OBJECTS,
     location: locations.triana,
-    href: objectsUrl
+    href: getWorkshopHref(CATEGORIES.OBJECTS, 1)
   },
   {
     title: 'Coffee Break',
@@ -108,49 +121,49 @@ export const workshops: ScheduleEvent[] = [
     title: 'AI4BPM II',
     start: new Date(2025, 8, 1, 11, 0),
     end: new Date(2025, 8, 1, 12, 30),
-    category: 'ai4bpm',
+    category: CATEGORIES.AI4BPM,
     location: locations.estepa,
-    href: ai4bpmUrl
+    href: getWorkshopHref(CATEGORIES.AI4BPM, 2)
   },
   {
     title: 'AUTOMATE II',
     start: new Date(2025, 8, 1, 11, 0),
     end: new Date(2025, 8, 1, 12, 30),
-    category: 'automate',
+    category: CATEGORIES.AUTOMATE,
     location: locations.ecija,
-    href: automateUrl
+    href: getWorkshopHref(CATEGORIES.AUTOMATE, 2)
   },
   {
     title: 'VIPRA II',
     start: new Date(2025, 8, 1, 11, 0),
     end: new Date(2025, 8, 1, 12, 30),
-    category: 'vipra',
+    category: CATEGORIES.VIPRA,
     location: locations.prado,
-    href: vipraUrl
+    href: getWorkshopHref(CATEGORIES.VIPRA, 2)
   },
   {
     title: 'BP-Meet-IoT II',
     start: new Date(2025, 8, 1, 11, 0),
     end: new Date(2025, 8, 1, 12, 30),
-    category: 'bpmeetiot',
+    category: CATEGORIES.BPMEETIOT,
     location: locations.lebrija,
-    href: bpMeetIotUrl
+    href: getWorkshopHref(CATEGORIES.BPMEETIOT, 2)
   },
   {
     title: 'Prody II',
     start: new Date(2025, 8, 1, 11, 0),
     end: new Date(2025, 8, 1, 12, 30),
-    category: 'prody',
+    category: CATEGORIES.PRODY,
     location: locations.utrera,
-    href: prodyUrl
+    href: getWorkshopHref(CATEGORIES.PRODY, 2)
   },
   {
     title: 'OBJECTS II',
     start: new Date(2025, 8, 1, 11, 0),
     end: new Date(2025, 8, 1, 12, 30),
-    category: 'objects',
+    category: CATEGORIES.OBJECTS,
     location: locations.triana,
-    href: objectsUrl
+    href: getWorkshopHref(CATEGORIES.OBJECTS, 2)
   },
   {
     title: 'Lunch Break',
@@ -198,49 +211,49 @@ export const workshops: ScheduleEvent[] = [
     title: 'AI4BPM III',
     start: new Date(2025, 8, 1, 14, 0),
     end: new Date(2025, 8, 1, 15, 30),
-    category: 'ai4bpm',
+    category: CATEGORIES.AI4BPM,
     location: locations.estepa,
-    href: ai4bpmUrl
+    href: getWorkshopHref(CATEGORIES.AI4BPM, 3)
   },
   {
     title: 'AUTOMATE III',
     start: new Date(2025, 8, 1, 14, 0),
     end: new Date(2025, 8, 1, 15, 30),
-    category: 'automate',
+    category: CATEGORIES.AUTOMATE,
     location: locations.ecija,
-    href: automateUrl
+    href: getWorkshopHref(CATEGORIES.AUTOMATE, 3)
   },
   {
     title: 'NLP4BPM I',
     start: new Date(2025, 8, 1, 14, 0),
     end: new Date(2025, 8, 1, 15, 30),
-    category: 'nlp4bpm',
+    category: CATEGORIES.NLP4BPM,
     location: locations.prado,
-    href: nlp4bpmUrl
+    href: getWorkshopHref(CATEGORIES.NLP4BPM, 1)
   },
   {
     title: 'Innov8BPM I',
     start: new Date(2025, 8, 1, 14, 0),
     end: new Date(2025, 8, 1, 15, 30),
-    category: 'innov8bpm',
+    category: CATEGORIES.INNOV8BPM,
     location: locations.lebrija,
-    href: innov8bpmUrl
+    href: getWorkshopHref(CATEGORIES.INNOV8BPM, 1)
   },
   {
     title: 'DLT4BPM I',
     start: new Date(2025, 8, 1, 14, 0),
     end: new Date(2025, 8, 1, 15, 30),
-    category: 'dlt4bpm',
+    category: CATEGORIES.DLT4BPM,
     location: locations.utrera,
-    href: dlt4bpmUrl
+    href: getWorkshopHref(CATEGORIES.DLT4BPM, 1)
   },
   {
     title: 'PLC I',
     start: new Date(2025, 8, 1, 14, 0),
     end: new Date(2025, 8, 1, 15, 30),
-    category: 'plc',
+    category: CATEGORIES.PLC,
     location: locations.triana,
-    href: plcUrl
+    href: getWorkshopHref(CATEGORIES.PLC, 1)
   },
   {
     title: 'Coffee Break',
@@ -287,49 +300,49 @@ export const workshops: ScheduleEvent[] = [
     title: 'OBJECTS III Review Session',
     start: new Date(2025, 8, 1, 16, 0),
     end: new Date(2025, 8, 1, 17, 30),
-    category: 'objects',
+    category: CATEGORIES.OBJECTS,
     description: 'Invitation only',
     location: locations.estepa,
-    href: objectsUrl
+    href: getWorkshopHref(CATEGORIES.OBJECTS, 3)
   },
   {
     title: 'FM-BPM',
     start: new Date(2025, 8, 1, 16, 0),
     end: new Date(2025, 8, 1, 17, 30),
-    category: 'fmbpm',
+    category: CATEGORIES.FMBPM,
     location: locations.ecija,
-    href: fmbpmUrl
+    href: getWorkshopHref(CATEGORIES.FMBPM, 1)
   },
   {
     title: 'NLP4BPM II',
     start: new Date(2025, 8, 1, 16, 0),
     end: new Date(2025, 8, 1, 17, 30),
-    category: 'nlp4bpm',
+    category: CATEGORIES.NLP4BPM,
     location: locations.prado,
-    href: nlp4bpmUrl
+    href: getWorkshopHref(CATEGORIES.NLP4BPM, 2)
   },
   {
     title: 'Innov8BPM II',
     start: new Date(2025, 8, 1, 16, 0),
     end: new Date(2025, 8, 1, 17, 30),
-    category: 'innov8bpm',
+    category: CATEGORIES.INNOV8BPM,
     location: locations.lebrija,
-    href: innov8bpmUrl
+    href: getWorkshopHref(CATEGORIES.INNOV8BPM, 2)
   },
   {
     title: 'DLT4BPM II',
     start: new Date(2025, 8, 1, 16, 0),
     end: new Date(2025, 8, 1, 17, 30),
-    category: 'dlt4bpm',
+    category: CATEGORIES.DLT4BPM,
     location: locations.utrera,
-    href: dlt4bpmUrl
+    href: getWorkshopHref(CATEGORIES.DLT4BPM, 2)
   },
   {
     title: 'PLC II',
     start: new Date(2025, 8, 1, 16, 0),
     end: new Date(2025, 8, 1, 17, 30),
-    category: 'plc',
+    category: CATEGORIES.PLC,
     location: locations.triana,
-    href: plcUrl
+    href: getWorkshopHref(CATEGORIES.PLC, 2)
   }
 ];

@@ -18,7 +18,7 @@ export const keynotes = [
       Information and Communication Sciences at the Australian Academy of Science 2019-2022, and member of
       The Australian Research Council College of Experts 2018-2021.</p>
       <br />
-      <p>During her keynote, Shazia will talk about “The Essential Toolkit for Process Scientists: Comprehension, Compliance and Change.”</p>
+      <p>During her keynote, Shazia will talk about <b>"The Essential Toolkit for Process Scientists: Comprehension, Compliance and Change."</b></p>
     `
   },
   {
@@ -36,7 +36,7 @@ export const keynotes = [
       <br />
       <p>As an entrepreneur, he is building a technology company amidst the unprecedented revolution brought on by the disruption of
       generative AI. This exciting journey is filled with lessons learned and best practices that Josep plans to share
-      with the BPM community in this keynote.</p>
+      with the BPM community in this keynote titled : <b>"Taking Your BPM Project to the Next Level: The Entrepreneurial Journey from Academia."</b></p>
     `
   },
   {
