@@ -250,7 +250,7 @@ export const program_overviews: ProgramOverview[] = [
   },
   {
     name: 'BPM Forum',
-    location: locations.arenal,
+    location: locations.magnolia,
     date: 'Tuesday, Sept 2nd - Thursday, Sept 4th, 2025',
     tables: [
       {
@@ -798,7 +798,7 @@ manufacturing and health care.
   },
   {
     name: 'Tutorials',
-    location: [locations.triana, locations.arenal],
+    location: [locations.triana, locations.magnolia],
     date: 'Tuesday,  Wednesday & Thursday, Sept 2nd–4rd, 2025',
     items: [
       {
@@ -971,7 +971,7 @@ manufacturing and health care.
   },
   {
     name: 'Journal First Track',
-    location: [locations.triana, locations.arenal],
+    location: [locations.triana, locations.magnolia],
     date: 'Tuesday & Wednesday, Sept 2nd–3rd, 2025',
     tables: [
       {

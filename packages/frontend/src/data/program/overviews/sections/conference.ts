@@ -28,7 +28,7 @@ export const conference: ScheduleEvent[] = [
     end: new Date(2025, 8, 2, 13, 0),
     description: 'Socio-Technical Perspectives in BPM',
     category: 'bpm_forum',
-    location: locations.arenal,
+    location: locations.magnolia,
     href: bpmForumUrl
   },
   {
@@ -69,7 +69,7 @@ export const conference: ScheduleEvent[] = [
     end: new Date(2025, 8, 2, 16, 0),
     description: 'Curriculum Innovation',
     category: 'forum_1',
-    location: locations.arenal,
+    location: locations.magnolia,
     href: educatorsUrl
   },
   {
@@ -109,7 +109,7 @@ export const conference: ScheduleEvent[] = [
     end: new Date(2025, 8, 2, 18, 0),
     description: 'Bridging Academia & Industry',
     category: 'forum_1',
-    location: locations.arenal,
+    location: locations.magnolia,
     href: educatorsUrl
   },
   {
@@ -144,7 +144,7 @@ export const conference: ScheduleEvent[] = [
     end: new Date(2025, 8, 3, 13, 0),
     category: 'bpm_forum',
     description: 'Intelligent Automation and Optimization in BPM',
-    location: locations.arenal,
+    location: locations.magnolia,
     href: bpmForumUrl
   },
   {
@@ -176,7 +176,7 @@ export const conference: ScheduleEvent[] = [
     end: new Date(2025, 8, 3, 16, 0),
     description: 'Constraint-based reasoning and analysis for BPM: CSP to the rescue',
     category: 'workshop',
-    location: locations.arenal,
+    location: locations.magnolia,
     href: tutorialsUrl
   },
   {
@@ -215,7 +215,7 @@ export const conference: ScheduleEvent[] = [
     start: new Date(2025, 8, 3, 16, 30),
     end: new Date(2025, 8, 3, 18, 0),
     category: 'journal_first',
-    location: locations.arenal,
+    location: locations.magnolia,
     href: journalFirstUrl
   },
   {
@@ -233,7 +233,7 @@ export const conference: ScheduleEvent[] = [
     end: new Date(2025, 8, 4, 13, 0),
     description: 'Process Modeling, Simulation, and Verification',
     category: 'bpm_forum',
-    location: locations.arenal,
+    location: locations.magnolia,
     href: bpmForumUrl
   },
   {
@@ -265,7 +265,7 @@ export const conference: ScheduleEvent[] = [
     end: new Date(2025, 8, 4, 16, 0),
     description: 'Business Process Optimization',
     category: 'workshop',
-    location: locations.arenal,
+    location: locations.magnolia,
     href: tutorialsUrl
   },
   {
