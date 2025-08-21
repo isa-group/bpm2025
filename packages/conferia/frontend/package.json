@@ -9,6 +9,14 @@
   "imports": {
     "#/*": "./src/*"
   },
+  "exports": {
+    ".": {
+      "default": "./index.ts"
+    },
+    "./instance": {
+      "default": "./src/app.ts"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",

@@ -21,8 +21,7 @@ export interface Props {
   position?: string;
 }
 
-const url = Astro.url;
-const headerData = getHeaderData(url);
+const headerData = getHeaderData();
 
 const {
   links = headerData.links,
