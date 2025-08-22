@@ -20,8 +20,8 @@ import java.util.List;
 @Entity
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(length = 8)
+    private String id;
     private String firstname;
     private String lastname;
     private String email;

@@ -24,5 +24,5 @@ public interface MessageRepository extends JpaRepository<Message, Integer> {
                     "LEFT JOIN read_messages mr ON m.id = mr.message_id AND mr.user_id = :user " +
                     "WHERE mr.message_id IS NULL",
             nativeQuery = true)
-    Integer getMessagesNotReadByUser(@Param("user") Integer user);
+    Integer getMessagesNotReadByUser(@Param("user") String user);
 }

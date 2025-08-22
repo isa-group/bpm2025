@@ -2,6 +2,8 @@ package icpmapp;
 
 import icpmapp.entities.*;
 import icpmapp.repository.*;
+import icpmapp.utils.UserIdGenerator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -38,6 +40,7 @@ public class ICPMApp implements CommandLineRunner {
         User adminAccount = userRepository.findByRole(Role.ADMIN);
         if (null == adminAccount) {
             User user = new User();
+            user.setId(UserIdGenerator.generateId());
             user.setEmail("admin@admin.com");
             user.setFirstname("admin");
             user.setLastname("admin");
@@ -141,46 +144,85 @@ public class ICPMApp implements CommandLineRunner {
             sessionHeaderRepository.save(sh18);
 
             for (int i = 0; i < 10; i++) {
-                userRepository.save(
-                        new User("USA", "TechGiant", i + "john.doe@techgiant.com", "John", i + "Doe", i % 2 == 0));
-                userRepository.save(new User("Canada", "MapleTech", i + "alice.smith@mapletech.com", "Alice",
-                        i + "Smith", i % 2 == 0));
-                userRepository.save(
-                        new User("UK", "LondonBiz", i + "bob.brown@londonbiz.com", "Bob", i + "Brown", i % 2 == 0));
-                userRepository.save(new User("USA", "TechGiant", i + "carol.jones@techgiant.com", "Carol", i + "Jones",
-                        i % 2 == 0));
-                userRepository.save(new User("Germany", "AutoBuild", i + "david.lee@autobuild.com", "David", i + "Lee",
-                        i % 2 == 0));
-                userRepository.save(
-                        new User("France", "ParisInc", i + "eva.white@parisinc.com", "Eva", i + "White", i % 2 == 0));
-                userRepository.save(new User("USA", "HealthPlus", i + "frank.black@healthplus.com", "Frank",
-                        i + "Black", i % 2 == 0));
-                userRepository.save(new User("Canada", "MapleTech", i + "grace.green@mapletech.com", "Grace",
-                        i + "Green", i % 2 == 0));
-                userRepository.save(new User("UK", "TechGiant", i + "harry.taylor@techgiant.co.uk", "Harry",
-                        i + "Taylor", i % 2 == 0));
-                userRepository.save(new User("Germany", "AutoBuild", i + "isabella.wilson@autobuild.com", "Isabella",
-                        i + "Wilson", i % 2 == 0));
-                userRepository.save(new User("France", "Foodies", i + "jason.martin@foodies.fr", "Jason", i + "Martin",
-                        i % 2 == 0));
-                userRepository.save(new User("USA", "BeveragesCo", i + "karen.hall@beveragesco.com", "Karen",
-                        i + "Hall", i % 2 == 0));
-                userRepository.save(new User("Canada", "HealthPlus", i + "louis.clark@healthplus.ca", "Louis",
-                        i + "Clark", i % 2 == 0));
-                userRepository.save(
-                        new User("UK", "LondonBiz", i + "maria.lewis@londonbiz.com", "Maria", i + "Lewis", i % 2 == 0));
-                userRepository.save(
-                        new User("USA", "TechGiant", i + "noah.allen@techgiant.com", "Noah", i + "Allen", i % 2 == 0));
-                userRepository.save(new User("Germany", "BerlinTech", i + "olivia.scott@berlintech.de", "Olivia",
-                        i + "Scott", i % 2 == 0));
-                userRepository.save(new User("France", "ParisInc", i + "peter.young@parisinc.com", "Peter", i + "Young",
-                        i % 2 == 0));
-                userRepository.save(new User("Canada", "MapleTech", i + "quinn.edwards@mapletech.com", "Quinn",
-                        i + "Edwards", i % 2 == 0));
-                userRepository.save(new User("UK", "BakerGoods", i + "rachel.moore@bakergoods.co.uk", "Rachel",
-                        i + "Moore", i % 2 == 0));
-                userRepository.save(new User("USA", "BeveragesCo", i + "samuel.walker@beveragesco.com", "Samuel",
-                        i + "Walker", i % 2 == 0));
+                User johnDoe = new User("USA", "TechGiant", i + "john.doe@techgiant.com", "John", i + "Doe", i % 2 == 0);
+                johnDoe.setId(UserIdGenerator.generateId());
+                userRepository.save(johnDoe);
+                
+                User aliceSmith = new User("Canada", "MapleTech", i + "alice.smith@mapletech.com", "Alice", i + "Smith", i % 2 == 0);
+                aliceSmith.setId(UserIdGenerator.generateId());
+                userRepository.save(aliceSmith);
+                
+                User bobBrown = new User("UK", "LondonBiz", i + "bob.brown@londonbiz.com", "Bob", i + "Brown", i % 2 == 0);
+                bobBrown.setId(UserIdGenerator.generateId());
+                userRepository.save(bobBrown);
+                
+                User carolJones = new User("USA", "TechGiant", i + "carol.jones@techgiant.com", "Carol", i + "Jones", i % 2 == 0);
+                carolJones.setId(UserIdGenerator.generateId());
+                userRepository.save(carolJones);
+                
+                User davidLee = new User("Germany", "AutoBuild", i + "david.lee@autobuild.com", "David", i + "Lee", i % 2 == 0);
+                davidLee.setId(UserIdGenerator.generateId());
+                userRepository.save(davidLee);
+                
+                User evaWhite = new User("France", "ParisInc", i + "eva.white@parisinc.com", "Eva", i + "White", i % 2 == 0);
+                evaWhite.setId(UserIdGenerator.generateId());
+                userRepository.save(evaWhite);
+                
+                User frankBlack = new User("USA", "HealthPlus", i + "frank.black@healthplus.com", "Frank", i + "Black", i % 2 == 0);
+                frankBlack.setId(UserIdGenerator.generateId());
+                userRepository.save(frankBlack);
+                
+                User graceGreen = new User("Canada", "MapleTech", i + "grace.green@mapletech.com", "Grace", i + "Green", i % 2 == 0);
+                graceGreen.setId(UserIdGenerator.generateId());
+                userRepository.save(graceGreen);
+                
+                User harryTaylor = new User("UK", "TechGiant", i + "harry.taylor@techgiant.co.uk", "Harry", i + "Taylor", i % 2 == 0);
+                harryTaylor.setId(UserIdGenerator.generateId());
+                userRepository.save(harryTaylor);
+                
+                User isabellaWilson = new User("Germany", "AutoBuild", i + "isabella.wilson@autobuild.com", "Isabella", i + "Wilson", i % 2 == 0);
+                isabellaWilson.setId(UserIdGenerator.generateId());
+                userRepository.save(isabellaWilson);
+                
+                User jasonMartin = new User("France", "Foodies", i + "jason.martin@foodies.fr", "Jason", i + "Martin", i % 2 == 0);
+                jasonMartin.setId(UserIdGenerator.generateId());
+                userRepository.save(jasonMartin);
+                
+                User karenHall = new User("USA", "BeveragesCo", i + "karen.hall@beveragesco.com", "Karen", i + "Hall", i % 2 == 0);
+                karenHall.setId(UserIdGenerator.generateId());
+                userRepository.save(karenHall);
+                
+                User louisClark = new User("Canada", "HealthPlus", i + "louis.clark@healthplus.ca", "Louis", i + "Clark", i % 2 == 0);
+                louisClark.setId(UserIdGenerator.generateId());
+                userRepository.save(louisClark);
+                
+                User mariaLewis = new User("UK", "LondonBiz", i + "maria.lewis@londonbiz.com", "Maria", i + "Lewis", i % 2 == 0);
+                mariaLewis.setId(UserIdGenerator.generateId());
+                userRepository.save(mariaLewis);
+                
+                User noahAllen = new User("USA", "TechGiant", i + "noah.allen@techgiant.com", "Noah", i + "Allen", i % 2 == 0);
+                noahAllen.setId(UserIdGenerator.generateId());
+                userRepository.save(noahAllen);
+                
+                User oliviaScott = new User("Germany", "BerlinTech", i + "olivia.scott@berlintech.de", "Olivia", i + "Scott", i % 2 == 0);
+                oliviaScott.setId(UserIdGenerator.generateId());
+                userRepository.save(oliviaScott);
+                
+                User peterYoung = new User("France", "ParisInc", i + "peter.young@parisinc.com", "Peter", i + "Young", i % 2 == 0);
+                peterYoung.setId(UserIdGenerator.generateId());
+                userRepository.save(peterYoung);
+                
+                User quinnEdwards = new User("Canada", "MapleTech", i + "quinn.edwards@mapletech.com", "Quinn", i + "Edwards", i % 2 == 0);
+                quinnEdwards.setId(UserIdGenerator.generateId());
+                userRepository.save(quinnEdwards);
+                
+                User rachelMoore = new User("UK", "BakerGoods", i + "rachel.moore@bakergoods.co.uk", "Rachel", i + "Moore", i % 2 == 0);
+                rachelMoore.setId(UserIdGenerator.generateId());
+                userRepository.save(rachelMoore);
+                
+                User samuelWalker = new User("USA", "BeveragesCo", i + "samuel.walker@beveragesco.com", "Samuel", i + "Walker", i % 2 == 0);
+                samuelWalker.setId(UserIdGenerator.generateId());
+                userRepository.save(samuelWalker);
             }
         }
     }

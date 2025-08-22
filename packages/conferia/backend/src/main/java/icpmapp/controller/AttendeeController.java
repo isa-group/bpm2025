@@ -33,7 +33,7 @@ public class AttendeeController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
-    public ResponseEntity<AttendeeResponse> getAttendee (@PathVariable Integer id) {
+    public ResponseEntity<AttendeeResponse> getAttendee (@PathVariable String id) {
         return ResponseEntity.ok(attendeeService.getAttendee(id));
     }
 
