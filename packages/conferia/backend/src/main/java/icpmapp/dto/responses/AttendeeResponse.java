@@ -10,6 +10,6 @@ public class AttendeeResponse {
     private String avatar_path;
     private String company;
     private String country;
-    private Integer Id;
+    private String Id;
 
 }

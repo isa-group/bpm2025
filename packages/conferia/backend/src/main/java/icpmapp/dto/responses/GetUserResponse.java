@@ -12,5 +12,5 @@ public class GetUserResponse {
     private String company;
     private String profilePicture;
     private boolean sharingChoice;
-    private Integer id;
+    private String id;
 }

@@ -9,6 +9,6 @@ public class GetSingleImageDataResponse {
     private Boolean hasLiked;
     private String imageAuthor;
     private int imageLikes;
-    private int authorId;
+    private String authorId;
     private LocalDateTime uploadTime;
 }

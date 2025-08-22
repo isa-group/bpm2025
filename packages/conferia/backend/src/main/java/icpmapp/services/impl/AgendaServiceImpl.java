@@ -115,7 +115,7 @@ public class AgendaServiceImpl implements AgendaService {
     }
 
 
-    public List<SessionHeaderDTO> findLikedSessionsByUser(Integer userId){
+    public List<SessionHeaderDTO> findLikedSessionsByUser(String userId){
         List<SessionHeader> likedSessions = sessionHeaderRepository.findByLikes_Id(userId);
         return likedSessions.stream().map(this::convertToDto).collect(Collectors.toList());
     }
