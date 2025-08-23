@@ -13,7 +13,7 @@
         </div>
         <button
           @click="goToCalendar"
-          class="flex items-center space-x-2 px-3 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
+          class="flex items-center space-x-2 px-3 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
         >
           <i class="i-carbon-calendar text-lg"></i>
           <span class="font-medium">Calendar</span>
@@ -75,18 +75,18 @@
     <!-- Content -->
     <div class="px-4 py-6 pb-20">
       <!-- Session List -->
-      <div v-if="state.selectedDay && groupedSessionsByTimeSlot && Object.keys(groupedSessionsByTimeSlot).length > 0" class="space-y-6">
+      <div v-if="state.selectedDay && groupedSessionsByType && Object.keys(groupedSessionsByType).length > 0" class="space-y-6">
         <div 
-          v-for="(group, timeSlot) in groupedSessionsByTimeSlot"
-          :key="timeSlot"
+          v-for="(group, sessionType) in groupedSessionsByType"
+          :key="sessionType"
           class="space-y-3"
         >
-          <!-- Time Slot Header -->
+          <!-- Session Type Header -->
           <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-3 border border-blue-100 dark:border-blue-800">
-            <h2 class="font-bold text-lg text-blue-900 dark:text-blue-100">{{ timeSlot }}</h2>
+            <h2 class="font-bold text-lg text-blue-900 dark:text-blue-100">{{ formatSessionType(sessionType) }}</h2>
           </div>
           
-          <!-- Sessions in this time slot -->
+          <!-- Sessions of this type -->
           <div class="space-y-3">
             <div 
               v-for="session in group"
@@ -97,14 +97,18 @@
               <div class="p-4">
                 <div class="flex items-start justify-between mb-3">
                   <div class="flex-1">
-                    <h3 class="font-semibold text-gray-900 dark:text-white text-lg mb-1">
+                    <h3 class="font-semibold text-gray-900 dark:text-white text-lg mb-2">
                       {{ session.session_name }}
                     </h3>
+                    <!-- Session Time - left aligned below title -->
+                    <p class="text-blue-600 dark:text-blue-400 text-sm font-medium mb-2">
+                      {{ formatSessionTime(session) }}
+                    </p>
                     <p v-if="session.session_host" class="text-gray-600 dark:text-gray-300 text-sm mb-1">
                       Host: {{ session.session_host }}
                     </p>
                     <p v-if="session.session_location" class="text-gray-500 dark:text-gray-400 text-sm">
-                      📍 {{ session.session_location }}
+                      {{ session.session_location }}
                     </p>
                   </div>
                   
@@ -112,18 +116,15 @@
                   <div class="flex flex-col items-center space-y-1">
                     <button
                       @click.stop="toggleLike(session)"
-                      class="p-2 rounded-full transition-colors"
+                      class="w-8 h-8 rounded-md transition-colors duration-200 flex items-center justify-center text-size-2xl"
                       :class="session.isLiked 
-                        ? 'bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400' 
-                        : 'bg-gray-50 dark:bg-gray-700 text-gray-400 hover:text-red-500'"
+                        ? 'text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300' 
+                        : 'text-gray-400 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400'"
                     >
-                      <i 
-                        :class="session.isLiked ? 'i-carbon-favorite-filled' : 'i-carbon-favorite'"
-                        class="text-xl"
-                      ></i>
+                      {{ session.isLiked ? '♥' : '♡' }}
                     </button>
                     <span v-if="session.likes > 0" class="text-xs text-gray-500 dark:text-gray-400">
-                      {{ session.likes }} {{ session.likes === 1 ? 'like' : 'likes' }}
+                      {{ session.likes }}
                     </span>
                   </div>
                 </div>
@@ -188,8 +189,6 @@ const state = reactive({
   sessions: [],
   uniqueDays: [],
   selectedDay: null,
-  weekStart: new Date(),
-  weekEnd: new Date(),
   agendaType: 'all',
   likedSessionIds: new Set(),
   currentUserId: null,
@@ -234,11 +233,8 @@ async function fetchICPMAgenda() {
     });
     const sessionsData = response.data;
     const processedSessions = await processSessions(sessionsData);
-    const { weekStart, weekEnd } = determineWeekRangeFromSessions(processedSessions);
-    state.sessions = processedSessions.filter((session) => {
-      const sessionDate = new Date(session.start_time);
-      return sessionDate >= weekStart && sessionDate <= weekEnd;
-    });
+    // Remove week filtering - show all sessions
+    state.sessions = processedSessions;
   } catch (error) {
     console.error('Failed to fetch ICPM agenda:', error);
   }
@@ -257,11 +253,8 @@ async function fetchPersonalAgenda(userId) {
     const sessionsData = response.data;
     console.log('Fetched personal agenda sessions:', sessionsData);
     const processedSessions = await processSessions(sessionsData);
-    const { weekStart, weekEnd } = determineWeekRangeFromSessions(processedSessions);
-    state.sessions = processedSessions.filter((session) => {
-      const sessionDate = new Date(session.start_time);
-      return sessionDate >= weekStart && sessionDate <= weekEnd;
-    });
+    // Remove week filtering - show all sessions
+    state.sessions = processedSessions;
   } catch (error) {
     console.error(`Failed to fetch personal agenda for user ${userId}:`, error);
   }
@@ -335,13 +328,31 @@ async function processSessions(sessionsData) {
   return sessionsData.map((session) => {
     const sessionIdAsString = session.id.toString();
     const isLikedCheck = state.likedSessionIds.has(sessionIdAsString);
+    
+    // Add 2 hours to fix timezone misalignment
+    const startTime = new Date(session.startTime);
+    const endTime = new Date(session.endTime);
+    startTime.setHours(startTime.getHours() + 2);
+    endTime.setHours(endTime.getHours() + 2);
+    
+    // Format times properly (YYYY-MM-DD HH:MM:SS)
+    const formatDateTime = (date) => {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      const hours = String(date.getHours()).padStart(2, '0');
+      const minutes = String(date.getMinutes()).padStart(2, '0');
+      const seconds = String(date.getSeconds()).padStart(2, '0');
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    };
+    
     return {
       id: sessionIdAsString,
       session_name: session.name,
       session_host: session.host,
       session_location: session.location,
-      start_time: session.startTime.replace('T', ' ').slice(0, -3),
-      end_time: session.endTime.replace('T', ' ').slice(0, -3),
+      start_time: formatDateTime(startTime),
+      end_time: formatDateTime(endTime),
       type: session.type,
       isLiked: isLikedCheck,
       likes: session.likes
@@ -349,45 +360,6 @@ async function processSessions(sessionsData) {
   });
 }
 
-/**
- *
- */
-function determineWeekRangeFromSessions(processedSessions) {
-  let weekStart, weekEnd;
-  if (route.query.date) {
-    const queryDate = new Date(route.query.date);
-    const weekRange = determineWeek(queryDate);
-    weekStart = weekRange.startOfWeek;
-    weekEnd = weekRange.endOfWeek;
-  } else {
-    const earliestSessionDate = processedSessions.reduce((earliest, session) => {
-      const sessionDate = new Date(session.start_time);
-      return !earliest || sessionDate < earliest ? sessionDate : earliest;
-    }, null);
-    if (earliestSessionDate) {
-      const weekRange = determineWeek(earliestSessionDate);
-      weekStart = weekRange.startOfWeek;
-      weekEnd = weekRange.endOfWeek;
-    } else {
-      const today = new Date();
-      const weekRange = determineWeek(today);
-      weekStart = weekRange.startOfWeek;
-      weekEnd = weekRange.endOfWeek;
-    }
-  }
-  return { weekStart, weekEnd };
-}
-
-/**
- *
- */
-function determineWeek(date) {
-  const startOfWeek = new Date(date);
-  startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay() + (startOfWeek.getDay() === 0 ? -6 : 1));
-  const endOfWeek = new Date(startOfWeek);
-  endOfWeek.setDate(startOfWeek.getDate() + 6);
-  return { startOfWeek, endOfWeek };
-}
 
 /**
  *
@@ -481,17 +453,162 @@ const filteredSessions = computed(() => {
     .sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
 });
 
-const groupedSessionsByTimeSlot = computed(() => {
+const groupedSessionsByType = computed(() => {
   const groups = {};
+  
+  // Define the importance order for session types
+  const typeImportanceOrder = [
+    'KEYNOTE',
+    'FOOD',
+    'COFFEE',
+    'PRACTICAL',
+    'QnA',
+    'DOCTORALCONSORTIUM',
+    'MAIN',
+    'BPMFORUM',
+    'EDUCATORSFORUM',
+    'PROCESSTECHNOLOGYFORUM',
+    'INDUSTRYFORUM',
+    'RESPONSIBLEBPMFORUM',
+    'JOURNALFIRST',
+    'PANEL',
+    'TUTORIAL',
+    'WORKSHOP',
+    'DEMO',
+    'OTHER'
+  ];
+  
   for (const session of filteredSessions.value) {
-    const timeSlot = `${session.start_time.split(' ')[1]}-${session.end_time.split(' ')[1]}`;
-    if (!groups[timeSlot]) {
-      groups[timeSlot] = [];
+    const sessionType = session.type || 'OTHER';
+    let groupKey = sessionType;
+    
+    // For workshops, create separate groups based on workshop name
+    if (sessionType === 'WORKSHOP') {
+      const workshopName = extractWorkshopName(session.session_name);
+      groupKey = `WORKSHOP_${workshopName}`;
     }
-    groups[timeSlot].push(session);
+    
+    if (!groups[groupKey]) {
+      groups[groupKey] = [];
+    }
+    groups[groupKey].push(session);
   }
-  return groups;
+  
+  // Sort sessions within each type by start time
+  for (const type in groups) {
+    groups[type].sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
+  }
+  
+  // Convert to ordered object based on type importance
+  const orderedGroups = {};
+  
+  // First, add groups in importance order
+  for (const type of typeImportanceOrder) {
+    if (groups[type]) {
+      orderedGroups[type] = groups[type];
+    }
+  }
+  
+  // Then add workshop groups (sorted alphabetically)
+  const workshopGroups = Object.keys(groups)
+    .filter(key => key.startsWith('WORKSHOP_'))
+    .sort();
+  
+  for (const workshopType of workshopGroups) {
+    orderedGroups[workshopType] = groups[workshopType];
+  }
+  
+  // Finally, add any remaining groups not in the importance order
+  for (const type in groups) {
+    if (!orderedGroups[type]) {
+      orderedGroups[type] = groups[type];
+    }
+  }
+  
+  return orderedGroups;
 });
+
+/**
+ * Extract workshop name from session title
+ * Expected format: "(WORKSHOP NAME) — Session Title" or "WORKSHOP NAME — Session Title"
+ */
+function extractWorkshopName(sessionTitle) {
+  
+  let match = sessionTitle.match(/^\(([^)]+)\)\s*—/);
+  if (match) {
+    console.log('Found workshop with parentheses:', match[1]);
+    return match[1];
+  }
+  
+  match = sessionTitle.match(/^([^—]+)\s*—/);
+  if (match) {
+    return match[1].trim();
+  }
+  
+  match = sessionTitle.match(/^([A-Z0-9]+)\s*—/);
+  if (match) {
+    return match[1];
+  }
+  
+  return sessionTitle; // Return full title if no pattern matches
+}
+
+/**
+ * Format session type for display
+ */
+function formatSessionType(type) {
+  // Handle workshop groups
+  if (type.startsWith('WORKSHOP_')) {
+    const workshopName = type.replace('WORKSHOP_', '');
+    return workshopName;
+  }
+  
+  const typeMap = {
+    'KEYNOTE': 'Keynote',
+    'FOOD': 'Lunch',
+    'COFFEE': 'Coffee Breaks',
+    'PRACTICAL': 'Practical Sessions',
+    'QnA': 'Q&A Sessions',
+    'MAIN': 'Main Track',
+    'DOCTORALCONSORTIUM': 'Doctoral Consortium',
+    'PANEL': 'Panel Discussions',
+    'MAIN': 'Main Track',
+    'TUTORIAL': 'Tutorials',
+    'WORKSHOP': 'Workshops',
+    'DEMO': 'Demonstrations',
+    'BPMFORUM': 'BPM Forum',
+    'EDUCATORSFORUM': 'Educators Forum',
+    'PROCESSTECHNOLOGYFORUM': 'Process Technology Forum',
+    'INDUSTRYFORUM': 'Industry Forum',
+    'RESPONSIBLEBPMFORUM': 'Responsible BPM Forum',
+    'JOURNALFIRST': 'Journal First Track',
+    'OTHER': 'Other Sessions'
+  };
+  return typeMap[type] || type;
+}
+
+/**
+ * Format session time for display
+ */
+function formatSessionTime(session) {
+  try {
+    const startTimePart = session.start_time.split(' ')[1];
+    const endTimePart = session.end_time.split(' ')[1];
+    
+    if (!startTimePart || !endTimePart) {
+      return 'Time TBA';
+    }
+    
+    // Extract just hours:minutes from HH:MM:SS format
+    const startTime = startTimePart.substring(0, 5);
+    const endTime = endTimePart.substring(0, 5);
+    
+    return `${startTime} - ${endTime}`;
+  } catch (error) {
+    console.error('Error formatting session time:', error, session);
+    return 'Time TBA';
+  }
+}
 
 const showSession = (id) => {
   sessionIdDetail.value = id;
