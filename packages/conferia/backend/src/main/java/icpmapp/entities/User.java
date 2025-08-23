@@ -20,7 +20,7 @@ import java.util.List;
 @Entity
 public class User implements UserDetails {
     @Id
-    @Column(length = 8)
+    @Column(length = 12)
     private String id;
     private String firstname;
     private String lastname;
