@@ -12,22 +12,22 @@
     >
       <!-- Modal Header -->
       <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-        <div class="flex items-center space-x-3">
-          <button
-            @click="closeModal"
-            class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-          >
-            <i class="i-carbon-arrow-left text-xl"></i>
-          </button>
-          <h2 class="text-xl font-bold text-gray-900 dark:text-white">Session Details</h2>
+        <div class="flex-1">
+          <h2 class="text-xl font-bold text-gray-900 dark:text-white text-left">Session Details</h2>
         </div>
+        <button
+          @click="closeModal"
+          class="w-8 h-8 rounded-lg text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors flex items-center justify-center"
+        >
+          <span class="text-lg">✕</span>
+        </button>
       </div>
 
       <!-- Modal Content -->
       <div class="p-6 overflow-y-auto max-h-[calc(90vh-88px)]">
         <!-- Loading State -->
         <div v-if="loading" class="flex flex-col items-center justify-center py-12">
-          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 dark:border-blue-400"></div>
+          <div class="animate-spin w-8 h-8 border-4 border-blue-200 dark:border-blue-800 border-t-blue-500 dark:border-t-blue-400 rounded-lg"></div>
           <p class="text-gray-600 dark:text-gray-300 mt-4">Loading session details...</p>
         </div>
 
@@ -42,11 +42,10 @@
 
           <!-- Session Info Cards -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <!-- Chair Info -->
+            <!-- Host Info -->
             <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
               <div class="flex items-center space-x-2 mb-2">
-                <i class="i-carbon-user text-blue-500 dark:text-blue-400 text-lg"></i>
-                <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Session Chair</span>
+                <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Host</span>
               </div>
               <p class="text-gray-900 dark:text-white font-medium">{{ pageData.host || 'TBA' }}</p>
             </div>
@@ -54,7 +53,6 @@
             <!-- Location Info -->
             <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
               <div class="flex items-center space-x-2 mb-2">
-                <i class="i-carbon-location text-blue-500 dark:text-blue-400 text-lg"></i>
                 <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Location</span>
               </div>
               <p class="text-gray-900 dark:text-white font-medium">{{ pageData.location || 'TBA' }}</p>
@@ -62,9 +60,8 @@
           </div>
 
           <!-- Time Info -->
-          <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-4 border border-blue-100 dark:border-blue-800">
+          <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 border border-blue-100 dark:border-blue-800">
             <div class="flex items-center space-x-2 mb-2">
-              <i class="i-carbon-time text-blue-500 dark:text-blue-400 text-lg"></i>
               <span class="text-sm font-medium text-blue-700 dark:text-blue-300">Schedule</span>
             </div>
             <p class="text-blue-900 dark:text-blue-100 font-medium">
@@ -133,10 +130,24 @@ const openModal = async () => {
     if (props.id != '') {
       loading.value = true;
       const response = await axios.get(backend.construct(`agenda/session/${props.id}`),
-        { headers: { Authorization: `Bearer ${token}` } }).then((response) => {
-        Object.assign(pageData, response.data);
-        loading.value = false;
+        { headers: { Authorization: `Bearer ${token}` } });
+      
+      const sessionData = response.data;
+      
+      // Apply 2-hour timezone adjustment to session times
+      const adjustedStartTime = new Date(sessionData.startTime);
+      const adjustedEndTime = new Date(sessionData.endTime);
+      adjustedStartTime.setHours(adjustedStartTime.getHours() + 2);
+      adjustedEndTime.setHours(adjustedEndTime.getHours() + 2);
+      
+      // Update pageData with adjusted times
+      Object.assign(pageData, {
+        ...sessionData,
+        startTime: adjustedStartTime.toISOString(),
+        endTime: adjustedEndTime.toISOString()
       });
+      
+      loading.value = false;
     }
   } catch (error) {
     console.error('Failed to fetch session data', error);
