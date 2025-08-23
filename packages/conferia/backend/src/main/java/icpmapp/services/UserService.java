@@ -16,9 +16,7 @@ public interface UserService {
 
     UserIdResponse getId(String userName);
 
-    UsernameResponse getName(int id);
-
-    UsernameResponse getName(String username);
+    UsernameResponse getName(String usernameOrId);
 
     User getUser(String username);
 }

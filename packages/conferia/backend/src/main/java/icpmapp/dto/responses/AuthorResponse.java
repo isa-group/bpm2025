@@ -11,5 +11,5 @@ public class AuthorResponse {
     private String email;
     private String affiliation;
     private String orcid;
-    private Integer userId;
+    private String userId;
 }

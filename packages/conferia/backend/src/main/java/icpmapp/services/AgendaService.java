@@ -17,7 +17,7 @@ public interface AgendaService {
 
     void changeLikeStatusForSession(Boolean likes, String username, Long sessionId);
 
-    List<SessionHeaderDTO> findLikedSessionsByUser(Integer userID);
+    List<SessionHeaderDTO> findLikedSessionsByUser(String userID);
 
     List<Long> HeartedSessions (String userName);
 

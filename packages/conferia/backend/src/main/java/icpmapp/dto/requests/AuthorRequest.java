@@ -9,5 +9,5 @@ public class AuthorRequest {
     private String email;
     private String affiliation;
     private String orcid;
-    private Integer userId; // optional link
+    private String userId; // optional link
 }

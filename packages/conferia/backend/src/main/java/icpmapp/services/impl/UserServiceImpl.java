@@ -60,18 +60,15 @@ public class UserServiceImpl implements UserService {
         return userIdResponse;
     }
 
-    public UsernameResponse getName(int id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + id));
-        UsernameResponse getNameResponse = new UsernameResponse();
-        getNameResponse.setFirstname(user.getFirstname());
-        getNameResponse.setLastname(user.getLastname());
-        return getNameResponse;
-    }
-
-    public UsernameResponse getName(String username) {
-        User user = userRepository.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + username));
+    public UsernameResponse getName(String identifier) {
+        User user;
+        if (identifier.contains("@")) {
+            user = userRepository.findByEmail(identifier)
+                    .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + identifier));
+        } else {
+            user = userRepository.findById(identifier)
+                    .orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + identifier));
+        }
         UsernameResponse getNameResponse = new UsernameResponse();
         getNameResponse.setFirstname(user.getFirstname());
         getNameResponse.setLastname(user.getLastname());

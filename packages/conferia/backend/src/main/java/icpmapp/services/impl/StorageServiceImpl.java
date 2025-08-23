@@ -84,7 +84,7 @@ public class StorageServiceImpl implements StorageService {
         }
     }
 
-    public Resource getProfileImage(Integer id, String format) throws IOException {
+    public Resource getProfileImage(String id, String format) throws IOException {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
         Path path = Paths.get(storageDir + "/profilePictures", id + "." + format);

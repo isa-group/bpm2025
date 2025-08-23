@@ -110,7 +110,7 @@ public class AccountController {
     // Change profile picture
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @GetMapping("/getProfilePicture/{id}")
-    public ResponseEntity<Resource> getProfilePicture(@PathVariable Integer id, @RequestParam(name = "format") String format) throws IOException {
+    public ResponseEntity<Resource> getProfilePicture(@PathVariable String id, @RequestParam(name = "format") String format) throws IOException {
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_JPEG) // or the appropriate content type
                 .body(storageService.getProfileImage(id, format));
@@ -118,7 +118,7 @@ public class AccountController {
 
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @GetMapping("/getName/{id}")
-    public ResponseEntity<UsernameResponse> getName(@PathVariable Integer id) {
+    public ResponseEntity<UsernameResponse> getName(@PathVariable String id) {
         return ResponseEntity.ok(userService.getName(id));
     }
 

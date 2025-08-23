@@ -28,7 +28,7 @@ public class AttendeeServiceImpl implements AttendeeService {
         return page.map(this::convertToDto);
     }
 
-    public AttendeeResponse getAttendee(Integer id) {
+    public AttendeeResponse getAttendee(String id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + id));
 

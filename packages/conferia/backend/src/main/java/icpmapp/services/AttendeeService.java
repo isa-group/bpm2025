@@ -7,5 +7,5 @@ import org.springframework.data.domain.Pageable;
 public interface AttendeeService {
     Page<AttendeeResponse> getAttendees(Pageable pageable, String search);
 
-    AttendeeResponse getAttendee(Integer id);
+    AttendeeResponse getAttendee(String id);
 }

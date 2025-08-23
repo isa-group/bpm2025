@@ -60,7 +60,7 @@ public class AgendaController {
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @GetMapping("/session/likedlist/{id}")
-    public ResponseEntity<List<SessionHeaderDTO>> findLikedSessionsByUser(@PathVariable("id") Integer userId){
+    public ResponseEntity<List<SessionHeaderDTO>> findLikedSessionsByUser(@PathVariable("id") String userId){
         return ResponseEntity.ok(agendaService.findLikedSessionsByUser(userId));
     }
 
