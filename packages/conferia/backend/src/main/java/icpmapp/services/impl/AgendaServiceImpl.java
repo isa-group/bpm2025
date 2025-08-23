@@ -63,6 +63,7 @@ public class AgendaServiceImpl implements AgendaService {
         header.setLocation(request.getLocation());
         header.setStartTime(request.getStartTime());
         header.setEndTime(request.getEndTime());
+        header.setType(request.getType());
 
         SessionContent content = header.getContent();
         if (content == null) {
@@ -84,6 +85,7 @@ public class AgendaServiceImpl implements AgendaService {
         header.setLocation(request.getLocation());
         header.setStartTime(request.getStartTime());
         header.setEndTime(request.getEndTime());
+        header.setType(request.getType());
 
         if (request.getContent() != null && !request.getContent().isEmpty()) {
             SessionContent content = new SessionContent();
