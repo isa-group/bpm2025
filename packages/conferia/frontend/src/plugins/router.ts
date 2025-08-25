@@ -120,7 +120,22 @@ const router = createRouter({
   history: import.meta.env.SSR
     ? createMemoryHistory()
     : createWebHashHistory(import.meta.env.BASE_URL),
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    // if a saved position exists (e.g., back button), return to it
+    if (savedPosition) {
+      return savedPosition;
+    }
+    // for anchor links, scroll to the element
+    if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: 'smooth'
+      };
+    }
+    // otherwise, scroll to top
+    return { top: 0, behavior: 'smooth' };
+  }
 });
 
 router.beforeEach((to, _from, next) => {
