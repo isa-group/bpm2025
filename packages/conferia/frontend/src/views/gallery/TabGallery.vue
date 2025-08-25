@@ -100,7 +100,7 @@
       </div>
     </OverlayPanel>
     
-    <div class="px-4 py-6 pb-20">
+    <div class="px-4 py-6 pb-20 pt-8">
       <!-- Search Bar -->
       <div class="mb-6">
         <div class="relative">
