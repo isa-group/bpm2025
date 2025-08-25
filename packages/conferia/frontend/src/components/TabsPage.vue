@@ -6,7 +6,7 @@
     </div>
 
     <!-- Bottom navigation bar -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 z-50 shadow-lg dark:shadow-gray-800/50">
+    <nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 z-40 shadow-lg dark:shadow-gray-800/50">
       <div class="max-w-1024px mx-auto px-4">
         <div class="flex justify-around items-center py-2">
           <!-- Home tab -->

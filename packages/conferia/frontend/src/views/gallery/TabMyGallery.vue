@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
     <!-- Apple-style Header -->
-    <div class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+    <div class="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
       <div class="flex items-center justify-between px-4 py-4">
         <div class="flex-1">
           <h1 class="text-2xl font-bold text-gray-900 dark:text-white">My Gallery</h1>
@@ -88,7 +88,7 @@
     </div>
     
     <!-- Floating Action Buttons -->
-    <div class="fixed bottom-20 right-4 z-50">
+    <div class="fixed bottom-20 right-4 z-40">
       <!-- Multiple selection mode -->
       <template v-if="selectMultiple">
         <div class="flex gap-2 mb-2">
@@ -163,7 +163,7 @@
     </div>
     
     <!-- Menu Button -->
-    <div class="fixed bottom-20 left-4 z-50">
+    <div class="fixed bottom-20 left-4 z-40">
       <Button 
         @click="() => $router.push('/tabs/images')"
         severity="secondary"
