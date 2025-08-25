@@ -1,128 +1,291 @@
-// import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-
 export const usePhotoGallery = () => {
-  // const takePhotoGallery = async () => {
-  //   const cameraPhoto = await Camera.getPhoto({
-  //     resultType: CameraResultType.Uri,
-  //     source: CameraSource.Camera,
-  //     quality: 100
-  //   });
-  //   if (!cameraPhoto.webPath) {
-  //     throw new Error('Photo path is undefined');
-  //   }
+  /**
+   * Check if we're in a mobile environment and getUserMedia is available
+   */
+  const isMobileDevice = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  };
 
-  //   const response = await fetch(cameraPhoto.webPath);
-  //   const originalBlob = await response.blob();
+  /**
+   * Check if camera is available
+   */
+  const isCameraAvailable = () => {
+    return Boolean(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+  };
 
-  //   try {
-  //     return await processImage(originalBlob, 1, 2000, 2000);
-  //   } catch (e) {
-  //     return originalBlob;
-  //   }
-  // };
+  /**
+   * Process and compress image
+   */
+  const processImage = async (imageBlob: Blob, maxSize: number, maxHeight: number, maxWidth: number): Promise<Blob> => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        let { width, height } = img;
+        const scale = Math.min(maxWidth / width, maxHeight / height);
 
-  // const takePhotoProfile = async () => {
-  //   const cameraPhoto = await Camera.getPhoto({
-  //     resultType: CameraResultType.Uri,
-  //     source: CameraSource.Camera,
-  //     quality: 100
-  //   });
-  //   if (!cameraPhoto.webPath) {
-  //     throw new Error('Photo path is undefined');
-  //   }
+        // Only scales if the image is larger than given max sizes
+        if (scale < 1) {
+          width *= scale;
+          height *= scale;
+        }
+        canvas.width = width;
+        canvas.height = height;
 
-  //   const response = await fetch(cameraPhoto.webPath);
-  //   const originalBlob = await response.blob();
+        const convertedMaxSize = maxSize * 1024 * 1024;
 
-  //   try {
-  //     return await processImage(originalBlob, 0.2, 800, 600);
-  //   } catch (e) {
-  //     return originalBlob;
-  //   }
-  // };
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, width, height);
+        }
+        let quality = 1; // Start with 100% quality
+        const step = 0.1; // Reduce quality by 10% each step
 
-  // const choosePhotoFromPhone = async () => {
-  //   const photo = await Camera.getPhoto({
-  //     resultType: CameraResultType.Uri,
-  //     source: CameraSource.Photos,
-  //     quality: 100 // Set the quality (0-100)
-  //   });
-  //   const fileName = new Date().getTime() + '.jpeg';
-  //   const savedFileImage = {
-  //     filepath: fileName,
-  //     webviewPath: photo.webPath
-  //   };
+        const reduceQualityParameter = () => {
+          canvas.toBlob((blob) => {
+            if (!blob) {
+              reject(new Error('Failed to convert canvas to blob'));
+              return;
+            }
+            if (blob.size <= convertedMaxSize || quality <= 0.6) {
+              resolve(blob);
+            } else {
+              quality -= step;
+              reduceQualityParameter();
+            }
+          }, 'image/jpeg', quality);
+        };
+        reduceQualityParameter();
+      };
+      img.onerror = () => {
+        reject(new Error('Image load error'));
+      };
 
-  //   if (!photo.webPath) {
-  //     throw new Error('Gallery photo path is undefined');
-  //   }
+      img.src = URL.createObjectURL(imageBlob);
+    });
+  };
 
-  //   const response = await fetch(photo.webPath);
-  //   return await response.blob();
-  // };
+  /**
+   * Take photo using device camera with getUserMedia API
+   */
+  const takePhotoWithCamera = async (): Promise<Blob> => {
+    if (!isCameraAvailable()) {
+      throw new Error('Camera not available on this device');
+    }
 
-  // /**
-  //  *
-  //  */
-  // async function processImage(imageBlob: Blob, maxSize: number, maxHeight: number, maxWidth: number) {
-  //   return new Promise((resolve, reject) => {
-  //     const img = new Image();
-  //     img.onload = () => {
-  //       const canvas = document.createElement('canvas');
-  //       let { width, height } = img;
-  //       const scale = Math.min(maxWidth / width, maxHeight / height);
+    return new Promise((resolve, reject) => {
+      // Create video element to show camera preview
+      const video = document.createElement('video');
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
 
-  //       // Only scales if the image is larger than given max sizes
-  //       if (scale < 1) { // Only resize if the image is larger than the max dimensions
-  //         width *= scale;
-  //         height *= scale;
-  //       }
-  //       canvas.width = width;
-  //       canvas.height = height;
+      // Create a modal-like container for the camera
+      const cameraContainer = document.createElement('div');
+      cameraContainer.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 10000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      `;
 
-  //       const convertedMaxSize = maxSize * 1024 * 1024;
+      video.style.cssText = `
+        max-width: 90%;
+        max-height: 70%;
+        border-radius: 8px;
+      `;
 
-  //       const ctx = canvas.getContext('2d');
-  //       if (ctx) {
-  //         ctx.drawImage(img, 0, 0, width, height);
-  //       }
-  //       let quality = 1; // Start with 100% quality
-  //       const step = 0.1; // Reduce quality by 10% each step
+      const buttonContainer = document.createElement('div');
+      buttonContainer.style.cssText = `
+        margin-top: 20px;
+        display: flex;
+        gap: 15px;
+      `;
 
-  //       const reduceQualityParameter = () => {
-  //         canvas.toBlob((blob) => {
-  //           if (!blob) {
-  //             reject(new Error('Failed to convert canvas to blob'));
-  //             return;
-  //           }
-  //           if (blob.size <= convertedMaxSize || quality <= 0.6) {
-  //             resolve(blob); // Resolve if size is under limit or quality too low
-  //           } else {
-  //             quality -= step; // Reduce quality
-  //             reduceQualityParameter();
-  //           }
-  //         }, 'image/jpeg', quality);
-  //       };
-  //       reduceQualityParameter(); // Start the quality reduction process
-  //     };
-  //     img.onerror = () => {
-  //       reject(new Error('Image load error'));
-  //     };
+      const captureButton = document.createElement('button');
+      captureButton.innerHTML = '📷 Tomar Foto';
+      captureButton.style.cssText = `
+        padding: 12px 24px;
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+      `;
 
-  //     img.src = URL.createObjectURL(imageBlob);
-  //   });
-  // }
+      const cancelButton = document.createElement('button');
+      cancelButton.innerHTML = '❌ Cancelar';
+      cancelButton.style.cssText = `
+        padding: 12px 24px;
+        background: #ef4444;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+      `;
 
-  // return {
-  //   takePhotoGallery,
-  //   takePhotoProfile,
-  //   choosePhotoFromPhone
-  // };
+      buttonContainer.appendChild(captureButton);
+      buttonContainer.appendChild(cancelButton);
+      cameraContainer.appendChild(video);
+      cameraContainer.appendChild(buttonContainer);
+      document.body.appendChild(cameraContainer);
+
+      // Get user media
+      const setupCamera = async () => {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: {
+              width: { ideal: 1280 },
+              height: { ideal: 720 },
+              facingMode: 'user' // Front camera for profile photos
+            }
+          });
+
+          video.srcObject = stream;
+          video.autoplay = true;
+          video.playsInline = true;
+
+          const stopCamera = () => {
+            stream.getTracks().forEach(track => track.stop());
+            document.body.removeChild(cameraContainer);
+          };
+
+          captureButton.onclick = () => {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context?.drawImage(video, 0, 0);
+
+            canvas.toBlob((blob) => {
+              if (blob) {
+                stopCamera();
+                resolve(blob);
+              } else {
+                stopCamera();
+                reject(new Error('Failed to capture photo'));
+              }
+            }, 'image/jpeg', 0.9);
+          };
+
+          cancelButton.onclick = () => {
+            stopCamera();
+            reject(new Error('Camera capture cancelled'));
+          };
+        } catch (error: unknown) {
+          document.body.removeChild(cameraContainer);
+          const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+          reject(new Error(`Camera access denied: ${errorMessage}`));
+        }
+      };
+
+      void setupCamera();
+    });
+  };
+
+  /**
+   * Fallback: Use file input to simulate camera
+   */
+  const takePhotoWithFileInput = async (): Promise<Blob> => {
+    return new Promise((resolve, reject) => {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.capture = 'environment'; // This hints to use camera on mobile
+
+      input.onchange = (e) => {
+        const target = e.target as HTMLInputElement;
+        const file = target.files?.[0];
+        if (file) {
+          resolve(file);
+        } else {
+          reject(new Error('No photo was taken'));
+        }
+      };
+
+      input.oncancel = () => {
+        reject(new Error('Photo capture was cancelled'));
+      };
+
+      input.click();
+    });
+  };
+
+  /**
+   * Take photo for gallery (larger size)
+   */
+  const takePhotoGallery = async (): Promise<Blob> => {
+    try {
+      let photoBlob: Blob;
+
+      if (isCameraAvailable() && isMobileDevice()) {
+        photoBlob = await takePhotoWithCamera();
+      } else {
+        photoBlob = await takePhotoWithFileInput();
+      }
+
+      return await processImage(photoBlob, 1, 2000, 2000);
+    } catch (e) {
+      throw new Error(`Failed to take photo: ${e instanceof Error ? e.message : 'Unknown error'}`);
+    }
+  };
+
+  /**
+   * Take photo for profile (smaller, compressed)
+   */
+  const takePhotoProfile = async (): Promise<Blob> => {
+    try {
+      let photoBlob: Blob;
+
+      if (isCameraAvailable() && isMobileDevice()) {
+        photoBlob = await takePhotoWithCamera();
+      } else {
+        photoBlob = await takePhotoWithFileInput();
+      }
+
+      return await processImage(photoBlob, 0.2, 800, 600);
+    } catch (e) {
+      throw new Error(`Failed to take profile photo: ${e instanceof Error ? e.message : 'Unknown error'}`);
+    }
+  };
+
+  /**
+   * Choose photo from gallery/device
+   */
+  const choosePhotoFromPhone = async (): Promise<Blob> => {
+    return new Promise((resolve, reject) => {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+
+      input.onchange = (e) => {
+        const target = e.target as HTMLInputElement;
+        const file = target.files?.[0];
+        if (file) {
+          resolve(file);
+        } else {
+          reject(new Error('No file was selected'));
+        }
+      };
+
+      input.oncancel = () => {
+        reject(new Error('File selection was cancelled'));
+      };
+
+      input.click();
+    });
+  };
 
   return {
-    takePhotoGallery: () => Promise.resolve(new Blob()),
-    takePhotoProfile: () => Promise.resolve(new Blob()),
-    choosePhotoFromPhone: () => Promise.resolve(new Blob())
+    takePhotoGallery,
+    takePhotoProfile,
+    choosePhotoFromPhone
   };
 };
 
