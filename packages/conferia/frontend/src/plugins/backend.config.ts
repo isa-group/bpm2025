@@ -2,7 +2,7 @@ type QueryParams = Record<string, string>;
 
 const backend = {
   config: {
-    url: 'https://api-icpm.compute.dtu.dk/api/v1/'
+    url: 'https://conferia.bpm2025seville.org/api/v1/'
   },
   construct: function (endpoint: string, queryParams: QueryParams = {}): string {
     const url = new URL(this.config.url + endpoint);

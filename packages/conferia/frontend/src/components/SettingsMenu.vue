@@ -1,62 +1,97 @@
 <template>
-  <IonMenu
-    side="end"
-    content-id="main-content"
-    menu-id="settings-menu">
-    <IonHeader>
-      <IonToolbar>
-        <IonTitle>Account</IonTitle>
-      </IonToolbar>
-    </IonHeader>
-    <IonContent>
-      <div class="ion-padding">
-        <!--        <img src="#/assets/images/icpm-logo-1.png" />-->
-        <div id="logo-large" />
-        <p>Welcome {{ name.firstname }} {{ name.lastname }}</p>
+  <Dialog
+    :visible="visible"
+    modal
+    position="topright"
+    class="w-80"
+    @update:visible="$emit('hide')">
+    <template #header>
+      <div class="p-0">
+        <div class="flex items-center gap-3 px-2 py-1.5">
+          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-100 dark:bg-primary-900">
+            <span class="text-sm font-medium text-primary-700 dark:text-primary-300">
+              {{ userInitials }}
+            </span>
+          </div>
+          <div class="grid flex-1 text-left text-sm leading-tight">
+            <span class="truncate font-medium text-surface-900 dark:text-surface-100">
+              {{ name.firstname }} {{ name.lastname }}
+            </span>
+            <span class="truncate text-xs text-surface-600 dark:text-surface-400">
+              Account Settings
+            </span>
+          </div>
+        </div>
       </div>
-      <IonList lines="full">
-        <IonItem
-          button
-          :router-link="'/profile/settings/'">
-          <IonLabel>
-            <template #start>
-              <IonIcon :icon="settingsOutline" />
-            </template>
-            Settings
-          </IonLabel>
-        </IonItem>
-        <IonItem
-          button
-          :router-link="'/tabs/about/'">
-          <IonLabel>
-            <template #start>
-              <IonIcon :icon="informationCircleOutline" />
-            </template>
-            About the app
-          </IonLabel>
-        </IonItem>
-        <IonItem
-          button
-          @click="() => { logout(); }">
-          <IonLabel>
-            <template #start>
-              <IonIcon :icon="logOutOutline" />
-            </template>
-            Logout
-          </IonLabel>
-        </IonItem>
-      </IonList>
-    </IonContent>
-  </IonMenu>
+    </template>
+
+    <div class="p-0">
+      <!-- Menu Group: Profile -->
+      <div class="px-2 py-1">
+        <Button
+          icon="pi pi-user"
+          label="Profile Settings"
+          severity="secondary"
+          text
+          class="w-full justify-start px-2 py-2 text-sm font-normal"
+          @click="navigateAndClose('/profile/settings/')" />
+        
+        <Button
+          icon="pi pi-bell"
+          label="Notifications"
+          severity="secondary"
+          text
+          class="w-full justify-start px-2 py-2 text-sm font-normal"
+          @click="navigateAndClose('/notifications/')" />
+      </div>
+
+      <!-- Separator -->
+      <div class="mx-2 border-t border-surface-200 dark:border-surface-700 my-1"></div>
+
+      <!-- Menu Group: App -->
+      <div class="px-2 py-1">
+        <Button
+          icon="pi pi-info-circle"
+          label="About the app"
+          severity="secondary"
+          text
+          class="w-full justify-start px-2 py-2 text-sm font-normal"
+          @click="navigateAndClose('/tabs/about/')" />
+      </div>
+
+      <!-- Separator -->
+      <div class="mx-2 border-t border-surface-200 dark:border-surface-700 my-1"></div>
+
+      <!-- Menu Group: Account Actions -->
+      <div class="px-2 py-1">
+        <Button
+          icon="pi pi-sign-out"
+          label="Log out"
+          severity="secondary"
+          text
+          class="w-full justify-start px-2 py-2 text-sm font-normal text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
+          @click="logout" />
+      </div>
+    </div>
+  </Dialog>
 </template>
 
 <script setup lang="ts">
-import { informationCircleOutline, logOutOutline, settingsOutline } from 'ionicons/icons';
-import { IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonTitle, IonToolbar } from '@ionic/vue';
 import { useRouter } from 'vue-router';
-import { onMounted, reactive } from 'vue';
+import { onMounted, reactive, computed } from 'vue';
 import axios from 'axios';
+import Dialog from 'primevue/dialog';
+import Button from 'primevue/button';
 import backend from '#/plugins/backend.config';
+
+defineProps({
+  visible: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emits = defineEmits(['hide']);
 
 const router = useRouter();
 const name = reactive({
@@ -65,13 +100,20 @@ const name = reactive({
 });
 const token = localStorage.getItem('accessToken');
 
+// Computed property for user initials
+const userInitials = computed(() => {
+  const first = name.firstname?.charAt(0) || '';
+  const last = name.lastname?.charAt(0) || '';
+  return (first + last).toUpperCase();
+});
+
 onMounted(async () => {
   try {
     const response = await axios.get(backend.construct('account/getName'), { headers: { Authorization: `Bearer ${token}` } });
     name.firstname = response.data.firstname;
     name.lastname = response.data.lastname;
   } catch (error) {
-    console.error('Failed to fetch pages', error);
+    console.error('Failed to fetch user name', error);
   }
 });
 
@@ -80,26 +122,72 @@ const logout = () => {
   localStorage.removeItem('refreshToken');
   localStorage.removeItem('userId');
   router.push('/auth/login');
+  emits('hide');
 };
 
+const navigateAndClose = (path: string) => {
+  router.push(path);
+  emits('hide');
+};
 </script>
 
 <style scoped>
-#logo-large {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 100px;
-  width: 100%;
-  margin-bottom: 10px;
-}
-/* Light Mode */
-body:not(.dark) #logo-large {
-  background-image: url('#/assets/images/logo-1.svg');
+/* Modern dialog styling */
+:deep(.p-dialog) {
+  border-radius: 12px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--surface-200);
+  min-width: 14rem;
 }
 
-/* Dark Mode */
-body.dark #logo-large {
-  background-image: url('#/assets/images/logo-2.svg');
+:deep(.p-dialog-header) {
+  padding: 0;
+  border-bottom: 1px solid var(--surface-200);
+  border-radius: 12px 12px 0 0;
+  background: var(--surface-0);
+}
+
+:deep(.p-dialog-content) {
+  padding: 0;
+  background: var(--surface-0);
+  border-radius: 0 0 12px 12px;
+}
+
+/* Menu button hover effects */
+:deep(.p-button.p-button-text:hover) {
+  background: var(--surface-100);
+  color: var(--surface-900);
+}
+
+:deep(.p-button.p-button-text) {
+  border-radius: 8px;
+  transition: all 0.15s ease;
+}
+
+:deep(.p-button-icon) {
+  margin-right: 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :deep(.p-dialog) {
+    border-color: var(--surface-700);
+    background: var(--surface-900);
+  }
+  
+  :deep(.p-dialog-header) {
+    border-bottom-color: var(--surface-700);
+    background: var(--surface-900);
+  }
+  
+  :deep(.p-dialog-content) {
+    background: var(--surface-900);
+  }
+  
+  :deep(.p-button.p-button-text:hover) {
+    background: var(--surface-800);
+    color: var(--surface-100);
+  }
 }
 </style>

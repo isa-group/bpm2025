@@ -4,6 +4,9 @@
   "imports": {
     "#/*": "./src/*"
   },
+  "browserslist": [
+    "last 2 versions"
+  ],
   "scripts": {
     "start": "astro dev",
     "build": "astro build",
@@ -18,6 +21,7 @@
   },
   "dependencies": {
     "@bpm2025-website/assets": "*",
+    "@bpm2025-website/conferia-frontend": "*",
     "@fontsource-variable/inter": "5.2.6",
     "world-countries": "5.1.0"
   },

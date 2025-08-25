@@ -1,5 +1,8 @@
-import { createRouter, createWebHashHistory } from '@ionic/vue-router';
-import type { RouteRecordRaw } from 'vue-router';
+import {
+  createRouter,
+  createWebHashHistory,
+  createMemoryHistory, type RouteRecordRaw
+} from 'vue-router';
 import TabsPage from '../components/TabsPage.vue';
 import AuthPage from '#/views/auth/AuthPage.vue';
 import ProfilePage from '#/views/auth/ProfilePage.vue';
@@ -113,8 +116,26 @@ const routes: RouteRecordRaw[] = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
-  routes
+  // This is needed for bundling the frontend with Astro. At runtime, the WebHashHistory will be used
+  history: import.meta.env.SSR
+    ? createMemoryHistory()
+    : createWebHashHistory(import.meta.env.BASE_URL),
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    // if a saved position exists (e.g., back button), return to it
+    if (savedPosition) {
+      return savedPosition;
+    }
+    // for anchor links, scroll to the element
+    if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: 'smooth'
+      };
+    }
+    // otherwise, scroll to top
+    return { top: 0, behavior: 'smooth' };
+  }
 });
 
 router.beforeEach((to, _from, next) => {
