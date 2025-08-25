@@ -67,36 +67,60 @@
     <Dialog
       :visible="isOpen"
       modal
-      header="Message"
-      class="w-full max-w-2xl mx-4"
-      :style="{ maxHeight: '90vh' }"
+      header="Message Details"
+      class="w-full max-w-3xl mx-4"
+      :style="{ maxHeight: '90vh', overflow: 'hidden' }"
+      :pt="{
+        content: { class: 'p-6' },
+        header: { class: 'px-6 py-4' }
+      }"
       @update:visible="closeMessage">
-      <div class="space-y-4">
-        <!-- Message header -->
-        <div class="flex items-start justify-between pb-4 border-b border-surface-200 dark:border-surface-700">
-          <div class="text-sm text-surface-500 dark:text-surface-400">
-            <div>Posted {{ dayjs(activeMessage.date).fromNow() }}</div>
-            <div>{{ dayjs(activeMessage.date).format('D MMMM, HH:mm') }}</div>
-          </div>
-          <div class="flex items-center space-x-2 cursor-pointer" @click="navigateToAuthor">
+      
+      <div class="space-y-6 max-h-[70vh] overflow-y-auto">
+        <!-- Author and date info -->
+        <div class="flex items-center justify-between bg-gray-50 dark:bg-gray-900/50 rounded-xl p-4">
+          <div class="flex items-center space-x-3 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg p-2 transition-colors" @click="navigateToAuthor">
             <Avatar
               :image="activeMessage.avatar || 'https://ionicframework.com/docs/img/demos/avatar.svg'"
               shape="circle"
-              size="normal" />
-            <span class="font-medium text-surface-900 dark:text-surface-100">{{ activeMessage.author }}</span>
+              size="large" 
+              class="ring-2 ring-blue-100 dark:ring-blue-800 flex-shrink-0" />
+            <div class="min-w-0">
+              <div class="font-semibold text-gray-900 dark:text-white truncate">{{ activeMessage.author }}</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">View profile</div>
+            </div>
+          </div>
+          
+          <div class="text-right flex-shrink-0">
+            <div class="text-sm font-medium text-gray-700 dark:text-gray-300">
+              {{ dayjs(activeMessage.date).format('MMMM D, YYYY') }}
+            </div>
+            <div class="text-sm text-gray-500 dark:text-gray-400">
+              {{ dayjs(activeMessage.date).format('HH:mm') }} • {{ dayjs(activeMessage.date).fromNow() }}
+            </div>
           </div>
         </div>
 
-        <!-- Message content -->
-        <div>
-          <h2 class="text-xl font-bold text-surface-900 dark:text-surface-100 mb-4">{{ activeMessage.title }}</h2>
-          <p class="text-surface-700 dark:text-surface-300 whitespace-pre-wrap leading-relaxed">
-            {{ activeMessage.message }}
-          </p>
+        <!-- Message title and content combined -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <!-- Title section -->
+          <div class="bg-blue-50 dark:bg-blue-900/20 p-4 border-b border-blue-100 dark:border-blue-800">
+            <h3 class="text-2xl font-bold text-blue-900 dark:text-blue-100 break-words">{{ activeMessage.title }}</h3>
+          </div>
+          
+          <!-- Content section (larger) -->
+          <div class="p-6">
+            <div class="prose prose-gray dark:prose-invert max-w-none">
+              <p class="text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap text-base break-words">
+                {{ activeMessage.message }}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </Dialog>
-                <!-- Post message modal -->
+
+    <!-- Post message modal -->
     <Dialog
       :visible="isOpenPost"
       modal
