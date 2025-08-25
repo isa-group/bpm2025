@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
     <!-- Sticky Header (matching agenda style) -->
-    <div class="sticky top-16 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+    <div class="sticky top-16 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
       <div class="flex items-center justify-between px-4 py-4">
         <div class="flex-1">
           <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
