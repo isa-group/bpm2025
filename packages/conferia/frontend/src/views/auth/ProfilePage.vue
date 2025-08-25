@@ -1,12 +1,9 @@
 <template>
-  <IonPage>
-    <IonRouterOutlet />
-  </IonPage>
+  <div class="min-h-screen bg-surface-50 dark:bg-surface-950">
+    <RouterView />
+  </div>
 </template>
 
-<style scoped>
-
-</style>
 <script setup lang="ts">
-import { IonPage, IonRouterOutlet } from '@ionic/vue';
+import { RouterView } from 'vue-router';
 </script>
