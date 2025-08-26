@@ -29,8 +29,6 @@
   },
   "dependencies": {
     "@bpm2025-website/assets": "*",
-    "@ionic/core": "8.7.3",
-    "@ionic/vue": "8.7.3",
     "@primevue/themes": "^4.0.0",
     "@vueuse/core": "13.6.0",
     "axios": "1.11.0",

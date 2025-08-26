@@ -28,9 +28,5 @@
   },
   "overrides": {
     "stylus": "0.64.0"
-  },
-  "dependencies": {
-    "@ionic/core": "8.7.3",
-    "@ionic/vue": "8.7.3"
   }
 }
