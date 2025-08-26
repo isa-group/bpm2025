@@ -60,7 +60,7 @@ const iconClasses = 'w-5 h-5 font-bold p-1 text-white';
                           <Fragment set:html={parse(p.currency ?? '', { async: false })} />
                         </span>
                       </div>
-                    <p class={`text-base lowercase text-gray-600 dark:text-slate-400 ${
+                    <p class={`text-base text-gray-600 lowercase dark:text-slate-400 ${
                       p.variant === 'secondary' ? 'text-xs' : 'leading-6 '}`}>
                       <Fragment set:html={parse(p.period ?? '', { async: false })} />
                     </p>

@@ -25,7 +25,7 @@ const {
   <Headline title={title} subtitle={subtitle} tagline={tagline} />
 
   <div class="flex flex-wrap gap-x-6 justify-center lg:gap-x-24 sm:gap-x-12">
-    {icons && icons.map(iconClass => <div class={`${iconClass} mx-auto h-auto w-12 py-3 text-gray-500 sm:mx-0 lg:py-5`} />)}
+    {icons && icons.map(iconClass => <div class={`${iconClass} text-gray-500 mx-auto py-3 h-auto w-12 sm:mx-0 lg:py-5`} />)}
     {
       images
       && images.map(
@@ -42,7 +42,7 @@ const {
                 <a class="gap-10 min-w-sm" href={image.href} target="_blank">
                   <div class="flex flex-col items-center justify-center">
                     <img
-                      class={`max-h-20 rounded-xs dark:bg-white ${image.class ?? ''}`}
+                      class={`rounded-xs max-h-20 dark:bg-white ${image.class ?? ''}`}
                       src={src}
                       {...attributes}
                     />

@@ -35,7 +35,7 @@ const { src } = bg ? await getImage({ src: bg } as UnresolvedImageTransform) : {
   <div class="mx-auto px-4 max-w-7xl relative sm:px-6">
     <div class="pt-0 pointer-events-none md:pt-[76px]"></div>
     <div class="py-12 md:py-20">
-      <div class={`text-center pb-10 md:pb-16 mx-auto ${content ? 'lg:flex' : 'max-w-5xl'}`}>
+      <div class={`mx-auto pb-10 text-center md:pb-16 ${content ? 'lg:flex' : 'max-w-5xl'}`}>
         {content && (
           <div>
             <Fragment set:html={content} />
