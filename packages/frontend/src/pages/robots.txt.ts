@@ -3,6 +3,8 @@ import { metadata } from '#/config.json';
 
 const getRobotsTxt = (sitemapURL: URL) => `
 User-agent: *
+Disallow: /vcf/
+Disallow: /*.vcf$
 ${metadata.robots.index ? 'Allow' : 'Disallow'}: /
 
 Sitemap: ${sitemapURL.href}
