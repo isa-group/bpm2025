@@ -180,15 +180,15 @@ export const general_events: ScheduleEvent[] = [
   // 3 de Septiembre
   {
     title: 'Keynote: Josep Carmona',
-    start: new Date(2025, 8, 3, 9, 15),
-    end: new Date(2025, 8, 3, 10, 15),
+    start: new Date(2025, 8, 3, 9, 0),
+    end: new Date(2025, 8, 3, 10, 0),
     location: locations.giralda,
     category: 'keynote',
     href: getPermalink('/program/keynotes/#josep')
   },
   {
     title: 'Demos & Resources teaser',
-    start: new Date(2025, 8, 3, 10, 15),
+    start: new Date(2025, 8, 3, 10, 0),
     end: new Date(2025, 8, 3, 10, 30),
     location: locations.giralda,
     category: 'demos',

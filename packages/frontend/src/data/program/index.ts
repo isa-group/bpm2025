@@ -41,6 +41,7 @@ export const program_overviews: ProgramOverview[] = [
       {
         title: 'Session 1 - Tuesday, Sept 2nd, 2025 (11:00 - 13:00): Predictive Process Monitoring',
         showRowIndex: false,
+        short: 'main-track-s1',
         rows: [
           {
             Title: 'A Simple and Calibrated Approach for Uncertainty-Aware Remaining Time Prediction',
@@ -75,6 +76,7 @@ export const program_overviews: ProgramOverview[] = [
       {
         title: 'Session 2 - Tuesday, Sept 2nd, 2025 (14:30 - 16:00): Process Discovery and Analysis',
         showRowIndex: false,
+        short: 'main-track-s2',
         rows: [
           {
             Title: 'Multi-Objective Metaheuristics for Effective and Efficient Process Discovery',
@@ -104,6 +106,7 @@ export const program_overviews: ProgramOverview[] = [
       {
         title: 'Session 3 - Tuesday, Sept 2nd, 2025 (16:30 - 18:00): Contextual and Secure Methods in Process Intelligence',
         showRowIndex: false,
+        short: 'main-track-s3',
         rows: [
           {
             Title: 'MANTA: Materializing Views on Event Data for Context Exploration in Process Analysis',
@@ -125,6 +128,7 @@ export const program_overviews: ProgramOverview[] = [
       },
       {
         title: 'Session 4 - Wednesday, Sept 3rd, 2025 (11:00 - 13:00): Cognitive and Organizational Dimensions',
+        short: 'main-track-s4',
         showRowIndex: false,
         rows: [
           {
@@ -156,6 +160,7 @@ export const program_overviews: ProgramOverview[] = [
       },
       {
         title: 'Session 5 - Wednesday, Sept 3rd, 2025 (14:30 - 16:00): Simulation, Resource Detection and Optimization',
+        short: 'main-track-s5',
         showRowIndex: false,
         rows: [
           {
@@ -184,6 +189,7 @@ export const program_overviews: ProgramOverview[] = [
       },
       {
         title: 'Session 6 - Thursday, Sept 4th, 2025 (11:00 - 13:00): Conformance Checking and Temporal Constraints',
+        short: 'main-track-s6',
         showRowIndex: false,
         rows: [
           {
@@ -219,6 +225,7 @@ export const program_overviews: ProgramOverview[] = [
       },
       {
         title: 'Session 7 - Thursday, Sept 4th, 2025 (14:30 - 16:00): Detecting Rules and Descriptions',
+        short: 'main-track-s7',
         showRowIndex: false,
         rows: [
           {
@@ -255,6 +262,7 @@ export const program_overviews: ProgramOverview[] = [
     tables: [
       {
         title: 'Session 1 - Tuesday, Sept 2nd, 2025 (11:00 - 13:00): Socio-Technical Perspectives in BPM',
+        short: 'bpm-forum-s1',
         showRowIndex: false,
         rows: [
           {
@@ -311,6 +319,7 @@ export const program_overviews: ProgramOverview[] = [
       },
       {
         title: 'Session 2 - Wednesday, Sept 3rd, 2025 (11:00 - 13:00): Intelligent Automation and Optimization in BPM',
+        short: 'bpm-forum-s2',
         showRowIndex: false,
         rows: [
           {
@@ -368,6 +377,7 @@ export const program_overviews: ProgramOverview[] = [
       },
       {
         title: 'Session 3 - Thursday, Sept 4th, 2025 (11:00 - 13:00): Process Modeling, Simulation, and Verification',
+        short: 'bpm-forum-s3',
         showRowIndex: false,
         rows: [
           {
@@ -422,9 +432,11 @@ export const program_overviews: ProgramOverview[] = [
   {
     name: 'Educators Forum',
     date: 'Tuesday, Sept 2nd, 2025',
+    location: [locations.triana, locations.magnolia],
     tables: [
       {
-        title: 'Session 1 (11:00 - 13:00): Technology Enhanced Learning',
+        title: 'Session 1 (11:00 - 13:00, Triana Hall): Technology Enhanced Learning',
+        short: 'educators-forum-s1',
         showRowIndex: false,
         rows: [
           {
@@ -465,7 +477,8 @@ export const program_overviews: ProgramOverview[] = [
         ]
       },
       {
-        title: 'Session 2 (14:30 - 16:00): Curriculum Innovation',
+        title: 'Session 2 (14:30 - 16:00, Magnolia Hall): Curriculum Innovation',
+        short: 'educators-forum-s2',
         showRowIndex: false,
         description: `
 **Keynote Summary – AI Tutors in Practice: Lessons from the Field**
@@ -509,7 +522,8 @@ ultramarathon runner.
         ]
       },
       {
-        title: 'Session 3 (16:30 - 18:00): Bridging Academia & Industry',
+        title: 'Session 3 (16:30 - 18:00, Magnolia Hall): Bridging Academia & Industry',
+        short: 'educators-forum-s3',
         showRowIndex: false,
         rows: [
           {
@@ -547,6 +561,7 @@ ultramarathon runner.
     tables: [
       {
         title: 'Session 1 (11:00 - 13:00): Mathias Weske, Remco Dijkman',
+        short: 'process-technology-forum-s1',
         description: `
 **Keynote Summary – Process Systems in the Era of Artificial Intelligence**
           
@@ -608,6 +623,7 @@ manufacturing and health care.
       },
       {
         title: 'Session 2 (14:30 - 16:00): Dimka Karastoyanova',
+        short: 'process-technology-forum-s2',
         rows: [
           {
             Hour: '14:30',
@@ -654,6 +670,7 @@ manufacturing and health care.
     tables: [
       {
         title: 'Session 1 (11:00 - 13:00)',
+        short: 'industry-forum-s1',
         rows: [
           {
             Hour: '11:00',
@@ -699,6 +716,7 @@ manufacturing and health care.
       },
       {
         title: 'Session 2 (14:30 - 16:00): Focus Groups: Grand Challenges and Opportunities in the adoption of BPM in industry and the public sector',
+        short: 'industry-forum-s2',
         rows: [
           {
             Hour: '14:30',
@@ -720,13 +738,22 @@ manufacturing and health care.
     name: 'Responsible BPM Forum',
     location: locations.nervion,
     date: 'Thursday, Sept 4th, 2025',
+
     tables: [
       {
         title: 'Session 1 (11:00 - 13:00)',
+        short: 'responsible-bpm-forum-s1',
+        description: `
+**Keynote Summary – Increasing Justice with Responsible BPM**
+The Responsible BPM Forum was established with the aim to develop concepts that account for the needs of stakeholders involved in business processes, the broader environment and society in more general terms. In this talk, we will discuss concepts from organizational justice as a potential theoretical basis. We describe challenges for distributive and procedural justice and point to conflicts with classical process performance dimensions of the devil's quadrangle. We conclude with some suggestions for future research on responsible BPM.
+<br />
+<br />
+**Jan Mendling** is the Einstein-Professor of Process Science with the Department of Computer Science at Humboldt-Universität zu Berlin, Germany. He is also adjunct professor with Vienna University of Economics and Business, Austria, Principle Investigator at the Weizenbaum Institute, Berlin, Germany, and Co-Founder of Noreja Intelligence GmbH. His research interests include various topics in the area of business process management and information systems. He has published more than 500 research papers and articles, among others in Management Information Systems Quarterly, ACM Transactions on Software Engineering and Methodology, IEEE Transactions on Software Engineering, Journal of the Association of Information Systems, European Journal of Information Systems, Information Systems, and Decision Support Systems. He is the founding co-Editor-in-Chief of Process Science and co-author of the textbooks Fundamentals of Business Process Management, Second Edition, and Wirtschaftsinformatik, 12th Edition.
+        `.trim(),
         rows: [
           {
             Hour: '11:00',
-            Title: 'Keynote',
+            Title: 'Keynote: Increasing Justice with Responsible BPM',
             Authors: 'Jan Mendling'
           },
           {
@@ -762,6 +789,7 @@ manufacturing and health care.
       },
       {
         title: 'Session 2 (14:30 - 16:00)',
+        short: 'responsible-bpm-forum-s2',
         rows: [
           {
             Hour: '14:30',
@@ -798,11 +826,11 @@ manufacturing and health care.
   },
   {
     name: 'Tutorials',
-    location: [locations.triana, locations.magnolia],
+    location: [locations.nervion, locations.magnolia],
     date: 'Tuesday,  Wednesday & Thursday, Sept 2nd–4rd, 2025',
     items: [
       {
-        title: 'Tutorial 1: <u>AI-Assisted Business Process Monitoring</u> - Tuesday, Sept 2nd, 2025 (16:30 - 18:00) - Arenal Hall',
+        title: 'Tutorial 1: <u>AI-Assisted Business Process Monitoring</u> - Tuesday, Sept 2nd, 2025 (16:30 - 18:00) - Nervion Hall',
         description: `
           <i>Andreas Metzger</i>
           <br /><br />
@@ -826,7 +854,7 @@ manufacturing and health care.
         `
       },
       {
-        title: 'Tutorial 2: <u>Constraint-based reasoning and analysis for BPM: CSP to the rescue</u> - Wednesday, Sept 3rd, 2025 (14:30 - 16:00) - Nervion Hall',
+        title: 'Tutorial 2: <u>Constraint-based reasoning and analysis for BPM: CSP to the rescue</u> - Wednesday, Sept 3rd, 2025 (14:30 - 16:00) - Magnolia Hall',
         description: `
           <i>Alessandro Gianola, Andrey Rivkin and Mateusz Slazynski</i>
           <br /><br />
@@ -847,7 +875,7 @@ manufacturing and health care.
         `
       },
       {
-        title: 'Tutorial 3: <u>Business Process Optimization</u> - Thursday, Sept 4th, 2025 (14:30 - 16:00) - Nervion Hall',
+        title: 'Tutorial 3: <u>Business Process Optimization</u> - Thursday, Sept 4th, 2025 (14:30 - 16:00) - Magnolia Hall',
         description: `
           <i>Remco Dijkman and Arik Senderovich</i>
           <br /><br />
@@ -871,6 +899,7 @@ manufacturing and health care.
     date: 'Wednesday, Sept 3rd, 2025',
     tables: [
       {
+        short: 'demos-&-resources-s1',
         title: 'Teaser Session (10:15 - 10:30) - Giralda Hall',
         rows: [
           {
@@ -880,6 +909,7 @@ manufacturing and health care.
       },
       {
         title: 'Session (16:30 - 18:00)',
+        short: 'demos-&-resources-s2',
         rows: [
           {
             Title: 'BPMNinvest: Feedback on Change in Process Models (<a href="https://www.youtube.com/watch?v=fHmVLcOeMZI" target="_blank" rel="noopener noreferrer">🎥</a>)',
@@ -976,6 +1006,7 @@ manufacturing and health care.
     tables: [
       {
         title: 'Session 1 (Tuesday 14:30 - 16:00)',
+        short: 'journal-first-track-s1',
         rows: [
           {
             Title: 'SOPA: a framework for sustainability-oriented process analysis and re-design in business process management',
@@ -1013,6 +1044,7 @@ manufacturing and health care.
       },
       {
         title: 'Session 2 (Tuesday 16:30 - 18:00)',
+        short: 'journal-first-track-s2',
         rows: [
           {
             Title: 'Analyzing Healthcare Processes with Incremental Process Discovery: Practical Insights from a Real-World Application',
@@ -1050,6 +1082,7 @@ manufacturing and health care.
       },
       {
         title: 'Session 3 (Wednesday 16:30 - 18:00)',
+        short: 'journal-first-track-s3',
         rows: [
           {
             Title: 'How do digital Startups Manage Their Activities? Insights and Opportunities for Business Process Management',
@@ -1349,12 +1382,12 @@ manufacturing and health care.
             Authors: 'Kelly Kurowski, Xixi Lu and Hajo A. Reijers'
           },
           {
-            Time: '11:25 - 11:50',
+            Time: '11:25 - 11:45',
             Title: 'Process Automation and Skills in the Context of Knowledge Work (Short Paper)',
             Authors: 'Dries Jarijch, Mieke Jans and Jan Mendling'
           },
           {
-            Time: '11:50 - 12:10',
+            Time: '11:45 - 12:10',
             Title: 'Towards an Actionable Development Method for Robotic Process Automation using Process Mining',
             Authors: 'Alexander Skolik'
           },
@@ -1641,7 +1674,7 @@ manufacturing and health care.
           { Time: '14:00', Title: 'Opening' },
           {
             Time: '14:15 - 15:00',
-            Title: 'Keynote: [Title to be defined]',
+            Title: 'Keynote: Towards Holistic Business Process Compliance: Leveraging Logs, Models and Textual Data',
             Authors: 'Karolin Winter (Eindhoven University of Technology)'
           },
           { Time: '15:00 - 15:30', Title: 'Question & Answers' }
