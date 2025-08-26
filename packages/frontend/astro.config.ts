@@ -56,17 +56,6 @@ export default defineConfig({
     build: {
       cssCodeSplit: false,
       reportCompressedSize: false
-    },
-    resolve: {
-      alias: {
-        '@ionic/core/components': '@ionic/core/components'
-      }
-    },
-    ssr: {
-      noExternal: ['@ionic/vue', '@ionic/core']
-    },
-    optimizeDeps: {
-      include: ['@ionic/vue', '@ionic/core']
     }
   }
 });
