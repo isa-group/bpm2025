@@ -1,89 +1,92 @@
 <template>
-  <IonPage>
-    <IonContent class="bg-gray-50 dark:bg-gray-900">
-      <div class="min-h-screen flex items-center justify-center p-4">
-        <div class="w-full max-w-md space-y-8">
+  <div class="min-h-screen flex items-center justify-center bg-surface-50 dark:bg-surface-950">
+    <Card class="w-full max-w-md shadow-sm">
+      <template #content>
+        <div class="space-y-8 p-6">
           <!-- Apple-style Header -->
           <div class="text-center space-y-2">
-            <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
+            <h1 class="text-3xl font-bold text-surface-900 dark:text-surface-50">
               Set New Password
             </h1>
-            <p class="text-gray-600 dark:text-gray-300">
+            <p class="text-surface-600 dark:text-surface-400">
               Create a new password for your account
             </p>
           </div>
 
           <!-- Reset Password Form -->
-          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-8">
-            <form
-              id="form"
-              class="space-y-6"
-              @submit.prevent="resetPassword">
-              <div class="space-y-2">
-                <label
-                  for="firstPassword"
-                  class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  New Password
-                </label>
-                <IonInput
-                  id="firstPassword"
-                  v-model="resetInformation.password"
-                  type="password"
-                  placeholder="Enter new password"
-                  class="h-12 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl"
-                  required />
-              </div>
+          <form
+            id="form"
+            class="space-y-6"
+            @submit.prevent="resetPassword">
+            <div class="space-y-2">
+              <label
+                for="firstPassword"
+                class="block text-sm font-medium text-surface-700 dark:text-surface-300">
+                New Password
+              </label>
+              <Password
+                id="firstPassword"
+                v-model="resetInformation.password"
+                :feedback="false"
+                toggle-mask
+                class="w-full"
+                input-class="w-full h-12"
+                placeholder="Enter new password"
+                required />
+            </div>
 
-              <div class="space-y-2">
-                <label
-                  for="secondPassword"
-                  class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Confirm Password
-                </label>
-                <IonInput
-                  id="secondPassword"
-                  v-model="resetInformation.confirmPassword"
-                  type="password"
-                  placeholder="Confirm new password"
-                  class="h-12 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl"
-                  required />
-              </div>
+            <div class="space-y-2">
+              <label
+                for="secondPassword"
+                class="block text-sm font-medium text-surface-700 dark:text-surface-300">
+                Confirm Password
+              </label>
+              <Password
+                id="secondPassword"
+                v-model="resetInformation.confirmPassword"
+                :feedback="false"
+                toggle-mask
+                class="w-full"
+                input-class="w-full h-12"
+                placeholder="Confirm new password"
+                required />
+            </div>
 
-              <!-- Password Requirements -->
-              <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
-                <h4 class="font-medium text-gray-900 dark:text-white mb-2">
-                  Password Requirements
-                </h4>
-                <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
-                  <li>• Choose something you'll remember</li>
-                  <li>• Make it secure and unique</li>
-                </ul>
-              </div>
+            <!-- Password Requirements -->
+            <div class="bg-primary-50 dark:bg-primary-900/30 border border-primary-200 dark:border-primary-700 rounded-lg p-4">
+              <h4 class="font-medium text-surface-900 dark:text-surface-50 mb-2">
+                Password Requirements
+              </h4>
+              <ul class="text-sm text-surface-600 dark:text-surface-400 space-y-1">
+                <li>• Choose something you'll remember</li>
+                <li>• Make it secure and unique</li>
+              </ul>
+            </div>
 
-              <IonButton
-                type="submit"
-                expand="block"
-                class="h-12 rounded-xl font-semibold">
-                Reset Password
-              </IonButton>
+            <Button
+              type="submit"
+              label="Reset Password"
+              class="w-full h-12 font-semibold" />
 
-              <div
-                v-if="resetError"
-                class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-700 rounded-lg p-3">
-                <p class="text-red-700 dark:text-red-300 text-sm">
-                  {{ resetError }}
-                </p>
-              </div>
-            </form>
-          </div>
+            <Message
+              v-if="resetError"
+              severity="error"
+              :closable="false"
+              class="mt-3">
+              {{ resetError }}
+            </Message>
+          </form>
         </div>
-      </div>
-    </IonContent>
-  </IonPage>
+      </template>
+    </Card>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonContent, IonButton, IonInput } from '@ionic/vue';
+import Card from 'primevue/card';
+import Button from 'primevue/button';
+import Password from 'primevue/password';
+import Message from 'primevue/message';
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import axios from 'axios';
@@ -118,29 +121,3 @@ const resetPassword = async () => {
   }
 };
 </script>
-
-<style scoped>
-.reset-password-container {
-  display: flex;
-  flex-direction: column;
-  max-width: 500px;
-  margin: auto;
-  text-align: center;
-}
-.signup-header{
-  margin-top: 2rem;
-}
-h2 {
-  font-size: 1.5em;
-  margin-bottom: 0.5em;
-}
-
-p {
-  margin-bottom: 2em;
-}
-#form {
-  text-align: left;
-  margin-top: 2rem;
-}
-
-</style>

@@ -1,132 +1,135 @@
 <template>
-  <IonPage>
-    <IonContent class="bg-gray-50 dark:bg-gray-900">
-      <div class="min-h-screen flex items-center justify-center py-4">
-        <div class="w-full max-w-md sm:max-w-lg lg:max-w-xl xl:max-w-2xl space-y-6 sm:space-y-8 my-4">
+  <div class="min-h-screen flex items-center justify-center bg-surface-50 dark:bg-surface-950">
+    <Card class="w-full max-w-md sm:max-w-lg lg:max-w-xl xl:max-w-2xl shadow-sm my-4">
+      <template #content>
+        <div class="space-y-6 sm:space-y-8 p-6">
           <!-- Apple-style Header -->
           <div class="text-center space-y-2">
-            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-surface-900 dark:text-surface-50">
               Join BPM 2025
             </h1>
-            <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300">
+            <p class="text-sm sm:text-base text-surface-600 dark:text-surface-400">
               Create your account to get started
             </p>
           </div>
 
           <!-- Registration Form -->
-          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-6">
-            <form
-              id="form"
-              class="space-y-4 sm:space-y-6"
-              @submit.prevent="sendUserInformation">
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                <div class="space-y-1 sm:space-y-2">
-                  <label
-                    for="Firstname"
-                    class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    First name
-                  </label>
-                  <IonInput
-                    id="Firstname"
-                    v-model="userInformation.firstname"
-                    placeholder="Enter your first name"
-                    class="h-10 sm:h-12 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl"
-                    required />
-                </div>
-                <div class="space-y-1 sm:space-y-2">
-                  <label
-                    for="Surname"
-                    class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Last name
-                  </label>
-                  <IonInput
-                    id="Surname"
-                    v-model="userInformation.lastname"
-                    placeholder="Enter your last name"
-                    class="h-10 sm:h-12 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl"
-                    required />
-                </div>
-              </div>
-
+          <form
+            id="form"
+            class="space-y-4 sm:space-y-6"
+            @submit.prevent="sendUserInformation">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div class="space-y-1 sm:space-y-2">
                 <label
-                  for="emailInput"
-                  class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Email address
+                  for="Firstname"
+                  class="block text-sm font-medium text-surface-700 dark:text-surface-300">
+                  First name
                 </label>
-                <IonInput
-                  id="emailInput"
-                  v-model="userInformation.email"
-                  type="email"
-                  placeholder="Enter your email"
-                  class="h-10 sm:h-12 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl"
+                <InputText
+                  id="Firstname"
+                  v-model="userInformation.firstname"
+                  placeholder="Enter your first name"
+                  class="w-full h-10 sm:h-12"
                   required />
               </div>
-
               <div class="space-y-1 sm:space-y-2">
                 <label
-                  for="password"
-                  class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Password
+                  for="Surname"
+                  class="block text-sm font-medium text-surface-700 dark:text-surface-300">
+                  Last name
                 </label>
-                <IonInput
-                  id="password"
-                  v-model="userInformation.password"
-                  type="password"
-                  placeholder="Create a password"
-                  class="h-10 sm:h-12 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl"
+                <InputText
+                  id="Surname"
+                  v-model="userInformation.lastname"
+                  placeholder="Enter your last name"
+                  class="w-full h-10 sm:h-12"
                   required />
               </div>
+            </div>
 
-              <div class="space-y-1 sm:space-y-2">
-                <label
-                  for="ConfPassword"
-                  class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Confirm password
-                </label>
-                <IonInput
-                  id="ConfPassword"
-                  v-model="userInformation.confirmPassword"
-                  type="password"
-                  placeholder="Confirm your password"
-                  class="h-10 sm:h-12 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl"
-                  required />
-              </div>
+            <div class="space-y-1 sm:space-y-2">
+              <label
+                for="emailInput"
+                class="block text-sm font-medium text-surface-700 dark:text-surface-300">
+                Email address
+              </label>
+              <InputText
+                id="emailInput"
+                v-model="userInformation.email"
+                type="email"
+                placeholder="Enter your email"
+                class="w-full h-10 sm:h-12"
+                required />
+            </div>
 
-              <!-- Privacy Toggle -->
-              <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-xl p-3 sm:p-4">
-                <div class="flex items-start space-x-3">
-                  <IonToggle
-                    v-model="userInformation.sharingChoice"
-                    :checked="true"
-                    class="mt-1 flex-shrink-0" />
-                  <div class="min-w-0 flex-1">
-                    <h4 class="font-medium text-gray-900 dark:text-white text-sm sm:text-base">
-                      Share Profile
-                    </h4>
-                    <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1 leading-relaxed">
-                      Allow other attendees to see your profile information for networking
-                    </p>
-                  </div>
+            <div class="space-y-1 sm:space-y-2">
+              <label
+                for="password"
+                class="block text-sm font-medium text-surface-700 dark:text-surface-300">
+                Password
+              </label>
+              <Password
+                id="password"
+                v-model="userInformation.password"
+                :feedback="false"
+                toggle-mask
+                class="w-full"
+                input-class="w-full h-10 sm:h-12"
+                placeholder="Create a password"
+                required />
+            </div>
+
+            <div class="space-y-1 sm:space-y-2">
+              <label
+                for="ConfPassword"
+                class="block text-sm font-medium text-surface-700 dark:text-surface-300">
+                Confirm password
+              </label>
+              <Password
+                id="ConfPassword"
+                v-model="userInformation.confirmPassword"
+                :feedback="false"
+                toggle-mask
+                class="w-full"
+                input-class="w-full h-10 sm:h-12"
+                placeholder="Confirm your password"
+                required />
+            </div>
+
+            <!-- Privacy Toggle -->
+            <div class="bg-primary-50 dark:bg-primary-900/30 border border-primary-200 dark:border-primary-700 rounded-xl p-3 sm:p-4">
+              <div class="flex items-start space-x-3">
+                <ToggleSwitch
+                  v-model="userInformation.sharingChoice"
+                  class="mt-1 flex-shrink-0" />
+                <div class="min-w-0 flex-1">
+                  <h4 class="font-medium text-surface-900 dark:text-surface-50 text-sm sm:text-base">
+                    Share Profile
+                  </h4>
+                  <p class="text-xs sm:text-sm text-surface-600 dark:text-surface-400 mt-1 leading-relaxed">
+                    Allow other attendees to see your profile information for networking
+                  </p>
                 </div>
               </div>
+            </div>
 
-              <IonButton
-                type="submit"
-                expand="block"
-                class="h-10 sm:h-12 rounded-xl font-semibold text-sm sm:text-base">
-                Create Account
-              </IonButton>
-            </form>
-          </div>
+            <Button
+              type="submit"
+              label="Create Account"
+              class="w-full h-10 sm:h-12 font-semibold text-sm sm:text-base" />
+          </form>
         </div>
-      </div>
-    </IonContent>
-  </IonPage>
+      </template>
+    </Card>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonContent, IonInput, IonButton, IonToggle } from '@ionic/vue';
+import Card from 'primevue/card';
+import Button from 'primevue/button';
+import InputText from 'primevue/inputtext';
+import Password from 'primevue/password';
+import ToggleSwitch from 'primevue/toggleswitch';
 import { computed, onMounted, ref } from 'vue';
 import axios from 'axios';
 import { useRouter, useRoute } from 'vue-router';
@@ -197,62 +200,4 @@ const sendUserInformation = async () => {
     console.error('Failed send user information:', error);
   }
 };
-
 </script>
-
-<style scoped>
-.signup-container {
-  display: flex;
-  flex-direction: column;
-  max-width: 500px;
-  margin: auto;
-  text-align: center;
-}
-
-.signup-header {
-  margin-top: 2rem;
-}
-
-#form {
-  text-align: left;
-  margin-top: 2rem;
-}
-
-ion-input {
-  --padding-start: 12px;
-  --padding-end: 12px;
-  --placeholder-color: rgba(156, 163, 175, 0.8);
-  border: 1px solid #d1d5db;
-  border-radius: 12px;
-  transition: border-color 0.2s ease-in-out;
-}
-
-ion-input:focus-within {
-  --border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-.dark ion-input {
-  --border-color: #4b5563;
-  --placeholder-color: rgba(156, 163, 175, 0.6);
-}
-
-.dark ion-input:focus-within {
-  --border-color: #60a5fa;
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
-}
-
-ion-toggle {
-  font-size: 0.8em;
-}
-
-@media (max-width: 640px) {
-  #form {
-    margin-top: 1rem;
-  }
-
-  .signup-header {
-    margin-top: 1rem;
-  }
-}
-</style>
