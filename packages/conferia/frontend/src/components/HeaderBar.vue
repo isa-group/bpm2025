@@ -104,7 +104,7 @@ const emits = defineEmits(['openActionSheet', 'reloadPage', 'openFilter']);
 }
 /* Light Mode */
 #logo {
-  background-image: url('@bpm2025-website/assets/icon');
+  background-image: url('@bpm2025-website/assets/icon?url');
 }
 
 .gallery-dropdown {

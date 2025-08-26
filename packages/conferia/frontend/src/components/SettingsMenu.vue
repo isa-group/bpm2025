@@ -93,6 +93,6 @@ const logout = () => {
   margin-bottom: 10px;
 }
 #logo-large {
-  background-image: url('@bpm2025-website/assets/icon');
+  background-image: url('@bpm2025-website/assets/icon?url');
 }
 </style>

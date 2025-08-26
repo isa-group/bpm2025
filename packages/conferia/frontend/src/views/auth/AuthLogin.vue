@@ -124,7 +124,7 @@ import {
 import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
-import logo from '@bpm2025-website/assets/icon';
+import logo from '@bpm2025-website/assets/icon?url';
 import backend from '#/plugins/backend.config';
 import PrivacyNote from '#/components/PrivacyNote.vue';
 
