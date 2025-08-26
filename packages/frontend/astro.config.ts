@@ -6,6 +6,7 @@ import sitemap from '@astrojs/sitemap';
 import UnoCSS from 'unocss/astro';
 import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
+import compress from '@playform/compress';
 import AstroVue from '@astrojs/vue';
 
 export default defineConfig({
@@ -31,15 +32,15 @@ export default defineConfig({
     mdx(),
     AstroVue({
       appEntrypoint: '@bpm2025-website/conferia-frontend/instance'
+    }),
+    compress({
+      CSS: true,
+      HTML: true,
+      Image: true,
+      JavaScript: true,
+      SVG: true,
+      Logger: 1
     })
-    // compress({
-    //   CSS: true,
-    //   HTML: true,
-    //   Image: true,
-    //   JavaScript: true,
-    //   SVG: true,
-    //   Logger: 1
-    // })
   ],
   prefetch: {
     defaultStrategy: 'viewport',

@@ -14,6 +14,6 @@ export function getStaticPaths() {
   title: 'App - BPM2025',
   ignoreTitleTemplate: true
 }}>
-  <Header actions={getHeaderData().actions} isSticky showToggleTheme />
+  <Header actions={getHeaderData(Astro.url).actions} isSticky showToggleTheme />
   <App client:only="vue" />
 </Layout>

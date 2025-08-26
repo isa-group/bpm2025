@@ -38,7 +38,7 @@ export function isInRegistrationPage(currentUrl: URL): boolean {
  * Generates the object that programatically creates the navigation
  * header data
  */
-export function getHeaderData(): HeaderData {
+export function getHeaderData(currentUrl: URL): HeaderData {
   const initialData: HeaderData = {
     links: [
       {
@@ -152,11 +152,20 @@ export function getHeaderData(): HeaderData {
 
   initialData.actions ??= [];
 
-  initialData.actions.push({
-    text: 'App',
-    href: getPermalink('/app'),
-    variant: 'primary'
-  });
+  if (!isInRegistrationPage(currentUrl)) {
+    initialData.actions.push({
+      text: 'Registration info',
+      href: getPermalink('/registration'),
+      variant: 'primary'
+    }
+    );
+  }
+
+  // initialData.actions.push({
+  //   text: 'App',
+  //   href: getPermalink('/app'),
+  //   variant: 'primary'
+  // });
 
   return initialData;
 };
