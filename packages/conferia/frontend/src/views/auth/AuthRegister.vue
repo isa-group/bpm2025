@@ -5,16 +5,25 @@
         <div class="w-full max-w-md sm:max-w-lg lg:max-w-xl xl:max-w-2xl space-y-6 sm:space-y-8 my-4">
           <!-- Apple-style Header -->
           <div class="text-center space-y-2">
-            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">Join BPM 2025</h1>
-            <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300">Create your account to get started</p>
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">
+              Join BPM 2025
+            </h1>
+            <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300">
+              Create your account to get started
+            </p>
           </div>
 
           <!-- Registration Form -->
           <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-6">
-            <form id="form" @submit.prevent="sendUserInformation" class="space-y-4 sm:space-y-6">
+            <form
+              id="form"
+              class="space-y-4 sm:space-y-6"
+              @submit.prevent="sendUserInformation">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div class="space-y-1 sm:space-y-2">
-                  <label for="Firstname" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <label
+                    for="Firstname"
+                    class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     First name
                   </label>
                   <IonInput
@@ -22,11 +31,12 @@
                     v-model="userInformation.firstname"
                     placeholder="Enter your first name"
                     class="h-10 sm:h-12 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl"
-                    required
-                  />
+                    required />
                 </div>
                 <div class="space-y-1 sm:space-y-2">
-                  <label for="Surname" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <label
+                    for="Surname"
+                    class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     Last name
                   </label>
                   <IonInput
@@ -34,13 +44,14 @@
                     v-model="userInformation.lastname"
                     placeholder="Enter your last name"
                     class="h-10 sm:h-12 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl"
-                    required
-                  />
+                    required />
                 </div>
               </div>
 
               <div class="space-y-1 sm:space-y-2">
-                <label for="emailInput" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label
+                  for="emailInput"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Email address
                 </label>
                 <IonInput
@@ -49,12 +60,13 @@
                   type="email"
                   placeholder="Enter your email"
                   class="h-10 sm:h-12 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl"
-                  required
-                />
+                  required />
               </div>
 
               <div class="space-y-1 sm:space-y-2">
-                <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label
+                  for="password"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Password
                 </label>
                 <IonInput
@@ -63,12 +75,13 @@
                   type="password"
                   placeholder="Create a password"
                   class="h-10 sm:h-12 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl"
-                  required
-                />
+                  required />
               </div>
 
               <div class="space-y-1 sm:space-y-2">
-                <label for="ConfPassword" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label
+                  for="ConfPassword"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Confirm password
                 </label>
                 <IonInput
@@ -77,8 +90,7 @@
                   type="password"
                   placeholder="Confirm your password"
                   class="h-10 sm:h-12 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl"
-                  required
-                />
+                  required />
               </div>
 
               <!-- Privacy Toggle -->
@@ -87,10 +99,11 @@
                   <IonToggle
                     v-model="userInformation.sharingChoice"
                     :checked="true"
-                    class="mt-1 flex-shrink-0"
-                  />
+                    class="mt-1 flex-shrink-0" />
                   <div class="min-w-0 flex-1">
-                    <h4 class="font-medium text-gray-900 dark:text-white text-sm sm:text-base">Share Profile</h4>
+                    <h4 class="font-medium text-gray-900 dark:text-white text-sm sm:text-base">
+                      Share Profile
+                    </h4>
                     <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1 leading-relaxed">
                       Allow other attendees to see your profile information for networking
                     </p>
@@ -101,8 +114,7 @@
               <IonButton
                 type="submit"
                 expand="block"
-                class="h-10 sm:h-12 rounded-xl font-semibold text-sm sm:text-base"
-              >
+                class="h-10 sm:h-12 rounded-xl font-semibold text-sm sm:text-base">
                 Create Account
               </IonButton>
             </form>
@@ -145,7 +157,7 @@ const hasToken = computed(() => token !== '');
 
 onMounted(() => {
   if (hasToken.value) {
-    getUserInformation();
+    void getUserInformation();
   }
 });
 
@@ -156,7 +168,6 @@ const getUserInformation = async () => {
     const response = await axios.get(backend.construct('account/userDetails'), {
       headers: { Authorization: `Bearer ${setUpToken}` } });
     localStorage.setItem('setUpToken', '');
-    console.log(response.data);
     userInformation.value.email = response.data.email;
     userInformation.value.firstname = response.data.firstname;
     userInformation.value.lastname = response.data.lastname;
@@ -177,7 +188,6 @@ const sendUserInformation = async () => {
     loginInformation.value.email = userInformation.value.email;
     loginInformation.value.password = userInformation.value.password;
     const response = await axios.post(backend.construct('auth/signin'), loginInformation.value);
-    console.log(response.data);
 
     localStorage.setItem('accessToken', response.data.accessToken);
     localStorage.setItem('refreshToken', response.data.refreshToken);
@@ -240,7 +250,7 @@ ion-toggle {
   #form {
     margin-top: 1rem;
   }
-  
+
   .signup-header {
     margin-top: 1rem;
   }

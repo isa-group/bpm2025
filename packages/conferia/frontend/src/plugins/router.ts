@@ -121,7 +121,7 @@ const router = createRouter({
     ? createMemoryHistory()
     : createWebHashHistory(import.meta.env.BASE_URL),
   routes,
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(to, _from, savedPosition) {
     // if a saved position exists (e.g., back button), return to it
     if (savedPosition) {
       return savedPosition;

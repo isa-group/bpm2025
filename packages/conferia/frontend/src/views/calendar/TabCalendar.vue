@@ -4,13 +4,12 @@
     <div class="sticky top-16 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
       <div class="flex items-center justify-between px-4 py-4">
         <button
-          @click="changeMonth(-1)"
           class="flex items-center space-x-2 px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-        >
-          <i class="i-carbon-chevron-left text-lg"></i>
+          @click="changeMonth(-1)">
+          <i class="i-carbon-chevron-left text-lg" />
           <span class="font-medium">Prev</span>
         </button>
-        
+
         <div class="flex-1 text-center">
           <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
             {{ currentMonthName }} {{ state.currentYear }}
@@ -21,11 +20,10 @@
         </div>
 
         <button
-          @click="changeMonth(1)"
           class="flex items-center space-x-2 px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-        >
+          @click="changeMonth(1)">
           <span class="font-medium">Next</span>
-          <i class="i-carbon-chevron-right text-lg"></i>
+          <i class="i-carbon-chevron-right text-lg" />
         </button>
       </div>
     </div>
@@ -39,11 +37,10 @@
           <div
             v-for="day in state.weekDays"
             :key="day"
-            class="p-4 text-center bg-gray-50 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600"
-          >
+            class="p-4 text-center bg-gray-50 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
             <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">{{ day }}</span>
           </div>
-          
+
           <!-- Date Cells -->
           <div
             v-for="day in state.daysOfMonth"
@@ -54,21 +51,21 @@
               !day.isCurrentMonth ? 'opacity-40' : '',
               !day.hasSession ? 'cursor-default' : ''
             ]"
-            @click="day.hasSession ? dateClicked(day) : null"
-          >
+            @click="day.hasSession ? void dateClicked(day) : null">
             <div class="flex flex-col h-full">
-              <span 
+              <span
                 class="text-sm font-medium"
                 :class="[
                   day.isCurrentMonth ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-gray-500'
-                ]"
-              >
+                ]">
                 {{ day.date }}
               </span>
-              
+
               <!-- Session Indicator -->
-              <div v-if="day.hasSession" class="flex-1 flex items-center justify-center">
-                <div class="w-2 h-2 bg-blue-500 dark:bg-blue-400 rounded-full animate-pulse"></div>
+              <div
+                v-if="day.hasSession"
+                class="flex-1 flex items-center justify-center">
+                <div class="w-2 h-2 bg-blue-500 dark:bg-blue-400 rounded-full animate-pulse" />
               </div>
             </div>
           </div>
@@ -78,7 +75,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { reactive, onMounted, computed, nextTick } from 'vue';
 import axios from 'axios';
 import { useRouter, useRoute } from 'vue-router';
@@ -88,8 +85,46 @@ const route = useRoute();
 const router = useRouter();
 const token = localStorage.getItem('accessToken');
 
+interface CalendarDay {
+  date: number | null;
+  dateString?: string;
+  hasSession: boolean;
+  isCurrentMonth: boolean;
+}
+
+interface Session {
+  id: number;
+  title: string;
+  start_time: string;
+  end_time: string;
+  startTime?: string;
+  endTime?: string;
+  session_name?: string;
+  session_host?: string;
+  session_location?: string;
+  isLiked?: boolean;
+  likes?: number;
+  type?: string;
+  abstract?: string;
+  authors?: string;
+}
+
+interface UniqueDay {
+  value: string;
+  label: string;
+  hasSession: boolean;
+}
+
 const today = new Date();
-const state = reactive({
+const state = reactive<{
+  sessions: Session[];
+  uniqueDays: UniqueDay[];
+  selectedDay: string | null;
+  daysOfMonth: CalendarDay[];
+  currentMonth: number;
+  currentYear: number;
+  weekDays: string[];
+}>({
   sessions: [],
   uniqueDays: [],
   selectedDay: null,
@@ -106,9 +141,9 @@ const currentMonthName = computed(() => {
 });
 
 /**
- *
+ * Gets all days of a given month including padding days from previous/next month
  */
-function getDaysOfMonth(year, month) {
+function getDaysOfMonth(year: number, month: number): CalendarDay[] {
   const firstDayOfMonth = new Date(year, month, 1).getDay();
   const numDays = new Date(year, month + 1, 0).getDate();
   const days = [];
@@ -133,9 +168,9 @@ function getDaysOfMonth(year, month) {
 }
 
 /**
- *
+ * Changes the displayed month by the specified amount
  */
-function changeMonth(change) {
+function changeMonth(change: number): void {
   const newDate = new Date(state.currentYear, state.currentMonth + change);
   state.currentMonth = newDate.getMonth();
   state.currentYear = newDate.getFullYear();
@@ -148,7 +183,7 @@ function changeMonth(change) {
 }
 
 /**
- *
+ * Fetches session data based on route parameters and updates the calendar
  */
 async function fetchSessions() {
   try {
@@ -181,7 +216,7 @@ async function fetchSessions() {
 }
 
 /**
- *
+ * Marks calendar days that have sessions with a visual indicator
  */
 function markDaysWithSessions() {
   state.daysOfMonth.forEach((day) => {
@@ -201,14 +236,14 @@ function markDaysWithSessions() {
 }
 
 /**
- *
+ * Handles calendar day click events and navigates to the agenda view
  */
-function dateClicked(day) {
+async function dateClicked(day: CalendarDay): Promise<void> {
   if (!day.isCurrentMonth || day.date == null) return;
 
   // Get the clicked date and ensure it's in UTC
   const clickedDate = new Date(Date.UTC(state.currentYear, state.currentMonth, day.date));
-  const query = { date: clickedDate.toISOString().slice(0, 10) };
+  const query: Record<string, string> = { date: clickedDate.toISOString().slice(0, 10) };
 
   // Extract user ID and agenda type from the route parameters or query
   const routeUserId = route.params.id || route.query.id;
@@ -216,18 +251,18 @@ function dateClicked(day) {
 
   // Redirect to the desired path with the ID and date parameter
   if (routeUserId) {
-    router.push({ path: `/tabs/calendar/${routeUserId}`, query }).then(() => {
-      nextTick(() => window.location.reload());
-    });
+    await router.push({ path: `/tabs/calendar/${routeUserId}`, query });
+    await nextTick();
+    window.location.reload();
   } else if (agendaType === 'personal') {
     query.type = 'personal';
-    router.push({ path: '/tabs/calendar', query }).then(() => {
-      nextTick(() => window.location.reload());
-    });
+    await router.push({ path: '/tabs/calendar', query });
+    await nextTick();
+    window.location.reload();
   } else {
-    router.push({ path: '/tabs/calendar', query }).then(() => {
-      nextTick(() => window.location.reload());
-    });
+    await router.push({ path: '/tabs/calendar', query });
+    await nextTick();
+    window.location.reload();
   }
 }
 
@@ -237,7 +272,7 @@ const applyTheme = () => {
 };
 
 onMounted(() => {
-  fetchSessions();
+  void fetchSessions();
   applyTheme();
 });
 

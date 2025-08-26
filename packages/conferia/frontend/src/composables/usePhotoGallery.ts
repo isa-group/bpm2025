@@ -9,8 +9,8 @@ export const usePhotoGallery = () => {
   /**
    * Check if camera is available
    */
-  const isCameraAvailable = () => {
-    return Boolean(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+  const isCameraAvailable = (): boolean => {
+    return 'mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices;
   };
 
   /**

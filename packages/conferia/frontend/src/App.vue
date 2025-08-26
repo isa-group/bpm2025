@@ -10,11 +10,11 @@ import { useLocalStorage, usePreferredDark } from '@vueuse/core';
 import { watchEffect } from 'vue';
 import Toast from 'primevue/toast';
 
-const theme = useLocalStorage('theme', undefined);
+const theme = useLocalStorage<string | null>('theme', null);
 const isDark = usePreferredDark();
 
 watchEffect(() => {
-  if (theme.value) {
+  if (theme.value !== null && theme.value !== 'auto') {
     document.documentElement.classList.toggle('dark', theme.value === 'dark');
   } else {
     // If no saved theme, use the system preference
@@ -23,7 +23,7 @@ watchEffect(() => {
 });
 </script>
 
-<style>
+<style scoped>
 /* Set a max width and center the container */
 .app-container {
   max-width: 1024px;

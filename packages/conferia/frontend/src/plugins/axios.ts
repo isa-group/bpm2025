@@ -10,7 +10,7 @@ export function createPlugin(): {
   install: (app: App) => Promise<void>;
 } {
   return {
-    install: async (app: App): Promise<void> => {
+    install: (app: App): Promise<void> => {
       app.config.globalProperties.axios = axios;
 
       // Code for automatically refreshing tokens if access to an endpoint is denied because of code 401
@@ -35,22 +35,24 @@ export function createPlugin(): {
               config.headers.Authorization = `Bearer ${refreshResponse.data.accessToken}`;
 
               // Return the result of the newly made request to continue the original request's flow
-              return axios(config);
+              return await axios(config);
             } catch (refreshError) {
               console.error('Error refreshing token:', refreshError);
 
               // If token refresh also fails, redirect to login or handle accordingly
               localStorage.removeItem('accessToken');
               localStorage.removeItem('refreshToken');
-              router.push('/auth/login');
-              return Promise.reject(refreshError);
+              void router.push('/auth/login');
+              return Promise.reject(new Error('Token refresh failed'));
             }
           }
 
           // For any other type of errors, just pass them along
-          return Promise.reject(error);
+          return Promise.reject(error instanceof Error ? error : new Error(String(error)));
         }
       );
+
+      return Promise.resolve();
     }
   };
 }

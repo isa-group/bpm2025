@@ -12,10 +12,9 @@
           </p>
         </div>
         <button
-          @click="goToCalendar"
           class="flex items-center space-x-2 px-3 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
-        >
-          <i class="i-carbon-calendar text-lg"></i>
+          @click="goToCalendar">
+          <i class="i-carbon-calendar text-lg" />
           <span class="font-medium">Calendar</span>
         </button>
       </div>
@@ -31,8 +30,7 @@
               ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
               : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
           ]"
-          @click="navigateToAgendaType('all')"
-        >
+          @click="navigateToAgendaType('all')">
           Full Agenda
         </button>
         <button
@@ -42,8 +40,7 @@
               ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
               : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
           ]"
-          @click="navigateToAgendaType('personal')"
-        >
+          @click="navigateToAgendaType('personal')">
           Personal Agenda
         </button>
       </div>
@@ -62,11 +59,14 @@
               : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700',
             !day.hasSession ? 'opacity-50 cursor-not-allowed' : ''
           ]"
-          @click="day.hasSession ? selectDay(day.value) : null"
-        >
+          @click="day.hasSession && selectDay(day.value)">
           <div class="text-center">
-            <div class="text-xs font-bold">{{ day.label.split(', ')[0] }}</div>
-            <div class="text-xs mt-0.5">{{ day.label.split(', ')[1] }}</div>
+            <div class="text-xs font-bold">
+              {{ day.label.split(', ')[0] }}
+            </div>
+            <div class="text-xs mt-0.5">
+              {{ day.label.split(', ')[1] }}
+            </div>
           </div>
         </button>
       </div>
@@ -75,25 +75,27 @@
     <!-- Content -->
     <div class="px-4 py-6 pb-20">
       <!-- Session List -->
-      <div v-if="state.selectedDay && groupedSessionsByType && Object.keys(groupedSessionsByType).length > 0" class="space-y-6">
-        <div 
+      <div
+        v-if="state.selectedDay && groupedSessionsByType && Object.keys(groupedSessionsByType).length > 0"
+        class="space-y-6">
+        <div
           v-for="(group, sessionType) in groupedSessionsByType"
           :key="sessionType"
-          class="space-y-3"
-        >
+          class="space-y-3">
           <!-- Session Type Header -->
           <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-3 border border-blue-100 dark:border-blue-800">
-            <h2 class="font-bold text-lg text-blue-900 dark:text-blue-100">{{ formatSessionType(sessionType) }}</h2>
+            <h2 class="font-bold text-lg text-blue-900 dark:text-blue-100">
+              {{ formatSessionType(sessionType) }}
+            </h2>
           </div>
-          
+
           <!-- Sessions of this type -->
           <div class="space-y-3">
-            <div 
+            <div
               v-for="session in group"
               :key="session.id"
               class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-all duration-200 cursor-pointer"
-              @click="showSession(session.id)"
-            >
+              @click="showSession(session.id)">
               <div class="p-4">
                 <div class="flex items-start justify-between mb-3">
                   <div class="flex-1">
@@ -104,26 +106,31 @@
                     <p class="text-blue-600 dark:text-blue-400 text-sm font-medium mb-2">
                       {{ formatSessionTime(session) }}
                     </p>
-                    <p v-if="session.session_host" class="text-gray-600 dark:text-gray-300 text-sm mb-1">
+                    <p
+                      v-if="session.session_host"
+                      class="text-gray-600 dark:text-gray-300 text-sm mb-1">
                       Host: {{ session.session_host }}
                     </p>
-                    <p v-if="session.session_location" class="text-gray-500 dark:text-gray-400 text-sm">
+                    <p
+                      v-if="session.session_location"
+                      class="text-gray-500 dark:text-gray-400 text-sm">
                       {{ session.session_location }}
                     </p>
                   </div>
-                  
+
                   <!-- Like Button -->
                   <div class="flex flex-col items-center space-y-1">
                     <button
-                      @click.stop="toggleLike(session)"
                       class="w-8 h-8 rounded-md transition-colors duration-200 flex items-center justify-center text-size-2xl"
-                      :class="session.isLiked 
-                        ? 'text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300' 
+                      :class="session.isLiked
+                        ? 'text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300'
                         : 'text-gray-400 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400'"
-                    >
+                      @click.stop="toggleLike(session)">
                       {{ session.isLiked ? '♥' : '♡' }}
                     </button>
-                    <span v-if="session.likes > 0" class="text-xs text-gray-500 dark:text-gray-400">
+                    <span
+                      v-if="(session.likes ?? 0) > 0"
+                      class="text-xs text-gray-500 dark:text-gray-400">
                       {{ session.likes }}
                     </span>
                   </div>
@@ -135,17 +142,19 @@
       </div>
 
       <!-- Empty State -->
-      <div v-else class="text-center py-12">
+      <div
+        v-else
+        class="text-center py-12">
         <div class="mb-4">
-          <i class="i-carbon-calendar text-6xl text-gray-400"></i>
+          <i class="i-carbon-calendar text-6xl text-gray-400" />
         </div>
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">
           {{ state.selectedDay ? 'No sessions available' : 'Select a day' }}
         </h3>
         <p class="text-gray-600 dark:text-gray-300">
-          {{ state.selectedDay 
-            ? 'No sessions scheduled for this day' 
-            : 'Choose a day from above to view the agenda' 
+          {{ state.selectedDay
+            ? 'No sessions scheduled for this day'
+            : 'Choose a day from above to view the agenda'
           }}
         </p>
       </div>
@@ -155,12 +164,11 @@
     <TabSessionDetails
       :id="sessionIdDetail"
       :is-open="sessionModalOpen"
-      @did-dismiss="sessionModalOpen = false"
-    />
+      @did-dismiss="sessionModalOpen = false" />
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { reactive, onMounted, computed, watch, ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import axios from 'axios';
@@ -176,7 +184,7 @@ const sessionIdDetail = ref('');
 const sessionModalOpen = ref(false);
 
 // Helper function to format day buttons
-const formatDayButton = (day) => {
+const _formatDayButton = (day: string): string => {
   const dayObj = state.uniqueDays.find(d => d.value === day);
   if (dayObj) {
     const parts = dayObj.label.split(', ');
@@ -185,14 +193,45 @@ const formatDayButton = (day) => {
   return day;
 };
 
-const state = reactive({
+interface Session {
+  id: number;
+  title: string;
+  start_time: string;
+  end_time: string;
+  startTime: string;
+  endTime: string;
+  isLiked: boolean;
+  abstract?: string;
+  authors?: string;
+  type?: string;
+  session_name?: string;
+  session_host?: string;
+  session_location?: string;
+  likes?: number;
+}
+
+interface UniqueDay {
+  value: string;
+  label: string;
+  hasSession: boolean;
+}
+
+const state = reactive<{
+  sessions: Session[];
+  uniqueDays: UniqueDay[];
+  selectedDay: string | null;
+  agendaType: string;
+  likedSessionIds: Set<number>;
+  currentUserId: number | null;
+  passedUserId: number | null;
+}>({
   sessions: [],
   uniqueDays: [],
   selectedDay: null,
   agendaType: 'all',
   likedSessionIds: new Set(),
   currentUserId: null,
-  passedUserId: route.params.id ? parseInt(route.params.id) : null
+  passedUserId: route.params.id ? parseInt(route.params.id as string) : null
 });
 
 const agendaSegmentValue = computed(() => {
@@ -200,7 +239,7 @@ const agendaSegmentValue = computed(() => {
 });
 
 /**
- *
+ * Fetches sessions based on agenda type and user preferences
  */
 async function fetchSessions() {
   try {
@@ -223,7 +262,7 @@ async function fetchSessions() {
 }
 
 /**
- *
+ * Fetches the main ICPM agenda with all available sessions
  */
 async function fetchICPMAgenda() {
   try {
@@ -232,7 +271,7 @@ async function fetchICPMAgenda() {
       headers: { Authorization: `Bearer ${token}` }
     });
     const sessionsData = response.data;
-    const processedSessions = await processSessions(sessionsData);
+    const processedSessions = processSessions(sessionsData);
     // Remove week filtering - show all sessions
     state.sessions = processedSessions;
   } catch (error) {
@@ -241,18 +280,16 @@ async function fetchICPMAgenda() {
 }
 
 /**
- *
+ * Fetches personalized agenda for a specific user
  */
-async function fetchPersonalAgenda(userId) {
+async function fetchPersonalAgenda(userId: number): Promise<void> {
   try {
     await fetchLikedSessions();
-    console.log('Fetching personal agenda for user ID:', userId);
     const response = await axios.get(backend.construct(`agenda/session/likedlist/${userId}`), {
       headers: { Authorization: `Bearer ${token}` }
     });
     const sessionsData = response.data;
-    console.log('Fetched personal agenda sessions:', sessionsData);
-    const processedSessions = await processSessions(sessionsData);
+    const processedSessions = processSessions(sessionsData);
     // Remove week filtering - show all sessions
     state.sessions = processedSessions;
   } catch (error) {
@@ -261,7 +298,7 @@ async function fetchPersonalAgenda(userId) {
 }
 
 /**
- *
+ * Fetches the current authenticated user's ID
  */
 async function fetchCurrentUserId() {
   try {
@@ -269,7 +306,6 @@ async function fetchCurrentUserId() {
       headers: { Authorization: `Bearer ${token}` }
     });
     state.currentUserId = response.data.id;
-    console.log('Fetched current user ID:', state.currentUserId);
   } catch (error) {
     console.error('Failed to fetch current user ID:', error);
     state.currentUserId = null;
@@ -277,14 +313,14 @@ async function fetchCurrentUserId() {
 }
 
 /**
- *
+ * Fetches the list of sessions that the user has liked/favorited
  */
 async function fetchLikedSessions() {
   try {
     const response = await axios.get(backend.construct('agenda/session/hearts'), {
       headers: { Authorization: `Bearer ${token}` }
     });
-    state.likedSessionIds = new Set(response.data.map(id => id.toString()));
+    state.likedSessionIds = new Set(response.data.map((id: number) => id.toString()));
   } catch (error) {
     console.error('Failed to fetch liked sessions:', error);
     state.likedSessionIds = new Set();
@@ -292,9 +328,9 @@ async function fetchLikedSessions() {
 }
 
 /**
- *
+ * Toggles like status for a session and updates the server
  */
-async function toggleLike(session) {
+async function toggleLike(session: Session): Promise<void> {
   const previouslyLiked = session.isLiked;
   session.isLiked = !session.isLiked;
   try {
@@ -310,10 +346,10 @@ async function toggleLike(session) {
     );
     if (session.isLiked) {
       state.likedSessionIds.add(session.id);
-      session.likes++;
+      session.likes = (session.likes ?? 0) + 1;
     } else {
       state.likedSessionIds.delete(session.id);
-      session.likes--;
+      session.likes = Math.max((session.likes ?? 0) - 1, 0);
     }
   } catch (error) {
     console.error('Failed to change like status:', error);
@@ -322,21 +358,21 @@ async function toggleLike(session) {
 }
 
 /**
- *
+ * Process session data and add timezone adjustment and like status
  */
-async function processSessions(sessionsData) {
-  return sessionsData.map((session) => {
-    const sessionIdAsString = session.id.toString();
-    const isLikedCheck = state.likedSessionIds.has(sessionIdAsString);
-    
+function processSessions(sessionsData: Record<string, unknown>[]): Session[] {
+  return sessionsData.map((session: Record<string, unknown>) => {
+    const sessionIdAsString = session.id?.toString();
+    const isLikedCheck = state.likedSessionIds.has(sessionIdAsString ?? '');
+
     // Add 2 hours to fix timezone misalignment
-    const startTime = new Date(session.startTime);
-    const endTime = new Date(session.endTime);
+    const startTime = new Date(session.startTime as string);
+    const endTime = new Date(session.endTime as string);
     startTime.setHours(startTime.getHours() + 2);
     endTime.setHours(endTime.getHours() + 2);
-    
+
     // Format times properly (YYYY-MM-DD HH:MM:SS)
-    const formatDateTime = (date) => {
+    const formatDateTime = (date: Date) => {
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const day = String(date.getDate()).padStart(2, '0');
@@ -345,39 +381,38 @@ async function processSessions(sessionsData) {
       const seconds = String(date.getSeconds()).padStart(2, '0');
       return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     };
-    
+
     return {
-      id: sessionIdAsString,
-      session_name: session.name,
-      session_host: session.host,
-      session_location: session.location,
+      id: session.id as number,
+      title: (session.name ?? session.session_name ?? 'Untitled Session') as string,
+      session_name: (session.name ?? session.session_name) as string | undefined,
+      session_host: (session.host ?? session.session_host) as string | undefined,
+      session_location: (session.location ?? session.session_location) as string | undefined,
       start_time: formatDateTime(startTime),
       end_time: formatDateTime(endTime),
-      type: session.type,
+      startTime: formatDateTime(startTime),
+      endTime: formatDateTime(endTime),
+      type: session.type as string,
       isLiked: isLikedCheck,
-      likes: session.likes
+      likes: (session.likes ?? 0) as number,
+      abstract: session.abstract as string,
+      authors: session.authors as string
     };
   });
 }
 
-
 /**
- *
+ * Extract unique days from sessions and determine date range
  */
-function uniqueDays() {
+function uniqueDays(): void {
   state.uniqueDays = [];
-  let earliestDate = null;
-  let latestDate = null;
-  state.sessions.forEach((session) => {
-    const sessionDate = new Date(session.start_time.split(' ')[0]);
-    if (!earliestDate || sessionDate < earliestDate) {
-      earliestDate = sessionDate;
-    }
-    if (!latestDate || sessionDate > latestDate) {
-      latestDate = sessionDate;
-    }
-  });
-  if (!earliestDate || !latestDate) return;
+  const sessionDates = state.sessions.map(session => new Date(session.start_time.split(' ')[0]));
+
+  if (sessionDates.length === 0) return;
+
+  const earliestDate = new Date(Math.min(...sessionDates.map(d => d.getTime())));
+  const latestDate = new Date(Math.max(...sessionDates.map(d => d.getTime())));
+
   for (let d = new Date(earliestDate); d <= latestDate; d.setDate(d.getDate() + 1)) {
     const formattedDate = d.toISOString().split('T')[0];
     const dayLabel = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
@@ -394,41 +429,41 @@ function uniqueDays() {
 }
 
 /**
- *
+ * Set the selected day for filtering sessions
  */
-function selectDay(value) {
+function selectDay(value: string): void {
   state.selectedDay = value;
 }
 
 /**
- *
+ * Navigate to different agenda type (personal/general) with query parameters
  */
-function navigateToAgendaType(type) {
-  const query = { ...route.query }; // Get current query parameters
+function navigateToAgendaType(type: string): void {
+  const query: Record<string, string> = { ...route.query }; // Get current query parameters
 
   // Add or update the `type` parameter based on the selected segment
   if (type === 'personal') {
     query.type = 'personal';
   } else {
-    delete query.type; // Remove `type` for ICPM
+    delete query.type; // Remove `type` for ICMP
   }
 
   // Navigate with the updated query parameters
-  router.push({ path: '/tabs/calendar', query });
+  void router.push({ path: '/tabs/calendar', query });
   state.agendaType = type;
 }
 
 /**
- *
+ * Navigate to calendar view with current day and type selection
  */
-function goToCalendar() {
-  const query = { date: state.selectedDay };
+function goToCalendar(): void {
+  const query: Record<string, string> = { date: state.selectedDay ?? '' };
   if (state.passedUserId) {
-    query.id = state.passedUserId;
+    query.id = state.passedUserId.toString();
   } else if (state.agendaType === 'personal') {
     query.type = 'personal';
   }
-  router.push({ name: 'CalendarView', query });
+  void router.push({ name: 'CalendarView', query });
 }
 
 onMounted(async () => {
@@ -443,19 +478,19 @@ onMounted(async () => {
 });
 
 watch(() => state.agendaType, async () => {
-  console.log('Agenda type changed to:', state.agendaType);
   await fetchSessions();
 });
 
 const filteredSessions = computed(() => {
+  if (!state.selectedDay) return state.sessions;
   return state.sessions
-    .filter(session => session.start_time.startsWith(state.selectedDay))
-    .sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
+    .filter(session => session.start_time.startsWith(state.selectedDay!))
+    .sort((a, b) => new Date(a.start_time).getTime() - new Date(b.start_time).getTime());
 });
 
 const groupedSessionsByType = computed(() => {
-  const groups = {};
-  
+  const groups: Record<string, Session[]> = {};
+
   // Define the importance order for session types
   const typeImportanceOrder = [
     'KEYNOTE',
@@ -477,54 +512,54 @@ const groupedSessionsByType = computed(() => {
     'DEMO',
     'OTHER'
   ];
-  
+
   for (const session of filteredSessions.value) {
-    const sessionType = session.type || 'OTHER';
+    const sessionType = session.type ?? 'OTHER';
     let groupKey = sessionType;
-    
+
     // For workshops, create separate groups based on workshop name
-    if (sessionType === 'WORKSHOP') {
+    if (sessionType === 'WORKSHOP' && session.session_name) {
       const workshopName = extractWorkshopName(session.session_name);
       groupKey = `WORKSHOP_${workshopName}`;
     }
-    
-    if (!groups[groupKey]) {
-      groups[groupKey] = [];
-    }
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    groups[groupKey] = groups[groupKey] || [];
     groups[groupKey].push(session);
   }
-  
+
   // Sort sessions within each type by start time
-  for (const type in groups) {
-    groups[type].sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
-  }
-  
+  Object.keys(groups).forEach((type) => {
+    groups[type].sort((a, b) => new Date(a.start_time).getTime() - new Date(b.start_time).getTime());
+  });
+
   // Convert to ordered object based on type importance
-  const orderedGroups = {};
-  
+  const orderedGroups: Record<string, Session[]> = {};
+
   // First, add groups in importance order
   for (const type of typeImportanceOrder) {
-    if (groups[type]) {
+    if (type in groups) {
       orderedGroups[type] = groups[type];
     }
   }
-  
+
   // Then add workshop groups (sorted alphabetically)
   const workshopGroups = Object.keys(groups)
     .filter(key => key.startsWith('WORKSHOP_'))
     .sort();
-  
+
   for (const workshopType of workshopGroups) {
-    orderedGroups[workshopType] = groups[workshopType];
+    if (workshopType in groups) {
+      orderedGroups[workshopType] = groups[workshopType];
+    }
   }
-  
+
   // Finally, add any remaining groups not in the importance order
   for (const type in groups) {
-    if (!orderedGroups[type]) {
+    if (!(type in orderedGroups)) {
       orderedGroups[type] = groups[type];
     }
   }
-  
+
   return orderedGroups;
 });
 
@@ -532,57 +567,57 @@ const groupedSessionsByType = computed(() => {
  * Extract workshop name from session title
  * Expected format: "(WORKSHOP NAME) — Session Title" or "WORKSHOP NAME — Session Title"
  */
-function extractWorkshopName(sessionTitle) {
-  
-  let match = sessionTitle.match(/^\(([^)]+)\)\s*—/);
+function extractWorkshopName(sessionTitle: string): string {
+  const parenthesesRegex = /^\(([^)]+)\)\s*—/;
+  let match = parenthesesRegex.exec(sessionTitle);
   if (match) {
-    console.log('Found workshop with parentheses:', match[1]);
     return match[1];
   }
-  
-  match = sessionTitle.match(/^([^—]+)\s*—/);
+
+  const dashRegex = /^([^—]+)—/;
+  match = dashRegex.exec(sessionTitle);
   if (match) {
     return match[1].trim();
   }
-  
-  match = sessionTitle.match(/^([A-Z0-9]+)\s*—/);
+
+  const alphanumericRegex = /^([A-Z0-9]+)\s*—/;
+  match = alphanumericRegex.exec(sessionTitle);
   if (match) {
     return match[1];
   }
-  
+
   return sessionTitle; // Return full title if no pattern matches
 }
 
 /**
  * Format session type for display
  */
-function formatSessionType(type) {
+function formatSessionType(type: string): string {
   // Handle workshop groups
   if (type.startsWith('WORKSHOP_')) {
     const workshopName = type.replace('WORKSHOP_', '');
     return workshopName;
   }
-  
-  const typeMap = {
-    'KEYNOTE': 'Keynote',
-    'FOOD': 'Lunch',
-    'COFFEE': 'Coffee Breaks',
-    'PRACTICAL': 'Practical Sessions',
-    'QnA': 'Q&A Sessions',
-    'MAIN': 'Main Track',
-    'DOCTORALCONSORTIUM': 'Doctoral Consortium',
-    'PANEL': 'Panel Discussions',
-    'MAIN': 'Main Track',
-    'TUTORIAL': 'Tutorials',
-    'WORKSHOP': 'Workshops',
-    'DEMO': 'Demonstrations',
-    'BPMFORUM': 'BPM Forum',
-    'EDUCATORSFORUM': 'Educators Forum',
-    'PROCESSTECHNOLOGYFORUM': 'Process Technology Forum',
-    'INDUSTRYFORUM': 'Industry Forum',
-    'RESPONSIBLEBPMFORUM': 'Responsible BPM Forum',
-    'JOURNALFIRST': 'Journal First Track',
-    'OTHER': 'Other Sessions'
+
+  const typeMap: Record<string, string> = {
+    KEYNOTE: 'Keynote',
+    FOOD: 'Lunch',
+    COFFEE: 'Coffee Breaks',
+    PRACTICAL: 'Practical Sessions',
+    QnA: 'Q&A Sessions',
+    MAIN: 'Main Track',
+    DOCTORALCONSORTIUM: 'Doctoral Consortium',
+    PANEL: 'Panel Discussions',
+    TUTORIAL: 'Tutorials',
+    WORKSHOP: 'Workshops',
+    DEMO: 'Demonstrations',
+    BPMFORUM: 'BPM Forum',
+    EDUCATORSFORUM: 'Educators Forum',
+    PROCESSTECHNOLOGYFORUM: 'Process Technology Forum',
+    INDUSTRYFORUM: 'Industry Forum',
+    RESPONSIBLEBPMFORUM: 'Responsible BPM Forum',
+    JOURNALFIRST: 'Journal First Track',
+    OTHER: 'Other Sessions'
   };
   return typeMap[type] || type;
 }
@@ -590,19 +625,19 @@ function formatSessionType(type) {
 /**
  * Format session time for display
  */
-function formatSessionTime(session) {
+function formatSessionTime(session: Session): string {
   try {
     const startTimePart = session.start_time.split(' ')[1];
     const endTimePart = session.end_time.split(' ')[1];
-    
+
     if (!startTimePart || !endTimePart) {
       return 'Time TBA';
     }
-    
+
     // Extract just hours:minutes from HH:MM:SS format
     const startTime = startTimePart.substring(0, 5);
     const endTime = endTimePart.substring(0, 5);
-    
+
     return `${startTime} - ${endTime}`;
   } catch (error) {
     console.error('Error formatting session time:', error, session);
@@ -610,8 +645,8 @@ function formatSessionTime(session) {
   }
 }
 
-const showSession = (id) => {
-  sessionIdDetail.value = id;
+const showSession = (id: number): void => {
+  sessionIdDetail.value = id.toString();
   sessionModalOpen.value = true;
 };
 </script>

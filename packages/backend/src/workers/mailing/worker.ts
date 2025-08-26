@@ -29,8 +29,6 @@ const transporter = createTransport({
 transporter.verify((err) => {
   if (err) {
     console.error('SMTP connection could not be verified. Please check your configuration\n\n', err);
-  } else {
-    console.log('Mailing module started up successfully!');
   }
 });
 
@@ -62,8 +60,6 @@ const fn = async (inputs: Inputs) => {
           }
         : {})
     });
-
-    console.log(`Mail to ${inputs.mail.destination} sent successfully`);
 
     parentPort?.postMessage({
       success: true,

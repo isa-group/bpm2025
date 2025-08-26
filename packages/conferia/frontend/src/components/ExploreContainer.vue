@@ -11,9 +11,9 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
-  name: String
-});
+const { name } = defineProps<{
+  name?: string;
+}>();
 </script>
 
 <style scoped>

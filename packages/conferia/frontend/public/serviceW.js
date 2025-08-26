@@ -1,3 +1,5 @@
+/* eslint-env serviceworker */
+/* global self */
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     fetch(event.request).catch((error) => {
