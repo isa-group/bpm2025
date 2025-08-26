@@ -2,15 +2,22 @@ import type { ScheduleEvent } from '#/types';
 import { locations } from '#/data/program/locations';
 import { getPermalink } from '#/utils/permalinks';
 
-const mainTrackUrl = getPermalink('/program/main-track');
-const bpmForumUrl = getPermalink('/program/bpm-forum');
-const processTechUrl = getPermalink('/program/process-technology-forum');
-const educatorsUrl = getPermalink('/program/educators-forum');
-const industryForumUrl = getPermalink('/program/industry-forum');
+// const mainTrackUrl = getPermalink('/program/main-track');
+// const bpmForumUrl = getPermalink('/program/bpm-forum');
+// const processTechUrl = getPermalink('/program/process-technology-forum');
+// const educatorsUrl = getPermalink('/program/educators-forum');
+// const industryForumUrl = getPermalink('/program/industry-forum');
 const tutorialsUrl = getPermalink('/program/tutorials');
-const responsibleUrl = getPermalink('/program/responsible-bpm-forum');
-const demosUrl = getPermalink('/program/demos-&-resources/');
-const journalFirstUrl = getPermalink('/program/journal-first-track');
+// const responsibleUrl = getPermalink('/program/responsible-bpm-forum');
+// const demosUrl = getPermalink('/program/demos-&-resources/');
+// const journalFirstUrl = getPermalink('/program/journal-first-track');
+
+/**
+ * Converts event and session in permalink
+ */
+function getHref(category: string, sessionIndex: number) {
+  return getPermalink(`/program/${category}/#${category}-s${sessionIndex}`);
+}
 
 export const conference: ScheduleEvent[] = [
   {
@@ -20,7 +27,7 @@ export const conference: ScheduleEvent[] = [
     description: 'Predictive Process Monitoring',
     category: 'conference_1',
     location: locations.giralda,
-    href: mainTrackUrl
+    href: getHref('main-track', 1)
   },
   {
     title: 'BPM Forum 1',
@@ -29,7 +36,7 @@ export const conference: ScheduleEvent[] = [
     description: 'Socio-Technical Perspectives in BPM',
     category: 'bpm_forum',
     location: locations.magnolia,
-    href: bpmForumUrl
+    href: getHref('bpm-forum', 1)
   },
   {
     title: 'Process Technology 1',
@@ -37,7 +44,7 @@ export const conference: ScheduleEvent[] = [
     end: new Date(2025, 8, 2, 13, 0),
     category: 'objects',
     location: locations.nervion,
-    href: processTechUrl
+    href: getHref('process-technology-forum', 1)
   },
   {
     title: 'Educators Forum 1',
@@ -46,7 +53,7 @@ export const conference: ScheduleEvent[] = [
     description: 'Technology Enhanced Learning',
     category: 'forum_1',
     location: locations.triana,
-    href: educatorsUrl
+    href: getHref('educators-forum', 1)
   },
   {
     title: 'Lunch Break',
@@ -61,7 +68,7 @@ export const conference: ScheduleEvent[] = [
     description: 'Process Discovery and Analysis',
     category: 'conference_1',
     location: locations.giralda,
-    href: mainTrackUrl
+    href: getHref('main-track', 2)
   },
   {
     title: 'Educators Forum 2',
@@ -70,7 +77,7 @@ export const conference: ScheduleEvent[] = [
     description: 'Curriculum Innovation',
     category: 'forum_1',
     location: locations.magnolia,
-    href: educatorsUrl
+    href: getHref('educators-forum', 2)
   },
   {
     title: 'Process Technology 2',
@@ -78,7 +85,7 @@ export const conference: ScheduleEvent[] = [
     end: new Date(2025, 8, 2, 16, 0),
     category: 'objects',
     location: locations.nervion,
-    href: processTechUrl
+    href: getHref('process-technology-forum', 2)
   },
   {
     title: 'Journal First 1',
@@ -86,7 +93,7 @@ export const conference: ScheduleEvent[] = [
     end: new Date(2025, 8, 2, 16, 0),
     category: 'journal_first',
     location: locations.triana,
-    href: journalFirstUrl
+    href: getHref('journal-first-track', 1)
   },
   {
     title: 'Coffee Break',
@@ -101,7 +108,7 @@ export const conference: ScheduleEvent[] = [
     description: 'Contextual and Secure Methods in Process Intelligence',
     category: 'conference_1',
     location: locations.giralda,
-    href: mainTrackUrl
+    href: getHref('main-track', 3)
   },
   {
     title: 'Educators Forum 3',
@@ -110,7 +117,7 @@ export const conference: ScheduleEvent[] = [
     description: 'Bridging Academia & Industry',
     category: 'forum_1',
     location: locations.magnolia,
-    href: educatorsUrl
+    href: getHref('educators-forum', 3)
   },
   {
     title: 'Tutorials 1',
@@ -127,7 +134,7 @@ export const conference: ScheduleEvent[] = [
     end: new Date(2025, 8, 2, 18, 0),
     category: 'journal_first',
     location: locations.triana,
-    href: journalFirstUrl
+    href: getHref('journal-first-track', 2)
   },
   {
     title: 'Main Track 4',
@@ -136,7 +143,7 @@ export const conference: ScheduleEvent[] = [
     description: 'Cognitive and Organizational Dimensions',
     category: 'conference_1',
     location: locations.giralda,
-    href: mainTrackUrl
+    href: getHref('main-track', 4)
   },
   {
     title: 'BPM Forum 2',
@@ -145,7 +152,7 @@ export const conference: ScheduleEvent[] = [
     category: 'bpm_forum',
     description: 'Intelligent Automation and Optimization in BPM',
     location: locations.magnolia,
-    href: bpmForumUrl
+    href: getHref('bpm-forum', 2)
   },
   {
     title: 'Industry Forum 1',
@@ -153,7 +160,7 @@ export const conference: ScheduleEvent[] = [
     end: new Date(2025, 8, 3, 13, 0),
     category: 'forum_2',
     location: locations.nervion,
-    href: industryForumUrl
+    href: getHref('industry-forum', 1)
   },
   {
     title: 'Lunch Break',
@@ -168,7 +175,7 @@ export const conference: ScheduleEvent[] = [
     description: 'Simulation, Resource Detection and Optimization',
     category: 'conference_1',
     location: locations.giralda,
-    href: mainTrackUrl
+    href: getHref('main-track', 5)
   },
   {
     title: 'Tutorials 2',
@@ -186,7 +193,7 @@ export const conference: ScheduleEvent[] = [
     description: 'Focus Groups: Grand Challenges and Opportunities in the adoption of BPM in industry and the public sector',
     category: 'forum_2',
     location: locations.nervion,
-    href: industryForumUrl
+    href: getHref('industry-forum', 2)
   },
   {
     title: 'Coffee Break',
@@ -200,7 +207,7 @@ export const conference: ScheduleEvent[] = [
     end: new Date(2025, 8, 3, 18, 0),
     category: 'demos',
     location: locations.sta_cruz,
-    href: demosUrl
+    href: getHref('demos-&-resources', 2)
   },
   {
     title: 'Celonis Tutorial',
@@ -216,7 +223,7 @@ export const conference: ScheduleEvent[] = [
     end: new Date(2025, 8, 3, 18, 0),
     category: 'journal_first',
     location: locations.magnolia,
-    href: journalFirstUrl
+    href: getHref('journal-first-track', 3)
   },
   {
     title: 'Main Track 6',
@@ -225,7 +232,7 @@ export const conference: ScheduleEvent[] = [
     description: 'Conformance Checking and Temporal Constraints',
     category: 'conference_1',
     location: locations.giralda,
-    href: mainTrackUrl
+    href: getHref('main-track', 6)
   },
   {
     title: 'BPM Forum 3',
@@ -234,7 +241,7 @@ export const conference: ScheduleEvent[] = [
     description: 'Process Modeling, Simulation, and Verification',
     category: 'bpm_forum',
     location: locations.magnolia,
-    href: bpmForumUrl
+    href: getHref('bpm-forum', 3)
   },
   {
     title: 'Responsible BPM 1',
@@ -242,7 +249,7 @@ export const conference: ScheduleEvent[] = [
     end: new Date(2025, 8, 4, 13, 0),
     category: 'forum_3',
     location: locations.nervion,
-    href: responsibleUrl
+    href: getHref('responsible-bpm-forum', 1)
   },
   {
     title: 'Lunch Break',
@@ -257,7 +264,7 @@ export const conference: ScheduleEvent[] = [
     description: 'Detecting Rules and Descriptions',
     category: 'conference_1',
     location: locations.giralda,
-    href: mainTrackUrl
+    href: getHref('main-track', 7)
   },
   {
     title: 'Tutorials 3',
@@ -274,7 +281,7 @@ export const conference: ScheduleEvent[] = [
     end: new Date(2025, 8, 4, 16, 0),
     category: 'forum_3',
     location: locations.nervion,
-    href: responsibleUrl
+    href: getHref('responsible-bpm-forum', 2)
   },
   {
     title: 'Coffee Break',
