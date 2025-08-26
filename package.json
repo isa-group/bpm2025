@@ -18,13 +18,13 @@
     "check": "npm run check -ws --include-workspace-root=false"
   },
   "devDependencies": {
-    "@eslint/config-inspector": "1.1.0",
-    "@iconify/json": "2.2.364",
-    "@types/node": "24.1.0",
-    "eslint": "9.32.0",
+    "@eslint/config-inspector": "1.2.0",
+    "@iconify/json": "2.2.378",
+    "@types/node": "24.3.0",
+    "eslint": "9.34.0",
     "jiti": "2.5.1",
     "type-fest": "4.41.0",
-    "typescript": "5.8.3"
+    "typescript": "5.9.2"
   },
   "overrides": {
     "stylus": "0.64.0"
