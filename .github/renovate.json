@@ -21,36 +21,10 @@
     },
     {
       "matchManagers": [
+        "maven-wrapper",
         "maven"
       ],
-      "matchDepTypes": [
-        "compile"
-      ],
-      "groupName": "maven (runtime)"
-    },
-    {
-      "matchManagers": [
-        "maven"
-      ],
-      "matchDepTypes": [
-        "test"
-      ],
-      "groupName": "maven (test)"
-    },
-    {
-      "matchManagers": [
-        "maven"
-      ],
-      "matchDepTypes": [
-        "provided"
-      ],
-      "groupName": "maven (provided)"
-    },
-    {
-      "matchManagers": [
-        "maven-wrapper"
-      ],
-      "groupName": "maven wrapper"
+      "groupName": "java"
     },
     {
       "matchManagers": [
