@@ -24,7 +24,7 @@ const toastButtons = [
 ];
 
 const checkInstallation = () => {
-  if (window.matchMedia('(display-mode: standalone)').matches || (navigator as any).standalone) {
+  if (window.matchMedia('(display-mode: standalone)').matches || (navigator as { standalone?: boolean }).standalone) {
     isInstalled.value = true;
   } else {
     window.addEventListener('appinstalled', () => {

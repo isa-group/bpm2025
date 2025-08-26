@@ -99,7 +99,6 @@ router.post(
           }
         });
 
-        console.log(`Order ${order_id} is free and has been marked directly as free!`);
         /**
          * We use void so we return rightaway, but the promise is queued
          * to run in the next tick of the JS event loop.

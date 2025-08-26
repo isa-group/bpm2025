@@ -9,7 +9,7 @@
               :src="logo"
               alt="BPM Logo"
               class="h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24 mx-auto mb-4 sm:mb-6">
-            
+
             <!-- Apple-style page title -->
             <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-surface-900 dark:text-surface-50 mb-2">
               Welcome to BPM 2025
@@ -17,14 +17,14 @@
             <p class="text-sm sm:text-base text-surface-600 dark:text-surface-400 mb-4 sm:mb-6">
               Sign in to access your conference experience
             </p>
-            
+
             <!-- Toggle buttons with improved spacing -->
             <div class="flex border border-surface-300 dark:border-surface-600 rounded-lg overflow-hidden mb-4 sm:mb-6">
               <button
                 :class="[
                   'flex-1 py-2 sm:py-3 px-3 sm:px-4 text-sm sm:text-base font-medium transition-all duration-200',
-                  selectedSegment === 'login' 
-                    ? 'bg-primary-500 text-gray-700 shadow-sm' 
+                  selectedSegment === 'login'
+                    ? 'bg-primary-500 text-gray-700 shadow-sm'
                     : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-800 dark:hover:text-gray-100'
                 ]"
                 @click="selectedSegment = 'login'">
@@ -33,8 +33,8 @@
               <button
                 :class="[
                   'flex-1 py-2 sm:py-3 px-3 sm:px-4 text-sm sm:text-base font-medium transition-all duration-200',
-                  selectedSegment === 'register' 
-                    ? 'bg-primary-500 text-gray-700 shadow-sm' 
+                  selectedSegment === 'register'
+                    ? 'bg-primary-500 text-gray-700 shadow-sm'
                     : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-800 dark:hover:text-gray-100'
                 ]"
                 @click="selectedSegment = 'register'">
@@ -49,7 +49,9 @@
             class="space-y-4 sm:space-y-6"
             @submit.prevent="login">
             <div class="space-y-1 sm:space-y-2">
-              <label for="emailInput" class="block text-sm font-medium text-surface-700 dark:text-surface-300 mb-1 sm:mb-2">
+              <label
+                for="emailInput"
+                class="block text-sm font-medium text-surface-700 dark:text-surface-300 mb-1 sm:mb-2">
                 Email Address
               </label>
               <InputText
@@ -60,9 +62,11 @@
                 placeholder="Enter your email"
                 required />
             </div>
-            
+
             <div class="space-y-1 sm:space-y-2">
-              <label for="passwordInput" class="block text-sm font-medium text-surface-700 dark:text-surface-300 mb-1 sm:mb-2">
+              <label
+                for="passwordInput"
+                class="block text-sm font-medium text-surface-700 dark:text-surface-300 mb-1 sm:mb-2">
                 Password
               </label>
               <Password
@@ -106,13 +110,21 @@
             class="space-y-4 sm:space-y-6"
             @submit.prevent="sendConfirmationEmail">
             <div class="space-y-3 sm:space-y-4 text-sm text-surface-600 dark:text-surface-400 bg-surface-100 dark:bg-surface-800 p-3 sm:p-4 rounded-lg">
-              <p class="font-medium text-surface-700 dark:text-surface-300">Important:</p>
-              <p class="text-xs sm:text-sm leading-relaxed">You must use the same email address you used to register at the conference.</p>
-              <p class="text-xs sm:text-sm leading-relaxed">Please allow up to 12 hours for emails to be synchronized between the conference registration system and this app.</p>
+              <p class="font-medium text-surface-700 dark:text-surface-300">
+                Important:
+              </p>
+              <p class="text-xs sm:text-sm leading-relaxed">
+                You must use the same email address you used to register at the conference.
+              </p>
+              <p class="text-xs sm:text-sm leading-relaxed">
+                Please allow up to 12 hours for emails to be synchronized between the conference registration system and this app.
+              </p>
             </div>
 
             <div class="space-y-1 sm:space-y-2">
-              <label for="registerEmailInput" class="block text-sm font-medium text-surface-700 dark:text-surface-300 mb-1 sm:mb-2">
+              <label
+                for="registerEmailInput"
+                class="block text-sm font-medium text-surface-700 dark:text-surface-300 mb-1 sm:mb-2">
                 Email Address
               </label>
               <InputText
@@ -211,10 +223,15 @@ const login = async () => {
     loginError.value = '';
     loginUser.value.email = '';
     loginUser.value.password = '';
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Login failed', error);
-    if (error.response && error.response.status === 401) {
-      loginError.value = 'Invalid email or password. Please try again.';
+    if (error && typeof error === 'object' && 'response' in error) {
+      const axiosError = error as { response: { status: number } };
+      if (axiosError.response.status === 401) {
+        loginError.value = 'Invalid email or password. Please try again.';
+      } else {
+        loginError.value = 'Login failed. Please try again later.';
+      }
     } else {
       loginError.value = 'Login failed. Please try again later.';
     }
@@ -229,12 +246,13 @@ const sendConfirmationEmail = async () => {
     await axios.post(backend.construct('auth/signup'), registerUser.value);
     registerSuccess.value = 'Confirmation email sent! Check your inbox.';
     registerError.value = '';
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Registration failed', error);
-    if (error.response) {
-      if (error.response.status === 409) {
+    if (error && typeof error === 'object' && 'response' in error) {
+      const axiosError = error as { response: { status: number } };
+      if (axiosError.response.status === 409) {
         registerError.value = 'Email already exists or registration link already sent.';
-      } else if (error.response.status === 404) {
+      } else if (axiosError.response.status === 404) {
         registerError.value = 'Email not found in registration system. Please check your email or contact support.';
       } else {
         registerError.value = 'Registration failed. Please try again later.';

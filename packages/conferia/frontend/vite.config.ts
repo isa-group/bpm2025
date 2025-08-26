@@ -8,8 +8,10 @@ export default defineConfig({
   appType: 'spa',
   base: './',
   plugins: [
-    Vue(),
-    UnoCSS()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Vue() as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    UnoCSS() as any
   ],
   server: {
     host: '0.0.0.0'

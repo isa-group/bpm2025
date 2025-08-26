@@ -4,11 +4,17 @@
     <div class="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
       <div class="flex items-center justify-between px-4 py-4">
         <div class="flex-1">
-          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">My Gallery</h1>
-          <p v-if="!selectMultiple" class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+            My Gallery
+          </h1>
+          <p
+            v-if="!selectMultiple"
+            class="text-sm text-gray-600 dark:text-gray-300 mt-1">
             {{ imagesListMyGallery.length }} {{ imagesListMyGallery.length === 1 ? 'photo' : 'photos' }}
           </p>
-          <p v-else class="text-sm text-blue-600 dark:text-blue-400 mt-1">
+          <p
+            v-else
+            class="text-sm text-blue-600 dark:text-blue-400 mt-1">
             {{ imagesSelectedList.length }} selected
           </p>
         </div>
@@ -18,60 +24,58 @@
             label="Delete Selected"
             severity="danger"
             size="small"
-            @click="deleteSelectedImages"
-          />
+            @click="deleteSelectedImages" />
           <Button
             :label="selectMultiple ? 'Cancel' : 'Select'"
             :severity="selectMultiple ? 'secondary' : 'primary'"
             size="small"
-            @click="toggleSelectMode"
-          />
+            @click="toggleSelectMode" />
           <Button
             label="Upload"
             severity="primary"
             size="small"
-            @click="uploadGalleryImage"
-          >
-            <i class="i-carbon-add mr-1"></i>
+            @click="uploadGalleryImage">
+            <i class="i-carbon-add mr-1" />
           </Button>
         </div>
       </div>
     </div>
-    
+
     <div class="px-4 py-6 pb-20">
       <!-- Gallery Grid -->
-      <div v-if="imagesListMyGallery.length > 0" class="grid grid-cols-3 gap-2">
-        <div 
+      <div
+        v-if="imagesListMyGallery.length > 0"
+        class="grid grid-cols-3 gap-2">
+        <div
           v-for="(image, index) in imagesListMyGallery"
           :key="index"
           class="aspect-square relative overflow-hidden rounded-lg cursor-pointer transition-all duration-200 hover:scale-105"
-          :class="{ 
+          :class="{
             'ring-4 ring-blue-500': imagesSelectedList.includes(image),
             'opacity-75': selectMultiple && !imagesSelectedList.includes(image)
           }"
-          @click="selectMultiple ? selectImage(image) : goToImage(image)"
-        >
-          <img 
+          @click="selectMultiple ? selectImage(image) : goToImage(image)">
+          <img
             :src="getImageWebP(image)"
             :alt="`Mi imagen ${index + 1}`"
             class="w-full h-full object-cover"
-            loading="lazy"
-          />
-          
+            loading="lazy">
+
           <!-- Selection indicator -->
-          <div 
+          <div
             v-if="selectMultiple && imagesSelectedList.includes(image)"
-            class="absolute top-2 right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm"
-          >
-            <i class="i-carbon-checkmark text-xs"></i>
+            class="absolute top-2 right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">
+            <i class="i-carbon-checkmark text-xs" />
           </div>
         </div>
       </div>
-      
+
       <!-- Empty state -->
-      <div v-else class="text-center py-12">
+      <div
+        v-else
+        class="text-center py-12">
         <div class="mb-4">
-          <i class="i-carbon-image text-6xl text-gray-400"></i>
+          <i class="i-carbon-image text-6xl text-gray-400" />
         </div>
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">
           No tienes imágenes
@@ -79,100 +83,93 @@
         <p class="text-gray-600 dark:text-gray-300 mb-6">
           Aún no has subido imágenes a tu galería personal
         </p>
-        <Button 
-          label="Subir imagen" 
-          @click="uploadGalleryImage"
+        <Button
+          label="Subir imagen"
           severity="primary"
-        />
+          @click="uploadGalleryImage" />
       </div>
     </div>
-    
+
     <!-- Floating Action Buttons -->
     <div class="fixed bottom-20 right-4 z-40">
       <!-- Multiple selection mode -->
       <template v-if="selectMultiple">
         <div class="flex gap-2 mb-2">
-          <Button 
-            @click="untoggleSelectImage"
+          <Button
             severity="secondary"
             rounded
             size="large"
             class="shadow-lg"
-          >
+            @click="untoggleSelectImage">
             <template #icon>
-              <i class="i-carbon-close text-xl"></i>
+              <i class="i-carbon-close text-xl" />
             </template>
           </Button>
-          
-          <Button 
-            @click="deleteGalleryImage"
+
+          <Button
             severity="danger"
             rounded
             size="large"
             class="shadow-lg"
             :disabled="imagesSelectedList.length === 0"
-          >
+            @click="deleteGalleryImage">
             <template #icon>
-              <i class="i-carbon-trash-can text-xl"></i>
+              <i class="i-carbon-trash-can text-xl" />
             </template>
           </Button>
-          
-          <Button 
-            @click="downloadImages"
+
+          <Button
             severity="primary"
             rounded
             size="large"
             class="shadow-lg"
             :disabled="imagesSelectedList.length === 0"
-          >
+            @click="downloadImages">
             <template #icon>
-              <i class="i-carbon-download text-xl"></i>
+              <i class="i-carbon-download text-xl" />
             </template>
           </Button>
         </div>
       </template>
-      
+
       <!-- Normal mode with menu -->
       <template v-else>
         <div class="flex flex-col gap-2">
-          <Button 
-            @click="() => selectMultiple = true"
+          <Button
             severity="secondary"
             rounded
             size="large"
             class="shadow-lg"
-          >
+            @click="() => selectMultiple = true">
             <template #icon>
-              <i class="i-carbon-checkbox text-xl"></i>
+              <i class="i-carbon-checkbox text-xl" />
             </template>
           </Button>
-          
-          <Button 
-            @click="uploadGalleryImage"
+
+          <Button
             severity="primary"
             rounded
             size="large"
             class="shadow-lg"
-          >
+            @click="uploadGalleryImage">
             <template #icon>
-              <i class="i-carbon-add text-xl"></i>
+              <i class="i-carbon-add text-xl" />
             </template>
           </Button>
         </div>
       </template>
     </div>
-    
+
     <!-- Menu Button -->
     <div class="fixed bottom-20 left-4 z-40">
-      <Button 
-        @click="() => $router.push('/tabs/images')"
+      <Button
         severity="secondary"
         rounded
         size="large"
         class="shadow-lg"
-      >
+        @click="() => $router.push('/tabs/images')">
         <template #icon>
-          <i class="i-carbon-gallery text-xl"></i>
+          <i class="i-carbon-gallery text-xl" />
         </template>
       </Button>
     </div>
@@ -189,7 +186,7 @@ import backend from '#/plugins/backend.config';
 import { usePhotoGallery } from '#/composables/usePhotoGallery';
 import router from '#/plugins/router';
 
-const { takePhotoGallery } = usePhotoGallery();
+const { takePhotoGallery: _takePhotoGallery } = usePhotoGallery();
 const toast = useToast();
 const token = ref(localStorage.getItem('accessToken'));
 
@@ -201,20 +198,20 @@ onMounted(async (): Promise<void> => {
   await fetchMyGalleryMetadata();
 });
 
-onBeforeRouteUpdate((to, from, next) => {
+onBeforeRouteUpdate((to, _from, next) => {
   if (to.path === '/tabs/images/myGallery') {
-    fetchMyGalleryMetadata();
+    void fetchMyGalleryMetadata();
   }
   next();
 });
 
-const resetMyGalleryData = async (): Promise<void> => {
+const resetMyGalleryData = (): void => {
   imagesListMyGallery.value = [];
   imagesSelectedList.value = [];
   selectMultiple.value = false;
 };
 
-onBeforeRouteLeave((to, from) => {
+onBeforeRouteLeave((_to, _from) => {
   resetMyGalleryData();
 });
 
@@ -225,8 +222,8 @@ const reloadPage = async (): Promise<void> => {
 
 const fetchMyGalleryMetadata = async (): Promise<void> => {
   try {
-    const response = await axios.get(backend.construct('gallery/myImages'), { 
-      headers: { Authorization: `Bearer ${token.value}` } 
+    const response = await axios.get(backend.construct('gallery/myImages'), {
+      headers: { Authorization: `Bearer ${token.value}` }
     });
     if (response.data.imagePaths.length > 0) {
       imagesListMyGallery.value = [...imagesListMyGallery.value, ...response.data.imagePaths];
@@ -248,15 +245,15 @@ const uploadGalleryImage = async (): Promise<void> => {
     const input = document.createElement('input');
     input.type = 'file';
     input.accept = 'image/*';
-    
+
     const file = await new Promise<File | null>((resolve) => {
       input.onchange = (e) => {
         const target = e.target as HTMLInputElement;
-        resolve(target.files?.[0] || null);
+        resolve(target.files?.[0] ?? null);
       };
       input.click();
     });
-    
+
     if (!file) {
       toast.add({
         severity: 'warn',
@@ -266,7 +263,7 @@ const uploadGalleryImage = async (): Promise<void> => {
       });
       return;
     }
-    
+
     const formData = new FormData();
     formData.append('file', file);
 
@@ -283,9 +280,8 @@ const uploadGalleryImage = async (): Promise<void> => {
         'Content-Type': 'multipart/form-data'
       }
     });
-    
+
     if (uploadResponse.status === 200) {
-      console.log('Upload successful');
       toast.add({
         severity: 'success',
         summary: 'Éxito',
@@ -315,7 +311,7 @@ const deleteGalleryImage = async (): Promise<void> => {
     });
     return;
   }
-  
+
   try {
     await axios.delete(backend.construct('gallery/images'), {
       headers: {
@@ -326,18 +322,18 @@ const deleteGalleryImage = async (): Promise<void> => {
         imagePaths: imagesSelectedList.value
       }
     });
-    
+
     imagesListMyGallery.value = imagesListMyGallery.value.filter(
       image => !imagesSelectedList.value.includes(image)
     );
-    
+
     toast.add({
       severity: 'success',
       summary: 'Eliminado',
       detail: `Se eliminaron ${imagesSelectedList.value.length} imágenes`,
       life: 3000
     });
-    
+
     imagesSelectedList.value = [];
     selectMultiple.value = false;
   } catch (error) {
@@ -351,28 +347,27 @@ const deleteGalleryImage = async (): Promise<void> => {
   }
 };
 
-const downloadImage = (filePath: string): void => {
-  const image = getImageJPG(filePath);
-  fetch(image)
-    .then(res => res.blob())
-    .then((blob) => {
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filePath;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
-    })
-    .catch(() => {
-      toast.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'No se pudo descargar la imagen',
-        life: 3000
-      });
+const downloadImage = async (filePath: string): Promise<void> => {
+  try {
+    const image = getImageJPG(filePath);
+    const res = await fetch(image);
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filePath;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+  } catch {
+    toast.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'No se pudo descargar la imagen',
+      life: 3000
     });
+  }
 };
 
 const downloadImages = (): void => {
@@ -385,18 +380,18 @@ const downloadImages = (): void => {
     });
     return;
   }
-  
+
   for (const image of imagesSelectedList.value) {
-    downloadImage(image);
+    void downloadImage(image);
   }
-  
+
   toast.add({
     severity: 'success',
     summary: 'Descarga iniciada',
     detail: `Descargando ${imagesSelectedList.value.length} imágenes`,
     life: 3000
   });
-  
+
   imagesSelectedList.value = [];
 };
 
@@ -409,7 +404,7 @@ const getImageJPG = (filepath: string): string => {
 };
 
 const goToImage = (imageId: string): void => {
-  router.push(`/tabs/singleimage/${imageId}`);
+  void router.push(`/tabs/singleimage/${imageId}`);
 };
 
 const selectImage = (imageId: string): void => {

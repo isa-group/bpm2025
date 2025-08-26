@@ -35,7 +35,7 @@
           text
           class="w-full justify-start px-2 py-2 text-sm font-normal"
           @click="navigateAndClose('/profile/settings/')" />
-        
+
         <Button
           icon="pi pi-bell"
           label="Notifications"
@@ -46,7 +46,7 @@
       </div>
 
       <!-- Separator -->
-      <div class="mx-2 border-t border-surface-200 dark:border-surface-700 my-1"></div>
+      <div class="mx-2 border-t border-surface-200 dark:border-surface-700 my-1" />
 
       <!-- Menu Group: App -->
       <div class="px-2 py-1">
@@ -60,7 +60,7 @@
       </div>
 
       <!-- Separator -->
-      <div class="mx-2 border-t border-surface-200 dark:border-surface-700 my-1"></div>
+      <div class="mx-2 border-t border-surface-200 dark:border-surface-700 my-1" />
 
       <!-- Menu Group: Account Actions -->
       <div class="px-2 py-1">
@@ -84,7 +84,7 @@ import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
 import backend from '#/plugins/backend.config';
 
-defineProps({
+const { visible } = defineProps({
   visible: {
     type: Boolean,
     default: false
@@ -102,8 +102,8 @@ const token = localStorage.getItem('accessToken');
 
 // Computed property for user initials
 const userInitials = computed(() => {
-  const first = name.firstname?.charAt(0) || '';
-  const last = name.lastname?.charAt(0) || '';
+  const first = name.firstname.charAt(0) || '';
+  const last = name.lastname.charAt(0) || '';
   return (first + last).toUpperCase();
 });
 
@@ -121,12 +121,12 @@ const logout = () => {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('refreshToken');
   localStorage.removeItem('userId');
-  router.push('/auth/login');
+  void router.push('/auth/login');
   emits('hide');
 };
 
 const navigateAndClose = (path: string) => {
-  router.push(path);
+  void router.push(path);
   emits('hide');
 };
 </script>
@@ -175,16 +175,16 @@ const navigateAndClose = (path: string) => {
     border-color: var(--surface-700);
     background: var(--surface-900);
   }
-  
+
   :deep(.p-dialog-header) {
     border-bottom-color: var(--surface-700);
     background: var(--surface-900);
   }
-  
+
   :deep(.p-dialog-content) {
     background: var(--surface-900);
   }
-  
+
   :deep(.p-button.p-button-text:hover) {
     background: var(--surface-800);
     color: var(--surface-100);

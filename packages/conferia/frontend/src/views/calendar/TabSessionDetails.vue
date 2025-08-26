@@ -1,24 +1,23 @@
 <template>
   <!-- Modal Overlay -->
-  <div 
+  <div
     v-if="isOpen"
     class="fixed inset-0 z-40 flex items-center justify-center bg-black/50 backdrop-blur-sm"
-    @click="closeModal"
-  >
+    @click="closeModal">
     <!-- Modal Container -->
-    <div 
+    <div
       class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden"
-      @click.stop
-    >
+      @click.stop>
       <!-- Modal Header -->
       <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
         <div class="flex-1">
-          <h2 class="text-xl font-bold text-gray-900 dark:text-white text-left">Session Details</h2>
+          <h2 class="text-xl font-bold text-gray-900 dark:text-white text-left">
+            Session Details
+          </h2>
         </div>
         <button
-          @click="closeModal"
           class="w-8 h-8 rounded-lg text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors flex items-center justify-center"
-        >
+          @click="closeModal">
           <span class="text-lg">✕</span>
         </button>
       </div>
@@ -26,13 +25,19 @@
       <!-- Modal Content -->
       <div class="p-6 overflow-y-auto max-h-[calc(90vh-88px)]">
         <!-- Loading State -->
-        <div v-if="loading" class="flex flex-col items-center justify-center py-12">
-          <div class="animate-spin w-8 h-8 border-4 border-blue-200 dark:border-blue-800 border-t-blue-500 dark:border-t-blue-400 rounded-lg"></div>
-          <p class="text-gray-600 dark:text-gray-300 mt-4">Loading session details...</p>
+        <div
+          v-if="loading"
+          class="flex flex-col items-center justify-center py-12">
+          <div class="animate-spin w-8 h-8 border-4 border-blue-200 dark:border-blue-800 border-t-blue-500 dark:border-t-blue-400 rounded-lg" />
+          <p class="text-gray-600 dark:text-gray-300 mt-4">
+            Loading session details...
+          </p>
         </div>
 
         <!-- Content -->
-        <div v-else class="space-y-6">
+        <div
+          v-else
+          class="space-y-6">
           <!-- Session Title -->
           <div>
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
@@ -47,7 +52,9 @@
               <div class="flex items-center space-x-2 mb-2">
                 <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Host</span>
               </div>
-              <p class="text-gray-900 dark:text-white font-medium">{{ pageData.host || 'TBA' }}</p>
+              <p class="text-gray-900 dark:text-white font-medium">
+                {{ pageData.host || 'TBA' }}
+              </p>
             </div>
 
             <!-- Location Info -->
@@ -55,7 +62,9 @@
               <div class="flex items-center space-x-2 mb-2">
                 <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Location</span>
               </div>
-              <p class="text-gray-900 dark:text-white font-medium">{{ pageData.location || 'TBA' }}</p>
+              <p class="text-gray-900 dark:text-white font-medium">
+                {{ pageData.location || 'TBA' }}
+              </p>
             </div>
           </div>
 
@@ -70,11 +79,12 @@
           </div>
 
           <!-- Session Content -->
-          <div v-if="pageData.content" class="prose dark:prose-invert max-w-none">
-            <div 
+          <div
+            v-if="pageData.content"
+            class="prose dark:prose-invert max-w-none">
+            <div
               class="text-gray-700 dark:text-gray-300 leading-relaxed"
-              v-html="pageData.content"
-            />
+              v-html="pageData.content" />
           </div>
         </div>
       </div>
@@ -82,13 +92,13 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { reactive, ref, watch } from 'vue';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import backend from '#/plugins/backend.config';
 
-const props = defineProps({
+const { isOpen, id } = defineProps({
   isOpen: {
     type: Boolean,
     required: true
@@ -119,34 +129,34 @@ const closeModal = () => {
 };
 
 // Watch for isOpen changes to trigger data loading
-watch(() => props.isOpen, (newValue) => {
+watch(() => isOpen, (newValue) => {
   if (newValue) {
-    openModal();
+    void openModal();
   }
 });
 
 const openModal = async () => {
   try {
-    if (props.id != '') {
+    if (id !== '') {
       loading.value = true;
-      const response = await axios.get(backend.construct(`agenda/session/${props.id}`),
+      const response = await axios.get(backend.construct(`agenda/session/${id}`),
         { headers: { Authorization: `Bearer ${token}` } });
-      
+
       const sessionData = response.data;
-      
+
       // Apply 2-hour timezone adjustment to session times
       const adjustedStartTime = new Date(sessionData.startTime);
       const adjustedEndTime = new Date(sessionData.endTime);
       adjustedStartTime.setHours(adjustedStartTime.getHours() + 2);
       adjustedEndTime.setHours(adjustedEndTime.getHours() + 2);
-      
+
       // Update pageData with adjusted times
       Object.assign(pageData, {
         ...sessionData,
         startTime: adjustedStartTime.toISOString(),
         endTime: adjustedEndTime.toISOString()
       });
-      
+
       loading.value = false;
     }
   } catch (error) {

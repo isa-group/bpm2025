@@ -8,13 +8,17 @@
     @update:visible="closeModal">
     <div class="space-y-4 text-surface-700 dark:text-surface-300 leading-relaxed overflow-y-auto">
       <div>
-        <h4 class="text-lg font-semibold text-surface-900 dark:text-surface-100 mb-2">How we process your personal data</h4>
+        <h4 class="text-lg font-semibold text-surface-900 dark:text-surface-100 mb-2">
+          How we process your personal data
+        </h4>
         <p>DTU, who is the organizer of ICPM 2024, as data controller, collects and processes information about you in connection with your registration and the partecipation to the conference.</p>
         <p>We process your information on the basis of Article 6(1)(b) and (e) of the Regulation and, in some cases, on the basis of your consent in accordance with Article 6(1)(a) of the Regulation.</p>
       </div>
 
       <div>
-        <h4 class="text-lg font-semibold text-surface-900 dark:text-surface-100 mb-2">Type of data</h4>
+        <h4 class="text-lg font-semibold text-surface-900 dark:text-surface-100 mb-2">
+          Type of data
+        </h4>
         <p>By registering for the ICPM Conference, you are added to the participant (delegates) list, which is shown in the ICPM App.</p>
         <p>We collect and process the following data:</p>
         <ul class="list-disc list-inside space-y-1 ml-4">
@@ -27,12 +31,16 @@
       </div>
 
       <div>
-        <h4 class="text-lg font-semibold text-surface-900 dark:text-surface-100 mb-2">Storage and disclosure</h4>
+        <h4 class="text-lg font-semibold text-surface-900 dark:text-surface-100 mb-2">
+          Storage and disclosure
+        </h4>
         <p>We store your data on DTU servers for as long as necessary for the purpose for which the data is processed. When it is no longer relevant to store your data in order to fulfill its purpose, the data will be deleted or archived. This will happen no later than one year after the conference.</p>
       </div>
 
       <div>
-        <h4 class="text-lg font-semibold text-surface-900 dark:text-surface-100 mb-2">Your rights</h4>
+        <h4 class="text-lg font-semibold text-surface-900 dark:text-surface-100 mb-2">
+          Your rights
+        </h4>
         <p>When we process data about you, as the data subject, you have a number of rights:</p>
         <ul class="list-disc list-inside space-y-1 ml-4">
           <li>You have the right to request access, rectification, or erasure of your personal data.</li>
@@ -46,20 +54,28 @@
       </div>
 
       <div>
-        <h4 class="text-lg font-semibold text-surface-900 dark:text-surface-100 mb-2">Legal entity responsible for the data processing</h4>
+        <h4 class="text-lg font-semibold text-surface-900 dark:text-surface-100 mb-2">
+          Legal entity responsible for the data processing
+        </h4>
         <p class="whitespace-pre-line">
-Danmarks Tekniske Universitet
-DTU Compute
-Richard Petersens Plads
-Building 324
-DK-2800 Kgs. Lyngby
-E-mail: compute@compute.dtu.dk
+          Danmarks Tekniske Universitet
+          DTU Compute
+          Richard Petersens Plads
+          Building 324
+          DK-2800 Kgs. Lyngby
+          E-mail: compute@compute.dtu.dk
         </p>
       </div>
 
       <div>
-        <h4 class="text-lg font-semibold text-surface-900 dark:text-surface-100 mb-2">Contact details of DTU's Data Protection Officer</h4>
-        <p>DTU's DPO: <a href="mailto:dpo@dtu.dk" class="text-primary-500 hover:text-primary-600 underline">dpo@dtu.dk</a></p>
+        <h4 class="text-lg font-semibold text-surface-900 dark:text-surface-100 mb-2">
+          Contact details of DTU's Data Protection Officer
+        </h4>
+        <p>
+          DTU's DPO: <a
+            href="mailto:dpo@dtu.dk"
+            class="text-primary-500 hover:text-primary-600 underline">dpo@dtu.dk</a>
+        </p>
       </div>
     </div>
   </Dialog>
@@ -67,13 +83,10 @@ E-mail: compute@compute.dtu.dk
 
 <script setup lang="ts">
 import Dialog from 'primevue/dialog';
-import { toRefs } from 'vue';
 
-const props = defineProps({
+const { isOpen } = defineProps({
   isOpen: Boolean
 });
 const emit = defineEmits(['update:isOpen']);
-
-const { isOpen } = toRefs(props);
 const closeModal = () => emit('update:isOpen', false);
 </script>

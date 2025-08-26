@@ -3,7 +3,7 @@
     <!-- Apple-style page header -->
     <div class="sticky top-16 z-40 bg-gray-50/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
       <div class="p-4 flex items-center space-x-4">
-        <Button 
+        <Button
           icon="i-carbon-arrow-left"
           severity="secondary"
           text
@@ -15,51 +15,57 @@
         </div>
       </div>
     </div>
-    
+
     <div class="px-4 py-6 pb-20">
       <!-- Profile Section -->
       <div class="flex flex-col items-center mb-8">
         <div class="mb-6">
-          <Avatar 
-            :image="attendee.imageURL || 'https://ionicframework.com/docs/img/demos/avatar.svg'" 
-            size="xlarge" 
+          <Avatar
+            :image="attendee.imageURL || 'https://ionicframework.com/docs/img/demos/avatar.svg'"
+            size="xlarge"
             shape="circle"
-            class="w-32 h-32 shadow-lg border-4 border-white dark:border-gray-700"
-          />
+            class="w-32 h-32 shadow-lg border-4 border-white dark:border-gray-700" />
         </div>
-        
-        <div class="text-center">          
+
+        <div class="text-center">
           <div class="space-y-2 text-gray-600 dark:text-gray-300">
-            <div v-if="attendee.company" class="flex items-center justify-center gap-2">
-              <i class="i-carbon-building text-lg"></i>
+            <div
+              v-if="attendee.company"
+              class="flex items-center justify-center gap-2">
+              <i class="i-carbon-building text-lg" />
               <span>{{ attendee.company }}</span>
             </div>
-            
-            <div v-if="attendee.country" class="flex items-center justify-center gap-2">
-              <i class="i-carbon-location text-lg"></i>
+
+            <div
+              v-if="attendee.country"
+              class="flex items-center justify-center gap-2">
+              <i class="i-carbon-location text-lg" />
               <span>{{ attendee.country }}</span>
             </div>
-            
-            <div v-if="attendee.email" class="flex items-center justify-center gap-2">
-              <i class="i-carbon-email text-lg"></i>
-              <a :href="`mailto:${attendee.email}`" class="text-blue-600 dark:text-blue-400 hover:underline">
+
+            <div
+              v-if="attendee.email"
+              class="flex items-center justify-center gap-2">
+              <i class="i-carbon-email text-lg" />
+              <a
+                :href="`mailto:${attendee.email}`"
+                class="text-blue-600 dark:text-blue-400 hover:underline">
                 {{ attendee.email }}
               </a>
             </div>
           </div>
         </div>
       </div>
-      
+
       <!-- Action Cards -->
       <div class="space-y-4">
-        <Card 
+        <Card
           class="cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-102 transform-gpu"
-          @click="goToPersonalizedAgenda"
-        >
+          @click="goToPersonalizedAgenda">
           <template #content>
             <div class="p-6 text-center">
               <div class="mb-4">
-                <i class="i-carbon-calendar text-4xl text-purple-500"></i>
+                <i class="i-carbon-calendar text-4xl text-purple-500" />
               </div>
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 See Personalized Agenda
@@ -70,15 +76,14 @@
             </div>
           </template>
         </Card>
-        
-        <Card 
+
+        <Card
           class="cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-102 transform-gpu"
-          @click="goToPersonalGallery"
-        >
+          @click="goToPersonalGallery">
           <template #content>
             <div class="p-6 text-center">
               <div class="mb-4">
-                <i class="i-carbon-image text-4xl text-green-500"></i>
+                <i class="i-carbon-image text-4xl text-green-500" />
               </div>
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 Mi Galería
@@ -169,14 +174,14 @@ async function getImage(person: AttendeeDetail): Promise<string> {
  * Navigate to personalized agenda
  */
 function goToPersonalizedAgenda(): void {
-  router.push({ path: `/tabs/calendar/${attendeeId}` });
+  void router.push({ path: `/tabs/calendar/${attendeeId}` });
 }
 
 /**
  * Navigate to personal gallery
  */
 function goToPersonalGallery(): void {
-  router.push({ path: `/tabs/images/${attendeeId}` });
+  void router.push({ path: `/tabs/images/${attendeeId}` });
 }
 
 onMounted(fetchAttendeeDetails);

@@ -4,12 +4,14 @@
     <div class="sticky top-16 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
       <div class="px-4 py-4">
         <div class="flex items-center space-x-3">
-          <button 
-            @click="$router.back()"
+          <button
             class="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-          >
-            <svg class="w-5 h-5 text-gray-600 dark:text-gray-300" viewBox="0 0 32 32" fill="currentColor">
-              <path d="M20 24l-8-8 8-8z"/>
+            @click="$router.back()">
+            <svg
+              class="w-5 h-5 text-gray-600 dark:text-gray-300"
+              viewBox="0 0 32 32"
+              fill="currentColor">
+              <path d="M20 24l-8-8 8-8z" />
             </svg>
           </button>
           <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
@@ -21,24 +23,34 @@
 
     <div class="px-4 py-6 pb-20">
       <!-- Loading state -->
-      <div v-if="loading" class="flex justify-center items-center py-12">
-        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      <div
+        v-if="loading"
+        class="flex justify-center items-center py-12">
+        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
       </div>
 
       <!-- Error state -->
-      <div v-else-if="error" class="text-center py-12">
+      <div
+        v-else-if="error"
+        class="text-center py-12">
         <div class="text-red-500 dark:text-red-400 mb-2">
-          <svg class="w-12 h-12 mx-auto mb-4" viewBox="0 0 32 32" fill="currentColor">
-            <path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2Zm0 26a12 12 0 1 1 12-12 12 12 0 0 1-12 12Z"/>
-            <path d="M15 8h2v11h-2zm1 14a1.5 1.5 0 1 0 1.5 1.5A1.5 1.5 0 0 0 16 22Z"/>
+          <svg
+            class="w-12 h-12 mx-auto mb-4"
+            viewBox="0 0 32 32"
+            fill="currentColor">
+            <path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2Zm0 26a12 12 0 1 1 12-12 12 12 0 0 1-12 12Z" />
+            <path d="M15 8h2v11h-2zm1 14a1.5 1.5 0 1 0 1.5 1.5A1.5 1.5 0 0 0 16 22Z" />
           </svg>
         </div>
-        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Error loading page</h3>
-        <p class="text-gray-600 dark:text-gray-400 mb-4">{{ error }}</p>
-        <button 
-          @click="retryLoad"
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          Error loading page
+        </h3>
+        <p class="text-gray-600 dark:text-gray-400 mb-4">
+          {{ error }}
+        </p>
+        <button
           class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-        >
+          @click="retryLoad">
           Try Again
         </button>
       </div>
@@ -49,40 +61,52 @@
         <div
           v-if="pageData.layoutId === 1"
           class="prose prose-gray dark:prose-invert max-w-none"
-          v-html="pageData.content"
-        />
+          v-html="pageData.content" />
 
         <!-- List Layout -->
-        <div v-else-if="pageData.layoutId === 2" class="space-y-3">
+        <div
+          v-else-if="pageData.layoutId === 2"
+          class="space-y-3">
           <div
             v-for="message in pageData.messages"
             :key="message.id"
-            class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 shadow-sm"
-          >
-            <p class="text-gray-900 dark:text-white">{{ message.content }}</p>
+            class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
+            <p class="text-gray-900 dark:text-white">
+              {{ message.content }}
+            </p>
           </div>
         </div>
 
         <!-- Iframe Content -->
-        <div v-else-if="pageData.layoutId === 3" class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+        <div
+          v-else-if="pageData.layoutId === 3"
+          class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
           <iframe
             ref="iframeRef"
             class="w-full border-none"
             style="min-height: 500px; height: 70vh;"
-            :src="pageData.content"
-          />
+            :src="pageData.content" />
         </div>
 
         <!-- Default/Unknown layout -->
-        <div v-else class="text-center py-12">
+        <div
+          v-else
+          class="text-center py-12">
           <div class="text-gray-400 dark:text-gray-500 mb-4">
-            <svg class="w-12 h-12 mx-auto" viewBox="0 0 32 32" fill="currentColor">
-              <path d="M26 4H6a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2ZM6 6h20v20H6Z"/>
-              <path d="M16 24a8 8 0 1 1 8-8 8 8 0 0 1-8 8Zm0-14a6 6 0 1 0 6 6 6 6 0 0 0-6-6Z"/>
+            <svg
+              class="w-12 h-12 mx-auto"
+              viewBox="0 0 32 32"
+              fill="currentColor">
+              <path d="M26 4H6a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2ZM6 6h20v20H6Z" />
+              <path d="M16 24a8 8 0 1 1 8-8 8 8 0 0 1-8 8Zm0-14a6 6 0 1 0 6 6 6 6 0 0 0-6-6Z" />
             </svg>
           </div>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Unknown layout type</h3>
-          <p class="text-gray-600 dark:text-gray-400">Layout ID: {{ pageData.layoutId }}</p>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+            Unknown layout type
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Layout ID: {{ pageData.layoutId }}
+          </p>
         </div>
       </div>
     </div>
@@ -99,7 +123,7 @@ interface PageData {
   title: string;
   content: string;
   layoutId: number | null;
-  messages?: Array<{ id: number; content: string }>;
+  messages?: { id: number; content: string }[];
 }
 
 const route = useRoute();
@@ -112,32 +136,37 @@ const iframeRef = ref<HTMLIFrameElement | null>(null);
 const loadPageData = async () => {
   loading.value = true;
   error.value = null;
-  
+
   try {
-    console.log('Loading page with ID:', route.params.id);
-    const response = await axios.get(backend.construct(`pages/${route.params.id}`), { 
-      headers: { Authorization: `Bearer ${token}` } 
+    const response = await axios.get(backend.construct(`pages/${route.params.id}`), {
+      headers: { Authorization: `Bearer ${token}` }
     });
-    
-    console.log('Page data received:', response.data);
+
     Object.assign(pageData, response.data);
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('Failed to fetch page data:', err);
-    error.value = err.response?.data?.message || err.message || 'Failed to load page content';
+    if (err && typeof err === 'object' && 'response' in err) {
+      const axiosError = err as { response?: { data?: { message?: string } }; message?: string };
+      error.value = axiosError.response?.data?.message ?? axiosError.message ?? 'Failed to load page content';
+    } else if (err instanceof Error) {
+      error.value = err.message;
+    } else {
+      error.value = 'Failed to load page content';
+    }
   } finally {
     loading.value = false;
   }
 };
 
 const retryLoad = () => {
-  loadPageData();
+  void loadPageData();
 };
 
 onMounted(() => {
-  loadPageData();
+  void loadPageData();
 });
 
-const reload = () => {
+const _reload = () => {
   if (iframeRef.value) {
     const iframeSrc = iframeRef.value.src;
     iframeRef.value.src = ''; // Temporarily clear the src
