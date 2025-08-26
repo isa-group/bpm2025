@@ -15,8 +15,6 @@ export interface Props {
   heroImage?: ImageMetadata;
 }
 
-const url = Astro.url;
-
 const { metadata, heroProps = {}, heroImage } = Astro.props;
 ---
 
@@ -25,7 +23,7 @@ const { metadata, heroProps = {}, heroImage } = Astro.props;
     {/* !isInRegistrationPage(url) && <Announcement /> */}
   </slot>
   <slot name="header">
-    <Header {...getHeaderData()} isSticky showToggleTheme />
+    <Header {...getHeaderData(Astro.url)} isSticky showToggleTheme />
   </slot>
   <slot name="hero">
     <Hero
