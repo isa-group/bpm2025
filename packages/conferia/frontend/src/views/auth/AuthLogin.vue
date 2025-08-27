@@ -116,9 +116,6 @@
               <p class="text-xs sm:text-sm leading-relaxed">
                 You must use the same email address you used to register at the conference.
               </p>
-              <p class="text-xs sm:text-sm leading-relaxed">
-                Please allow up to 12 hours for emails to be synchronized between the conference registration system and this app.
-              </p>
             </div>
 
             <div class="space-y-1 sm:space-y-2">
