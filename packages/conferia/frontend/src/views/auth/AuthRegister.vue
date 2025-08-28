@@ -99,9 +99,11 @@
             <!-- Privacy Toggle -->
             <div class="bg-primary-50 dark:bg-primary-900/30 border border-primary-200 dark:border-primary-700 rounded-xl p-3 sm:p-4">
               <div class="flex items-start space-x-3">
-                <ToggleSwitch
+                <Checkbox
                   v-model="userInformation.sharingChoice"
-                  class="mt-1 flex-shrink-0" />
+                  class="mt-1 flex-shrink-0"
+                  input-id="sharingChoice"
+                  :binary="true" />
                 <div class="min-w-0 flex-1">
                   <h4 class="font-medium text-surface-900 dark:text-surface-50 text-sm sm:text-base">
                     Share Profile
@@ -129,7 +131,7 @@ import Card from 'primevue/card';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import Password from 'primevue/password';
-import ToggleSwitch from 'primevue/toggleswitch';
+import Checkbox from 'primevue/checkbox';
 import { computed, ref } from 'vue';
 import axios from 'axios';
 import { useRouter, useRoute } from 'vue-router';
