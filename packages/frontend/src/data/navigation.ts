@@ -35,6 +35,15 @@ export function isInRegistrationPage(currentUrl: URL): boolean {
 }
 
 /**
+ * Checks if the current URL is within the app pages
+ */
+export function isInAppPage(currentUrl: URL): boolean {
+  const sanitized = trimSlash(currentUrl.pathname);
+
+  return sanitized.includes('/app');
+}
+
+/**
  * Generates the object that programatically creates the navigation
  * header data
  */
@@ -161,11 +170,13 @@ export function getHeaderData(currentUrl: URL): HeaderData {
     );
   }
 
-  // initialData.actions.push({
-  //   text: 'App',
-  //   href: getPermalink('/app'),
-  //   variant: 'primary'
-  // });
+  // if (!isInAppPage(currentUrl)) {
+  //   initialData.actions.push({
+  //     text: 'App',
+  //     href: getPermalink('/app'),
+  //     variant: 'primary'
+  //   });
+  // }
 
   return initialData;
 };

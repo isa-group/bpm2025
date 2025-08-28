@@ -7,10 +7,15 @@
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
       "installDockerComposeSwitch": false
     },
-    "ghcr.io/devcontainers/features/github-cli:1": {}
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "installMaven": true
+    }
   },
   "postCreateCommand": {
     "npm": "npm ci --no-audit",
+    "maven": "cd packages/conferia/backend && ./mvnw install",
     "unshallow": "git fetch --unshallow || true"
   },
   "postAttachCommand": {

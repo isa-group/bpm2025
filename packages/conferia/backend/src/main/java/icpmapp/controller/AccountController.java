@@ -129,7 +129,4 @@ public class AccountController {
         String username = jwtService.extractUserName(token);
         return ResponseEntity.ok(userService.getName(username));
     }
-
-
-
 }

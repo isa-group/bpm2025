@@ -7,10 +7,11 @@ import lombok.RequiredArgsConstructor;
 import icpmapp.services.EmailService;
 import icpmapp.services.JWTService;
 import icpmapp.services.UserService;
-import org.springframework.mail.SimpleMailMessage;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.AccessDeniedException;
@@ -22,9 +23,17 @@ public class EmailServiceImpl implements EmailService{
     private final JavaMailSender mailSender;
     private final JWTService jwtService;
     private final UserService userService;
+    
+    @Value("${spring.mail.username}")
+    private String mailUsername;
 
     public void sendSignup(EmailRequest emailRequest) throws AccessDeniedException, MessagingException {
         UserDetails userDetails = userService.userDetailsService().loadUserByUsername(emailRequest.getReceiver());
+
+        if (userDetails == null) {
+            throw new UsernameNotFoundException(null);
+        }
+
         boolean hasRequiredRole = userDetails.getAuthorities().stream()
                 .anyMatch(grantedAuthority ->
                         grantedAuthority.getAuthority().equals("INACTIVE"));
@@ -33,13 +42,14 @@ public class EmailServiceImpl implements EmailService{
         if (!hasRequiredRole) {
             throw new AccessDeniedException("User already activated.");
         }
+
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
-        helper.setFrom("noreply@compute.dtu.dk");
+        helper.setFrom(mailUsername);
         helper.setTo(emailRequest.getReceiver());
-        helper.setSubject("ICPM app account activation");
+        helper.setSubject("[BPM2025] Account activation");
         String token =  jwtService.generateToken(userDetails);
-        helper.setText("<html><body><img src=\"https://icpmconference.org/2024/wp-content/uploads/sites/9/2023/08/cropped-icpm-logo-1.png\" height='50' /><p>Hi!</p><p>To activate your account for the ICPM app, click on the following link: https://icpm.compute.dtu.dk/#/auth/register/" + token + ".</p></body></html>", true);
+        helper.setText("To activate your account, please go to: https://www.bpm2025seville.org/app/#/auth/register/" + token, false);
         mailSender.send(mimeMessage);
     }
 
@@ -55,7 +65,7 @@ public class EmailServiceImpl implements EmailService{
         }
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
-        helper.setFrom("noreply@compute.dtu.dk");
+        helper.setFrom(mailUsername);
         helper.setTo(emailRequest.getReceiver());
         helper.setSubject("Reset password");
         String token =  jwtService.generateToken(userDetails);

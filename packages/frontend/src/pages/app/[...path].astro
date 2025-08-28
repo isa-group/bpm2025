@@ -2,7 +2,6 @@
 import Layout from '#/layouts/Layout.astro';
 import { MainView as App } from '@bpm2025-website/conferia-frontend';
 import Header from '#/components/widgets/Header.astro';
-import { getHeaderData } from '#/data/navigation';
 
 export function getStaticPaths() {
   return [
@@ -14,6 +13,6 @@ export function getStaticPaths() {
   title: 'App - BPM2025',
   ignoreTitleTemplate: true
 }}>
-  <Header actions={getHeaderData(Astro.url).actions} isSticky showToggleTheme />
+  <Header forceMobile isSticky showToggleTheme />
   <App client:only="vue" />
 </Layout>
