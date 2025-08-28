@@ -199,6 +199,9 @@ const goToPage = (pageId: number) => {
   void router.push(`/tabs/page/${pageId}`);
 };
 
+/**
+ * Fetch the information pages metadata
+ */
 async function fetchPages() {
   try {
     const response = await axios.get(backend.construct('pages'), {

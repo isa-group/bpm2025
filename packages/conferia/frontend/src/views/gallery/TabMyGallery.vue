@@ -218,6 +218,9 @@ const reloadPage = async (): Promise<void> => {
   await fetchMyGalleryMetadata();
 };
 
+/**
+ * Fetch the own's user gallery metadata
+ */
 async function fetchMyGalleryMetadata() {
   try {
     const response = await axios.get(backend.construct('gallery/myImages'), {
