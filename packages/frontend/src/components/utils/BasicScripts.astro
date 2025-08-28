@@ -81,7 +81,10 @@
         const isScrolled = scrollPos > (header.offsetHeight / 2);
 
         header.classList.toggle('scroll', isScrolled);
-        header.classList.toggle(dark_class, !isScrolled && !screenSize.matches);
+        header.classList.toggle(dark_class, !isScrolled
+          && !screenSize.matches
+          && !header.hasAttribute('data-aw-forced-mobile-header')
+        );
       });
     }
 

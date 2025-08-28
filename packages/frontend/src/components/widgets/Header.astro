@@ -16,6 +16,10 @@ export interface Props {
   isSticky?: boolean;
   isDark?: boolean;
   isFullWidth?: boolean;
+  /**
+   * Shows the mobile header regardless of the screen size
+   */
+  forceMobile?: boolean;
   showToggleTheme?: boolean;
   showRssFeed?: boolean;
   position?: string;
@@ -29,6 +33,7 @@ const {
   isSticky = false,
   isDark = false,
   isFullWidth = false,
+  forceMobile = false,
   showToggleTheme = false,
   showRssFeed = false,
   position = 'center'
@@ -40,43 +45,59 @@ const {
     { sticky: isSticky, relative: !isSticky, dark: isDark },
     'top-0 z-50 flex-none mx-auto w-full border-b border-gray-50/0 parent'
   ]}
-  data-aw-sticky-header={isSticky || undefined}>
+  data-aw-sticky-header={isSticky || undefined}
+  data-aw-forced-mobile-header={forceMobile || undefined}>
   {/* Needed so the expanded menu is correctly shown when scrolled down */}
   <div class:list={[
-    'inset-0 absolute',
-    'parent-[.scroll]:(bg-page md:bg-white/90 md:backdrop-blur-md)',
-    'parent-[.scroll.dark]:(bg-page md:bg-[#030621e6] border-b border-gray-500/20 shadow-none)',
-    'dark:parent-[.scroll]:(bg-page md:bg-[#030621e6] border-b border-gray-500/20 shadow-none)'
+    'inset-0 absolute parent-[.scroll]:bg-page',
+    { 'parent-[.scroll]:(md:bg-white/90 md:backdrop-blur-md)': !forceMobile },
+    'parent-[.scroll.dark]:(bg-page border-b border-gray-500/20 shadow-none)',
+    'dark:parent-[.scroll]:(bg-page border-b border-gray-500/20 shadow-none)',
+    { 'parent-[.scroll.dark]:md:bg-[#030621e6]': !forceMobile },
+    { 'dark:parent-[.scroll]:md:bg-[#030621e6]': !forceMobile }
   ]} />
   <div
     class:list={[
-      'relative text-default py-3 px-3 lg:px-6 mx-auto w-full',
+      'relative text-default py-3 px-3 mx-auto w-full',
+      { 'lg:px-6': !forceMobile },
       {
-        'lg:flex lg:justify-between': position !== 'center'
+        'lg:flex lg:justify-between': position !== 'center' && !forceMobile
       },
       {
-        'lg:grid lg:grid-cols-3 lg:items-center': position === 'center'
+        'lg:grid lg:grid-cols-3 lg:items-center': position === 'center' && !forceMobile
       },
       {
         'max-w-7xl': !isFullWidth
       }
     ]}
   >
-    <div class:list={[{ 'mr-auto rtl:mr-0 rtl:ml-auto': position === 'right' }, 'flex justify-between']}>
+    <div class:list={[
+      'flex justify-between',
+      {
+        'mr-auto rtl:mr-0 rtl:ml-auto': position === 'right'
+      }
+    ]}>
       <a class="flex items-center" href={getHomePermalink()}>
         <Logo />
       </a>
-      <div class="flex items-center lg:hidden">
+      <div class:list={[
+        'flex items-center',
+        { 'lg:hidden': !forceMobile }
+      ]}>
         <ToggleMenu />
       </div>
     </div>
     <nav
-      class="text-default w-full hidden items-center overflow-x-hidden overflow-y-auto lg:mx-5 lg:flex lg:w-auto lg:justify-self-center lg:overflow-x-auto lg:overflow-y-visible"
-      aria-label="Main navigation"
-    >
+      class:list={[
+        'text-default w-full items-center hidden overflow-x-hidden overflow-y-auto',
+        { 'lg:mx-5 lg:flex lg:w-auto lg:justify-self-center lg:overflow-x-auto lg:overflow-y-visible': !forceMobile }
+      ]}
+      aria-label="Main navigation">
       <ul
-        class="text-xl tracking-[0.01rem] font-medium flex flex-col w-full lg:text-[0.9375rem] lg:flex-row lg:w-auto lg:self-center lg:justify-center"
-      >
+        class:list={[
+          'text-xl tracking-[0.01rem] font-medium flex flex-col w-full',
+          { 'lg:text-[0.9375rem] lg:flex-row lg:w-auto lg:self-center lg:justify-center': !forceMobile }
+        ]}>
         {
           (links ?? []).map(({ text, href, links }) => (
             <li class={links?.length ? 'dropdown' : ''}>
@@ -85,14 +106,22 @@ const {
                     <>
                       <span class="px-4 py-3 flex cursor-pointer items-center dark:hover:text-white">
                         {text}{' '}
-                        <div class="i-tabler:chevron-down ml-0.5 h-3.5 w-3.5 hidden rtl:ml-0 rtl:mr-0.5 lg:inline" />
+                        <div class:list={[
+                          'i-tabler:chevron-down ml-0.5 h-3.5 w-3.5 hidden rtl:ml-0 rtl:mr-0.5',
+                          { 'lg:inline': !forceMobile }
+                        ]} />
                       </span>
-                      <ul class="dropdown-menu font-medium pl-4 rounded-xs drop-shadow-xl lg:pl-0 lg:bg-white/90 lg:min-w-[200px] lg:hidden lg:absolute lg:backdrop-blur-md dark:lg:bg-dark">
+                      <ul class:list={[
+                        'dropdown-menu',
+                        'font-medium pl-4 rounded-xs drop-shadow-xl',
+                        { 'lg:pl-0 lg:bg-white/90 lg:min-w-[200px] lg:hidden lg:absolute lg:backdrop-blur-md dark:lg:bg-dark': !forceMobile }
+                      ]}>
                         {links.map(({ text: text2, href: href2 }) => (
                           <li>
                             <a
                               class:list={[
-                                'first:rounded-t last:rounded-b lg:hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-nowrap'
+                                'first:rounded-t last:rounded-b dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-nowrap',
+                                { 'lg:hover:bg-gray-100': !forceMobile }
                               ]}
                               href={href2}
                             >
@@ -120,13 +149,17 @@ const {
     </nav>
     <div
       class:list={[
+        'hidden items-center fixed w-full justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3',
         { 'ml-auto rtl:ml-0 rtl:mr-auto': position === 'left' },
-        'hidden lg:self-center lg:flex items-center lg:mb-0 fixed w-full lg:w-auto lg:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 lg:p-0 lg:justify-self-end'
+        { 'lg:self-center lg:flex lg:mb-0 lg:w-auto lg:static lg:p-0 lg:justify-self-end': !forceMobile }
       ]}
     >
-      <div class="flex w-full items-center justify-between lg:w-auto">
+      <div class:list={[
+        'flex w-full items-center justify-between',
+        { 'lg:w-auto': !forceMobile }
+      ]}>
         <div class="flex">
-          {showToggleTheme && <ToggleTheme iconClass="!w-6 !h-6 !lg:w-5 !lg:h-5 lg:inline-block" />}
+          {showToggleTheme && <ToggleTheme iconClass={`!w-6 !h-6 ${!forceMobile ? '!lg:w-5 !lg:h-5 lg:inline-block' : ''}`} />}
           {
             showRssFeed && (
               <a
@@ -144,7 +177,12 @@ const {
             ? (
                 <span class="ml-2 rtl:ml-0 rtl:mr-2">
                   {actions.map(btnProps => (
-                    <Button {...btnProps} class="text-sm font-semibold px-5.5 py-2.5 w-auto shadow-none lg:px-6" />
+                    <Button
+                      {...btnProps}
+                      class:list={[
+                        'text-sm font-semibold px-5.5 py-2.5 w-auto shadow-none',
+                        { 'lg:px-6': !forceMobile }
+                      ]} />
                   ))}
                 </span>
               )
