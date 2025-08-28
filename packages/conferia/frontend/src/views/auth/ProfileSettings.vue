@@ -405,17 +405,17 @@
       </div>
       <RouterLink to="/tabs/about">
         <div
-        class="p-6 rounded-xl flex items-center space-x-4 cursor-pointer bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/20 dark:hover:bg-blue-600">
-        <Button
-          icon="i-tabler:info-circle"
-          size="small"
-          rounded
-          variant="outlined" />
-        <h1>
-          About
-        </h1>
-      </div>
-    </RouterLink>
+          class="p-6 rounded-xl flex items-center space-x-4 cursor-pointer bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/20 dark:hover:bg-blue-600">
+          <Button
+            icon="i-tabler:info-circle"
+            size="small"
+            rounded
+            variant="outlined" />
+          <h1>
+            About
+          </h1>
+        </div>
+      </RouterLink>
     </div>
   </div>
 </template>
@@ -581,6 +581,9 @@ const uploadPhotoBlob = async (photoBlob: Blob) => {
   }
 };
 
+/**
+ * Gets the current user's settings
+ */
 async function fetchUserSettings() {
   try {
     const response = await axios.get(backend.construct('account/userDetails'), { headers: { Authorization: `Bearer ${token.value}` } });
@@ -664,18 +667,6 @@ const getChangePassword = () => {
 </script>
 
 <style scoped>
-.transform-gpu {
-  transform: translateZ(0);
-}
-
-.hover\:scale-102:hover {
-  transform: scale(1.02);
-}
-
-.hover\:scale-105:hover {
-  transform: scale(1.05);
-}
-
 /* Smooth transitions for dropdown arrows */
 .group:hover .w-8 {
   background-color: rgba(59, 130, 246, 0.2);
@@ -708,13 +699,6 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
-/* Improved switch animation */
-.transition {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
 /* Custom scrollbar for content areas */
 .space-y-4::-webkit-scrollbar {
   width: 4px;
@@ -731,23 +715,6 @@ button:focus-visible {
 
 .dark .space-y-4::-webkit-scrollbar-thumb {
   background: rgba(75, 85, 99, 0.5);
-}
-
-/* Upload Dialog Styles */
-:deep(.upload-dialog) {
-  .p-dialog-header {
-    --at-apply: bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-b border-blue-100 dark:border-blue-800;
-    padding: 0;
-  }
-
-  .p-dialog-content {
-    --at-apply: bg-white dark:bg-gray-900;
-    padding: 0;
-  }
-
-  .p-dialog-header-close {
-    --at-apply: text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200;
-  }
 }
 
 /* Enhanced button hover effects for dialog */

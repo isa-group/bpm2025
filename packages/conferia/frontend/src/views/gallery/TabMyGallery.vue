@@ -177,7 +177,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
 import axios from 'axios';
@@ -194,9 +194,7 @@ const imagesListMyGallery = ref<string[]>([]);
 const selectMultiple = ref(false);
 const imagesSelectedList = ref<string[]>([]);
 
-onMounted(async (): Promise<void> => {
-  await fetchMyGalleryMetadata();
-});
+void fetchMyGalleryMetadata();
 
 onBeforeRouteUpdate((to, _from, next) => {
   if (to.path === '/tabs/images/myGallery') {
@@ -220,7 +218,7 @@ const reloadPage = async (): Promise<void> => {
   await fetchMyGalleryMetadata();
 };
 
-const fetchMyGalleryMetadata = async (): Promise<void> => {
+async function fetchMyGalleryMetadata() {
   try {
     const response = await axios.get(backend.construct('gallery/myImages'), {
       headers: { Authorization: `Bearer ${token.value}` }
@@ -479,10 +477,3 @@ const deleteSelectedImages = async (): Promise<void> => {
 };
 
 </script>
-
-<style scoped>
-/* Estilos modernos con transiciones */
-.transform-gpu {
-  transform: translateZ(0);
-}
-</style>

@@ -393,21 +393,6 @@ const handleImageError = (): void => {
 </script>
 
 <style scoped>
-/* Modern styles with transitions */
-.transform-gpu {
-  transform: translateZ(0);
-}
-
-/* Smooth animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.3s ease-out;
-}
-
 /* Loading spinner */
 @keyframes spin {
   to { transform: rotate(360deg); }

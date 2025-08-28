@@ -183,7 +183,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -320,11 +320,5 @@ const getAvatarImage = async (id: string) => {
   }
 };
 
-onMounted(fetchMessages);
+void fetchMessages();
 </script>
-
-<style scoped>
-.bold {
-  font-weight: bold;
-}
-</style>

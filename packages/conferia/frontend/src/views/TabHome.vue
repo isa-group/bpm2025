@@ -178,7 +178,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive } from 'vue';
+import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
 import Badge from 'primevue/badge';
@@ -199,7 +199,7 @@ const goToPage = (pageId: number) => {
   void router.push(`/tabs/page/${pageId}`);
 };
 
-onMounted(async (): Promise<void> => {
+async function fetchPages() {
   try {
     const response = await axios.get(backend.construct('pages'), {
       headers: { Authorization: `Bearer ${token}` }
@@ -213,12 +213,14 @@ onMounted(async (): Promise<void> => {
   } catch (error) {
     console.error('Failed to fetch pages:', error);
   }
-});
+}
+
+void fetchPages();
 </script>
 
 <style scoped>
 .logo-large {
-  background-image: url('@bpm2025-website/assets/icon');
+  background-image: url('@bpm2025-website/assets/icon?url');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

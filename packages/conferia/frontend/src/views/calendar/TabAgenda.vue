@@ -652,56 +652,6 @@ const showSession = (id: number): void => {
 </script>
 
 <style scoped>
-
-ion-segment {
-  padding-bottom: 0.3em; /* Adjust as needed */
-}
-
-ion-segment-button ion-label {
-  align-items: center;
-  font-size: 0.75rem; /* Adjust as needed */
-  text-align: center;
-}
-
-ion-segment-button .day-name {
-  font-size: 0.7rem; /* Adjust as needed */
-  font-weight: bold;
-  display: block;
-}
-
-ion-segment-button .day-date {
-  font-size: 0.65rem; /* Adjust to fit the box */
-  margin-top: 0.125rem;
-}
-
-.day-without-session {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.larger-icon {
-  font-size: 1.5rem; /* Adjust as needed */
-  width: 1.625rem;
-  height: 1.625rem;
-}
-
-/* personal/icpm toolbar below */
-
-.full-width-segment {
-  width: 100%;
-}
-
-.half-width-segment-button {
-  height: 2rem; /* Adjust as needed */
-}
-
-.segment-label {
-  font-size: 0.75rem; /* Adjust as needed */
-  line-height: 1.2;
-  white-space: normal; /* Allow text wrapping */
-  display: flex;
-}
-
 .scrollbar-hide {
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
   scrollbar-width: none;  /* Firefox */
