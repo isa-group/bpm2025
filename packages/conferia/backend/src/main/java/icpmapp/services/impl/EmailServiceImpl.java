@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import icpmapp.services.EmailService;
 import icpmapp.services.JWTService;
 import icpmapp.services.UserService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +23,9 @@ public class EmailServiceImpl implements EmailService{
     private final JavaMailSender mailSender;
     private final JWTService jwtService;
     private final UserService userService;
+    
+    @Value("${spring.mail.username}")
+    private String mailUsername;
 
     public void sendSignup(EmailRequest emailRequest) throws AccessDeniedException, MessagingException {
         UserDetails userDetails = userService.userDetailsService().loadUserByUsername(emailRequest.getReceiver());
@@ -41,6 +45,7 @@ public class EmailServiceImpl implements EmailService{
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
+        helper.setFrom(mailUsername);
         helper.setTo(emailRequest.getReceiver());
         helper.setSubject("[BPM2025] Account activation");
         String token =  jwtService.generateToken(userDetails);
@@ -60,7 +65,7 @@ public class EmailServiceImpl implements EmailService{
         }
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
-        helper.setFrom("noreply@compute.dtu.dk");
+        helper.setFrom(mailUsername);
         helper.setTo(emailRequest.getReceiver());
         helper.setSubject("Reset password");
         String token =  jwtService.generateToken(userDetails);
