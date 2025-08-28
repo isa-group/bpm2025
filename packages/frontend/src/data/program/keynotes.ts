@@ -36,7 +36,7 @@ export const keynotes = [
       <br />
       <p>As an entrepreneur, he is building a technology company amidst the unprecedented revolution brought on by the disruption of
       generative AI. This exciting journey is filled with lessons learned and best practices that Josep plans to share
-      with the BPM community in this keynote titled : <b>"Taking Your BPM Project to the Next Level: The Entrepreneurial Journey from Academia."</b></p>
+      with the BPM community in this keynote titled: <b>"Taking Your BPM Project to the Next Level: The Entrepreneurial Journey from Academia."</b></p>
     `
   },
   {
@@ -56,7 +56,7 @@ export const keynotes = [
       University of Washington. Professor Bjørn was a visiting researcher at the Indian Institute of Management, Bangalore
       (IIM-B) in periods between 2012-2014, and published her second book: Diversity in Computer Science in 2023.</p>
       <br />
-      <p>In this keynote, Professor Bjørn will explore the connections between research on Computer Supported Cooperative Work
+      <p>In her keynote titled: <b>"Cooperative Contexts & Values Shape Hidden Yet Pertinent Conditions for Process Design"</b>, Professor Bjørn will explore the connections between research on Computer Supported Cooperative Work
       and Business Process Management and explore the benefit of engaging in collaboration producing new forms of
       research together and across the fields.</p>
     `

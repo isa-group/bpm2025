@@ -758,8 +758,8 @@ The Responsible BPM Forum was established with the aim to develop concepts that 
           },
           {
             Hour: '11:40',
-            Title: 'The Impact of Event Data Partitioning on Privacy-aware Process Discovery',
-            Authors: 'Jungeun Lim, Stephan Fahrenkrog-Petersen, Xixi Lu, Jan Mendling and Minseok Song'
+            Title: 'ReDPT-CT: Designing Responsible Digital Process Twins for Clinical Trials',
+            Authors: 'Luiz Ricardo Brito Ribeiro, Silvia Inês Dallavalle de Pádua, Gerald Kremer and Rainer Stark'
           },
           {
             Hour: '11:55',
@@ -808,8 +808,8 @@ The Responsible BPM Forum was established with the aim to develop concepts that 
           },
           {
             Hour: '15:15',
-            Title: 'ReDPT-CT: Designing Responsible Digital Process Twins for Clinical Trials',
-            Authors: 'Luiz Ricardo Brito Ribeiro, Silvia Inês Dallavalle de Pádua, Gerald Kremer and Rainer Stark'
+            Title: 'The Impact of Event Data Partitioning on Privacy-aware Process Discovery',
+            Authors: 'Jungeun Lim, Stephan Fahrenkrog-Petersen, Xixi Lu, Jan Mendling and Minseok Song'
           },
           {
             Hour: '15:30',
