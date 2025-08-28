@@ -33,21 +33,21 @@
             <div
               v-if="attendee.company"
               class="flex items-center justify-center gap-2">
-              <i class="i-carbon-building text-lg" />
+              <i class="i-tabler:building text-lg" />
               <span>{{ attendee.company }}</span>
             </div>
 
             <div
               v-if="attendee.country"
               class="flex items-center justify-center gap-2">
-              <i class="i-carbon-location text-lg" />
+              <i class="i-tabler:map-pin text-lg" />
               <span>{{ attendee.country }}</span>
             </div>
 
             <div
               v-if="attendee.email"
               class="flex items-center justify-center gap-2">
-              <i class="i-carbon-email text-lg" />
+              <i class="i-tabler:mail text-lg" />
               <a
                 :href="`mailto:${attendee.email}`"
                 class="text-blue-600 dark:text-blue-400 hover:underline">
@@ -66,7 +66,7 @@
           <template #content>
             <div class="p-6 text-center">
               <div class="mb-4">
-                <i class="i-carbon-calendar text-4xl text-purple-500" />
+                <i class="i-tabler:calendar text-4xl text-purple-500" />
               </div>
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 See Personalized Agenda
@@ -84,7 +84,7 @@
           <template #content>
             <div class="p-6 text-center">
               <div class="mb-4">
-                <i class="i-carbon-image text-4xl text-green-500" />
+                <i class="i-tabler:photo text-4xl text-green-500" />
               </div>
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 Personal Gallery

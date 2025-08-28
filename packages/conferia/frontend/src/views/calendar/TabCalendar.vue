@@ -6,7 +6,7 @@
         <button
           class="flex items-center space-x-2 px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
           @click="changeMonth(-1)">
-          <i class="i-carbon-chevron-left text-lg" />
+          <i class="i-tabler:chevron-left text-lg" />
           <span class="font-medium">Prev</span>
         </button>
 
@@ -23,7 +23,7 @@
           class="flex items-center space-x-2 px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
           @click="changeMonth(1)">
           <span class="font-medium">Next</span>
-          <i class="i-carbon-chevron-right text-lg" />
+          <i class="i-tabler:chevron-right text-lg" />
         </button>
       </div>
     </div>

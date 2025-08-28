@@ -19,7 +19,7 @@
           <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-2 border-b border-blue-100 dark:border-blue-800">
             <div class="flex items-center space-x-3">
               <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center">
-                <i class="i-carbon-information text-xl text-white" />
+                <i class="i-tabler:info-circle text-xl text-white" />
               </div>
               <h2 class="text-lg font-bold text-blue-900 dark:text-blue-100">
                 Application Information
@@ -33,7 +33,7 @@
             <div class="space-y-4">
               <div class="flex items-start space-x-4">
                 <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
-                  <i class="i-carbon-education text-white" />
+                  <i class="i-mdi:university text-white" />
                 </div>
                 <div class="text-gray-700 dark:text-gray-300 leading-relaxed">
                   <p class="font-medium text-gray-900 dark:text-white mb-2">
@@ -50,7 +50,7 @@
 
               <div class="flex items-start space-x-4">
                 <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
-                  <i class="i-carbon-code text-white" />
+                  <i class="i-tabler:code text-white" />
                 </div>
                 <div class="text-gray-700 dark:text-gray-300 leading-relaxed">
                   <p class="font-medium text-gray-900 dark:text-white mb-2">
@@ -72,7 +72,7 @@
           <div class="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 px-4 py-2 border-b border-green-100 dark:border-green-800">
             <div class="flex items-center space-x-3">
               <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
-                <i class="i-carbon-email text-xl text-white" />
+                <i class="i-tabler:mail text-xl text-white" />
               </div>
               <h3 class="text-lg font-bold text-green-900 dark:text-green-100">
                 Contact Information
@@ -84,7 +84,7 @@
           <div class="p-6">
             <div class="flex items-center space-x-4">
               <div class="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-800 dark:to-blue-700 rounded-full flex items-center justify-center">
-                <i class="i-carbon-user text-blue-600 dark:text-blue-300" />
+                <i class="i-tabler:user text-blue-600 dark:text-blue-300" />
               </div>
               <div>
                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -105,7 +105,7 @@
           <div class="bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 px-4 py-2 border-b border-orange-100 dark:border-orange-800">
             <div class="flex items-center space-x-3">
               <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center">
-                <i class="i-carbon-security text-xl text-white" />
+                <i class="i-tabler:shield-check text-xl text-white" />
               </div>
               <h3 class="text-lg font-bold text-orange-900 dark:text-orange-100">
                 Privacy & Terms

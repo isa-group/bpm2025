@@ -35,7 +35,7 @@
             severity="primary"
             size="small"
             @click="uploadGalleryImage">
-            <i class="i-carbon-add mr-1" />
+            <i class="i-tabler:camera-plus mr-1" />
           </Button>
         </div>
       </div>
@@ -65,7 +65,7 @@
           <div
             v-if="selectMultiple && imagesSelectedList.includes(image)"
             class="absolute top-2 right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">
-            <i class="i-carbon-checkmark text-xs" />
+            <i class="i-tabler:check text-xs" />
           </div>
         </div>
       </div>
@@ -75,7 +75,7 @@
         v-else
         class="text-center py-12">
         <div class="mb-4">
-          <i class="i-carbon-image text-6xl text-gray-400" />
+          <i class="i-tabler:photo text-6xl text-gray-400" />
         </div>
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">
           No tienes imágenes
@@ -102,7 +102,7 @@
             class="shadow-lg"
             @click="untoggleSelectImage">
             <template #icon>
-              <i class="i-carbon-close text-xl" />
+              <i class="i-tabler:x text-xl" />
             </template>
           </Button>
 
@@ -114,7 +114,7 @@
             :disabled="imagesSelectedList.length === 0"
             @click="deleteGalleryImage">
             <template #icon>
-              <i class="i-carbon-trash-can text-xl" />
+              <i class="i-tabler:trash text-xl" />
             </template>
           </Button>
 
@@ -126,7 +126,7 @@
             :disabled="imagesSelectedList.length === 0"
             @click="downloadImages">
             <template #icon>
-              <i class="i-carbon-download text-xl" />
+              <i class="i-tabler:download text-xl" />
             </template>
           </Button>
         </div>
@@ -142,7 +142,7 @@
             class="shadow-lg"
             @click="() => selectMultiple = true">
             <template #icon>
-              <i class="i-carbon-checkbox text-xl" />
+              <i class="i-tabler:checkbox text-xl" />
             </template>
           </Button>
 
@@ -153,7 +153,7 @@
             class="shadow-lg"
             @click="uploadGalleryImage">
             <template #icon>
-              <i class="i-carbon-add text-xl" />
+              <i class="i-tabler:camera-plus text-xl" />
             </template>
           </Button>
         </div>

@@ -394,7 +394,7 @@
         class="p-6 rounded-xl flex items-center space-x-4 cursor-pointer bg-red-100 hover:bg-red-300 text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-600"
         @click="logout">
         <Button
-          icon="i-tabler:logout-2"
+          icon="i-tabler:door-exit"
           size="small"
           variant="outlined"
           rounded

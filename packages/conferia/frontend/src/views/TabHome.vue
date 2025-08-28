@@ -60,7 +60,7 @@
             <template #content>
               <div class="p-4 text-center">
                 <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-3">
-                  <i class="i-carbon-calendar text-xl dark:text-gray-300  text-gray-600" />
+                  <i class="i-tabler:calendar text-xl dark:text-gray-300  text-gray-600" />
                 </div>
                 <h4 class="font-semibold text-gray-900 dark:text-white text-sm">
                   Agenda
@@ -78,7 +78,7 @@
             <template #content>
               <div class="p-4 text-center">
                 <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-3">
-                  <i class="i-carbon-user-multiple text-xl dark:text-gray-300  text-gray-600" />
+                  <i class="i-tabler:users text-xl dark:text-gray-300  text-gray-600" />
                 </div>
                 <h4 class="font-semibold text-gray-900 dark:text-white text-sm">
                   Attendees
@@ -96,7 +96,7 @@
             <template #content>
               <div class="p-4 text-center">
                 <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-3">
-                  <i class="i-carbon-email text-xl dark:text-gray-300  text-gray-600" />
+                  <i class="i-tabler:mail text-xl dark:text-gray-300  text-gray-600" />
                 </div>
                 <h4 class="font-semibold text-gray-900 dark:text-white text-sm">
                   Messages
@@ -114,7 +114,7 @@
             <template #content>
               <div class="p-4 text-center">
                 <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-3">
-                  <i class="i-carbon-image text-xl dark:text-gray-300  text-gray-600" />
+                  <i class="i-tabler:photo text-xl dark:text-gray-300  text-gray-600" />
                 </div>
                 <h4 class="font-semibold text-gray-900 dark:text-white text-sm">
                   Gallery
@@ -147,7 +147,7 @@
                 <div class="flex items-center justify-between">
                   <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-xl flex items-center justify-center">
-                      <i class="i-carbon-document text-gray-600 dark:text-gray-300" />
+                      <i class="i-tabler:file text-gray-600 dark:text-gray-300" />
                     </div>
                     <span class="text-gray-900 dark:text-white font-semibold text-base">
                       {{ page.name }}

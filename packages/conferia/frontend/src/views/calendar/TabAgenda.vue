@@ -14,7 +14,7 @@
         <button
           class="flex items-center space-x-2 px-3 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
           @click="goToCalendar">
-          <i class="i-carbon-calendar text-lg" />
+          <i class="i-tabler:calendar text-lg" />
           <span class="font-medium">Calendar</span>
         </button>
       </div>
@@ -146,7 +146,7 @@
         v-else
         class="text-center py-12">
         <div class="mb-4">
-          <i class="i-carbon-calendar text-6xl text-gray-400" />
+          <i class="i-tabler:calendar text-6xl text-gray-400" />
         </div>
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">
           {{ state.selectedDay ? 'No sessions available' : 'Select a day' }}
