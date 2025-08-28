@@ -1,0 +1,58 @@
+---
+import PageLayout from '#/layouts/PageLayout.astro';
+import { proceedings } from '#/data/proceedings';
+import Content from '#/components/widgets/Content.astro';
+---
+
+<PageLayout
+  metadata={{
+    title: 'Proceedings',
+    description: 'The Proceedings of the BPM 2025 Conference have been published at Springer and CEUR-WS.'
+  }}
+  heroProps={{
+    subtitle: 'The Proceedings of the BPM 2025 Conference have been published at Springer and CEUR-WS.',
+    actions: [
+      { variant: 'primary', text: 'BPM', href: proceedings.bpm.href },
+      { variant: 'primary', text: 'BPM Forum', href: proceedings.bpmforum.href },
+      { variant: 'primary', text: 'RBPM, PT, and Educators Forum', href: proceedings.forums.href }
+    ]
+  }}>
+  <Content title="Proceedings">
+    <Fragment slot="content">
+      <div class="space-y-4">
+        <p>
+          Participants of the conference get free access to the Springer volumes for a period of
+          4 weeks through this page, starting <b>August 31</b>. Please find the proceedings here:
+        </p>
+        <ul class="list-disc list-inside space-y-2">
+          <li>
+            BPM 2025 main proceedings, {proceedings.bpm.volume}:{' '}
+            <a href={proceedings.bpm.href} target="_blank" rel="noopener" class="text-sky-600 underline">
+              {proceedings.bpm.href}
+            </a>
+          </li>
+          <li>
+            BPM 2025 Forum, {proceedings.bpmforum.volume}:{' '}
+            <a href={proceedings.bpmforum.href} target="_blank" rel="noopener" class="text-sky-600 underline">
+              {proceedings.bpmforum.href}
+            </a>
+          </li>
+          <li>
+            BPM 2025 Responsible BPM Forum, Process Technology Forum, Educators Forum,
+            {proceedings.forums.volume}:{' '}
+            <a href={proceedings.forums.href} target="_blank" rel="noopener" class="text-sky-600 underline">
+              {proceedings.forums.href}
+            </a>
+          </li>
+        </ul>
+        <p>
+          The Proceedings of the Best Dissertation Award, Doctoral Consortium, and Demonstration &
+          Resources Forum will be published on CEUR-WS. They will be accessible from this webpage when available.
+        </p>
+        <p>
+          The BPM Workshop Proceedings 2025 will be published as post-proceedings at Springer. They will be accessible from this webpage when available.
+        </p>
+      </div>
+    </Fragment>
+  </Content>
+</PageLayout>
