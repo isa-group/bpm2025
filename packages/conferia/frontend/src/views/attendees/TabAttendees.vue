@@ -116,7 +116,7 @@
 </template>
 
 <script setup lang="ts">
-import { watch, reactive, onMounted } from 'vue';
+import { watch, reactive } from 'vue';
 import { useDebounceFn } from '@vueuse/core';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
@@ -213,5 +213,5 @@ const loadMore = async () => {
   }
 };
 
-onMounted(fetchAttendees);
+void fetchAttendees();
 </script>

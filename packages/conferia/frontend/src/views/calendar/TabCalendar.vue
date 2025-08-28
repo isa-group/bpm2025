@@ -76,7 +76,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, onMounted, computed, nextTick } from 'vue';
+import { reactive, computed, nextTick } from 'vue';
 import axios from 'axios';
 import { useRouter, useRoute } from 'vue-router';
 import backend from '#/plugins/backend.config';
@@ -266,16 +266,7 @@ async function dateClicked(day: CalendarDay): Promise<void> {
   }
 }
 
-const applyTheme = () => {
-  // Theme is now handled by Tailwind CSS dark mode classes
-  // No need for custom CSS variables
-};
-
-onMounted(() => {
-  void fetchSessions();
-  applyTheme();
-});
-
+void fetchSessions();
 </script>
 
 <style scoped>

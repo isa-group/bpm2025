@@ -50,7 +50,7 @@
         </p>
         <button
           class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          @click="retryLoad">
+          @click="loadPageData">
           Try Again
         </button>
       </div>
@@ -115,7 +115,7 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { onMounted, reactive, ref } from 'vue';
+import { reactive, ref } from 'vue';
 import axios from 'axios';
 import backend from '#/plugins/backend.config';
 
@@ -158,25 +158,7 @@ const loadPageData = async () => {
   }
 };
 
-const retryLoad = () => {
-  void loadPageData();
-};
-
-onMounted(() => {
-  void loadPageData();
-});
-
-const _reload = () => {
-  if (iframeRef.value) {
-    const iframeSrc = iframeRef.value.src;
-    iframeRef.value.src = ''; // Temporarily clear the src
-    setTimeout(() => {
-      if (iframeRef.value) {
-        iframeRef.value.src = iframeSrc; // Reassign the original URL after a short delay
-      }
-    }, 0);
-  }
-};
+void loadPageData();
 </script>
 
 <style scoped>

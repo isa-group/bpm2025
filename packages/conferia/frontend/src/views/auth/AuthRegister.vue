@@ -130,7 +130,7 @@ import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import Password from 'primevue/password';
 import ToggleSwitch from 'primevue/toggleswitch';
-import { computed, onMounted, ref } from 'vue';
+import { computed, ref } from 'vue';
 import axios from 'axios';
 import { useRouter, useRoute } from 'vue-router';
 import backend from '#/plugins/backend.config';
@@ -158,13 +158,10 @@ const token = route.params.token;
 
 const hasToken = computed(() => token !== '');
 
-onMounted(() => {
-  if (hasToken.value) {
-    void getUserInformation();
-  }
-});
-
-const getUserInformation = async () => {
+/**
+ * Fetch user information using the token
+ */
+async function getUserInformation() {
   try {
     const setUpToken = Array.isArray(token) ? token[0] : token;
     localStorage.setItem('setUpToken', setUpToken);
@@ -200,4 +197,8 @@ const sendUserInformation = async () => {
     console.error('Failed send user information:', error);
   }
 };
+
+if (hasToken.value) {
+  void getUserInformation();
+}
 </script>

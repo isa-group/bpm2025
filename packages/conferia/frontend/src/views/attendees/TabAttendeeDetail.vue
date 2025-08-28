@@ -101,7 +101,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, onMounted } from 'vue';
+import { reactive } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import axios from 'axios';
 import Card from 'primevue/card';
@@ -184,7 +184,7 @@ function goToPersonalGallery(): void {
   void router.push({ path: `/tabs/images/${attendeeId}` });
 }
 
-onMounted(fetchAttendeeDetails);
+void fetchAttendeeDetails();
 </script>
 
 <style scoped>

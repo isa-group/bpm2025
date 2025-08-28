@@ -503,10 +503,3 @@ const goToImage = (imageId: string): void => {
   void router.push(`/tabs/singleimage/${imageId}`);
 };
 </script>
-
-<style scoped>
-/* Modern styles with transitions */
-.transform-gpu {
-  transform: translateZ(0);
-}
-</style>
