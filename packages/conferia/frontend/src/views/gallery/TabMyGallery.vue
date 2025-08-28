@@ -169,7 +169,7 @@
         class="shadow-lg"
         @click="() => $router.push('/tabs/images')">
         <template #icon>
-          <i class="i-carbon-gallery text-xl" />
+          <i class="i-tabler:library-photo text-xl" />
         </template>
       </Button>
     </div>
