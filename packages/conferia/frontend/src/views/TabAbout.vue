@@ -122,7 +122,7 @@
               <a
                 class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline font-medium cursor-pointer inline-flex items-center space-x-2 whitespace-nowrap"
                 @click="openPrivacy">
-                <i class="i-carbon-document" />
+                <i class="i-tabler:file" />
                 <span>View Privacy Note</span>
               </a>
             </div>
