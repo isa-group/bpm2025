@@ -66,7 +66,7 @@ export function getHeaderData(currentUrl: URL): HeaderData {
         text: 'Program',
         links: [
           {
-            text: 'Overview',
+            text: 'Overview and Booklet',
             href: getPermalink('/program/overview')
           },
           {

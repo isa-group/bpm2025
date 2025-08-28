@@ -5,6 +5,8 @@ import WeekView from '#/components/ui/Schedule/WeekView.astro';
 import { sections } from '#/data/program/overviews';
 import Headline from '#/components/ui/Headline.astro';
 import LocationView from '#/components/ui/Schedule/LocationView.astro';
+import pdfBooklet from '#/assets/documents/program/Program_booklet.pdf';
+import Booklet from '#/components/widgets/Booklet.astro';
 ---
 
 <PageLayout
@@ -13,7 +15,11 @@ import LocationView from '#/components/ui/Schedule/LocationView.astro';
     description: 'Schedule of the conference'
   }}
   heroProps={{
-    subtitle: 'Hover over the events to see the description & the location<br />Click on them to see the full program'
+    subtitle: 'Hover over the events to see the description & the location<br />Click on them to see the full program',
+    actions: [
+      { variant: 'primary', text: 'View program booklet', icon: 'i-tabler:download', href: pdfBooklet, target: '_blank' }
+    ]
+
   }}>
   {sections.map((s, index) => {
     const days = new Set(s.events.map(e => e.start.getDate()));
@@ -33,4 +39,8 @@ import LocationView from '#/components/ui/Schedule/LocationView.astro';
       </WidgetWrapper>
     );
   })}
+  <WidgetWrapper>
+    <Headline title="Program Booklet" />
+    <Booklet />
+  </WidgetWrapper>
 </PageLayout>

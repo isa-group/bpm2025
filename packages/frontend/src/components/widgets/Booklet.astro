@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+
+import pdfBooklet from '#/assets/documents/program/Program_booklet.pdf';
+import coverImg from '#/assets/documents/program/Program_booklet_cover.png';
+---
+{/* Centered, constrained column */}
+<div class="mx-auto text-center flex flex-col gap-6 max-w-md w-full items-center">
+  {/* Cover image */}
+  <a
+    href={pdfBooklet}
+    target="_blank"
+    rel="noopener"
+    class="mx-auto border border-gray-200 rounded-xl overflow-hidden dark:border-gray-700"
+  >
+    <Image
+      src={coverImg}
+      alt="Program booklet cover"
+      class="h-auto w-full aspect-[3/4] object-cover"
+      loading="eager"
+    />
+  </a>
+
+  {/* Buttons below */}
+  <div class="flex flex-wrap gap-3 justify-center">
+    <a
+      href={pdfBooklet}
+      download
+      class="btn btn-primary inline-flex gap-2 whitespace-nowrap items-center"
+    >
+      <span class="i-tabler:download shrink-0 h-4 w-4" aria-hidden="true"></span>
+      <span>Download PDF</span>
+    </a>
+    <a
+      href={pdfBooklet}
+      target="_blank"
+      rel="noopener"
+      class="btn btn-secondary inline-flex gap-2 whitespace-nowrap items-center"
+    >
+      <span class="i-tabler:external-link shrink-0 h-4 w-4" aria-hidden="true"></span>
+      <span>Open in browser</span>
+    </a>
+  </div>
+</div>

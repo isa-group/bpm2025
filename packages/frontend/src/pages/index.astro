@@ -9,12 +9,14 @@ import WidgetWrapper from '#/components/ui/WidgetWrapper.astro';
 import Sponsors from '#/components/ui/Sponsors.astro';
 import { Image } from 'astro:assets';
 import Avatar from '#/components/ui/Avatar.astro';
+import Booklet from '#/components/widgets/Booklet.astro';
 
 import SevilleCathedral from '#/assets/images/hero/cathedral.jpg';
 import BPMLogo from '@bpm2025-website/assets/icon';
 import ManuelResinas_img from '#/assets/images/people/resinas.jpg';
 import Adela_img from '#/assets/images/people/ortega.jpg';
 import Blockquote from '#/components/widgets/Blockquote.astro';
+import pdfBooklet from '#/assets/documents/program/Program_booklet.pdf';
 
 const cathedralText = 'Cathedral of Seville';
 ---
@@ -23,7 +25,7 @@ const cathedralText = 'Cathedral of Seville';
   heroProps={{
     title: '23<sup>rd</sup> International Conference on Business Process Management <br /> (BPM 2025)',
     tagline: '31st Aug - 5th Sep 2025 | Seville, Spain',
-    actions: [{ variant: 'primary', text: 'Registration info', href: getPermalink('/registration') }]
+    actions: [{ variant: 'primary', text: 'Program booklet', href: pdfBooklet, icon: 'i-tabler:download', target: '_blank' }]
   }}>
   <Fragment slot="hero-subtitle">
     BPM 2025 is the 23<sup>rd</sup> conference in a series that provides the most prestigious forum
@@ -73,30 +75,66 @@ const cathedralText = 'Cathedral of Seville';
         items={[
           {
             title:
-          'Workshops <br class="hidden" /> <span class="font-normal hidden"></span> <br /> <span class="text-sm font-normal">1st of September</span>',
+          `<a href="${getPermalink('/program/doctoral-consortium/')}">Doctoral Consortium</a> <br class="hidden" /> <span class="font-normal hidden"></span> <br /> <span class="text-sm font-normal">31st of August</span>`,
             // description: '[TO BE REDACTED]',
-            icon: 'i-hugeicons:teacher'
+            icon: 'i-hugeicons:mentor'
           },
           {
             title:
-          'Research tracks <br class="hidden" /> <span class="font-normal hidden"></span> <br /> <span class="text-sm font-normal">2nd - 4th of September</span>',
-            // description: '[TO BE REDACTED]',
-            icon: 'i-material-symbols-light:lab-research'
-          },
-          {
-            title:
-          'Forums, tutorials and demos <br class="hidden" /> <span class="font-normal hidden"></span> <br /> <span class="text-sm font-normal">2nd - 5th of September</span>',
+          `<a href="${getPermalink('/program/workshops/')}">Workshops</a> <br class="hidden" /> <span class="font-normal hidden"></span> <br /> <span class="text-sm font-normal">1st of September</span>`,
             // description: '[TO BE REDACTED]',
             icon: 'i-material-symbols:forum'
+          },
+          {
+            title:
+          'Main conference <br class="hidden" /> <span class="font-normal hidden"></span> <br /> <span class="text-sm font-normal">2nd - 4th of September</span>',
+            description: `
+<ul>
+<li><a href="${getPermalink('/program/keynotes/')}">Keynotes</a></a></li>
+<li><a href="${getPermalink('/program/main-track/')}">Main track</a></li>
+<li><a href="${getPermalink('/program/bpm-forum/')}">BPM Forum</a></li>
+<li><a href="${getPermalink('/program/process-technology-forum/')}">Process Technology Forum</a></li>
+<li><a href="${getPermalink('/program/responsible-bpm-forum/')}">Responsible BPM Forum</a></li>
+<li><a href="${getPermalink('/program/industry-forum/')}">Industry Forum</a></li>
+<li><a href="${getPermalink('/program/educators-forum/')}">Educators Forum</a></li>
+<li><a href="${getPermalink('/program/tutorials/')}">Tutorials</a></li>
+<li><a href="${getPermalink('/program/demos-&-resources/')}">Demos & Resources</a></li>
+<li><a href="${getPermalink('/program/journal-first-track/')}">Journal First</a></li>
+</ul> `.trim(),
+            // icon: 'i-material-symbols-light:lab-research'
+            icon: 'i-hugeicons:teacher'
+          },
+          // {
+          //   title:
+          // ' <br class="hidden" /> <span class="font-normal hidden"></span> <br /> <span class="text-sm font-normal">2nd - 4th of September</span>',
+          //   // description: '[TO BE REDACTED]',
+          //   icon: 'i-material-symbols:forum'
+          // },
+          {
+            title:
+          `<a href="${getPermalink('/program/bpm-admin/')}">Jornadas Gestión y Automatización de Procesos en la Era de la Inteligencia Artificial</a> <br class="hidden" /> <span class="font-normal hidden"></span> <br /> <span class="text-sm font-normal">5th of September</span>`,
+            // description: 'Impulsando la innovación en el sector público',
+            icon: 'i-hugeicons:bank'
           }
         ]}
       />
     </Fragment>
   </Content>
 
+  {/* Program booklet */}
+  <Content
+    title="Program booklet"
+    classes={{ container: '!pt-6', content: 'justify-center' }}
+    bg
+  >
+    <Fragment slot="content">
+      <Booklet />
+    </Fragment>
+  </Content>
+
   { /* Cite */ }
 
-  <Content bg>
+  <Content>
     <Fragment slot="content">
       <div class="flex gap-2 justify-center">
         <Avatar
@@ -146,7 +184,7 @@ const cathedralText = 'Cathedral of Seville';
 
   {/* Sponsors */}
 
-  <WidgetWrapper>
+  <WidgetWrapper bg>
     <Headline
       classes={{ container: 'pt-6 !mb-0' }}
       title="Organization & Sponsors"
@@ -168,7 +206,6 @@ const cathedralText = 'Cathedral of Seville';
     title="Let's get together!"
     subtitle="Join us in Seville for BPM 2025 and transform the way you think about <br /> Business Process Management"
     boxed={false}
-    bg
     actions={[
       {
         variant: 'primary',
