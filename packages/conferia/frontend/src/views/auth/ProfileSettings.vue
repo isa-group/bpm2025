@@ -390,84 +390,39 @@
         </template>
       </Card>
 
-      <!-- Theme Settings Section -->
-      <Card class="overflow-hidden shadow-sm">
-        <template #header>
-          <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-6 border-b border-blue-100 dark:border-blue-800">
-            <button
-              class="flex items-center justify-between w-full text-left group"
-              @click="getThemeSettings">
-              <h2 class="text-xl font-bold text-blue-900 dark:text-blue-100">
-                Theme Settings
-              </h2>
-              <div class="w-8 h-8 bg-blue-100 dark:bg-blue-700 rounded-full flex items-center justify-center transition-transform duration-200">
-                <svg
-                  class="w-4 h-4 text-blue-600 dark:text-blue-300 transition-transform duration-200"
-                  :class="{ 'rotate-180': !showThemeInformation }"
-                  viewBox="0 0 32 32"
-                  fill="currentColor">
-                  <path d="M16 22L6 12l1.4-1.4l8.6 8.6l8.6-8.6L26 12z" />
-                </svg>
-              </div>
-            </button>
-          </div>
-        </template>
-
-        <template #content>
-          <div
-            v-if="showThemeInformation"
-            class="p-6 transition-all duration-300 ease-in-out">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 bg-gradient-to-br from-gray-600 to-gray-800 dark:from-yellow-400 dark:to-yellow-600 rounded-xl flex items-center justify-center">
-                  <svg
-                    v-if="isDarkMode"
-                    class="w-5 h-5 text-yellow-300"
-                    viewBox="0 0 32 32"
-                    fill="currentColor">
-                    <path d="M15 4h2v5h-2zm5.64 2.36l1.41 1.41l-3.54 3.54l-1.41-1.41zM20 15h5v2h-5zm-5.64 9.64l3.54-3.54l1.41 1.41l-3.54 3.54zM7 15h5v2H7zm2.36-5.64l3.54 3.54l-1.41 1.41l-3.54-3.54zM16 8a8 8 0 108 8a8 8 0 00-8-8z" />
-                  </svg>
-                  <svg
-                    v-else
-                    class="w-5 h-5 text-gray-100"
-                    viewBox="0 0 32 32"
-                    fill="currentColor">
-                    <path d="M13.5 6.5C13.5 5.7 14.2 5 15 5s1.5.7 1.5 1.5v2c0 .8-.7 1.5-1.5 1.5s-1.5-.7-1.5-1.5v-2zM21.2 8.8c.6-.6 1.5-.6 2.1 0s.6 1.5 0 2.1l-1.4 1.4c-.6.6-1.5.6-2.1 0s-.6-1.5 0-2.1l1.4-1.4zM25 13.5c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5h-2c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5h2zM21.2 21.2c.6.6.6 1.5 0 2.1s-1.5.6-2.1 0l-1.4-1.4c-.6-.6-.6-1.5 0-2.1s1.5-.6 2.1 0l1.4 1.4zM13.5 23.5c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-2c0-.8-.7-1.5-1.5-1.5s-1.5.7-1.5 1.5v2zM8.8 21.2c-.6.6-1.5.6-2.1 0s-.6-1.5 0-2.1l1.4-1.4c.6-.6 1.5-.6 2.1 0s.6 1.5 0 2.1l-1.4 1.4zM5 13.5c-.8 0-1.5.7-1.5 1.5s.7 1.5 1.5 1.5h2c.8 0 1.5-.7 1.5-1.5s-.7-1.5-1.5-1.5H5zM8.8 8.8c-.6-.6-.6-1.5 0-2.1s1.5-.6 2.1 0l1.4 1.4c.6.6.6 1.5 0 2.1s-1.5.6-2.1 0L8.8 8.8z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="font-medium text-gray-900 dark:text-white">
-                    Dark Mode
-                  </h3>
-                  <p class="text-sm text-gray-600 dark:text-gray-400">
-                    Switch between light and dark themes
-                  </p>
-                </div>
-              </div>
-              <div class="relative inline-block">
-                <button
-                  type="button"
-                  class="relative inline-flex h-6 w-12 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                  :class="isDarkMode ? 'bg-blue-600' : 'bg-gray-300'"
-                  role="switch"
-                  :aria-checked="isDarkMode"
-                  @click="toggleTheme">
-                  <span class="sr-only">Toggle theme</span>
-                  <span
-                    class="pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition duration-200 ease-in-out"
-                    :class="isDarkMode ? 'translate-x-6' : 'translate-x-0'" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </template>
-      </Card>
+      <div
+        class="p-6 rounded-xl flex items-center space-x-4 cursor-pointer bg-red-100 hover:bg-red-300 text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-600"
+        @click="logout">
+        <Button
+          icon="i-tabler:logout-2"
+          size="small"
+          variant="outlined"
+          rounded
+          @click="logout" />
+        <h1>
+          Log out
+        </h1>
+      </div>
+      <RouterLink to="/tabs/about">
+        <div
+        class="p-6 rounded-xl flex items-center space-x-4 cursor-pointer bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/20 dark:hover:bg-blue-600">
+        <Button
+          icon="i-tabler:info-circle"
+          size="small"
+          rounded
+          variant="outlined" />
+        <h1>
+          About
+        </h1>
+      </div>
+    </RouterLink>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { ref, inject } from 'vue';
+import { useRouter } from 'vue-router';
 import Button from 'primevue/button';
 import Card from 'primevue/card';
 import Dialog from 'primevue/dialog';
@@ -478,18 +433,23 @@ import Password from 'primevue/password';
 import axios from 'axios';
 import backend from '#/plugins/backend.config';
 import { usePhotoGallery } from '#/composables/usePhotoGallery';
+import { accessTokenKey } from '#/plugins/symbols';
 
-onMounted(() => {
-  void fetchUserSettings();
-});
-
+const router = useRouter();
 const { takePhotoProfile, choosePhotoFromPhone } = usePhotoGallery();
-const token = ref(localStorage.getItem('accessToken'));
+const token = inject(accessTokenKey);
+
+void fetchUserSettings();
+
+const logout = () => {
+  localStorage.removeItem('accessToken');
+  localStorage.removeItem('refreshToken');
+  localStorage.removeItem('userId');
+  void router.push('/auth/login');
+};
 
 const showUserInformation = ref(true);
 const showChangePassword = ref(false);
-const showNotificationsInformation = ref(false);
-const showThemeInformation = ref(false);
 const showUploadDialog = ref(false);
 const isUploadingPhoto = ref(false);
 
@@ -513,16 +473,6 @@ const user = ref({
   id: '',
   sharingChoice: false
 });
-
-const _notifications = ref({
-  articles: '',
-  events: ''
-});
-
-// Navigation function
-const _goBack = () => {
-  window.history.back();
-};
 
 // Add uploadPhoto function
 const takePhoto = async () => {
@@ -631,12 +581,7 @@ const uploadPhotoBlob = async (photoBlob: Blob) => {
   }
 };
 
-// Legacy function - keeping for compatibility
-const _uploadPhoto = async () => {
-  await takePhoto();
-};
-
-const fetchUserSettings = async () => {
+async function fetchUserSettings() {
   try {
     const response = await axios.get(backend.construct('account/userDetails'), { headers: { Authorization: `Bearer ${token.value}` } });
     user.value.email = response.data.email;
@@ -716,38 +661,6 @@ const getUserInformation = () => {
 const getChangePassword = () => {
   showChangePassword.value = !showChangePassword.value;
 };
-const _getNotificationsSettings = () => {
-  showNotificationsInformation.value = !showNotificationsInformation.value;
-};
-const getThemeSettings = () => {
-  showThemeInformation.value = !showThemeInformation.value;
-};
-
-const getInitialTheme = () => {
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) {
-    return savedTheme === 'dark';
-  }
-  return window.matchMedia('(prefers-color-scheme: dark)').matches;
-};
-
-const isDarkMode = ref(getInitialTheme());
-
-const toggleTheme = () => {
-  const isCurrentlyDark = isDarkMode.value;
-  const newTheme = !isCurrentlyDark ? 'dark' : 'light';
-
-  document.body.classList.toggle('dark', !isCurrentlyDark);
-  localStorage.setItem('theme', newTheme);
-  isDarkMode.value = !isCurrentlyDark;
-};
-
-// Helper function to get user initials for placeholder
-const _getInitials = (firstname: string, lastname: string) => {
-  const first = firstname.charAt(0).toUpperCase() || '';
-  const last = lastname.charAt(0).toUpperCase() || '';
-  return first + last || 'U';
-};
 </script>
 
 <style scoped>
@@ -823,17 +736,17 @@ button:focus-visible {
 /* Upload Dialog Styles */
 :deep(.upload-dialog) {
   .p-dialog-header {
-    @apply bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-b border-blue-100 dark:border-blue-800;
+    --at-apply: bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-b border-blue-100 dark:border-blue-800;
     padding: 0;
   }
 
   .p-dialog-content {
-    @apply bg-white dark:bg-gray-900;
+    --at-apply: bg-white dark:bg-gray-900;
     padding: 0;
   }
 
   .p-dialog-header-close {
-    @apply text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200;
+    --at-apply: text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200;
   }
 }
 
@@ -849,7 +762,7 @@ button:focus-visible {
 
 /* Logo styles for profile picture placeholder */
 .logo-medium {
-  background-image: url('@bpm2025-website/assets/icon');
+  background-image: url('@bpm2025-website/assets/icon?url');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
