@@ -248,7 +248,7 @@ const sendConfirmationEmail = async () => {
     if (error && typeof error === 'object' && 'response' in error) {
       const axiosError = error as { response: { status: number } };
       if (axiosError.response.status === 409) {
-        registerError.value = 'Email already exists or registration link already sent.';
+        registerError.value = 'User is already activated';
       } else if (axiosError.response.status === 404) {
         registerError.value = 'Email not found in registration system. Please check your email or contact support.';
       } else {

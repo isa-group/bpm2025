@@ -8,8 +8,12 @@ import icpmapp.services.UserService;
 import lombok.RequiredArgsConstructor;
 import icpmapp.services.AuthenticationService;
 import icpmapp.services.EmailService;
+
+import java.nio.file.AccessDeniedException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -39,11 +43,15 @@ public class AuthenticationController {
     public ResponseEntity<?> sendSignup(@RequestBody EmailRequest emailRequest) {
         try {
             emailService.sendSignup(emailRequest);
-            return ResponseEntity.ok().body("signup email sent successfully.");
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (UsernameNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (AccessDeniedException e) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         } catch (Exception e) {
             System.err.println("Error sending email: " + e.getMessage());
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to send signup email.");
+            return new ResponseEntity<>(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @PostMapping("/resetPassword")
