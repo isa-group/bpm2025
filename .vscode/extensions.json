@@ -8,7 +8,8 @@
     "eamodio.gitlens",
     "vue.volar",
     "aaron-bond.better-comments",
-    "yoavbls.pretty-ts-errors"
+    "yoavbls.pretty-ts-errors",
+    "vscjava.vscode-java-pack"
   ],
   "unwantedRecommendations": []
 }
