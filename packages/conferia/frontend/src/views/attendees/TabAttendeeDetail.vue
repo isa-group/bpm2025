@@ -4,9 +4,10 @@
     <div class="sticky top-16 z-40 bg-gray-50/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
       <div class="p-4 flex items-center space-x-4">
         <Button
-          icon="i-carbon-arrow-left"
-          severity="secondary"
-          text
+          icon="i-tabler:arrow-left"
+          size="small"
+          variant="outlined"
+          rounded
           @click="$router.back()" />
         <div>
           <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
@@ -20,11 +21,11 @@
       <!-- Profile Section -->
       <div class="flex flex-col items-center mb-8">
         <div class="mb-6">
-          <Avatar
-            :image="attendee.imageURL || 'https://ionicframework.com/docs/img/demos/avatar.svg'"
-            size="xlarge"
-            shape="circle"
-            class="w-32 h-32 shadow-lg border-4 border-white dark:border-gray-700" />
+          <UserAvatar
+            size="x-large"
+            :image-url="attendee.imageURL"
+            :user="attendee"
+            class="w-32 h-32 border-4 border-white dark:border-gray-700" />
         </div>
 
         <div class="text-center">
@@ -71,7 +72,7 @@
                 See Personalized Agenda
               </h3>
               <p class="text-gray-600 dark:text-gray-300">
-                Ver sesiones personalizadas
+                See this attendant's personal schedule
               </p>
             </div>
           </template>
@@ -86,10 +87,10 @@
                 <i class="i-carbon-image text-4xl text-green-500" />
               </div>
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                Mi Galería
+                Personal Gallery
               </h3>
               <p class="text-gray-600 dark:text-gray-300">
-                Imágenes personales del evento
+                View the images uploaded by this user
               </p>
             </div>
           </template>
@@ -104,8 +105,8 @@ import { reactive, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import axios from 'axios';
 import Card from 'primevue/card';
-import Avatar from 'primevue/avatar';
 import Button from 'primevue/button';
+import UserAvatar from '#/components/UserAvatar.vue';
 import backend from '#/plugins/backend.config';
 
 // Interfaces
@@ -131,7 +132,7 @@ const attendee: AttendeeDetail = reactive({
   company: '',
   country: '',
   email: '',
-  imageURL: ''
+  imageURL: undefined
 });
 
 /**
@@ -166,7 +167,6 @@ async function getImage(person: AttendeeDetail): Promise<string> {
     return URL.createObjectURL(response.data);
   } catch (error) {
     console.error('Error fetching image:', error);
-    return 'https://ionicframework.com/docs/img/demos/avatar.svg';
   }
 }
 
