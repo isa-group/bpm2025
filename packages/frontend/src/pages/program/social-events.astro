@@ -21,12 +21,12 @@ import { isObj } from '@bpm2025-website/shared/validation';
         id={k.name.replaceAll(' ', '-').toLowerCase()}>
         <Headline
           title={k.name}
-          tagline={`📅 ${k.date} <br />⏱ ${k.time}`}
+          tagline={`📅 ${k.date} <br /> 🕒 ${k.time}`}
           subtitle={(() => {
             let result;
             if (isObj(k.location)) {
               result = k.location.address
-                ? `<a href="${k.location.address}" target="_blank" rel="noopener noreferrer" alt="${k.location.address}" class="hover:underline">${k.location.name}</a>`
+                ? `<a href="${k.location.href}" target="_blank" rel="noopener noreferrer" alt="${k.location.address}" class="hover:underline">${k.location.name}</a>`
                 : k.location;
             }
 
