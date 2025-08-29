@@ -830,7 +830,7 @@ The Responsible BPM Forum was established with the aim to develop concepts that 
     date: 'Tuesday,  Wednesday & Thursday, Sept 2nd–4rd, 2025',
     items: [
       {
-        title: 'Tutorial 1: <u>AI-Assisted Business Process Monitoring</u> - Tuesday, Sept 2nd, 2025 (16:30 - 18:00) - Nervion Hall',
+        title: 'Tutorial 1: <u id="tutorials-s1">AI-Assisted Business Process Monitoring</u> - Tuesday, Sept 2nd, 2025 (16:30 - 18:00) - Nervion Hall',
         description: `
           <i>Andreas Metzger</i>
           <br /><br />
@@ -854,7 +854,7 @@ The Responsible BPM Forum was established with the aim to develop concepts that 
         `
       },
       {
-        title: 'Tutorial 2: <u>Constraint-based reasoning and analysis for BPM: CSP to the rescue</u> - Wednesday, Sept 3rd, 2025 (14:30 - 16:00) - Magnolia Hall',
+        title: 'Tutorial 2: <u id="tutorials-s2">Constraint-based reasoning and analysis for BPM: CSP to the rescue</u> - Wednesday, Sept 3rd, 2025 (14:30 - 16:00) - Magnolia Hall',
         description: `
           <i>Alessandro Gianola, Andrey Rivkin and Mateusz Slazynski</i>
           <br /><br />
@@ -875,7 +875,7 @@ The Responsible BPM Forum was established with the aim to develop concepts that 
         `
       },
       {
-        title: 'Tutorial 3: <u>Business Process Optimization</u> - Thursday, Sept 4th, 2025 (14:30 - 16:00) - Magnolia Hall',
+        title: 'Tutorial 3: <u id="tutorials-s3">Business Process Optimization</u> - Thursday, Sept 4th, 2025 (14:30 - 16:00) - Magnolia Hall',
         description: `
           <i>Remco Dijkman and Arik Senderovich</i>
           <br /><br />

@@ -48,7 +48,7 @@ export const locations = {
   'reales-alcazares': {
     name: 'Reales Alcázares',
     address: 'Real Alcázar de Sevilla, Casco Antiguo, 41004 Seville, Spain',
-    href: 'https://maps.app.goo.gl/xuKU7oeD8XhW5baY8'
+    href: 'https://maps.app.goo.gl/XrvkWKGE59aBLwQPA'
   },
   'abades': {
     name: 'Abades Triana',
