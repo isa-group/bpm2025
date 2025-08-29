@@ -85,8 +85,9 @@
           <div
             class="flex items-center space-x-3 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg p-2 transition-colors"
             @click="navigateToAuthor">
-            <Avatar
-              :image="activeMessage.avatar || 'https://ionicframework.com/docs/img/demos/avatar.svg'"
+            <UserAvatar 
+              :image-url="activeMessage.avatar"
+              :user="{ firstname: activeMessage.author.charAt(0), lastname: '' }"
               shape="circle"
               size="large"
               class="ring-2 ring-blue-100 dark:ring-blue-800 flex-shrink-0" />
@@ -193,7 +194,7 @@ import Dialog from 'primevue/dialog';
 import InputText from 'primevue/inputtext';
 import Textarea from 'primevue/textarea';
 import FloatLabel from 'primevue/floatlabel';
-import Avatar from 'primevue/avatar';
+import UserAvatar from '#/components/UserAvatar.vue';
 import Message from 'primevue/message';
 import { useToast } from 'primevue/usetoast';
 import backend from '#/plugins/backend.config';

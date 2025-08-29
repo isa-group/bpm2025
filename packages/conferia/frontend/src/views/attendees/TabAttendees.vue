@@ -48,10 +48,9 @@
             <div class="p-4">
               <div class="flex items-center space-x-4">
                 <div class="flex-shrink-0">
-                  <img
-                    :src="person.imageURL || 'https://ionicframework.com/docs/img/demos/avatar.svg'"
-                    alt="Avatar"
-                    class="w-12 h-12 rounded-full object-cover bg-gray-200 dark:bg-gray-600">
+                  <UserAvatar 
+                    :user="person"
+                    :image-url="person.imageURL" />
                 </div>
 
                 <div class="flex-1 min-w-0">
@@ -120,6 +119,7 @@ import { watch, reactive } from 'vue';
 import { useDebounceFn } from '@vueuse/core';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+import UserAvatar from '#/components/UserAvatar.vue';
 import backend from '#/plugins/backend.config';
 
 interface Attendee {
