@@ -178,6 +178,7 @@ import Button from 'primevue/button';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { axiosKey, userIdKey } from '#/plugins/symbols';
+import { usePhotoGallery } from '#/composables/usePhotoGallery';
 
 dayjs.extend(relativeTime);
 
@@ -191,6 +192,10 @@ const router = useRouter();
 const loading = ref(true);
 const likeLoading = ref(false);
 const deleteLoading = ref(false);
+
+const {
+  getImageUrl
+} = usePhotoGallery();
 
 const imageData = ref({
   imageAuthor: '',
@@ -235,13 +240,6 @@ const getImageData = async (filepath: string): Promise<void> => {
     console.error('Error fetching image data:', error);
     throw error;
   }
-};
-
-const getImageUrl = (filepath: string): string => {
-  return axios.getUri({
-    url: `gallery/images/${filepath}`,
-    params: { format: 'webp' }
-  });
 };
 
 const changeLikeStatus = async (): Promise<void> => {

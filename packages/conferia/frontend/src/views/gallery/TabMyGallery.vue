@@ -185,7 +185,11 @@ import { usePhotoGallery } from '#/composables/usePhotoGallery';
 import router from '#/plugins/router';
 import { axiosKey } from '#/plugins/symbols';
 
-const { takePhotoGallery: _takePhotoGallery } = usePhotoGallery();
+const { 
+  takePhotoGallery: _takePhotoGallery,
+  getImageWebP,
+  getImageJPG
+} = usePhotoGallery();
 const toast = useToast();
 const axios = inject(axiosKey)!;
 
@@ -386,20 +390,6 @@ const downloadImages = (): void => {
   });
 
   imagesSelectedList.value = [];
-};
-
-const getImageWebP = (filepath: string): string => {
-  return axios.getUri({
-    url: `gallery/images/${filepath}`,
-    params: { format: 'webp' }
-  });
-};
-
-const getImageJPG = (filepath: string): string => {
-  return axios.getUri({
-    url: `gallery/images/${filepath}`,
-    params: { format: 'jpg' }
-  });
 };
 
 const goToImage = (imageId: string): void => {

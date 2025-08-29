@@ -1,4 +1,9 @@
+import { inject } from 'vue';
+import { axiosKey } from '#/plugins/symbols';
+
 export const usePhotoGallery = () => {
+  const axios = inject(axiosKey)!;
+
   /**
    * Check if we're in a mobile environment and getUserMedia is available
    */
@@ -11,6 +16,20 @@ export const usePhotoGallery = () => {
    */
   const isCameraAvailable = (): boolean => {
     return 'mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices;
+  };
+
+  const getImageUrl = (filepath: string): string => {
+    return axios.getUri({
+      url: `gallery/images/${filepath}`,
+      params: { format: 'webp' }
+    });
+  };
+
+  const getImageJPG = (filepath: string): string => {
+    return axios.getUri({
+      url: `gallery/images/${filepath}`,
+      params: { format: 'jpg' }
+    });
   };
 
   /**
@@ -285,7 +304,10 @@ export const usePhotoGallery = () => {
   return {
     takePhotoGallery,
     takePhotoProfile,
-    choosePhotoFromPhone
+    choosePhotoFromPhone,
+    getImageUrl,
+    getImageJPG,
+    getImageWebP: getImageUrl
   };
 };
 
