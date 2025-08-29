@@ -132,13 +132,16 @@ import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import Password from 'primevue/password';
 import Checkbox from 'primevue/checkbox';
-import { computed, ref } from 'vue';
-import axios from 'axios';
+import { computed, inject, ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import backend from '#/plugins/backend.config';
+import { accessTokenKey, axiosKey, refreshTokenKey, userIdKey } from '#/plugins/symbols';
 
 const router = useRouter();
 const route = useRoute();
+const axios = inject(axiosKey)!;
+const accessToken = inject(accessTokenKey)!;
+const refreshToken = inject(refreshTokenKey)!;
+const userId = inject(userIdKey)!;
 
 const userInformation = ref({
   email: '',
@@ -166,10 +169,11 @@ const hasToken = computed(() => token !== '');
 async function getUserInformation() {
   try {
     const setUpToken = Array.isArray(token) ? token[0] : token;
-    localStorage.setItem('setUpToken', setUpToken);
-    const response = await axios.get(backend.construct('account/userDetails'), {
-      headers: { Authorization: `Bearer ${setUpToken}` } });
-    localStorage.setItem('setUpToken', '');
+    const response = await axios.get('account/userDetails', {
+      headers: {
+        Authorization: `Bearer ${setUpToken}`
+      }
+    });
     userInformation.value.email = response.data.email;
     userInformation.value.firstname = response.data.firstname;
     userInformation.value.lastname = response.data.lastname;
@@ -183,17 +187,20 @@ async function getUserInformation() {
 
 const sendUserInformation = async () => {
   try {
-    const accessToken = Array.isArray(token) ? token[0] : token;
-    localStorage.setItem('accessToken', accessToken);
-    await axios.post(backend.construct('account/update'), userInformation.value, { headers: { Authorization: `Bearer ${accessToken}` } });
-    localStorage.setItem('accessToken', '');
+    const setupToken = Array.isArray(token) ? token[0] : token;
+    await axios.post('account/update', userInformation.value, {
+      headers: {
+        Authorization: `Bearer ${setupToken}`
+      }
+    });
     loginInformation.value.email = userInformation.value.email;
     loginInformation.value.password = userInformation.value.password;
-    const response = await axios.post(backend.construct('auth/signin'), loginInformation.value);
+    const response = await axios.post('auth/signin', loginInformation.value);
 
-    localStorage.setItem('accessToken', response.data.accessToken);
-    localStorage.setItem('refreshToken', response.data.refreshToken);
-    localStorage.setItem('userId', response.data.userId);
+    accessToken.value = response.data.accessToken;
+    refreshToken.value = response.data.refreshToken;
+    userId.value = response.data.userId;
+
     await router.push('/tabs/home');
   } catch (error) {
     console.error('Failed send user information:', error);

@@ -171,20 +171,19 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { inject, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
-import axios from 'axios';
 import Button from 'primevue/button';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import backend from '#/plugins/backend.config';
+import { axiosKey, userIdKey } from '#/plugins/symbols';
 
 dayjs.extend(relativeTime);
 
 const toast = useToast();
-const token = ref(localStorage.getItem('accessToken'));
-const userId = ref(localStorage.getItem('userId'));
+const userId = inject(userIdKey)!;
+const axios = inject(axiosKey)!;
 
 const route = useRoute();
 const router = useRouter();
@@ -223,8 +222,7 @@ onMounted(async () => {
 
 const getImageData = async (filepath: string): Promise<void> => {
   try {
-    const response = await axios.get(backend.construct(`gallery/image/${filepath}`), {
-      headers: { Authorization: `Bearer ${token.value}` },
+    const response = await axios.get(`gallery/image/${filepath}`, {
       params: { format: 'jpg' }
     });
     imageData.value.imageAuthor = response.data.imageAuthor;
@@ -240,7 +238,10 @@ const getImageData = async (filepath: string): Promise<void> => {
 };
 
 const getImageUrl = (filepath: string): string => {
-  return backend.construct(`gallery/images/${filepath}?format=jpg`);
+  return axios.getUri({
+    url: `gallery/images/${filepath}`,
+    params: { format: 'webp' }
+  });
 };
 
 const changeLikeStatus = async (): Promise<void> => {
@@ -255,10 +256,10 @@ const changeLikeStatus = async (): Promise<void> => {
   imageData.value.imageLikes += imageData.value.imageIsLiked ? 1 : -1;
 
   try {
-    await axios.put(backend.construct('gallery/changeLikeStatusGalleyImage'), {
+    await axios.put('gallery/changeLikeStatusGalleyImage', {
       likes: imageData.value.imageIsLiked,
       path: imagePath
-    }, { headers: { Authorization: `Bearer ${token.value}` } });
+    });
 
     toast.add({
       severity: 'success',
@@ -285,8 +286,7 @@ const changeLikeStatus = async (): Promise<void> => {
 
 const getAvatarImage = async (id: number): Promise<string> => {
   try {
-    const response = await axios.get(backend.construct(`account/getProfilePicture/${id}`), {
-      headers: { Authorization: `Bearer ${token.value}` },
+    const response = await axios.get(`account/getProfilePicture/${id}`, {
       params: { format: 'webp' },
       responseType: 'blob'
     });
@@ -310,11 +310,7 @@ const deletePicture = async (): Promise<void> => {
   deleteLoading.value = true;
 
   try {
-    await axios.delete(backend.construct('gallery/images'), {
-      headers: {
-        'Authorization': `Bearer ${token.value}`,
-        'Content-Type': 'application/json'
-      },
+    await axios.delete('gallery/images', {
       data: {
         imagePaths: [imagePath]
       }

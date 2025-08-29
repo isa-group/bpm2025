@@ -101,13 +101,12 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { reactive, inject } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import axios from 'axios';
 import Card from 'primevue/card';
 import Button from 'primevue/button';
 import UserAvatar from '#/components/UserAvatar.vue';
-import backend from '#/plugins/backend.config';
+import { axiosKey } from '#/plugins/symbols';
 
 // Interfaces
 interface AttendeeDetail {
@@ -118,13 +117,13 @@ interface AttendeeDetail {
   country: string;
   email: string;
   avatar_path?: string;
-  imageURL: string;
+  imageURL?: string;
 }
 
 const router = useRouter();
 const route = useRoute();
 const attendeeId = route.params.id;
-const token = localStorage.getItem('accessToken');
+const axios = inject(axiosKey)!;
 
 const attendee: AttendeeDetail = reactive({
   firstname: '',
@@ -140,9 +139,7 @@ const attendee: AttendeeDetail = reactive({
  */
 async function fetchAttendeeDetails(): Promise<void> {
   try {
-    const response = await axios.get(backend.construct(`attendees/${attendeeId}`), {
-      headers: { Authorization: `Bearer ${token}` }
-    });
+    const response = await axios.get(`attendees/${attendeeId}`);
     Object.assign(attendee, response.data);
     if (attendee.avatar_path) {
       attendee.imageURL = await getImage(attendee);
@@ -155,10 +152,9 @@ async function fetchAttendeeDetails(): Promise<void> {
 /**
  * Get profile image from backend
  */
-async function getImage(person: AttendeeDetail): Promise<string> {
+async function getImage(person: AttendeeDetail) {
   try {
-    const response = await axios.get(backend.construct(`account/getProfilePicture/${person.id}`), {
-      headers: { Authorization: `Bearer ${token}` },
+    const response = await axios.get(`account/getProfilePicture/${person.id}`, {
       params: {
         format: 'webp'
       },

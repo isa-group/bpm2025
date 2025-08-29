@@ -75,12 +75,13 @@ import Card from 'primevue/card';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import Message from 'primevue/message';
-import { ref } from 'vue';
-import axios from 'axios';
-import backend from '#/plugins/backend.config';
+import { inject, ref } from 'vue';
+import { accessTokenKey, axiosKey } from '#/plugins/symbols';
 
 const resetEmailError = ref('');
 const resetEmailSuccess = ref('');
+const axios = inject(axiosKey)!;
+const accessToken = inject(accessTokenKey)!;
 
 const resetUser = ref({
   receiver: ''
@@ -88,8 +89,8 @@ const resetUser = ref({
 
 const sendResetEmail = async () => {
   try {
-    localStorage.setItem('accessToken', '');
-    await axios.post(backend.construct('auth/resetPassword'), resetUser.value);
+    accessToken.value = undefined;
+    await axios.post('auth/resetPassword', resetUser.value);
     resetUser.value.receiver = '';
     resetEmailSuccess.value = 'Email send successfully';
   } catch (_error) {

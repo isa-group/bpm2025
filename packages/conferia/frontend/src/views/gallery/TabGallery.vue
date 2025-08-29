@@ -218,18 +218,17 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, type Ref, ref, watch } from 'vue';
+import { inject, onMounted, type Ref, ref, watch } from 'vue';
 import { useDebounceFn } from '@vueuse/core';
 import { useRoute } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
-import axios from 'axios';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import Select from 'primevue/select';
 import Popover from 'primevue/popover';
-import backend from '#/plugins/backend.config';
 import router from '#/plugins/router';
 import { usePhotoGallery } from '#/composables/usePhotoGallery';
+import { axiosKey } from '#/plugins/symbols';
 
 // Interfaces
 interface FilterAndSearch {
@@ -245,8 +244,8 @@ interface SelectOption {
 
 const { takePhotoGallery: _takePhotoGallery } = usePhotoGallery();
 const toast = useToast();
+const axios = inject(axiosKey)!;
 
-const token = ref(localStorage.getItem('accessToken'));
 const route = useRoute();
 const op: Ref<InstanceType<typeof Popover> | null> = ref(null);
 
@@ -283,11 +282,7 @@ const _orderOptions: SelectOption[] = [
 onMounted(async (): Promise<void> => {
   if (route.params.id) {
     try {
-      const response = await axios.get<{ firstname: string; lastname: string }>(backend.construct(`account/getName/${route.params.id}`), {
-        headers: {
-          Authorization: `Bearer ${token.value}`
-        }
-      });
+      const response = await axios.get<{ firstname: string; lastname: string }>(`account/getName/${route.params.id}`);
       filterAndSearch.value.searchInput = response.data.firstname + ' ' + response.data.lastname;
     } catch (_e) {
       // User not found
@@ -324,16 +319,13 @@ const reloadPage = async (): Promise<void> => {
 const fetchGalleryMetadata = async (): Promise<void> => {
   if (!hasMore.value) return;
   try {
-    const response = await axios.get(backend.construct('gallery/images'), {
+    const response = await axios.get('gallery/images', {
       params: {
         pageNr: pageNr.value,
         pageSize: pageSize,
         search: filterAndSearch.value.searchInput,
         filterChoice: filterAndSearch.value.filterChoice,
         orderValue: filterAndSearch.value.orderValue
-      },
-      headers: {
-        Authorization: `Bearer ${token.value}`
       }
     });
     if (response.data.imagePaths.length > 0) {
@@ -367,11 +359,17 @@ watch(
   }, { immediate: false });
 
 const getImageUrl = (filepath: string): string => {
-  return backend.construct(`gallery/images/${filepath}?format=webp`);
+  return axios.getUri({
+    url: `gallery/images/${filepath}`,
+    params: { format: 'webp' }
+  });
 };
 
 const getImageJPG = (filepath: string): string => {
-  return backend.construct(`gallery/images/${filepath}?format=jpg`);
+  return axios.getUri({
+    url: `gallery/images/${filepath}`,
+    params: { format: 'jpg' }
+  });
 };
 
 const loadMore = async (): Promise<void> => {
@@ -414,9 +412,8 @@ const uploadGalleryImage = async (): Promise<void> => {
     });
 
     // Make the POST request with the form data
-    const uploadResponse = await axios.post(backend.construct('gallery/images'), formData, {
+    const uploadResponse = await axios.post('gallery/images', formData, {
       headers: {
-        'Authorization': `Bearer ${token.value}`,
         'Content-Type': 'multipart/form-data'
       }
     });

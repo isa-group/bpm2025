@@ -85,7 +85,7 @@
           <div
             class="flex items-center space-x-3 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg p-2 transition-colors"
             @click="navigateToAuthor">
-            <UserAvatar 
+            <UserAvatar
               :image-url="activeMessage.avatar"
               :user="{ firstname: activeMessage.author.charAt(0), lastname: '' }"
               shape="circle"
@@ -184,8 +184,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import axios from 'axios';
+import { inject, ref } from 'vue';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { useRouter } from 'vue-router';
@@ -194,10 +193,10 @@ import Dialog from 'primevue/dialog';
 import InputText from 'primevue/inputtext';
 import Textarea from 'primevue/textarea';
 import FloatLabel from 'primevue/floatlabel';
-import UserAvatar from '#/components/UserAvatar.vue';
 import Message from 'primevue/message';
 import { useToast } from 'primevue/usetoast';
-import backend from '#/plugins/backend.config';
+import UserAvatar from '#/components/UserAvatar.vue';
+import { axiosKey } from '#/plugins/symbols';
 
 interface MessageType {
   id: number;
@@ -213,6 +212,7 @@ interface MessageType {
 dayjs.extend(relativeTime);
 
 const router = useRouter();
+const axios = inject(axiosKey)!;
 const toast = useToast();
 
 const messages = ref<MessageType[]>([]);
@@ -226,7 +226,6 @@ const formData = ref({
   title: '',
   message: ''
 });
-const token = ref(localStorage.getItem('accessToken'));
 
 const navigateToAuthor = () => {
   if (activeMessage.value.authorId) {
@@ -238,20 +237,13 @@ const navigateToAuthor = () => {
 const submitForm = async () => {
   isSubmitting.value = true;
   try {
-    const response = await axios.post(backend.construct('message'),
+    await axios.post('message',
       {
         title: formData.value.title,
         text: formData.value.message
-      }, {
-        headers: { Authorization: `Bearer ${token.value}` }
       }
     );
     postError.value = '';
-    if (response.data?.accessToken && response.data.refreshToken) {
-      localStorage.setItem('accessToken', response.data.accessToken);
-      localStorage.setItem('refreshToken', response.data.refreshToken);
-      token.value = response.data.accessToken;
-    }
 
     closePostMessage();
     toast.add({ severity: 'success', summary: 'Success', detail: 'Your message has been posted.', life: 5000 });
@@ -269,9 +261,7 @@ const setVisibleMessage = async (id: number) => {
   if (message) {
     activeMessage.value = message;
     isOpen.value = true;
-    await axios.get(
-      backend.construct(`message/read/${id}`),
-      { headers: { Authorization: `Bearer ${token.value}` } });
+    await axios.get(`message/read/${id}`);
   }
 };
 
@@ -292,7 +282,7 @@ const closePostMessage = () => {
 
 const fetchMessages = async () => {
   try {
-    const response = await axios.get(backend.construct('message'), { headers: { Authorization: `Bearer ${token.value}` } });
+    const response = await axios.get('message');
     const tmp_messages = response.data;
     await Promise.all(tmp_messages.map(async (msg: { avatar?: string }) => {
       if (msg.avatar) {
@@ -307,8 +297,7 @@ const fetchMessages = async () => {
 
 const getAvatarImage = async (id: string) => {
   try {
-    const response = await axios.get(backend.construct(`account/getProfilePicture/${id}`), {
-      headers: { Authorization: `Bearer ${token.value}` },
+    const response = await axios.get(`account/getProfilePicture/${id}`, {
       params: {
         format: 'webp'
       },

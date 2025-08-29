@@ -48,7 +48,7 @@
             <div class="p-4">
               <div class="flex items-center space-x-4">
                 <div class="flex-shrink-0">
-                  <UserAvatar 
+                  <UserAvatar
                     :user="person"
                     :image-url="person.imageURL" />
                 </div>
@@ -115,12 +115,10 @@
 </template>
 
 <script setup lang="ts">
-import { watch, reactive } from 'vue';
+import { watch, reactive, inject } from 'vue';
 import { useDebounceFn } from '@vueuse/core';
-import axios from 'axios';
-import { useRouter } from 'vue-router';
 import UserAvatar from '#/components/UserAvatar.vue';
-import backend from '#/plugins/backend.config';
+import { axiosKey } from '#/plugins/symbols';
 
 interface Attendee {
   id: number;
@@ -137,7 +135,7 @@ interface PageResponse {
   last: boolean;
 }
 
-const _router = useRouter();
+const axios = inject(axiosKey)!;
 
 const state = reactive({
   persons: [] as Attendee[],
@@ -148,11 +146,14 @@ const state = reactive({
 });
 
 const fetchAttendees = async () => {
-  const token = localStorage.getItem('accessToken');
   try {
     state.loading = true;
-    const response = await axios.get<PageResponse>(backend.construct('attendees', { page: state.page.toString(), size: '25', search: state.searchQuery }), {
-      headers: { Authorization: `Bearer ${token}` }
+    const response = await axios.get<PageResponse>('attendees', {
+      params: {
+        page: state.page.toString(),
+        size: '25',
+        search: state.searchQuery
+      }
     });
     const persons = response.data.content;
     await Promise.all(persons.map(async (person) => {
@@ -184,10 +185,8 @@ watch(() => state.searchQuery, (newQuery, oldQuery) => {
 }, { immediate: false });
 
 const getImage = async (person: Attendee) => {
-  const token = localStorage.getItem('accessToken');
   try {
-    const response = await axios.get(backend.construct(`account/getProfilePicture/${person.id}`), {
-      headers: { Authorization: `Bearer ${token}` },
+    const response = await axios.get(`account/getProfilePicture/${person.id}`, {
       params: {
         format: 'webp'
       },

@@ -87,13 +87,13 @@ import Card from 'primevue/card';
 import Button from 'primevue/button';
 import Password from 'primevue/password';
 import Message from 'primevue/message';
-import { ref } from 'vue';
+import { inject, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import axios from 'axios';
-import backend from '#/plugins/backend.config';
+import { axiosKey } from '#/plugins/symbols';
 
 const route = useRoute();
 const router = useRouter();
+const axios = inject(axiosKey)!;
 
 const resetInformation = ref({
   password: '',
@@ -110,9 +110,11 @@ const resetPassword = async () => {
       return false;
     }
     const resetToken = Array.isArray(token) ? token[0] : token;
-    localStorage.setItem('resetToken', resetToken);
-    const _response = await axios.post(backend.construct('account/resetPassword'), resetInformation.value, { headers: { Authorization: `Bearer ${resetToken}` } });
-    localStorage.setItem('resetToken', '');
+    await axios.post('account/resetPassword', resetInformation.value, {
+      headers: {
+        Authorization: `Bearer ${resetToken}`
+      }
+    });
 
     await router.push('/auth/login');
   } catch (error) {

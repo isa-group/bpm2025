@@ -169,29 +169,17 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, onMounted, computed, watch, ref } from 'vue';
+import { reactive, onMounted, computed, watch, ref, inject } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import axios from 'axios';
 import TabSessionDetails from '#/views/calendar/TabSessionDetails.vue';
-import backend from '#/plugins/backend.config';
+import { axiosKey } from '#/plugins/symbols';
 
 const router = useRouter();
 const route = useRoute();
-
-const token = localStorage.getItem('accessToken');
+const axios = inject(axiosKey)!;
 
 const sessionIdDetail = ref('');
 const sessionModalOpen = ref(false);
-
-// Helper function to format day buttons
-const _formatDayButton = (day: string): string => {
-  const dayObj = state.uniqueDays.find(d => d.value === day);
-  if (dayObj) {
-    const parts = dayObj.label.split(', ');
-    return parts.length > 1 ? `${parts[0]}, ${parts[1]}` : dayObj.label;
-  }
-  return day;
-};
 
 interface Session {
   id: number;
@@ -267,9 +255,7 @@ async function fetchSessions() {
 async function fetchICPMAgenda() {
   try {
     await fetchLikedSessions();
-    const response = await axios.get(backend.construct('agenda/sessions'), {
-      headers: { Authorization: `Bearer ${token}` }
-    });
+    const response = await axios.get('agenda/sessions');
     const sessionsData = response.data;
     const processedSessions = processSessions(sessionsData);
     // Remove week filtering - show all sessions
@@ -285,9 +271,7 @@ async function fetchICPMAgenda() {
 async function fetchPersonalAgenda(userId: number): Promise<void> {
   try {
     await fetchLikedSessions();
-    const response = await axios.get(backend.construct(`agenda/session/likedlist/${userId}`), {
-      headers: { Authorization: `Bearer ${token}` }
-    });
+    const response = await axios.get(`agenda/session/likedlist/${userId}`);
     const sessionsData = response.data;
     const processedSessions = processSessions(sessionsData);
     // Remove week filtering - show all sessions
@@ -302,9 +286,7 @@ async function fetchPersonalAgenda(userId: number): Promise<void> {
  */
 async function fetchCurrentUserId() {
   try {
-    const response = await axios.get(backend.construct('account/id'), {
-      headers: { Authorization: `Bearer ${token}` }
-    });
+    const response = await axios.get('account/id');
     state.currentUserId = response.data.id;
   } catch (error) {
     console.error('Failed to fetch current user ID:', error);
@@ -317,9 +299,7 @@ async function fetchCurrentUserId() {
  */
 async function fetchLikedSessions() {
   try {
-    const response = await axios.get(backend.construct('agenda/session/hearts'), {
-      headers: { Authorization: `Bearer ${token}` }
-    });
+    const response = await axios.get('agenda/session/hearts');
     state.likedSessionIds = new Set(response.data.map((id: number) => id.toString()));
   } catch (error) {
     console.error('Failed to fetch liked sessions:', error);
@@ -335,13 +315,10 @@ async function toggleLike(session: Session): Promise<void> {
   session.isLiked = !session.isLiked;
   try {
     await axios.post(
-      backend.construct('agenda/session/like'),
+      'agenda/session/like',
       {
         likes: session.isLiked,
         id: session.id
-      },
-      {
-        headers: { Authorization: `Bearer ${token}` }
       }
     );
     if (session.isLiked) {

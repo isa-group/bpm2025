@@ -429,22 +429,28 @@ import Dialog from 'primevue/dialog';
 import InputText from 'primevue/inputtext';
 import Checkbox from 'primevue/checkbox';
 import Password from 'primevue/password';
-
-import axios from 'axios';
-import backend from '#/plugins/backend.config';
+import { isAxiosError } from 'axios';
 import { usePhotoGallery } from '#/composables/usePhotoGallery';
-import { accessTokenKey } from '#/plugins/symbols';
+import {
+  axiosKey,
+  accessTokenKey,
+  userIdKey,
+  refreshTokenKey
+} from '#/plugins/symbols';
 
 const router = useRouter();
 const { takePhotoProfile, choosePhotoFromPhone } = usePhotoGallery();
-const token = inject(accessTokenKey);
+const accessToken = inject(accessTokenKey)!;
+const refreshToken = inject(refreshTokenKey)!;
+const userId = inject(userIdKey)!;
+const axios = inject(axiosKey)!;
 
 void fetchUserSettings();
 
 const logout = () => {
-  localStorage.removeItem('accessToken');
-  localStorage.removeItem('refreshToken');
-  localStorage.removeItem('userId');
+  accessToken.value = undefined;
+  refreshToken.value = undefined;
+  userId.value = undefined;
   void router.push('/auth/login');
 };
 
@@ -543,9 +549,8 @@ const uploadPhotoBlob = async (photoBlob: Blob) => {
     formData.append('file', photoBlob, 'profile-picture.jpg');
 
     // Make the POST request with the form data and proper headers
-    const uploadResponse = await axios.post(backend.construct('account/uploadProfilePicture'), formData, {
+    const uploadResponse = await axios.post('account/uploadProfilePicture', formData, {
       headers: {
-        'Authorization': `Bearer ${token.value}`,
         'Content-Type': 'multipart/form-data'
       },
       timeout: 30000 // 30 second timeout
@@ -561,7 +566,7 @@ const uploadPhotoBlob = async (photoBlob: Blob) => {
   } catch (error) {
     console.error('Error uploading photo:', error);
 
-    if (axios.isAxiosError(error)) {
+    if (isAxiosError(error)) {
       if (error.code === 'ECONNABORTED') {
         updateError.value = 'Tiempo de espera agotado. Verifica tu conexión e inténtalo de nuevo.';
       } else if (error.response?.status === 413) {
@@ -586,19 +591,11 @@ const uploadPhotoBlob = async (photoBlob: Blob) => {
  */
 async function fetchUserSettings() {
   try {
-    const response = await axios.get(backend.construct('account/userDetails'), { headers: { Authorization: `Bearer ${token.value}` } });
-    user.value.email = response.data.email;
-    user.value.firstname = response.data.firstname;
-    user.value.lastname = response.data.lastname;
-    user.value.company = response.data.company;
-    user.value.country = response.data.country;
-    user.value.id = response.data.id;
-    user.value.sharingChoice = response.data.sharingChoice;
+    const response = await axios.get('account/userDetails');
+    user.value = { ...response.data };
 
     if (response.data.profilePicture) {
-      const retrieveResponse = await axios.get(backend.construct(`account/getProfilePicture/${user.value.id}`),
-        { headers: {
-          Authorization: `Bearer ${token.value}` },
+      const retrieveResponse = await axios.get(`account/getProfilePicture/${user.value.id}`, {
         params: {
           format: 'webp'
         },
@@ -612,7 +609,7 @@ async function fetchUserSettings() {
 
 const updateUserInformation = async () => {
   try {
-    const response = await axios.post(backend.construct('account/update'),
+    await axios.post('account/update',
       { email: user.value.email,
         firstname: user.value.firstname,
         lastname: user.value.lastname,
@@ -621,14 +618,9 @@ const updateUserInformation = async () => {
         sharingChoice: user.value.sharingChoice,
         id: user.value.id,
         password: ''
-      }, { headers: { Authorization: `Bearer ${token.value}` } });
+      });
     updateSuccess.value = 'Information updated successfully';
     updateError.value = '';
-    if (response.data?.accessToken && response.data.refreshToken) {
-      localStorage.setItem('accessToken', response.data.accessToken);
-      localStorage.setItem('refreshToken', response.data.refreshToken);
-      token.value = response.data.accessToken;
-    }
   } catch (error) {
     updateSuccess.value = '';
     updateError.value = 'Failed to update information';
@@ -645,7 +637,10 @@ async function updatePassword() {
       changePasswordSuccess.value = '';
       changePasswordError.value = 'New password and confirm password does not match';
     }
-    const response = await axios.post(backend.construct('account/changePassword'), { oldPassword: passwordChange.value.oldpassword, newPassword: passwordChange.value.newpassword }, { headers: { Authorization: `Bearer ${token.value}` } });
+    const response = await axios.post('account/changePassword', {
+      oldPassword: passwordChange.value.oldpassword,
+      newPassword: passwordChange.value.newpassword
+    });
     changePasswordError.value = '';
     changePasswordSuccess.value = response.data;
     passwordChange.value.oldpassword = '';
