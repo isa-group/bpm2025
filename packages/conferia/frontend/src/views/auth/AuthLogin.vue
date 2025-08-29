@@ -156,22 +156,11 @@
               class="mt-3 sm:mt-4 text-sm">
               {{ registerSuccess }}
             </Message>
-
-            <div class="text-center mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-surface-200 dark:border-surface-700">
-              <Button
-                label="Privacy Policy"
-                link
-                class="text-xs sm:text-sm"
-                @click="openPrivacy" />
-            </div>
+            <PrivacyNote />
           </form>
         </div>
       </template>
     </Card>
-
-    <PrivacyNote
-      :is-open="isPrivacyOpen"
-      @update:is-open="isPrivacyOpen = $event" />
   </div>
 </template>
 
@@ -185,8 +174,8 @@ import InputText from 'primevue/inputtext';
 import Password from 'primevue/password';
 import Message from 'primevue/message';
 import logo from '@bpm2025-website/assets/icon?url';
-import backend from '#/plugins/backend.config';
 import PrivacyNote from '#/components/PrivacyNote.vue';
+import backend from '#/plugins/backend.config';
 
 const router = useRouter();
 
@@ -195,7 +184,6 @@ const registerError = ref('');
 const registerSuccess = ref('');
 const isLoading = ref(false);
 const selectedSegment = ref('login');
-const isPrivacyOpen = ref(false);
 
 const loginUser = ref({
   email: '',
@@ -204,10 +192,6 @@ const loginUser = ref({
 const registerUser = ref({
   receiver: ''
 });
-
-const openPrivacy = () => {
-  isPrivacyOpen.value = true;
-};
 
 const login = async () => {
   isLoading.value = true;
