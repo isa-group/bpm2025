@@ -242,7 +242,11 @@ interface SelectOption {
   value: string | boolean;
 }
 
-const { takePhotoGallery: _takePhotoGallery } = usePhotoGallery();
+const { 
+  takePhotoGallery: _takePhotoGallery,
+  getImageUrl,
+  getImageJPG
+} = usePhotoGallery();
 const toast = useToast();
 const axios = inject(axiosKey)!;
 
@@ -268,16 +272,6 @@ const imagesSelectedList = ref<string[]>([]);
 const selectedUploader = ref<string | null>(null);
 const uploaderOptions = ref<SelectOption[]>([]);
 const searchQuery = ref('');
-
-const _filterOptions: SelectOption[] = [
-  { label: 'Date', value: 'uploadTime' },
-  { label: 'Likes', value: 'likes' }
-];
-
-const _orderOptions: SelectOption[] = [
-  { label: 'Ascending', value: true },
-  { label: 'Descending', value: false }
-];
 
 onMounted(async (): Promise<void> => {
   if (route.params.id) {
@@ -357,20 +351,6 @@ watch(
       void debouncedFetchAttendees();
     }
   }, { immediate: false });
-
-const getImageUrl = (filepath: string): string => {
-  return axios.getUri({
-    url: `gallery/images/${filepath}`,
-    params: { format: 'webp' }
-  });
-};
-
-const getImageJPG = (filepath: string): string => {
-  return axios.getUri({
-    url: `gallery/images/${filepath}`,
-    params: { format: 'jpg' }
-  });
-};
 
 const loadMore = async (): Promise<void> => {
   await fetchGalleryMetadata();
