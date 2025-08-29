@@ -26,7 +26,9 @@
               <UserAvatar
                 v-else
                 :user="userDetails as { firstname: string, lastname: string }" />
-              <span v-if="button.name" class="text-xs font-medium">{{ button.name }}</span>
+              <span
+                v-if="button.name"
+                class="text-xs font-medium">{{ button.name }}</span>
               <div
                 v-if="(button?.count ?? 0) > 0"
                 class="absolute -top-1 -right-1 z-1000 bg-red-500 dark:bg-red-600 text-white text-xs rounded-full min-w-5 h-5 flex items-center justify-center px-1 shadow-md">
@@ -41,14 +43,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, inject } from 'vue';
-import axios from 'axios';
+import { computed, inject } from 'vue';
 import { useIntervalFn, useLocalStorage } from '@vueuse/core';
-import backend from '#/plugins/backend.config';
-import { userDetailsKey } from '#/plugins/symbols';
+import { axiosKey, userDetailsKey } from '#/plugins/symbols';
 import UserAvatar from '#/components/UserAvatar.vue';
 
-const token = ref(localStorage.getItem('accessToken'));
+const axios = inject(axiosKey)!;
 
 const buttons = computed(() => [
   {
@@ -98,7 +98,7 @@ const updates = useLocalStorage('updates', {
  */
 async function fetchData() {
   try {
-    const response = await axios.get(backend.construct('updates'), { headers: { Authorization: `Bearer ${token.value}` } });
+    const response = await axios.get('updates');
     updates.value = response.data;
   } catch {}
 }

@@ -3,11 +3,8 @@ import PrimeVue from 'primevue/config';
 import ToastService from 'primevue/toastservice';
 import Aura from '@primevue/themes/aura';
 import router from '#/plugins/router';
-import { createPlugin as createAxiosPlugin } from '#/plugins/axios';
 
 export default (app: App) => {
-  const axiosPlugin = createAxiosPlugin();
-
   app.use(PrimeVue, {
     theme: {
       preset: Aura,
@@ -21,6 +18,5 @@ export default (app: App) => {
     }
   })
     .use(ToastService)
-    .use(router)
-    .use(axiosPlugin);
+    .use(router);
 };

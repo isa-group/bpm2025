@@ -76,14 +76,13 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, computed, nextTick } from 'vue';
-import axios from 'axios';
+import { reactive, computed, nextTick, inject } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import backend from '#/plugins/backend.config';
+import { axiosKey } from '#/plugins/symbols';
 
 const route = useRoute();
 const router = useRouter();
-const token = localStorage.getItem('accessToken');
+const axios = inject(axiosKey)!;
 
 interface CalendarDay {
   date: number | null;
@@ -191,21 +190,13 @@ async function fetchSessions() {
     let response;
 
     if (id) {
-      response = await axios.get(backend.construct(`agenda/session/likedlist/${id}`), {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      response = await axios.get(`agenda/session/likedlist/${id}`);
     } else if (type === 'personal') {
-      const currentUserIdResponse = await axios.get(backend.construct('account/id'), {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const currentUserIdResponse = await axios.get('account/id');
       const currentUserId = currentUserIdResponse.data.id;
-      response = await axios.get(backend.construct(`agenda/session/likedlist/${currentUserId}`), {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      response = await axios.get(`agenda/session/likedlist/${currentUserId}`);
     } else {
-      response = await axios.get(backend.construct('agenda/sessions'), {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      response = await axios.get('agenda/sessions');
     }
 
     state.sessions = response.data;

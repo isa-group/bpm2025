@@ -177,18 +177,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { inject, ref } from 'vue';
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
-import axios from 'axios';
 import Button from 'primevue/button';
-import backend from '#/plugins/backend.config';
 import { usePhotoGallery } from '#/composables/usePhotoGallery';
 import router from '#/plugins/router';
+import { axiosKey } from '#/plugins/symbols';
 
 const { takePhotoGallery: _takePhotoGallery } = usePhotoGallery();
 const toast = useToast();
-const token = ref(localStorage.getItem('accessToken'));
+const axios = inject(axiosKey)!;
 
 const imagesListMyGallery = ref<string[]>([]);
 const selectMultiple = ref(false);
@@ -223,9 +222,7 @@ const reloadPage = async (): Promise<void> => {
  */
 async function fetchMyGalleryMetadata() {
   try {
-    const response = await axios.get(backend.construct('gallery/myImages'), {
-      headers: { Authorization: `Bearer ${token.value}` }
-    });
+    const response = await axios.get('gallery/myImages');
     if (response.data.imagePaths.length > 0) {
       imagesListMyGallery.value = [...imagesListMyGallery.value, ...response.data.imagePaths];
     }
@@ -275,9 +272,8 @@ const uploadGalleryImage = async (): Promise<void> => {
       life: 5000
     });
 
-    const uploadResponse = await axios.post(backend.construct('gallery/images'), formData, {
+    const uploadResponse = await axios.post('gallery/images', formData, {
       headers: {
-        'Authorization': `Bearer ${token.value}`,
         'Content-Type': 'multipart/form-data'
       }
     });
@@ -314,11 +310,7 @@ const deleteGalleryImage = async (): Promise<void> => {
   }
 
   try {
-    await axios.delete(backend.construct('gallery/images'), {
-      headers: {
-        'Authorization': `Bearer ${token.value}`,
-        'Content-Type': 'application/json'
-      },
+    await axios.delete('gallery/images', {
       data: {
         imagePaths: imagesSelectedList.value
       }
@@ -397,11 +389,17 @@ const downloadImages = (): void => {
 };
 
 const getImageWebP = (filepath: string): string => {
-  return backend.construct(`gallery/images/${filepath}?format=webp`);
+  return axios.getUri({
+    url: `gallery/images/${filepath}`,
+    params: { format: 'webp' }
+  });
 };
 
 const getImageJPG = (filepath: string): string => {
-  return backend.construct(`gallery/images/${filepath}?format=jpg`);
+  return axios.getUri({
+    url: `gallery/images/${filepath}`,
+    params: { format: 'jpg' }
+  });
 };
 
 const goToImage = (imageId: string): void => {
@@ -447,11 +445,7 @@ const deleteSelectedImages = async (): Promise<void> => {
 
   try {
     // Delete selected images using the same endpoint as the existing function
-    await axios.delete(backend.construct('gallery/images'), {
-      headers: {
-        'Authorization': `Bearer ${token.value}`,
-        'Content-Type': 'application/json'
-      },
+    await axios.delete('gallery/images', {
       data: {
         imagePaths: imagesSelectedList.value
       }

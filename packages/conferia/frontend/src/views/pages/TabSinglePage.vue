@@ -115,9 +115,8 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { reactive, ref } from 'vue';
-import axios from 'axios';
-import backend from '#/plugins/backend.config';
+import { inject, reactive, ref } from 'vue';
+import { axiosKey } from '#/plugins/symbols';
 
 interface PageData {
   title: string;
@@ -128,9 +127,9 @@ interface PageData {
 
 const route = useRoute();
 const pageData = reactive<PageData>({ title: '', content: '', layoutId: null });
+const axios = inject(axiosKey)!;
 const loading = ref(true);
 const error = ref<string | null>(null);
-const token = localStorage.getItem('accessToken');
 const iframeRef = ref<HTMLIFrameElement | null>(null);
 
 const loadPageData = async () => {
@@ -138,9 +137,7 @@ const loadPageData = async () => {
   error.value = null;
 
   try {
-    const response = await axios.get(backend.construct(`pages/${route.params.id}`), {
-      headers: { Authorization: `Bearer ${token}` }
-    });
+    const response = await axios.get(`pages/${route.params.id}`);
 
     Object.assign(pageData, response.data);
   } catch (err: unknown) {

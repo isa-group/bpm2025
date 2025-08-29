@@ -93,10 +93,9 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, watch } from 'vue';
-import axios from 'axios';
+import { inject, reactive, ref, watch } from 'vue';
 import dayjs from 'dayjs';
-import backend from '#/plugins/backend.config';
+import { axiosKey } from '#/plugins/symbols';
 
 const { isOpen, id } = defineProps({
   isOpen: {
@@ -110,7 +109,7 @@ const { isOpen, id } = defineProps({
 });
 
 const emit = defineEmits(['didDismiss']);
-
+const axios = inject(axiosKey)!;
 const loading = ref(true);
 
 // const route = useRoute();
@@ -122,7 +121,6 @@ const pageData = reactive({
   endTime: '',
   content: '' // Session content
 });
-const token = localStorage.getItem('accessToken');
 
 const closeModal = () => {
   emit('didDismiss');
@@ -139,8 +137,7 @@ const openModal = async () => {
   try {
     if (id !== '') {
       loading.value = true;
-      const response = await axios.get(backend.construct(`agenda/session/${id}`),
-        { headers: { Authorization: `Bearer ${token}` } });
+      const response = await axios.get(`agenda/session/${id}`);
 
       const sessionData = response.data;
 

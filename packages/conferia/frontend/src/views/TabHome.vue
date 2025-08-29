@@ -178,12 +178,13 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { inject, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import axios from 'axios';
 import Badge from 'primevue/badge';
 import Card from 'primevue/card';
-import backend from '#/plugins/backend.config';
+import { axiosKey } from '#/plugins/symbols';
+
+const axios = inject(axiosKey)!;
 
 interface Page {
   id: number;
@@ -193,7 +194,6 @@ interface Page {
 
 const router = useRouter();
 const pages = reactive<Page[]>([]);
-const token = localStorage.getItem('accessToken');
 
 const goToPage = (pageId: number) => {
   void router.push(`/tabs/page/${pageId}`);
@@ -204,9 +204,7 @@ const goToPage = (pageId: number) => {
  */
 async function fetchPages() {
   try {
-    const response = await axios.get(backend.construct('pages'), {
-      headers: { Authorization: `Bearer ${token}` }
-    });
+    const response = await axios.get('pages');
 
     pages.splice(0, pages.length, ...response.data.map((page: { id: number; title: string; label: string }) => ({
       id: page.id,
