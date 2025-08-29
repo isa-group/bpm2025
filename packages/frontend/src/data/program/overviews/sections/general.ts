@@ -106,7 +106,7 @@ export const general_events: ScheduleEvent[] = [
     category: 'workshop'
   },
   {
-    title: 'Reception cocktail',
+    title: 'Welcome reception',
     start: new Date(2025, 8, 1, 19, 0),
     end: new Date(2025, 8, 1, 22, 0),
     location: locations.tobbaco,
@@ -171,7 +171,7 @@ export const general_events: ScheduleEvent[] = [
   },
   {
     title: 'Guided tour',
-    start: new Date(2025, 8, 2, 20, 0),
+    start: new Date(2025, 8, 2, 19, 40),
     end: new Date(2025, 8, 2, 21, 30),
     location: locations['reales-alcazares'],
     category: 'social',
@@ -298,8 +298,8 @@ export const general_events: ScheduleEvent[] = [
   },
   {
     title: 'Farewell Party',
-    start: new Date(2025, 8, 4, 19, 30),
-    end: new Date(2025, 8, 4, 21, 0),
+    start: new Date(2025, 8, 4, 20, 0),
+    end: new Date(2025, 8, 4, 23, 59),
     category: 'social',
     location: locations.raza,
     href: getPermalink('/program/social-events/#farewell-party')

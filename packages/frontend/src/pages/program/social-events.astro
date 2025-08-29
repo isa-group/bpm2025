@@ -21,7 +21,7 @@ import { isObj } from '@bpm2025-website/shared/validation';
         id={k.name.replaceAll(' ', '-').toLowerCase()}>
         <Headline
           title={k.name}
-          tagline={`📅 ${k.date}`}
+          tagline={`📅 ${k.date} <br />⏱ ${k.time}`}
           subtitle={(() => {
             let result;
             if (isObj(k.location)) {

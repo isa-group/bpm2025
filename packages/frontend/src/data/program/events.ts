@@ -8,6 +8,7 @@ export const events = [
   {
     name: 'Welcome Reception',
     date: 'Monday, Sept 1st, 2025',
+    time: '19:00 - 22:00',
     location: locations.tobbaco,
     image: Rectorate,
     description: `
@@ -22,6 +23,7 @@ export const events = [
   {
     name: 'Guided tour',
     date: 'Tuesday, Sept 2nd, 2025',
+    time: '19:40 - 21:00',
     location: locations['reales-alcazares'],
     imageClass: 'aspect-ratio-[16/14] object-[0_90%] lg:aspect-ratio-[1/1]',
     image: Alcazar,
@@ -39,6 +41,7 @@ export const events = [
   {
     name: 'Conference Dinner',
     date: 'Wednesday, Sept 3rd, 2025',
+    time: '20:00 - 23:00',
     location: locations.abades,
     image: Abades,
     imageClass: 'aspect-ratio-[16/14] object-top lg:aspect-ratio-[1/1]',
@@ -54,6 +57,7 @@ export const events = [
   {
     name: 'Farewell Party',
     date: 'Thursday, Sept 4th, 2025',
+    time: '20:00 - 00:00',
     location: locations.raza,
     image: Raza,
     description: `
