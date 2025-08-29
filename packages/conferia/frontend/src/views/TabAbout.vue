@@ -119,31 +119,16 @@
               <p class="text-gray-600 dark:text-gray-300 mb-4">
                 Learn more about how we handle your data and privacy
               </p>
-              <a
-                class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline font-medium cursor-pointer inline-flex items-center space-x-2 whitespace-nowrap"
-                @click="openPrivacy">
-                <i class="i-tabler:file" />
-                <span>View Privacy Note</span>
-              </a>
+              <PrivacyNote />
             </div>
           </div>
         </template>
       </Card>
-
-      <PrivacyNote
-        :is-open="isPrivacyOpen"
-        @update:is-open="isPrivacyOpen = $event" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import Card from 'primevue/card';
 import PrivacyNote from '#/components/PrivacyNote.vue';
-
-const isPrivacyOpen = ref(false);
-const openPrivacy = () => {
-  isPrivacyOpen.value = true;
-};
 </script>

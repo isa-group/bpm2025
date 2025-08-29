@@ -26,10 +26,10 @@
               <UserAvatar
                 v-else
                 :user="userDetails as { firstname: string, lastname: string }" />
-              <span class="text-xs font-medium">{{ button.name }}</span>
+              <span v-if="button.name" class="text-xs font-medium">{{ button.name }}</span>
               <div
                 v-if="(button?.count ?? 0) > 0"
-                class="absolute -top-1 -right-1 bg-red-500 dark:bg-red-600 text-white text-xs rounded-full min-w-5 h-5 flex items-center justify-center px-1 shadow-md">
+                class="absolute -top-1 -right-1 z-1000 bg-red-500 dark:bg-red-600 text-white text-xs rounded-full min-w-5 h-5 flex items-center justify-center px-1 shadow-md">
                 {{ button.count }}
               </div>
             </RouterLink>
@@ -79,8 +79,8 @@ const buttons = computed(() => [
     name: 'Gallery'
   },
   {
-    name: 'Account & Settings',
-    link: '/profile'
+    link: '/profile',
+    name: 'Account'
   }
 ]);
 
