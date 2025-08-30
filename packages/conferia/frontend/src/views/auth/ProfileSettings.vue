@@ -425,14 +425,12 @@ import { usePhotoGallery } from '#/composables/usePhotoGallery';
 import {
   axiosKey,
   accessTokenKey,
-  userIdKey,
-  refreshTokenKey
+  userIdKey
 } from '#/plugins/symbols';
 
 const router = useRouter();
 const { takePhotoProfile, choosePhotoFromPhone } = usePhotoGallery();
 const accessToken = inject(accessTokenKey)!;
-const refreshToken = inject(refreshTokenKey)!;
 const userId = inject(userIdKey)!;
 const axios = inject(axiosKey)!;
 
@@ -440,7 +438,6 @@ void fetchUserSettings();
 
 const logout = () => {
   accessToken.value = undefined;
-  refreshToken.value = undefined;
   userId.value = undefined;
   void router.push('/auth/login');
 };

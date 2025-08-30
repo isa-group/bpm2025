@@ -9,7 +9,6 @@ import { useLocalStorage, computedAsync } from '@vueuse/core';
 import { useRouter } from 'vue-router';
 import {
   accessTokenKey,
-  refreshTokenKey,
   userIdKey,
   axiosKey,
   userDetailsKey
@@ -17,7 +16,6 @@ import {
 
 const router = useRouter();
 const accessToken = useLocalStorage<string | undefined>('accessToken', undefined);
-const refreshToken = useLocalStorage<string | undefined>('refreshToken', undefined);
 const userId = useLocalStorage<string | undefined>('userId', undefined);
 
 /**
@@ -33,33 +31,9 @@ instance.interceptors.response.use(
   async (error) => {
     // If the response indicates that the token has expired
     if (error.response.status === 401) {
-      try {
-        // Attempt to get a new access token using the refresh token
-        const refreshResponse = await instance.post('auth/refresh', {
-          token: refreshToken.value
-        });
-
-        accessToken.value = refreshResponse.data.accessToken;
-        refreshToken.value = refreshResponse.data.refreshToken;
-
-        // Resend the failed request with the new access token
-        const config = error.config;
-        config.headers.Authorization = `Bearer ${refreshResponse.data.accessToken}`;
-
-        // Return the result of the newly made request to continue the original request's flow
-        return await instance(config);
-      } catch (refreshError) {
-        console.error('Error refreshing token:', refreshError);
-
-        // If token refresh also fails, redirect to login or handle accordingly
-        accessToken.value = undefined;
-        refreshToken.value = undefined;
-        void router.push('/auth/login');
-        return Promise.reject(new Error('Token refresh failed'));
-      }
+      accessToken.value = undefined;
+      void router.push('/auth/login');
     }
-
-    // For any other type of errors, just pass them along
     return Promise.reject(error instanceof Error ? error : new Error(String(error)));
   }
 );
@@ -73,7 +47,7 @@ watchSyncEffect(() => {
   }
 });
 
-watch([accessToken, refreshToken], (newVal) => {
+watch([accessToken], (newVal) => {
   if (newVal.some(val => !val)) {
     // Forces middleware pipeline rerun
     void router.replace({
@@ -87,7 +61,6 @@ watch([accessToken, refreshToken], (newVal) => {
 });
 
 provide(accessTokenKey, accessToken);
-provide(refreshTokenKey, refreshToken);
 provide(userIdKey, userId);
 provide(axiosKey, instance);
 provide(userDetailsKey, computedAsync(async () => {

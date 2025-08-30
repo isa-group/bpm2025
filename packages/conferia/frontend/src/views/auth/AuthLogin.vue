@@ -174,12 +174,11 @@ import Password from 'primevue/password';
 import Message from 'primevue/message';
 import logo from '@bpm2025-website/assets/icon?url';
 import PrivacyNote from '#/components/PrivacyNote.vue';
-import { accessTokenKey, axiosKey, refreshTokenKey, userIdKey } from '#/plugins/symbols';
+import { accessTokenKey, axiosKey, userIdKey } from '#/plugins/symbols';
 
 const router = useRouter();
 const axios = inject(axiosKey)!;
 const accessToken = inject(accessTokenKey)!;
-const refreshToken = inject(refreshTokenKey)!;
 const userId = inject(userIdKey)!;
 
 const loginError = ref('');
@@ -201,7 +200,6 @@ const login = async () => {
   try {
     const response = await axios.post('auth/signin', loginUser.value);
     accessToken.value = response.data.accessToken;
-    refreshToken.value = response.data.refreshToken;
     userId.value = response.data.userId;
     await router.push('/tabs/home');
     loginError.value = '';
