@@ -113,7 +113,7 @@ const hours = getHours(events);
 ---
 {(() => {
   const columns = eventsByDay.map(({ date }) => () => (
-    <div class="flex flex-col h-full items-center justify-center">
+    <div class="flex flex-col h-full items-center justify-center max-sm:min-w-30">
       <div class="text-sm text-gray-500 mb-1 lg:text-xs md:text-[10px]">
         {new Intl.DateTimeFormat(locale, { weekday: dateHeaderFormat }).format(date)}
       </div>
