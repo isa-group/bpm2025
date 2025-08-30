@@ -1332,8 +1332,8 @@ The Responsible BPM Forum was established with the aim to develop concepts that 
         rows: [
           {
             Time: '14:00 - 14:30',
-            Title: 'Discovering Coordinated Processes From Social Online Networks',
-            Authors: 'Anna Kalenkova, Lewis Mitchell and Ethan Johnson'
+            Title: 'Exploring Decision Mining Research: A Systematic Review Report and Knowledge Graph',
+            Authors: 'Erfan Elhami, William Van Woensel and Daniel Amyot'
           },
           {
             Time: '14:30 - 15:00',
@@ -1342,8 +1342,8 @@ The Responsible BPM Forum was established with the aim to develop concepts that 
           },
           {
             Time: '15:00 - 15:30',
-            Title: 'Exploring Decision Mining Research: A Systematic Review Report and Knowledge Graph',
-            Authors: 'Erfan Elhami, William Van Woensel and Daniel Amyot'
+            Title: 'Discovering Coordinated Processes From Social Online Networks',
+            Authors: 'Anna Kalenkova, Lewis Mitchell and Ethan Johnson'
           }
         ]
       },
