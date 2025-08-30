@@ -1,41 +1,29 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
-    <!-- Sticky Header -->
-    <div class="sticky top-16 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-      <div class="flex items-center justify-between px-4 py-4">
-        <div class="flex items-center space-x-3">
-          <button
-            class="p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
-            @click="goBack">
-            <svg
-              class="w-5 h-5"
-              viewBox="0 0 32 32"
-              fill="currentColor">
-              <path d="M32 15H3.41l8.29-8.29-1.41-1.42L1 14.59V17.41l9.29 9.29 1.41-1.42L3.41 17H32z" />
-            </svg>
-          </button>
-          <div class="flex-1">
-            <h1 class="text-xl font-bold text-gray-900 dark:text-white">
-              Photo Details
-            </h1>
-          </div>
-        </div>
-        <div class="flex items-center space-x-2">
-          <button
-            class="p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
-            title="Download image"
-            @click="void downloadImage()">
-            <svg
-              class="w-5 h-5"
-              viewBox="0 0 32 32"
-              fill="currentColor">
-              <path d="M26 24v4H6v-4H4v4a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2v-4ZM21 21l-1.41-1.41L17 22.17V2h-2v20.17l-2.59-2.58L11 21l5 5Z" />
-            </svg>
-          </button>
-        </div>
+  <TabsPage
+    title="Photo Details">
+    <template #header-pre>
+      <Button
+        icon="i-tabler:arrow-left"
+        size="small"
+        variant="outlined"
+        rounded
+        @click="$router.back()" />
+    </template>
+    <template #header-post>
+      <div class="flex items-center space-x-2">
+        <button
+          class="p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
+          title="Download image"
+          @click="void downloadImage()">
+          <svg
+            class="w-5 h-5"
+            viewBox="0 0 32 32"
+            fill="currentColor">
+            <path d="M26 24v4H6v-4H4v4a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2v-4ZM21 21l-1.41-1.41L17 22.17V2h-2v20.17l-2.59-2.58L11 21l5 5Z" />
+          </svg>
+        </button>
       </div>
-    </div>
-
+    </template>
     <!-- Loading State -->
     <div
       v-if="loading"
@@ -167,7 +155,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </TabsPage>
 </template>
 
 <script setup lang="ts">
@@ -178,6 +166,7 @@ import Button from 'primevue/button';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { axiosKey, userIdKey } from '#/plugins/symbols';
+import TabsPage from '#/components/TabsPage.vue';
 import { usePhotoGallery } from '#/composables/usePhotoGallery';
 
 dayjs.extend(relativeTime);
@@ -364,10 +353,6 @@ const downloadImage = async (): Promise<void> => {
       life: 3000
     });
   }
-};
-
-const goBack = (): void => {
-  router.back();
 };
 
 const goToProfile = (): void => {

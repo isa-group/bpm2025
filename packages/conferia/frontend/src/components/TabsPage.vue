@@ -1,8 +1,34 @@
 <template>
   <div class="flex flex-col min-h-screen">
     <!-- Main content area -->
-    <div class="flex-1 pb-16 -mt-16">
-      <RouterView />
+    <div class="flex-1 pb-16">
+      <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <!-- Sticky Header -->
+        <div
+          v-if="title || subtitle"
+          class="sticky top-16 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+          <div class="flex justify-between px-4 py-4">
+            <slot name="header-pre" />
+            <div class="flex-col">
+              <h1
+                v-if="title"
+                class="text-2xl font-bold text-gray-900 dark:text-white">
+                {{ title }}
+              </h1>
+              <p
+                v-if="subtitle && !$slots.subtitle"
+                class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                {{ subtitle }}
+              </p>
+              <slot
+                v-else-if="$slots.subtitle"
+                name="subtitle" />
+            </div>
+            <slot name="header-post" />
+          </div>
+        </div>
+        <slot />
+      </div>
     </div>
 
     <!-- Bottom navigation bar -->
@@ -47,6 +73,11 @@ import { computed, inject } from 'vue';
 import { useIntervalFn, useLocalStorage } from '@vueuse/core';
 import { axiosKey, userDetailsKey } from '#/plugins/symbols';
 import UserAvatar from '#/components/UserAvatar.vue';
+
+const { title, subtitle } = defineProps<{
+  title?: string;
+  subtitle?: string;
+}>();
 
 const axios = inject(axiosKey)!;
 

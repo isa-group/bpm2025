@@ -1,32 +1,23 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
-    <!-- Apple-style Header -->
-    <div class="sticky top-16 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-      <div class="flex items-center justify-between px-4 py-4">
-        <button
-          class="flex items-center space-x-2 px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-          @click="changeMonth(-1)">
-          <i class="i-tabler:chevron-left text-lg" />
-          <span class="font-medium">Prev</span>
-        </button>
-
-        <div class="flex-1 text-center">
-          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
-            {{ currentMonthName }} {{ state.currentYear }}
-          </h1>
-          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
-            Conference Calendar
-          </p>
-        </div>
-
-        <button
-          class="flex items-center space-x-2 px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-          @click="changeMonth(1)">
-          <span class="font-medium">Next</span>
-          <i class="i-tabler:chevron-right text-lg" />
-        </button>
-      </div>
-    </div>
+  <TabsPage
+    :title="`${currentMonthName} ${state.currentYear}`"
+    subtitle="Conference Calendar">
+    <template #header-pre>
+      <button
+        class="flex items-center space-x-2 px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
+        @click="changeMonth(-1)">
+        <i class="w-4 h-4 i-tabler:chevron-left" />
+        <span class="font-medium">Prev</span>
+      </button>
+    </template>
+    <template #header-post>
+      <button
+        class="flex items-center space-x-2 px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
+        @click="changeMonth(1)">
+        <i class="w-4 h-4 i-tabler:chevron-right" />
+        <span class="font-medium">Next</span>
+      </button>
+    </template>
 
     <!-- Calendar Content -->
     <div class="px-4 py-6 pb-20">
@@ -72,13 +63,14 @@
         </div>
       </div>
     </div>
-  </div>
+  </TabsPage>
 </template>
 
 <script setup lang="ts">
 import { reactive, computed, nextTick, inject } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { axiosKey } from '#/plugins/symbols';
+import TabsPage from '#/components/TabsPage.vue';
 
 const route = useRoute();
 const router = useRouter();

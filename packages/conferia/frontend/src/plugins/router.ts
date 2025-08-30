@@ -3,9 +3,7 @@ import {
   createWebHashHistory,
   createMemoryHistory, type RouteRecordRaw
 } from 'vue-router';
-import TabsPage from '../components/TabsPage.vue';
 import AuthPage from '#/views/auth/AuthPage.vue';
-import ProfilePage from '#/views/auth/ProfilePage.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -15,7 +13,6 @@ const routes: RouteRecordRaw[] = [
 
   {
     path: '/tabs/',
-    component: TabsPage,
     meta: { requiresAuth: true },
     children: [
       {
@@ -101,7 +98,6 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/profile/',
-    component: ProfilePage,
     children: [
       {
         path: '',

@@ -1,17 +1,7 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
-    <!-- Sticky Header (matching agenda style) -->
-    <div class="sticky top-16 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-      <div class="px-4 py-4">
-        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
-          Attendees
-        </h1>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
-          Connect with fellow conference participants
-        </p>
-      </div>
-    </div>
-
+  <TabsPage
+    title="Attendees"
+    subtitle="Connect with fellow conference participants">
     <div class="px-4 py-6 pb-20 space-y-6">
       <!-- Search bar -->
       <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 p-4">
@@ -111,7 +101,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </TabsPage>
 </template>
 
 <script setup lang="ts">
@@ -119,6 +109,7 @@ import { watch, reactive, inject } from 'vue';
 import { useDebounceFn } from '@vueuse/core';
 import UserAvatar from '#/components/UserAvatar.vue';
 import { axiosKey } from '#/plugins/symbols';
+import TabsPage from '#/components/TabsPage.vue';
 
 interface Attendee {
   id: number;

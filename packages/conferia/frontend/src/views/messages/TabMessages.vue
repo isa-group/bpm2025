@@ -1,30 +1,20 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
-    <!-- Sticky Header (matching agenda style) -->
-    <div class="sticky top-16 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-      <div class="flex items-center justify-between px-4 py-4">
-        <div class="flex-1">
-          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
-            Messages
-          </h1>
-          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
-            Stay updated with conference announcements
-          </p>
-        </div>
-        <button
-          class="flex items-center space-x-2 px-3 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
-          @click="openPostMessage">
-          <svg
-            class="w-5 h-5"
-            viewBox="0 0 32 32"
-            fill="currentColor">
-            <path d="M16 2C8.3 2 2 8.3 2 16s6.3 14 14 14 14-6.3 14-14S23.7 2 16 2zm7 15h-6v6h-2v-6H9v-2h6V9h2v6h6v2z" />
-          </svg>
-          <span class="font-medium">Post</span>
-        </button>
-      </div>
-    </div>
-
+  <TabsPage
+    title="Messages"
+    subtitle="Stay updated with conference announcements">
+    <template #header-post>
+      <button
+        class="flex items-center space-x-2 px-3 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
+        @click="openPostMessage">
+        <svg
+          class="w-5 h-5"
+          viewBox="0 0 32 32"
+          fill="currentColor">
+          <path d="M16 2C8.3 2 2 8.3 2 16s6.3 14 14 14 14-6.3 14-14S23.7 2 16 2zm7 15h-6v6h-2v-6H9v-2h6V9h2v6h6v2z" />
+        </svg>
+        <span class="font-medium">Post</span>
+      </button>
+    </template>
     <div class="px-4 py-6 pb-20 space-y-6">
       <!-- Messages section -->
       <div>
@@ -180,7 +170,7 @@
           :loading="isSubmitting" />
       </form>
     </Dialog>
-  </div>
+  </TabsPage>
 </template>
 
 <script setup lang="ts">
@@ -197,6 +187,7 @@ import Message from 'primevue/message';
 import { useToast } from 'primevue/usetoast';
 import UserAvatar from '#/components/UserAvatar.vue';
 import { axiosKey } from '#/plugins/symbols';
+import TabsPage from '#/components/TabsPage.vue';
 
 interface MessageType {
   id: number;

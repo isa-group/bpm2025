@@ -1,21 +1,14 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
-    <!-- Apple-style page header -->
-    <div class="sticky top-16 z-40 bg-gray-50/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-      <div class="p-4 flex items-center space-x-4">
-        <Button
-          icon="i-tabler:arrow-left"
-          size="small"
-          variant="outlined"
-          rounded
-          @click="$router.back()" />
-        <div>
-          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
-            {{ attendee.firstname }} {{ attendee.lastname }}
-          </h1>
-        </div>
-      </div>
-    </div>
+  <TabsPage
+    :title="`${attendee.firstname} ${attendee.lastname}`">
+    <template #header-pre>
+      <Button
+        icon="i-tabler:arrow-left"
+        size="small"
+        variant="outlined"
+        rounded
+        @click="$router.back()" />
+    </template>
 
     <div class="px-4 py-6 pb-20">
       <!-- Profile Section -->
@@ -97,7 +90,7 @@
         </Card>
       </div>
     </div>
-  </div>
+  </TabsPage>
 </template>
 
 <script setup lang="ts">
@@ -106,6 +99,7 @@ import { useRouter, useRoute } from 'vue-router';
 import Card from 'primevue/card';
 import Button from 'primevue/button';
 import UserAvatar from '#/components/UserAvatar.vue';
+import TabsPage from '#/components/TabsPage.vue';
 import { axiosKey } from '#/plugins/symbols';
 
 // Interfaces

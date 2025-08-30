@@ -1,17 +1,7 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
-    <!-- Sticky Header (matching agenda style) -->
-    <div class="sticky top-16 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-      <div class="px-4 py-4">
-        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
-          About
-        </h1>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
-          Learn more about this application
-        </p>
-      </div>
-    </div>
-
+  <TabsPage
+    title="About"
+    subtitle="Learn more about this application">
     <div class="px-4 py-6 pb-20 space-y-6">
       <!-- App Logo and Title -->
       <Card class="overflow-hidden shadow-sm">
@@ -45,6 +35,9 @@
                       target="_blank"
                       class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline font-medium">Development of web application with robustness guarantees</a>"</em>.
                   </p>
+                  <p>
+                    The application has then been updated and extended by Andrea Burattin and Giovanni Meroni.
+                  </p>
                 </div>
               </div>
 
@@ -57,8 +50,38 @@
                     Updates & Extensions
                   </p>
                   <p>
-                    The application has then been updated and extended by Andrea Burattin and Giovanni Meroni.
+                    The user interface has been revamped by the BPM2025 conference organizing team:
                   </p>
+                  <br>
+                  <ul>
+                    <li>
+                      · Fernando Fernández (also in charge of all the web & payment system):
+                      <a
+                        href="https://github.com/ferferga"
+                        target="_blank"
+                        class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline font-medium">
+                        GitHub
+                      </a>
+                    </li>
+                    <li>
+                      · Adrián Romero Flores:
+                      <a
+                        href="https://github.com/adrrf"
+                        target="_blank"
+                        class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline font-medium">
+                        GitHub
+                      </a>
+                    </li>
+                    <li>
+                      · Álvaro Jesús Bernal Caunedo:
+                      <a
+                        href="https://github.com/alvarobernal2412"
+                        target="_blank"
+                        class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline font-medium">
+                        GitHub
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -125,10 +148,11 @@
         </template>
       </Card>
     </div>
-  </div>
+  </TabsPage>
 </template>
 
 <script setup lang="ts">
 import Card from 'primevue/card';
 import PrivacyNote from '#/components/PrivacyNote.vue';
+import TabsPage from '#/components/TabsPage.vue';
 </script>

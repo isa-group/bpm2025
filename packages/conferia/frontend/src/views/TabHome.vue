@@ -1,17 +1,7 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
-    <!-- Sticky Header -->
-    <div class="sticky top-16 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-      <div class="px-4 py-4">
-        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
-          Home
-        </h1>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
-          Welcome to BPM 2025 Conference!
-        </p>
-      </div>
-    </div>
-
+  <TabsPage
+    title="Home"
+    subtitle="Welcome to BPM 2025 Conference!">
     <div class="px-4 py-6 pb-20 space-y-6">
       <!-- Hero image -->
       <Card class="overflow-hidden shadow-sm">
@@ -174,7 +164,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </TabsPage>
 </template>
 
 <script setup lang="ts">
@@ -182,6 +172,7 @@ import { inject, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import Badge from 'primevue/badge';
 import Card from 'primevue/card';
+import TabsPage from '#/components/TabsPage.vue';
 import { axiosKey } from '#/plugins/symbols';
 
 const axios = inject(axiosKey)!;

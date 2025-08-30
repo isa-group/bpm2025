@@ -1,17 +1,7 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
-    <!-- Sticky Header -->
-    <div class="sticky top-16 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-      <div class="px-4 py-4">
-        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
-          Profile Settings
-        </h1>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
-          Manage your account and preferences
-        </p>
-      </div>
-    </div>
-
+  <TabsPage
+    title="Profile Settings"
+    subtitle="Manage your account and preferences">
     <div class="px-4 py-6 pb-20 space-y-6">
       <!-- Profile Picture Section -->
       <Card class="overflow-hidden shadow-sm">
@@ -417,7 +407,7 @@
         </div>
       </RouterLink>
     </div>
-  </div>
+  </TabsPage>
 </template>
 
 <script setup lang="ts">
@@ -430,6 +420,7 @@ import InputText from 'primevue/inputtext';
 import Checkbox from 'primevue/checkbox';
 import Password from 'primevue/password';
 import { isAxiosError } from 'axios';
+import TabsPage from '#/components/TabsPage.vue';
 import { usePhotoGallery } from '#/composables/usePhotoGallery';
 import {
   axiosKey,

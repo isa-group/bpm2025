@@ -1,25 +1,14 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
-    <!-- Sticky Header -->
-    <div class="sticky top-16 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-      <div class="px-4 py-4">
-        <div class="flex items-center space-x-3">
-          <button
-            class="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-            @click="$router.back()">
-            <svg
-              class="w-5 h-5 text-gray-600 dark:text-gray-300"
-              viewBox="0 0 32 32"
-              fill="currentColor">
-              <path d="M20 24l-8-8 8-8z" />
-            </svg>
-          </button>
-          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
-            {{ pageData.title || 'Page' }}
-          </h1>
-        </div>
-      </div>
-    </div>
+  <TabsPage
+    :title="pageData.title || 'Page'">
+    <template #header-pre>
+      <Button
+        icon="i-tabler:arrow-left"
+        size="small"
+        variant="outlined"
+        rounded
+        @click="$router.back()" />
+    </template>
 
     <div class="px-4 py-6 pb-20">
       <!-- Loading state -->
@@ -110,13 +99,14 @@
         </div>
       </div>
     </div>
-  </div>
+  </TabsPage>
 </template>
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
 import { inject, reactive, ref } from 'vue';
 import { axiosKey } from '#/plugins/symbols';
+import TabsPage from '#/components/TabsPage.vue';
 
 interface PageData {
   title: string;

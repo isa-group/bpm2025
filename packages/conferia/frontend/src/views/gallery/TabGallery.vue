@@ -1,72 +1,57 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
-    <!-- Sticky Header (matching agenda style) -->
-    <div class="sticky top-16 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-      <div class="flex items-center justify-between px-4 py-4">
-        <div class="flex-1">
-          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
-            Gallery
-          </h1>
-          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
-            {{ selectMultiple ? `${imagesSelectedList.length} selected` : 'Share and discover conference moments' }}
-          </p>
-        </div>
-        <div class="flex items-center space-x-2">
-          <!-- Selection mode actions -->
-          <template v-if="selectMultiple">
-            <button
-              :disabled="imagesSelectedList.length === 0"
-              class="flex items-center space-x-2 px-3 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              @click="downloadImages">
-              <svg
-                class="w-4 h-4"
-                viewBox="0 0 32 32"
-                fill="currentColor">
-                <path d="M26 24v4H6v-4H4v4a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2v-4ZM21 21l-1.41-1.41L17 22.17V2h-2v20.17l-2.59-2.58L11 21l5 5Z" />
-              </svg>
-              <span class="font-medium">Download</span>
-            </button>
-            <button
-              class="p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
-              @click="untoggleSelectImage">
-              <svg
-                class="w-5 h-5"
-                viewBox="0 0 32 32"
-                fill="currentColor">
-                <path d="M24 9.4 22.6 8 16 14.6 9.4 8 8 9.4l6.6 6.6L8 22.6l1.4 1.4l6.6-6.6l6.6 6.6l1.4-1.4L17.4 16Z" />
-              </svg>
-            </button>
-          </template>
-          <!-- Normal mode actions -->
-          <template v-else>
-            <button
-              class="p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
-              @click="op?.toggle">
-              <svg
-                class="w-5 h-5"
-                viewBox="0 0 32 32"
-                fill="currentColor">
-                <path d="M27 16.76v-1.53l1.92-1.68A2 2 0 0 0 29.3 11l-2.36-4a2 2 0 0 0-1.73-1 2 2 0 0 0-.64.1l-2.43.82a11.35 11.35 0 0 0-1.31-.75l-.51-2.52a2 2 0 0 0-2-1.61h-4.68a2 2 0 0 0-2 1.61l-.51 2.52a11.48 11.48 0 0 0-1.32.75l-2.38-.86A2 2 0 0 0 6.79 6a2 2 0 0 0-1.73 1L2.7 11a2 2 0 0 0 .38 2.55L5 15.24v1.53l-1.92 1.68A2 2 0 0 0 2.7 21l2.36 4a2 2 0 0 0 1.73 1 2 2 0 0 0 .64-.1l2.43-.82a11.35 11.35 0 0 0 1.31.75l.51 2.52a2 2 0 0 0 2 1.61h4.72a2 2 0 0 0 2-1.61l.51-2.52a11.48 11.48 0 0 0 1.32-.75l2.42.82a2 2 0 0 0 .64.1 2 2 0 0 0 1.73-1L29.3 21a2 2 0 0 0-.38-2.55ZM25.21 24l-2.43-.82a2 2 0 0 0-1.39.24 9.48 9.48 0 0 1-1.85 1.05 2 2 0 0 0-1.15 1.63l-.51 2.52h-4.72l-.51-2.52a2 2 0 0 0-1.15-1.63 9.35 9.35 0 0 1-1.85-1.05 2 2 0 0 0-1.39-.24L6.79 24l-2.36-4 1.92-1.68a2 2 0 0 0 .67-1.68v-2.13a2 2 0 0 0-.67-1.68L4.43 12l2.36-4 2.42.82a2 2 0 0 0 1.39-.24 9.48 9.48 0 0 1 1.85-1.05A2 2 0 0 0 13.6 5.9l.51-2.52h4.72l.51 2.52a2 2 0 0 0 1.15 1.63 9.35 9.35 0 0 1 1.85 1.05 2 2 0 0 0 1.39.24L25.21 8l2.36 4-1.92 1.68a2 2 0 0 0-.67 1.68v2.13a2 2 0 0 0 .67 1.68L27.57 20Z" />
-                <path d="M16 22a6 6 0 1 1 6-6 5.94 5.94 0 0 1-6 6Zm0-10a4 4 0 1 0 4 4 3.91 3.91 0 0 0-4-4Z" />
-              </svg>
-            </button>
-            <button
-              class="flex items-center space-x-2 px-3 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
-              @click="uploadGalleryImage">
-              <svg
-                class="w-4 h-4"
-                viewBox="0 0 32 32"
-                fill="currentColor">
-                <path d="M16 2C8.3 2 2 8.3 2 16s6.3 14 14 14 14-6.3 14-14S23.7 2 16 2zm7 15h-6v6h-2v-6H9v-2h6V9h2v6h6v2z" />
-              </svg>
-              <span class="font-medium">Upload</span>
-            </button>
-          </template>
-        </div>
+  <TabsPage
+    title="Gallery"
+    :subtitle="selectMultiple ? `${imagesSelectedList.length} selected` : 'Share and discover conference moments'">
+    <template #header-post>
+      <div class="flex items-center space-x-2">
+        <!-- Selection mode actions -->
+        <template v-if="selectMultiple">
+          <button
+            :disabled="imagesSelectedList.length === 0"
+            class="flex items-center space-x-2 px-3 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            @click="downloadImages">
+            <svg
+              class="w-4 h-4"
+              viewBox="0 0 32 32"
+              fill="currentColor">
+              <path d="M26 24v4H6v-4H4v4a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2v-4ZM21 21l-1.41-1.41L17 22.17V2h-2v20.17l-2.59-2.58L11 21l5 5Z" />
+            </svg>
+            <span class="font-medium">Download</span>
+          </button>
+          <button
+            class="p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
+            @click="untoggleSelectImage">
+            <svg
+              class="w-5 h-5"
+              viewBox="0 0 32 32"
+              fill="currentColor">
+              <path d="M24 9.4 22.6 8 16 14.6 9.4 8 8 9.4l6.6 6.6L8 22.6l1.4 1.4l6.6-6.6l6.6 6.6l1.4-1.4L17.4 16Z" />
+            </svg>
+          </button>
+        </template>
+        <!-- Normal mode actions -->
+        <template v-else>
+          <button
+            class="p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
+            @click="op?.toggle">
+            <svg
+              class="w-5 h-5"
+              viewBox="0 0 32 32"
+              fill="currentColor">
+              <path d="M27 16.76v-1.53l1.92-1.68A2 2 0 0 0 29.3 11l-2.36-4a2 2 0 0 0-1.73-1 2 2 0 0 0-.64.1l-2.43.82a11.35 11.35 0 0 0-1.31-.75l-.51-2.52a2 2 0 0 0-2-1.61h-4.68a2 2 0 0 0-2 1.61l-.51 2.52a11.48 11.48 0 0 0-1.32.75l-2.38-.86A2 2 0 0 0 6.79 6a2 2 0 0 0-1.73 1L2.7 11a2 2 0 0 0 .38 2.55L5 15.24v1.53l-1.92 1.68A2 2 0 0 0 2.7 21l2.36 4a2 2 0 0 0 1.73 1 2 2 0 0 0 .64-.1l2.43-.82a11.35 11.35 0 0 0 1.31.75l.51 2.52a2 2 0 0 0 2 1.61h4.72a2 2 0 0 0 2-1.61l.51-2.52a11.48 11.48 0 0 0 1.32-.75l2.42.82a2 2 0 0 0 .64.1 2 2 0 0 0 1.73-1L29.3 21a2 2 0 0 0-.38-2.55ZM25.21 24l-2.43-.82a2 2 0 0 0-1.39.24 9.48 9.48 0 0 1-1.85 1.05 2 2 0 0 0-1.15 1.63l-.51 2.52h-4.72l-.51-2.52a2 2 0 0 0-1.15-1.63 9.35 9.35 0 0 1-1.85-1.05 2 2 0 0 0-1.39-.24L6.79 24l-2.36-4 1.92-1.68a2 2 0 0 0 .67-1.68v-2.13a2 2 0 0 0-.67-1.68L4.43 12l2.36-4 2.42.82a2 2 0 0 0 1.39-.24 9.48 9.48 0 0 1 1.85-1.05A2 2 0 0 0 13.6 5.9l.51-2.52h4.72l.51 2.52a2 2 0 0 0 1.15 1.63 9.35 9.35 0 0 1 1.85 1.05 2 2 0 0 0 1.39.24L25.21 8l2.36 4-1.92 1.68a2 2 0 0 0-.67 1.68v2.13a2 2 0 0 0 .67 1.68L27.57 20Z" />
+              <path d="M16 22a6 6 0 1 1 6-6 5.94 5.94 0 0 1-6 6Zm0-10a4 4 0 1 0 4 4 3.91 3.91 0 0 0-4-4Z" />
+            </svg>
+          </button>
+          <button
+            class="flex items-center space-x-2 px-3 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
+            @click="uploadGalleryImage">
+            <i class="w-4 h-4 i-tabler:circle-plus-filled" />
+            <span class="font-medium">Upload</span>
+          </button>
+        </template>
       </div>
-    </div>
+    </template>
 
-    <!-- Filter Overlay -->
     <!-- Filter Overlay -->
     <Popover
       ref="op"
@@ -214,7 +199,7 @@
           @click="loadMore" />
       </div>
     </div>
-  </div>
+  </TabsPage>
 </template>
 
 <script setup lang="ts">
@@ -229,6 +214,7 @@ import Popover from 'primevue/popover';
 import router from '#/plugins/router';
 import { usePhotoGallery } from '#/composables/usePhotoGallery';
 import { axiosKey } from '#/plugins/symbols';
+import TabsPage from '#/components/TabsPage.vue';
 
 // Interfaces
 interface FilterAndSearch {
@@ -242,7 +228,7 @@ interface SelectOption {
   value: string | boolean;
 }
 
-const { 
+const {
   takePhotoGallery: _takePhotoGallery,
   getImageUrl,
   getImageJPG

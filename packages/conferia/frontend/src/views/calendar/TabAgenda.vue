@@ -1,25 +1,15 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
-    <!-- Apple-style Header -->
-    <div class="sticky top-16 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-      <div class="flex items-center justify-between px-4 py-4">
-        <div class="flex-1">
-          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
-            {{ state.passedUserId ? 'Personal Agenda' : 'Agenda' }}
-          </h1>
-          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
-            {{ state.passedUserId ? 'Your personalized conference schedule' : 'Full conference program' }}
-          </p>
-        </div>
-        <button
-          class="flex items-center space-x-2 px-3 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
-          @click="goToCalendar">
-          <i class="i-tabler:calendar text-lg" />
-          <span class="font-medium">Calendar</span>
-        </button>
-      </div>
-    </div>
-
+  <TabsPage
+    :title="state.passedUserId ? 'Personal Agenda' : 'Agenda'"
+    :subtitle="state.passedUserId ? 'Your personalized conference schedule' : 'Full conference program'">
+    <template #header-post>
+      <button
+        class="flex items-center space-x-2 px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
+        @click="goToCalendar">
+        <i class="w-4 h-4 i-tabler:calendar" />
+        <span class="font-medium">Calendar</span>
+      </button>
+    </template>
     <!-- ICMP/Personal Segment Bar -->
     <div class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-3">
       <div class="flex bg-gray-100 dark:bg-gray-700 rounded-xl p-1">
@@ -165,12 +155,13 @@
       :id="sessionIdDetail"
       :is-open="sessionModalOpen"
       @did-dismiss="sessionModalOpen = false" />
-  </div>
+  </TabsPage>
 </template>
 
 <script setup lang="ts">
 import { reactive, onMounted, computed, watch, ref, inject } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
+import TabsPage from '#/components/TabsPage.vue';
 import TabSessionDetails from '#/views/calendar/TabSessionDetails.vue';
 import { axiosKey } from '#/plugins/symbols';
 
