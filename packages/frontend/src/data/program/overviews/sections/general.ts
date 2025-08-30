@@ -303,49 +303,49 @@ export const general_events: ScheduleEvent[] = [
     category: 'social',
     location: locations.raza,
     href: getPermalink('/program/social-events/#farewell-party')
-  },
+  }
 
   // 31 de Agosto
-  {
-    title: 'Invited Talk – ADA Representative',
-    start: new Date(2025, 8, 5, 9, 15),
-    end: new Date(2025, 8, 5, 10, 15),
-    category: 'conference_2',
-    description: postConferenceDescription
-  },
-  {
-    title: 'Coffee Break',
-    start: new Date(2025, 8, 5, 10, 15),
-    end: new Date(2025, 8, 5, 10, 45),
-    category: 'lunch'
-  },
-  {
-    title: 'Real Cases of Process Automation and Improvement',
-    start: new Date(2025, 8, 5, 10, 45),
-    end: new Date(2025, 8, 5, 12, 15),
-    category: 'conference_2',
-    description: postConferenceDescription
-  },
-  {
-    title: 'Process Mining in the Public Administration',
-    start: new Date(2025, 8, 5, 12, 15),
-    end: new Date(2025, 8, 5, 12, 45),
-    category: 'conference_2',
-    description: postConferenceDescription
-  },
-  {
-    title: 'Round Table: AI, RPA, and Automation in Action',
-    start: new Date(2025, 8, 5, 12, 45),
-    end: new Date(2025, 8, 5, 13, 30),
-    category: 'conference_2',
-    description: postConferenceDescription
-  },
-  {
-    title: 'Cocktail & Networking',
-    start: new Date(2025, 8, 5, 13, 30),
-    end: new Date(2025, 8, 5, 14, 0),
-    category: 'lunch'
-  }
+  // {
+  //   title: 'Invited Talk – ADA Representative',
+  //   start: new Date(2025, 8, 5, 9, 15),
+  //   end: new Date(2025, 8, 5, 10, 15),
+  //   category: 'conference_2',
+  //   description: postConferenceDescription
+  // },
+  // {
+  //   title: 'Coffee Break',
+  //   start: new Date(2025, 8, 5, 10, 15),
+  //   end: new Date(2025, 8, 5, 10, 45),
+  //   category: 'lunch'
+  // },
+  // {
+  //   title: 'Real Cases of Process Automation and Improvement',
+  //   start: new Date(2025, 8, 5, 10, 45),
+  //   end: new Date(2025, 8, 5, 12, 15),
+  //   category: 'conference_2',
+  //   description: postConferenceDescription
+  // },
+  // {
+  //   title: 'Process Mining in the Public Administration',
+  //   start: new Date(2025, 8, 5, 12, 15),
+  //   end: new Date(2025, 8, 5, 12, 45),
+  //   category: 'conference_2',
+  //   description: postConferenceDescription
+  // },
+  // {
+  //   title: 'Round Table: AI, RPA, and Automation in Action',
+  //   start: new Date(2025, 8, 5, 12, 45),
+  //   end: new Date(2025, 8, 5, 13, 30),
+  //   category: 'conference_2',
+  //   description: postConferenceDescription
+  // },
+  // {
+  //   title: 'Cocktail & Networking',
+  //   start: new Date(2025, 8, 5, 13, 30),
+  //   end: new Date(2025, 8, 5, 14, 0),
+  //   category: 'lunch'
+  // }
 ].map((event) => {
   const overview = program_overviews.find(o => o.name === event.title);
 
