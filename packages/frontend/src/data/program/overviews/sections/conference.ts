@@ -19,7 +19,7 @@ function getHref(category: string, sessionIndex: number) {
   return getPermalink(`/program/${category}/#${category}-s${sessionIndex}`);
 }
 
-export const conference: ScheduleEvent[] = [
+export const conferenceFirst: ScheduleEvent[] = [
   {
     title: 'Main Track 1',
     start: new Date(2025, 8, 2, 11, 0),
@@ -135,7 +135,10 @@ export const conference: ScheduleEvent[] = [
     category: 'journal_first',
     location: locations.triana,
     href: getHref('journal-first-track', 2)
-  },
+  }
+];
+
+export const conferenceSecond: ScheduleEvent[] = [
   {
     title: 'Main Track 4',
     start: new Date(2025, 8, 3, 11, 0),
@@ -224,7 +227,10 @@ export const conference: ScheduleEvent[] = [
     category: 'journal_first',
     location: locations.magnolia,
     href: getHref('journal-first-track', 3)
-  },
+  }
+];
+
+export const conferenceThird: ScheduleEvent[] = [
   {
     title: 'Main Track 6',
     start: new Date(2025, 8, 4, 11, 0),
