@@ -66,20 +66,20 @@
     <div class="px-4 py-6 pb-20">
       <!-- Session List -->
       <div
-        v-if="state.selectedDay && groupedSessionsByType && Object.keys(groupedSessionsByType).length > 0"
+        v-if="state.selectedDay && groupedSessionsByTime && Object.keys(groupedSessionsByTime).length > 0"
         class="space-y-6">
         <div
-          v-for="(group, sessionType) in groupedSessionsByType"
-          :key="sessionType"
+          v-for="(group, timeSlot) in groupedSessionsByTime"
+          :key="timeSlot"
           class="space-y-3">
-          <!-- Session Type Header -->
+          <!-- Time Slot Header -->
           <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-3 border border-blue-100 dark:border-blue-800">
             <h2 class="font-bold text-lg text-blue-900 dark:text-blue-100">
-              {{ formatSessionType(sessionType) }}
+              {{ formatTimeSlot(timeSlot) }}
             </h2>
           </div>
 
-          <!-- Sessions of this type -->
+          <!-- Sessions of this time -->
           <div class="space-y-3">
             <div
               v-for="session in group"
@@ -97,7 +97,7 @@
                       {{ formatSessionTime(session) }}
                     </p>
                     <p
-                      v-if="session.session_host"
+                      v-if="session.session_host && session.session_host.trim() && session.session_host !== 'TBA'"
                       class="text-gray-600 dark:text-gray-300 text-sm mb-1">
                       Host: {{ session.session_host }}
                     </p>
@@ -326,18 +326,70 @@ async function toggleLike(session: Session): Promise<void> {
 }
 
 /**
+ * Fix UTF-8 encoding issues for text that may contain special characters
+ */
+function fixTextEncoding(text: string | undefined): string | undefined {
+  if (!text) return text;
+  
+  try {
+    // Common double-encoded UTF-8 patterns for Polish and other European characters
+    let fixed = text
+      // Polish characters
+      .replace(/Å›/g, 'ś')
+      .replace(/Ä…/g, 'ą')
+      .replace(/Å„/g, 'ń')
+      .replace(/Å‚/g, 'ł')
+      .replace(/Å¼/g, 'ż')
+      .replace(/Å¯/g, 'ź')
+      .replace(/Ä™/g, 'ę')
+      .replace(/Ä‡/g, 'ć')
+      .replace(/Ã³/g, 'ó')
+      
+      // German/French characters
+      .replace(/Ã¡/g, 'á')
+      .replace(/Ã©/g, 'é')
+      .replace(/Ã­/g, 'í')
+      .replace(/Ãº/g, 'ú')
+      .replace(/Ã±/g, 'ñ')
+      .replace(/Ã¼/g, 'ü')
+      .replace(/Ã¤/g, 'ä')
+      .replace(/Ã¶/g, 'ö')
+      .replace(/ÃŸ/g, 'ß')
+      
+      // More double-encoded patterns
+      .replace(/â€™/g, "'")
+      .replace(/â€œ/g, '"')
+      .replace(/â€/g, '"')
+      .replace(/â€"/g, '–')
+      .replace(/â€"/g, '—');
+    
+    // Handle question mark replacements for specific known cases
+    // This is specifically for "Mateusz ?la?y?ski" -> "Mateusz Ślażyński"
+    if (fixed.includes('?la?y?ski')) {
+      fixed = fixed.replace('?la?y?ski', 'ślażyński');
+    }
+    if (fixed.includes('Mateusz ?')) {
+      fixed = fixed.replace('Mateusz ?la?y?ski', 'Mateusz Ślażyński');
+    }
+    
+    return fixed;
+  } catch (error) {
+    console.warn('Error fixing text encoding:', error);
+    return text;
+  }
+}
+
+/**
  * Process session data and add timezone adjustment and like status
  */
 function processSessions(sessionsData: Record<string, unknown>[]): Session[] {
   return sessionsData.map((session: Record<string, unknown>) => {
     const sessionIdAsString = session.id?.toString();
-    const isLikedCheck = state.likedSessionIds.has(sessionIdAsString ?? '');
+    const isLikedCheck = state.likedSessionIds.has(parseInt(sessionIdAsString ?? '0'));
 
-    // Add 2 hours to fix timezone misalignment
+    // Use original times without timezone adjustment
     const startTime = new Date(session.startTime as string);
     const endTime = new Date(session.endTime as string);
-    startTime.setHours(startTime.getHours() + 2);
-    endTime.setHours(endTime.getHours() + 2);
 
     // Format times properly (YYYY-MM-DD HH:MM:SS)
     const formatDateTime = (date: Date) => {
@@ -352,10 +404,10 @@ function processSessions(sessionsData: Record<string, unknown>[]): Session[] {
 
     return {
       id: session.id as number,
-      title: (session.name ?? session.session_name ?? 'Untitled Session') as string,
-      session_name: (session.name ?? session.session_name) as string | undefined,
-      session_host: (session.host ?? session.session_host) as string | undefined,
-      session_location: (session.location ?? session.session_location) as string | undefined,
+      title: fixTextEncoding((session.name ?? session.session_name ?? 'Untitled Session') as string) as string,
+      session_name: fixTextEncoding((session.name ?? session.session_name) as string | undefined),
+      session_host: fixTextEncoding((session.host ?? session.session_host) as string | undefined),
+      session_location: fixTextEncoding((session.location ?? session.session_location) as string | undefined),
       start_time: formatDateTime(startTime),
       end_time: formatDateTime(endTime),
       startTime: formatDateTime(startTime),
@@ -363,8 +415,8 @@ function processSessions(sessionsData: Record<string, unknown>[]): Session[] {
       type: session.type as string,
       isLiked: isLikedCheck,
       likes: (session.likes ?? 0) as number,
-      abstract: session.abstract as string,
-      authors: session.authors as string
+      abstract: fixTextEncoding(session.abstract as string),
+      authors: fixTextEncoding(session.authors as string)
     };
   });
 }
@@ -407,7 +459,16 @@ function selectDay(value: string): void {
  * Navigate to different agenda type (personal/general) with query parameters
  */
 function navigateToAgendaType(type: string): void {
-  const query: Record<string, string> = { ...route.query }; // Get current query parameters
+  const query: Record<string, string> = {};
+  
+  // Copy existing query parameters
+  for (const [key, value] of Object.entries(route.query)) {
+    if (typeof value === 'string') {
+      query[key] = value;
+    } else if (Array.isArray(value) && value.length > 0 && typeof value[0] === 'string') {
+      query[key] = value[0];
+    }
+  }
 
   // Add or update the `type` parameter based on the selected segment
   if (type === 'personal') {
@@ -456,76 +517,32 @@ const filteredSessions = computed(() => {
     .sort((a, b) => new Date(a.start_time).getTime() - new Date(b.start_time).getTime());
 });
 
-const groupedSessionsByType = computed(() => {
-  const groups: Record<string, Session[]> = {};
+const groupedSessionsByTime = computed(() => {
+  // Sort all sessions by start time
+  const sortedSessions = [...filteredSessions.value].sort((a, b) => 
+    new Date(a.start_time).getTime() - new Date(b.start_time).getTime()
+  );
 
-  // Define the importance order for session types
-  const typeImportanceOrder = [
-    'KEYNOTE',
-    'FOOD',
-    'COFFEE',
-    'PRACTICAL',
-    'QnA',
-    'DOCTORALCONSORTIUM',
-    'MAIN',
-    'BPMFORUM',
-    'EDUCATORSFORUM',
-    'PROCESSTECHNOLOGYFORUM',
-    'INDUSTRYFORUM',
-    'RESPONSIBLEBPMFORUM',
-    'JOURNALFIRST',
-    'PANEL',
-    'TUTORIAL',
-    'WORKSHOP',
-    'DEMO',
-    'OTHER'
-  ];
-
-  for (const session of filteredSessions.value) {
-    const sessionType = session.type ?? 'OTHER';
-    let groupKey = sessionType;
-
-    // For workshops, create separate groups based on workshop name
-    if (sessionType === 'WORKSHOP' && session.session_name) {
-      const workshopName = extractWorkshopName(session.session_name);
-      groupKey = `WORKSHOP_${workshopName}`;
+  // Group sessions by time slots (start time)
+  const timeGroups: Record<string, Session[]> = {};
+  
+  for (const session of sortedSessions) {
+    const timeKey = session.start_time; // Use full start time as key
+    
+    if (!timeGroups[timeKey]) {
+      timeGroups[timeKey] = [];
     }
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    groups[groupKey] = groups[groupKey] || [];
-    groups[groupKey].push(session);
+    timeGroups[timeKey].push(session);
   }
 
-  // Sort sessions within each type by start time
-  Object.keys(groups).forEach((type) => {
-    groups[type].sort((a, b) => new Date(a.start_time).getTime() - new Date(b.start_time).getTime());
-  });
+  // Sort time groups chronologically
+  const sortedTimeKeys = Object.keys(timeGroups).sort((a, b) => 
+    new Date(a).getTime() - new Date(b).getTime()
+  );
 
-  // Convert to ordered object based on type importance
   const orderedGroups: Record<string, Session[]> = {};
-
-  // First, add groups in importance order
-  for (const type of typeImportanceOrder) {
-    if (type in groups) {
-      orderedGroups[type] = groups[type];
-    }
-  }
-
-  // Then add workshop groups (sorted alphabetically)
-  const workshopGroups = Object.keys(groups)
-    .filter(key => key.startsWith('WORKSHOP_'))
-    .sort();
-
-  for (const workshopType of workshopGroups) {
-    if (workshopType in groups) {
-      orderedGroups[workshopType] = groups[workshopType];
-    }
-  }
-
-  // Finally, add any remaining groups not in the importance order
-  for (const type in groups) {
-    if (!(type in orderedGroups)) {
-      orderedGroups[type] = groups[type];
-    }
+  for (const timeKey of sortedTimeKeys) {
+    orderedGroups[timeKey] = timeGroups[timeKey];
   }
 
   return orderedGroups;
@@ -558,15 +575,28 @@ function extractWorkshopName(sessionTitle: string): string {
 }
 
 /**
- * Format session type for display
+ * Format time slot for display as header
+ */
+function formatTimeSlot(timeSlot: string): string {
+  try {
+    const timePart = timeSlot.split(' ')[1];
+    if (!timePart) {
+      return 'Time TBA';
+    }
+    
+    // Extract just hours:minutes from HH:MM:SS format
+    const time = timePart.substring(0, 5);
+    return time;
+  } catch (error) {
+    console.error('Error formatting time slot:', error, timeSlot);
+    return 'Time TBA';
+  }
+}
+
+/**
+ * Format session type for display (kept for potential future use)
  */
 function formatSessionType(type: string): string {
-  // Handle workshop groups
-  if (type.startsWith('WORKSHOP_')) {
-    const workshopName = type.replace('WORKSHOP_', '');
-    return workshopName;
-  }
-
   const typeMap: Record<string, string> = {
     KEYNOTE: 'Keynote',
     FOOD: 'Lunch',
@@ -587,6 +617,13 @@ function formatSessionType(type: string): string {
     JOURNALFIRST: 'Journal First Track',
     OTHER: 'Other Sessions'
   };
+  
+  // Handle workshop groups
+  if (type.startsWith('WORKSHOP_')) {
+    const workshopName = type.replace('WORKSHOP_', '');
+    return workshopName;
+  }
+  
   return typeMap[type] || type;
 }
 
