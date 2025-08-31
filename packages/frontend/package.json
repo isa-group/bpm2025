@@ -22,6 +22,7 @@
   "dependencies": {
     "@bpm2025-website/assets": "*",
     "@bpm2025-website/conferia-frontend": "*",
+    "@bpm2025-website/frontend": "file:",
     "@fontsource-variable/inter": "5.2.6",
     "world-countries": "5.1.0"
   },
