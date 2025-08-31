@@ -16,8 +16,8 @@ import BPMLogo from '@bpm2025-website/assets/icon';
 import ManuelResinas_img from '#/assets/images/people/resinas.jpg';
 import Adela_img from '#/assets/images/people/ortega.jpg';
 import Blockquote from '#/components/widgets/Blockquote.astro';
-import pdfBooklet from '#/assets/documents/program/Program_booklet.pdf';
 
+const pdfBooklet = '/program/Program_booklet.pdf';
 const cathedralText = 'Cathedral of Seville';
 ---
 
@@ -26,9 +26,9 @@ const cathedralText = 'Cathedral of Seville';
     title: '23<sup>rd</sup> International Conference on Business Process Management <br /> (BPM 2025)',
     tagline: '31st Aug - 5th Sep 2025 | Seville, Spain',
     actions: [
-      { variant: 'primary', text: 'Check the App', href: getPermalink('/app'), icon: 'i-tabler:apps' },
-      { variant: 'primary', text: 'Program booklet', href: pdfBooklet, icon: 'i-tabler:download', target: '_blank' },
-      { variant: 'primary', text: 'Proceedings', href: getPermalink('/proceedings'), icon: 'i-tabler:book' }
+      { variant: 'primary', text: 'App', href: getPermalink('/app/'), icon: 'i-tabler:apps' },
+      { variant: 'primary', text: 'Booklet', href: pdfBooklet, icon: 'i-tabler:download', target: '_blank' },
+      { variant: 'primary', text: 'Proceedings', href: getPermalink('/proceedings/'), icon: 'i-tabler:book' }
     ]
   }}>
   <Fragment slot="hero-subtitle">
