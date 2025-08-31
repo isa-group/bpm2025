@@ -3,7 +3,21 @@ import { getAsset } from '#/utils/permalinks';
 ---
 
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
 <meta name="google-site-verification" content="9_S8BU8vs0uPsVqm0Q-g3lM0_jTn1fgUi7Zz92aNXcA" />
+
+<!-- Apple-specific meta tags for better PWA support -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="BPM 2025" />
+<meta name="apple-touch-fullscreen" content="yes" />
+
+<!-- Theme color for Safari and other browsers -->
+<meta name="theme-color" content="#3b82f6" />
+<meta name="msapplication-TileColor" content="#3b82f6" />
+
+<!-- Prevent iOS Safari from showing the address bar -->
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
 
 <link rel="sitemap" href={getAsset('/sitemap-index.xml')} />

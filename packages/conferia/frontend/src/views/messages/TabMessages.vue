@@ -282,28 +282,28 @@ const deleteMessage = async (messageId: number) => {
   isDeleting.value = true;
   try {
     await axios.delete(`message/${messageId}`);
-    
+
     // Remove message from local list
     messages.value = messages.value.filter(msg => msg.id !== messageId);
-    
-    toast.add({ 
-      severity: 'success', 
-      summary: 'Success', 
-      detail: 'Message has been deleted successfully.', 
-      life: 3000 
+
+    toast.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Message has been deleted successfully.',
+      life: 3000
     });
-    
+
     // Close modal if the deleted message is currently open
     if (activeMessage.value.id === messageId) {
       closeMessage();
     }
   } catch (error: unknown) {
     console.error('Failed to delete message:', error);
-    toast.add({ 
-      severity: 'error', 
-      summary: 'Error', 
-      detail: 'Failed to delete the message.', 
-      life: 3000 
+    toast.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'Failed to delete the message.',
+      life: 3000
     });
   } finally {
     isDeleting.value = false;

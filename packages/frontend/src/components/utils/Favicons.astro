@@ -2,14 +2,86 @@
 import favIconSvg from '@bpm2025-website/assets/icon';
 import { getImage } from 'astro:assets';
 
-const appleTouchIcon = await getImage({
+// Generate multiple sizes for better iOS compatibility
+const appleTouchIcon180 = await getImage({
   src: favIconSvg,
   width: 180,
   height: 180,
   format: 'png'
 });
+
+const appleTouchIcon152 = await getImage({
+  src: favIconSvg,
+  width: 152,
+  height: 152,
+  format: 'png'
+});
+
+const appleTouchIcon144 = await getImage({
+  src: favIconSvg,
+  width: 144,
+  height: 144,
+  format: 'png'
+});
+
+const appleTouchIcon120 = await getImage({
+  src: favIconSvg,
+  width: 120,
+  height: 120,
+  format: 'png'
+});
+
+const appleTouchIcon114 = await getImage({
+  src: favIconSvg,
+  width: 114,
+  height: 114,
+  format: 'png'
+});
+
+const appleTouchIcon76 = await getImage({
+  src: favIconSvg,
+  width: 76,
+  height: 76,
+  format: 'png'
+});
+
+const appleTouchIcon72 = await getImage({
+  src: favIconSvg,
+  width: 72,
+  height: 72,
+  format: 'png'
+});
+
+const appleTouchIcon60 = await getImage({
+  src: favIconSvg,
+  width: 60,
+  height: 60,
+  format: 'png'
+});
+
+const appleTouchIcon57 = await getImage({
+  src: favIconSvg,
+  width: 57,
+  height: 57,
+  format: 'png'
+});
 ---
 
+<!-- Standard favicon -->
 <link rel="icon" type="image/svg+xml" href={favIconSvg.src} />
-<link rel="mask-icon" href={favIconSvg.src} color="#8D46E7" />
-<link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon.src} />
+<link rel="mask-icon" href={favIconSvg.src} color="#3124a8" />
+
+<!-- Apple touch icons for all devices and resolutions -->
+<link rel="apple-touch-icon" href={appleTouchIcon180.src} />
+<link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon180.src} />
+<link rel="apple-touch-icon" sizes="152x152" href={appleTouchIcon152.src} />
+<link rel="apple-touch-icon" sizes="144x144" href={appleTouchIcon144.src} />
+<link rel="apple-touch-icon" sizes="120x120" href={appleTouchIcon120.src} />
+<link rel="apple-touch-icon" sizes="114x114" href={appleTouchIcon114.src} />
+<link rel="apple-touch-icon" sizes="76x76" href={appleTouchIcon76.src} />
+<link rel="apple-touch-icon" sizes="72x72" href={appleTouchIcon72.src} />
+<link rel="apple-touch-icon" sizes="60x60" href={appleTouchIcon60.src} />
+<link rel="apple-touch-icon" sizes="57x57" href={appleTouchIcon57.src} />
+
+<!-- Apple touch startup image -->
+<link rel="apple-touch-startup-image" href={appleTouchIcon180.src} />

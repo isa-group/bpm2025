@@ -34,7 +34,7 @@
 
 <script>
   // PWA Install functionality - only for /app routes
-  
+
   // Define the BeforeInstallPromptEvent interface since it's not in standard TypeScript types
   interface BeforeInstallPromptEvent extends Event {
     readonly platforms: string[];
@@ -51,12 +51,16 @@
   const dismissButton = document.getElementById('pwa-dismiss-button');
 
   // Only show PWA install on /app routes
-  const isAppRoute = () => window.location.pathname.startsWith('/app');
+  const isAppRoute = () => {
+    const path = window.location.pathname;
+    const hash = window.location.hash;
+    return path.startsWith('/app') || (path === '/app/' && hash.startsWith('#/'));
+  };
 
   // Listen for the beforeinstallprompt event
   window.addEventListener('beforeinstallprompt', (e: Event) => {
     const promptEvent = e as BeforeInstallPromptEvent;
-    
+
     // Only handle PWA install on /app routes
     if (!isAppRoute()) return;
 
