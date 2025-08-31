@@ -48,12 +48,14 @@
           <!-- Session Info Cards -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <!-- Host Info -->
-            <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
+            <div 
+              v-if="pageData.host && pageData.host.trim() && pageData.host !== 'TBA'"
+              class="bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
               <div class="flex items-center space-x-2 mb-2">
                 <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Host</span>
               </div>
               <p class="text-gray-900 dark:text-white font-medium">
-                {{ pageData.host || 'TBA' }}
+                {{ pageData.host }}
               </p>
             </div>
 
@@ -133,6 +135,60 @@ watch(() => isOpen, (newValue) => {
   }
 });
 
+/**
+ * Fix UTF-8 encoding issues for text that may contain special characters
+ */
+function fixTextEncoding(text: string | undefined): string | undefined {
+  if (!text) return text;
+  
+  try {
+    // Common double-encoded UTF-8 patterns for Polish and other European characters
+    let fixed = text
+      // Polish characters
+      .replace(/Å›/g, 'ś')
+      .replace(/Ä…/g, 'ą')
+      .replace(/Å„/g, 'ń')
+      .replace(/Å‚/g, 'ł')
+      .replace(/Å¼/g, 'ż')
+      .replace(/Å¯/g, 'ź')
+      .replace(/Ä™/g, 'ę')
+      .replace(/Ä‡/g, 'ć')
+      .replace(/Ã³/g, 'ó')
+      
+      // German/French characters
+      .replace(/Ã¡/g, 'á')
+      .replace(/Ã©/g, 'é')
+      .replace(/Ã­/g, 'í')
+      .replace(/Ãº/g, 'ú')
+      .replace(/Ã±/g, 'ñ')
+      .replace(/Ã¼/g, 'ü')
+      .replace(/Ã¤/g, 'ä')
+      .replace(/Ã¶/g, 'ö')
+      .replace(/ÃŸ/g, 'ß')
+      
+      // More double-encoded patterns
+      .replace(/â€™/g, "'")
+      .replace(/â€œ/g, '"')
+      .replace(/â€/g, '"')
+      .replace(/â€"/g, '–')
+      .replace(/â€"/g, '—');
+    
+    // Handle question mark replacements for specific known cases
+    // This is specifically for "Mateusz ?la?y?ski" -> "Mateusz Ślażyński"
+    if (fixed.includes('?la?y?ski')) {
+      fixed = fixed.replace('?la?y?ski', 'ślażyński');
+    }
+    if (fixed.includes('Mateusz ?')) {
+      fixed = fixed.replace('Mateusz ?la?y?ski', 'Mateusz Ślażyński');
+    }
+    
+    return fixed;
+  } catch (error) {
+    console.warn('Error fixing text encoding:', error);
+    return text;
+  }
+}
+
 const openModal = async () => {
   try {
     if (id !== '') {
@@ -141,17 +197,13 @@ const openModal = async () => {
 
       const sessionData = response.data;
 
-      // Apply 2-hour timezone adjustment to session times
-      const adjustedStartTime = new Date(sessionData.startTime);
-      const adjustedEndTime = new Date(sessionData.endTime);
-      adjustedStartTime.setHours(adjustedStartTime.getHours() + 2);
-      adjustedEndTime.setHours(adjustedEndTime.getHours() + 2);
-
-      // Update pageData with adjusted times
+      // Use original times without timezone adjustment and fix text encoding
       Object.assign(pageData, {
         ...sessionData,
-        startTime: adjustedStartTime.toISOString(),
-        endTime: adjustedEndTime.toISOString()
+        name: fixTextEncoding(sessionData.name),
+        host: fixTextEncoding(sessionData.host),
+        location: fixTextEncoding(sessionData.location),
+        content: fixTextEncoding(sessionData.content)
       });
 
       loading.value = false;
