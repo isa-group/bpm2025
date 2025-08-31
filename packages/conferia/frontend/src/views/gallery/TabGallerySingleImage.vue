@@ -135,7 +135,7 @@
             </button>
 
             <Button
-              v-if="Number(userId) === imageData.authorId"
+              v-if="userId === imageData.authorId"
               severity="danger"
               outlined
               size="small"
@@ -190,7 +190,7 @@ const imageData = ref({
   imageAuthor: '',
   imageLikes: 0,
   imageIsLiked: false,
-  authorId: 0,
+  authorId: '',
   imageAuthorAvatar: '',
   uploadTime: ''
 });
@@ -271,7 +271,7 @@ const changeLikeStatus = async (): Promise<void> => {
   }
 };
 
-const getAvatarImage = async (id: number): Promise<string> => {
+const getAvatarImage = async (id: string): Promise<string> => {
   try {
     const response = await axios.get(`account/getProfilePicture/${id}`, {
       params: { format: 'webp' },

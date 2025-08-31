@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#1a202c"/>
+  <text x="50%" y="50%" text-anchor="middle" dy="0.3em" fill="white" font-family="Arial, sans-serif" font-size="64" font-weight="bold">BPM</text>
+  <text x="50%" y="70%" text-anchor="middle" dy="0.3em" fill="#60a5fa" font-family="Arial, sans-serif" font-size="32">2025</text>
+</svg>

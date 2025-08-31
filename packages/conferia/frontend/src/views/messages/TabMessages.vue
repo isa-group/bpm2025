@@ -119,6 +119,30 @@
             </div>
           </div>
         </div>
+
+        <!-- Delete button (only for message author) -->
+        <div
+          v-if="userId === activeMessage.authorId"
+          class="flex justify-end">
+          <Button
+            label="Delete Message"
+            severity="danger"
+            outlined
+            size="small"
+            :loading="isDeleting"
+            @click="deleteMessage(activeMessage.id)">
+            <template #icon>
+              <svg
+                class="w-4 h-4 mr-2"
+                viewBox="0 0 32 32"
+                fill="currentColor">
+                <path d="M12 12h2v12h-2zm6 0h2v12h-2z" />
+                <path d="M4 6v2h2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8h2V6zM8 8h16v16H8z" />
+                <path d="M12 2h8v2h-8z" />
+              </svg>
+            </template>
+          </Button>
+        </div>
       </div>
     </Dialog>
 
@@ -186,7 +210,7 @@ import FloatLabel from 'primevue/floatlabel';
 import Message from 'primevue/message';
 import { useToast } from 'primevue/usetoast';
 import UserAvatar from '#/components/UserAvatar.vue';
-import { axiosKey } from '#/plugins/symbols';
+import { axiosKey, userIdKey } from '#/plugins/symbols';
 import TabsPage from '#/components/TabsPage.vue';
 
 interface MessageType {
@@ -195,7 +219,7 @@ interface MessageType {
   message: string;
   date: string;
   author: string;
-  authorId: number;
+  authorId: string;
   avatar?: string;
   read: boolean;
 }
@@ -204,6 +228,7 @@ dayjs.extend(relativeTime);
 
 const router = useRouter();
 const axios = inject(axiosKey)!;
+const userId = inject(userIdKey)!;
 const toast = useToast();
 
 const messages = ref<MessageType[]>([]);
@@ -212,6 +237,7 @@ const isOpenPost = ref(false);
 const postError = ref('');
 const activeMessage = ref<MessageType>({} as MessageType);
 const isSubmitting = ref(false);
+const isDeleting = ref(false);
 
 const formData = ref({
   title: '',
@@ -244,6 +270,43 @@ const submitForm = async () => {
     console.error('Failed to post message:', error);
   } finally {
     isSubmitting.value = false;
+  }
+};
+
+const deleteMessage = async (messageId: number) => {
+  if (isDeleting.value) return;
+
+  const confirmed = confirm('Are you sure you want to delete this message?');
+  if (!confirmed) return;
+
+  isDeleting.value = true;
+  try {
+    await axios.delete(`message/${messageId}`);
+
+    // Remove message from local list
+    messages.value = messages.value.filter(msg => msg.id !== messageId);
+
+    toast.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Message has been deleted successfully.',
+      life: 3000
+    });
+
+    // Close modal if the deleted message is currently open
+    if (activeMessage.value.id === messageId) {
+      closeMessage();
+    }
+  } catch (error: unknown) {
+    console.error('Failed to delete message:', error);
+    toast.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'Failed to delete the message.',
+      life: 3000
+    });
+  } finally {
+    isDeleting.value = false;
   }
 };
 

@@ -48,7 +48,7 @@
           <!-- Session Info Cards -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <!-- Host Info -->
-            <div 
+            <div
               v-if="pageData.host && pageData.host.trim() && pageData.host !== 'TBA'"
               class="bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
               <div class="flex items-center space-x-2 mb-2">
@@ -140,7 +140,7 @@ watch(() => isOpen, (newValue) => {
  */
 function fixTextEncoding(text: string | undefined): string | undefined {
   if (!text) return text;
-  
+
   try {
     // Common double-encoded UTF-8 patterns for Polish and other European characters
     let fixed = text
@@ -154,7 +154,7 @@ function fixTextEncoding(text: string | undefined): string | undefined {
       .replace(/Ä™/g, 'ę')
       .replace(/Ä‡/g, 'ć')
       .replace(/Ã³/g, 'ó')
-      
+
       // German/French characters
       .replace(/Ã¡/g, 'á')
       .replace(/Ã©/g, 'é')
@@ -165,14 +165,14 @@ function fixTextEncoding(text: string | undefined): string | undefined {
       .replace(/Ã¤/g, 'ä')
       .replace(/Ã¶/g, 'ö')
       .replace(/ÃŸ/g, 'ß')
-      
+
       // More double-encoded patterns
       .replace(/â€™/g, "'")
       .replace(/â€œ/g, '"')
       .replace(/â€/g, '"')
       .replace(/â€"/g, '–')
       .replace(/â€"/g, '—');
-    
+
     // Handle question mark replacements for specific known cases
     // This is specifically for "Mateusz ?la?y?ski" -> "Mateusz Ślażyński"
     if (fixed.includes('?la?y?ski')) {
@@ -181,7 +181,7 @@ function fixTextEncoding(text: string | undefined): string | undefined {
     if (fixed.includes('Mateusz ?')) {
       fixed = fixed.replace('Mateusz ?la?y?ski', 'Mateusz Ślażyński');
     }
-    
+
     return fixed;
   } catch (error) {
     console.warn('Error fixing text encoding:', error);

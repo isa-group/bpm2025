@@ -10,9 +10,18 @@ export function getStaticPaths() {
 }
 ---
 <Layout metadata={{
-  title: 'App - BPM2025',
+  title: 'BPM 2025',
   ignoreTitleTemplate: true
 }}>
+  <!-- PWA Meta Tags for App Only -->
+  <meta name="theme-color" content="#000000" slot="head" />
+  <meta name="mobile-web-app-capable" content="yes" slot="head" />
+  <meta name="apple-mobile-web-app-capable" content="yes" slot="head" />
+  <meta name="apple-mobile-web-app-title" content="BPM 2025" slot="head" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" slot="head" />
+  <meta name="format-detection" content="telephone=no" slot="head" />
+  <meta name="msapplication-TileColor" content="#000000" slot="head" />
+
   <Header forceMobile isSticky showToggleTheme />
   <App client:only="vue" />
 </Layout>

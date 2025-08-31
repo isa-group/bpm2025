@@ -330,7 +330,7 @@ async function toggleLike(session: Session): Promise<void> {
  */
 function fixTextEncoding(text: string | undefined): string | undefined {
   if (!text) return text;
-  
+
   try {
     // Common double-encoded UTF-8 patterns for Polish and other European characters
     let fixed = text
@@ -344,7 +344,7 @@ function fixTextEncoding(text: string | undefined): string | undefined {
       .replace(/Ä™/g, 'ę')
       .replace(/Ä‡/g, 'ć')
       .replace(/Ã³/g, 'ó')
-      
+
       // German/French characters
       .replace(/Ã¡/g, 'á')
       .replace(/Ã©/g, 'é')
@@ -355,14 +355,14 @@ function fixTextEncoding(text: string | undefined): string | undefined {
       .replace(/Ã¤/g, 'ä')
       .replace(/Ã¶/g, 'ö')
       .replace(/ÃŸ/g, 'ß')
-      
+
       // More double-encoded patterns
       .replace(/â€™/g, "'")
       .replace(/â€œ/g, '"')
       .replace(/â€/g, '"')
       .replace(/â€"/g, '–')
       .replace(/â€"/g, '—');
-    
+
     // Handle question mark replacements for specific known cases
     // This is specifically for "Mateusz ?la?y?ski" -> "Mateusz Ślażyński"
     if (fixed.includes('?la?y?ski')) {
@@ -371,7 +371,7 @@ function fixTextEncoding(text: string | undefined): string | undefined {
     if (fixed.includes('Mateusz ?')) {
       fixed = fixed.replace('Mateusz ?la?y?ski', 'Mateusz Ślażyński');
     }
-    
+
     return fixed;
   } catch (error) {
     console.warn('Error fixing text encoding:', error);
@@ -404,7 +404,7 @@ function processSessions(sessionsData: Record<string, unknown>[]): Session[] {
 
     return {
       id: session.id as number,
-      title: fixTextEncoding((session.name ?? session.session_name ?? 'Untitled Session') as string) as string,
+      title: fixTextEncoding((session.name ?? session.session_name ?? 'Untitled Session') as string)!,
       session_name: fixTextEncoding((session.name ?? session.session_name) as string | undefined),
       session_host: fixTextEncoding((session.host ?? session.session_host) as string | undefined),
       session_location: fixTextEncoding((session.location ?? session.session_location) as string | undefined),
@@ -460,7 +460,7 @@ function selectDay(value: string): void {
  */
 function navigateToAgendaType(type: string): void {
   const query: Record<string, string> = {};
-  
+
   // Copy existing query parameters
   for (const [key, value] of Object.entries(route.query)) {
     if (typeof value === 'string') {
@@ -519,16 +519,16 @@ const filteredSessions = computed(() => {
 
 const groupedSessionsByTime = computed(() => {
   // Sort all sessions by start time
-  const sortedSessions = [...filteredSessions.value].sort((a, b) => 
+  const sortedSessions = [...filteredSessions.value].sort((a, b) =>
     new Date(a.start_time).getTime() - new Date(b.start_time).getTime()
   );
 
   // Group sessions by time slots (start time)
   const timeGroups: Record<string, Session[]> = {};
-  
+
   for (const session of sortedSessions) {
     const timeKey = session.start_time; // Use full start time as key
-    
+
     if (!timeGroups[timeKey]) {
       timeGroups[timeKey] = [];
     }
@@ -536,7 +536,7 @@ const groupedSessionsByTime = computed(() => {
   }
 
   // Sort time groups chronologically
-  const sortedTimeKeys = Object.keys(timeGroups).sort((a, b) => 
+  const sortedTimeKeys = Object.keys(timeGroups).sort((a, b) =>
     new Date(a).getTime() - new Date(b).getTime()
   );
 
@@ -583,7 +583,7 @@ function formatTimeSlot(timeSlot: string): string {
     if (!timePart) {
       return 'Time TBA';
     }
-    
+
     // Extract just hours:minutes from HH:MM:SS format
     const time = timePart.substring(0, 5);
     return time;
@@ -617,13 +617,13 @@ function formatSessionType(type: string): string {
     JOURNALFIRST: 'Journal First Track',
     OTHER: 'Other Sessions'
   };
-  
+
   // Handle workshop groups
   if (type.startsWith('WORKSHOP_')) {
     const workshopName = type.replace('WORKSHOP_', '');
     return workshopName;
   }
-  
+
   return typeMap[type] || type;
 }
 

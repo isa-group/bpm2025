@@ -165,22 +165,22 @@ export function getHeaderData(currentUrl: URL): HeaderData {
 
   initialData.actions ??= [];
 
-  if (!isInRegistrationPage(currentUrl)) {
-    initialData.actions.push({
-      text: 'Registration info',
-      href: getPermalink('/registration'),
-      variant: 'primary'
-    }
-    );
-  }
-
-  // if (!isInAppPage(currentUrl)) {
-  //   initialData.actions.push({
-  //     text: 'App',
-  //     href: getPermalink('/app'),
-  //     variant: 'primary'
-  //   });
+  // if (!isInRegistrationPage(currentUrl)) {
+  //  initialData.actions.push({
+  //    text: 'Registration info',
+  //    href: getPermalink('/registration'),
+  //    variant: 'primary'
+  //  }
+  //  );
   // }
+
+  if (!isInAppPage(currentUrl)) {
+    initialData.actions.push({
+      text: 'App',
+      href: getPermalink('/app'),
+      variant: 'primary'
+    });
+  }
 
   return initialData;
 };
