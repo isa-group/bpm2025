@@ -10,7 +10,7 @@
   "scripts": {
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "astro preview --host",
     "prod": "npm run build && npm run preview",
     "astro": "astro",
     "check": "astro check",

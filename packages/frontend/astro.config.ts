@@ -8,6 +8,7 @@ import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
 import compress from '@playform/compress';
 import AstroVue from '@astrojs/vue';
+import AstroPWA from '@vite-pwa/astro';
 
 export default defineConfig({
   /* @unocss-ignore */
@@ -32,6 +33,65 @@ export default defineConfig({
     mdx(),
     AstroVue({
       appEntrypoint: '@bpm2025-website/conferia-frontend/instance'
+    }),
+    AstroPWA({
+      mode: 'production',
+      base: '/app/',
+      scope: '/app/',
+      includeAssets: ['favicon.svg'],
+      registerType: 'autoUpdate',
+      manifest: {
+        name: 'BPM 2025',
+        short_name: 'BPM 2025',
+        description: 'Business Process Management 2025 Conference - Mobile App',
+        theme_color: '#000000',
+        background_color: '#ffffff',
+        display: 'standalone',
+        scope: '/app/',
+        start_url: '/app/',
+        icons: [
+          {
+            src: '/icons/pwa-192x192.svg',
+            sizes: '192x192',
+            type: 'image/svg+xml'
+          },
+          {
+            src: '/icons/pwa-512x512.svg',
+            sizes: '512x512',
+            type: 'image/svg+xml'
+          },
+          {
+            src: '/icons/pwa-512x512.svg',
+            sizes: '512x512',
+            type: 'image/svg+xml',
+            purpose: 'any maskable'
+          }
+        ]
+      },
+      workbox: {
+        navigateFallback: '/app/',
+        globPatterns: ['**/app/**/*.{css,js,html,svg,png,ico,txt}'],
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'google-fonts-cache',
+              expiration: {
+                maxEntries: 10,
+                maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          }
+        ]
+      },
+      devOptions: {
+        enabled: false,
+        navigateFallback: '/app/'
+      }
     }),
     compress({
       CSS: true,
