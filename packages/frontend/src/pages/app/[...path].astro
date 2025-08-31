@@ -1,7 +1,6 @@
 ---
 import Layout from '#/layouts/Layout.astro';
 import { MainView as App } from '@bpm2025-website/conferia-frontend';
-import Header from '#/components/widgets/Header.astro';
 
 export function getStaticPaths() {
   return [
@@ -15,13 +14,28 @@ export function getStaticPaths() {
 }}>
   <!-- PWA Meta Tags for App Only -->
   <meta name="theme-color" content="#000000" slot="head" />
-  <meta name="mobile-web-app-capable" content="yes" slot="head" />
+  <meta name="mobigle-web-app-capable" content="yes" slot="head" />
   <meta name="apple-mobile-web-app-capable" content="yes" slot="head" />
   <meta name="apple-mobile-web-app-title" content="BPM 2025" slot="head" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" slot="head" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" slot="head" />
   <meta name="format-detection" content="telephone=no" slot="head" />
   <meta name="msapplication-TileColor" content="#000000" slot="head" />
 
-  <Header forceMobile isSticky showToggleTheme />
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json" slot="head" />
+
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" slot="head" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" slot="head" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" slot="head" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" slot="head" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" slot="head" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" slot="head" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" slot="head" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" slot="head" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" slot="head" />
+  <!-- Android/PWA Icons -->
+  <link rel="icon" type="image/png" sizes="192x192" href="/apple-touch-icon-180x180.png" slot="head" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/apple-touch-icon-180x180.png" slot="head" />
   <App client:only="vue" />
 </Layout>
