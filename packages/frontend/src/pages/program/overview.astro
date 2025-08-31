@@ -8,6 +8,7 @@ import LocationView from '#/components/ui/Schedule/LocationView.astro';
 import pdfBooklet from '#/assets/documents/program/Program_booklet.pdf';
 import Booklet from '#/components/widgets/Booklet.astro';
 import type { ScheduleEvent } from '#/types';
+import { getPermalink } from '#/utils/permalinks';
 
 function sortEventsForWeekView(a: ScheduleEvent, b: ScheduleEvent) {
   if (a.category === 'conference_1' && b.category !== 'conference_1') return -1;
@@ -30,7 +31,10 @@ function formatDayLabel(events: ScheduleEvent[]) {
   metadata={{ title: 'Program Overview', description: 'Schedule of the conference' }}
   heroProps={{
     subtitle: 'Hover over the events to see the description & the location<br />Click on them to see the full program',
-    actions: [{ variant: 'primary', text: 'View program booklet', icon: 'i-tabler:download', href: pdfBooklet, target: '_blank' }]
+    actions: [
+      { variant: 'primary', text: 'Program booklet', href: pdfBooklet, icon: 'i-tabler:download', target: '_blank' },
+      { variant: 'primary', text: 'Proceedings', href: getPermalink('/proceedings'), icon: 'i-tabler:book' }
+    ]
   }}
 >
   {sections.map((s, index) => {

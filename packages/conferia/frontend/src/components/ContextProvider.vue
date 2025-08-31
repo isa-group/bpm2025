@@ -47,8 +47,8 @@ watchSyncEffect(() => {
   }
 });
 
-watch([accessToken], (newVal) => {
-  if (newVal.some(val => !val)) {
+watch(accessToken, () => {
+  if (!accessToken.value && !router.currentRoute.value.includes('auth')) {
     // Forces middleware pipeline rerun
     void router.replace({
       ...router.currentRoute.value,
