@@ -25,7 +25,10 @@ const cathedralText = 'Cathedral of Seville';
   heroProps={{
     title: '23<sup>rd</sup> International Conference on Business Process Management <br /> (BPM 2025)',
     tagline: '31st Aug - 5th Sep 2025 | Seville, Spain',
-    actions: [{ variant: 'primary', text: 'Program booklet', href: pdfBooklet, icon: 'i-tabler:download', target: '_blank' }]
+    actions: [
+      { variant: 'primary', text: 'Program booklet', href: pdfBooklet, icon: 'i-tabler:download', target: '_blank' },
+      { variant: 'primary', text: 'Proceedings', href: getPermalink('/proceedings'), icon: 'i-tabler:book' }
+    ]
   }}>
   <Fragment slot="hero-subtitle">
     BPM 2025 is the 23<sup>rd</sup> conference in a series that provides the most prestigious forum
