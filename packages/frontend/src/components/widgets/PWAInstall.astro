@@ -1,5 +1,5 @@
 ---
-// This component handles PWA install prompt functionality
+/* No changes needed in the frontmatter for types */
 ---
 
 <div id="pwa-install-prompt" class="hidden bottom-4 right-4 fixed z-50">
@@ -34,7 +34,18 @@
 
 <script>
   // PWA Install functionality - only for /app routes
-  let deferredPrompt = null;
+  
+  // Define the BeforeInstallPromptEvent interface since it's not in standard TypeScript types
+  interface BeforeInstallPromptEvent extends Event {
+    readonly platforms: string[];
+    readonly userChoice: Promise<{
+      outcome: 'accepted' | 'dismissed';
+      platform: string;
+    }>;
+    prompt(): Promise<void>;
+  }
+
+  let deferredPrompt: BeforeInstallPromptEvent | null = null;
   const installPrompt = document.getElementById('pwa-install-prompt');
   const installButton = document.getElementById('pwa-install-button');
   const dismissButton = document.getElementById('pwa-dismiss-button');
@@ -43,14 +54,16 @@
   const isAppRoute = () => window.location.pathname.startsWith('/app');
 
   // Listen for the beforeinstallprompt event
-  window.addEventListener('beforeinstallprompt', (e) => {
+  window.addEventListener('beforeinstallprompt', (e: Event) => {
+    const promptEvent = e as BeforeInstallPromptEvent;
+    
     // Only handle PWA install on /app routes
     if (!isAppRoute()) return;
 
     // Prevent the mini-infobar from appearing on mobile
-    e.preventDefault();
+    promptEvent.preventDefault();
     // Stash the event so it can be triggered later
-    deferredPrompt = e;
+    deferredPrompt = promptEvent;
     // Show our custom install prompt
     if (installPrompt) {
       installPrompt.classList.remove('hidden');
@@ -98,7 +111,11 @@
   });
 
   // Hide the prompt if not on /app route or if the app is already installed or running in standalone mode
-  if (!isAppRoute() || window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+  if (
+    !isAppRoute() ||
+    window.matchMedia('(display-mode: standalone)').matches ||
+    ('standalone' in window.navigator && window.navigator.standalone)
+  ) {
     if (installPrompt) {
       installPrompt.classList.add('hidden');
     }
