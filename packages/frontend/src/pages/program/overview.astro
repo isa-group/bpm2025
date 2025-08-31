@@ -5,10 +5,11 @@ import WeekView from '#/components/ui/Schedule/WeekView.astro';
 import { sections } from '#/data/program/overviews';
 import Headline from '#/components/ui/Headline.astro';
 import LocationView from '#/components/ui/Schedule/LocationView.astro';
-import pdfBooklet from '#/assets/documents/program/Program_booklet.pdf';
 import Booklet from '#/components/widgets/Booklet.astro';
 import type { ScheduleEvent } from '#/types';
 import { getPermalink } from '#/utils/permalinks';
+
+const pdfBooklet = '/program/Program_booklet.pdf';
 
 function sortEventsForWeekView(a: ScheduleEvent, b: ScheduleEvent) {
   if (a.category === 'conference_1' && b.category !== 'conference_1') return -1;
