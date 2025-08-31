@@ -31,5 +31,8 @@
   },
   "overrides": {
     "stylus": "0.64.0"
+  },
+  "dependencies": {
+    "@bpm2025-website/frontend": "*"
   }
 }

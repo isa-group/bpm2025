@@ -7,7 +7,7 @@ export const usePWA = () => {
   const installApp = async () => {
     if (!deferredPrompt.value) return;
     // Show the install prompt
-    (deferredPrompt.value).prompt();
+    (deferredPrompt.value as any).prompt();
     // Wait for the user to respond to the prompt
     const { outcome } = await (deferredPrompt.value as any).userChoice;
     console.log(`User response to the install prompt: ${outcome}`);

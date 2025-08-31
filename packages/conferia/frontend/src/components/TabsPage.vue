@@ -6,7 +6,7 @@
         <!-- Sticky Header -->
         <div
           v-if="title || subtitle"
-          class="sticky top-16 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+          class="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
           <div class="flex justify-between px-4 py-4">
             <slot name="header-pre" />
             <div class="flex-col">
