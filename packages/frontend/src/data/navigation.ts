@@ -101,6 +101,10 @@ export function getHeaderData(currentUrl: URL): HeaderData {
         ]
       },
       {
+        text: 'Proceedings',
+        href: getPermalink('/proceedings')
+      },
+      {
         text: 'Workshops',
         href: getPermalink('/workshops')
       },
