@@ -34,7 +34,7 @@
             v-for="person in state.persons"
             :key="person.id"
             class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-all duration-200 cursor-pointer"
-            @click="$router.push(`/attendee/${person.id}`)">
+            @click="navigateToAttendee(person.id)">
             <div class="p-4">
               <div class="flex items-center space-x-4">
                 <div class="flex-shrink-0">
@@ -70,10 +70,15 @@
           <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600" />
         </div>
 
-        <!-- Load more trigger -->
+        <!-- Infinite scroll trigger (invisible) -->
         <div
           v-if="!state.allLoaded && !state.loading"
           ref="loadMoreTrigger"
+          class="h-4 w-full" />
+
+        <!-- Load more button (fallback) -->
+        <div
+          v-if="!state.allLoaded && !state.loading"
           class="flex justify-center py-6">
           <button
             class="px-6 py-3 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-xl font-medium hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
@@ -105,8 +110,9 @@
 </template>
 
 <script setup lang="ts">
-import { watch, reactive, inject } from 'vue';
-import { useDebounceFn } from '@vueuse/core';
+import { watch, reactive, inject, onMounted, onUnmounted, onActivated, nextTick, ref } from 'vue';
+import { useDebounceFn, useLocalStorage } from '@vueuse/core';
+import { useRouter } from 'vue-router';
 import UserAvatar from '#/components/UserAvatar.vue';
 import { axiosKey } from '#/plugins/symbols';
 import TabsPage from '#/components/TabsPage.vue';
@@ -127,6 +133,14 @@ interface PageResponse {
 }
 
 const axios = inject(axiosKey)!;
+const router = useRouter();
+
+// Store scroll position and page state in localStorage
+const scrollPosition = useLocalStorage('attendees-scroll-position', 0);
+const storedPage = useLocalStorage('attendees-page', 0);
+const storedPersons = useLocalStorage<Attendee[]>('attendees-data', []);
+const storedSearchQuery = useLocalStorage('attendees-search', '');
+const storedAllLoaded = useLocalStorage('attendees-all-loaded', false);
 
 const state = reactive({
   persons: [] as Attendee[],
@@ -136,7 +150,12 @@ const state = reactive({
   allLoaded: false
 });
 
+const loadMoreTrigger = ref<HTMLElement>();
+let intersectionObserver: IntersectionObserver | null = null;
+
 const fetchAttendees = async () => {
+  if (state.loading || state.allLoaded) return;
+  
   try {
     state.loading = true;
     const response = await axios.get<PageResponse>('attendees', {
@@ -147,21 +166,30 @@ const fetchAttendees = async () => {
       }
     });
     const persons = response.data.content;
+    
+    // Load images for new persons
     await Promise.all(persons.map(async (person) => {
       if (person.avatar_path) {
         person.imageURL = await getImage(person);
       }
     }));
+    
     if (state.page === 0) {
       state.persons = persons;
     } else {
       state.persons.push(...persons);
     }
+    
     state.page++;
     state.allLoaded = response.data.last;
-    state.loading = false;
+    
+    // Store the updated data
+    storedPersons.value = state.persons;
+    storedPage.value = state.page;
+    storedAllLoaded.value = state.allLoaded;
   } catch (error) {
     console.error('Failed to fetch attendees:', error);
+  } finally {
     state.loading = false;
   }
 };
@@ -170,7 +198,18 @@ const debouncedFetchAttendees = useDebounceFn(fetchAttendees, 300);
 
 watch(() => state.searchQuery, (newQuery, oldQuery) => {
   if (newQuery !== oldQuery) {
+    // Reset state for new search
     state.page = 0;
+    state.allLoaded = false;
+    state.persons = [];
+    
+    // Clear stored data when search changes
+    storedSearchQuery.value = newQuery;
+    storedPersons.value = [];
+    storedPage.value = 0;
+    storedAllLoaded.value = false;
+    scrollPosition.value = 0;
+    
     void debouncedFetchAttendees();
   }
 }, { immediate: false });
@@ -198,10 +237,119 @@ const formatCompanyCountry = (person: Attendee) => {
 };
 
 const loadMore = async () => {
-  if (!state.loading && !state.allLoaded) {
-    await fetchAttendees();
+  await fetchAttendees();
+};
+
+// Store scroll position when navigating to attendee detail
+const navigateToAttendee = (personId: number) => {
+  // Store current scroll position
+  scrollPosition.value = window.scrollY;
+  
+  // Navigate to attendee detail page
+  void router.push(`/attendee/${personId}`);
+};
+
+// Clear cached data (useful for debugging or when needed)
+const clearCache = () => {
+  scrollPosition.value = 0;
+  storedPage.value = 0;
+  storedPersons.value = [];
+  storedSearchQuery.value = '';
+  storedAllLoaded.value = false;
+};
+
+// Setup infinite scroll using Intersection Observer
+const setupInfiniteScroll = () => {
+  if (!loadMoreTrigger.value || intersectionObserver) return;
+
+  intersectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !state.loading && !state.allLoaded) {
+          void loadMore();
+        }
+      });
+    },
+    {
+      rootMargin: '100px' // Start loading 100px before the trigger comes into view
+    }
+  );
+
+  intersectionObserver.observe(loadMoreTrigger.value);
+};
+
+// Restore scroll position
+const restoreScrollPosition = () => {
+  if (scrollPosition.value > 0) {
+    // Use requestAnimationFrame for better scroll restoration
+    requestAnimationFrame(() => {
+      window.scrollTo({
+        top: scrollPosition.value,
+        behavior: 'auto'
+      });
+    });
   }
 };
 
-void fetchAttendees();
+// Handle page visibility changes (for browser back navigation)
+const handleVisibilityChange = () => {
+  if (document.visibilityState === 'visible') {
+    // Page became visible again - restore scroll position
+    setTimeout(() => {
+      restoreScrollPosition();
+    }, 100);
+  }
+};
+
+// Handle browser back/forward navigation
+const handlePopState = () => {
+  setTimeout(() => {
+    restoreScrollPosition();
+  }, 50);
+};
+
+onMounted(async () => {
+  // Restore search query
+  state.searchQuery = storedSearchQuery.value || '';
+  
+  // Check if we have stored data and it matches current search
+  if (storedPersons.value.length > 0 && storedSearchQuery.value === state.searchQuery) {
+    // Restore stored state
+    state.persons = storedPersons.value;
+    state.page = storedPage.value;
+    state.allLoaded = storedAllLoaded.value;
+    
+    // Wait for DOM to render then restore scroll and setup infinite scroll
+    await nextTick();
+    restoreScrollPosition();
+    setupInfiniteScroll();
+  } else {
+    // Fresh load
+    await fetchAttendees();
+    await nextTick();
+    setupInfiniteScroll();
+  }
+  
+  // Listen for page visibility changes (browser back navigation)
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+  
+  // Listen for browser back/forward navigation
+  window.addEventListener('popstate', handlePopState);
+});
+
+// This lifecycle hook is called when component is reactivated (useful for keep-alive)
+onActivated(async () => {
+  await nextTick();
+  restoreScrollPosition();
+  setupInfiniteScroll();
+});
+
+onUnmounted(() => {
+  if (intersectionObserver) {
+    intersectionObserver.disconnect();
+    intersectionObserver = null;
+  }
+  document.removeEventListener('visibilitychange', handleVisibilityChange);
+  window.removeEventListener('popstate', handlePopState);
+});
 </script>

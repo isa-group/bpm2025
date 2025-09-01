@@ -7,7 +7,7 @@
         size="small"
         variant="outlined"
         rounded
-        @click="$router.back()" />
+        @click="goBackToAttendees" />
     </template>
 
     <div class="px-4 py-6 pb-20">
@@ -157,6 +157,20 @@ async function getImage(person: AttendeeDetail) {
     return URL.createObjectURL(response.data);
   } catch (error) {
     console.error('Error fetching image:', error);
+  }
+}
+
+/**
+ * Navigate back to attendees list, preserving scroll position
+ */
+function goBackToAttendees(): void {
+  // Use router.back() for better browser navigation experience
+  // The attendees page will handle scroll restoration automatically
+  if (window.history.length > 1) {
+    router.back();
+  } else {
+    // Fallback if no history
+    void router.push('/tabs/attendees');
   }
 }
 
