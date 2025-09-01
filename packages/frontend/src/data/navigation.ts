@@ -177,7 +177,7 @@ export function getHeaderData(currentUrl: URL): HeaderData {
   if (!isInAppPage(currentUrl)) {
     initialData.actions.push({
       text: 'App',
-      href: getPermalink('/app'),
+      href: getPermalink('/app-instructions/'),
       variant: 'primary'
     });
   }
