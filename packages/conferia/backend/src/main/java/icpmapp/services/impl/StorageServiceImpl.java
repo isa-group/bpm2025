@@ -249,18 +249,31 @@ public class StorageServiceImpl implements StorageService {
         // Read the input image
         BufferedImage originalImage = ImageIO.read(inputImage);
 
-        // Calculate the new height to maintain the aspect ratio
-        int targetWidth = 400;
+        // Set higher quality limits - max width 1200px instead of 400px
+        int maxWidth = 1200;
         int originalWidth = originalImage.getWidth();
         int originalHeight = originalImage.getHeight();
-        int targetHeight = (targetWidth * originalHeight) / originalWidth;
-
-        // Resize the image
-        Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH);
-        BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g2d = outputImage.createGraphics();
-        g2d.drawImage(resultingImage, 0, 0, null);
-        g2d.dispose();
+        
+        // Only resize if image is larger than max width
+        BufferedImage outputImage;
+        if (originalWidth > maxWidth) {
+            int targetHeight = (maxWidth * originalHeight) / originalWidth;
+            
+            // Use higher quality scaling with Graphics2D
+            outputImage = new BufferedImage(maxWidth, targetHeight, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2d = outputImage.createGraphics();
+            
+            // Enable high-quality rendering
+            g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+            g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            
+            g2d.drawImage(originalImage, 0, 0, maxWidth, targetHeight, null);
+            g2d.dispose();
+        } else {
+            // Use original image if it's already small enough
+            outputImage = originalImage;
+        }
 
         // Create a byte array output stream to capture the WebP output
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {

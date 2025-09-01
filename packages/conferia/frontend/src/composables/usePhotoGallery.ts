@@ -33,7 +33,7 @@ export const usePhotoGallery = () => {
   };
 
   /**
-   * Process and compress image
+   * Process and compress image with better quality settings
    */
   const processImage = async (imageBlob: Blob, maxSize: number, maxHeight: number, maxWidth: number): Promise<Blob> => {
     return new Promise((resolve, reject) => {
@@ -55,10 +55,15 @@ export const usePhotoGallery = () => {
 
         const ctx = canvas.getContext('2d');
         if (ctx) {
+          // Enable high-quality image rendering
+          ctx.imageSmoothingEnabled = true;
+          ctx.imageSmoothingQuality = 'high';
           ctx.drawImage(img, 0, 0, width, height);
         }
-        let quality = 1; // Start with 100% quality
-        const step = 0.1; // Reduce quality by 10% each step
+
+        let quality = 1; // Start with 95% quality instead of 100%
+        const step = 0.05; // Reduce quality by 5% each step (more gradual)
+        const minQuality = 0.8; // Don't go below 80% quality (was 60%)
 
         const reduceQualityParameter = () => {
           canvas.toBlob((blob) => {
@@ -66,7 +71,7 @@ export const usePhotoGallery = () => {
               reject(new Error('Failed to convert canvas to blob'));
               return;
             }
-            if (blob.size <= convertedMaxSize || quality <= 0.6) {
+            if (blob.size <= convertedMaxSize || quality <= minQuality) {
               resolve(blob);
             } else {
               quality -= step;
@@ -162,8 +167,8 @@ export const usePhotoGallery = () => {
         try {
           const stream = await navigator.mediaDevices.getUserMedia({
             video: {
-              width: { ideal: 1280 },
-              height: { ideal: 720 },
+              width: { ideal: 1920, min: 1280 }, // Higher resolution for better quality
+              height: { ideal: 1080, min: 720 },
               facingMode: 'user' // Front camera for profile photos
             }
           });
@@ -180,8 +185,15 @@ export const usePhotoGallery = () => {
           captureButton.onclick = () => {
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
-            context?.drawImage(video, 0, 0);
 
+            // Use high-quality canvas rendering
+            if (context) {
+              context.imageSmoothingEnabled = true;
+              context.imageSmoothingQuality = 'high';
+              context.drawImage(video, 0, 0);
+            }
+
+            // Increased JPEG quality from 0.9 to 0.95 for better camera captures
             canvas.toBlob((blob) => {
               if (blob) {
                 stopCamera();
@@ -190,7 +202,7 @@ export const usePhotoGallery = () => {
                 stopCamera();
                 reject(new Error('Failed to capture photo'));
               }
-            }, 'image/jpeg', 0.9);
+            }, 'image/jpeg', 0.95);
           };
 
           cancelButton.onclick = () => {
@@ -237,7 +249,7 @@ export const usePhotoGallery = () => {
   };
 
   /**
-   * Take photo for gallery (larger size)
+   * Take photo for gallery (higher quality, less compression)
    */
   const takePhotoGallery = async (): Promise<Blob> => {
     try {
@@ -249,14 +261,15 @@ export const usePhotoGallery = () => {
         photoBlob = await takePhotoWithFileInput();
       }
 
-      return await processImage(photoBlob, 1, 2000, 2000);
+      // Increased size limit to 3MB and dimensions to 2400x2400 for better gallery quality
+      return await processImage(photoBlob, 3, 2400, 2400);
     } catch (e) {
       throw new Error(`Failed to take photo: ${e instanceof Error ? e.message : 'Unknown error'}`);
     }
   };
 
   /**
-   * Take photo for profile (smaller, compressed)
+   * Take photo for profile (smaller, but still good quality)
    */
   const takePhotoProfile = async (): Promise<Blob> => {
     try {
@@ -268,7 +281,8 @@ export const usePhotoGallery = () => {
         photoBlob = await takePhotoWithFileInput();
       }
 
-      return await processImage(photoBlob, 0.2, 800, 600);
+      // Increased size limit from 0.2MB to 1MB for better profile photo quality
+      return await processImage(photoBlob, 1, 800, 600);
     } catch (e) {
       throw new Error(`Failed to take profile photo: ${e instanceof Error ? e.message : 'Unknown error'}`);
     }
