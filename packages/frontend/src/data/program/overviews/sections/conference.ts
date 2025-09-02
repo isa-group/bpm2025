@@ -7,7 +7,7 @@ import { getPermalink } from '#/utils/permalinks';
 // const processTechUrl = getPermalink('/program/process-technology-forum');
 // const educatorsUrl = getPermalink('/program/educators-forum');
 // const industryForumUrl = getPermalink('/program/industry-forum');
-const tutorialsUrl = getPermalink('/program/tutorials');
+// const tutorialsUrl = getPermalink('/program/tutorials');
 // const responsibleUrl = getPermalink('/program/responsible-bpm-forum');
 // const demosUrl = getPermalink('/program/demos-&-resources/');
 // const journalFirstUrl = getPermalink('/program/journal-first-track');
@@ -126,7 +126,7 @@ export const conferenceFirst: ScheduleEvent[] = [
     end: new Date(2025, 8, 2, 18, 0),
     category: 'workshop',
     location: locations.nervion,
-    href: tutorialsUrl
+    href: getHref('panel-&-tutorials', 1)
   },
   {
     title: 'Journal First 2',
@@ -187,7 +187,7 @@ export const conferenceSecond: ScheduleEvent[] = [
     description: 'Constraint-based reasoning and analysis for BPM: CSP to the rescue',
     category: 'workshop',
     location: locations.magnolia,
-    href: tutorialsUrl
+    href: getHref('panel-&-tutorials', 2)
   },
   {
     title: 'Industry Forum 2',
@@ -216,9 +216,10 @@ export const conferenceSecond: ScheduleEvent[] = [
     title: 'Celonis Tutorial',
     start: new Date(2025, 8, 3, 16, 30),
     end: new Date(2025, 8, 3, 18, 0),
+    description: 'Unlocking End-to-End Process Transparency with Celonis Process Intelligence',
     category: 'workshop',
     location: locations.nervion,
-    href: tutorialsUrl
+    href: getHref('panel-&-tutorials', 4)
   },
   {
     title: 'Journal First 3',
@@ -279,7 +280,7 @@ export const conferenceThird: ScheduleEvent[] = [
     description: 'Business Process Optimization',
     category: 'workshop',
     location: locations.magnolia,
-    href: tutorialsUrl
+    href: getHref('panel-&-tutorials', 3)
   },
   {
     title: 'Responsible BPM 2',
@@ -301,6 +302,6 @@ export const conferenceThird: ScheduleEvent[] = [
     end: new Date(2025, 8, 4, 17, 30),
     category: 'demos',
     location: locations.giralda,
-    href: getPermalink('/program/panel')
+    href: getHref('panel-&-tutorials', 5)
   }
 ];

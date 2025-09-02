@@ -825,12 +825,20 @@ The Responsible BPM Forum was established with the aim to develop concepts that 
     ]
   },
   {
-    name: 'Tutorials',
-    location: [locations.nervion, locations.magnolia],
+    name: 'Panel & Tutorials',
+    location: [locations.nervion, locations.magnolia, locations.giralda],
     date: 'Tuesday,  Wednesday & Thursday, Sept 2nd–4rd, 2025',
     items: [
       {
-        title: 'Tutorial 1: <u id="tutorials-s1">AI-Assisted Business Process Monitoring</u> - Tuesday, Sept 2nd, 2025 (16:30 - 18:00) - Nervion Hall',
+        title: 'Panel: <u id="panel-&-tutorials-s5">Quo Vadis, BPM Conference?</u> - Thursday, Sept 4th, 2025 (16:30 - 17:30) - Giralda Hall',
+        description: `
+          <i>Jan Mendling, Irene Vanderfeesten, Adela del Río, Hajo Reijers</i>
+          <br /><br />
+          This year’s panel aims to be a "Town Hall" meeting of the BPM community to understand how the conference can be improved in the future. We will first seek input from the conference audience to prioritise the aspects of the conference that could be improved and should therefore be discussed. Then, the panel will feature members of the BPM steering committee and a selection of this year's PC and organization chairs who will be asked to reflect on the current status of the conference and challenged to identify concrete directions for improvement on the aspects identified as priorities by the audience
+        `
+      },
+      {
+        title: 'Tutorial 1: <u id="panel-&-tutorials-s1">AI-Assisted Business Process Monitoring</u> - Tuesday, Sept 2nd, 2025 (16:30 - 18:00) - Nervion Hall',
         description: `
           <i>Andreas Metzger</i>
           <br /><br />
@@ -854,7 +862,7 @@ The Responsible BPM Forum was established with the aim to develop concepts that 
         `
       },
       {
-        title: 'Tutorial 2: <u id="tutorials-s2">Constraint-based reasoning and analysis for BPM: CSP to the rescue</u> - Wednesday, Sept 3rd, 2025 (14:30 - 16:00) - Magnolia Hall',
+        title: 'Tutorial 2: <u id="panel-&-tutorials-s2">Constraint-based reasoning and analysis for BPM: CSP to the rescue</u> - Wednesday, Sept 3rd, 2025 (14:30 - 16:00) - Magnolia Hall',
         description: `
           <i>Alessandro Gianola, Andrey Rivkin and Mateusz Slazynski</i>
           <br /><br />
@@ -875,7 +883,7 @@ The Responsible BPM Forum was established with the aim to develop concepts that 
         `
       },
       {
-        title: 'Tutorial 3: <u id="tutorials-s3">Business Process Optimization</u> - Thursday, Sept 4th, 2025 (14:30 - 16:00) - Magnolia Hall',
+        title: 'Tutorial 3: <u id="panel-&-tutorials-s3">Business Process Optimization</u> - Thursday, Sept 4th, 2025 (14:30 - 16:00) - Magnolia Hall',
         description: `
           <i>Remco Dijkman and Arik Senderovich</i>
           <br /><br />
@@ -888,7 +896,16 @@ The Responsible BPM Forum was established with the aim to develop concepts that 
           This tutorial introduces key BPO problem types and solution approaches,
           illustrating specific problem-solution pairs that were already explored.
           While not exhaustive, the classification aims to provide a structured overview and spark future
-          research in this emerging area. 
+          research in this emerging area.           
+        `
+      },
+      {
+        title: 'Celonis Tutorial (sponsored): <u id="panel-&-tutorials-s4">Unlocking End-to-End Process Transparency with Celonis Process Intelligence</u> - Wednesday, Sept 3th, 2025 (16:30 - 18:00) - Nervión Hall',
+        description: `
+          <i>Adrian Joas</i>
+          <br /><br />
+          This tutorial introduces BPM academics and industry professionals to Celonis’ powerful Process Intelligence platform. Participants will move beyond traditional process mining to see how an object-centric approach creates a real-time, living blueprint of how processes truly run across complex systems and organizational silos.
+Through a hands-on journey, attendees will learn to ingest event data, build an object-centric data model that unveils hidden interdependencies, and visualize process realities using the Process Intelligence Graph. We will explore how this method uncovers bottlenecks and deviations invisible to conventional BPM tools. The session will also demonstrate how to leverage AI for enhanced usability and to drive intelligent, agent-based decision-making. The tutorial culminates in a practical exercise where participants will use Celonis Studio to build their own insightful, object-centric dashboards, translating complex data into actionable process improvements. This session is ideal for those with a basic understanding of business process management and data analysis concepts who wish to explore the next generation of process mining technology. 
         `
       }
     ]
