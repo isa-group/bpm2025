@@ -291,7 +291,7 @@ async function fetchCurrentUserId() {
 async function fetchLikedSessions() {
   try {
     const response = await axios.get('agenda/session/hearts');
-    state.likedSessionIds = new Set(response.data.map((id: number) => id.toString()));
+    state.likedSessionIds = new Set(response.data.map(id => id));
   } catch (error) {
     console.error('Failed to fetch liked sessions:', error);
     state.likedSessionIds = new Set();
@@ -549,32 +549,6 @@ const groupedSessionsByTime = computed(() => {
 });
 
 /**
- * Extract workshop name from session title
- * Expected format: "(WORKSHOP NAME) — Session Title" or "WORKSHOP NAME — Session Title"
- */
-function extractWorkshopName(sessionTitle: string): string {
-  const parenthesesRegex = /^\(([^)]+)\)\s*—/;
-  let match = parenthesesRegex.exec(sessionTitle);
-  if (match) {
-    return match[1];
-  }
-
-  const dashRegex = /^([^—]+)—/;
-  match = dashRegex.exec(sessionTitle);
-  if (match) {
-    return match[1].trim();
-  }
-
-  const alphanumericRegex = /^([A-Z0-9]+)\s*—/;
-  match = alphanumericRegex.exec(sessionTitle);
-  if (match) {
-    return match[1];
-  }
-
-  return sessionTitle; // Return full title if no pattern matches
-}
-
-/**
  * Format time slot for display as header
  */
 function formatTimeSlot(timeSlot: string): string {
@@ -591,40 +565,6 @@ function formatTimeSlot(timeSlot: string): string {
     console.error('Error formatting time slot:', error, timeSlot);
     return 'Time TBA';
   }
-}
-
-/**
- * Format session type for display (kept for potential future use)
- */
-function formatSessionType(type: string): string {
-  const typeMap: Record<string, string> = {
-    KEYNOTE: 'Keynote',
-    FOOD: 'Lunch',
-    COFFEE: 'Coffee Breaks',
-    PRACTICAL: 'Practical Sessions',
-    QnA: 'Q&A Sessions',
-    MAIN: 'Main Track',
-    DOCTORALCONSORTIUM: 'Doctoral Consortium',
-    PANEL: 'Panel Discussions',
-    TUTORIAL: 'Tutorials',
-    WORKSHOP: 'Workshops',
-    DEMO: 'Demonstrations',
-    BPMFORUM: 'BPM Forum',
-    EDUCATORSFORUM: 'Educators Forum',
-    PROCESSTECHNOLOGYFORUM: 'Process Technology Forum',
-    INDUSTRYFORUM: 'Industry Forum',
-    RESPONSIBLEBPMFORUM: 'Responsible BPM Forum',
-    JOURNALFIRST: 'Journal First Track',
-    OTHER: 'Other Sessions'
-  };
-
-  // Handle workshop groups
-  if (type.startsWith('WORKSHOP_')) {
-    const workshopName = type.replace('WORKSHOP_', '');
-    return workshopName;
-  }
-
-  return typeMap[type] || type;
 }
 
 /**
