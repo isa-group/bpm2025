@@ -1,5 +1,7 @@
 import type { ImageMetadata } from 'astro';
+import AdrianRomero from '#/assets/images/people/AdrianRomero.png';
 import AlfonsoMarquez from '#/assets/images/people/AlfonsoMarquez.jpeg';
+import AlfonsoBravo from '#/assets/images/people/AlfonsoBravo.jpg';
 import Mendling from '#/assets/images/people/mendling.jpg';
 import Dumas from '#/assets/images/people/dumas.jpeg';
 import Gal from '#/assets/images/people/gal.jpg';
@@ -262,7 +264,33 @@ const sharedPeopleData = {
       September 2017 through September 2022. Since 2024, Dr. Weske is an Adjunct Faculty member in the 
       Windreich Department of AI and Human Health at the Icahn School of Medicine at Mount Sinai in New York.
     `
+  },
+  'Carlos Capitán Agudo': {
+    ...USData,
+    image: CarlosCapitan,
+    email: 'ccagudo@us.es',
+    bio: `
+      Carlos Capitán-Agudo is a graduate in health engineering, and he received a MSc in software engineering at the University of Seville.
+      For his final degree work, he was awarded in the national competition XVIII “Arquimedes” of introduction to scientific research.
+      Currently, he is a PhD student at the University of Seville. His thesis aims to facilitate time performance analyses in process mining,
+      and it is under the supervision of Manuel Resinas, and Cristina Cabanillas. He has co-authored publications in conferences such as
+      BPMNDS, BPM, and ICSOC. One of the publications he co-authored received the Best Student Paper Award at BPM 2022.
+      His current research interests include process performance, neuronal networks, and explainable artificial intelligence.
+    `
+  },
+  'María Salas Urbano': {
+    ...USData,
+    email: 'msurbano@us.es',
+    image: MariaSalas,
+    bio: `
+      María Salas Urbano is a PhD student at the University of Seville, Spain, and a member of the ISA research group
+      in the Department of Languages and Computer Systems. Her research focuses on process mining, specifically on providing support
+      to process mining analysts in performing their tasks. She has published her work in prestigious conferences such as BPM or ICSOC.
+      Her contributions aim to enhance techniques and tools for process mining, and she actively participates in the academic community
+      in this area.
+    `
   }
+
 } satisfies Record<string, ConferenceMember>;
 
 /**
@@ -793,18 +821,7 @@ export const conferenceChairs = (): Record<string, ConferenceMemberData> => ({
         Syed has maintained his technical expertise through active consultancy work with the World Bank and various government ICT organizations globally.
       `
     },
-    'María Salas Urbano': {
-      ...USData,
-      email: 'msurbano@us.es',
-      image: MariaSalas,
-      bio: `
-        María Salas Urbano is a PhD student at the University of Seville, Spain, and a member of the ISA research group
-        in the Department of Languages and Computer Systems. Her research focuses on process mining, specifically on providing support
-        to process mining analysts in performing their tasks. She has published her work in prestigious conferences such as BPM or ICSOC.
-        Her contributions aim to enhance techniques and tools for process mining, and she actively participates in the academic community
-        in this area.
-      `
-    }
+    'María Salas Urbano': sharedPeopleData['María Salas Urbano']
   },
   'Proceedings': {
     'Simone Agostinelli': {
@@ -845,31 +862,39 @@ export const conferenceChairs = (): Record<string, ConferenceMemberData> => ({
     }
   },
   'Diversity, Equity & Inclusion': {
-    'Carlos Capitán Agudo': {
-      ...USData,
-      image: CarlosCapitan,
-      email: 'ccagudo@us.es',
-      bio: `
-        Carlos Capitán-Agudo is a graduate in health engineering, and he received a MSc in software engineering at the University of Seville.
-        For his final degree work, he was awarded in the national competition XVIII “Arquimedes” of introduction to scientific research.
-        Currently, he is a PhD student at the University of Seville. His thesis aims to facilitate time performance analyses in process mining,
-        and it is under the supervision of Manuel Resinas, and Cristina Cabanillas. He has co-authored publications in conferences such as
-        BPMNDS, BPM, and ICSOC. One of the publications he co-authored received the Best Student Paper Award at BPM 2022.
-        His current research interests include process performance, neuronal networks, and explainable artificial intelligence.
-      `
-    },
+    'Carlos Capitán Agudo': sharedPeopleData['Carlos Capitán Agudo'],
     'Shazia Sadiq': sharedPeopleData['Shazia Sadiq'],
     'Irene Vanderfeesten': sharedPeopleData['Irene Vanderfeesten']
   }
 });
 
 export const organizingTeam = (): ConferenceMemberData => ({
-  'Cristina Cabanillas': sharedPeopleData['Cristina Cabanillas'],
+  'Cristina Cabanillas': { ...sharedPeopleData['Cristina Cabanillas'], job: undefined },
   'Bedilia Estrada Torres': sharedPeopleData['Bedilia Estrada Torres'],
+  'Carlos Capitán Agudo': sharedPeopleData['Carlos Capitán Agudo'],
+  'María Salas Urbano': sharedPeopleData['María Salas Urbano'],
+  'Alfonso Bravo Llanos': {
+    ...USData,
+    email: 'abllanos@us.es',
+    image: AlfonsoBravo
+  },
   'Fernando Fernández': {
     ...USData,
     email: 'ferferga@us.es',
     image: FernandoFernandez
+  },
+  'Álvaro Bernal': {
+    ...USData,
+    email: 'abernal3@us.es'
+  },
+  'Daniel Ruiz': {
+    ...USData,
+    email: 'druiz7@us.es'
+  },
+  'Adrián Romero': {
+    ...USData,
+    email: 'aromero17@us.es',
+    image: AdrianRomero
   }
 });
 
