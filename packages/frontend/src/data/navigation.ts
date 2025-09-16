@@ -105,6 +105,10 @@ export function getHeaderData(currentUrl: URL): HeaderData {
         href: getPermalink('/proceedings')
       },
       {
+        text: 'Awards',
+        href: getPermalink('/awards')
+      },
+      {
         text: 'Workshops',
         href: getPermalink('/workshops')
       },

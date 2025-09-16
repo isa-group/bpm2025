@@ -1,0 +1,64 @@
+---
+// src/components/AwardsList.astro
+import { awards } from '#/data/awards';
+
+const placementClass = (p?: string) => {
+  if (!p) return 'bg-slate-100 text-slate-700';
+  const key = p.toLowerCase();
+  if (key.includes('winner')) return 'bg-emerald-100 text-emerald-800';
+  if (key.includes('runner-up')) return 'bg-amber-100 text-amber-800';
+  if (key.includes('2nd')) return 'bg-indigo-100 text-indigo-800';
+  if (key.includes('3rd')) return 'bg-violet-100 text-violet-800';
+  return 'bg-slate-100 text-slate-700';
+};
+---
+
+<section class="mx-auto px-4 py-10 max-w-6xl">
+
+  <div class="space-y-10">
+    {awards.map(group => (
+      <section class="space-y-4">
+        <h2 class="text-xl font-semibold">
+          {group.category}
+        </h2>
+
+        <ul class="gap-4 grid lg:grid-cols-3 sm:grid-cols-2">
+          {group.entries.map(entry => (
+            <li class="p-4 border border-slate-200 rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-md">
+              <div class="flex gap-3 items-start justify-between">
+                <h3 class="text-base leading-snug font-semibold">
+                  {entry.title}
+                </h3>
+                <span class={'shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ' + placementClass(entry.placement ?? (entry.title.toLowerCase().includes('winner') ? 'Winner' : ''))}>
+                  {entry.placement ?? (entry.title.toLowerCase().includes('winner') ? 'Winner' : '—')}
+                </span>
+              </div>
+
+              {entry.paper
+                ? (
+                    <p class="text-sm text-slate-700 mt-2">
+                      {entry.winners.join(', ')}
+                    </p>
+                  )
+                : (
+                    <div class="text-sm text-slate-700 mt-2">
+                      <ul class="list-disc list-inside">
+                        {entry.winners.map(w => (
+                          <li>{w}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+              {entry.paper && (
+                <p class="text-sm text-slate-600 mt-3 italic">
+                  {entry.paper}
+                </p>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</section>
