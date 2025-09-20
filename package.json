@@ -24,7 +24,7 @@
     "@vite-pwa/astro": "1.1.0",
     "eslint": "9.34.0",
     "jiti": "2.5.1",
-    "type-fest": "4.41.0",
+    "type-fest": "5.0.1",
     "typescript": "5.9.2",
     "vite-plugin-pwa": "1.0.3",
     "workbox-window": "7.3.0"
