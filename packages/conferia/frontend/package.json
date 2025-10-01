@@ -30,12 +30,12 @@
   },
   "dependencies": {
     "@bpm2025-website/assets": "*",
-    "@primevue/themes": "4.3.7",
-    "@vueuse/core": "13.8.0",
+    "@primevue/themes": "4.4.0",
+    "@vueuse/core": "13.9.0",
     "axios": "1.11.0",
-    "dayjs": "1.11.15",
-    "primevue": "4.3.7",
-    "vue": "3.5.20",
+    "dayjs": "1.11.18",
+    "primevue": "4.4.0",
+    "vue": "3.5.22",
     "vue-router": "4.5.1"
   },
   "devDependencies": {
