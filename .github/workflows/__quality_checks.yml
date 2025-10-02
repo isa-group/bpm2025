@@ -20,7 +20,7 @@ jobs:
           ref: ${{ inputs.commit || github.sha }}
 
       - name: Scan
-        uses: actions/dependency-review-action@v4.7.2
+        uses: actions/dependency-review-action@v4.8.0
         with:
           base-ref: ${{ github.event.pull_request.base.sha || 'main' }}
           head-ref: ${{ github.event.pull_request.head.sha || github.ref }}
@@ -74,7 +74,7 @@ jobs:
           ref: ${{ inputs.commit || github.sha }}
 
       - name: Setup node environment ⚙️
-        uses: actions/setup-node@v4.4.0
+        uses: actions/setup-node@v5.0.0
         with:
           node-version: lts/*
           cache: 'npm'
