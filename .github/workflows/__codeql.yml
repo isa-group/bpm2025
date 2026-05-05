@@ -31,6 +31,13 @@ jobs:
           queries: security-and-quality
           languages: ${{ matrix.language }}
 
+      - name: Setup node environment ⚙️
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: 22
+          cache: 'npm'
+          check-latest: true
+
       - name: Autobuild 📦
         uses: github/codeql-action/autobuild@v3.29.11
 
