@@ -1,5 +1,5 @@
 # stage 1: build the app
-FROM openjdk:21-slim AS builder
+FROM eclipse-temurin:21-jdk-jammy AS builder
 
 WORKDIR /app
 
@@ -7,10 +7,10 @@ COPY . .
 
 RUN chmod +x mvnw
 
-RUN ./mvnw clean package -DskipTest
+RUN ./mvnw clean package -DskipTests
 
-# Use an official OpenJDK runtime as a parent image
-FROM openjdk:21-slim
+# Use an official Java 21 runtime as a parent image
+FROM eclipse-temurin:21-jre-jammy
 
 # Set the working directory in the container
 WORKDIR /app
