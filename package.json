@@ -7,7 +7,7 @@
     "packages/**/*"
   ],
   "engines": {
-    "node": ">=22.11.0 <23.0.0",
+    "node": ">=22.11.0 <23.0.0 || >=24.0.0 <25.0.0",
     "npm": ">=10.9.0",
     "yarn": "yarn is not supported. Please use npm",
     "pnpm": "pnpm is not supported. Please use npm"
