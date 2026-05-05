@@ -13,6 +13,13 @@ export const proceedings = {
     volume: 'LNBIP 564',
     href: 'https://link.springer.com/book/10.1007/978-3-032-02929-4'
   },
+  workshops: {
+    name: 'Business Process Management Workshops',
+    longtitle: 'BPM 2025 Workshops',
+    shorttitle: 'BPM Workshops',
+    volume: 'LNBIP 569',
+    href: 'https://link.springer.com/book/10.1007/978-3-032-13426-4'
+  },
   forums: {
     name: 'Business Process Management: Responsible BPM Forum, Process Technology Forum, Educators Forum',
     longtitle: 'BPM 2025 Responsible BPM Forum, Process Technology Forum, Educators Forum',
