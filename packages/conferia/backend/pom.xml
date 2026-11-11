@@ -106,7 +106,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
-            <version>3.5.5</version>
+            <version>3.5.15</version>
         </dependency>
         <!-- Dependency for reading and writing WebP images -->
         <dependency>
